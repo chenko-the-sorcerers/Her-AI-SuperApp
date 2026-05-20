@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
+	"strings"
 	"sync"
 	"time"
 
@@ -59,8 +61,7 @@ func main() {
 	hub := &Hub{rooms: make(map[string]*Room)}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/" {
-			http.NotFound(w, r)
+		if serveStaticApp(w, r) {
 			return
 		}
 		w.Header().Set("Content-Type", "application/json")
@@ -278,4 +279,34 @@ func getenv(key, fallback string) string {
 		return fallback
 	}
 	return value
+}
+
+func serveStaticApp(w http.ResponseWriter, r *http.Request) bool {
+	if r.Method != http.MethodGet && r.Method != http.MethodHead {
+		return false
+	}
+
+	staticRoot := getenv("HERAI_STATIC_ROOT", "./public")
+	cleanPath := filepath.Clean(strings.TrimPrefix(r.URL.Path, "/"))
+	if cleanPath == "." {
+		cleanPath = "index.html"
+	}
+	if cleanPath == ".." || strings.HasPrefix(cleanPath, "../") {
+		http.NotFound(w, r)
+		return true
+	}
+
+	fullPath := filepath.Join(staticRoot, cleanPath)
+	if info, err := os.Stat(fullPath); err == nil && !info.IsDir() {
+		http.ServeFile(w, r, fullPath)
+		return true
+	}
+
+	indexPath := filepath.Join(staticRoot, "index.html")
+	if _, err := os.Stat(indexPath); err == nil {
+		http.ServeFile(w, r, indexPath)
+		return true
+	}
+
+	return false
 }

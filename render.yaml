@@ -1,17 +1,12 @@
 services:
   - type: web
-    name: herai-superapp
-    runtime: static
-    buildCommand: mkdir -p public && cp -R index.html assets components css js pages public/
-    staticPublishPath: ./public
-    autoDeploy: true
-
-  - type: web
     name: herai-signaling
     runtime: go
-    rootDir: signaling
     plan: free
-    buildCommand: go build -tags netgo -ldflags "-s -w" -o app .
-    startCommand: ./app
+    buildCommand: mkdir -p public && cp -R index.html assets components css js pages public/ && cd signaling && go build -tags netgo -ldflags "-s -w" -o app .
+    startCommand: ./signaling/app
     healthCheckPath: /healthz
     autoDeploy: true
+    envVars:
+      - key: HERAI_STATIC_ROOT
+        value: ./public
