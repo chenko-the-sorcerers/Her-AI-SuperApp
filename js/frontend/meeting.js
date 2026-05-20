@@ -3,6 +3,7 @@
    ========================================================================== */
 
 window.initMeetingRoom = function() {
+    const USE_SFU_TRANSPORT = true;
     const DEFAULT_SIGNAL_URL = 'wss://herai-signaling.onrender.com/ws';
     const DEFAULT_ICE_SERVERS = [
         { urls: 'stun:stun.l.google.com:19302' },
@@ -57,6 +58,7 @@ window.initMeetingRoom = function() {
     let iceServers = [...DEFAULT_ICE_SERVERS];
     let audioContext = null;
     let localAudioMonitor = null;
+    let sfuPc = null;
     const peers = new Map();
     const remoteScreenShares = new Map();
     const peerNames = new Map();
@@ -67,6 +69,7 @@ window.initMeetingRoom = function() {
     const peerRetryCounts = new Map();
     const peerAudioMonitors = new Map();
     const peerMediaWatchdogs = new Map();
+    const pendingSfuIceCandidates = [];
     const clientId = getMeetingClientId();
     const localPresence = {
         id: clientId,
@@ -109,6 +112,7 @@ window.initMeetingRoom = function() {
         if (!socket || socket.readyState !== WebSocket.OPEN) return;
         socket.send(JSON.stringify({ type, room: roomId(), to, payload }));
     };
+    const sendSFU = (type, payload) => sendSignal(type, '', payload);
     const buildLocalPresence = () => {
         localPresence.name = displayName();
         localPresence.mic = localStream?.getAudioTracks()[0]?.enabled !== false;
@@ -181,6 +185,7 @@ window.initMeetingRoom = function() {
     };
     const shouldOfferToPeer = (peerId) => clientId > peerId;
     const createPeer = (peerId) => {
+        if (USE_SFU_TRANSPORT) return null;
         if (peers.has(peerId)) return peers.get(peerId);
         negotiationState.set(peerId, { makingOffer: false, ignoreOffer: false });
         const pc = new RTCPeerConnection({
@@ -322,6 +327,7 @@ window.initMeetingRoom = function() {
         if (!peerId || peerId === clientId) return;
         const knownName = peerDisplayName(peerId);
         ensureParticipantTile(peerId, knownName, peerPresence.get(peerId) || { id: peerId, name: knownName, mic: true, camera: true });
+        if (USE_SFU_TRANSPORT) return;
         const pc = createPeer(peerId);
         if (!options.quiet) {
             sendSignal('peer-info', peerId, { name: displayName() });
@@ -345,6 +351,7 @@ window.initMeetingRoom = function() {
     };
     const startMeshAudit = () => {
         stopMeshAudit();
+        if (USE_SFU_TRANSPORT) return;
         meshAuditTimer = setInterval(() => {
             sendSignal('peer-list-request', '', { name: displayName() });
             publishPresence('');
@@ -365,6 +372,68 @@ window.initMeetingRoom = function() {
             }
         } catch (error) {
             console.warn('Memakai ICE server default.', error);
+        }
+    };
+    const createSFUPeer = () => {
+        if (sfuPc) return sfuPc;
+        sfuPc = new RTCPeerConnection({
+            iceServers,
+            bundlePolicy: 'max-bundle',
+            iceCandidatePoolSize: 4
+        });
+        if (localStream) localStream.getTracks().forEach(track => configureSender(sfuPc.addTrack(track, localStream), track));
+        if (!localStream?.getAudioTracks().length) sfuPc.addTransceiver('audio', { direction: 'recvonly' });
+        if (!localStream?.getVideoTracks().length) sfuPc.addTransceiver('video', { direction: 'recvonly' });
+        sfuPc.onicecandidate = event => {
+            if (event.candidate) sendSFU('sfu-ice', event.candidate.toJSON());
+        };
+        sfuPc.ontrack = event => {
+            const stream = event.streams[0] || new MediaStream([event.track]);
+            const isScreen = stream.id?.endsWith(':screen');
+            const ownerId = isScreen ? stream.id.replace(/:screen$/, '') : (stream.id && stream.id !== '-' ? stream.id : `sfu-${event.track.id}`);
+            if (ownerId === clientId) return;
+            const shareMeta = remoteScreenShares.get(ownerId);
+            renderMeetingRemote(ownerId, stream, isScreen ? 'screen' : 'camera', shareMeta?.name);
+            if (!isScreen) {
+                clearTimeout(peerMediaWatchdogs.get(ownerId));
+                peerMediaWatchdogs.delete(ownerId);
+                startRemoteAudioMonitor(ownerId, stream);
+            }
+        };
+        sfuPc.onconnectionstatechange = () => {
+            if (sfuPc.connectionState === 'connected') setStatus('SFU terhubung');
+            if (['failed', 'disconnected'].includes(sfuPc.connectionState)) {
+                setStatus('Koneksi SFU mencoba tersambung ulang');
+                restartSFU().catch(error => console.warn('Gagal restart SFU', error));
+            }
+        };
+        return sfuPc;
+    };
+    const negotiateSFU = async (options = {}) => {
+        const pc = createSFUPeer();
+        if (pc.signalingState !== 'stable') return;
+        const offer = await pc.createOffer({
+            offerToReceiveAudio: true,
+            offerToReceiveVideo: true,
+            iceRestart: options.iceRestart === true
+        });
+        await pc.setLocalDescription(offer);
+        sendSFU('sfu-offer', pc.localDescription);
+    };
+    const restartSFU = async () => {
+        if (!sfuPc || sfuPc.signalingState !== 'stable') return;
+        sfuPc.restartIce?.();
+        await negotiateSFU({ iceRestart: true });
+    };
+    const flushSFUIceCandidates = async () => {
+        if (!sfuPc?.remoteDescription) return;
+        while (pendingSfuIceCandidates.length) {
+            const candidate = pendingSfuIceCandidates.shift();
+            try {
+                await sfuPc.addIceCandidate(candidate);
+            } catch (error) {
+                console.warn('Gagal menambahkan SFU ICE candidate', error);
+            }
         }
     };
     const handleSignal = async (message) => {
@@ -442,9 +511,45 @@ window.initMeetingRoom = function() {
             await auditMesh(peerIds);
             return;
         }
+        if (type === 'sfu-answer') {
+            const pc = createSFUPeer();
+            if (pc.signalingState === 'have-local-offer') {
+                await pc.setRemoteDescription(new RTCSessionDescription(payload));
+                await flushSFUIceCandidates();
+            }
+            return;
+        }
+        if (type === 'sfu-offer') {
+            const pc = createSFUPeer();
+            if (pc.signalingState !== 'stable') {
+                try { await pc.setLocalDescription({ type: 'rollback' }); } catch {}
+            }
+            await pc.setRemoteDescription(new RTCSessionDescription(payload));
+            await flushSFUIceCandidates();
+            const answer = await pc.createAnswer();
+            await pc.setLocalDescription(answer);
+            sendSFU('sfu-answer', pc.localDescription);
+            return;
+        }
+        if (type === 'sfu-ice') {
+            const candidate = new RTCIceCandidate(payload);
+            if (!sfuPc?.remoteDescription) {
+                pendingSfuIceCandidates.push(candidate);
+            } else {
+                await sfuPc.addIceCandidate(candidate);
+            }
+            return;
+        }
         if (type === 'media-reconnect') {
-            setStatus(`${peerDisplayName(from)} meminta sinkron ulang media`);
-            await createOffer(from, { iceRestart: true });
+            if (USE_SFU_TRANSPORT) {
+                await restartSFU();
+            } else {
+                setStatus(`${peerDisplayName(from)} meminta sinkron ulang media`);
+                await createOffer(from, { iceRestart: true });
+            }
+            return;
+        }
+        if (USE_SFU_TRANSPORT && ['offer', 'answer', 'ice'].includes(type)) {
             return;
         }
         if (type === 'offer') {
@@ -535,9 +640,10 @@ window.initMeetingRoom = function() {
                 const message = JSON.parse(event.data);
                 if (message.type === 'joined') {
                     const existingPeers = message.payload?.peers || [];
-                    for (const peerId of existingPeers) await ensurePeerReady(peerId, { forceOffer: true, delay: Math.floor(Math.random() * 900) });
+                    for (const peerId of existingPeers) await ensurePeerReady(peerId, { forceOffer: !USE_SFU_TRANSPORT, delay: Math.floor(Math.random() * 900) });
                     sendSignal('peer-info', '', { name: displayName() });
                     publishPresence('');
+                    if (USE_SFU_TRANSPORT) await negotiateSFU();
                     setStatus('Berhasil masuk room');
                     return;
                 }
@@ -618,8 +724,13 @@ window.initMeetingRoom = function() {
             sendSignal('screen-start', '', { name: displayName(), streamId: screenStream.id });
             publishPresence();
             renderLocalScreenTile(screenStream);
-            peers.forEach(pc => pc.addTrack(screenTrack, screenStream));
-            await renegotiateAllPeers();
+            if (USE_SFU_TRANSPORT) {
+                configureSender(createSFUPeer().addTrack(screenTrack, screenStream), screenTrack);
+                await negotiateSFU();
+            } else {
+                peers.forEach(pc => pc.addTrack(screenTrack, screenStream));
+                await renegotiateAllPeers();
+            }
             screenTrack.onended = async () => {
                 await stopScreenShare();
             };
@@ -679,6 +790,9 @@ window.initMeetingRoom = function() {
         stopMeetingClock();
         stopMeshAudit();
         socket = null;
+        if (sfuPc) sfuPc.close();
+        sfuPc = null;
+        pendingSfuIceCandidates.length = 0;
         peers.forEach(pc => pc.close());
         peers.clear();
         peerNames.clear();
@@ -968,10 +1082,15 @@ window.initMeetingRoom = function() {
     async function stopScreenShare() {
         if (!screenStream && !screenTrack) return;
         if (screenTrack) {
-            peers.forEach(pc => {
-                const sender = pc.getSenders().find(item => item.track === screenTrack);
-                if (sender) pc.removeTrack(sender);
-            });
+            if (USE_SFU_TRANSPORT && sfuPc) {
+                const sender = sfuPc.getSenders().find(item => item.track === screenTrack);
+                if (sender) sfuPc.removeTrack(sender);
+            } else {
+                peers.forEach(pc => {
+                    const sender = pc.getSenders().find(item => item.track === screenTrack);
+                    if (sender) pc.removeTrack(sender);
+                });
+            }
         }
         if (screenStream) screenStream.getTracks().forEach(track => track.stop());
         screenStream = null;
@@ -982,7 +1101,8 @@ window.initMeetingRoom = function() {
         localPresence.screen = false;
         setShareButtonState(false);
         publishPresence();
-        await renegotiateAllPeers();
+        if (USE_SFU_TRANSPORT) await negotiateSFU();
+        else await renegotiateAllPeers();
         updateTileLayout();
     }
 

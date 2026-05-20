@@ -17,6 +17,7 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
+	"github.com/pion/webrtc/v4"
 )
 
 type SignalMessage struct {
@@ -28,15 +29,29 @@ type SignalMessage struct {
 }
 
 type Client struct {
-	id   string
-	room string
-	hub  *Hub
-	conn *websocket.Conn
-	send chan SignalMessage
+	id             string
+	room           string
+	hub            *Hub
+	conn           *websocket.Conn
+	send           chan SignalMessage
+	pcMu           sync.Mutex
+	pc             *webrtc.PeerConnection
+	senders        map[string]*webrtc.RTPSender
+	stateMu        sync.RWMutex
+	screenActive   bool
+	screenStreamID string
 }
 
 type Room struct {
 	clients map[string]*Client
+	tracks  map[string]*PublishedTrack
+}
+
+type PublishedTrack struct {
+	id    string
+	owner string
+	kind  string
+	track *webrtc.TrackLocalStaticRTP
 }
 
 type RoomInfo struct {
@@ -135,11 +150,12 @@ func serveWS(hub *Hub, w http.ResponseWriter, r *http.Request) {
 	}
 
 	client := &Client{
-		id:   r.URL.Query().Get("clientId"),
-		room: r.URL.Query().Get("room"),
-		hub:  hub,
-		conn: conn,
-		send: make(chan SignalMessage, 4096),
+		id:      r.URL.Query().Get("clientId"),
+		room:    r.URL.Query().Get("room"),
+		hub:     hub,
+		conn:    conn,
+		send:    make(chan SignalMessage, 4096),
+		senders: make(map[string]*webrtc.RTPSender),
 	}
 	if client.id == "" || client.room == "" {
 		_ = conn.WriteJSON(SignalMessage{Type: "error", Payload: mustRaw(`{"message":"clientId and room are required"}`)})
@@ -158,7 +174,7 @@ func (h *Hub) join(client *Client) {
 
 	room := h.rooms[client.room]
 	if room == nil {
-		room = &Room{clients: make(map[string]*Client)}
+		room = &Room{clients: make(map[string]*Client), tracks: make(map[string]*PublishedTrack)}
 		h.rooms[client.room] = room
 	}
 
@@ -201,6 +217,15 @@ func (h *Hub) leave(client *Client) {
 	}
 
 	delete(room.clients, client.id)
+	for trackID, track := range room.tracks {
+		if track.owner == client.id {
+			delete(room.tracks, trackID)
+			for _, peer := range room.clients {
+				peer.removeSender(trackID)
+			}
+		}
+	}
+	client.closePeerConnection()
 	close(client.send)
 
 	for _, peer := range room.clients {
@@ -284,6 +309,16 @@ func (c *Client) readPump() {
 			c.hub.sendPeerList(c)
 			continue
 		}
+		if message.Type == "screen-start" {
+			c.setScreenShareState(true, message.Payload)
+		}
+		if message.Type == "screen-stop" {
+			c.setScreenShareState(false, nil)
+		}
+		if strings.HasPrefix(message.Type, "sfu-") {
+			c.hub.handleSFUMessage(c, message)
+			continue
+		}
 		c.hub.forward(message)
 	}
 }
@@ -314,6 +349,367 @@ func enqueueSignal(client *Client, message SignalMessage) {
 	case client.send <- message:
 	default:
 		log.Printf("dropping signal type=%s room=%s client=%s: send queue full", message.Type, client.room, client.id)
+	}
+}
+
+func (h *Hub) handleSFUMessage(client *Client, message SignalMessage) {
+	switch message.Type {
+	case "sfu-offer":
+		h.handleSFUOffer(client, message.Payload)
+	case "sfu-answer":
+		client.handleSFUAnswer(message.Payload)
+	case "sfu-ice":
+		client.handleSFUIce(message.Payload)
+	}
+}
+
+func (h *Hub) handleSFUOffer(client *Client, payload json.RawMessage) {
+	var offer webrtc.SessionDescription
+	if err := json.Unmarshal(payload, &offer); err != nil {
+		log.Printf("invalid sfu offer from %s: %v", client.id, err)
+		return
+	}
+
+	pc, err := h.ensurePeerConnection(client)
+	if err != nil {
+		log.Printf("failed to create sfu pc for %s: %v", client.id, err)
+		return
+	}
+
+	client.pcMu.Lock()
+	defer client.pcMu.Unlock()
+
+	if err := pc.SetRemoteDescription(offer); err != nil {
+		log.Printf("failed to set remote offer for %s: %v", client.id, err)
+		return
+	}
+
+	answer, err := pc.CreateAnswer(nil)
+	if err != nil {
+		log.Printf("failed to create sfu answer for %s: %v", client.id, err)
+		return
+	}
+	if err := pc.SetLocalDescription(answer); err != nil {
+		log.Printf("failed to set local answer for %s: %v", client.id, err)
+		return
+	}
+
+	enqueueSignal(client, SignalMessage{Type: "sfu-answer", Room: client.room, From: "server", Payload: mustJSON(pc.LocalDescription())})
+}
+
+func (h *Hub) ensurePeerConnection(client *Client) (*webrtc.PeerConnection, error) {
+	client.pcMu.Lock()
+	if client.pc != nil {
+		pc := client.pc
+		client.pcMu.Unlock()
+		return pc, nil
+	}
+	client.pcMu.Unlock()
+
+	pc, err := webrtc.NewPeerConnection(webrtc.Configuration{
+		ICEServers: pionICEServers(),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	pc.OnICECandidate(func(candidate *webrtc.ICECandidate) {
+		if candidate == nil {
+			return
+		}
+		enqueueSignal(client, SignalMessage{Type: "sfu-ice", Room: client.room, From: "server", Payload: mustJSON(candidate.ToJSON())})
+	})
+
+	pc.OnConnectionStateChange(func(state webrtc.PeerConnectionState) {
+		if state == webrtc.PeerConnectionStateFailed || state == webrtc.PeerConnectionStateClosed || state == webrtc.PeerConnectionStateDisconnected {
+			log.Printf("sfu pc state client=%s room=%s state=%s", client.id, client.room, state.String())
+		}
+	})
+
+	pc.OnTrack(func(remoteTrack *webrtc.TrackRemote, receiver *webrtc.RTPReceiver) {
+		h.publishRemoteTrack(client, remoteTrack)
+	})
+
+	client.pcMu.Lock()
+	client.pc = pc
+	client.pcMu.Unlock()
+
+	h.mu.RLock()
+	room := h.rooms[client.room]
+	existingTracks := make([]*PublishedTrack, 0)
+	if room != nil {
+		for _, track := range room.tracks {
+			if track.owner != client.id {
+				existingTracks = append(existingTracks, track)
+			}
+		}
+	}
+	h.mu.RUnlock()
+
+	for _, track := range existingTracks {
+		client.addPublishedTrack(track)
+	}
+
+	return pc, nil
+}
+
+func (h *Hub) publishRemoteTrack(client *Client, remoteTrack *webrtc.TrackRemote) {
+	codec := remoteTrack.Codec()
+	kind := remoteTrack.Kind().String()
+	streamID := client.id
+	if kind == "video" && client.isScreenShareTrack(remoteTrack.StreamID()) {
+		kind = "screen"
+		streamID = client.id + ":screen"
+	}
+	localTrack, err := webrtc.NewTrackLocalStaticRTP(codec.RTPCodecCapability, remoteTrack.ID(), streamID)
+	if err != nil {
+		log.Printf("failed to create local track for %s: %v", client.id, err)
+		return
+	}
+
+	trackID := client.id + ":" + kind + ":" + remoteTrack.ID()
+	published := &PublishedTrack{
+		id:    trackID,
+		owner: client.id,
+		kind:  kind,
+		track: localTrack,
+	}
+
+	h.mu.Lock()
+	room := h.rooms[client.room]
+	if room == nil {
+		h.mu.Unlock()
+		return
+	}
+	room.tracks[trackID] = published
+	peers := make([]*Client, 0, len(room.clients))
+	for id, peer := range room.clients {
+		if id != client.id {
+			peers = append(peers, peer)
+		}
+	}
+	h.mu.Unlock()
+
+	enqueueSignal(client, SignalMessage{Type: "sfu-track-published", Room: client.room, From: "server", Payload: mustJSON(map[string]any{
+		"id":   trackID,
+		"kind": published.kind,
+	})})
+
+	for _, peer := range peers {
+		if peer.addPublishedTrack(published) {
+			go peer.negotiateSFU()
+		}
+	}
+
+	go func() {
+		for {
+			packet, _, err := remoteTrack.ReadRTP()
+			if err != nil {
+				h.removePublishedTrack(client, trackID)
+				return
+			}
+			if err := localTrack.WriteRTP(packet); err != nil {
+				log.Printf("failed to relay RTP track=%s: %v", trackID, err)
+			}
+		}
+	}()
+}
+
+func (h *Hub) removePublishedTrack(owner *Client, trackID string) {
+	h.mu.Lock()
+	room := h.rooms[owner.room]
+	if room == nil {
+		h.mu.Unlock()
+		return
+	}
+	delete(room.tracks, trackID)
+	peers := make([]*Client, 0, len(room.clients))
+	for id, peer := range room.clients {
+		if id != owner.id {
+			peers = append(peers, peer)
+		}
+	}
+	h.mu.Unlock()
+
+	for _, peer := range peers {
+		if peer.removeSender(trackID) {
+			go peer.negotiateSFU()
+		}
+	}
+}
+
+func (c *Client) addPublishedTrack(track *PublishedTrack) bool {
+	c.pcMu.Lock()
+	defer c.pcMu.Unlock()
+	if c.pc == nil || c.senders == nil {
+		return false
+	}
+	if track.owner == c.id {
+		return false
+	}
+	if _, exists := c.senders[track.id]; exists {
+		return false
+	}
+	sender, err := c.pc.AddTrack(track.track)
+	if err != nil {
+		log.Printf("failed to add SFU track=%s to client=%s: %v", track.id, c.id, err)
+		return false
+	}
+	c.senders[track.id] = sender
+	go drainRTCP(sender)
+	return true
+}
+
+func (c *Client) removeSender(trackID string) bool {
+	c.pcMu.Lock()
+	defer c.pcMu.Unlock()
+	if c.pc == nil || c.senders == nil {
+		return false
+	}
+	sender := c.senders[trackID]
+	if sender == nil {
+		return false
+	}
+	delete(c.senders, trackID)
+	if err := c.pc.RemoveTrack(sender); err != nil {
+		log.Printf("failed to remove SFU track=%s from client=%s: %v", trackID, c.id, err)
+	}
+	return true
+}
+
+func (c *Client) negotiateSFU() {
+	c.pcMu.Lock()
+	defer c.pcMu.Unlock()
+	if c.pc == nil || c.pc.SignalingState() != webrtc.SignalingStateStable {
+		return
+	}
+	offer, err := c.pc.CreateOffer(nil)
+	if err != nil {
+		log.Printf("failed to create sfu renegotiation offer for %s: %v", c.id, err)
+		return
+	}
+	if err := c.pc.SetLocalDescription(offer); err != nil {
+		log.Printf("failed to set sfu renegotiation offer for %s: %v", c.id, err)
+		return
+	}
+	enqueueSignal(c, SignalMessage{Type: "sfu-offer", Room: c.room, From: "server", Payload: mustJSON(c.pc.LocalDescription())})
+}
+
+func (c *Client) handleSFUAnswer(payload json.RawMessage) {
+	var answer webrtc.SessionDescription
+	if err := json.Unmarshal(payload, &answer); err != nil {
+		log.Printf("invalid sfu answer from %s: %v", c.id, err)
+		return
+	}
+	c.pcMu.Lock()
+	defer c.pcMu.Unlock()
+	if c.pc == nil {
+		return
+	}
+	if err := c.pc.SetRemoteDescription(answer); err != nil {
+		log.Printf("failed to set sfu answer for %s: %v", c.id, err)
+	}
+}
+
+func (c *Client) handleSFUIce(payload json.RawMessage) {
+	var candidate webrtc.ICECandidateInit
+	if err := json.Unmarshal(payload, &candidate); err != nil {
+		log.Printf("invalid sfu ice from %s: %v", c.id, err)
+		return
+	}
+	c.pcMu.Lock()
+	defer c.pcMu.Unlock()
+	if c.pc == nil {
+		return
+	}
+	if err := c.pc.AddICECandidate(candidate); err != nil {
+		log.Printf("failed to add sfu ice for %s: %v", c.id, err)
+	}
+}
+
+func (c *Client) closePeerConnection() {
+	c.pcMu.Lock()
+	defer c.pcMu.Unlock()
+	if c.pc != nil {
+		_ = c.pc.Close()
+		c.pc = nil
+	}
+	c.senders = make(map[string]*webrtc.RTPSender)
+}
+
+func (c *Client) setScreenShareState(active bool, payload json.RawMessage) {
+	c.stateMu.Lock()
+	defer c.stateMu.Unlock()
+	c.screenActive = active
+	c.screenStreamID = ""
+	if !active || len(payload) == 0 {
+		return
+	}
+	var body struct {
+		StreamID string `json:"streamId"`
+	}
+	if err := json.Unmarshal(payload, &body); err == nil {
+		c.screenStreamID = body.StreamID
+	}
+}
+
+func (c *Client) isScreenShareTrack(streamID string) bool {
+	c.stateMu.RLock()
+	defer c.stateMu.RUnlock()
+	if !c.screenActive {
+		return false
+	}
+	return c.screenStreamID == "" || c.screenStreamID == streamID
+}
+
+func pionICEServers() []webrtc.ICEServer {
+	raw := strings.TrimSpace(getenv("HERAI_ICE_SERVERS", ""))
+	if raw == "" {
+		return []webrtc.ICEServer{
+			{URLs: []string{"stun:stun.l.google.com:19302"}},
+			{URLs: []string{"stun:stun1.l.google.com:19302"}},
+			{URLs: []string{"stun:stun.cloudflare.com:3478"}},
+		}
+	}
+
+	var generic []map[string]any
+	if err := json.Unmarshal([]byte(raw), &generic); err != nil {
+		log.Printf("invalid HERAI_ICE_SERVERS for SFU: %v", err)
+		return nil
+	}
+
+	servers := make([]webrtc.ICEServer, 0, len(generic))
+	for _, item := range generic {
+		server := webrtc.ICEServer{}
+		switch urls := item["urls"].(type) {
+		case string:
+			server.URLs = []string{urls}
+		case []any:
+			for _, value := range urls {
+				if text, ok := value.(string); ok {
+					server.URLs = append(server.URLs, text)
+				}
+			}
+		}
+		if username, ok := item["username"].(string); ok {
+			server.Username = username
+		}
+		if credential, ok := item["credential"].(string); ok {
+			server.Credential = credential
+		}
+		if len(server.URLs) > 0 {
+			servers = append(servers, server)
+		}
+	}
+	return servers
+}
+
+func drainRTCP(sender *webrtc.RTPSender) {
+	buf := make([]byte, 1500)
+	for {
+		if _, _, err := sender.Read(buf); err != nil {
+			return
+		}
 	}
 }
 
