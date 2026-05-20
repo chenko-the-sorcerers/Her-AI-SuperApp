@@ -3,7 +3,7 @@
    ========================================================================== */
 
 window.initMeetingRoom = function() {
-    const DEFAULT_SIGNAL_URL = 'ws://127.0.0.1:8080/ws';
+    const DEFAULT_SIGNAL_URL = 'wss://herai-signaling.onrender.com/ws';
 
     const joinPanel = document.getElementById('meetingJoinPanel');
     const meetingPage = document.getElementById('meetingPage');
@@ -24,6 +24,9 @@ window.initMeetingRoom = function() {
     const chatPanel = document.getElementById('meetingChatPanel');
     const chatMessages = document.getElementById('meetingChatMessages');
     const chatInput = document.getElementById('meetingChatInput');
+    const peoplePanel = document.getElementById('meetingPeoplePanel');
+    const peopleList = document.getElementById('meetingPeopleList');
+    const peopleSummary = document.getElementById('meetingPeopleSummary');
     const emojiFloat = document.getElementById('meetingEmojiFloat');
     const pageControls = document.getElementById('meetingPageControls');
     const pageInfo = document.getElementById('meetingPageInfo');
@@ -44,7 +47,16 @@ window.initMeetingRoom = function() {
     const peers = new Map();
     const remoteScreenShares = new Map();
     const peerNames = new Map();
+    const peerPresence = new Map();
     const clientId = getMeetingClientId();
+    const localPresence = {
+        id: clientId,
+        name: '',
+        mic: true,
+        camera: true,
+        hand: false,
+        screen: false
+    };
 
     const params = new URLSearchParams((location.hash.split('?')[1] || ''));
     const roomFromLink = params.get('room');
@@ -72,6 +84,19 @@ window.initMeetingRoom = function() {
         if (!socket || socket.readyState !== WebSocket.OPEN) return;
         socket.send(JSON.stringify({ type, room: roomId(), to, payload }));
     };
+    const buildLocalPresence = () => {
+        localPresence.name = displayName();
+        localPresence.mic = localStream?.getAudioTracks()[0]?.enabled !== false;
+        localPresence.camera = localStream?.getVideoTracks()[0]?.enabled !== false;
+        localPresence.screen = Boolean(screenStream);
+        return { ...localPresence };
+    };
+    const publishPresence = (to = '') => {
+        const presence = buildLocalPresence();
+        updateMeetingTilePresence(clientId, presence);
+        renderPeopleList();
+        sendSignal('presence', to, presence);
+    };
     const ensureMedia = async () => {
         if (localStream) return localStream;
         assertMediaSupport();
@@ -97,9 +122,11 @@ window.initMeetingRoom = function() {
         if (pc) pc.close();
         peers.delete(peerId);
         remoteScreenShares.delete(peerId);
+        peerPresence.delete(peerId);
         if (activeScreenOwner === peerId) activeScreenOwner = null;
         removeMeetingRemote(peerId);
         removeMeetingRemote(`${peerId}-screen`);
+        renderPeopleList();
         renderEmptyRemoteIfNeeded();
     };
     const createPeer = (peerId) => {
@@ -138,6 +165,7 @@ window.initMeetingRoom = function() {
         if (type === 'peer-joined') {
             createPeer(from);
             sendSignal('peer-info', from, { name: displayName() });
+            publishPresence(from);
             return;
         }
         if (type === 'peer-left') {
@@ -162,6 +190,33 @@ window.initMeetingRoom = function() {
         if (type === 'peer-info') {
             peerNames.set(from, payload?.name || from.slice(0, 8));
             updateMeetingRemoteLabel(from);
+            if (!peerPresence.has(from)) {
+                peerPresence.set(from, {
+                    id: from,
+                    name: payload?.name || from.slice(0, 8),
+                    mic: true,
+                    camera: true,
+                    hand: false,
+                    screen: false
+                });
+            }
+            renderPeopleList();
+            return;
+        }
+        if (type === 'presence') {
+            const nextPresence = {
+                id: from,
+                name: payload?.name || peerNames.get(from) || from.slice(0, 8),
+                mic: payload?.mic !== false,
+                camera: payload?.camera !== false,
+                hand: payload?.hand === true,
+                screen: payload?.screen === true
+            };
+            peerNames.set(from, nextPresence.name);
+            peerPresence.set(from, nextPresence);
+            updateMeetingRemoteLabel(from);
+            updateMeetingTilePresence(from, nextPresence);
+            renderPeopleList();
             return;
         }
         if (type === 'offer') {
@@ -225,6 +280,7 @@ window.initMeetingRoom = function() {
             roomPanel?.classList.remove('hidden');
             meetingPage?.classList.add('in-call');
             syncRoomDeviceButtons();
+            publishPresence();
             socket = new WebSocket(signalUrl());
             setStatus('Menghubungkan ke room...');
             socket.onopen = () => setStatus('Terhubung ke signaling server');
@@ -234,13 +290,14 @@ window.initMeetingRoom = function() {
                     const existingPeers = message.payload?.peers || [];
                     for (const peerId of existingPeers) await createOffer(peerId);
                     sendSignal('peer-info', '', { name: displayName() });
+                    publishPresence('');
                     setStatus('Berhasil masuk room');
                     return;
                 }
                 await handleSignal(message);
             };
             socket.onclose = () => setStatus('Signaling server offline atau koneksi room terputus');
-            socket.onerror = () => setStatus('Signaling server belum aktif di ws://127.0.0.1:8080');
+            socket.onerror = () => setStatus('Signaling server belum aktif atau tidak bisa dijangkau');
         } catch (error) {
             console.error(error);
             showMediaHelp(error);
@@ -274,11 +331,20 @@ window.initMeetingRoom = function() {
     document.getElementById('btnToggleMeetingMic')?.addEventListener('click', event => {
         const enabled = toggleTrack('audio');
         setDeviceButtonState(event.currentTarget, enabled, 'microphone');
+        publishPresence();
     });
 
     document.getElementById('btnToggleMeetingCamera')?.addEventListener('click', event => {
         const enabled = toggleTrack('video');
         setDeviceButtonState(event.currentTarget, enabled, 'video');
+        publishPresence();
+    });
+
+    document.getElementById('btnRaiseMeetingHand')?.addEventListener('click', event => {
+        localPresence.hand = !localPresence.hand;
+        event.currentTarget?.classList.toggle('is-raised', localPresence.hand);
+        event.currentTarget.title = localPresence.hand ? 'Lower Hand' : 'Raise Hand';
+        publishPresence();
     });
 
     shareButton?.addEventListener('click', async () => {
@@ -294,7 +360,9 @@ window.initMeetingRoom = function() {
             screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
             screenTrack = screenStream.getVideoTracks()[0];
             activeScreenOwner = clientId;
+            localPresence.screen = true;
             sendSignal('screen-start', '', { name: displayName(), streamId: screenStream.id });
+            publishPresence();
             renderLocalScreenTile(screenStream);
             peers.forEach(pc => pc.addTrack(screenTrack, screenStream));
             await renegotiateAllPeers();
@@ -308,12 +376,25 @@ window.initMeetingRoom = function() {
     });
 
     document.getElementById('btnToggleMeetingChat')?.addEventListener('click', () => {
+        peoplePanel?.classList.remove('open');
+        meetingPage?.classList.remove('people-open');
         chatPanel?.classList.toggle('open');
         meetingPage?.classList.toggle('chat-open', chatPanel?.classList.contains('open'));
     });
     document.getElementById('btnCloseMeetingChat')?.addEventListener('click', () => {
         chatPanel?.classList.remove('open');
         meetingPage?.classList.remove('chat-open');
+    });
+    document.getElementById('btnToggleMeetingPeople')?.addEventListener('click', () => {
+        chatPanel?.classList.remove('open');
+        meetingPage?.classList.remove('chat-open');
+        peoplePanel?.classList.toggle('open');
+        meetingPage?.classList.toggle('people-open', peoplePanel?.classList.contains('open'));
+        renderPeopleList();
+    });
+    document.getElementById('btnCloseMeetingPeople')?.addEventListener('click', () => {
+        peoplePanel?.classList.remove('open');
+        meetingPage?.classList.remove('people-open');
     });
     document.getElementById('btnSendMeetingChat')?.addEventListener('click', sendChatMessage);
     chatInput?.addEventListener('keydown', event => {
@@ -349,7 +430,11 @@ window.initMeetingRoom = function() {
         peers.forEach(pc => pc.close());
         peers.clear();
         peerNames.clear();
+        peerPresence.clear();
         remoteScreenShares.clear();
+        localPresence.hand = false;
+        localPresence.screen = false;
+        document.getElementById('btnRaiseMeetingHand')?.classList.remove('is-raised');
         activeScreenOwner = null;
         document.querySelectorAll('.meeting-remote-tile').forEach(tile => tile.remove());
         document.getElementById('meeting-local-screen')?.remove();
@@ -367,11 +452,14 @@ window.initMeetingRoom = function() {
         roomPanel?.classList.add('hidden');
         joinPanel?.classList.remove('hidden');
         previewPanel?.classList.add('hidden');
+        chatPanel?.classList.remove('open');
+        peoplePanel?.classList.remove('open');
         document.getElementById('btnJoinMeetingRoom')?.classList.remove('hidden');
-        meetingPage?.classList.remove('in-call');
+        meetingPage?.classList.remove('in-call', 'chat-open', 'people-open');
         if (navContainer) navContainer.style.display = 'block';
         if (footerContainer) footerContainer.style.display = 'block';
         setStatus('Menunggu koneksi...');
+        renderPeopleList();
     }
 
     function toggleTrack(kind) {
@@ -443,6 +531,42 @@ window.initMeetingRoom = function() {
         const videoEnabled = localStream?.getVideoTracks()[0]?.enabled !== false;
         setDeviceButtonState(document.getElementById('btnToggleMeetingMic'), audioEnabled, 'microphone');
         setDeviceButtonState(document.getElementById('btnToggleMeetingCamera'), videoEnabled, 'video');
+        updateMeetingTilePresence(clientId, buildLocalPresence());
+        renderPeopleList();
+    }
+
+    function renderPeopleList() {
+        if (!peopleList || !peopleSummary) return;
+        const participants = [
+            { ...buildLocalPresence(), local: true },
+            ...[...peerPresence.values()].map(item => ({ ...item, local: false }))
+        ].sort((a, b) => {
+            if (a.local) return -1;
+            if (b.local) return 1;
+            if (a.hand !== b.hand) return a.hand ? -1 : 1;
+            return String(a.name || '').localeCompare(String(b.name || ''));
+        });
+
+        peopleSummary.textContent = `${participants.length} participant${participants.length === 1 ? '' : 's'}`;
+        peopleList.innerHTML = participants.map(person => {
+            const name = person.local ? `${person.name || 'Kamu'} (You)` : person.name || 'Peserta';
+            const initials = getMeetingInitials(person.name || 'P');
+            const detail = person.hand ? 'Raise hand' : 'In meeting';
+            return `
+                <div class="meeting-person-row">
+                    <div class="meeting-person-avatar">${escapeMeetingHtml(initials)}</div>
+                    <div class="meeting-person-main">
+                        <strong>${escapeMeetingHtml(name)}</strong>
+                        <span>${escapeMeetingHtml(detail)}</span>
+                    </div>
+                    <div class="meeting-person-state">
+                        ${person.hand ? '<i class="fas fa-hand-paper is-hand" title="Raise hand"></i>' : ''}
+                        <i class="fas ${person.camera ? 'fa-video' : 'fa-video-slash is-off'}" title="${person.camera ? 'Camera on' : 'Camera off'}"></i>
+                        <i class="fas ${person.mic ? 'fa-microphone' : 'fa-microphone-slash is-off'}" title="${person.mic ? 'Mic on' : 'Mic off'}"></i>
+                    </div>
+                </div>
+            `;
+        }).join('');
     }
 
     function openExitConfirm(title, message, action) {
@@ -471,7 +595,9 @@ window.initMeetingRoom = function() {
         document.getElementById('meeting-local-screen')?.remove();
         sendSignal('screen-stop', '', { name: displayName() });
         activeScreenOwner = null;
+        localPresence.screen = false;
         setShareButtonState(false);
+        publishPresence();
         await renegotiateAllPeers();
         updateTileLayout();
     }
@@ -596,7 +722,10 @@ window.initMeetingRoom = function() {
     window.__HERAI_MEETING_UPDATE_LAYOUT__ = updateTileLayout;
     window.__HERAI_BIND_MEETING_PINS__ = bindPinButtons;
     window.__HERAI_MEETING_PEER_NAMES__ = peerNames;
+    window.__HERAI_MEETING_PEER_PRESENCE__ = peerPresence;
+    window.__HERAI_MEETING_LOCAL_PRESENCE__ = localPresence;
     bindPinButtons();
+    renderPeopleList();
 
     function getMeetingColumnCount(count) {
         if (count <= 1) return 1;
@@ -664,6 +793,8 @@ function renderMeetingRemote(peerId, stream, type = 'camera', displayName = '') 
     }
     const video = tile.querySelector('video');
     if (video) video.srcObject = stream;
+    const presence = window.__HERAI_MEETING_PEER_PRESENCE__?.get(peerId);
+    if (presence) updateMeetingTilePresence(peerId, presence);
     bindMeetingPinButtons();
     updateMeetingTiles();
 }
@@ -678,6 +809,30 @@ function updateMeetingRemoteLabel(peerId) {
 function getMeetingPeerName(peerId) {
     const names = window.__HERAI_MEETING_PEER_NAMES__;
     return names?.get(peerId) || peerId.slice(0, 8);
+}
+
+function updateMeetingTilePresence(peerId, presence = {}) {
+    const localPresence = window.__HERAI_MEETING_LOCAL_PRESENCE__;
+    const safeId = String(peerId || '').replace(/[^a-zA-Z0-9_-]/g, '');
+    const tile = peerId === localPresence?.id
+        ? document.getElementById('meetingLocalTile')
+        : document.getElementById(`meeting-remote-${safeId}`);
+    if (!tile) return;
+
+    tile.classList.toggle('is-hand-raised', presence.hand === true);
+    let status = tile.querySelector('.meeting-tile-status');
+    if (!status) {
+        status = document.createElement('div');
+        status.className = 'meeting-tile-status';
+        tile.appendChild(status);
+    }
+
+    const parts = [];
+    if (presence.hand) parts.push('<span class="meeting-status-pill is-hand" title="Raise hand"><i class="fas fa-hand-paper"></i></span>');
+    if (presence.camera === false) parts.push('<span class="meeting-status-pill is-off" title="Camera off"><i class="fas fa-video-slash"></i></span>');
+    if (presence.mic === false) parts.push('<span class="meeting-status-pill is-off" title="Mic off"><i class="fas fa-microphone-slash"></i></span>');
+    status.innerHTML = parts.join('');
+    status.style.display = parts.length ? 'flex' : 'none';
 }
 
 function renderMeetingRemoteShareLabel(peerId, displayName = '') {
@@ -725,6 +880,11 @@ function formatMeetingTime(value) {
     const date = value ? new Date(value) : new Date();
     if (Number.isNaN(date.getTime())) return '';
     return date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false });
+}
+
+function getMeetingInitials(value) {
+    const words = String(value || 'P').trim().split(/\s+/).filter(Boolean);
+    return words.slice(0, 2).map(word => word[0]).join('').toUpperCase() || 'P';
 }
 
 function escapeMeetingHtml(value) {

@@ -69,7 +69,9 @@
                     </select>
                     <button id="btnToggleMeetingMic" class="meeting-icon-btn" title="Mic"><i class="fas fa-microphone"></i></button>
                     <button id="btnToggleMeetingCamera" class="meeting-icon-btn" title="Camera"><i class="fas fa-video"></i></button>
+                    <button id="btnRaiseMeetingHand" class="meeting-icon-btn" title="Raise Hand"><i class="fas fa-hand-paper"></i></button>
                     <button id="btnShareMeetingScreen" class="meeting-icon-btn" title="Share Screen"><i class="fas fa-display"></i></button>
+                    <button id="btnToggleMeetingPeople" class="meeting-icon-btn" title="Participants"><i class="fas fa-users"></i></button>
                     <button id="btnToggleMeetingChat" class="meeting-icon-btn" title="Chat"><i class="fas fa-message"></i></button>
                     <button id="btnLeaveMeetingRoom" class="meeting-danger" title="Keluar"><i class="fas fa-phone-slash"></i></button>
                 </div>
@@ -93,6 +95,15 @@
                     <input id="meetingChatInput" type="text" placeholder="Kirim pesan...">
                     <button id="btnSendMeetingChat"><i class="fas fa-paper-plane"></i></button>
                 </div>
+            </aside>
+
+            <aside class="meeting-people-panel" id="meetingPeoplePanel">
+                <div class="meeting-chat-header">
+                    <strong>Participants</strong>
+                    <button id="btnCloseMeetingPeople" class="meeting-chat-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="meeting-people-summary" id="meetingPeopleSummary">0 participant</div>
+                <div class="meeting-people-list" id="meetingPeopleList"></div>
             </aside>
 
             <div class="meeting-emoji-float" id="meetingEmojiFloat"></div>
@@ -157,7 +168,8 @@
         padding: 18px 22px 108px;
         transition: padding-right 220ms ease, transform 220ms ease;
     }
-    .meeting-page.chat-open .meeting-room-panel {
+    .meeting-page.chat-open .meeting-room-panel,
+    .meeting-page.people-open .meeting-room-panel {
         padding-right: 382px;
     }
     .meeting-join-panel {
@@ -252,6 +264,10 @@
         color: #fff;
     }
     .meeting-icon-btn.is-sharing {
+        background: #ff1493;
+        color: #fff;
+    }
+    .meeting-icon-btn.is-raised {
         background: #ff1493;
         color: #fff;
     }
@@ -381,6 +397,30 @@
         padding: 5px 10px;
         position: absolute;
     }
+    .meeting-tile-status {
+        align-items: center;
+        display: flex;
+        gap: 6px;
+        position: absolute;
+        right: 50px;
+        top: 10px;
+        z-index: 3;
+    }
+    .meeting-status-pill {
+        align-items: center;
+        background: rgba(17, 24, 39, 0.76);
+        border-radius: 999px;
+        color: #fff;
+        display: inline-flex;
+        font-size: 0.76rem;
+        font-weight: 900;
+        height: 30px;
+        justify-content: center;
+        min-width: 30px;
+        padding: 0 9px;
+    }
+    .meeting-status-pill.is-hand { background: #ff1493; }
+    .meeting-status-pill.is-off { background: #ef4444; }
     .meeting-pin-btn {
         align-items: center;
         background: rgba(17, 24, 39, 0.72);
@@ -458,7 +498,8 @@
         transition: right 220ms ease, transform 180ms ease;
         z-index: 4;
     }
-    .meeting-page.chat-open .meeting-bottom-bar {
+    .meeting-page.chat-open .meeting-bottom-bar,
+    .meeting-page.people-open .meeting-bottom-bar {
         right: 382px;
     }
     .meeting-room-code {
@@ -469,7 +510,8 @@
     .meeting-room-code:last-child {
         text-align: right;
     }
-    .meeting-chat-panel {
+    .meeting-chat-panel,
+    .meeting-people-panel {
         background: #fff;
         border-left: 1px solid #e5e7eb;
         bottom: 0;
@@ -488,6 +530,11 @@
         z-index: 8;
     }
     .meeting-chat-panel.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+    .meeting-people-panel.open {
         opacity: 1;
         pointer-events: auto;
         transform: translateX(0);
@@ -521,6 +568,80 @@
         flex: 1;
         overflow-y: auto;
         padding: 14px;
+    }
+    .meeting-people-summary {
+        border-bottom: 1px solid #e5e7eb;
+        color: #667085;
+        font-size: 0.82rem;
+        font-weight: 800;
+        padding: 12px 14px;
+    }
+    .meeting-people-list {
+        color: #101828;
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px;
+    }
+    .meeting-person-row {
+        align-items: center;
+        background: #f8fafc;
+        border: 1px solid #eef2f7;
+        border-radius: 8px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 34px minmax(0, 1fr) auto;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    .meeting-person-avatar {
+        align-items: center;
+        background: #ffe3f3;
+        border-radius: 999px;
+        color: #c01072;
+        display: flex;
+        font-size: 0.78rem;
+        font-weight: 900;
+        height: 34px;
+        justify-content: center;
+        width: 34px;
+    }
+    .meeting-person-main { min-width: 0; }
+    .meeting-person-main strong {
+        display: block;
+        font-size: 0.88rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .meeting-person-main span {
+        color: #667085;
+        display: block;
+        font-size: 0.74rem;
+        font-weight: 800;
+        margin-top: 2px;
+    }
+    .meeting-person-state {
+        display: flex;
+        gap: 6px;
+    }
+    .meeting-person-state i {
+        align-items: center;
+        background: #ecfdf3;
+        border-radius: 999px;
+        color: #039855;
+        display: flex;
+        font-size: 0.75rem;
+        height: 26px;
+        justify-content: center;
+        width: 26px;
+    }
+    .meeting-person-state i.is-off {
+        background: #fee4e2;
+        color: #d92d20;
+    }
+    .meeting-person-state i.is-hand {
+        background: #ffe3f3;
+        color: #c01072;
     }
     .meeting-chat-message {
         align-items: flex-start;
@@ -668,10 +789,12 @@
         .meeting-remote-grid.has-screen-share {
             grid-template-columns: 1fr !important;
         }
-        .meeting-page.chat-open .meeting-room-panel {
+        .meeting-page.chat-open .meeting-room-panel,
+        .meeting-page.people-open .meeting-room-panel {
             padding-right: 22px;
         }
-        .meeting-page.chat-open .meeting-bottom-bar {
+        .meeting-page.chat-open .meeting-bottom-bar,
+        .meeting-page.people-open .meeting-bottom-bar {
             right: 22px;
         }
         .meeting-remote-grid.has-pinned-tile:not(.has-screen-share) {
