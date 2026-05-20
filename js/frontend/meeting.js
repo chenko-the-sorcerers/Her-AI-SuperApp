@@ -943,16 +943,25 @@ window.initMeetingRoom = function() {
                 alert('Masih ada peserta lain yang sedang share screen. Tunggu sampai share screen dimatikan terlebih dahulu.');
                 return;
             }
-            screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
+            screenStream = await navigator.mediaDevices.getDisplayMedia({
+                video: {
+                    cursor: 'always',
+                    width: { ideal: 1280, max: 1920 },
+                    height: { ideal: 720, max: 1080 },
+                    frameRate: { ideal: 15, max: 20 }
+                },
+                audio: false
+            });
             screenTrack = screenStream.getVideoTracks()[0];
             activeScreenOwner = clientId;
             localPresence.screen = true;
-            sendSignal('screen-start', '', { name: displayName(), streamId: screenStream.id });
-            publishPresence();
-            renderLocalScreenTile(screenStream);
             if (meetingTransport === 'livekit') {
                 const LK = await loadLiveKitClient();
-                await liveKitRoom?.localParticipant?.publishTrack(screenTrack, { source: LK.Track.Source.ScreenShare }).catch(error => console.warn('Gagal publish screen LiveKit', error));
+                await liveKitRoom?.localParticipant?.publishTrack(screenTrack, {
+                    source: LK.Track.Source.ScreenShare,
+                    simulcast: true,
+                    videoEncoding: { maxBitrate: 1_200_000, maxFramerate: 15 }
+                });
             } else if (USE_SFU_TRANSPORT) {
                 configureSender(createSFUPeer().addTrack(screenTrack, screenStream), screenTrack);
                 await negotiateSFU();
@@ -960,12 +969,23 @@ window.initMeetingRoom = function() {
                 peers.forEach(pc => pc.addTrack(screenTrack, screenStream));
                 await renegotiateAllPeers();
             }
+            sendSignal('screen-start', '', { name: displayName(), streamId: screenStream.id });
+            publishPresence();
+            renderLocalScreenTile(screenStream);
             screenTrack.onended = async () => {
                 await stopScreenShare();
             };
             setShareButtonState(true);
         } catch (error) {
             console.warn('Screen share cancelled', error);
+            if (screenStream) screenStream.getTracks().forEach(track => track.stop());
+            screenStream = null;
+            screenTrack = null;
+            activeScreenOwner = null;
+            localPresence.screen = false;
+            setShareButtonState(false);
+            publishPresence();
+            alert('Share screen gagal dimulai. Coba pilih window/tab, atau ulangi share entire screen setelah izin layar diberikan.');
         }
     });
 
@@ -1441,18 +1461,41 @@ window.initMeetingRoom = function() {
 
     function updateTileLayout() {
         const tiles = [...document.querySelectorAll('#meetingRemoteGrid .meeting-video-tile, #meetingRemoteGrid .meeting-remote-tile')];
+        document.getElementById('meeting-overflow-tile')?.remove();
         const requested = tileViewSelect?.value || 'auto';
         const pageSize = requested === 'auto' ? 50 : Number(requested) || 50;
         const totalPages = Math.max(1, Math.ceil(tiles.length / pageSize));
         if (currentPage > totalPages) currentPage = totalPages;
         const start = (currentPage - 1) * pageSize;
         const end = start + pageSize;
-        tiles.forEach((tile, index) => {
-            tile.style.display = index >= start && index < end ? '' : 'none';
-        });
-        const visibleCount = Math.min(pageSize, Math.max(1, tiles.length - start));
+        const hasScreenShare = Boolean(remoteGrid?.querySelector('.is-screen'));
+        let visibleCount = Math.min(pageSize, Math.max(1, tiles.length - start));
+        if (hasScreenShare) {
+            const screenTiles = tiles.filter(tile => tile.classList.contains('is-screen'));
+            const cameraTiles = tiles.filter(tile => !tile.classList.contains('is-screen'));
+            const maxRailTiles = window.matchMedia('(max-width: 860px)').matches ? 4 : 5;
+            cameraTiles.forEach((tile, index) => {
+                tile.style.display = index < maxRailTiles ? '' : 'none';
+            });
+            screenTiles.forEach(tile => {
+                tile.style.display = '';
+                tile.classList.add('is-pinned');
+            });
+            const hiddenCount = Math.max(0, cameraTiles.length - maxRailTiles);
+            if (hiddenCount > 0 && remoteGrid) {
+                const summaryTile = document.createElement('div');
+                summaryTile.id = 'meeting-overflow-tile';
+                summaryTile.className = 'meeting-overflow-tile';
+                summaryTile.innerHTML = `<strong>+${hiddenCount}</strong><span>peserta lainnya</span>`;
+                remoteGrid.appendChild(summaryTile);
+            }
+            visibleCount = screenTiles.length + Math.min(cameraTiles.length, maxRailTiles) + (hiddenCount > 0 ? 1 : 0);
+        } else {
+            tiles.forEach((tile, index) => {
+                tile.style.display = index >= start && index < end ? '' : 'none';
+            });
+        }
         if (remoteGrid) {
-            const hasScreenShare = Boolean(remoteGrid.querySelector('.is-screen'));
             remoteGrid.classList.toggle('has-screen-share', hasScreenShare);
             remoteGrid.classList.toggle('has-pinned-tile', Boolean(remoteGrid.querySelector('.is-pinned')));
             remoteGrid.dataset.count = String(Math.min(visibleCount, 16));
