@@ -4,6 +4,11 @@
 
 window.initMeetingRoom = function() {
     const DEFAULT_SIGNAL_URL = 'wss://herai-signaling.onrender.com/ws';
+    const DEFAULT_ICE_SERVERS = [
+        { urls: 'stun:stun.l.google.com:19302' },
+        { urls: 'stun:stun1.l.google.com:19302' },
+        { urls: 'stun:stun.cloudflare.com:3478' }
+    ];
 
     const joinPanel = document.getElementById('meetingJoinPanel');
     const meetingPage = document.getElementById('meetingPage');
@@ -47,11 +52,15 @@ window.initMeetingRoom = function() {
     let pendingExitAction = null;
     let activeScreenOwner = null;
     let clockTimer = null;
+    let iceServers = [...DEFAULT_ICE_SERVERS];
     const peers = new Map();
     const remoteScreenShares = new Map();
     const peerNames = new Map();
     const peerPresence = new Map();
+    const pendingIceCandidates = new Map();
     const pendingJoinAnnouncements = new Set();
+    const negotiationState = new Map();
+    const peerRetryCounts = new Map();
     const clientId = getMeetingClientId();
     const localPresence = {
         id: clientId,
@@ -131,6 +140,9 @@ window.initMeetingRoom = function() {
         const pc = peers.get(peerId);
         if (pc) pc.close();
         peers.delete(peerId);
+        pendingIceCandidates.delete(peerId);
+        negotiationState.delete(peerId);
+        peerRetryCounts.delete(peerId);
         remoteScreenShares.delete(peerId);
         peerPresence.delete(peerId);
         if (activeScreenOwner === peerId) activeScreenOwner = null;
@@ -141,8 +153,11 @@ window.initMeetingRoom = function() {
     };
     const createPeer = (peerId) => {
         if (peers.has(peerId)) return peers.get(peerId);
+        negotiationState.set(peerId, { makingOffer: false, ignoreOffer: false });
         const pc = new RTCPeerConnection({
-            iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+            iceServers,
+            bundlePolicy: 'max-bundle',
+            iceCandidatePoolSize: 4
         });
         if (localStream) localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
         if (screenStream) screenStream.getTracks().forEach(track => pc.addTrack(track, screenStream));
@@ -165,17 +180,92 @@ window.initMeetingRoom = function() {
                 closed: 'keluar dari room'
             };
             setStatus(`${name} ${stateLabels[pc.connectionState] || pc.connectionState}`);
-            if (['failed', 'closed'].includes(pc.connectionState)) closePeer(peerId);
+            if (pc.connectionState === 'connected') peerRetryCounts.set(peerId, 0);
+            if (pc.connectionState === 'failed') {
+                retryPeerConnection(peerId);
+                return;
+            }
+            if (pc.connectionState === 'closed') closePeer(peerId);
+        };
+        pc.oniceconnectionstatechange = () => {
+            if (pc.iceConnectionState === 'failed') retryPeerConnection(peerId);
         };
         peers.set(peerId, pc);
         updateTileLayout();
         return pc;
     };
-    const createOffer = async (peerId) => {
+    const createOffer = async (peerId, options = {}) => {
         const pc = createPeer(peerId);
-        const offer = await pc.createOffer({ offerToReceiveAudio: true, offerToReceiveVideo: true });
-        await pc.setLocalDescription(offer);
-        sendSignal('offer', peerId, pc.localDescription);
+        const state = negotiationState.get(peerId) || { makingOffer: false, ignoreOffer: false };
+        try {
+            state.makingOffer = true;
+            negotiationState.set(peerId, state);
+            const offer = await pc.createOffer({
+                offerToReceiveAudio: true,
+                offerToReceiveVideo: true,
+                iceRestart: options.iceRestart === true
+            });
+            await pc.setLocalDescription(offer);
+            sendSignal('offer', peerId, pc.localDescription);
+        } finally {
+            state.makingOffer = false;
+        }
+    };
+    const addRemoteIceCandidate = async (peerId, candidatePayload) => {
+        if (!candidatePayload) return;
+        if (negotiationState.get(peerId)?.ignoreOffer) return;
+        const pc = createPeer(peerId);
+        const candidate = new RTCIceCandidate(candidatePayload);
+        if (!pc.remoteDescription) {
+            const queue = pendingIceCandidates.get(peerId) || [];
+            queue.push(candidate);
+            pendingIceCandidates.set(peerId, queue);
+            return;
+        }
+        try {
+            await pc.addIceCandidate(candidate);
+        } catch (error) {
+            console.warn('Gagal menambahkan ICE candidate', peerDisplayName(peerId), error);
+        }
+    };
+    const flushRemoteIceCandidates = async (peerId) => {
+        const pc = peers.get(peerId);
+        const queue = pendingIceCandidates.get(peerId) || [];
+        if (!pc?.remoteDescription || queue.length === 0) return;
+        pendingIceCandidates.delete(peerId);
+        for (const candidate of queue) {
+            try {
+                await pc.addIceCandidate(candidate);
+            } catch (error) {
+                console.warn('Gagal memproses pending ICE candidate', peerDisplayName(peerId), error);
+            }
+        }
+    };
+    const retryPeerConnection = async (peerId) => {
+        const retryCount = peerRetryCounts.get(peerId) || 0;
+        if (retryCount >= 2) {
+            closePeer(peerId);
+            return;
+        }
+        peerRetryCounts.set(peerId, retryCount + 1);
+        try {
+            peers.get(peerId)?.restartIce?.();
+            await createOffer(peerId, { iceRestart: true });
+        } catch (error) {
+            console.warn('Gagal restart koneksi meeting', peerDisplayName(peerId), error);
+        }
+    };
+    const loadMeetingConfig = async () => {
+        try {
+            const response = await fetch('/meeting-config', { cache: 'no-store' });
+            if (!response.ok) return;
+            const config = await response.json();
+            if (Array.isArray(config.iceServers) && config.iceServers.length > 0) {
+                iceServers = config.iceServers;
+            }
+        } catch (error) {
+            console.warn('Memakai ICE server default.', error);
+        }
     };
     const handleSignal = async (message) => {
         const { type, from, payload } = message;
@@ -245,7 +335,22 @@ window.initMeetingRoom = function() {
         }
         if (type === 'offer') {
             const pc = createPeer(from);
+            const state = negotiationState.get(from) || { makingOffer: false, ignoreOffer: false };
+            const offerCollision = state.makingOffer || pc.signalingState !== 'stable';
+            const polite = clientId > from;
+            state.ignoreOffer = !polite && offerCollision;
+            negotiationState.set(from, state);
+            if (state.ignoreOffer) return;
+            if (offerCollision && pc.signalingState !== 'stable') {
+                try {
+                    await pc.setLocalDescription({ type: 'rollback' });
+                } catch (error) {
+                    console.warn('Rollback negotiation tidak tersedia', peerDisplayName(from), error);
+                    return;
+                }
+            }
             await pc.setRemoteDescription(new RTCSessionDescription(payload));
+            await flushRemoteIceCandidates(from);
             const answer = await pc.createAnswer();
             await pc.setLocalDescription(answer);
             sendSignal('answer', from, pc.localDescription);
@@ -253,12 +358,13 @@ window.initMeetingRoom = function() {
         }
         if (type === 'answer') {
             const pc = createPeer(from);
+            if (pc.signalingState !== 'have-local-offer') return;
             await pc.setRemoteDescription(new RTCSessionDescription(payload));
+            await flushRemoteIceCandidates(from);
             return;
         }
         if (type === 'ice') {
-            const pc = createPeer(from);
-            await pc.addIceCandidate(new RTCIceCandidate(payload));
+            await addRemoteIceCandidate(from, payload);
             return;
         }
         if (type === 'chat') {
@@ -298,6 +404,7 @@ window.initMeetingRoom = function() {
             if (localLabel) localLabel.textContent = displayName();
             if (roomTitle) roomTitle.textContent = titleFromLink || `Room ${roomId()}`;
             if (roomCodeBadge) roomCodeBadge.textContent = roomId();
+            await loadMeetingConfig();
             if (navContainer) navContainer.style.display = 'none';
             if (footerContainer) footerContainer.style.display = 'none';
             joinPanel?.classList.add('hidden');

@@ -14,3 +14,5 @@ services:
         sync: false
       - key: APP_ACCESS_PASSWORD
         sync: false
+      - key: HERAI_ICE_SERVERS
+        sync: false

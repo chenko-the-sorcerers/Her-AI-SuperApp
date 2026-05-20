@@ -87,12 +87,44 @@ func main() {
 			"rooms": hub.roomInfos(),
 		})
 	})
+	http.HandleFunc("/meeting-config", handleMeetingConfig)
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
 		serveWS(hub, w, r)
 	})
 
 	log.Printf("HerAI signaling server listening on %s", *addr)
 	log.Fatal(http.ListenAndServe(*addr, nil))
+}
+
+func handleMeetingConfig(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Cache-Control", "no-store")
+	w.Header().Set("Content-Type", "application/json")
+
+	raw := strings.TrimSpace(getenv("HERAI_ICE_SERVERS", ""))
+	if raw == "" {
+		_ = json.NewEncoder(w).Encode(map[string]any{
+			"ok": true,
+			"iceServers": []map[string]any{
+				{"urls": "stun:stun.l.google.com:19302"},
+				{"urls": "stun:stun1.l.google.com:19302"},
+				{"urls": "stun:stun.cloudflare.com:3478"},
+			},
+		})
+		return
+	}
+
+	var iceServers []map[string]any
+	if err := json.Unmarshal([]byte(raw), &iceServers); err != nil || len(iceServers) == 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		_ = json.NewEncoder(w).Encode(map[string]any{"ok": false, "message": "HERAI_ICE_SERVERS must be a JSON array"})
+		return
+	}
+
+	_ = json.NewEncoder(w).Encode(map[string]any{
+		"ok":         true,
+		"iceServers": iceServers,
+	})
 }
 
 func serveWS(hub *Hub, w http.ResponseWriter, r *http.Request) {
@@ -107,7 +139,7 @@ func serveWS(hub *Hub, w http.ResponseWriter, r *http.Request) {
 		room: r.URL.Query().Get("room"),
 		hub:  hub,
 		conn: conn,
-		send: make(chan SignalMessage, 32),
+		send: make(chan SignalMessage, 1024),
 	}
 	if client.id == "" || client.room == "" {
 		_ = conn.WriteJSON(SignalMessage{Type: "error", Payload: mustRaw(`{"message":"clientId and room are required"}`)})
