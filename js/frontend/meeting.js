@@ -19,6 +19,8 @@ window.initMeetingRoom = function() {
     const remoteGrid = document.getElementById('meetingRemoteGrid');
     const localLabel = document.getElementById('meetingLocalLabel');
     const roomCodeBadge = document.getElementById('meetingRoomCodeBadge');
+    const roomClock = document.getElementById('meetingRoomClock');
+    const participantCount = document.getElementById('meetingParticipantCount');
     const navContainer = document.getElementById('navbar-container');
     const footerContainer = document.getElementById('footer-container');
     const chatPanel = document.getElementById('meetingChatPanel');
@@ -44,6 +46,7 @@ window.initMeetingRoom = function() {
     let currentPage = 1;
     let pendingExitAction = null;
     let activeScreenOwner = null;
+    let clockTimer = null;
     const peers = new Map();
     const remoteScreenShares = new Map();
     const peerNames = new Map();
@@ -279,6 +282,7 @@ window.initMeetingRoom = function() {
             joinPanel?.classList.add('hidden');
             roomPanel?.classList.remove('hidden');
             meetingPage?.classList.add('in-call');
+            startMeetingClock();
             syncRoomDeviceButtons();
             publishPresence();
             socket = new WebSocket(signalUrl());
@@ -376,25 +380,21 @@ window.initMeetingRoom = function() {
     });
 
     document.getElementById('btnToggleMeetingChat')?.addEventListener('click', () => {
-        peoplePanel?.classList.remove('open');
-        meetingPage?.classList.remove('people-open');
         chatPanel?.classList.toggle('open');
-        meetingPage?.classList.toggle('chat-open', chatPanel?.classList.contains('open'));
+        syncSidePanels();
     });
     document.getElementById('btnCloseMeetingChat')?.addEventListener('click', () => {
         chatPanel?.classList.remove('open');
-        meetingPage?.classList.remove('chat-open');
+        syncSidePanels();
     });
     document.getElementById('btnToggleMeetingPeople')?.addEventListener('click', () => {
-        chatPanel?.classList.remove('open');
-        meetingPage?.classList.remove('chat-open');
         peoplePanel?.classList.toggle('open');
-        meetingPage?.classList.toggle('people-open', peoplePanel?.classList.contains('open'));
+        syncSidePanels();
         renderPeopleList();
     });
     document.getElementById('btnCloseMeetingPeople')?.addEventListener('click', () => {
         peoplePanel?.classList.remove('open');
-        meetingPage?.classList.remove('people-open');
+        syncSidePanels();
     });
     document.getElementById('btnSendMeetingChat')?.addEventListener('click', sendChatMessage);
     chatInput?.addEventListener('keydown', event => {
@@ -426,6 +426,7 @@ window.initMeetingRoom = function() {
 
     function leaveMeeting() {
         if (socket) socket.close();
+        stopMeetingClock();
         socket = null;
         peers.forEach(pc => pc.close());
         peers.clear();
@@ -456,6 +457,7 @@ window.initMeetingRoom = function() {
         peoplePanel?.classList.remove('open');
         document.getElementById('btnJoinMeetingRoom')?.classList.remove('hidden');
         meetingPage?.classList.remove('in-call', 'chat-open', 'people-open');
+        syncSidePanels();
         if (navContainer) navContainer.style.display = 'block';
         if (footerContainer) footerContainer.style.display = 'block';
         setStatus('Menunggu koneksi...');
@@ -535,6 +537,29 @@ window.initMeetingRoom = function() {
         renderPeopleList();
     }
 
+    function startMeetingClock() {
+        stopMeetingClock();
+        const tick = () => {
+            if (roomClock) roomClock.textContent = formatMeetingTime(new Date().toISOString());
+        };
+        tick();
+        clockTimer = setInterval(tick, 1000);
+    }
+
+    function stopMeetingClock() {
+        if (clockTimer) clearInterval(clockTimer);
+        clockTimer = null;
+    }
+
+    function syncSidePanels() {
+        const chatOpen = chatPanel?.classList.contains('open') === true;
+        const peopleOpen = peoplePanel?.classList.contains('open') === true;
+        meetingPage?.classList.toggle('chat-open', chatOpen);
+        meetingPage?.classList.toggle('people-open', peopleOpen);
+        meetingPage?.classList.toggle('side-panels-open', chatOpen || peopleOpen);
+        meetingPage?.classList.toggle('side-panels-split', chatOpen && peopleOpen);
+    }
+
     function renderPeopleList() {
         if (!peopleList || !peopleSummary) return;
         const participants = [
@@ -548,6 +573,7 @@ window.initMeetingRoom = function() {
         });
 
         peopleSummary.textContent = `${participants.length} participant${participants.length === 1 ? '' : 's'}`;
+        if (participantCount) participantCount.innerHTML = `<i class="fas fa-users"></i> ${participants.length}`;
         peopleList.innerHTML = participants.map(person => {
             const name = person.local ? `${person.name || 'Kamu'} (You)` : person.name || 'Peserta';
             const initials = getMeetingInitials(person.name || 'P');
@@ -726,6 +752,7 @@ window.initMeetingRoom = function() {
     window.__HERAI_MEETING_LOCAL_PRESENCE__ = localPresence;
     bindPinButtons();
     renderPeopleList();
+    syncSidePanels();
 
     function getMeetingColumnCount(count) {
         if (count <= 1) return 1;
@@ -777,6 +804,7 @@ function renderMeetingRemote(peerId, stream, type = 'camera', displayName = '') 
             : getMeetingPeerName(peerId);
         tile.innerHTML = `
             <video autoplay playsinline></video>
+            <div class="meeting-video-initial">${escapeMeetingHtml(getMeetingInitials(label).slice(0, 1))}</div>
             <span>${escapeMeetingHtml(label)}</span>
             <button class="meeting-pin-btn${type === 'screen' ? ' is-active' : ''}" data-pin-tile="${tileId}" title="Pin"><i class="fas fa-thumbtack"></i></button>
         `;
@@ -784,7 +812,10 @@ function renderMeetingRemote(peerId, stream, type = 'camera', displayName = '') 
     }
     if (type !== 'screen') {
         const label = tile.querySelector('span');
-        if (label) label.textContent = getMeetingPeerName(peerId);
+        const name = getMeetingPeerName(peerId);
+        if (label) label.textContent = name;
+        const initial = tile.querySelector('.meeting-video-initial');
+        if (initial) initial.textContent = getMeetingInitials(name).slice(0, 1);
     }
     if (type === 'screen') {
         tile.classList.add('is-screen', 'is-pinned');
@@ -820,19 +851,34 @@ function updateMeetingTilePresence(peerId, presence = {}) {
     if (!tile) return;
 
     tile.classList.toggle('is-hand-raised', presence.hand === true);
-    let status = tile.querySelector('.meeting-tile-status');
-    if (!status) {
-        status = document.createElement('div');
-        status.className = 'meeting-tile-status';
-        tile.appendChild(status);
-    }
+    tile.classList.toggle('is-camera-off', presence.camera === false);
 
-    const parts = [];
-    if (presence.hand) parts.push('<span class="meeting-status-pill is-hand" title="Raise hand"><i class="fas fa-hand-paper"></i></span>');
-    if (presence.camera === false) parts.push('<span class="meeting-status-pill is-off" title="Camera off"><i class="fas fa-video-slash"></i></span>');
-    if (presence.mic === false) parts.push('<span class="meeting-status-pill is-off" title="Mic off"><i class="fas fa-microphone-slash"></i></span>');
-    status.innerHTML = parts.join('');
-    status.style.display = parts.length ? 'flex' : 'none';
+    const name = presence.name || getMeetingPeerName(peerId);
+    let initial = tile.querySelector('.meeting-video-initial');
+    if (!initial) {
+        initial = document.createElement('div');
+        initial.className = 'meeting-video-initial';
+        tile.appendChild(initial);
+    }
+    initial.textContent = getMeetingInitials(name).slice(0, 1);
+
+    let hand = tile.querySelector('.meeting-hand-badge');
+    if (!hand) {
+        hand = document.createElement('div');
+        hand.className = 'meeting-hand-badge';
+        tile.appendChild(hand);
+    }
+    hand.innerHTML = '<i class="fas fa-hand-paper"></i> Raise hand';
+    hand.style.display = presence.hand ? 'inline-flex' : 'none';
+
+    let mic = tile.querySelector('.meeting-mic-badge');
+    if (!mic) {
+        mic = document.createElement('div');
+        mic.className = 'meeting-mic-badge';
+        tile.appendChild(mic);
+    }
+    mic.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+    mic.style.display = presence.mic === false ? 'inline-flex' : 'none';
 }
 
 function renderMeetingRemoteShareLabel(peerId, displayName = '') {
@@ -850,12 +896,7 @@ function removeMeetingRemote(peerId) {
 
 function renderEmptyRemoteIfNeeded() {
     const remoteGrid = document.getElementById('meetingRemoteGrid');
-    if (remoteGrid && !remoteGrid.querySelector('.meeting-remote-tile') && !remoteGrid.querySelector('.meeting-empty-remote')) {
-        const empty = document.createElement('div');
-        empty.className = 'meeting-empty-remote';
-        empty.textContent = 'Peserta lain akan muncul di sini.';
-        remoteGrid.appendChild(empty);
-    }
+    remoteGrid?.querySelector('.meeting-empty-remote')?.remove();
     updateMeetingTiles();
 }
 

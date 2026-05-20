@@ -40,21 +40,24 @@
                     <h2 id="meetingRoomTitle">Room</h2>
                     <p id="meetingStatusText">Menunggu koneksi...</p>
                 </div>
+                <div class="meeting-room-stats">
+                    <span id="meetingParticipantCount"><i class="fas fa-users"></i> 1</span>
+                </div>
             </div>
 
             <div class="meeting-video-layout">
                 <div class="meeting-remote-grid" id="meetingRemoteGrid">
                     <div class="meeting-video-tile meeting-local-tile" id="meetingLocalTile">
                         <video id="meetingLocalVideo" autoplay muted playsinline></video>
+                        <div class="meeting-video-initial" id="meetingLocalInitial">K</div>
                         <span id="meetingLocalLabel">Kamu</span>
                         <button class="meeting-pin-btn" data-pin-tile="meetingLocalTile" title="Pin"><i class="fas fa-thumbtack"></i></button>
                     </div>
-                    <div class="meeting-empty-remote">Peserta lain akan muncul di sini.</div>
                 </div>
             </div>
 
             <div class="meeting-bottom-bar">
-                <div class="meeting-room-code" id="meetingRoomCodeBadge">Room</div>
+                <div class="meeting-room-code"><span id="meetingRoomCodeBadge">Room</span><span id="meetingRoomClock">--:--</span></div>
                 <div class="meeting-actions">
                     <select id="meetingTileView" class="meeting-tile-select" title="Tile View">
                         <option value="auto">Auto</option>
@@ -317,12 +320,38 @@
         gap: 10px;
         justify-content: center;
     }
+    .meeting-preview-actions .meeting-primary,
+    .meeting-preview-actions .meeting-danger {
+        height: 46px;
+        min-width: 46px;
+        padding: 0 14px;
+    }
+    .meeting-preview-actions .meeting-danger {
+        width: 46px;
+    }
     .meeting-room-header {
         align-items: center;
         display: flex;
         gap: 16px;
         justify-content: space-between;
         margin-bottom: 18px;
+    }
+    .meeting-room-stats {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+    }
+    .meeting-room-stats span {
+        align-items: center;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 999px;
+        color: #fff;
+        display: inline-flex;
+        font-size: 0.84rem;
+        font-weight: 900;
+        gap: 8px;
+        padding: 8px 12px;
     }
     .meeting-actions {
         display: flex;
@@ -385,6 +414,31 @@
         object-fit: cover;
         width: 100%;
     }
+    .meeting-video-tile.is-camera-off video,
+    .meeting-remote-tile.is-camera-off video {
+        opacity: 0;
+    }
+    .meeting-video-initial {
+        align-items: center;
+        background: linear-gradient(135deg, #ff1493, #7c3aed);
+        border-radius: 999px;
+        color: #fff;
+        display: none;
+        font-size: clamp(2rem, 6vw, 4.8rem);
+        font-weight: 900;
+        height: clamp(76px, 16vw, 132px);
+        justify-content: center;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: clamp(76px, 16vw, 132px);
+        z-index: 1;
+    }
+    .meeting-video-tile.is-camera-off .meeting-video-initial,
+    .meeting-remote-tile.is-camera-off .meeting-video-initial {
+        display: flex;
+    }
     .meeting-video-tile span,
     .meeting-remote-tile span {
         background: rgba(17, 24, 39, 0.72);
@@ -396,31 +450,38 @@
         left: 10px;
         padding: 5px 10px;
         position: absolute;
-    }
-    .meeting-tile-status {
-        align-items: center;
-        display: flex;
-        gap: 6px;
-        position: absolute;
-        right: 50px;
-        top: 10px;
         z-index: 3;
     }
-    .meeting-status-pill {
+    .meeting-hand-badge {
         align-items: center;
-        background: rgba(17, 24, 39, 0.76);
+        background: #ff1493;
         border-radius: 999px;
         color: #fff;
         display: inline-flex;
         font-size: 0.76rem;
         font-weight: 900;
-        height: 30px;
-        justify-content: center;
-        min-width: 30px;
-        padding: 0 9px;
+        gap: 6px;
+        left: 10px;
+        padding: 7px 10px;
+        position: absolute;
+        top: 10px;
+        z-index: 3;
     }
-    .meeting-status-pill.is-hand { background: #ff1493; }
-    .meeting-status-pill.is-off { background: #ef4444; }
+    .meeting-mic-badge {
+        align-items: center;
+        background: #ef4444;
+        border-radius: 999px;
+        color: #fff;
+        display: inline-flex;
+        font-size: 0.82rem;
+        height: 34px;
+        justify-content: center;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        width: 34px;
+        z-index: 3;
+    }
     .meeting-pin-btn {
         align-items: center;
         background: rgba(17, 24, 39, 0.72);
@@ -503,9 +564,12 @@
         right: 382px;
     }
     .meeting-room-code {
+        align-items: center;
         color: rgba(255,255,255,0.72);
+        display: inline-flex;
         font-size: 0.86rem;
         font-weight: 800;
+        gap: 10px;
     }
     .meeting-room-code:last-child {
         text-align: right;
@@ -538,6 +602,18 @@
         opacity: 1;
         pointer-events: auto;
         transform: translateX(0);
+    }
+    .meeting-page.side-panels-split .meeting-chat-panel,
+    .meeting-page.side-panels-split .meeting-people-panel {
+        height: 50vh;
+    }
+    .meeting-page.side-panels-split .meeting-people-panel {
+        bottom: auto;
+        top: 0;
+    }
+    .meeting-page.side-panels-split .meeting-chat-panel {
+        bottom: 0;
+        top: auto;
     }
     .meeting-chat-header,
     .meeting-chat-compose {
@@ -809,7 +885,12 @@
             min-height: min(54vh, 480px);
         }
         .meeting-room-header { align-items: flex-start; flex-direction: column; }
+        .meeting-room-stats { width: 100%; }
         .meeting-bottom-bar { grid-template-columns: 1fr; margin-top: 16px; position: static; }
         .meeting-room-code, .meeting-room-code:last-child { text-align: center; }
+        .meeting-page.side-panels-split .meeting-chat-panel,
+        .meeting-page.side-panels-split .meeting-people-panel {
+            height: 50vh;
+        }
     }
 </style>
