@@ -3,7 +3,7 @@ services:
     name: herai-signaling
     runtime: go
     plan: free
-    buildCommand: mkdir -p public && cp -R index.html assets components css js pages public/ && cd signaling && go build -tags netgo -ldflags "-s -w" -o app .
+    buildCommand: mkdir -p public && cp -R index.html assets components css js pages public/ && node scripts/harden-public.mjs public && cd signaling && go build -tags netgo -ldflags "-s -w" -o app .
     startCommand: ./signaling/app
     healthCheckPath: /healthz
     autoDeploy: true

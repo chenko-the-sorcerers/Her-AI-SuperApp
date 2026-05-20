@@ -47,6 +47,43 @@ const router = {
         "/assets": "/pages/dashboard/assets.html" 
     },
 
+    routeAliases: {
+        "/x/h4a9d2": "/home",
+        "/x/p8c3q1": "/projects",
+        "/x/a7n5s2": "/announcement",
+        "/x/a7n5s2/s1": "/announcement-stage-1",
+        "/x/a7n5s2/s2": "/announcement-stage-2",
+        "/x/a7n5s2/sf": "/announcement-final",
+        "/x/w2f8m4": "/wall-of-fame",
+        "/x/l6b9r3": "/leaderboard",
+        "/x/g5d1u7": "/graduation",
+        "/x/r9k2e4": "/register",
+        "/x/u3p7v5": "/profile",
+        "/x/m7k9p2": "/meeting",
+        "/x/t4c8n6": "/competency-test",
+        "/x/d8s2h5": "/dashboard",
+        "/x/d8s2h5/s1": "/dashboard/seleksi",
+        "/x/tw5b1": "/twibbon",
+        "/x/ab2u8": "/about-us",
+        "/x/cu7r2": "/curriculum",
+        "/x/fq3a6": "/faq",
+        "/x/in9d4": "/industry-applications",
+        "/x/sk4r8": "/skoring",
+        "/x/ai2p6": "/ai-prescreening",
+        "/x/fr7c1": "/anti-fraud",
+        "/x/cm8e3": "/comm-engine",
+        "/x/ct6m2": "/competency-monitor",
+        "/x/vc4o9": "/video-conference",
+        "/x/sc1t5": "/stage-control",
+        "/x/bc9p3": "/bootcamp",
+        "/x/fp5j7": "/final-project",
+        "/x/cr2t8": "/certificates",
+        "/x/at6l4": "/audit-trail",
+        "/x/gs3n9": "/global-settings",
+        "/x/rb8a2": "/rbac",
+        "/x/as4e6": "/assets"
+    },
+
     currentPath: null,
     sidebarHtml: "",
 
@@ -138,6 +175,8 @@ const router = {
         if (path.includes('.html')) {
             path = path.replace('.html', '');
         }
+
+        path = this.routeAliases[path] || path;
 
         const routeUrl = this.routes[path];
         const appContent = document.getElementById("app-content");
