@@ -529,9 +529,14 @@ window.initMeetingRoom = function() {
         updateMeetingTilePresence(participant.identity, presence);
         renderPeopleList();
     };
+    const isLiveKitScreenPublication = (publication) => {
+        const source = String(publication?.source || publication?.track?.source || '').toLowerCase();
+        const name = String(publication?.trackName || publication?.name || '').toLowerCase();
+        return source.includes('screen') || name.includes('screen') || name.includes('display');
+    };
     const renderLiveKitTrack = (track, publication, participant) => {
         if (!track?.mediaStreamTrack || !participant?.identity || participant.identity === clientId) return;
-        const isScreen = publication?.source === 'screen_share' || publication?.source === 'screen_share_audio';
+        const isScreen = isLiveKitScreenPublication(publication);
         const streamKey = `${participant.identity}:${isScreen ? 'screen' : 'camera'}`;
         let stream = liveKitRemoteStreams.get(streamKey);
         if (!stream) {
@@ -547,7 +552,7 @@ window.initMeetingRoom = function() {
     };
     const removeLiveKitTrack = (track, publication, participant) => {
         if (!participant?.identity) return;
-        const isScreen = publication?.source === 'screen_share' || publication?.source === 'screen_share_audio';
+        const isScreen = isLiveKitScreenPublication(publication);
         const streamKey = `${participant.identity}:${isScreen ? 'screen' : 'camera'}`;
         const stream = liveKitRemoteStreams.get(streamKey);
         if (stream && track?.mediaStreamTrack) stream.removeTrack(track.mediaStreamTrack);
@@ -953,13 +958,14 @@ window.initMeetingRoom = function() {
                 const LK = await loadLiveKitClient();
                 try {
                     await liveKitRoom?.localParticipant?.publishTrack(screenTrack, {
+                        name: 'screen-share',
                         source: LK.Track?.Source?.ScreenShare || 'screen_share'
                     });
                 } catch (publishError) {
                     console.warn('LiveKit screen publish fallback', publishError);
                     try {
                         const localScreenTrack = LK.LocalVideoTrack ? new LK.LocalVideoTrack(screenTrack) : screenTrack;
-                        await liveKitRoom?.localParticipant?.publishTrack(localScreenTrack, { source: 'screen_share' });
+                        await liveKitRoom?.localParticipant?.publishTrack(localScreenTrack, { name: 'screen-share', source: 'screen_share' });
                     } catch (fallbackError) {
                         await liveKitRoom?.localParticipant?.setScreenShareEnabled?.(true, { audio: false });
                         if (!liveKitRoom?.localParticipant?.isScreenShareEnabled) throw fallbackError;
