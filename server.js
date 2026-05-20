@@ -13,7 +13,7 @@ const SETTINGS_PATH = path.join(__dirname, '.cursor', 'global-settings.json');
 const PARTICIPANTS_PATH = path.join(__dirname, '.cursor', 'participants.json');
 const COMPETENCY_SESSIONS_PATH = path.join(__dirname, '.cursor', 'competency-sessions.json');
 const PROJECT_SUBMISSIONS_PATH = path.join(__dirname, '.cursor', 'project-submissions.json');
-const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxivp4g8mVai8rZcei4w9pblh8s2Kks84CnRshveD_IR69erw_Ffbn_TwithrpNTEj_yw/exec';
+const GAS_WEB_APP_URL = process.env.GAS_WEB_APP_URL || '';
 const PUBLIC_PARTICIPANTS_CSV_URL = 'https://docs.google.com/spreadsheets/d/120NQtFqErJiIfITlPfVo8wV6G0_79qFKMTaptxNF-RA/export?format=csv';
 
 const TEST_PARTICIPANT = {
@@ -86,6 +86,11 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
     const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
     const pathname = decodeURIComponent(requestUrl.pathname);
+    if (isBlockedSourcePath(pathname)) {
+        res.writeHead(404, { 'Content-Type': 'text/plain', 'X-Content-Type-Options': 'nosniff' });
+        res.end('Not Found');
+        return;
+    }
 
     if (req.method === 'POST' && pathname === '/__debug') {
         let body = '';
@@ -235,6 +240,12 @@ const server = http.createServer((req, res) => {
 });
 
 function proxyGasRequest(body, res) {
+    if (!GAS_WEB_APP_URL) {
+        if (handleLocalGasFallback(body, res)) return;
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ status: 'error', message: 'GAS_WEB_APP_URL belum dikonfigurasi.' }));
+        return;
+    }
     const target = new URL(GAS_WEB_APP_URL);
     const request = https.request({
         hostname: target.hostname,
@@ -273,6 +284,14 @@ function proxyGasRequest(body, res) {
 
     request.write(body || '{}');
     request.end();
+}
+
+function isBlockedSourcePath(pathname) {
+    return pathname.startsWith('/gas/') ||
+        pathname.startsWith('/signaling/') ||
+        pathname === '/render.yaml' ||
+        pathname === '/server.js' ||
+        pathname === '/.gitignore';
 }
 
 function proxyGasRedirect(location, body, res) {

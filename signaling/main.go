@@ -301,17 +301,30 @@ func serveStaticApp(w http.ResponseWriter, r *http.Request) bool {
 
 	fullPath := filepath.Join(staticRoot, cleanPath)
 	if info, err := os.Stat(fullPath); err == nil && !info.IsDir() {
-		http.ServeFile(w, r, fullPath)
+		serveStaticFile(w, r, fullPath)
 		return true
 	}
 
 	indexPath := filepath.Join(staticRoot, "index.html")
 	if _, err := os.Stat(indexPath); err == nil {
-		http.ServeFile(w, r, indexPath)
+		serveStaticFile(w, r, indexPath)
 		return true
 	}
 
 	return false
+}
+
+func serveStaticFile(w http.ResponseWriter, r *http.Request, path string) {
+	ext := strings.ToLower(filepath.Ext(path))
+	w.Header().Set("X-Content-Type-Options", "nosniff")
+	if ext == ".html" {
+		w.Header().Set("Cache-Control", "no-store")
+	} else if ext == ".js" || ext == ".css" {
+		w.Header().Set("Cache-Control", "no-cache, max-age=0, must-revalidate")
+	} else {
+		w.Header().Set("Cache-Control", "public, max-age=3600")
+	}
+	http.ServeFile(w, r, path)
 }
 
 func proxyGAS(w http.ResponseWriter, r *http.Request) {
@@ -325,7 +338,7 @@ func proxyGAS(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	target := getenv("GAS_WEB_APP_URL", "https://script.google.com/macros/s/AKfycbxivp4g8mVai8rZcei4w9pblh8s2Kks84CnRshveD_IR69erw_Ffbn_TwithrpNTEj_yw/exec")
+	target := getenv("GAS_WEB_APP_URL", "")
 	if target == "" {
 		http.Error(w, `{"status":"error","message":"GAS_WEB_APP_URL is not configured"}`, http.StatusBadGateway)
 		return
