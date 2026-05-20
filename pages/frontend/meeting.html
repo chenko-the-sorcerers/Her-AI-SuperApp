@@ -424,7 +424,7 @@
     }
     .meeting-video-tile.is-speaking .meeting-speaker-badge,
     .meeting-remote-tile.is-speaking .meeting-speaker-badge {
-        display: inline-flex;
+        display: none;
     }
     .meeting-remote-grid.has-screen-share .meeting-video-tile.is-pinned,
     .meeting-remote-grid.has-screen-share .meeting-remote-tile.is-pinned {
@@ -577,6 +577,8 @@
         grid-template-columns: minmax(0, 1fr) clamp(132px, 15vw, 190px) !important;
         grid-template-rows: repeat(6, minmax(0, 1fr));
         justify-items: stretch;
+        overflow: hidden;
+        padding-bottom: 0;
     }
     .meeting-overflow-tile {
         align-items: center;
@@ -991,10 +993,12 @@
             height: calc(100dvh - 182px);
             min-height: 0;
             overflow: hidden;
+            gap: 6px;
         }
         .meeting-remote-grid.has-screen-share {
             align-content: flex-start;
             display: grid;
+            gap: 6px;
             grid-auto-flow: row;
             grid-template-rows: auto;
             grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -1004,6 +1008,8 @@
         .meeting-remote-grid.has-screen-share .meeting-remote-tile:not(.is-screen),
         .meeting-remote-grid.has-screen-share .meeting-overflow-tile {
             aspect-ratio: 1 / 1;
+            grid-column: auto;
+            grid-row: auto;
             height: auto;
             min-height: 0;
             width: auto;
@@ -1023,6 +1029,7 @@
         .meeting-remote-grid.has-screen-share .meeting-remote-tile.is-pinned,
         .meeting-remote-grid.has-pinned-tile:not(.has-screen-share) .meeting-video-tile.is-pinned,
         .meeting-remote-grid.has-pinned-tile:not(.has-screen-share) .meeting-remote-tile.is-pinned {
+            aspect-ratio: 16 / 9;
             grid-column: 1 / -1;
             grid-row: auto;
             height: auto;

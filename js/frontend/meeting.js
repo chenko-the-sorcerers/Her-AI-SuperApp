@@ -943,15 +943,7 @@ window.initMeetingRoom = function() {
                 alert('Masih ada peserta lain yang sedang share screen. Tunggu sampai share screen dimatikan terlebih dahulu.');
                 return;
             }
-            screenStream = await navigator.mediaDevices.getDisplayMedia({
-                video: {
-                    cursor: 'always',
-                    width: { ideal: 1280, max: 1920 },
-                    height: { ideal: 720, max: 1080 },
-                    frameRate: { ideal: 15, max: 20 }
-                },
-                audio: false
-            });
+            screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
             screenTrack = screenStream.getVideoTracks()[0];
             activeScreenOwner = clientId;
             localPresence.screen = true;
@@ -961,13 +953,17 @@ window.initMeetingRoom = function() {
                 const LK = await loadLiveKitClient();
                 try {
                     await liveKitRoom?.localParticipant?.publishTrack(screenTrack, {
-                        source: LK.Track.Source.ScreenShare
+                        source: LK.Track?.Source?.ScreenShare || 'screen_share'
                     });
                 } catch (publishError) {
                     console.warn('LiveKit screen publish fallback', publishError);
-                    await liveKitRoom?.localParticipant?.publishTrack(screenTrack).catch(error => {
-                        throw error;
-                    });
+                    try {
+                        const localScreenTrack = LK.LocalVideoTrack ? new LK.LocalVideoTrack(screenTrack) : screenTrack;
+                        await liveKitRoom?.localParticipant?.publishTrack(localScreenTrack, { source: 'screen_share' });
+                    } catch (fallbackError) {
+                        await liveKitRoom?.localParticipant?.setScreenShareEnabled?.(true, { audio: false });
+                        if (!liveKitRoom?.localParticipant?.isScreenShareEnabled) throw fallbackError;
+                    }
                 }
             } else if (USE_SFU_TRANSPORT) {
                 configureSender(createSFUPeer().addTrack(screenTrack, screenStream), screenTrack);
@@ -1347,6 +1343,7 @@ window.initMeetingRoom = function() {
         if (screenTrack) {
             if (meetingTransport === 'livekit' && liveKitRoom) {
                 await liveKitRoom.localParticipant.unpublishTrack(screenTrack).catch(() => {});
+                await liveKitRoom.localParticipant.setScreenShareEnabled?.(false).catch(() => {});
             } else if (USE_SFU_TRANSPORT && sfuPc) {
                 const sender = sfuPc.getSenders().find(item => item.track === screenTrack);
                 if (sender) sfuPc.removeTrack(sender);
