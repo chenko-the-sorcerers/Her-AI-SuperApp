@@ -38,6 +38,7 @@ window.initMeetingRoom = function() {
     const pageControls = document.getElementById('meetingPageControls');
     const pageInfo = document.getElementById('meetingPageInfo');
     const tileViewSelect = document.getElementById('meetingTileView');
+    const backgroundSelect = document.getElementById('meetingBackgroundSelect');
     const shareButton = document.getElementById('btnShareMeetingScreen');
     const exitConfirm = document.getElementById('meetingExitConfirm');
     const exitTitle = document.getElementById('meetingExitTitle');
@@ -53,6 +54,8 @@ window.initMeetingRoom = function() {
     let activeScreenOwner = null;
     let clockTimer = null;
     let iceServers = [...DEFAULT_ICE_SERVERS];
+    let audioContext = null;
+    let localAudioMonitor = null;
     const peers = new Map();
     const remoteScreenShares = new Map();
     const peerNames = new Map();
@@ -61,6 +64,7 @@ window.initMeetingRoom = function() {
     const pendingJoinAnnouncements = new Set();
     const negotiationState = new Map();
     const peerRetryCounts = new Map();
+    const peerAudioMonitors = new Map();
     const clientId = getMeetingClientId();
     const localPresence = {
         id: clientId,
@@ -134,12 +138,15 @@ window.initMeetingRoom = function() {
         cameraStream = localStream;
         if (localVideo) localVideo.srcObject = localStream;
         if (previewVideo) previewVideo.srcObject = localStream;
+        startLocalAudioMonitor();
         return localStream;
     };
     const closePeer = (peerId) => {
         const pc = peers.get(peerId);
         if (pc) pc.close();
         peers.delete(peerId);
+        stopAudioMonitor(peerAudioMonitors.get(peerId));
+        peerAudioMonitors.delete(peerId);
         pendingIceCandidates.delete(peerId);
         negotiationState.delete(peerId);
         peerRetryCounts.delete(peerId);
@@ -166,6 +173,7 @@ window.initMeetingRoom = function() {
             const shareMeta = remoteScreenShares.get(peerId);
             const isScreen = shareMeta?.streamId && shareMeta.streamId === stream?.id;
             renderMeetingRemote(peerId, stream, isScreen ? 'screen' : 'camera', shareMeta?.name);
+            if (!isScreen) startRemoteAudioMonitor(peerId, stream);
         };
         pc.onicecandidate = event => {
             if (event.candidate) sendSignal('ice', peerId, event.candidate);
@@ -472,6 +480,13 @@ window.initMeetingRoom = function() {
         publishPresence();
     });
 
+    backgroundSelect?.addEventListener('change', () => {
+        applyMeetingBackground(backgroundSelect.value);
+    });
+    const savedBackground = localStorage.getItem('herai_meeting_background') || 'aurora';
+    if (backgroundSelect) backgroundSelect.value = savedBackground;
+    applyMeetingBackground(savedBackground);
+
     document.getElementById('btnRaiseMeetingHand')?.addEventListener('click', event => {
         localPresence.hand = !localPresence.hand;
         event.currentTarget?.classList.toggle('is-raised', localPresence.hand);
@@ -561,6 +576,10 @@ window.initMeetingRoom = function() {
         peerNames.clear();
         peerPresence.clear();
         remoteScreenShares.clear();
+        peerAudioMonitors.forEach(stopAudioMonitor);
+        peerAudioMonitors.clear();
+        stopAudioMonitor(localAudioMonitor);
+        localAudioMonitor = null;
         localPresence.hand = false;
         localPresence.screen = false;
         document.getElementById('btnRaiseMeetingHand')?.classList.remove('is-raised');
@@ -590,6 +609,89 @@ window.initMeetingRoom = function() {
         if (footerContainer) footerContainer.style.display = 'block';
         setStatus('Menunggu koneksi...');
         renderPeopleList();
+    }
+
+    function ensureAudioContext() {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioContext.state === 'suspended') audioContext.resume().catch(() => {});
+        return audioContext;
+    }
+
+    function startLocalAudioMonitor() {
+        if (!localStream || localAudioMonitor) return;
+        localAudioMonitor = startAudioMonitor(clientId, localStream, 'meetingLocalTile');
+    }
+
+    function startRemoteAudioMonitor(peerId, stream) {
+        if (!stream?.getAudioTracks?.().length || peerAudioMonitors.has(peerId)) return;
+        const safeId = String(peerId || '').replace(/[^a-zA-Z0-9_-]/g, '');
+        const tileId = `meeting-remote-${safeId}`;
+        peerAudioMonitors.set(peerId, startAudioMonitor(peerId, stream, tileId));
+    }
+
+    function startAudioMonitor(peerId, stream, tileId) {
+        try {
+            if (!stream?.getAudioTracks?.().length) return null;
+            const context = ensureAudioContext();
+            const analyser = context.createAnalyser();
+            analyser.fftSize = 256;
+            analyser.smoothingTimeConstant = 0.72;
+            const source = context.createMediaStreamSource(stream);
+            source.connect(analyser);
+            const data = new Uint8Array(analyser.frequencyBinCount);
+            let speakingFrames = 0;
+            let quietFrames = 0;
+            let rafId = 0;
+            const tick = () => {
+                analyser.getByteFrequencyData(data);
+                const average = data.reduce((sum, value) => sum + value, 0) / data.length;
+                const isSpeaking = average > 18;
+                speakingFrames = isSpeaking ? speakingFrames + 1 : 0;
+                quietFrames = isSpeaking ? 0 : quietFrames + 1;
+                const shouldShow = speakingFrames >= 2 || (getMeetingTile(peerId, tileId)?.classList.contains('is-speaking') && quietFrames < 14);
+                updateSpeakingState(peerId, tileId, shouldShow);
+                rafId = requestAnimationFrame(tick);
+            };
+            rafId = requestAnimationFrame(tick);
+            return { analyser, source, rafId, tileId, peerId };
+        } catch (error) {
+            console.warn('Audio monitor tidak aktif', peerDisplayName(peerId), error);
+            return null;
+        }
+    }
+
+    function stopAudioMonitor(monitor) {
+        if (!monitor) return;
+        if (monitor.rafId) cancelAnimationFrame(monitor.rafId);
+        try { monitor.source?.disconnect?.(); } catch {}
+        updateSpeakingState(monitor.peerId, monitor.tileId, false);
+    }
+
+    function getMeetingTile(peerId, tileId) {
+        if (peerId === clientId) return document.getElementById('meetingLocalTile');
+        return document.getElementById(tileId);
+    }
+
+    function updateSpeakingState(peerId, tileId, isSpeaking) {
+        const tile = getMeetingTile(peerId, tileId);
+        if (!tile) return;
+        tile.classList.toggle('is-speaking', isSpeaking);
+        let badge = tile.querySelector('.meeting-speaker-badge');
+        if (!badge) {
+            badge = document.createElement('div');
+            badge.className = 'meeting-speaker-badge';
+            badge.innerHTML = '<i class="fas fa-volume-high"></i> Speaking';
+            tile.appendChild(badge);
+        }
+    }
+
+    function applyMeetingBackground(value = 'aurora') {
+        if (!meetingPage) return;
+        meetingPage.classList.remove('bg-midnight', 'bg-studio', 'bg-rose');
+        if (value && value !== 'aurora') meetingPage.classList.add(`bg-${value}`);
+        localStorage.setItem('herai_meeting_background', value || 'aurora');
     }
 
     function toggleTrack(kind) {

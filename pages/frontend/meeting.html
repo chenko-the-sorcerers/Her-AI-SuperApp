@@ -70,6 +70,12 @@
                         <option value="30">30</option>
                         <option value="50">50</option>
                     </select>
+                    <select id="meetingBackgroundSelect" class="meeting-tile-select meeting-background-select" title="Background">
+                        <option value="aurora">Aurora</option>
+                        <option value="midnight">Midnight</option>
+                        <option value="studio">Studio</option>
+                        <option value="rose">Rose</option>
+                    </select>
                     <button id="btnToggleMeetingMic" class="meeting-icon-btn" title="Mic"><i class="fas fa-microphone"></i></button>
                     <button id="btnToggleMeetingCamera" class="meeting-icon-btn" title="Camera"><i class="fas fa-video"></i></button>
                     <button id="btnRaiseMeetingHand" class="meeting-icon-btn" title="Raise Hand"><i class="fas fa-hand-paper"></i></button>
@@ -141,9 +147,29 @@
     }
     .meeting-page.in-call {
         align-items: stretch;
-        background: #101828;
+        background:
+            radial-gradient(circle at 18% 18%, rgba(255, 20, 147, 0.26), transparent 28%),
+            radial-gradient(circle at 84% 10%, rgba(124, 58, 237, 0.24), transparent 30%),
+            linear-gradient(135deg, #101828 0%, #182230 48%, #0b1020 100%);
         min-height: 100vh;
         padding: 0;
+    }
+    .meeting-page.in-call.bg-midnight {
+        background:
+            radial-gradient(circle at 72% 18%, rgba(56, 189, 248, 0.18), transparent 30%),
+            linear-gradient(135deg, #020617 0%, #101828 54%, #111827 100%);
+    }
+    .meeting-page.in-call.bg-studio {
+        background:
+            linear-gradient(120deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 64px),
+            radial-gradient(circle at 50% 0%, rgba(255,255,255,0.13), transparent 32%),
+            linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    }
+    .meeting-page.in-call.bg-rose {
+        background:
+            radial-gradient(circle at 20% 16%, rgba(255, 20, 147, 0.34), transparent 30%),
+            radial-gradient(circle at 82% 26%, rgba(251, 113, 133, 0.2), transparent 26%),
+            linear-gradient(135deg, #2d0b1f 0%, #111827 58%, #0f172a 100%);
     }
     .meeting-shell {
         margin: 0 auto;
@@ -162,7 +188,7 @@
         padding: 28px;
     }
     .meeting-room-panel {
-        background: #101828;
+        background: transparent;
         border: 0;
         border-radius: 0;
         box-shadow: none;
@@ -286,6 +312,9 @@
     .meeting-tile-select option {
         color: #101828;
     }
+    .meeting-background-select {
+        min-width: 112px;
+    }
     .meeting-preview-panel {
         display: grid;
         gap: 14px;
@@ -367,7 +396,7 @@
         border-radius: 8px;
         overflow: hidden;
         position: relative;
-        transition: border 180ms ease, min-height 220ms ease, opacity 180ms ease, transform 220ms ease;
+        transition: border 180ms ease, box-shadow 180ms ease, min-height 220ms ease, opacity 180ms ease, transform 220ms ease;
     }
     .meeting-video-tile,
     .meeting-remote-tile {
@@ -379,6 +408,41 @@
         grid-column: 1 / -1;
         min-height: min(60vh, 620px);
         order: -10;
+    }
+    .meeting-video-tile.is-speaking,
+    .meeting-remote-tile.is-speaking {
+        border: 2px solid #22c55e;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18), 0 0 34px rgba(34, 197, 94, 0.34);
+    }
+    .meeting-video-tile.is-speaking::after,
+    .meeting-remote-tile.is-speaking::after {
+        animation: speakerPulse 1.15s ease-out infinite;
+        border: 2px solid rgba(34, 197, 94, 0.72);
+        border-radius: inherit;
+        content: "";
+        inset: 0;
+        pointer-events: none;
+        position: absolute;
+        z-index: 2;
+    }
+    .meeting-speaker-badge {
+        align-items: center;
+        background: #22c55e;
+        border-radius: 999px;
+        color: #fff;
+        display: none;
+        font-size: 0.74rem;
+        font-weight: 900;
+        gap: 6px;
+        padding: 7px 10px;
+        position: absolute;
+        right: 50px;
+        top: 10px;
+        z-index: 3;
+    }
+    .meeting-video-tile.is-speaking .meeting-speaker-badge,
+    .meeting-remote-tile.is-speaking .meeting-speaker-badge {
+        display: inline-flex;
     }
     .meeting-remote-grid.has-screen-share .meeting-video-tile.is-pinned,
     .meeting-remote-grid.has-screen-share .meeting-remote-tile.is-pinned {
@@ -852,6 +916,10 @@
     @keyframes chatIn {
         from { opacity: 0; transform: translateY(6px); }
         to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes speakerPulse {
+        0% { opacity: 0.92; transform: scale(1); }
+        100% { opacity: 0; transform: scale(1.045); }
     }
     @keyframes modalIn {
         from { opacity: 0; transform: translateY(10px) scale(0.98); }
