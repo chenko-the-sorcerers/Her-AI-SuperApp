@@ -436,8 +436,8 @@
     .meeting-remote-tile.is-speaking .meeting-speaker-badge {
         display: none;
     }
-    .meeting-remote-grid.has-screen-share .meeting-video-tile.is-pinned,
-    .meeting-remote-grid.has-screen-share .meeting-remote-tile.is-pinned {
+    .meeting-remote-grid.has-screen-share .meeting-video-tile.is-screen.is-pinned,
+    .meeting-remote-grid.has-screen-share .meeting-remote-tile.is-screen.is-pinned {
         aspect-ratio: auto;
         grid-column: 1;
         grid-row: 1 / -1;
@@ -455,6 +455,11 @@
         min-height: 0;
         order: 1;
         width: 100%;
+    }
+    .meeting-remote-grid.has-screen-share .meeting-video-tile:not(.is-screen),
+    .meeting-remote-grid.has-screen-share .meeting-remote-tile:not(.is-screen),
+    .meeting-remote-grid.has-screen-share .meeting-overflow-tile {
+        grid-column: 2;
     }
     .meeting-remote-grid.has-pinned-tile:not(.has-screen-share) {
         grid-auto-rows: minmax(0, 1fr);
@@ -629,13 +634,17 @@
         justify-self: center;
         width: auto;
     }
-    .meeting-remote-grid.has-screen-share[data-rail-cols="2"] .meeting-video-tile:not(.is-screen),
-    .meeting-remote-grid.has-screen-share[data-rail-cols="2"] .meeting-remote-tile:not(.is-screen),
-    .meeting-remote-grid.has-screen-share[data-rail-cols="2"] .meeting-overflow-tile {
-        grid-column: auto;
-    }
     .meeting-remote-grid.has-screen-share[data-rail-cols="2"] {
         grid-template-rows: repeat(var(--meeting-rail-rows, 3), minmax(0, 1fr));
+    }
+    .meeting-remote-grid.has-screen-share[data-rail-cols="2"] .meeting-video-tile:not(.is-screen)[data-rail-col="1"],
+    .meeting-remote-grid.has-screen-share[data-rail-cols="2"] .meeting-remote-tile:not(.is-screen)[data-rail-col="1"] {
+        grid-column: 2;
+    }
+    .meeting-remote-grid.has-screen-share[data-rail-cols="2"] .meeting-video-tile:not(.is-screen)[data-rail-col="2"],
+    .meeting-remote-grid.has-screen-share[data-rail-cols="2"] .meeting-remote-tile:not(.is-screen)[data-rail-col="2"],
+    .meeting-remote-grid.has-screen-share[data-rail-cols="2"] .meeting-overflow-tile {
+        grid-column: 3;
     }
     .meeting-overflow-tile {
         align-items: center;

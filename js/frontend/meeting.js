@@ -86,6 +86,8 @@ window.initMeetingRoom = function() {
         hand: false,
         screen: false
     };
+    let desiredMicEnabled = true;
+    let desiredCameraEnabled = true;
     let sfuNegotiationInFlight = false;
     let sfuNegotiationQueued = false;
     let sfuRestartTimer = null;
@@ -133,8 +135,8 @@ window.initMeetingRoom = function() {
     const sendSFU = (type, payload) => sendSignal(type, '', payload);
     const buildLocalPresence = () => {
         localPresence.name = displayName();
-        localPresence.mic = localStream?.getAudioTracks()[0]?.enabled !== false;
-        localPresence.camera = localStream?.getVideoTracks()[0]?.enabled !== false;
+        localPresence.mic = desiredMicEnabled && localStream?.getAudioTracks()[0]?.enabled !== false;
+        localPresence.camera = desiredCameraEnabled && localStream?.getVideoTracks()[0]?.enabled !== false;
         localPresence.screen = Boolean(screenStream);
         return { ...localPresence };
     };
@@ -183,6 +185,7 @@ window.initMeetingRoom = function() {
         cameraStream = localStream;
         if (localVideo) localVideo.srcObject = localStream;
         if (previewVideo) previewVideo.srcObject = localStream;
+        applyDesiredDeviceState();
         startLocalAudioMonitor();
         return localStream;
     };
@@ -525,6 +528,8 @@ window.initMeetingRoom = function() {
         const presence = parseLiveKitPresence(participant);
         peerNames.set(participant.identity, presence.name);
         peerPresence.set(participant.identity, presence);
+        if (presence.screen) activeScreenOwner = participant.identity;
+        if (!presence.screen && activeScreenOwner === participant.identity) activeScreenOwner = null;
         ensureParticipantTile(participant.identity, presence.name, presence);
         updateMeetingTilePresence(participant.identity, presence);
         renderPeopleList();
@@ -546,6 +551,7 @@ window.initMeetingRoom = function() {
         const mediaTrack = track.mediaStreamTrack;
         if (!stream.getTracks().some(item => item.id === mediaTrack.id)) stream.addTrack(mediaTrack);
         const presence = peerPresence.get(participant.identity) || parseLiveKitPresence(participant);
+        if (isScreen) activeScreenOwner = participant.identity;
         ensureParticipantTile(participant.identity, presence.name, presence);
         renderMeetingRemote(participant.identity, stream, isScreen ? 'screen' : 'camera', presence.name);
         if (!isScreen && mediaTrack.kind === 'audio') startRemoteAudioMonitor(participant.identity, stream);
@@ -559,6 +565,7 @@ window.initMeetingRoom = function() {
         if (isScreen) {
             liveKitRemoteStreams.delete(streamKey);
             removeMeetingRemote(`${participant.identity}-screen`);
+            if (activeScreenOwner === participant.identity) activeScreenOwner = null;
         }
     };
     const connectLiveKit = async () => {
@@ -594,6 +601,12 @@ window.initMeetingRoom = function() {
                     const message = JSON.parse(new TextDecoder().decode(payload));
                     if (message.type === 'chat') appendChatMessage(message.name || participant?.name || 'Peserta', message.text || '', message.at, false);
                     if (message.type === 'emoji') showFloatingEmoji(message.emoji || '👍');
+                    if (message.type === 'screen-start' && participant?.identity !== clientId) {
+                        activeScreenOwner = participant.identity;
+                    }
+                    if (message.type === 'screen-stop' && participant?.identity !== clientId && activeScreenOwner === participant.identity) {
+                        activeScreenOwner = null;
+                    }
                 } catch (error) {
                     console.warn('Data meeting tidak bisa dibaca', error);
                 }
@@ -908,23 +921,23 @@ window.initMeetingRoom = function() {
     });
 
     document.getElementById('btnPreviewMic')?.addEventListener('click', event => {
-        const enabled = toggleTrack('audio');
+        const enabled = toggleTrack('audio', undefined, event.currentTarget);
         setDeviceButtonState(event.currentTarget, enabled, 'microphone');
     });
 
     document.getElementById('btnPreviewCamera')?.addEventListener('click', event => {
-        const enabled = toggleTrack('video');
+        const enabled = toggleTrack('video', undefined, event.currentTarget);
         setDeviceButtonState(event.currentTarget, enabled, 'video');
     });
 
     document.getElementById('btnToggleMeetingMic')?.addEventListener('click', event => {
-        const enabled = toggleTrack('audio');
+        const enabled = toggleTrack('audio', undefined, event.currentTarget);
         setDeviceButtonState(event.currentTarget, enabled, 'microphone');
         publishPresence();
     });
 
     document.getElementById('btnToggleMeetingCamera')?.addEventListener('click', event => {
-        const enabled = toggleTrack('video');
+        const enabled = toggleTrack('video', undefined, event.currentTarget);
         setDeviceButtonState(event.currentTarget, enabled, 'video');
         publishPresence();
     });
@@ -979,6 +992,7 @@ window.initMeetingRoom = function() {
                 await renegotiateAllPeers();
             }
             sendSignal('screen-start', '', { name: displayName(), streamId: screenStream.id });
+            publishLiveKitMeetingData({ type: 'screen-start', name: displayName(), at: new Date().toISOString() });
             publishPresence();
             screenTrack.onended = async () => {
                 await stopScreenShare();
@@ -1181,11 +1195,40 @@ window.initMeetingRoom = function() {
         }
     }
 
-    function toggleTrack(kind) {
+    function toggleTrack(kind, forcedValue, button) {
+        const enabled = typeof forcedValue === 'boolean'
+            ? forcedValue
+            : !(kind === 'audio' ? desiredMicEnabled : desiredCameraEnabled);
+        if (kind === 'audio') desiredMicEnabled = enabled;
+        if (kind === 'video') desiredCameraEnabled = enabled;
         const track = localStream?.getTracks().find(item => item.kind === kind);
-        if (!track) return false;
-        track.enabled = !track.enabled;
-        return track.enabled;
+        if (track) track.enabled = enabled;
+        if (kind === 'video') {
+            document.getElementById('meetingLocalTile')?.classList.toggle('is-camera-off', !enabled);
+            if (previewVideo) previewVideo.style.opacity = enabled ? '1' : '0';
+        }
+        syncDeviceButtons();
+        if (button) button.disabled = true;
+        window.setTimeout(() => {
+            if (button) button.disabled = false;
+            syncDeviceButtons();
+        }, 140);
+        return enabled;
+    }
+
+    function applyDesiredDeviceState() {
+        localStream?.getAudioTracks().forEach(track => { track.enabled = desiredMicEnabled; });
+        localStream?.getVideoTracks().forEach(track => { track.enabled = desiredCameraEnabled; });
+        document.getElementById('meetingLocalTile')?.classList.toggle('is-camera-off', !desiredCameraEnabled);
+        if (previewVideo) previewVideo.style.opacity = desiredCameraEnabled ? '1' : '0';
+        syncDeviceButtons();
+    }
+
+    function syncDeviceButtons() {
+        setDeviceButtonState(document.getElementById('btnPreviewMic'), desiredMicEnabled, 'microphone');
+        setDeviceButtonState(document.getElementById('btnPreviewCamera'), desiredCameraEnabled, 'video');
+        setDeviceButtonState(document.getElementById('btnToggleMeetingMic'), desiredMicEnabled, 'microphone');
+        setDeviceButtonState(document.getElementById('btnToggleMeetingCamera'), desiredCameraEnabled, 'video');
     }
 
     function assertMediaSupport() {
@@ -1237,19 +1280,13 @@ window.initMeetingRoom = function() {
     }
 
     function resetDeviceButtons() {
-        [
-            [document.getElementById('btnPreviewMic'), 'microphone'],
-            [document.getElementById('btnPreviewCamera'), 'video'],
-            [document.getElementById('btnToggleMeetingMic'), 'microphone'],
-            [document.getElementById('btnToggleMeetingCamera'), 'video']
-        ].forEach(([button, kind]) => setDeviceButtonState(button, true, kind));
+        desiredMicEnabled = true;
+        desiredCameraEnabled = true;
+        syncDeviceButtons();
     }
 
     function syncRoomDeviceButtons() {
-        const audioEnabled = localStream?.getAudioTracks()[0]?.enabled !== false;
-        const videoEnabled = localStream?.getVideoTracks()[0]?.enabled !== false;
-        setDeviceButtonState(document.getElementById('btnToggleMeetingMic'), audioEnabled, 'microphone');
-        setDeviceButtonState(document.getElementById('btnToggleMeetingCamera'), videoEnabled, 'video');
+        applyDesiredDeviceState();
         updateMeetingTilePresence(clientId, buildLocalPresence());
         renderPeopleList();
     }
@@ -1365,6 +1402,7 @@ window.initMeetingRoom = function() {
         screenTrack = null;
         document.getElementById('meeting-local-screen')?.remove();
         sendSignal('screen-stop', '', { name: displayName() });
+        publishLiveKitMeetingData({ type: 'screen-stop', name: displayName(), at: new Date().toISOString() });
         activeScreenOwner = null;
         localPresence.screen = false;
         setShareButtonState(false);
@@ -1381,11 +1419,18 @@ window.initMeetingRoom = function() {
         const payload = { name: displayName(), text, at: new Date().toISOString() };
         appendChatMessage(payload.name, payload.text, payload.at, true);
         if (meetingTransport === 'livekit' && liveKitRoom) {
-            liveKitRoom.localParticipant.publishData(new TextEncoder().encode(JSON.stringify({ type: 'chat', ...payload })), { reliable: true }).catch(() => {});
+            publishLiveKitMeetingData({ type: 'chat', ...payload });
         } else {
             sendSignal('chat', '', payload);
         }
         chatInput.value = '';
+    }
+
+    function publishLiveKitMeetingData(payload) {
+        if (meetingTransport !== 'livekit' || !liveKitRoom || !payload) return;
+        liveKitRoom.localParticipant
+            .publishData(new TextEncoder().encode(JSON.stringify(payload)), { reliable: true })
+            .catch(() => {});
     }
 
     function appendChatMessage(name, text, at, isOwn = false) {
@@ -1491,29 +1536,35 @@ window.initMeetingRoom = function() {
             const screenTiles = tiles.filter(tile => tile.classList.contains('is-screen'));
             const cameraTiles = tiles.filter(tile => !tile.classList.contains('is-screen'));
             const maxRailTiles = isCompactViewport ? 5 : 6;
+            const railCountBeforeOverflow = Math.min(cameraTiles.length, maxRailTiles);
+            const hiddenCount = Math.max(0, cameraTiles.length - maxRailTiles);
+            const railCount = railCountBeforeOverflow + (hiddenCount > 0 ? 1 : 0);
+            const railCols = !isCompactViewport && railCount > 3 ? 2 : 1;
             cameraTiles.forEach((tile, index) => {
                 tile.style.display = index < maxRailTiles ? '' : 'none';
+                tile.classList.remove('is-pinned');
+                tile.querySelector('.meeting-pin-btn')?.classList.remove('is-active');
+                tile.dataset.railCol = String((index % railCols) + 1);
             });
             screenTiles.forEach(tile => {
                 tile.style.display = '';
                 tile.classList.add('is-pinned');
             });
-            const hiddenCount = Math.max(0, cameraTiles.length - maxRailTiles);
             if (hiddenCount > 0 && remoteGrid) {
                 const summaryTile = document.createElement('div');
                 summaryTile.id = 'meeting-overflow-tile';
                 summaryTile.className = 'meeting-overflow-tile';
+                summaryTile.dataset.railCol = String(((railCount - 1) % railCols) + 1);
                 summaryTile.innerHTML = `<strong>+${hiddenCount}</strong><span>peserta lainnya</span>`;
                 remoteGrid.appendChild(summaryTile);
             }
-            visibleCount = screenTiles.length + Math.min(cameraTiles.length, maxRailTiles) + (hiddenCount > 0 ? 1 : 0);
-            const railCount = Math.min(cameraTiles.length, maxRailTiles) + (hiddenCount > 0 ? 1 : 0);
-            const railCols = !isCompactViewport && railCount > 3 ? 2 : 1;
+            visibleCount = screenTiles.length + railCount;
             remoteGrid?.style.setProperty('--meeting-rail-rows', String(Math.max(1, Math.ceil(railCount / railCols))));
             if (remoteGrid) remoteGrid.dataset.railCols = String(railCols);
         } else {
             tiles.forEach((tile, index) => {
                 tile.style.display = index >= start && index < end ? '' : 'none';
+                delete tile.dataset.railCol;
             });
             remoteGrid?.style.removeProperty('--meeting-rail-rows');
             if (remoteGrid) {
