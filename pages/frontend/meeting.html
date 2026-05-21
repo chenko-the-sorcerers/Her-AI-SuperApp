@@ -376,6 +376,7 @@
     .meeting-video-tile,
     .meeting-remote-tile {
         background: #111827;
+        border: 1px solid rgba(255,255,255,0.12);
         border-radius: 8px;
         overflow: hidden;
         position: relative;
@@ -447,9 +448,10 @@
     }
     .meeting-remote-grid.has-screen-share .meeting-video-tile:not(.is-screen),
     .meeting-remote-grid.has-screen-share .meeting-remote-tile:not(.is-screen) {
-        aspect-ratio: auto;
+        align-self: center;
+        aspect-ratio: 4 / 3;
         grid-column: 2;
-        height: 100%;
+        height: auto;
         min-height: 0;
         order: 1;
         width: 100%;
@@ -470,7 +472,7 @@
     }
     .meeting-video-tile.is-screen video,
     .meeting-remote-tile.is-screen video {
-        object-fit: contain;
+        object-fit: fill;
         transform: none;
     }
     .meeting-video-tile video,
@@ -578,6 +580,7 @@
         background: #ff1493;
     }
     .meeting-remote-grid {
+        align-items: stretch;
         display: grid;
         gap: 12px;
         grid-auto-flow: row;
@@ -598,7 +601,8 @@
         width: 100%;
     }
     .meeting-remote-grid.has-screen-share {
-        align-items: stretch;
+        align-content: center;
+        align-items: center;
         display: grid;
         gap: 8px;
         grid-auto-flow: row;
@@ -615,7 +619,7 @@
     .meeting-remote-grid.has-screen-share .meeting-remote-tile.is-screen {
         align-self: center;
         aspect-ratio: var(--meeting-screen-aspect, 16 / 9);
-        height: auto;
+        height: 100%;
         max-height: 100%;
         width: 100%;
     }
@@ -635,7 +639,8 @@
     }
     .meeting-overflow-tile {
         align-items: center;
-        aspect-ratio: auto;
+        align-self: center;
+        aspect-ratio: 4 / 3;
         background: #1f2937;
         border: 1px solid rgba(255,255,255,0.18);
         border-radius: 8px;
@@ -644,7 +649,7 @@
         flex-direction: column;
         gap: 4px;
         grid-column: 2;
-        height: 100%;
+        height: auto;
         justify-content: center;
         min-height: 0;
         order: 1;
@@ -677,6 +682,15 @@
     .meeting-remote-grid[data-count="15"],
     .meeting-remote-grid[data-count="16"] { --meeting-cols: 4; }
     @media (min-width: 861px) {
+        .meeting-remote-grid:not(.has-screen-share)[data-count="1"],
+        .meeting-remote-grid:not(.has-screen-share)[data-count="4"] {
+            padding-inline: clamp(72px, 8vw, 150px);
+        }
+        .meeting-remote-grid:not(.has-screen-share)[data-count="1"] .meeting-video-tile,
+        .meeting-remote-grid:not(.has-screen-share)[data-count="1"] .meeting-remote-tile {
+            justify-self: center;
+            max-width: min(100%, 1180px);
+        }
         .meeting-remote-grid:not(.has-screen-share)[data-count="3"] .meeting-video-tile:nth-child(1),
         .meeting-remote-grid:not(.has-screen-share)[data-count="3"] .meeting-remote-tile:nth-child(1),
         .meeting-remote-grid:not(.has-screen-share)[data-count="3"] .meeting-video-tile:nth-child(2),
