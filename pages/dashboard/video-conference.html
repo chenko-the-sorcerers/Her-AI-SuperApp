@@ -168,6 +168,20 @@
         border-color: rgba(16, 185, 129, 0.45);
         box-shadow: 0 12px 30px rgba(16, 185, 129, 0.12);
     }
+    .meeting-room-card.is-offline {
+        border-color: rgba(148, 163, 184, 0.45);
+    }
+    .meeting-room-card.is-unknown {
+        border-color: rgba(245, 158, 11, 0.38);
+        background: #fffbeb;
+    }
+    .meeting-room-title-row {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        min-width: 0;
+    }
     .meeting-room-card strong {
         color: var(--dark-purple);
         display: block;
@@ -176,6 +190,46 @@
     .meeting-room-card small {
         color: var(--text-muted);
         font-family: monospace;
+    }
+    .meeting-room-status {
+        align-items: center;
+        border-radius: 999px;
+        display: inline-flex;
+        font-size: 0.72rem;
+        font-weight: 800;
+        gap: 6px;
+        line-height: 1;
+        padding: 6px 9px;
+        text-transform: uppercase;
+    }
+    .meeting-room-status i {
+        font-size: 0.46rem;
+    }
+    .meeting-room-status.online {
+        background: rgba(16, 185, 129, 0.12);
+        color: #047857;
+    }
+    .meeting-room-status.offline {
+        background: rgba(148, 163, 184, 0.14);
+        color: #475569;
+    }
+    .meeting-room-status.unknown {
+        background: rgba(245, 158, 11, 0.14);
+        color: #b45309;
+    }
+    .meeting-room-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+    }
+    .btn-delete-meeting-room {
+        border-color: rgba(230, 57, 70, 0.3);
+        color: var(--danger);
+    }
+    .btn-delete-meeting-room:hover {
+        background: var(--danger);
+        border-color: var(--danger);
+        color: #fff;
     }
     .manual-video-grid {
         display: grid;

@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"flag"
 	"io"
 	"log"
@@ -60,9 +61,10 @@ type PublishedTrack struct {
 }
 
 type RoomInfo struct {
-	Room    string   `json:"room"`
-	Clients int      `json:"clients"`
-	Peers   []string `json:"peers"`
+	Room      string   `json:"room"`
+	Clients   int      `json:"clients"`
+	Peers     []string `json:"peers"`
+	Transport string   `json:"transport,omitempty"`
 }
 
 type Hub struct {
@@ -101,10 +103,46 @@ func main() {
 	})
 	http.HandleFunc("/rooms", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET,DELETE,OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Content-Type", "application/json")
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusNoContent)
+			return
+		}
+		if r.Method == http.MethodDelete {
+			room := strings.TrimSpace(r.URL.Query().Get("room"))
+			if room == "" {
+				w.WriteHeader(http.StatusBadRequest)
+				_ = json.NewEncoder(w).Encode(map[string]any{"ok": false, "message": "room wajib diisi"})
+				return
+			}
+			deletedLocal := hub.deleteRoom(room)
+			deletedLiveKit, liveKitErr := deleteLiveKitRoom(room)
+			if liveKitErr != nil && !deletedLocal {
+				w.WriteHeader(http.StatusBadGateway)
+				_ = json.NewEncoder(w).Encode(map[string]any{"ok": false, "message": liveKitErr.Error()})
+				return
+			}
+			_ = json.NewEncoder(w).Encode(map[string]any{
+				"ok":             true,
+				"deletedLocal":   deletedLocal,
+				"deletedLiveKit": deletedLiveKit,
+			})
+			return
+		}
+		if r.Method != http.MethodGet {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+			_ = json.NewEncoder(w).Encode(map[string]any{"ok": false, "message": "method tidak didukung"})
+			return
+		}
+		rooms := hub.roomInfos()
+		if liveKitRooms, err := listLiveKitRooms(); err == nil {
+			rooms = mergeRoomInfos(rooms, liveKitRooms)
+		}
 		_ = json.NewEncoder(w).Encode(map[string]any{
 			"ok":    true,
-			"rooms": hub.roomInfos(),
+			"rooms": rooms,
 		})
 	})
 	http.HandleFunc("/meeting-config", handleMeetingConfig)
@@ -257,6 +295,140 @@ func buildLiveKitToken(apiKey, apiSecret, room, identity, name string) (string, 
 	return unsigned + "." + base64.RawURLEncoding.EncodeToString(mac.Sum(nil)), nil
 }
 
+func buildLiveKitAdminToken(apiKey, apiSecret, room string) (string, error) {
+	now := time.Now()
+	videoGrant := map[string]any{
+		"roomList":  true,
+		"roomAdmin": true,
+	}
+	if strings.TrimSpace(room) != "" {
+		videoGrant["room"] = normalizeLiveKitRoomName(room)
+	}
+	claims := map[string]any{
+		"iss":   apiKey,
+		"sub":   "herai-dashboard-admin",
+		"nbf":   now.Unix() - 5,
+		"iat":   now.Unix(),
+		"exp":   now.Add(10 * time.Minute).Unix(),
+		"video": videoGrant,
+	}
+	return signJWT(apiSecret, claims)
+}
+
+func signJWT(secret string, claims map[string]any) (string, error) {
+	headerJSON, err := json.Marshal(map[string]string{"alg": "HS256", "typ": "JWT"})
+	if err != nil {
+		return "", err
+	}
+	claimsJSON, err := json.Marshal(claims)
+	if err != nil {
+		return "", err
+	}
+	unsigned := base64.RawURLEncoding.EncodeToString(headerJSON) + "." + base64.RawURLEncoding.EncodeToString(claimsJSON)
+	mac := hmac.New(sha256.New, []byte(secret))
+	_, _ = mac.Write([]byte(unsigned))
+	return unsigned + "." + base64.RawURLEncoding.EncodeToString(mac.Sum(nil)), nil
+}
+
+func normalizeLiveKitRoomName(room string) string {
+	room = strings.ToUpper(strings.ReplaceAll(strings.TrimSpace(room), "-", ""))
+	if len(room) > 12 {
+		room = room[:12]
+	}
+	return room
+}
+
+func liveKitHTTPBase() string {
+	liveKitURL := strings.TrimSpace(getenv("LIVEKIT_URL", ""))
+	liveKitURL = strings.TrimPrefix(liveKitURL, "wss://")
+	liveKitURL = strings.TrimPrefix(liveKitURL, "ws://")
+	if liveKitURL == "" {
+		return ""
+	}
+	return "https://" + strings.TrimRight(liveKitURL, "/")
+}
+
+func listLiveKitRooms() ([]RoomInfo, error) {
+	base := liveKitHTTPBase()
+	apiKey := strings.TrimSpace(getenv("LIVEKIT_API_KEY", ""))
+	apiSecret := strings.TrimSpace(getenv("LIVEKIT_API_SECRET", ""))
+	if base == "" || apiKey == "" || apiSecret == "" {
+		return nil, nil
+	}
+	token, err := buildLiveKitAdminToken(apiKey, apiSecret, "")
+	if err != nil {
+		return nil, err
+	}
+	req, err := http.NewRequest(http.MethodPost, base+"/twirp/livekit.RoomService/ListRooms", strings.NewReader(`{}`))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Authorization", "Bearer "+token)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode >= 300 {
+		body, _ := io.ReadAll(io.LimitReader(resp.Body, 512))
+		return nil, errors.New("LiveKit list rooms gagal: " + string(body))
+	}
+	var payload struct {
+		Rooms []struct {
+			Name            string `json:"name"`
+			NumParticipants int    `json:"numParticipants"`
+		} `json:"rooms"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&payload); err != nil {
+		return nil, err
+	}
+	rooms := make([]RoomInfo, 0, len(payload.Rooms))
+	for _, room := range payload.Rooms {
+		rooms = append(rooms, RoomInfo{
+			Room:      room.Name,
+			Clients:   room.NumParticipants,
+			Peers:     []string{},
+			Transport: "livekit",
+		})
+	}
+	return rooms, nil
+}
+
+func deleteLiveKitRoom(room string) (bool, error) {
+	base := liveKitHTTPBase()
+	apiKey := strings.TrimSpace(getenv("LIVEKIT_API_KEY", ""))
+	apiSecret := strings.TrimSpace(getenv("LIVEKIT_API_SECRET", ""))
+	room = normalizeLiveKitRoomName(room)
+	if base == "" || apiKey == "" || apiSecret == "" || room == "" {
+		return false, nil
+	}
+	token, err := buildLiveKitAdminToken(apiKey, apiSecret, room)
+	if err != nil {
+		return false, err
+	}
+	body, _ := json.Marshal(map[string]string{"room": room})
+	req, err := http.NewRequest(http.MethodPost, base+"/twirp/livekit.RoomService/DeleteRoom", bytes.NewReader(body))
+	if err != nil {
+		return false, err
+	}
+	req.Header.Set("Authorization", "Bearer "+token)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return false, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode == http.StatusNotFound {
+		return false, nil
+	}
+	if resp.StatusCode >= 300 {
+		body, _ := io.ReadAll(io.LimitReader(resp.Body, 512))
+		return false, errors.New("LiveKit delete room gagal: " + string(body))
+	}
+	return true, nil
+}
+
 func serveWS(hub *Hub, w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -390,12 +562,65 @@ func (h *Hub) roomInfos() []RoomInfo {
 			peers = append(peers, clientID)
 		}
 		infos = append(infos, RoomInfo{
-			Room:    id,
-			Clients: len(room.clients),
-			Peers:   peers,
+			Room:      id,
+			Clients:   len(room.clients),
+			Peers:     peers,
+			Transport: "websocket",
 		})
 	}
 	return infos
+}
+
+func (h *Hub) deleteRoom(roomID string) bool {
+	roomID = normalizeLiveKitRoomName(roomID)
+	h.mu.Lock()
+	defer h.mu.Unlock()
+
+	var room *Room
+	var key string
+	for id, candidate := range h.rooms {
+		if normalizeLiveKitRoomName(id) == roomID {
+			room = candidate
+			key = id
+			break
+		}
+	}
+	if room == nil {
+		return false
+	}
+	for _, client := range room.clients {
+		enqueueSignal(client, SignalMessage{Type: "room-deleted", Room: key, From: "server", Payload: mustJSON(map[string]any{
+			"message": "Room ditutup oleh admin",
+		})})
+		_ = client.conn.Close()
+	}
+	delete(h.rooms, key)
+	return true
+}
+
+func mergeRoomInfos(primary []RoomInfo, secondary []RoomInfo) []RoomInfo {
+	merged := make([]RoomInfo, 0, len(primary)+len(secondary))
+	indexByRoom := make(map[string]int)
+	for _, room := range primary {
+		key := normalizeLiveKitRoomName(room.Room)
+		indexByRoom[key] = len(merged)
+		merged = append(merged, room)
+	}
+	for _, room := range secondary {
+		key := normalizeLiveKitRoomName(room.Room)
+		if index, exists := indexByRoom[key]; exists {
+			if room.Clients > merged[index].Clients {
+				merged[index].Clients = room.Clients
+			}
+			if merged[index].Transport != room.Transport {
+				merged[index].Transport = strings.Trim(merged[index].Transport+","+room.Transport, ",")
+			}
+			continue
+		}
+		indexByRoom[key] = len(merged)
+		merged = append(merged, room)
+	}
+	return merged
 }
 
 func (c *Client) readPump() {

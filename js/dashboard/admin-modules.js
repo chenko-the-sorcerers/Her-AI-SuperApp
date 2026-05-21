@@ -469,6 +469,8 @@
        const roomList = document.getElementById('meetingRoomList');
        let localStream = null;
        let socket = null;
+       let latestActiveMeetingRooms = [];
+       let meetingServerReachable = false;
        const clientId = getOrCreateSignalClientId();
        const peers = new Map();
 
@@ -690,27 +692,38 @@
            localStorage.setItem('herai_admin_meeting_rooms', JSON.stringify(rooms.slice(0, 20)));
        }
 
-       function renderAdminMeetingRooms(activeRooms = []) {
+       function renderAdminMeetingRooms(activeRooms = latestActiveMeetingRooms, serverReachable = meetingServerReachable) {
            if (!roomList) return;
            const rooms = readAdminMeetingRooms();
            if (rooms.length === 0 && activeRooms.length === 0) {
-               roomList.innerHTML = '<div class="manual-note">Belum ada room tersimpan.</div>';
+               roomList.innerHTML = `<div class="manual-note">${serverReachable ? 'Belum ada room tersimpan.' : 'Server meeting belum terbaca. Klik Refresh atau cek URL signaling.'}</div>`;
                return;
            }
            const activeMap = new Map(activeRooms.map(room => [normalizeRoomId(room.room), room]));
            const savedIds = new Set(rooms.map(room => normalizeRoomId(room.id)));
            const activeOnly = activeRooms
                .filter(room => !savedIds.has(normalizeRoomId(room.room)))
-               .map(room => ({ id: room.room, title: 'Active External Room', inviteUrl: `${location.origin}${location.pathname}#/meeting?room=${encodeURIComponent(room.room)}` }));
+               .map(room => ({ id: room.room, title: 'Active External Room', inviteUrl: `${publicAppUrl()}#/meeting?room=${encodeURIComponent(formatSignalRoomCode(room.room))}` }));
            roomList.innerHTML = [...rooms, ...activeOnly].map(room => {
                const active = activeMap.get(normalizeRoomId(room.id));
+               const statusLabel = active ? `${Number(active.clients || 0)} online` : (serverReachable ? 'offline' : 'unknown');
+               const transportLabel = active?.transport ? String(active.transport).replace(',', ' + ') : 'saved';
+               const canDeleteServer = Boolean(active);
                return `
-                   <div class="meeting-room-card ${active ? 'is-online' : ''}">
+                   <div class="meeting-room-card ${active ? 'is-online' : serverReachable ? 'is-offline' : 'is-unknown'}">
                        <div>
-                           <strong>${escapeHtml(room.title)}</strong>
-                           <small>${escapeHtml(room.id)} • ${active ? `${active.clients} online` : 'offline'}</small>
+                           <div class="meeting-room-title-row">
+                               <strong>${escapeHtml(room.title)}</strong>
+                               <span class="meeting-room-status ${active ? 'online' : serverReachable ? 'offline' : 'unknown'}">
+                                   <i class="fas fa-circle"></i> ${escapeHtml(statusLabel)}
+                               </span>
+                           </div>
+                           <small>${escapeHtml(formatSignalRoomCode(room.id))} • ${escapeHtml(transportLabel)}</small>
                        </div>
-                       <button class="btn-action btn-copy-saved-room" data-url="${escapeAttr(room.inviteUrl)}"><i class="far fa-copy"></i> Copy</button>
+                       <div class="meeting-room-actions">
+                           <button class="btn-action btn-copy-saved-room" data-url="${escapeAttr(room.inviteUrl)}" title="Copy link"><i class="far fa-copy"></i></button>
+                           <button class="btn-action btn-delete-meeting-room" data-room="${escapeAttr(room.id)}" data-server-delete="${canDeleteServer ? 'true' : 'false'}" title="Hapus room"><i class="fas fa-trash"></i></button>
+                       </div>
                    </div>
                `;
            }).join('');
@@ -720,18 +733,50 @@
                    setStatus('Saved Link Copied');
                });
            });
+           roomList.querySelectorAll('.btn-delete-meeting-room').forEach(button => {
+               button.addEventListener('click', () => deleteAdminMeetingRoom(button.dataset.room || '', button.dataset.serverDelete === 'true'));
+           });
        }
 
        async function refreshActiveMeetingRooms() {
            try {
                const base = (signalServerInput?.value || 'wss://herai-signaling.onrender.com/ws').replace(/^ws/, 'http').replace(/\/ws.*$/, '/rooms');
-               const response = await fetch(base);
+               const response = await fetch(base, { cache: 'no-store' });
                const result = await response.json();
-               renderAdminMeetingRooms(result.rooms || []);
+               meetingServerReachable = response.ok && result.ok !== false;
+               latestActiveMeetingRooms = Array.isArray(result.rooms) ? result.rooms : [];
+               renderAdminMeetingRooms(latestActiveMeetingRooms, meetingServerReachable);
            } catch (error) {
-               renderAdminMeetingRooms();
+               meetingServerReachable = false;
+               latestActiveMeetingRooms = [];
+               renderAdminMeetingRooms(latestActiveMeetingRooms, meetingServerReachable);
            }
        }
+
+       async function deleteAdminMeetingRoom(room, shouldDeleteServerRoom) {
+           const formattedRoom = formatSignalRoomCode(room);
+           if (!formattedRoom) return;
+           const active = latestActiveMeetingRooms.some(item => normalizeRoomId(item.room) === normalizeRoomId(formattedRoom));
+           const message = active
+               ? `Room ${formattedRoom} masih online. Hapus room ini dan putuskan peserta yang sedang tersambung?`
+               : `Hapus room ${formattedRoom} dari daftar tersimpan?`;
+           if (!confirm(message)) return;
+           const rooms = readAdminMeetingRooms().filter(item => normalizeRoomId(item.id) !== normalizeRoomId(formattedRoom));
+           localStorage.setItem('herai_admin_meeting_rooms', JSON.stringify(rooms));
+           if (shouldDeleteServerRoom || active) {
+               try {
+                   const base = (signalServerInput?.value || 'wss://herai-signaling.onrender.com/ws').replace(/^ws/, 'http').replace(/\/ws.*$/, '/rooms');
+                   const url = new URL(base);
+                   url.searchParams.set('room', formattedRoom);
+                   await fetch(url.toString(), { method: 'DELETE' });
+               } catch (error) {
+                   console.warn('Gagal menghapus room aktif dari server meeting.', error);
+               }
+           }
+           setStatus('Room Deleted');
+           window.logAdminActivity(`Menghapus room meeting ${formattedRoom}`);
+           refreshActiveMeetingRooms();
+        }
    };
 
    function normalizeRoomId(value) {
