@@ -600,6 +600,16 @@ function moduleIcon(index) {
     return ['fas fa-rocket', 'fas fa-brain', 'fas fa-chart-line', 'fas fa-plus'][index % 4];
 }
 
+function moduleImage(index, item = {}) {
+    const explicit = item.image || item.image_url || item.imageUrl || item.thumbnail || item.thumbnail_url || item.cover_url;
+    if (explicit) return explicit;
+    return [
+        '/assets/modules/python-for-ai.png',
+        '/assets/modules/machine-learning.png',
+        '/assets/modules/data-analysis.png'
+    ][index % 3];
+}
+
 function formatStageLabel(value) {
     const labels = {
         registered: 'Foundation Phase',
@@ -664,13 +674,13 @@ function renderParticipantModules(assets = []) {
         .filter(asset => isAssetVisible(asset) && ['kurikulum', 'module', 'modul', 'material'].includes(normalizeAssetType(asset)))
         .slice(0, 3);
     const rows = modules.length ? modules : [
-        { title: 'Python for AI Beginner', notes: 'Modul 3 dari 10', percent: 80, url: '#/curriculum', tone: 'pink', icon: 'fa-rocket' },
-        { title: 'Machine Learning Fundamentals', notes: 'Modul 6 dari 12', percent: 50, url: '#/curriculum', tone: 'purple', icon: 'fa-brain' },
-        { title: 'Data Analysis with Pandas', notes: 'Modul 2 dari 8', percent: 30, url: '#/curriculum', tone: 'orange', icon: 'fa-share-nodes' }
+        { title: 'Python for AI Beginner', notes: 'Modul 3 dari 10', percent: 80, url: '#/curriculum', tone: 'pink', icon: 'fa-rocket', image: '/assets/modules/python-for-ai.png' },
+        { title: 'Machine Learning Fundamentals', notes: 'Modul 6 dari 12', percent: 50, url: '#/curriculum', tone: 'purple', icon: 'fa-brain', image: '/assets/modules/machine-learning.png' },
+        { title: 'Data Analysis with Pandas', notes: 'Modul 2 dari 8', percent: 30, url: '#/curriculum', tone: 'orange', icon: 'fa-share-nodes', image: '/assets/modules/data-analysis.png' }
     ];
     container.innerHTML = rows.map((item, index) => `
         <a class="fellow-module is-${escapeAttr(item.tone || ['pink', 'purple', 'orange'][index] || 'pink')} nav-link" href="${escapeAttr(item.url || '#/curriculum')}">
-            <span><i class="fas ${escapeAttr(item.icon || moduleIcon(index))}"></i></span>
+            <span class="fellow-module-thumb"><img src="${escapeAttr(moduleImage(index, item))}" alt="" loading="lazy"><i class="fas ${escapeAttr(item.icon || moduleIcon(index))}"></i></span>
             <b>${Number(item.percent || [80, 50, 30][index] || 20)}%</b>
             <strong>${escapeProfileHtml(item.title || item.name || `Modul ${index + 1}`)}</strong>
             <small>${escapeProfileHtml(item.notes || item.description || 'Materi pembelajaran')}</small>
@@ -819,9 +829,9 @@ function renderParticipantModules(assets = []) {
         .filter(asset => isAssetVisible(asset) && ['kurikulum', 'module', 'modul', 'material'].includes(normalizeAssetType(asset)))
         .slice(0, 3);
     const rows = modules.length ? modules : [
-        { title: 'Python for AI Beginner', notes: 'Modul 3 dari 10', percent: 80, url: '#/curriculum', tone: 'pink', icon: 'fa-rocket' },
-        { title: 'Machine Learning Fundamentals', notes: 'Modul 6 dari 12', percent: 50, url: '#/curriculum', tone: 'purple', icon: 'fa-brain' },
-        { title: 'Data Analysis with Pandas', notes: 'Modul 2 dari 8', percent: 30, url: '#/curriculum', tone: 'orange', icon: 'fa-share-nodes' }
+        { title: 'Python for AI Beginner', notes: 'Modul 3 dari 10', percent: 80, url: '#/curriculum', tone: 'pink', icon: 'fa-rocket', image: '/assets/modules/python-for-ai.png' },
+        { title: 'Machine Learning Fundamentals', notes: 'Modul 6 dari 12', percent: 50, url: '#/curriculum', tone: 'purple', icon: 'fa-brain', image: '/assets/modules/machine-learning.png' },
+        { title: 'Data Analysis with Pandas', notes: 'Modul 2 dari 8', percent: 30, url: '#/curriculum', tone: 'orange', icon: 'fa-share-nodes', image: '/assets/modules/data-analysis.png' }
     ];
     container.innerHTML = rows.map((asset, index) => {
         const title = asset.title || asset.name || `Modul ${index + 1}`;
@@ -971,7 +981,7 @@ function renderParticipantModules(assets = []) {
     ];
     container.innerHTML = rows.map((item, index) => `
         <a class="fellow-module is-${escapeAttr(item.tone || ['pink', 'purple', 'orange'][index] || 'pink')} nav-link" href="${escapeAttr(item.url || '#/curriculum')}">
-            <span><i class="fas ${escapeAttr(item.icon || moduleIcon(index))}"></i></span>
+            <span class="fellow-module-thumb"><img src="${escapeAttr(moduleImage(index, item))}" alt="" loading="lazy"><i class="fas ${escapeAttr(item.icon || moduleIcon(index))}"></i></span>
             <b>${Number(item.percent || [80, 50, 30][index] || 20)}%</b>
             <strong>${escapeProfileHtml(item.title || item.name || `Modul ${index + 1}`)}</strong>
             <small>${escapeProfileHtml(item.notes || item.description || 'Materi pembelajaran')}</small>
@@ -1031,6 +1041,195 @@ function renderParticipantTracks() {
     container.innerHTML = rows.map(([title, caption, icon, tone]) => `
         <a href="#/curriculum" class="fellow-track is-${tone} nav-link"><span><i class="fas ${icon}"></i></span><strong>${escapeProfileHtml(title)}</strong><small>${escapeProfileHtml(caption)}</small></a>
     `).join('');
+}
+
+const FELLOW_SECTION_ASSETS = {
+    project: '/assets/participant-sections/project-folder.png',
+    event: '/assets/participant-sections/event-live-robot.png',
+    task: '/assets/participant-sections/task-trophy.png',
+    moduleHelp: '/assets/participant-sections/module-help-robot.png'
+};
+
+const FELLOW_SECTION_RENDERERS = {
+    'participant-modules': renderFellowModulesPage,
+    'participant-tasks': renderFellowTasksPage,
+    'participant-project': renderFellowProjectsPage,
+    'participant-events': renderFellowEventsPage
+};
+
+function renderFellowModulesPage() {
+    return `
+        <div class="fellow-section-page">
+            ${renderFellowTabs(['Semua Modul', 'Foundation Phase', 'Specialization Track'])}
+            <div class="fellow-stat-grid">
+                ${renderFellowStat('fa-book-open', 'Total Modul', '27', 'Modul', 'pink')}
+                ${renderFellowStat('fa-check', 'Modul Selesai', '8', 'Modul', 'green')}
+                ${renderFellowStat('fa-chart-simple', 'Progres Belajar', '32%', 'Keseluruhan', 'purple')}
+                ${renderFellowStat('fa-clock', 'Waktu Belajar', '48', 'Jam', 'orange')}
+            </div>
+            <div class="fellow-section-layout">
+                <div class="fellow-section-stack">
+                    <section class="fellow-panel">
+                        <header><h3>Foundation Phase</h3><button type="button"><i class="fas fa-chevron-up"></i></button></header>
+                        <div class="fellow-course-list">
+                            ${[
+                                ['1', 'AI & Data Literacy', 'Pengenalan AI, data, dan penerapannya di dunia nyata.', '100', 'Selesai', 'pink', 'fa-brain'],
+                                ['2', 'Python for AI Beginner', 'Dasar pemrograman Python untuk pemula.', '100', 'Selesai', 'blue', 'fa-python'],
+                                ['3', 'Math for AI', 'Matematika dasar yang penting untuk AI.', '60', 'Lanjutkan', 'green', 'fa-square-root-variable'],
+                                ['4', 'Data Handling & SQL', 'Mengelola data dan dasar-dasar SQL.', '40', 'Lanjutkan', 'purple', 'fa-database'],
+                                ['5', 'Data Visualization', 'Visualisasi data untuk insight yang lebih baik.', '0', 'Mulai', 'pink', 'fa-chart-line']
+                            ].map(renderFellowCourse).join('')}
+                        </div>
+                    </section>
+                    <section class="fellow-panel">
+                        <header><h3>Specialization Track</h3><button type="button"><i class="fas fa-chevron-up"></i></button></header>
+                        <div class="fellow-track-grid">
+                            ${[
+                                ['Computer Vision', 'Pelajari AI untuk memahami visual seperti gambar & video.', '6 Modul', 'fa-eye', 'pink'],
+                                ['NLP & LLM', 'Pahami bahasa manusia dan bangun LLM.', '6 Modul', 'fa-message', 'purple'],
+                                ['Speech AI', 'Bangun aplikasi AI berbasis suara.', '5 Modul', 'fa-microphone', 'blue'],
+                                ['Data Science', 'Analisis data untuk pengambilan keputusan.', '5 Modul', 'fa-chart-line', 'green'],
+                                ['AI Engineering', 'Bangun dan deploy sistem AI yang scalable.', '5 Modul', 'fa-gears', 'orange'],
+                                ['Generative AI', 'Kreativitas tanpa batas dengan GenAI.', '5 Modul', 'fa-wand-magic-sparkles', 'pink']
+                            ].map(renderFellowTrackCard).join('')}
+                        </div>
+                    </section>
+                </div>
+                <aside class="fellow-section-side">
+                    ${renderFellowProgressCard('Ringkasan Progres', '32%', [['Selesai', '8 Modul', 'green'], ['Sedang Berlangsung', '7 Modul', 'pink'], ['Belum Dimulai', '12 Modul', 'muted']])}
+                    ${renderFellowImageCard('Jadwal Belajar', FELLOW_SECTION_ASSETS.moduleHelp, 'Konsisten belajar adalah kunci!', 'Atur Jadwal')}
+                    ${renderFellowLinkList('Sumber Belajar', ['Reading Materials', 'Cheat Sheet', 'Video Playlist', 'Practice Dataset', 'AI Tools Directory'])}
+                </aside>
+            </div>
+        </div>
+    `;
+}
+
+function renderFellowTasksPage() {
+    return `
+        <div class="fellow-section-page">
+            ${renderFellowTabs(['Semua Tugas', 'Belum Dikerjakan 8', 'Sedang Dikerjakan 2', 'Sudah Dikumpulkan', 'Terlambat'])}
+            <div class="fellow-filter-row"><button>Semua Modul <i class="fas fa-chevron-down"></i></button><button>Terbaru <i class="fas fa-chevron-down"></i></button></div>
+            <div class="fellow-section-layout">
+                <div class="fellow-section-stack">
+                    ${[
+                        ['Data Preprocessing dengan Python', 'Data Analysis with Pandas', 'Lakukan pembersihan dan transformasi data pada dataset yang diberikan menggunakan Python dan Pandas.', 'Belum Dikerjakan', 'Kerjakan Tugas', '25 Mei 2024', '100 Poin', 'pink', 'fa-clipboard-list', ''],
+                        ['Eksplorasi Data COVID-19', 'Data Visualization', 'Buat visualisasi data COVID-19 dan berikan insight dari data tersebut.', 'Sedang Dikerjakan', 'Lanjutkan', '28 Mei 2024', '100 Poin', 'purple', 'fa-chart-line', '60%'],
+                        ['Klasifikasi Sentimen dengan Machine Learning', 'Machine Learning Fundamentals', 'Bangun model klasifikasi untuk analisis sentimen menggunakan dataset teks yang tersedia.', 'Belum Dikerjakan', 'Kerjakan Tugas', '31 Mei 2024', '150 Poin', 'orange', 'fa-file-lines', ''],
+                        ['Mini Project: Prediksi Harga Rumah', 'Project Building', 'Bangun model prediksi harga rumah menggunakan algoritma regresi.', 'Sudah Dikumpulkan', 'Lihat Submission', '7 Juni 2024', '200 Poin', 'green', 'fa-circle-check', 'Dinilai'],
+                        ['NLP: Text Summarization', 'NLP & LLM', 'Buat program untuk meringkas teks menggunakan teknik NLP.', 'Belum Dikerjakan', 'Kerjakan Tugas', '10 Juni 2024', '150 Poin', 'pink', 'fa-comments', '']
+                    ].map(renderFellowTaskItem).join('')}
+                </div>
+                <aside class="fellow-section-side">
+                    ${renderFellowProgressCard('Ringkasan Tugas', '12', [['Belum Dikerjakan', '8', 'pink'], ['Sedang Dikerjakan', '2', 'purple'], ['Sudah Dikumpulkan', '2', 'green'], ['Terlambat', '0', 'orange']])}
+                    ${renderFellowMiniCalendar('Kalender Deadline')}
+                    ${renderFellowLinkList('Deadline Terdekat', ['Eksplorasi Data COVID-19', 'Klasifikasi Sentimen dengan Machine Learning', 'Mini Project: Prediksi Harga Rumah'])}
+                    ${renderFellowImageCard('Raih poin lebih banyak', FELLOW_SECTION_ASSETS.task, 'Kerjakan tugas secara konsisten dan naik level.', 'Lihat Leaderboard')}
+                </aside>
+            </div>
+        </div>
+    `;
+}
+
+function renderFellowProjectsPage() {
+    return `
+        <div class="fellow-section-page">
+            ${renderFellowTabs(['Semua Proyek', 'Proyek Saya', 'Proyek Tim', 'Arsip'], '<button class="fellow-primary-action"><i class="fas fa-plus"></i> Buat Proyek Baru</button>')}
+            <div class="fellow-stat-grid">
+                ${renderFellowStat('fa-folder-open', 'Total Proyek', '24', 'Proyek', 'pink')}
+                ${renderFellowStat('fa-users', 'Proyek Saya', '6', 'Proyek', 'purple')}
+                ${renderFellowStat('fa-user-group', 'Proyek Tim', '8', 'Proyek', 'orange')}
+                ${renderFellowStat('fa-check', 'Selesai', '10', 'Proyek', 'green')}
+            </div>
+            <div class="fellow-section-layout">
+                <section class="fellow-panel fellow-project-panel">
+                    <header><h3>Daftar Proyek</h3><div><button>Semua Status <i class="fas fa-chevron-down"></i></button><button>Terbaru <i class="fas fa-chevron-down"></i></button></div></header>
+                    ${[
+                        ['AI Chatbot Kesehatan Mental', 'Chatbot berbasis NLP untuk memberikan dukungan kesehatan mental awal bagi perempuan muda.', 'Machine Learning', 'Selesai', '100%', 'pink', 'fa-heart-pulse'],
+                        ['Prediksi Harga Rumah', 'Model prediksi harga rumah menggunakan algoritma regresi dan feature engineering.', 'Data Analysis', 'Sedang Dikerjakan', '65%', 'purple', 'fa-chart-line'],
+                        ['Rekomendasi Produk Skincare', 'Sistem rekomendasi produk skincare berdasarkan preferensi dan jenis kulit pengguna.', 'Recommendation System', 'Review', '80%', 'orange', 'fa-cart-shopping'],
+                        ['Deteksi Penyakit Tanaman', 'Aplikasi deteksi penyakit pada tanaman menggunakan image classification.', 'Computer Vision', 'Belum Dimulai', '0%', 'green', 'fa-seedling']
+                    ].map(renderFellowProjectItem).join('')}
+                </section>
+                <aside class="fellow-section-side">
+                    ${renderFellowLinkList('Aktivitas Terbaru', ['AI Chatbot Kesehatan Mental selesai', 'Prediksi Harga Rumah diunggah', 'Rekomendasi Produk Skincare mendapat feedback', 'Anggota baru bergabung di proyek'])}
+                    ${renderFellowImageCard('Mulai Proyek Baru', FELLOW_SECTION_ASSETS.project, 'Punya ide proyek keren? Wujudkan bersama tim.', 'Buat Proyek Baru')}
+                    ${renderFellowLinkList('Tips Proyek', ['Pilih topik yang relevan dengan skill kamu.', 'Diskusikan ide dengan mentor atau tim.', 'Gunakan data berkualitas untuk hasil lebih akurat.'])}
+                </aside>
+            </div>
+        </div>
+    `;
+}
+
+function renderFellowEventsPage() {
+    return `
+        <div class="fellow-section-page">
+            ${renderFellowTabs(['Semua Events', 'Webinar', 'Workshop', 'Mentor Session', 'Komunitas', 'Lomba', 'Career'])}
+            <div class="fellow-filter-row"><button>Semua Kategori <i class="fas fa-chevron-down"></i></button><button><i class="far fa-calendar"></i> Tanggal</button><button>Format <i class="fas fa-chevron-down"></i></button><button>Online & Offline <i class="fas fa-chevron-down"></i></button><button>Terbaru <i class="fas fa-chevron-down"></i></button></div>
+            <div class="fellow-section-layout">
+                <section class="fellow-panel fellow-event-panel">
+                    <header><h3>Event Mendatang <span>5</span></h3><a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a></header>
+                    ${[
+                        ['Build RAG Chatbot with LangChain', 'Pelajari cara membangun chatbot cerdas dengan Retrieval Augmented Generation menggunakan LangChain.', 'Webinar', '22', 'MEI', '10.00 - 12.00 WIB', '120 peserta terdaftar', 'pink', FELLOW_SECTION_ASSETS.event],
+                        ['Data Visualization with Python', 'Buat visualisasi data informatif dan menarik menggunakan Matplotlib, Seaborn, dan Plotly.', 'Workshop', '25', 'MEI', '13.00 - 16.00 WIB', '86 peserta terdaftar', 'purple', '/assets/modules/machine-learning.png'],
+                        ['Career in AI: Ask Me Anything', 'Sesi tanya jawab bersama mentor berpengalaman seputar karier di bidang AI/ML.', 'Mentor Session', '30', 'MEI', '19.00 - 20.30 WIB', '64 peserta terdaftar', 'orange', FELLOW_SECTION_ASSETS.project],
+                        ['AI Project Challenge 2024', 'Tunjukkan ide dan kreasimu dalam kompetisi proyek AI untuk semua Fellow HerAI.', 'Lomba', '5', 'JUN', '23.59 WIB', '35 tim terdaftar', 'green', FELLOW_SECTION_ASSETS.task]
+                    ].map(renderFellowEventItem).join('')}
+                </section>
+                <aside class="fellow-section-side">
+                    ${renderFellowMiniCalendar('Kalender Events')}
+                    ${renderFellowLinkList('Event yang Kamu Ikuti', ['Build RAG Chatbot with LangChain', 'Data Visualization with Python', 'Career in AI: Ask Me Anything'])}
+                    ${renderFellowImageCard('Jangan Lewatkan!', FELLOW_SECTION_ASSETS.event, 'AI for Social Good Hackathon hadir bulan ini.', 'Lihat Detail')}
+                </aside>
+            </div>
+        </div>
+    `;
+}
+
+function renderFellowTabs(items, action = '') {
+    return `<div class="fellow-section-tabs"><nav>${items.map((item, index) => `<button class="${index === 0 ? 'active' : ''}" type="button">${escapeProfileHtml(item)}</button>`).join('')}</nav>${action}</div>`;
+}
+
+function renderFellowStat(icon, label, value, caption, tone) {
+    return `<article class="fellow-stat is-${tone}"><span><i class="fas ${icon}"></i></span><div><small>${escapeProfileHtml(label)}</small><strong>${escapeProfileHtml(value)}</strong><em>${escapeProfileHtml(caption)}</em></div></article>`;
+}
+
+function renderFellowCourse([num, title, desc, progress, action, tone, icon]) {
+    const done = Number(progress) >= 100;
+    return `<article class="fellow-course"><b>${num}</b><span class="is-${tone}"><i class="fas ${icon}"></i></span><div><strong>${escapeProfileHtml(title)}</strong><small>${escapeProfileHtml(desc)}</small></div><i><b style="width:${progress}%"></b></i><em>${progress}%</em><button class="${done ? 'done' : ''}">${done ? '<i class="fas fa-check"></i>' : ''}${escapeProfileHtml(action)}</button></article>`;
+}
+
+function renderFellowTrackCard([title, desc, count, icon, tone]) {
+    return `<a class="fellow-section-track is-${tone}" href="#/curriculum"><span><i class="fas ${icon}"></i></span><div><strong>${escapeProfileHtml(title)}</strong><small>${escapeProfileHtml(desc)}</small><em>${escapeProfileHtml(count)}</em></div><i class="fas fa-arrow-right"></i></a>`;
+}
+
+function renderFellowTaskItem([title, tag, desc, status, action, deadline, points, tone, icon, progress]) {
+    return `<article class="fellow-task-row"><span class="is-${tone}"><i class="fas ${icon}"></i></span><div><strong>${escapeProfileHtml(title)}</strong><b>${escapeProfileHtml(tag)}</b><p>${escapeProfileHtml(desc)}</p><small><i class="far fa-calendar"></i> Deadline: ${escapeProfileHtml(deadline)}, 23:59 WIB <i class="far fa-star"></i> ${escapeProfileHtml(points)}</small></div><aside><em>${escapeProfileHtml(status)}</em><button>${escapeProfileHtml(action)}</button>${progress ? `<small>${escapeProfileHtml(progress)}</small>` : ''}</aside></article>`;
+}
+
+function renderFellowProjectItem([title, desc, tag, status, progress, tone, icon]) {
+    return `<article class="fellow-project-row"><span class="is-${tone}"><i class="fas ${icon}"></i></span><div><strong>${escapeProfileHtml(title)}</strong><b>${escapeProfileHtml(tag)}</b><p>${escapeProfileHtml(desc)}</p><small>Diperbarui 2 hari yang lalu</small></div><aside><em>${escapeProfileHtml(status)}</em><i><b style="width:${progress}"></b></i><small>${escapeProfileHtml(progress)}</small></aside></article>`;
+}
+
+function renderFellowEventItem([title, desc, tag, date, month, time, count, tone, image]) {
+    return `<article class="fellow-event-row"><img src="${escapeAttr(image)}" alt="" loading="lazy"><div><b>${escapeProfileHtml(tag)}</b><strong>${escapeProfileHtml(title)}</strong><p>${escapeProfileHtml(desc)}</p><small>Mentor HerAI</small></div><time><strong>${date}</strong><span>${month}</span><small>${escapeProfileHtml(time)}</small></time><aside><button>${tag === 'Lomba' ? 'Ikut Lomba' : 'Daftar'}</button><small>${escapeProfileHtml(count)}</small><i class="far fa-bookmark"></i></aside></article>`;
+}
+
+function renderFellowProgressCard(title, value, rows) {
+    return `<section class="fellow-side-card"><h3>${escapeProfileHtml(title)}</h3><div class="fellow-donut"><strong>${escapeProfileHtml(value)}</strong><small>Keseluruhan</small></div><div class="fellow-legend">${rows.map(([label, count, tone]) => `<p><i class="is-${tone}"></i><span>${escapeProfileHtml(label)}</span><b>${escapeProfileHtml(count)}</b></p>`).join('')}</div></section>`;
+}
+
+function renderFellowImageCard(title, image, text, action) {
+    return `<section class="fellow-side-card fellow-image-card"><h3>${escapeProfileHtml(title)}</h3><img src="${escapeAttr(image)}" alt="" loading="lazy"><p>${escapeProfileHtml(text)}</p><button>${escapeProfileHtml(action)}</button></section>`;
+}
+
+function renderFellowLinkList(title, items) {
+    return `<section class="fellow-side-card"><h3>${escapeProfileHtml(title)}</h3><div class="fellow-side-list">${items.map((item, index) => `<article><span>${index + 1}</span><p>${escapeProfileHtml(item)}</p><i class="fas fa-chevron-right"></i></article>`).join('')}</div></section>`;
+}
+
+function renderFellowMiniCalendar(title) {
+    const days = ['28', '29', '30', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+    return `<section class="fellow-side-card fellow-calendar"><h3>${escapeProfileHtml(title)}</h3><header><button><i class="fas fa-chevron-left"></i></button><strong>Mei 2024</strong><button><i class="fas fa-chevron-right"></i></button></header><div>${['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'].map(day => `<b>${day}</b>`).join('')}${days.map(day => `<span class="${['22', '25', '28', '31'].includes(day) ? 'active' : ''}">${day}</span>`).join('')}</div></section>`;
 }
 
 const FELLOW_MODULE_WELCOME = {
@@ -1102,6 +1301,8 @@ function bindFellowNavigation() {
     dashboardView.dataset.fellowNavBound = 'true';
 
     dashboardView.addEventListener('click', (event) => {
+        handleFellowSectionClick(event);
+
         const link = event.target.closest('a[href^="#participant-"]');
         if (!link || !dashboardView.contains(link)) return;
 
@@ -1118,6 +1319,7 @@ function bindFellowNavigation() {
         }
     });
 
+    document.querySelector('#participant-home .fellow-search input')?.addEventListener('input', filterActiveFellowSection);
     document.getElementById('btnBackToFellowHome')?.addEventListener('click', showFellowHome);
 }
 
@@ -1126,6 +1328,9 @@ function showFellowHome() {
     const welcome = document.getElementById('participantModuleWelcome');
     if (grid) grid.hidden = false;
     if (welcome) welcome.hidden = true;
+    if (welcome) welcome.classList.remove('is-section-page');
+    const profile = window.__CURRENT_PARTICIPANT_PROFILE__ || {};
+    setFellowHeader(`Halo, ${profile.nama_lengkap || 'Fellow'}! 👋`, 'Semangat belajar hari ini! Setiap langkah kecil membawamu lebih dekat ke masa depan yang kamu impikan.', 'Cari modul, topik, atau teman...');
     setFellowActiveNav('participant-home');
 }
 
@@ -1138,11 +1343,114 @@ function showFellowModuleWelcome(key) {
     if (grid) grid.hidden = true;
     if (welcome) welcome.hidden = false;
 
+    if (FELLOW_SECTION_RENDERERS[key]) {
+        const sectionMeta = {
+            'participant-modules': ['Modul', 'Belajar terstruktur dengan 25+ modul yang dirancang untuk membawamu menjadi AI Talent yang siap berdampak.', 'Cari modul...'],
+            'participant-tasks': ['Tugas', 'Selesaikan tugas untuk mengasah skill dan dapatkan poin!', 'Cari tugas...'],
+            'participant-project': ['Proyek', 'Bangun solusi nyata dan terapkan ilmu AI yang kamu pelajari.', 'Cari proyek...'],
+            'participant-events': ['Events', 'Ikuti berbagai acara seru untuk menambah wawasan, relasi, dan pengalamanmu.', 'Cari event, topik, atau pembicara...']
+        }[key];
+        setFellowHeader(sectionMeta[0], sectionMeta[1], sectionMeta[2]);
+        welcome.classList.add('is-section-page');
+        welcome.innerHTML = FELLOW_SECTION_RENDERERS[key]();
+        filterActiveFellowSection();
+        setFellowActiveNav(key);
+        return;
+    }
+
+    welcome.classList.remove('is-section-page');
+    welcome.innerHTML = `
+        <span id="participantModuleWelcomeIcon"><i class="fas fa-sparkles"></i></span>
+        <div>
+            <p class="fellow-welcome-kicker">Modul Dashboard</p>
+            <h2 id="participantModuleWelcomeTitle">Selamat datang</h2>
+            <p id="participantModuleWelcomeMessage">Modul ini sedang disiapkan untuk implementasi lanjutan.</p>
+        </div>
+        <button type="button" id="btnBackToFellowHome" class="fellow-btn">Kembali ke Beranda</button>
+    `;
+    document.getElementById('btnBackToFellowHome')?.addEventListener('click', showFellowHome);
     setText('participantModuleWelcomeTitle', item.title);
     setText('participantModuleWelcomeMessage', item.message);
     const icon = document.getElementById('participantModuleWelcomeIcon');
     if (icon) icon.innerHTML = `<i class="fas ${item.icon}"></i>`;
     setFellowActiveNav(key);
+}
+
+function setFellowHeader(title, subtitle, searchPlaceholder) {
+    setText('profileGreeting', title);
+    const headerText = document.querySelector('#participant-home .fellow-header > div > p');
+    if (headerText) headerText.textContent = subtitle;
+    const search = document.querySelector('#participant-home .fellow-search input');
+    if (search) {
+        search.placeholder = searchPlaceholder;
+        search.value = '';
+    }
+}
+
+function handleFellowSectionClick(event) {
+    const section = event.target.closest('.fellow-section-page');
+    if (!section) return;
+
+    const tab = event.target.closest('.fellow-section-tabs button');
+    if (tab) {
+        section.querySelectorAll('.fellow-section-tabs button').forEach(button => button.classList.remove('active'));
+        tab.classList.add('active');
+        filterActiveFellowSection();
+        return;
+    }
+
+    const filterButton = event.target.closest('.fellow-filter-row button, .fellow-panel header button');
+    if (filterButton) {
+        filterButton.classList.toggle('is-open');
+        const panel = filterButton.closest('.fellow-panel');
+        if (panel && filterButton.closest('header')) panel.classList.toggle('is-collapsed');
+        return;
+    }
+
+    const date = event.target.closest('.fellow-calendar span');
+    if (date) {
+        const calendar = date.closest('.fellow-calendar');
+        calendar.querySelectorAll('span').forEach(item => item.classList.remove('is-selected'));
+        date.classList.add('is-selected');
+        return;
+    }
+
+    const action = event.target.closest('.fellow-course button, .fellow-task-row button, .fellow-event-row button, .fellow-primary-action, .fellow-image-card button');
+    if (action) {
+        action.classList.add('is-pressed');
+        showFellowSectionToast(action.textContent.trim() || 'Aksi dipilih');
+        setTimeout(() => action.classList.remove('is-pressed'), 450);
+    }
+}
+
+function filterActiveFellowSection() {
+    const section = document.querySelector('#participantModuleWelcome.is-section-page .fellow-section-page');
+    if (!section) return;
+    const search = document.querySelector('#participant-home .fellow-search input');
+    const query = String(search?.value || '').trim().toLowerCase();
+    const activeTab = section.querySelector('.fellow-section-tabs button.active')?.textContent.trim().toLowerCase() || '';
+    const rows = section.querySelectorAll('.fellow-course, .fellow-section-track, .fellow-task-row, .fellow-project-row, .fellow-event-row');
+    rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const matchesSearch = !query || text.includes(query);
+        const matchesTab = activeTab.startsWith('semua') || !activeTab || text.includes(activeTab.replace(/\s+\d+$/, '')) || row.classList.contains('fellow-course') || row.classList.contains('fellow-section-track');
+        row.classList.toggle('is-hidden', !(matchesSearch && matchesTab));
+    });
+}
+
+function showFellowSectionToast(message) {
+    const welcome = document.getElementById('participantModuleWelcome');
+    if (!welcome) return;
+    let toast = welcome.querySelector('.fellow-section-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'fellow-section-toast';
+        welcome.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => toast.classList.remove('show'), 1400);
 }
 
 function setFellowActiveNav(key) {

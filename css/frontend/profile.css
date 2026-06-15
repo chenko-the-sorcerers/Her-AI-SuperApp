@@ -4304,3 +4304,1189 @@ body.participant-dashboard-open .fellow-help {
         display: none;
     }
 }
+
+/* Fellow card generated assets: scoped to card sections only. */
+body.participant-dashboard-open .fellow-card {
+    overflow: hidden;
+    position: relative;
+}
+
+body.participant-dashboard-open .fellow-card > :not(.fellow-card-art) {
+    position: relative;
+    z-index: 1;
+}
+
+body.participant-dashboard-open .fellow-card-art {
+    block-size: clamp(56px, 5vw, 86px);
+    inline-size: clamp(56px, 5vw, 86px);
+    inset-block-end: 10px;
+    inset-inline-end: 10px;
+    object-fit: contain;
+    opacity: 0.1;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-card-art {
+    display: none;
+}
+
+body.participant-dashboard-open .fellow-module {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    min-block-size: clamp(150px, 14vw, 182px);
+}
+
+body.participant-dashboard-open .fellow-module .fellow-module-thumb {
+    align-items: center;
+    background: transparent;
+    block-size: clamp(58px, 5vw, 76px);
+    display: flex;
+    inline-size: clamp(58px, 5vw, 76px);
+    justify-content: center;
+}
+
+body.participant-dashboard-open .fellow-module .fellow-module-thumb img {
+    block-size: 100%;
+    display: block;
+    inline-size: 100%;
+    object-fit: contain;
+}
+
+body.participant-dashboard-open .fellow-module .fellow-module-thumb i {
+    display: none;
+}
+
+body.participant-dashboard-open .fellow-module.is-add .fellow-module-thumb,
+body.participant-dashboard-open .fellow-module.is-add span:not(.fellow-module-thumb) {
+    align-items: center;
+    background: #fff;
+    border: 1px dashed #f5b9d5;
+    border-radius: 999px;
+    color: #f72585;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 760px) {
+    body.participant-dashboard-open .fellow-card-art {
+        block-size: 60px;
+        inline-size: 60px;
+        opacity: 0.07;
+    }
+
+    body.participant-dashboard-open .fellow-module {
+        align-items: center;
+        grid-template-columns: 76px minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        min-block-size: 116px;
+    }
+
+    body.participant-dashboard-open .fellow-module .fellow-module-thumb {
+        grid-row: 1 / span 2;
+    }
+
+    body.participant-dashboard-open .fellow-module b {
+        inset-block-start: 12px;
+        inset-inline-end: 12px;
+        position: absolute;
+    }
+
+    body.participant-dashboard-open .fellow-module strong {
+        padding-inline-end: 48px;
+    }
+
+    body.participant-dashboard-open .fellow-module small {
+        grid-column: 2;
+    }
+}
+
+/* Participant internal section pages: Modul, Tugas, Proyek, Events. */
+body.participant-dashboard-open .fellow-module-welcome.is-section-page {
+    align-items: stretch;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    display: block;
+    margin: clamp(18px, 2vw, 28px) 0 0;
+    min-height: 0;
+    padding: 0;
+}
+
+body.participant-dashboard-open .fellow-section-page {
+    color: #171421;
+    display: grid;
+    gap: clamp(14px, 1.5vw, 22px);
+    min-width: 0;
+}
+
+body.participant-dashboard-open .fellow-section-tabs {
+    align-items: center;
+    border-bottom: 1px solid #f6d8e8;
+    display: flex;
+    gap: 14px;
+    justify-content: space-between;
+    min-width: 0;
+    overflow-x: auto;
+    padding-inline: 2px;
+}
+
+body.participant-dashboard-open .fellow-section-tabs nav {
+    display: flex;
+    gap: clamp(18px, 3vw, 44px);
+    min-width: max-content;
+}
+
+body.participant-dashboard-open .fellow-section-tabs button {
+    background: transparent;
+    border: 0;
+    color: #4b5565;
+    cursor: pointer;
+    font: 800 0.92rem 'Plus Jakarta Sans', sans-serif;
+    padding: 14px 2px;
+    position: relative;
+}
+
+body.participant-dashboard-open .fellow-section-tabs button.active {
+    color: #f72585;
+}
+
+body.participant-dashboard-open .fellow-section-tabs button.active::after {
+    background: #f72585;
+    border-radius: 999px;
+    block-size: 3px;
+    content: "";
+    inline-size: 100%;
+    inset-block-end: -1px;
+    inset-inline-start: 0;
+    position: absolute;
+}
+
+body.participant-dashboard-open .fellow-primary-action,
+body.participant-dashboard-open .fellow-image-card button {
+    align-items: center;
+    background: linear-gradient(135deg, #ff4fab, #f72585);
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    display: inline-flex;
+    font-weight: 850;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 18px;
+    white-space: nowrap;
+}
+
+body.participant-dashboard-open .fellow-stat-grid {
+    display: grid;
+    gap: clamp(12px, 1.25vw, 18px);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.participant-dashboard-open .fellow-stat,
+body.participant-dashboard-open .fellow-panel,
+body.participant-dashboard-open .fellow-side-card {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #f2d7e5;
+    border-radius: 8px;
+    box-shadow: 0 18px 45px rgba(143, 27, 88, 0.04);
+}
+
+body.participant-dashboard-open .fellow-stat {
+    align-items: center;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 58px minmax(0, 1fr);
+    min-height: 92px;
+    padding: 18px;
+}
+
+body.participant-dashboard-open .fellow-stat span,
+body.participant-dashboard-open .fellow-course > span,
+body.participant-dashboard-open .fellow-task-row > span,
+body.participant-dashboard-open .fellow-project-row > span,
+body.participant-dashboard-open .fellow-section-track > span {
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+body.participant-dashboard-open .fellow-stat span {
+    block-size: 58px;
+    font-size: 1.55rem;
+    inline-size: 58px;
+}
+
+body.participant-dashboard-open .fellow-stat small,
+body.participant-dashboard-open .fellow-stat em {
+    color: #667085;
+    display: block;
+    font-style: normal;
+}
+
+body.participant-dashboard-open .fellow-stat strong {
+    display: block;
+    font-size: 1.58rem;
+    line-height: 1.05;
+    margin: 4px 0;
+}
+
+body.participant-dashboard-open .is-pink { color: #f72585; }
+body.participant-dashboard-open .is-purple { color: #a855f7; }
+body.participant-dashboard-open .is-orange { color: #ff9f1c; }
+body.participant-dashboard-open .is-green { color: #34c98a; }
+body.participant-dashboard-open .is-blue { color: #38a3ff; }
+
+body.participant-dashboard-open .fellow-stat.is-pink span,
+body.participant-dashboard-open .fellow-course > span.is-pink,
+body.participant-dashboard-open .fellow-task-row > span.is-pink,
+body.participant-dashboard-open .fellow-project-row > span.is-pink,
+body.participant-dashboard-open .fellow-section-track.is-pink > span { background: #ffe8f4; color: #f72585; }
+
+body.participant-dashboard-open .fellow-stat.is-purple span,
+body.participant-dashboard-open .fellow-course > span.is-purple,
+body.participant-dashboard-open .fellow-task-row > span.is-purple,
+body.participant-dashboard-open .fellow-project-row > span.is-purple,
+body.participant-dashboard-open .fellow-section-track.is-purple > span { background: #f2e8ff; color: #a855f7; }
+
+body.participant-dashboard-open .fellow-stat.is-orange span,
+body.participant-dashboard-open .fellow-course > span.is-orange,
+body.participant-dashboard-open .fellow-task-row > span.is-orange,
+body.participant-dashboard-open .fellow-project-row > span.is-orange,
+body.participant-dashboard-open .fellow-section-track.is-orange > span { background: #fff1df; color: #ff9f1c; }
+
+body.participant-dashboard-open .fellow-stat.is-green span,
+body.participant-dashboard-open .fellow-course > span.is-green,
+body.participant-dashboard-open .fellow-task-row > span.is-green,
+body.participant-dashboard-open .fellow-project-row > span.is-green,
+body.participant-dashboard-open .fellow-section-track.is-green > span { background: #e8fbf2; color: #20bd7a; }
+
+body.participant-dashboard-open .fellow-course > span.is-blue,
+body.participant-dashboard-open .fellow-section-track.is-blue > span { background: #e9f5ff; color: #2598f5; }
+
+body.participant-dashboard-open .fellow-section-layout {
+    align-items: start;
+    display: grid;
+    gap: clamp(16px, 1.6vw, 24px);
+    grid-template-columns: minmax(0, 1fr) minmax(290px, 340px);
+}
+
+body.participant-dashboard-open .fellow-section-stack {
+    display: grid;
+    gap: clamp(14px, 1.3vw, 20px);
+    min-width: 0;
+}
+
+body.participant-dashboard-open .fellow-panel {
+    min-width: 0;
+    padding: clamp(16px, 1.5vw, 22px);
+}
+
+body.participant-dashboard-open .fellow-panel > header {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+body.participant-dashboard-open .fellow-panel h3,
+body.participant-dashboard-open .fellow-side-card h3 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+body.participant-dashboard-open .fellow-panel header button,
+body.participant-dashboard-open .fellow-panel header a,
+body.participant-dashboard-open .fellow-filter-row button {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #e7ddeb;
+    border-radius: 8px;
+    color: #4b5565;
+    display: inline-flex;
+    font-weight: 750;
+    gap: 8px;
+    padding: 10px 14px;
+    text-decoration: none;
+}
+
+body.participant-dashboard-open .fellow-filter-row {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    min-width: 0;
+}
+
+body.participant-dashboard-open .fellow-filter-row button {
+    min-width: 150px;
+    justify-content: space-between;
+}
+
+body.participant-dashboard-open .fellow-course-list {
+    display: grid;
+}
+
+body.participant-dashboard-open .fellow-course,
+body.participant-dashboard-open .fellow-task-row,
+body.participant-dashboard-open .fellow-project-row,
+body.participant-dashboard-open .fellow-event-row {
+    border-bottom: 1px solid #f2d7e5;
+    display: grid;
+    gap: 14px;
+    min-width: 0;
+    padding: 16px 0;
+}
+
+body.participant-dashboard-open .fellow-course:last-child,
+body.participant-dashboard-open .fellow-task-row:last-child,
+body.participant-dashboard-open .fellow-project-row:last-child,
+body.participant-dashboard-open .fellow-event-row:last-child {
+    border-bottom: 0;
+}
+
+body.participant-dashboard-open .fellow-course {
+    align-items: center;
+    grid-template-columns: 40px 58px minmax(0, 1fr) minmax(120px, 0.28fr) 44px 100px;
+}
+
+body.participant-dashboard-open .fellow-course > b {
+    align-items: center;
+    border: 1px solid #f8bad7;
+    border-radius: 8px;
+    color: #f72585;
+    display: flex;
+    font-size: 0.86rem;
+    height: 38px;
+    justify-content: center;
+    width: 38px;
+}
+
+body.participant-dashboard-open .fellow-course > span {
+    block-size: 58px;
+    font-size: 1.35rem;
+    inline-size: 58px;
+}
+
+body.participant-dashboard-open .fellow-course strong,
+body.participant-dashboard-open .fellow-task-row strong,
+body.participant-dashboard-open .fellow-project-row strong,
+body.participant-dashboard-open .fellow-event-row strong {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.35;
+}
+
+body.participant-dashboard-open .fellow-course small,
+body.participant-dashboard-open .fellow-task-row p,
+body.participant-dashboard-open .fellow-project-row p,
+body.participant-dashboard-open .fellow-event-row p {
+    color: #667085;
+    line-height: 1.55;
+    margin: 5px 0 0;
+}
+
+body.participant-dashboard-open .fellow-course > i,
+body.participant-dashboard-open .fellow-project-row aside > i {
+    background: #f6e8f0;
+    border-radius: 999px;
+    display: block;
+    height: 6px;
+    overflow: hidden;
+}
+
+body.participant-dashboard-open .fellow-course > i b,
+body.participant-dashboard-open .fellow-project-row aside > i b {
+    background: #f72585;
+    display: block;
+    height: 100%;
+}
+
+body.participant-dashboard-open .fellow-course > em {
+    color: #475467;
+    font-style: normal;
+}
+
+body.participant-dashboard-open .fellow-course button,
+body.participant-dashboard-open .fellow-task-row button,
+body.participant-dashboard-open .fellow-event-row aside button {
+    background: #fff;
+    border: 1px solid #f72585;
+    border-radius: 8px;
+    color: #f72585;
+    font-weight: 850;
+    padding: 10px 14px;
+}
+
+body.participant-dashboard-open .fellow-course button.done {
+    background: #e8fbf2;
+    border-color: #c6f2dc;
+    color: #20bd7a;
+}
+
+body.participant-dashboard-open .fellow-track-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.participant-dashboard-open .fellow-section-track {
+    align-items: center;
+    border: 1px solid #f2d7e5;
+    border-radius: 8px;
+    color: inherit;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 56px minmax(0, 1fr) 18px;
+    min-height: 104px;
+    padding: 14px;
+    text-decoration: none;
+}
+
+body.participant-dashboard-open .fellow-section-track > span {
+    block-size: 56px;
+    font-size: 1.35rem;
+    inline-size: 56px;
+}
+
+body.participant-dashboard-open .fellow-section-track small,
+body.participant-dashboard-open .fellow-section-track em {
+    color: #667085;
+    display: block;
+    font-style: normal;
+    line-height: 1.45;
+    margin-top: 4px;
+}
+
+body.participant-dashboard-open .fellow-section-side {
+    display: grid;
+    gap: 14px;
+    min-width: 0;
+}
+
+body.participant-dashboard-open .fellow-side-card {
+    padding: clamp(16px, 1.4vw, 22px);
+}
+
+body.participant-dashboard-open .fellow-donut {
+    align-items: center;
+    background: conic-gradient(#f72585 0 32%, #a855f7 32% 48%, #34c98a 48% 68%, #f3e7ee 68% 100%);
+    border-radius: 999px;
+    display: grid;
+    height: 132px;
+    justify-items: center;
+    margin: 20px auto;
+    place-content: center;
+    position: relative;
+    width: 132px;
+}
+
+body.participant-dashboard-open .fellow-donut::before {
+    background: #fff;
+    border-radius: inherit;
+    content: "";
+    height: 88px;
+    position: absolute;
+    width: 88px;
+}
+
+body.participant-dashboard-open .fellow-donut strong,
+body.participant-dashboard-open .fellow-donut small {
+    position: relative;
+    z-index: 1;
+}
+
+body.participant-dashboard-open .fellow-donut strong {
+    font-size: 1.7rem;
+}
+
+body.participant-dashboard-open .fellow-donut small {
+    color: #667085;
+    font-size: 0.68rem;
+}
+
+body.participant-dashboard-open .fellow-legend {
+    display: grid;
+    gap: 10px;
+}
+
+body.participant-dashboard-open .fellow-legend p {
+    align-items: center;
+    display: grid;
+    gap: 9px;
+    grid-template-columns: 10px minmax(0, 1fr) auto;
+    margin: 0;
+}
+
+body.participant-dashboard-open .fellow-legend i {
+    border-radius: 999px;
+    height: 10px;
+    width: 10px;
+}
+
+body.participant-dashboard-open .fellow-legend i.is-pink { background: #f72585; }
+body.participant-dashboard-open .fellow-legend i.is-purple { background: #a855f7; }
+body.participant-dashboard-open .fellow-legend i.is-green { background: #34c98a; }
+body.participant-dashboard-open .fellow-legend i.is-orange { background: #ff9f1c; }
+body.participant-dashboard-open .fellow-legend i.is-muted { background: #eadce5; }
+
+body.participant-dashboard-open .fellow-image-card {
+    overflow: hidden;
+}
+
+body.participant-dashboard-open .fellow-image-card img {
+    border-radius: 8px;
+    display: block;
+    height: 124px;
+    margin: 12px auto;
+    object-fit: cover;
+    width: min(170px, 100%);
+}
+
+body.participant-dashboard-open .fellow-image-card p {
+    color: #667085;
+    line-height: 1.55;
+}
+
+body.participant-dashboard-open .fellow-side-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+body.participant-dashboard-open .fellow-side-list article {
+    align-items: center;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 36px minmax(0, 1fr) 14px;
+}
+
+body.participant-dashboard-open .fellow-side-list span {
+    align-items: center;
+    background: #f7eaff;
+    border-radius: 8px;
+    color: #a855f7;
+    display: flex;
+    font-weight: 850;
+    height: 36px;
+    justify-content: center;
+    width: 36px;
+}
+
+body.participant-dashboard-open .fellow-side-list p {
+    color: #4b5565;
+    line-height: 1.45;
+    margin: 0;
+}
+
+body.participant-dashboard-open .fellow-calendar header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 14px 0;
+}
+
+body.participant-dashboard-open .fellow-calendar header button {
+    background: #fff3fa;
+    border: 0;
+    border-radius: 8px;
+    color: #f72585;
+    height: 34px;
+    width: 34px;
+}
+
+body.participant-dashboard-open .fellow-calendar div {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    text-align: center;
+}
+
+body.participant-dashboard-open .fellow-calendar b,
+body.participant-dashboard-open .fellow-calendar span {
+    color: #667085;
+    font-size: 0.78rem;
+}
+
+body.participant-dashboard-open .fellow-calendar span {
+    align-items: center;
+    border-radius: 999px;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+}
+
+body.participant-dashboard-open .fellow-calendar span.active {
+    background: #f72585;
+    color: #fff;
+}
+
+body.participant-dashboard-open .fellow-task-row {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #f2d7e5;
+    border-radius: 8px;
+    grid-template-columns: 86px minmax(0, 1fr) minmax(150px, 0.28fr);
+    padding: 16px;
+}
+
+body.participant-dashboard-open .fellow-task-row > span,
+body.participant-dashboard-open .fellow-project-row > span {
+    block-size: 76px;
+    font-size: 1.65rem;
+    inline-size: 76px;
+}
+
+body.participant-dashboard-open .fellow-task-row b,
+body.participant-dashboard-open .fellow-project-row b,
+body.participant-dashboard-open .fellow-event-row b {
+    background: #ffe8f4;
+    border-radius: 999px;
+    color: #f72585;
+    display: inline-flex;
+    font-size: 0.72rem;
+    margin-top: 6px;
+    padding: 4px 10px;
+}
+
+body.participant-dashboard-open .fellow-task-row small {
+    color: #667085;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+body.participant-dashboard-open .fellow-task-row aside,
+body.participant-dashboard-open .fellow-project-row aside {
+    display: grid;
+    gap: 12px;
+    justify-items: end;
+}
+
+body.participant-dashboard-open .fellow-task-row aside em,
+body.participant-dashboard-open .fellow-project-row aside em {
+    background: #ffe8f4;
+    border-radius: 999px;
+    color: #f72585;
+    font-style: normal;
+    font-weight: 850;
+    padding: 6px 14px;
+}
+
+body.participant-dashboard-open .fellow-project-panel header > div {
+    display: flex;
+    gap: 10px;
+}
+
+body.participant-dashboard-open .fellow-project-row {
+    align-items: center;
+    grid-template-columns: 86px minmax(0, 1fr) minmax(150px, 0.22fr);
+}
+
+body.participant-dashboard-open .fellow-project-row aside > i {
+    width: 120px;
+}
+
+body.participant-dashboard-open .fellow-event-panel header h3 span {
+    background: #ffe8f4;
+    border-radius: 999px;
+    color: #f72585;
+    font-size: 0.78rem;
+    margin-left: 8px;
+    padding: 4px 9px;
+}
+
+body.participant-dashboard-open .fellow-event-row {
+    align-items: center;
+    grid-template-columns: 132px minmax(0, 1fr) 120px minmax(120px, 0.2fr);
+}
+
+body.participant-dashboard-open .fellow-event-row > img {
+    border-radius: 8px;
+    height: 120px;
+    object-fit: cover;
+    width: 132px;
+}
+
+body.participant-dashboard-open .fellow-event-row time {
+    background: #fff3fa;
+    border-radius: 8px;
+    display: grid;
+    gap: 4px;
+    justify-items: center;
+    padding: 16px 8px;
+}
+
+body.participant-dashboard-open .fellow-event-row time strong {
+    color: #f72585;
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+body.participant-dashboard-open .fellow-event-row time span {
+    color: #f72585;
+    font-weight: 850;
+}
+
+body.participant-dashboard-open .fellow-event-row time small,
+body.participant-dashboard-open .fellow-event-row aside small {
+    color: #667085;
+    text-align: center;
+}
+
+body.participant-dashboard-open .fellow-event-row aside {
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+}
+
+@media (max-width: 1180px) {
+    body.participant-dashboard-open .fellow-stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    body.participant-dashboard-open .fellow-section-layout {
+        grid-template-columns: 1fr;
+    }
+
+    body.participant-dashboard-open .fellow-section-side {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 860px) {
+    body.participant-dashboard-open .fellow-track-grid {
+        grid-template-columns: 1fr;
+    }
+
+    body.participant-dashboard-open .fellow-course {
+        grid-template-columns: 40px 58px minmax(0, 1fr);
+    }
+
+    body.participant-dashboard-open .fellow-course > i,
+    body.participant-dashboard-open .fellow-course > em,
+    body.participant-dashboard-open .fellow-course button {
+        grid-column: 3;
+        justify-self: start;
+    }
+
+    body.participant-dashboard-open .fellow-course > i {
+        width: min(220px, 100%);
+    }
+
+    body.participant-dashboard-open .fellow-task-row,
+    body.participant-dashboard-open .fellow-project-row,
+    body.participant-dashboard-open .fellow-event-row {
+        grid-template-columns: 76px minmax(0, 1fr);
+    }
+
+    body.participant-dashboard-open .fellow-task-row aside,
+    body.participant-dashboard-open .fellow-project-row aside,
+    body.participant-dashboard-open .fellow-event-row time,
+    body.participant-dashboard-open .fellow-event-row aside {
+        grid-column: 2;
+        justify-items: start;
+    }
+
+    body.participant-dashboard-open .fellow-event-row > img {
+        height: 76px;
+        width: 76px;
+    }
+}
+
+@media (max-width: 640px) {
+    body.participant-dashboard-open .fellow-section-tabs {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    body.participant-dashboard-open .fellow-stat-grid,
+    body.participant-dashboard-open .fellow-section-side {
+        grid-template-columns: 1fr;
+    }
+
+    body.participant-dashboard-open .fellow-filter-row {
+        flex-direction: column;
+    }
+
+    body.participant-dashboard-open .fellow-filter-row button {
+        width: 100%;
+    }
+
+    body.participant-dashboard-open .fellow-panel,
+    body.participant-dashboard-open .fellow-side-card,
+    body.participant-dashboard-open .fellow-task-row {
+        padding: 14px;
+    }
+}
+
+/* Fellow card outline repair: keep borders closed across grid gaps and scaling. */
+body.participant-dashboard-open .fellow-card,
+body.participant-dashboard-open .fellow-hero,
+body.participant-dashboard-open .fellow-challenge,
+body.participant-dashboard-open .fellow-help {
+    background-clip: padding-box;
+    border-color: transparent;
+    box-shadow: inset 0 0 0 1px #f2d7e5;
+}
+
+body.participant-dashboard-open .fellow-learning {
+    gap: 0;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-card-head {
+    flex: 0 0 auto;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module-grid {
+    align-items: stretch;
+    box-sizing: border-box;
+    gap: clamp(16px, 1.4vw, 22px);
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    inline-size: 100%;
+    margin: 0;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module {
+    background-clip: padding-box;
+    border-color: transparent;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px #f1d7e5;
+    box-sizing: border-box;
+    display: grid;
+    gap: 8px;
+    grid-template-rows: auto auto 1fr;
+    inline-size: 100%;
+    margin: 0;
+    min-block-size: 140px;
+    padding: 14px;
+    overflow: hidden;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module:hover,
+body.participant-dashboard-open .fellow-learning .fellow-module:focus-visible {
+    box-shadow:
+        inset 0 0 0 1px #f6b8d4,
+        0 14px 34px rgba(247, 37, 133, 0.12);
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module.is-add {
+    align-content: center;
+    justify-items: center;
+    border-color: transparent;
+    box-shadow: inset 0 0 0 1px #f5b9d5;
+    text-align: center;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module .fellow-module-thumb {
+    background: transparent;
+    block-size: 52px;
+    border-radius: 8px;
+    inline-size: 52px;
+    overflow: hidden;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module.is-purple .fellow-module-thumb {
+    background: transparent;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module.is-orange .fellow-module-thumb {
+    background: transparent;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module b {
+    block-size: 34px;
+    font-size: 0.72rem;
+    inline-size: 34px;
+    inset-block-start: 12px;
+    inset-inline-end: 12px;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module strong {
+    font-size: 0.82rem;
+    line-height: 1.22;
+    padding-inline-end: 0;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module small {
+    align-self: end;
+    font-size: 0.74rem;
+    line-height: 1.35;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module .fellow-module-thumb img {
+    block-size: 100%;
+    inline-size: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.1);
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module.is-pink .fellow-module-thumb img {
+    object-position: center;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module.is-purple .fellow-module-thumb img {
+    object-position: center;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module.is-orange .fellow-module-thumb img {
+    object-position: center;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module.is-add {
+    min-block-size: 140px;
+    padding-block: 14px;
+}
+
+body.participant-dashboard-open .fellow-learning .fellow-module.is-add > span {
+    block-size: 48px;
+    inline-size: 48px;
+}
+
+@media (max-width: 1180px) {
+    body.participant-dashboard-open .fellow-learning .fellow-module-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    body.participant-dashboard-open .fellow-learning .fellow-module-grid {
+        grid-template-columns: 1fr;
+    }
+
+    body.participant-dashboard-open .fellow-learning .fellow-module {
+        grid-template-columns: 66px minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        min-block-size: 112px;
+    }
+
+    body.participant-dashboard-open .fellow-learning .fellow-module .fellow-module-thumb {
+        block-size: 52px;
+        grid-row: 1 / span 2;
+        inline-size: 52px;
+    }
+
+    body.participant-dashboard-open .fellow-learning .fellow-module .fellow-module-thumb img {
+        transform: scale(1.1);
+    }
+
+body.participant-dashboard-open .fellow-learning .fellow-module small {
+        align-self: start;
+        grid-column: 2;
+    }
+}
+
+/* Home card cleanup: decorative art must not leak into compact list cards. */
+body.participant-dashboard-open .fellow-journey .fellow-card-art,
+body.participant-dashboard-open .fellow-events .fellow-card-art,
+body.participant-dashboard-open .fellow-community .fellow-card-art,
+body.participant-dashboard-open .fellow-leaderboard .fellow-card-art,
+body.participant-dashboard-open .fellow-tracks .fellow-card-art {
+    display: none !important;
+}
+
+body.participant-dashboard-open .fellow-journey,
+body.participant-dashboard-open .fellow-events,
+body.participant-dashboard-open .fellow-community,
+body.participant-dashboard-open .fellow-leaderboard,
+body.participant-dashboard-open .fellow-tracks {
+    isolation: isolate;
+}
+
+/* Interactive section states. */
+body.participant-dashboard-open .fellow-section-page button,
+body.participant-dashboard-open .fellow-section-page a,
+body.participant-dashboard-open .fellow-calendar span,
+body.participant-dashboard-open .fellow-side-list article,
+body.participant-dashboard-open .fellow-stat,
+body.participant-dashboard-open .fellow-course,
+body.participant-dashboard-open .fellow-task-row,
+body.participant-dashboard-open .fellow-project-row,
+body.participant-dashboard-open .fellow-event-row,
+body.participant-dashboard-open .fellow-section-track {
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        color 160ms ease,
+        opacity 160ms ease,
+        transform 160ms ease;
+}
+
+body.participant-dashboard-open .fellow-stat:hover,
+body.participant-dashboard-open .fellow-side-list article:hover,
+body.participant-dashboard-open .fellow-course:hover,
+body.participant-dashboard-open .fellow-task-row:hover,
+body.participant-dashboard-open .fellow-project-row:hover,
+body.participant-dashboard-open .fellow-event-row:hover,
+body.participant-dashboard-open .fellow-section-track:hover {
+    border-color: #f6b8d4;
+    box-shadow: 0 14px 32px rgba(247, 37, 133, 0.1);
+    transform: translateY(-2px);
+}
+
+body.participant-dashboard-open .fellow-course,
+body.participant-dashboard-open .fellow-side-list article {
+    border-radius: 8px;
+}
+
+body.participant-dashboard-open .fellow-course:hover {
+    background: #fffafd;
+    padding-inline: 10px;
+}
+
+body.participant-dashboard-open .fellow-section-page button:hover,
+body.participant-dashboard-open .fellow-section-page a:hover {
+    border-color: #f6b8d4;
+    color: #f72585;
+}
+
+body.participant-dashboard-open .fellow-section-page button:focus-visible,
+body.participant-dashboard-open .fellow-section-page a:focus-visible,
+body.participant-dashboard-open .fellow-calendar span:focus-visible {
+    outline: 3px solid rgba(247, 37, 133, 0.18);
+    outline-offset: 2px;
+}
+
+body.participant-dashboard-open .fellow-filter-row button.is-open,
+body.participant-dashboard-open .fellow-panel header button.is-open {
+    background: #fff3fa;
+    border-color: #f6b8d4;
+    color: #f72585;
+}
+
+body.participant-dashboard-open .fellow-filter-row button.is-open i,
+body.participant-dashboard-open .fellow-panel header button.is-open i {
+    transform: rotate(180deg);
+}
+
+body.participant-dashboard-open .fellow-section-page .is-pressed {
+    transform: scale(0.97);
+}
+
+body.participant-dashboard-open .fellow-section-page .is-hidden {
+    display: none !important;
+}
+
+body.participant-dashboard-open .fellow-panel.is-collapsed > :not(header) {
+    display: none;
+}
+
+body.participant-dashboard-open .fellow-panel.is-collapsed {
+    padding-bottom: clamp(16px, 1.5vw, 22px);
+}
+
+body.participant-dashboard-open .fellow-calendar span:hover,
+body.participant-dashboard-open .fellow-calendar span.is-selected {
+    background: #a855f7;
+    color: #fff;
+    cursor: pointer;
+    transform: scale(1.06);
+}
+
+body.participant-dashboard-open .fellow-section-toast {
+    background: #171421;
+    border-radius: 999px;
+    bottom: clamp(18px, 2vw, 28px);
+    box-shadow: 0 18px 42px rgba(23, 20, 33, 0.18);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 850;
+    opacity: 0;
+    padding: 10px 16px;
+    pointer-events: none;
+    position: fixed;
+    right: clamp(18px, 2vw, 28px);
+    transform: translateY(12px);
+    z-index: 20;
+}
+
+body.participant-dashboard-open .fellow-section-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.participant-dashboard-open .fellow-section-page:has(.fellow-course:not(.is-hidden)) .fellow-panel,
+body.participant-dashboard-open .fellow-section-page:has(.fellow-task-row:not(.is-hidden)) .fellow-section-stack,
+body.participant-dashboard-open .fellow-section-page:has(.fellow-project-row:not(.is-hidden)) .fellow-project-panel,
+body.participant-dashboard-open .fellow-section-page:has(.fellow-event-row:not(.is-hidden)) .fellow-event-panel {
+    min-height: 0;
+}
+
+@media (max-width: 1023px) {
+    body.participant-dashboard-open .fellow-module-welcome.is-section-page {
+        margin-top: 16px;
+    }
+
+    body.participant-dashboard-open .fellow-section-tabs {
+        scrollbar-width: thin;
+    }
+
+    body.participant-dashboard-open .fellow-section-tabs nav {
+        overflow-x: auto;
+        padding-bottom: 2px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 520px) {
+    body.participant-dashboard-open .fellow-stat {
+        grid-template-columns: 50px minmax(0, 1fr);
+        min-height: 82px;
+        padding: 14px;
+    }
+
+    body.participant-dashboard-open .fellow-stat span {
+        block-size: 50px;
+        inline-size: 50px;
+    }
+
+    body.participant-dashboard-open .fellow-course {
+        grid-template-columns: 36px minmax(0, 1fr);
+    }
+
+    body.participant-dashboard-open .fellow-course > span,
+    body.participant-dashboard-open .fellow-course > i,
+    body.participant-dashboard-open .fellow-course > em,
+    body.participant-dashboard-open .fellow-course button {
+        grid-column: 2;
+    }
+
+    body.participant-dashboard-open .fellow-task-row,
+    body.participant-dashboard-open .fellow-project-row,
+    body.participant-dashboard-open .fellow-event-row {
+        grid-template-columns: 1fr;
+    }
+
+    body.participant-dashboard-open .fellow-task-row > span,
+    body.participant-dashboard-open .fellow-project-row > span,
+    body.participant-dashboard-open .fellow-event-row > img,
+    body.participant-dashboard-open .fellow-task-row aside,
+    body.participant-dashboard-open .fellow-project-row aside,
+    body.participant-dashboard-open .fellow-event-row time,
+    body.participant-dashboard-open .fellow-event-row aside {
+        grid-column: 1;
+    }
+
+    body.participant-dashboard-open .fellow-task-row aside,
+    body.participant-dashboard-open .fellow-project-row aside,
+    body.participant-dashboard-open .fellow-event-row aside {
+        justify-items: stretch;
+    }
+
+    body.participant-dashboard-open .fellow-task-row button,
+    body.participant-dashboard-open .fellow-event-row aside button,
+    body.participant-dashboard-open .fellow-image-card button {
+        width: 100%;
+    }
+
+    body.participant-dashboard-open .fellow-section-toast {
+        left: 14px;
+        right: 14px;
+        text-align: center;
+    }
+}

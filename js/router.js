@@ -293,7 +293,7 @@ const router = {
             // Cek apakah perlu reload konten (hanya jika path berubah)
             if (this.currentPath !== path) {
                 // Fetch file HTML-nya
-                const response = await fetch(routeUrl);
+                const response = await fetch(routeUrl, { cache: "no-store" });
                 if (!response.ok) throw new Error("Gagal fetch file HTML");
                 
                 appContent.innerHTML = await response.text();
