@@ -12,3 +12,7 @@ reports/qa-report-*.md
 !reports/qa-report-latest.md
 
 docs-faiz/
+*.py
+__pycache__/
+/*.pdf
+*.txt
