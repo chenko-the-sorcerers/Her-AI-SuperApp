@@ -319,14 +319,18 @@
 }
 
 .fc-nav-link:hover {
-  background: var(--c-primary-soft);
-  color: var(--c-primary);
+  background: linear-gradient(135deg, #FF1493, #f53f7c) !important;
+  color: white !important;
 }
 
 .fc-nav-link.active {
-  background: var(--c-primary-soft);
-  color: var(--c-primary);
+  background: linear-gradient(135deg, #FF1493, #f53f7c) !important;
+  color: white !important;
   position: relative;
+}
+
+.fc-nav-link:hover i, .fc-nav-link.active i {
+  color: white !important;
 }
 
 .fc-nav-link.active::before {

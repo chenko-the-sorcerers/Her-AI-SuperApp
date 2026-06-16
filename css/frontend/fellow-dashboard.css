@@ -129,17 +129,18 @@
 
 
 .dash-menu-link:hover { 
-  background-color: #fdf5f7 !important; 
-  color: var(--fellow-pink-primary) !important; 
+  background: linear-gradient(135deg, #FF1493, #f53f7c) !important; 
+  color: white !important; 
 }
 
 .dash-menu-link.active { 
-  background-color: #FFF0F5 !important; 
-  color: var(--fellow-pink-primary) !important; 
+  background: linear-gradient(135deg, #FF1493, #f53f7c) !important; 
+  color: white !important; 
 }
 
+.dash-menu-link:hover i,
 .dash-menu-link.active i {
-  color: var(--fellow-pink-primary) !important;
+  color: white !important;
 }
 
 /* BADGE */

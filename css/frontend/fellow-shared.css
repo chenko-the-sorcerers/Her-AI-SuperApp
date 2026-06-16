@@ -122,8 +122,9 @@ body {
   width: 22px;
   text-align: center;
 }
-.fl-nav-item:hover  { background: var(--c-pink-light); color: var(--c-pink); }
-.fl-nav-item.active { background: var(--c-pink-light); color: var(--c-pink); }
+.fl-nav-item:hover  { background: linear-gradient(135deg, #FF1493, #f53f7c) !important; color: white !important; }
+.fl-nav-item.active { background: linear-gradient(135deg, #FF1493, #f53f7c) !important; color: white !important; }
+.fl-nav-item:hover i, .fl-nav-item.active i { color: white !important; }
 
 /* Nav Section Label */
 .fl-nav-label {

@@ -107,8 +107,9 @@
   width: 22px;
   text-align: center;
 }
-.cr-nav-item:hover { background: #FFF0F5; color: #F74281; }
-.cr-nav-item.active  { background: #FFF0F5; color: #F74281; }
+.cr-nav-item:hover { background: linear-gradient(135deg, #FF1493, #f53f7c) !important; color: white !important; }
+.cr-nav-item.active  { background: linear-gradient(135deg, #FF1493, #f53f7c) !important; color: white !important; }
+.cr-nav-item:hover i, .cr-nav-item.active i { color: white !important; }
 
 /* Room Chat Section */
 .cr-room-section { flex: 1; }
