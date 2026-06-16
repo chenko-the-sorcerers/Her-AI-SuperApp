@@ -1,0 +1,470 @@
+.fellow-certificate-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 40px;
+}
+
+/* Certificate Layout */
+.fcert-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px;
+    align-items: start;
+}
+
+.fcert-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.fcert-side {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Phase 2: Main Content */
+.fcert-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.fcert-select {
+    padding: 8px 32px 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    appearance: none;
+    background: #fff url('data:image/svg+xml;utf8,<svg fill="none" stroke="%2394A3B8" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>') no-repeat right 12px center;
+    background-size: 14px;
+    cursor: pointer;
+}
+
+.fcert-tools-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fcert-search {
+    position: relative;
+}
+.fcert-search input {
+    padding: 8px 16px 8px 36px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    font-size: 13px;
+    width: 200px;
+}
+.fcert-search i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94A3B8;
+}
+
+.fcert-btn-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    background: #fff;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.fcert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.fcert-card {
+    background: #fff;
+    border: 1px solid #F1F5F9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+
+.fcert-img-wrapper {
+    padding: 16px;
+    background: #fff;
+}
+
+.fcert-img {
+    height: 160px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16px;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.fcert-img::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border-radius: 4px;
+    border: 1px dashed rgba(0,0,0,0.1);
+    pointer-events: none;
+}
+
+.fcert-img.is-pink { background: linear-gradient(to bottom right, #FFF0F5, #FFE4EF); }
+.fcert-img.is-purple { background: linear-gradient(to bottom right, #F5F3FF, #EDE9FE); }
+.fcert-img.is-yellow { background: linear-gradient(to bottom right, #FFFBEB, #FEF3C7); }
+.fcert-img.is-green { background: linear-gradient(to bottom right, #ECFDF5, #D1FAE5); }
+.fcert-img.is-blue { background: linear-gradient(to bottom right, #EFF6FF, #DBEAFE); }
+
+.fcert-img h4 {
+    color: #1E293B;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0 0 2px 0;
+}
+.fcert-img small {
+    font-size: 7px;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+.fcert-img strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1E293B;
+    margin-bottom: 6px;
+    font-family: 'Playfair Display', serif; /* Gives a certificate vibe */
+}
+.fcert-img p.fcert-context {
+    font-size: 7px;
+    color: #64748B;
+    margin: 0 0 2px 0;
+}
+.fcert-img p.fcert-course {
+    font-size: 11px;
+    font-weight: 800;
+    color: #1E293B;
+    margin: 0;
+}
+
+.fcert-signatures {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+    padding: 0 8px;
+}
+.fcert-signatures div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fcert-signatures img {
+    height: 12px;
+    opacity: 0.6;
+    margin-bottom: 2px;
+}
+.fcert-signatures span {
+    font-size: 6px;
+    color: #64748B;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 2px;
+}
+
+.fcert-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.fcert-badge.is-pink { background: #F74281; }
+.fcert-badge.is-purple { background: #8B5CF6; }
+.fcert-badge.is-yellow { background: #F59E0B; }
+.fcert-badge.is-green { background: #10B981; }
+.fcert-badge.is-blue { background: #3B82F6; }
+
+.fcert-info {
+    padding: 16px;
+    border-top: 1px solid #F1F5F9;
+}
+
+.fcert-info h5 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1E293B;
+    margin: 0 0 4px 0;
+}
+
+.fcert-info p {
+    font-size: 11px;
+    color: #64748B;
+    margin: 0 0 16px 0;
+}
+
+.fcert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.fcert-footer span {
+    font-size: 11px;
+    color: #64748B;
+}
+.fcert-footer strong {
+    font-size: 11px;
+    font-weight: 800;
+}
+.fcert-footer strong.is-pink { color: #F74281; }
+.fcert-footer strong.is-purple { color: #8B5CF6; }
+.fcert-footer strong.is-yellow { color: #F59E0B; }
+.fcert-footer strong.is-green { color: #10B981; }
+.fcert-footer strong.is-blue { color: #3B82F6; }
+
+/* Phase 3: Sidebar */
+.fcert-side-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+
+.fcert-side-card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.fcert-side-card header h3 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #1E293B;
+    margin: 0;
+}
+
+.fcert-side-card header a {
+    font-size: 12px;
+    font-weight: 700;
+    color: #F74281;
+    text-decoration: none;
+}
+
+/* Donut Chart */
+.fcert-chart-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.fcert-donut {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    /* Approximation of the donut chart using conic-gradient */
+    background: conic-gradient(
+        #F74281 0% 55%,
+        #8B5CF6 55% 80%,
+        #F59E0B 80% 90%,
+        #10B981 90% 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.fcert-donut::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.fcert-donut-center {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+.fcert-donut-center strong {
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    color: #1E293B;
+    line-height: 1;
+}
+.fcert-donut-center small {
+    font-size: 11px;
+    color: #64748B;
+}
+
+.fcert-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.fcert-legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.fcert-legend-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1E293B;
+    font-weight: 600;
+}
+
+.fcert-legend-label i {
+    font-size: 8px;
+}
+.fcert-legend-label i.is-pink { color: #F74281; }
+.fcert-legend-label i.is-purple { color: #8B5CF6; }
+.fcert-legend-label i.is-yellow { color: #F59E0B; }
+.fcert-legend-label i.is-green { color: #10B981; }
+
+.fcert-legend-val {
+    font-weight: 700;
+    color: #1E293B;
+}
+
+/* Filters */
+.fcert-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fcert-filters select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    appearance: none;
+    background: #fff url('data:image/svg+xml;utf8,<svg fill="none" stroke="%2394A3B8" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>') no-repeat right 16px center;
+    background-size: 14px;
+    cursor: pointer;
+}
+
+/* Status List */
+.fcert-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.fcert-status-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.fcert-status-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #1E293B;
+    font-weight: 600;
+}
+
+.fcert-status-label i {
+    width: 16px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.fcert-status-label i.is-green { color: #10B981; }
+.fcert-status-label i.is-orange { color: #F59E0B; }
+.fcert-status-label i.is-pink { color: #F74281; }
+.fcert-status-label i.is-gray { color: #94A3B8; }
+
+.fcert-status-val {
+    font-weight: 700;
+    color: #1E293B;
+}
+
+/* Help Banner */
+.fcert-help-banner {
+    background: linear-gradient(135deg, #FFF0F5, #FFE4EF);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.fcert-help-banner h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #F74281;
+    margin: 0 0 8px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.fcert-help-banner p {
+    font-size: 12px;
+    color: #64748B;
+    margin: 0 0 16px 0;
+    max-width: 60%;
+    position: relative;
+    z-index: 2;
+    line-height: 1.5;
+}
+
+.fcert-help-banner button {
+    background: #F74281;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.fcert-help-banner img {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    height: 120px;
+    z-index: 1;
+}

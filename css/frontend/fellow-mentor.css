@@ -1,0 +1,254 @@
+.fellow-mentor-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 40px;
+}
+
+.mentor-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mentor-select {
+  padding: 8px 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+}
+
+.mentor-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.mentor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mentor-card {
+  background: #fff;
+  border: 1px solid #FFD6E8;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+}
+
+.mentor-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.mentor-avatar.pink { background: #FFF0F5; color: #F74281; }
+.mentor-avatar.orange { background: #FFF7ED; color: #F59E0B; }
+.mentor-avatar.purple { background: #F5F3FF; color: #8B5CF6; }
+
+.mentor-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mentor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mentor-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1E293B;
+  margin: 0 0 8px 0;
+}
+
+.mentor-role {
+  display: inline-block;
+  background: #FFF0F5;
+  color: #F74281;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.mentor-desc {
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.mentor-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.m-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.m-badge.pink { background: #FFF0F5; color: #F74281; }
+.m-badge.green { background: #ECFDF5; color: #10B981; }
+.m-badge.orange { background: #FFF7ED; color: #F59E0B; }
+.m-badge.blue { background: #EFF6FF; color: #3B82F6; }
+
+.mentor-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.btn-schedule {
+  background: #fff;
+  border: 1px solid #F74281;
+  color: #F74281;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 140px;
+  text-align: center;
+}
+.btn-schedule:hover { background: #FFF0F5; }
+
+.btn-profile {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  color: #64748B;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 140px;
+  text-align: center;
+}
+.btn-profile:hover { background: #F8F9FA; }
+
+/* Right Column */
+.mentor-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ms-card {
+  background: #fff;
+  border: 1px solid #F3F4F6;
+  border-radius: 12px;
+  padding: 24px;
+}
+.ms-card h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1E293B;
+  margin: 0 0 20px 0;
+}
+
+.ms-session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ms-session {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+}
+
+.ms-session-num {
+  width: 36px;
+  height: 36px;
+  background: #F5F3FF;
+  color: #8B5CF6;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ms-session-text {
+  flex: 1;
+  font-size: 14px;
+  color: #475569;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.ms-session i {
+  color: #1E293B;
+  font-size: 14px;
+}
+
+.ms-hero-art {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.ms-hero-desc {
+  font-size: 14px;
+  color: #64748B;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.btn-solid-pink {
+  background: #F74281;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  width: auto;
+}
+.btn-solid-pink:hover { opacity: 0.9; }
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .mentor-layout {
+    grid-template-columns: 1fr;
+  }
+}

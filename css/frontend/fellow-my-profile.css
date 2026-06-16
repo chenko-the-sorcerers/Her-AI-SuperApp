@@ -1,0 +1,615 @@
+.fellow-my-profile-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 40px;
+}
+
+/* Phase 1: Hero Banner */
+.fmp-hero {
+    background: linear-gradient(135deg, #FFF0F5, #FFE4EF);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.fmp-hero-content {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.fmp-avatar {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+}
+.fmp-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.fmp-camera-btn {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 36px;
+    height: 36px;
+    background: #F74281;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(247,66,129,0.3);
+}
+
+.fmp-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fmp-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.fmp-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+.fmp-name h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1E293B;
+    margin: 0;
+}
+.fmp-badge {
+    background: #FFF0F5;
+    color: #F74281;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid rgba(247,66,129,0.2);
+}
+
+.fmp-title {
+    font-size: 14px;
+    color: #475569;
+    margin: 0;
+}
+
+.fmp-edit-btn {
+    background: #fff;
+    color: #F74281;
+    border: 1px solid #F74281;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fmp-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+.fmp-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: #475569;
+}
+.fmp-detail-item i {
+    width: 16px;
+    text-align: center;
+    color: #94A3B8;
+}
+
+.fmp-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+.fmp-tag {
+    background: #fff;
+    color: #F74281;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid rgba(247,66,129,0.1);
+}
+
+.fmp-quote {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+.fmp-quote p {
+    font-size: 13px;
+    color: #475569;
+    margin: 0;
+    position: relative;
+    padding-left: 24px;
+    font-style: italic;
+}
+.fmp-quote p::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -8px;
+    font-size: 32px;
+    color: #F74281;
+    opacity: 0.5;
+    font-family: serif;
+}
+.fmp-quote-icon {
+    font-size: 24px;
+    color: #F74281;
+}
+
+.fmp-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px;
+    align-items: start;
+}
+.fmp-main, .fmp-side {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Phase 2: Main Content */
+.fmp-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+
+.fmp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.fmp-card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.fmp-card-title i {
+    font-size: 18px;
+    color: #F74281;
+}
+.fmp-card-title h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1E293B;
+}
+
+.fmp-card-header a {
+    font-size: 12px;
+    font-weight: 700;
+    color: #F74281;
+    text-decoration: none;
+}
+.fmp-card-header button.fmp-edit-sm {
+    background: #fff;
+    color: #F74281;
+    border: 1px solid rgba(247,66,129,0.3);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* Tentang Saya */
+.fmp-about-text {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.fmp-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.fmp-about-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+}
+.fmp-about-item i {
+    width: 16px;
+    text-align: center;
+    color: #64748B;
+    margin-top: 2px;
+}
+.fmp-about-item span {
+    color: #64748B;
+    width: 80px;
+}
+.fmp-about-item strong {
+    color: #1E293B;
+    font-weight: 600;
+    flex: 1;
+}
+.fmp-about-item a {
+    color: #F74281;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Statistik */
+.fmp-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.fmp-stat-box {
+    border: 1px solid #F1F5F9;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+.fmp-stat-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+.fmp-stat-icon.is-pink { background: #FFF0F5; color: #F74281; }
+.fmp-stat-icon.is-purple { background: #F5F3FF; color: #8B5CF6; }
+
+.fmp-stat-info {
+    display: flex;
+    flex-direction: column;
+}
+.fmp-stat-info small {
+    font-size: 11px;
+    color: #64748B;
+    margin-bottom: 4px;
+}
+.fmp-stat-info strong {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1E293B;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+.fmp-stat-info span {
+    font-size: 11px;
+    color: #94A3B8;
+}
+
+.fmp-spec-track {
+    border: 1px solid #F1F5F9;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fmp-spec-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.fmp-spec-icon {
+    font-size: 20px;
+    color: #F74281;
+}
+.fmp-spec-info div {
+    display: flex;
+    flex-direction: column;
+}
+.fmp-spec-info small {
+    font-size: 11px;
+    color: #64748B;
+}
+.fmp-spec-info strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1E293B;
+}
+.fmp-spec-btn {
+    border: 1px solid rgba(247,66,129,0.3);
+    background: transparent;
+    color: #F74281;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Pencapaian Hexagons */
+.fmp-badges-row {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+.fmp-badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+}
+
+/* CSS Hexagon using clip-path */
+.fmp-hex {
+    width: 64px;
+    height: 74px; /* Adjust aspect ratio for a flat-topped hexagon */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    position: relative;
+    color: #fff;
+    font-size: 24px;
+}
+.fmp-hex.is-pink { background: linear-gradient(to bottom, #F74281, #E11D48); }
+.fmp-hex.is-orange { background: linear-gradient(to bottom, #F59E0B, #D97706); }
+.fmp-hex.is-purple { background: linear-gradient(to bottom, #8B5CF6, #6D28D9); }
+.fmp-hex.is-locked { background: #F1F5F9; color: #94A3B8; }
+
+/* Adding the inner border for the badge */
+.fmp-hex::before {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px; right: 3px; bottom: 3px;
+    background: inherit;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: 0;
+    filter: brightness(1.2);
+}
+.fmp-hex i {
+    position: relative;
+    z-index: 1;
+}
+
+.fmp-badge-item strong {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1E293B;
+    margin-bottom: 2px;
+}
+.fmp-badge-item small {
+    font-size: 10px;
+    color: #64748B;
+    line-height: 1.3;
+}
+
+/* Phase 3: Sidebar */
+.fmp-side-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+
+.fmp-side-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.fmp-side-header h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1E293B;
+}
+
+.fmp-side-header a {
+    font-size: 12px;
+    font-weight: 700;
+    color: #F74281;
+    text-decoration: none;
+}
+
+/* Perjalanan Fellowship */
+.fmp-journey-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.fmp-journey-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+.fmp-journey-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+.fmp-journey-icon.is-pink { background: #F74281; color: #fff; }
+.fmp-journey-icon.is-purple { background: #8B5CF6; color: #fff; }
+.fmp-journey-icon.is-orange { background: #F59E0B; color: #fff; }
+.fmp-journey-icon.is-green { background: #10B981; color: #fff; }
+
+.fmp-journey-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.fmp-journey-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+}
+.fmp-journey-title strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1E293B;
+}
+.fmp-journey-title span {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1E293B;
+}
+.fmp-journey-info small {
+    font-size: 11px;
+    color: #64748B;
+    margin-bottom: 8px;
+}
+.fmp-progress {
+    height: 4px;
+    background: #F1F5F9;
+    border-radius: 999px;
+    overflow: hidden;
+}
+.fmp-progress-bar {
+    height: 100%;
+    border-radius: 999px;
+}
+
+/* Mini Badges Row */
+.fmp-mini-badges {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.fmp-mini-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.fmp-mini-badge.is-pink { background: linear-gradient(to bottom, #F74281, #E11D48); }
+.fmp-mini-badge.is-purple { background: linear-gradient(to bottom, #8B5CF6, #6D28D9); }
+.fmp-mini-badge.is-orange { background: linear-gradient(to bottom, #F59E0B, #D97706); }
+.fmp-mini-more {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: #F74281;
+    background: #FFF0F5;
+}
+
+/* Aktivitas Terbaru */
+.fmp-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+.fmp-activity-list::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: #F1F5F9;
+    z-index: 0;
+}
+.fmp-activity-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+}
+.fmp-activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    border: 3px solid #fff;
+}
+.fmp-activity-icon.is-pink { background: #FFF0F5; color: #F74281; }
+.fmp-activity-icon.is-purple { background: #F5F3FF; color: #8B5CF6; }
+.fmp-activity-icon.is-blue { background: #EFF6FF; color: #3B82F6; }
+.fmp-activity-icon.is-orange { background: #FFF7ED; color: #F59E0B; }
+
+.fmp-activity-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4px;
+}
+.fmp-activity-info span {
+    font-size: 12px;
+    color: #64748B;
+    margin-bottom: 2px;
+}
+.fmp-activity-info strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1E293B;
+    margin-bottom: 4px;
+}
+.fmp-activity-info small {
+    font-size: 11px;
+    color: #94A3B8;
+}

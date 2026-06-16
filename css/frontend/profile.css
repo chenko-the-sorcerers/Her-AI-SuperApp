@@ -1850,8 +1850,8 @@ body.participant-dashboard-open .fellow-app {
 }
 
 .fellow-sidebar {
-    background: linear-gradient(180deg, #fff 0%, #fff8fc 100%);
-    border-right: 1px solid #f7dbe9;
+    background: #EAE8E9;
+    border-right: 1px solid #DFDBDC;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -1879,35 +1879,41 @@ body.participant-dashboard-open .fellow-app {
 
 .fellow-nav a {
     align-items: center;
-    border-radius: 10px;
-    color: #4b5565;
+    border-radius: 12px;
+    color: #4b5563;
     display: grid;
     font-size: 0.96rem;
-    font-weight: 650;
-    gap: 12px;
+    font-weight: 800;
+    gap: 16px;
     grid-template-columns: 26px 1fr auto;
-    min-height: 44px;
-    padding: 10px 13px;
+    min-height: 48px;
+    padding: 10px 16px;
     text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 .fellow-nav a i {
-    color: #475467;
+    color: #4b5563;
     text-align: center;
+    font-size: 1.1rem;
+}
+
+.fellow-nav a:hover {
+    background: rgba(245, 63, 124, 0.05);
 }
 
 .fellow-nav a.active {
-    background: #ffe0ef;
-    color: #f72585;
+    background: #EED4DF;
+    color: #f53f7c;
 }
 
 .fellow-nav a.active i {
-    color: #f72585;
+    color: #f53f7c;
 }
 
 .fellow-nav a b {
     align-items: center;
-    background: #f72585;
+    background: #f53f7c;
     border-radius: 999px;
     color: #fff;
     display: flex;
@@ -1918,22 +1924,22 @@ body.participant-dashboard-open .fellow-app {
 }
 
 .fellow-nav-label {
-    border-top: 1px solid #f2d7e5;
+    border-top: 1px solid #DFDBDC;
     color: #6b7280;
     font-size: 0.73rem;
     font-weight: 800;
     letter-spacing: 0.05em;
-    margin: 24px 12px 12px;
+    margin: 24px 16px 12px;
     padding-top: 22px;
     text-transform: uppercase;
 }
 
 .fellow-invite {
-    background: linear-gradient(145deg, #fff3fa, #fff);
-    border: 1px solid #f7cfe1;
-    border-radius: 10px;
-    margin: auto 8px 0;
-    padding: 18px 16px;
+    background: #E5D5DC;
+    border: 1px solid #D6C2CA;
+    border-radius: 12px;
+    margin: auto 16px 16px;
+    padding: 20px 16px;
     position: relative;
     overflow: hidden;
 }
@@ -1941,40 +1947,73 @@ body.participant-dashboard-open .fellow-app {
 .fellow-invite-content {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     position: relative;
     z-index: 2;
-    max-width: 75%;
+    padding-right: 85px;
+}
+
+.fellow-invite-content strong {
+    color: #f53f7c;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.fellow-invite-content span {
+    color: #4b5563;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.fellow-invite button {
+    background: #f53f7c;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 10px 16px;
+    width: fit-content;
+    margin-top: 8px;
 }
 
 .fellow-invite-art {
     position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 80px;
+    right: 0px;
+    bottom: 20px;
+    width: 90px;
     z-index: 1;
     mix-blend-mode: multiply;
+    filter: contrast(1.4) brightness(1.1);
 }
 
 .fellow-invite strong {
-    color: #f72585;
+    color: #F74281;
+    font-size: 15px;
+    font-weight: 800;
 }
 
 .fellow-invite span {
-    color: #667085;
-    font-size: 0.82rem;
+    color: #64748B;
+    font-size: 12px;
+    font-weight: 600;
     line-height: 1.5;
 }
 
 .fellow-invite button {
-    background: #f72585;
-    border: 0;
-    border-radius: 7px;
+    background: #F74281;
+    border: none;
+    border-radius: 6px;
     color: #fff;
     cursor: pointer;
+    font-size: 13px;
     font-weight: 800;
-    min-height: 34px;
+    margin-top: 8px;
+    padding: 8px 16px;
+    transition: all 0.2s;
+    width: fit-content;
 }
 
 .fellow-main {
@@ -4535,6 +4574,7 @@ body.participant-dashboard-open .fellow-section-tabs button.active::after {
 }
 
 body.participant-dashboard-open .fellow-primary-action,
+body.participant-dashboard-open .fellow-section-tabs button.fellow-primary-action,
 body.participant-dashboard-open .fellow-image-card button {
     align-items: center;
     background: linear-gradient(135deg, #ff4fab, #f72585);
@@ -4648,6 +4688,7 @@ body.participant-dashboard-open .fellow-section-stack {
     display: grid;
     gap: clamp(14px, 1.3vw, 20px);
     min-width: 0;
+    align-content: start;
 }
 
 body.participant-dashboard-open .fellow-panel {
@@ -5053,12 +5094,14 @@ body.participant-dashboard-open .fellow-project-panel header > div {
 }
 
 body.participant-dashboard-open .fellow-project-row {
-    align-items: center;
-    grid-template-columns: 86px minmax(0, 1fr) minmax(150px, 0.22fr);
+    align-items: start;
+    grid-template-columns: 70px minmax(0, 1fr) minmax(200px, auto);
+    padding: 24px;
+    gap: 20px;
 }
 
 body.participant-dashboard-open .fellow-project-row aside > i {
-    width: 120px;
+    width: 100%;
 }
 
 body.participant-dashboard-open .fellow-event-panel header h3 span {
@@ -5571,4 +5614,167 @@ body.participant-dashboard-open .fellow-section-page:has(.fellow-event-row:not(.
         right: 14px;
         text-align: center;
     }
+    }
+}
+
+/* --- FP Proyek List Overrides --- */
+body.participant-dashboard-open .fellow-project-row > span {
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    font-size: 24px;
+}
+
+body.participant-dashboard-open .fp-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+body.participant-dashboard-open .fp-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+body.participant-dashboard-open .fp-header strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1E293B;
+    margin: 0;
+}
+
+body.participant-dashboard-open .fp-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+body.participant-dashboard-open .fp-tag.is-pink { background: #FFF0F5; color: #F74281; }
+body.participant-dashboard-open .fp-tag.is-purple { background: #F5F3FF; color: #8B5CF6; }
+body.participant-dashboard-open .fp-tag.is-orange { background: #FFF7ED; color: #F59E0B; }
+body.participant-dashboard-open .fp-tag.is-green { background: #ECFDF5; color: #10B981; }
+
+body.participant-dashboard-open .fp-content p {
+    font-size: 14px;
+    color: #64748B;
+    margin: 0;
+    line-height: 1.5;
+}
+
+body.participant-dashboard-open .fp-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+body.participant-dashboard-open .fp-avatars {
+    display: flex;
+    align-items: center;
+}
+
+body.participant-dashboard-open .fp-avatars img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-left: -8px;
+    object-fit: cover;
+    background: #fff;
+}
+body.participant-dashboard-open .fp-avatars img:first-child {
+    margin-left: 0;
+}
+
+body.participant-dashboard-open .fp-avatar-more {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: #E2E8F0;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -8px;
+    z-index: 1;
+}
+
+body.participant-dashboard-open .fp-meta small {
+    font-size: 12px;
+    color: #94A3B8;
+}
+
+body.participant-dashboard-open .fp-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+    gap: 24px;
+}
+
+body.participant-dashboard-open .fp-status-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+body.participant-dashboard-open .fp-status {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-style: normal;
+}
+body.participant-dashboard-open .fp-status.is-green { background: #ECFDF5; color: #10B981; }
+body.participant-dashboard-open .fp-status.is-orange { background: #FFF7ED; color: #F79009; }
+body.participant-dashboard-open .fp-status.is-pink { background: #FFF0F5; color: #F74281; }
+body.participant-dashboard-open .fp-status.is-muted { background: #F8FAFC; color: #64748B; }
+
+body.participant-dashboard-open .fp-menu-btn {
+    background: transparent;
+    border: none;
+    color: #94A3B8;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+}
+body.participant-dashboard-open .fp-menu-btn:hover { color: #475569; }
+
+body.participant-dashboard-open .fp-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+body.participant-dashboard-open .fp-progress-bar {
+    flex: 1;
+    height: 6px;
+    background: #F1F5F9;
+    border-radius: 999px;
+    overflow: hidden;
+    display: block;
+}
+
+body.participant-dashboard-open .fp-progress-bar b {
+    height: 100%;
+    display: block;
+    border-radius: 999px;
+}
+body.participant-dashboard-open .fp-progress-bar b.is-pink { background: #F74281; }
+body.participant-dashboard-open .fp-progress-bar b.is-purple { background: #8B5CF6; }
+body.participant-dashboard-open .fp-progress-bar b.is-orange { background: #F59E0B; }
+body.participant-dashboard-open .fp-progress-bar b.is-green { background: #10B981; }
+
+body.participant-dashboard-open .fp-progress-row small {
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    min-width: 32px;
+    text-align: right;
 }
