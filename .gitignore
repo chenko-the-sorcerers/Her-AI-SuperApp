@@ -16,3 +16,4 @@ docs-faiz/
 __pycache__/
 /*.pdf
 *.txt
+test_*.js
