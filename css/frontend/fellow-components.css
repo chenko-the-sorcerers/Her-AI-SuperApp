@@ -1,0 +1,483 @@
+/* 
+  HerAI Fellowship - Reusable Components
+  Reference: docs/design-system.md
+*/
+
+:root {
+  /* Colors */
+  --c-primary: #F53F7C;
+  --c-primary-soft: #FFF0F5;
+  --c-primary-hover: #E61769;
+  --c-bg-base: #FCFCFD;
+  --c-surface: #FFFFFF;
+  --c-text-title: #1A0B2E;    /* Dark Navy/Black for Headings */
+  --c-text-body: #6B7A90;     /* Cool Gray for Body Text */
+  --c-border-soft: #F0F3F7;
+  
+  /* Semantic */
+  --c-success: #10B981;
+  --c-success-soft: #D1FAE5;
+  --c-warning: #F59E0B;
+  --c-info: #3B82F6;
+  --c-purple: #8B5CF6;
+  
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', sans-serif;
+  
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 40px;
+  
+  /* Radii */
+  --rad-pill: 999px;
+  --rad-lg: 32px;
+  --rad-md: 24px;
+  --rad-sm: 16px;
+  --rad-xs: 8px;
+  
+  /* Shadows */
+  --shadow-surface: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-card-hover: 0 8px 30px rgba(245, 63, 124, 0.06);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+.fellow-component {
+  font-family: var(--font-family);
+  box-sizing: border-box;
+}
+
+.fellow-component *, .fellow-component *::before, .fellow-component *::after {
+  box-sizing: inherit;
+}
+
+/* ==========================================================================
+   Typography Utilities
+   ========================================================================== */
+.text-h1 { font-size: 32px; font-weight: 800; color: var(--c-text-title); line-height: 1.2; }
+.text-h2 { font-size: 24px; font-weight: 800; color: var(--c-text-title); line-height: 1.3; }
+.text-h3 { font-size: 18px; font-weight: 700; color: var(--c-text-title); line-height: 1.4; }
+.text-body { font-size: 14px; font-weight: 500; color: var(--c-text-body); line-height: 1.6; }
+.text-caption { font-size: 12px; font-weight: 500; color: var(--c-text-body); }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  background: var(--c-primary);
+  color: var(--c-surface);
+  border: none;
+  border-radius: var(--rad-pill);
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--c-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245, 63, 124, 0.2);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  background: transparent;
+  color: var(--c-primary);
+  border: 1.5px solid var(--c-primary);
+  border-radius: var(--rad-pill);
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--c-primary-soft);
+}
+
+.btn-text {
+  color: var(--c-primary);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Avatars
+   ========================================================================== */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-lg {
+  width: 56px;
+  height: 56px;
+}
+
+.avatar-sm {
+  width: 32px;
+  height: 32px;
+}
+
+/* ==========================================================================
+   Badges
+   ========================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: var(--rad-pill);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-success { background: var(--c-success-soft); color: var(--c-success); }
+.badge-primary { background: var(--c-primary-soft); color: var(--c-primary); }
+.badge-warning { background: #FEF3C7; color: var(--c-warning); }
+.badge-outline { background: transparent; border: 1px solid var(--c-border-soft); color: var(--c-text-body); }
+
+/* Notification Bell */
+.notification-bell {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--rad-sm);
+  background: var(--c-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B0B0B0;
+  cursor: pointer;
+  box-shadow: var(--shadow-surface);
+  border: 1px solid var(--c-border-soft);
+}
+
+.notification-bell .badge-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--c-primary);
+  color: var(--c-surface);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--rad-pill);
+  border: 2px solid var(--c-bg-base);
+}
+
+/* ==========================================================================
+   Header & SearchBar & UserProfile
+   ========================================================================== */
+.fc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--c-bg-base);
+}
+
+.fc-searchbar {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.fc-searchbar i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #B0B0B0;
+}
+
+.fc-searchbar input {
+  width: 100%;
+  padding: 14px 20px 14px 50px;
+  border-radius: var(--rad-pill);
+  border: 1px solid var(--c-border-soft);
+  background: var(--c-surface);
+  font-family: inherit;
+  font-size: 14px;
+  box-shadow: var(--shadow-surface);
+  outline: none;
+  color: var(--c-text-title);
+  transition: border-color 0.2s;
+}
+
+.fc-searchbar input::placeholder {
+  color: #A0A0A0;
+}
+
+.fc-searchbar input:focus {
+  border-color: var(--c-primary);
+}
+
+.fc-userprofile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--c-surface);
+  padding: 6px 16px 6px 6px;
+  border-radius: var(--rad-pill);
+  box-shadow: var(--shadow-surface);
+  border: 1px solid var(--c-border-soft);
+  cursor: pointer;
+}
+
+.fc-userprofile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.fc-userprofile-info .name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-text-title);
+}
+
+.fc-userprofile-info .role {
+  font-size: 12px;
+  color: var(--c-text-body);
+}
+
+.fc-userprofile i {
+  font-size: 10px;
+  color: #A0A0A0;
+  margin-left: 6px;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+.fc-sidebar {
+  width: var(--sidebar-width, 280px);
+  background: var(--c-surface);
+  border-right: 1px solid var(--c-border-soft);
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.fc-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fc-nav-item {
+  margin-bottom: 8px;
+}
+
+.fc-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-radius: var(--rad-sm);
+  color: var(--c-text-body);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.fc-nav-link i {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.fc-nav-link:hover {
+  background: var(--c-primary-soft);
+  color: var(--c-primary);
+}
+
+.fc-nav-link.active {
+  background: var(--c-primary-soft);
+  color: var(--c-primary);
+  position: relative;
+}
+
+.fc-nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 24px;
+  background: var(--c-primary);
+  border-radius: 0 4px 4px 0;
+}
+
+.fc-nav-badge {
+  background: var(--c-primary);
+  color: var(--c-surface);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--rad-pill);
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   Cards Base
+   ========================================================================== */
+.fc-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--rad-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-surface);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Stat Card */
+.fc-stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.fc-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--rad-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+/* Module Card */
+.fc-module-card {
+  text-align: center;
+}
+
+.fc-module-card .fc-icon-box {
+  margin: 0 auto var(--space-sm);
+}
+
+/* Task Card */
+.fc-task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fc-task-card .task-info { flex: 1; }
+
+/* Project Card */
+.fc-project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.fc-project-cover {
+  width: 100%;
+  height: 120px;
+  border-radius: var(--rad-sm);
+  object-fit: cover;
+}
+
+/* Certificate Card */
+.fc-certificate-card {
+  text-align: center;
+  border: 2px dashed var(--c-border-soft);
+}
+
+/* Leaderboard Card / Item */
+.fc-lead-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 0;
+}
+
+.fc-lead-item.active {
+  background: var(--c-primary-soft);
+  padding: 12px 20px;
+  margin: 0 -20px;
+  border-radius: var(--rad-sm);
+}
+
+/* Event Card */
+.fc-event-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.fc-date-box {
+  width: 56px;
+  height: 56px;
+  background: var(--c-primary-soft);
+  border-radius: var(--rad-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-primary);
+}
+
+.fc-date-box .day { font-weight: 800; font-size: 18px; line-height: 1; }
+.fc-date-box .month { font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+
+/* Progress Card (Journey) */
+.fc-progress-bar {
+  height: 8px;
+  background: var(--c-border-soft);
+  border-radius: var(--rad-pill);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.fc-progress-fill {
+  height: 100%;
+  background: var(--c-primary);
+  border-radius: var(--rad-pill);
+}
+
+/* Community Card */
+.fc-comm-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 0;
+}
+
+.fc-comm-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}

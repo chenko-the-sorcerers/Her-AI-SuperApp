@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul - HerAI Fellowship</title>
+</head>
+<body>
+<section class="fellow-page" style="padding: 0;">
+    <link rel="stylesheet" href="/css/frontend/fellow-dashboard.css">
+    <link rel="stylesheet" href="/css/frontend/modul.css">
+    
+    <div class="dash-wrapper">
+        <!-- Sidebar Kiri -->
+        <aside class="dash-sidebar">
+            <div class="dash-logo-box">
+                <img src="/assets/referensi/logo-her-ai-transparent.png" alt="HerAI Fellowship Logo">
+            </div>
+            
+            <nav class="dash-menu">
+                <div class="dash-menu-item">
+                    <a href="#/fellow-dashboard" class="dash-menu-link">
+                        <i class="fas fa-house"></i> 
+                        <span>Beranda</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/chatroom" class="dash-menu-link">
+                        <i class="fas fa-comment-dots"></i> 
+                        <span>Chatroom</span>
+                        <span class="dash-badge">3</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#" class="dash-menu-link">
+                        <i class="fas fa-user-graduate"></i> 
+                        <span>Mentor</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/modul" class="dash-menu-link active">
+                        <i class="fas fa-book-open"></i> 
+                        <span>Modul</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/tugas" class="dash-menu-link">
+                        <i class="fas fa-clipboard-list"></i> 
+                        <span>Tugas</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/fellow-proyek" class="dash-menu-link">
+                        <i class="fas fa-diagram-project"></i> 
+                        <span>Proyek</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/events" class="dash-menu-link">
+                        <i class="fas fa-calendar-days"></i> 
+                        <span>Events</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/komunitas" class="dash-menu-link">
+                        <i class="fas fa-users"></i> 
+                        <span>Komunitas</span>
+                    </a>
+                </div>
+
+                <div class="dash-menu-label">LAINNYA</div>
+
+                <div class="dash-menu-item">
+                    <a href="#/sertifikat" class="dash-menu-link">
+                        <i class="fas fa-certificate"></i> 
+                        <span>Sertifikat</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/leaderboard" class="dash-menu-link">
+                        <i class="fas fa-trophy"></i> 
+                        <span>Leaderboard</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/faq" class="dash-menu-link">
+                        <i class="fas fa-question-circle"></i> 
+                        <span>FAQ & Bantuan</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#" class="dash-menu-link">
+                        <i class="fas fa-gear"></i> 
+                        <span>Pengaturan</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="dash-sidebar-spacer"></div>
+
+            <div class="dash-invite-card">
+                <div class="invite-ill">
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                </div>
+                <h4>Ajak Temanmu!</h4>
+                <p>Dapatkan poin tambahan untuk setiap teman yang bergabung.</p>
+                <button class="dash-invite-btn">Undang Sekarang</button>
+            </div>
+        </aside>
+
+        <main class="dash-main">
+            <!-- Header Atas -->
+            <header class="dash-topbar" style="border-bottom: none; padding-bottom: 0;">
+                <div class="dash-header-left">
+                    <h2 style="font-size: 24px; font-weight: 700; color: #1a0b2e; margin: 0;">Modul</h2>
+                    <p style="font-size: 14px; color: #6b7a90; margin: 4px 0 0 0;">Belajar terstruktur dengan 25+ modul yang dirancang untuk membawamu<br>menjadi AI Talent yang siap berdampak.</p>
+                </div>
+
+                <div class="dash-header-right">
+                    <div class="dash-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cari modul...">
+                    </div>
+                    
+                    <div class="dash-notif">
+                        <i class="far fa-bell"></i>
+                        <span class="dash-icon-badge">5</span>
+                    </div>
+
+                    <a href="#/profil" class="dash-profile-pill" style="text-decoration: none;">
+                        <img src="/assets/referensi/persona-her-ai.png" alt="Aisyah Putri" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                        <div class="dash-profile-name">
+                            <b>Aisyah Putri</b>
+                            <small>Fellow</small>
+                        </div>
+                        <i class="fas fa-chevron-down" style="color: #1a0b2e;"></i>
+                    </a>
+                </div>
+            </header>
+
+            <div class="dash-grid" style="grid-template-columns: 1fr 340px; gap: 30px; align-items: start; margin-top: 24px;">
+                <div class="dash-left-col">
+                    <!-- FASE 2: Tabs & Stats -->
+                    <div class="m-tabs-container">
+                        <nav class="m-tabs">
+                            <a href="#" class="m-tab active">Semua Modul</a>
+                            <a href="#" class="m-tab">Foundation Phase</a>
+                            <a href="#" class="m-tab">Specialization Track</a>
+                        </nav>
+                    </div>
+
+                    <div class="m-stats-grid">
+                        <div class="m-stat-card">
+                            <div class="m-stat-icon bg-pink-light"><i class="fas fa-book-open text-pink"></i></div>
+                            <div class="m-stat-info">
+                                <small>Total Modul</small>
+                                <b>27</b>
+                                <span>Modul</span>
+                            </div>
+                        </div>
+                        <div class="m-stat-card">
+                            <div class="m-stat-icon bg-green-light"><i class="fas fa-check-circle text-green"></i></div>
+                            <div class="m-stat-info">
+                                <small>Modul Selesai</small>
+                                <b>8</b>
+                                <span>Modul</span>
+                            </div>
+                        </div>
+                        <div class="m-stat-card">
+                            <div class="m-stat-icon bg-purple-light"><i class="fas fa-chart-line text-purple"></i></div>
+                            <div class="m-stat-info">
+                                <small>Progres Belajar</small>
+                                <b class="text-purple">32%</b>
+                                <span>Keseluruhan</span>
+                            </div>
+                        </div>
+                        <div class="m-stat-card">
+                            <div class="m-stat-icon bg-orange-light"><i class="far fa-clock text-orange"></i></div>
+                            <div class="m-stat-info">
+                                <small>Waktu Belajar</small>
+                                <b>48</b>
+                                <span>Jam</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3: Foundation Phase -->
+                    <div class="m-section">
+                        <div class="m-section-header">
+                            <h3 class="text-pink">Foundation Phase</h3>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="m-list">
+                            <!-- Item 1 -->
+                            <div class="m-list-item">
+                                <div class="m-item-num">1</div>
+                                <div class="m-item-icon bg-orange-light"><i class="fas fa-brain text-orange"></i></div>
+                                <div class="m-item-info">
+                                    <h4>AI & Data Literacy</h4>
+                                    <p>Pengenalan AI, data, dan penerapannya di dunia nyata.</p>
+                                </div>
+                                <div class="m-item-progress">
+                                    <div class="m-prog-bar"><div class="m-prog-fill" style="width: 100%;"></div></div>
+                                    <span>100%</span>
+                                </div>
+                                <button class="m-btn-selesai"><i class="fas fa-check"></i> Selesai</button>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="m-list-item">
+                                <div class="m-item-num">2</div>
+                                <div class="m-item-icon bg-blue-light"><i class="fab fa-python text-blue"></i></div>
+                                <div class="m-item-info">
+                                    <h4>Python for AI Beginner</h4>
+                                    <p>Dasar pemrograman Python untuk pemula.</p>
+                                </div>
+                                <div class="m-item-progress">
+                                    <div class="m-prog-bar"><div class="m-prog-fill" style="width: 100%;"></div></div>
+                                    <span>100%</span>
+                                </div>
+                                <button class="m-btn-selesai"><i class="fas fa-check"></i> Selesai</button>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="m-list-item">
+                                <div class="m-item-num">3</div>
+                                <div class="m-item-icon bg-green-light"><i class="fas fa-square-root-variable text-green"></i></div>
+                                <div class="m-item-info">
+                                    <h4>Math for AI</h4>
+                                    <p>Matematika dasar yang penting untuk AI.</p>
+                                </div>
+                                <div class="m-item-progress">
+                                    <div class="m-prog-bar"><div class="m-prog-fill" style="width: 60%;"></div></div>
+                                    <span>60%</span>
+                                </div>
+                                <button class="m-btn-lanjutkan">Lanjutkan</button>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="m-list-item">
+                                <div class="m-item-num">4</div>
+                                <div class="m-item-icon bg-purple-light"><i class="fas fa-database text-purple"></i></div>
+                                <div class="m-item-info">
+                                    <h4>Data Handling & SQL</h4>
+                                    <p>Mengelola data dan dasar-dasar SQL.</p>
+                                </div>
+                                <div class="m-item-progress">
+                                    <div class="m-prog-bar"><div class="m-prog-fill" style="width: 40%;"></div></div>
+                                    <span>40%</span>
+                                </div>
+                                <button class="m-btn-lanjutkan">Lanjutkan</button>
+                            </div>
+                            <!-- Item 5 -->
+                            <div class="m-list-item" style="border-bottom: none;">
+                                <div class="m-item-num">5</div>
+                                <div class="m-item-icon bg-pink-light"><i class="fas fa-chart-bar text-pink"></i></div>
+                                <div class="m-item-info">
+                                    <h4>Data Visualization</h4>
+                                    <p>Visualisasi data untuk insight yang lebih baik.</p>
+                                </div>
+                                <div class="m-item-progress">
+                                    <div class="m-prog-bar"><div class="m-prog-fill" style="width: 0%;"></div></div>
+                                    <span>0%</span>
+                                </div>
+                                <button class="m-btn-mulai">Mulai</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4: Specialization Track -->
+                    <div class="m-section" style="margin-top: 24px;">
+                        <div class="m-section-header">
+                            <h3 class="text-pink">Specialization Track</h3>
+                            <i class="fas fa-chevron-up"></i>
+                        </div>
+                        <div class="m-grid-spec">
+                            <!-- Card 1 -->
+                            <div class="m-spec-card">
+                                <div class="m-spec-icon bg-pink-light"><i class="fas fa-eye text-pink"></i></div>
+                                <h4>Computer Vision</h4>
+                                <p>Pelajari AI untuk memahami visual seperti gambar & video.</p>
+                                <div class="m-spec-footer">
+                                    <span>6 Modul</span>
+                                    <button class="m-btn-arrow"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="m-spec-card">
+                                <div class="m-spec-icon bg-purple-light"><i class="fas fa-message text-purple"></i></div>
+                                <h4>NLP & LLM</h4>
+                                <p>Pahami bahasa manusia dan bangun LLM.</p>
+                                <div class="m-spec-footer">
+                                    <span>6 Modul</span>
+                                    <button class="m-btn-arrow"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="m-spec-card">
+                                <div class="m-spec-icon bg-blue-light"><i class="fas fa-microphone text-blue"></i></div>
+                                <h4>Speech AI</h4>
+                                <p>Bangun aplikasi AI berbasis suara.</p>
+                                <div class="m-spec-footer">
+                                    <span>5 Modul</span>
+                                    <button class="m-btn-arrow"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="m-spec-card">
+                                <div class="m-spec-icon bg-green-light"><i class="fas fa-chart-line text-green"></i></div>
+                                <h4>Data Science</h4>
+                                <p>Analisis data untuk pengambilan keputusan.</p>
+                                <div class="m-spec-footer">
+                                    <span>5 Modul</span>
+                                    <button class="m-btn-arrow"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <!-- Card 5 -->
+                            <div class="m-spec-card">
+                                <div class="m-spec-icon bg-orange-light"><i class="fas fa-gears text-orange"></i></div>
+                                <h4>AI Engineering</h4>
+                                <p>Bangun dan deploy sistem AI yang scalable.</p>
+                                <div class="m-spec-footer">
+                                    <span>5 Modul</span>
+                                    <button class="m-btn-arrow"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <!-- Card 6 -->
+                            <div class="m-spec-card">
+                                <div class="m-spec-icon bg-pink-light"><i class="fas fa-wand-magic-sparkles text-pink"></i></div>
+                                <h4>Generative AI</h4>
+                                <p>Kreativitas tanpa batas dengan GenAI.</p>
+                                <div class="m-spec-footer">
+                                    <span>5 Modul</span>
+                                    <button class="m-btn-arrow"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-right-col">
+                    <!-- FASE 5: Widget Kanan -->
+                    <div class="m-widgets">
+                        <!-- Ringkasan Progres -->
+                        <div class="m-widget">
+                            <h4 class="m-widget-title">Ringkasan Progres</h4>
+                            <div class="m-donut-wrap">
+                                <div class="m-donut-chart">
+                                    <div class="m-donut-inner">
+                                        <b>32%</b>
+                                        <small>Progres Keseluruhan</small>
+                                    </div>
+                                </div>
+                                <div class="m-donut-legend">
+                                    <div class="m-legend-item">
+                                        <span class="m-dot bg-green"></span>
+                                        <div>
+                                            <b>Selesai</b>
+                                            <small>8 Modul</small>
+                                        </div>
+                                    </div>
+                                    <div class="m-legend-item">
+                                        <span class="m-dot bg-pink"></span>
+                                        <div>
+                                            <b>Sedang Berlangsung</b>
+                                            <small>7 Modul</small>
+                                        </div>
+                                    </div>
+                                    <div class="m-legend-item">
+                                        <span class="m-dot bg-gray"></span>
+                                        <div>
+                                            <b>Belum Dimulai</b>
+                                            <small>12 Modul</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Jadwal Belajar -->
+                        <div class="m-widget" style="text-align: center;">
+                            <div class="m-widget-header">
+                                <h4 class="m-widget-title" style="margin: 0;">Jadwal Belajar</h4>
+                                <a href="#" class="m-widget-link">Lihat Kalender</a>
+                            </div>
+                            <div class="m-jadwal-icon"><i class="fas fa-calendar-day text-pink"></i></div>
+                            <h4 style="margin: 0 0 4px; font-size: 13px; font-weight: 800; color: #1a0b2e;">Konsisten belajar adalah kunci!</h4>
+                            <p style="margin: 0 0 16px; font-size: 11px; color: #8f9bba; line-height: 1.4;">Kamu tidak memiliki jadwal hari ini.<br>Yuk atur jadwal belajarmu!</p>
+                            <button class="m-btn-pink-full">Atur Jadwal</button>
+                        </div>
+
+                        <!-- Sumber Belajar -->
+                        <div class="m-widget">
+                            <h4 class="m-widget-title">Sumber Belajar</h4>
+                            <div class="m-sumber-list">
+                                <a href="#" class="m-sumber-item">
+                                    <div class="m-sumber-icon bg-purple-light"><i class="fas fa-book-open text-purple"></i></div>
+                                    <span>Reading Materials</span>
+                                    <i class="fas fa-chevron-right m-sumber-arrow"></i>
+                                </a>
+                                <a href="#" class="m-sumber-item">
+                                    <div class="m-sumber-icon bg-pink-light"><i class="fas fa-file-lines text-pink"></i></div>
+                                    <span>Cheat Sheet</span>
+                                    <i class="fas fa-chevron-right m-sumber-arrow"></i>
+                                </a>
+                                <a href="#" class="m-sumber-item">
+                                    <div class="m-sumber-icon bg-blue-light"><i class="fas fa-circle-play text-blue"></i></div>
+                                    <span>Video Playlist</span>
+                                    <i class="fas fa-chevron-right m-sumber-arrow"></i>
+                                </a>
+                                <a href="#" class="m-sumber-item">
+                                    <div class="m-sumber-icon bg-green-light"><i class="fas fa-database text-green"></i></div>
+                                    <span>Practice Dataset</span>
+                                    <i class="fas fa-chevron-right m-sumber-arrow"></i>
+                                </a>
+                                <a href="#" class="m-sumber-item">
+                                    <div class="m-sumber-icon bg-orange-light"><i class="fas fa-box text-orange"></i></div>
+                                    <span>AI Tools Directory</span>
+                                    <i class="fas fa-chevron-right m-sumber-arrow"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Butuh Bantuan -->
+                        <div class="m-widget m-help-widget">
+                            <div class="m-help-content">
+                                <h4>Butuh Bantuan?</h4>
+                                <p>Tanya apapun ke HerAI Assistant tentang modul yang kamu pelajari.</p>
+                                <button class="m-btn-pink-full" style="width: auto; padding: 8px 16px; font-size: 11px;">Chat Sekarang</button>
+                            </div>
+                            <div class="m-help-robot">
+                                <div class="m-robot-circle"><i class="fas fa-robot"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+</body>
+</html>

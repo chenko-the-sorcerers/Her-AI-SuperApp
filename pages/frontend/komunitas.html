@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komunitas - HerAI Fellowship</title>
+</head>
+<body>
+<section class="fellow-page" style="padding: 0;">
+    <!-- Reuse CSS dari fellow-dashboard supaya layout dasarnya sama (sidebar & topbar) -->
+    <link rel="stylesheet" href="/css/frontend/fellow-dashboard.css">
+    <link rel="stylesheet" href="/css/frontend/komunitas.css">
+    
+    <div class="dash-wrapper">
+        <!-- FASE 1: Sidebar Kiri -->
+        <aside class="dash-sidebar">
+            <div class="dash-logo-box">
+                <img src="/assets/referensi/logo-her-ai-transparent.png" alt="HerAI Fellowship Logo">
+            </div>
+            
+            <nav class="dash-menu">
+                <div class="dash-menu-item">
+                    <a href="#/fellow-dashboard" class="dash-menu-link">
+                        <i class="fas fa-house"></i> 
+                        <span>Beranda</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/chatroom" class="dash-menu-link">
+                        <i class="fas fa-comment-dots"></i> 
+                        <span>Chatroom</span>
+                        <span class="dash-badge">3</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#" class="dash-menu-link">
+                        <i class="fas fa-user-graduate"></i> 
+                        <span>Mentor</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/modul" class="dash-menu-link">
+                        <i class="fas fa-book-open"></i> 
+                        <span>Modul</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/tugas" class="dash-menu-link">
+                        <i class="fas fa-clipboard-list"></i> 
+                        <span>Tugas</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/fellow-proyek" class="dash-menu-link">
+                        <i class="fas fa-diagram-project"></i> 
+                        <span>Proyek</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/events" class="dash-menu-link">
+                        <i class="fas fa-calendar-days"></i> 
+                        <span>Events</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/komunitas" class="dash-menu-link active">
+                        <i class="fas fa-users"></i> 
+                        <span>Komunitas</span>
+                    </a>
+                </div>
+
+                <div class="dash-menu-label">LAINNYA</div>
+
+                <div class="dash-menu-item">
+                    <a href="#/sertifikat" class="dash-menu-link">
+                        <i class="fas fa-certificate"></i> 
+                        <span>Sertifikat</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/leaderboard" class="dash-menu-link">
+                        <i class="fas fa-trophy"></i> 
+                        <span>Leaderboard</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/faq" class="dash-menu-link">
+                        <i class="fas fa-question-circle"></i> 
+                        <span>FAQ & Bantuan</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#" class="dash-menu-link">
+                        <i class="fas fa-gear"></i> 
+                        <span>Pengaturan</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="dash-sidebar-spacer"></div>
+
+            <div class="dash-invite-card">
+                <div class="invite-ill">
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                </div>
+                <h4>Ajak Temanmu!</h4>
+                <p>Dapatkan poin tambahan untuk setiap teman yang bergabung.</p>
+                <button class="dash-invite-btn">Undang Sekarang</button>
+            </div>
+        </aside>
+
+        <main class="dash-main">
+            <!-- FASE 2: Header Atas & Baris Tabs -->
+            <header class="dash-topbar" style="border-bottom: none; padding-bottom: 0;">
+                <div class="dash-header-left">
+                    <h2 style="font-size: 24px; font-weight: 700; color: #1a0b2e; margin: 0;">Komunitas</h2>
+                    <p style="font-size: 14px; color: #6b7a90; margin: 4px 0 0 0;">Berkolaborasi, berbagi ilmu, dan tumbuh bersama komunitas HerAI Fellowship.</p>
+                </div>
+
+                <div class="dash-header-right">
+                    <div class="dash-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cari komunitas, topik, atau anggota...">
+                    </div>
+                    
+                    <div class="dash-notif">
+                        <i class="far fa-bell"></i>
+                        <span class="dash-icon-badge">5</span>
+                    </div>
+
+                    <a href="#/profil" class="dash-profile-pill" style="text-decoration: none;">
+                        <img src="/assets/referensi/persona-her-ai.png" alt="Aisyah Putri">
+                        <div class="dash-profile-name">
+                            <b>Aisyah Putri</b>
+                            <small>Fellow</small>
+                        </div>
+                        <i class="fas fa-chevron-down" style="color: #1a0b2e;"></i>
+                    </a>
+                </div>
+            </header>
+
+            <!-- FASE 2: Tabs Komunitas -->
+            <div class="komunitas-tabs-container">
+                <div class="komunitas-tabs">
+                    <button class="k-tab-btn active">Untukmu</button>
+                    <button class="k-tab-btn">Grup</button>
+                    <button class="k-tab-btn">Diskusi</button>
+                    <button class="k-tab-btn">Mentor Corner</button>
+                    <button class="k-tab-btn">Pengumuman</button>
+                </div>
+            </div>
+
+            <!-- Layout 2 Kolom (Kiri untuk Konten Utama, Kanan untuk Widget) -->
+            <div class="dash-grid" style="grid-template-columns: 1fr 300px; gap: 30px; align-items: start; margin-top: 32px;">
+                <div class="dash-left-col">
+                    <!-- FASE 3: Hero Banner -->
+                    <div class="kom-hero">
+                        <div class="kom-hero-content">
+                            <h3>Bergabung dan tumbuh<br>bersama komunitas AI wanita<br>terbesar di Indonesia!</h3>
+                            <p>Temukan teman, mentor, dan peluang baru.</p>
+                            <button class="btn-buat-postingan">Buat Postingan <i class="fas fa-edit"></i></button>
+                        </div>
+                        <div class="kom-hero-ill">
+                            <div class="ill-circle ill-circle-1"><i class="fas fa-heart"></i></div>
+                            <div class="ill-circle ill-circle-2"><i class="fas fa-user-friends"></i></div>
+                            <img src="/assets/referensi/persona2.png" alt="Komunitas HerAI" class="ill-main">
+                        </div>
+                    </div>
+
+                    <!-- FASE 4: Grup Populer -->
+                    <div class="kom-section">
+                        <div class="kom-section-header">
+                            <h4>Grup Populer</h4>
+                            <a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="kom-groups-grid">
+                            <!-- Card 1 -->
+                            <div class="k-group-card">
+                                <div class="kg-icon bg-pink"><i class="fas fa-code"></i></div>
+                                <h5>AI & Machine Learning Indonesia</h5>
+                                <span class="kg-members">12.4K anggota</span>
+                                <p>Diskusi seputar AI, ML, dan perkembangannya di Indonesia.</p>
+                                <button class="btn-bergabung txt-pink">Bergabung</button>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="k-group-card">
+                                <div class="kg-icon bg-purple"><i class="fas fa-rocket"></i></div>
+                                <h5>Data Scientist Community</h5>
+                                <span class="kg-members">8.7K anggota</span>
+                                <p>Belajar dan berbagi seputar data science, analisis, dan visualisasi.</p>
+                                <button class="btn-bergabung txt-purple">Bergabung</button>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="k-group-card">
+                                <div class="kg-icon bg-orange"><i class="fas fa-brain"></i></div>
+                                <h5>NLP Enthusiast</h5>
+                                <span class="kg-members">6.1K anggota</span>
+                                <p>Membahas Natural Language Processing dan aplikasinya.</p>
+                                <button class="btn-bergabung txt-orange">Bergabung</button>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="k-group-card">
+                                <div class="kg-icon bg-green"><i class="fas fa-address-card"></i></div>
+                                <h5>Project Collaborators</h5>
+                                <span class="kg-members">5.3K anggota</span>
+                                <p>Cari partner untuk mengerjakan proyek AI bersama.</p>
+                                <button class="btn-bergabung txt-green">Bergabung</button>
+                            </div>
+                            <!-- Card 5 (Action) -->
+                            <div class="k-group-card k-group-action">
+                                <div class="kg-icon bg-light"><i class="fas fa-plus"></i></div>
+                                <h5>Lihat Semua Grup</h5>
+                                <span class="kg-members" style="opacity:0;">-</span>
+                                <p>Temukan lebih banyak grup yang sesuai denganmu.</p>
+                                <button class="btn-bergabung txt-pink">Jelajahi</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 5: Diskusi Terbaru -->
+                    <div class="kom-section">
+                        <div class="kom-section-header">
+                            <h4>Diskusi Terbaru</h4>
+                            <div class="kom-filters">
+                                <button class="k-filter-btn active">Terbaru</button>
+                                <button class="k-filter-btn">Populer</button>
+                                <button class="k-filter-btn">Mengikuti</button>
+                            </div>
+                        </div>
+                        <div class="kom-discussions">
+                            <!-- Diskusi 1 -->
+                            <div class="k-discussion-item">
+                                <img src="/assets/referensi/persona2.png" alt="Siti Aulia" class="kd-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                <div class="kd-content">
+                                    <div class="kd-title-row">
+                                        <a href="#" class="kd-title">Tips belajar Python untuk pemula di bidang AI</a>
+                                        <span class="kd-badge bg-pink">Pemula</span>
+                                    </div>
+                                    <div class="kd-meta">
+                                        <b class="text-pink">Siti Aulia</b> • 2 jam yang lalu
+                                    </div>
+                                </div>
+                                <div class="kd-actions">
+                                    <div class="kd-action"><i class="far fa-comment-dots"></i> 24</div>
+                                    <div class="kd-action"><i class="far fa-heart"></i> 128</div>
+                                    <button class="kd-btn-icon"><i class="far fa-bookmark"></i></button>
+                                    <button class="kd-btn-icon"><i class="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+                            
+                            <!-- Diskusi 2 -->
+                            <div class="k-discussion-item">
+                                <img src="/assets/referensi/11profil.png" alt="Dewi Lestari" class="kd-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                <div class="kd-content">
+                                    <div class="kd-title-row">
+                                        <a href="#" class="kd-title">Rekomendasi dataset untuk project NLP</a>
+                                        <span class="kd-badge bg-purple">NLP</span>
+                                    </div>
+                                    <div class="kd-meta">
+                                        <b class="text-dark">Dewi Lestari</b> • 5 jam yang lalu
+                                    </div>
+                                </div>
+                                <div class="kd-actions">
+                                    <div class="kd-action"><i class="far fa-comment-dots"></i> 18</div>
+                                    <div class="kd-action"><i class="far fa-heart"></i> 96</div>
+                                    <button class="kd-btn-icon"><i class="far fa-bookmark"></i></button>
+                                    <button class="kd-btn-icon"><i class="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Diskusi 3 -->
+                            <div class="k-discussion-item">
+                                <img src="/assets/referensi/persona-her-ai.png" alt="Rani Mentari" class="kd-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                <div class="kd-content">
+                                    <div class="kd-title-row">
+                                        <a href="#" class="kd-title">Pengalaman ikut AI Hackathon pertama kali 🚀</a>
+                                        <span class="kd-badge bg-green">Pengalaman</span>
+                                    </div>
+                                    <div class="kd-meta">
+                                        <b class="text-pink">Rani Mentari</b> • 1 hari yang lalu
+                                    </div>
+                                </div>
+                                <div class="kd-actions">
+                                    <div class="kd-action"><i class="far fa-comment-dots"></i> 32</div>
+                                    <div class="kd-action"><i class="far fa-heart"></i> 156</div>
+                                    <button class="kd-btn-icon"><i class="far fa-bookmark"></i></button>
+                                    <button class="kd-btn-icon"><i class="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Diskusi 4 -->
+                            <div class="k-discussion-item">
+                                <img src="/assets/referensi/persona2.png" alt="Aisyah Putri" class="kd-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                <div class="kd-content">
+                                    <div class="kd-title-row">
+                                        <a href="#" class="kd-title">Cara membangun portofolio AI yang menarik</a>
+                                        <span class="kd-badge bg-orange">Karier</span>
+                                    </div>
+                                    <div class="kd-meta">
+                                        <b class="text-pink">Aisyah Putri</b> • 2 hari yang lalu
+                                    </div>
+                                </div>
+                                <div class="kd-actions">
+                                    <div class="kd-action"><i class="far fa-comment-dots"></i> 27</div>
+                                    <div class="kd-action"><i class="far fa-heart"></i> 134</div>
+                                    <button class="kd-btn-icon"><i class="far fa-bookmark"></i></button>
+                                    <button class="kd-btn-icon"><i class="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 16px;">
+                            <a href="#" class="kd-lihat-semua">Lihat Semua Diskusi <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-right-col">
+                    <!-- FASE 6: Widget Sidebar Kanan -->
+                    <div class="kom-widgets">
+                        <!-- Widget 1: Top Kontributor -->
+                        <div class="kom-widget">
+                            <div class="widget-header">
+                                <h4>Top Kontributor</h4>
+                                <a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="top-contributors">
+                                <div class="tc-item">
+                                    <div class="tc-rank">1</div>
+                                    <img src="/assets/referensi/11profil.png" alt="Dewi Lestari" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'32\\' height=\\'32\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                    <div class="tc-info">
+                                        <b>Dewi Lestari</b>
+                                        <small>@dewilestari</small>
+                                    </div>
+                                    <div class="tc-score">
+                                        2,450 poin <i class="fas fa-medal" style="color: #f59e0b;"></i>
+                                    </div>
+                                </div>
+                                <div class="tc-item tc-highlight">
+                                    <div class="tc-rank">2</div>
+                                    <img src="/assets/referensi/persona2.png" alt="Aisyah Putri" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'32\\' height=\\'32\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                    <div class="tc-info">
+                                        <b class="text-pink">Aisyah Putri (Kamu)</b>
+                                        <small>@aisyahputri</small>
+                                    </div>
+                                    <div class="tc-score">
+                                        2,120 poin <i class="fas fa-medal" style="color: #9ca3af;"></i>
+                                    </div>
+                                </div>
+                                <div class="tc-item">
+                                    <div class="tc-rank">3</div>
+                                    <img src="/assets/referensi/persona-her-ai.png" alt="Siti Aulia" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'32\\' height=\\'32\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                    <div class="tc-info">
+                                        <b>Siti Aulia</b>
+                                        <small>@sitiaulia</small>
+                                    </div>
+                                    <div class="tc-score">
+                                        1,890 poin <i class="fas fa-medal" style="color: #d97706;"></i>
+                                    </div>
+                                </div>
+                                <div class="tc-item">
+                                    <div class="tc-rank">4</div>
+                                    <img src="/assets/referensi/11profil.png" alt="Rani Mentari" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'32\\' height=\\'32\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                    <div class="tc-info">
+                                        <b>Rani Mentari</b>
+                                        <small>@ranimentari</small>
+                                    </div>
+                                    <div class="tc-score">
+                                        1,450 poin <i class="fas fa-ellipsis-v" style="color: #cbd5e1; margin-left:4px;"></i>
+                                    </div>
+                                </div>
+                                <div class="tc-item">
+                                    <div class="tc-rank">5</div>
+                                    <img src="/assets/referensi/persona2.png" alt="Nadia Putri" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'32\\' height=\\'32\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                                    <div class="tc-info">
+                                        <b>Nadia Putri</b>
+                                        <small>@nadiaputri</small>
+                                    </div>
+                                    <div class="tc-score">
+                                        1,230 poin <i class="fas fa-ellipsis-v" style="color: #cbd5e1; margin-left:4px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Widget 2: Upcoming Events -->
+                        <div class="kom-widget">
+                            <div class="widget-header">
+                                <h4>Upcoming Community Events</h4>
+                                <a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="upcoming-events">
+                                <div class="ue-item">
+                                    <div class="ue-date">
+                                        <span class="ue-day">24</span>
+                                        <span class="ue-month">MEI</span>
+                                    </div>
+                                    <div class="ue-info">
+                                        <b>Community Study: LangChain untuk Pemula</b>
+                                        <small>Sab, 24 Mei 2024 • 10.00 WIB</small>
+                                    </div>
+                                    <button class="btn-gabung">Gabung</button>
+                                </div>
+                                <div class="ue-item">
+                                    <div class="ue-date">
+                                        <span class="ue-day">31</span>
+                                        <span class="ue-month">MEI</span>
+                                    </div>
+                                    <div class="ue-info">
+                                        <b>Data Talk: Tren AI 2024</b>
+                                        <small>Sab, 31 Mei 2024 • 13.00 WIB</small>
+                                    </div>
+                                    <button class="btn-gabung">Gabung</button>
+                                </div>
+                                <div class="ue-item">
+                                    <div class="ue-date">
+                                        <span class="ue-day">7</span>
+                                        <span class="ue-month">JUN</span>
+                                    </div>
+                                    <div class="ue-info">
+                                        <b>AI Project Showcase</b>
+                                        <small>Jum, 7 Juni 2024 • 19.00 WIB</small>
+                                    </div>
+                                    <button class="btn-gabung">Gabung</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Widget 3: Topik Populer -->
+                        <div class="kom-widget">
+                            <div class="widget-header">
+                                <h4>Topik Populer</h4>
+                                <a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="topik-grid">
+                                <div class="topik-item">
+                                    <div class="topik-tag"><span class="txt-purple">#</span> MachineLearning</div>
+                                    <small>1.2K posts</small>
+                                </div>
+                                <div class="topik-item">
+                                    <div class="topik-tag"><span class="txt-purple">#</span> NLP</div>
+                                    <small>654 posts</small>
+                                </div>
+                                <div class="topik-item">
+                                    <div class="topik-tag"><span class="txt-purple">#</span> Python</div>
+                                    <small>980 posts</small>
+                                </div>
+                                <div class="topik-item">
+                                    <div class="topik-tag"><span class="txt-purple">#</span> AIProject</div>
+                                    <small>543 posts</small>
+                                </div>
+                                <div class="topik-item">
+                                    <div class="topik-tag"><span class="txt-purple">#</span> DataScience</div>
+                                    <small>876 posts</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+</body>
+</html>

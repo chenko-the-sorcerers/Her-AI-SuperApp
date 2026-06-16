@@ -1,0 +1,595 @@
+/* css/frontend/profil.css */
+
+/* Topbar Header Icon Box */
+.ph-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff1f6;
+    color: #f53f7c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border: 1px solid #fecfef;
+}
+
+/* =========================================
+   1. HERO PROFIL (FASE 2)
+   ========================================= */
+.p-hero {
+    background: white;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.ph-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 160px;
+    /* Soft pink gradient with a wave-like look via radial/linear combined */
+    background: linear-gradient(135deg, #fff1f6 0%, #ffe4e6 50%, #fdf5f7 100%);
+    border-bottom: 1px solid #fecfef;
+    z-index: 1;
+}
+/* Optional CSS shape to make it wavy */
+.ph-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: white;
+    border-radius: 50% 50% 0 0;
+}
+
+.ph-content {
+    position: relative;
+    z-index: 2;
+    padding: 32px 32px 24px 32px;
+    display: flex;
+    gap: 32px;
+}
+
+.ph-avatar-box {
+    position: relative;
+    margin-top: 16px;
+}
+
+.ph-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.ph-cam-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f53f7c;
+    color: white;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(245,63,124,0.3);
+    transition: all 0.2s;
+}
+.ph-cam-btn:hover { background: #d82b63; }
+
+.ph-info {
+    flex: 1;
+    margin-top: 32px;
+}
+
+.phi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.phi-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.phi-name h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1a0b2e;
+    margin: 0;
+}
+.phi-badge {
+    background: #fff1f6;
+    color: #f53f7c;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid #fecfef;
+}
+
+.phi-edit-btn {
+    background: white;
+    border: 1px solid #fecfef;
+    color: #f53f7c;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+.phi-edit-btn:hover { background: #fff1f6; }
+
+.phi-tagline {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a0b2e;
+    margin-bottom: 16px;
+}
+
+.phi-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+.phi-meta span {
+    font-size: 12px;
+    color: #6b7a90;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.phi-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.ps-tag {
+    background: #fff1f6;
+    color: #f53f7c;
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.ps-add {
+    background: white;
+    border: 1px dashed #fecfef;
+    cursor: pointer;
+}
+.ps-add:hover { background: #fff1f6; }
+
+.ph-quote {
+    background: #fdfafc;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    margin: 0 32px 32px 32px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+}
+
+.ph-quote > i.fa-quote-left {
+    color: #f53f7c;
+    font-size: 16px;
+    margin-top: 2px;
+}
+
+.ph-quote p {
+    font-size: 13px;
+    color: #1a0b2e;
+    margin: 0;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.phq-deco {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fecfef;
+    font-size: 18px;
+}
+/* =========================================
+   2. TABS & GENERAL BOXES
+   ========================================= */
+.p-tabs-container {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 24px;
+}
+.p-tabs {
+    display: flex;
+    gap: 24px;
+}
+.pt-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7a90;
+    text-decoration: none;
+    padding-bottom: 12px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+.pt-link:hover { color: #f53f7c; }
+.pt-link.active {
+    color: #f53f7c;
+    border-bottom-color: #f53f7c;
+}
+
+.text-pink { color: #f53f7c !important; }
+.text-purple { color: #7c3aed !important; }
+
+/* Box Layouts */
+.p-box {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.pb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.pb-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.pb-title i { font-size: 18px; }
+.pb-title h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a0b2e;
+    margin: 0;
+}
+
+.pb-edit-btn {
+    background: white;
+    border: 1px solid #fecfef;
+    color: #f53f7c;
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.pb-edit-btn:hover { background: #fff1f6; }
+.pb-link { font-size: 12px; font-weight: 600; text-decoration: none; }
+.pb-link:hover { text-decoration: underline; }
+
+/* =========================================
+   3. TENTANG SAYA & STATISTIK
+   ========================================= */
+.p-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.pa-bio {
+    font-size: 12px;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.pa-details {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.pa-details li {
+    display: flex;
+    font-size: 12px;
+}
+.pad-icon {
+    width: 120px;
+    color: #6b7a90;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.pad-icon i { width: 16px; text-align: center; }
+.pad-val {
+    color: #1a0b2e;
+    font-weight: 500;
+}
+.pad-val a { text-decoration: none; }
+.pad-val a:hover { text-decoration: underline; }
+
+/* Statistik */
+.ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+.ps-card {
+    background: #fdfafc;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+.ps-card i {
+    font-size: 20px;
+    background: white;
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #f0f0f0;
+}
+.ps-card div { display: flex; flex-direction: column; }
+.ps-card small { font-size: 10px; color: #6b7a90; margin-bottom: 4px; }
+.ps-card b { font-size: 18px; font-weight: 800; color: #1a0b2e; line-height: 1; margin-bottom: 2px;}
+.ps-card span { font-size: 9px; color: #8f9bba; }
+
+.ps-track {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.pst-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #fff1f6;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #fecfef;
+}
+.pst-info { flex: 1; display: flex; flex-direction: column; }
+.pst-info small { font-size: 10px; color: #6b7a90; }
+.pst-info b { font-size: 12px; font-weight: 700; color: #1a0b2e; }
+.pst-btn {
+    background: white; border: 1px solid #fecfef; color: #f53f7c;
+    padding: 6px 12px; border-radius: 50px; font-size: 10px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+}
+.pst-btn:hover { background: #fff1f6; }
+
+/* =========================================
+   4. PENCAPAIAN (HEXAGONS)
+   ========================================= */
+.pac-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 24px;
+}
+
+.pac-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 90px;
+}
+
+.pac-hex-wrap {
+    width: 64px;
+    height: 74px;
+    /* CSS Polygon for Hexagon */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.pac-hex {
+    width: 52px;
+    height: 60px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    /* inner shadow effect using pseudo element not easy in clip path, we just use a solid color here */
+}
+
+/* Hexagon Colors (Outer ring and inner core) */
+.hex-pink { background: #fecfef; }
+.hex-pink .pac-hex { background: linear-gradient(135deg, #f53f7c, #e11d48); }
+
+.hex-orange { background: #fef3c7; }
+.hex-orange .pac-hex { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+
+.hex-red { background: #fee2e2; }
+.hex-red .pac-hex { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+.hex-pink-dark { background: #fce7f3; }
+.hex-pink-dark .pac-hex { background: linear-gradient(135deg, #ec4899, #be185d); }
+
+.hex-purple { background: #f3e8ff; }
+.hex-purple .pac-hex { background: linear-gradient(135deg, #a855f7, #7e22ce); }
+
+.hex-gray { background: #f3f4f6; }
+.hex-gray .pac-hex { background: white; color: #9ca3af; border: 2px solid #e5e7eb; }
+
+.pac-item b {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1a0b2e;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+.pac-item small {
+    font-size: 9px;
+    color: #8f9bba;
+    line-height: 1.2;
+}
+/* =========================================
+   5 & 6. WIDGETS KANAN
+   ========================================= */
+.p-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.p-widget {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.pw-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.pw-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a0b2e;
+    margin: 0;
+}
+
+/* Perjalanan Fellowship */
+.pw-journey {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.pwj-item {
+    display: flex;
+    gap: 12px;
+}
+.pwj-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 16px;
+    flex-shrink: 0;
+}
+.bg-pink { background: #f53f7c !important; }
+.bg-purple { background: #7c3aed !important; }
+.bg-orange { background: #f59e0b !important; }
+.bg-green { background: #10b981 !important; }
+.text-blue { color: #3b82f6 !important; }
+.text-orange { color: #f59e0b !important; }
+
+.pwj-info { flex: 1; }
+.pwj-top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 2px;
+}
+.pwj-top b { font-size: 12px; font-weight: 700; color: #1a0b2e; }
+.pwj-top span { font-size: 12px; font-weight: 700; color: #1a0b2e; }
+.pwj-info small { font-size: 10px; color: #8f9bba; display: block; margin-bottom: 8px; }
+
+.pwj-bar {
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.pwj-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Badge Saya */
+.pwb-list {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.pwb-item {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: white;
+}
+.border-pink { border: 2px solid #fecfef; }
+.border-purple { border: 2px solid #e9d5ff; }
+.border-orange { border: 2px solid #fde68a; }
+.border-pink-dark { border: 2px solid #fbcfe8; }
+
+.pwb-inner {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px;
+}
+.bg-pink-grad { background: linear-gradient(135deg, #f53f7c, #e11d48); }
+.bg-purple-grad { background: linear-gradient(135deg, #a855f7, #7e22ce); }
+.bg-orange-grad { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+.bg-pink-dark-grad { background: linear-gradient(135deg, #ec4899, #be185d); }
+
+.pwb-more {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #fff1f6;
+    color: #f53f7c;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+}
+
+/* Aktivitas Terbaru */
+.pwa-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.pwa-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+.pwa-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+.bg-pink-light { background: #ffeef4; }
+.bg-purple-light { background: #f5f3ff; }
+.bg-blue-light { background: #eff6ff; }
+.bg-orange-light { background: #fffbeb; }
+
+.pwa-info { display: flex; flex-direction: column; gap: 2px; }
+.pwa-info small { font-size: 11px; color: #6b7a90; }
+.pwa-info b { font-size: 13px; font-weight: 600; color: #1a0b2e; }
+.pwa-time { font-size: 10px; color: #8f9bba; margin-top: 4px; }

@@ -1,0 +1,542 @@
+/*
+  HerAI Fellowship — Modul Page CSS
+  Isolated to .modul-page only.
+  Inherits base from fellow-dashboard.css (sidebar, topbar, buttons, etc.)
+  Reference: assets/referensi/4modul.png
+*/
+
+/* ── PAGE LAYOUT ────────────────────────────────── */
+.modul-page.fellow-page {
+  align-items: stretch;
+}
+
+.modul-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Two-column layout: main + right sidebar */
+.modul-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.modul-main {
+  padding: 28px 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modul-right {
+  background: #FAFBFC;
+  border-left: 1px solid #F3F4F6;
+  padding: 24px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── FILTER TABS ───────────────────────────────── */
+.modul-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #F3F4F6;
+  padding-bottom: 0;
+}
+
+.modul-tab {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #8A94A6;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.modul-tab:hover { color: #F74281; }
+.modul-tab.active {
+  color: #F74281;
+  border-bottom: 2px solid #F74281;
+}
+
+/* ── STATS CARDS GRID ───────────────────────────── */
+.modul-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.modul-stat-card {
+  background: #fff;
+  border: 1px solid #F3F4F6;
+  border-radius: 20px;
+  padding: 20px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.stat-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.stat-icon-purple { background: #EDE9FE; color: #7C3AED; }
+.stat-icon-green  { background: #D1FAE5; color: #059669; }
+.stat-icon-pink   { background: #FFF0F5; color: #F74281; }
+.stat-icon-orange { background: #FEF3C7; color: #D97706; }
+
+.stat-label {
+  font-size: 11px;
+  color: #8A94A6;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1F172E;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.stat-value-pink { color: #F74281; }
+.stat-sub {
+  font-size: 11px;
+  color: #8A94A6;
+  font-weight: 600;
+}
+
+/* ── MODULE SECTION ─────────────────────────────── */
+.modul-section {
+  background: #fff;
+  border: 1px solid #F3F4F6;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.modul-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  cursor: pointer;
+  border-bottom: 1px solid #F3F4F6;
+}
+.modul-section-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #F74281;
+}
+.modul-section-header i {
+  color: #8A94A6;
+  font-size: 13px;
+  transition: transform 0.2s;
+}
+.modul-section-header.collapsed i {
+  transform: rotate(180deg);
+}
+
+/* Module Row List */
+.modul-row-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.modul-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #F9FAFB;
+  transition: background 0.15s;
+}
+.modul-row:last-child { border-bottom: none; }
+.modul-row:hover { background: #FAFBFC; }
+
+/* Number badge */
+.modul-num {
+  width: 28px; height: 28px;
+  background: #F3F4F6;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #8A94A6;
+  flex-shrink: 0;
+}
+
+/* Module icon */
+.modul-row-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* Module info */
+.modul-row-info {
+  flex: 1;
+  min-width: 0;
+}
+.modul-row-info h4 {
+  margin: 0 0 3px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #1F172E;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.modul-row-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #8A94A6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Progress area */
+.modul-row-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 180px;
+  flex-shrink: 0;
+}
+.modul-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: #F3F4F6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.modul-progress-fill {
+  height: 100%;
+  background: #F74281;
+  border-radius: 999px;
+}
+.modul-pct {
+  font-size: 12px;
+  font-weight: 700;
+  color: #8A94A6;
+  width: 32px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Action Buttons */
+.modul-btn-done {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1.5px solid #22C55E;
+  color: #22C55E;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: default;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.modul-btn-continue {
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1.5px solid #F74281;
+  color: #F74281;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.modul-btn-continue:hover { background: #FFF0F5; }
+.modul-btn-start {
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1.5px solid #F74281;
+  color: #F74281;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.modul-btn-start:hover { background: #FFF0F5; }
+
+/* ── SPECIALIZATION CARD GRID ────────────────────── */
+.spec-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.spec-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 24px;
+  border-right: 1px solid #F3F4F6;
+  border-bottom: 1px solid #F3F4F6;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.spec-card:hover { background: #FAFBFC; }
+
+/* Remove right border on last column */
+.spec-card:nth-child(3n) { border-right: none; }
+/* Remove bottom border on last row */
+.spec-card:nth-last-child(-n+3) { border-bottom: none; }
+
+.spec-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.spec-info {
+  flex: 1;
+  min-width: 0;
+}
+.spec-info h4 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1F172E;
+}
+.spec-info p {
+  margin: 0 0 10px;
+  font-size: 11px;
+  color: #8A94A6;
+  line-height: 1.4;
+}
+.spec-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.spec-footer span {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8A94A6;
+}
+.spec-arrow {
+  width: 28px; height: 28px;
+  background: #F74281;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+  transition: box-shadow 0.15s;
+}
+.spec-arrow:hover { box-shadow: 0 4px 10px rgba(247,66,129,0.3); }
+
+/* ── RIGHT PANEL ─────────────────────────────────── */
+.modul-right-card {
+  background: #fff;
+  border: 1px solid #F3F4F6;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.modul-right-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.modul-right-title {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #1F172E;
+}
+
+/* Progress Ring */
+.ring-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ring-svg {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+}
+
+.ring-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ring-legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.ring-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.ring-legend-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1F172E;
+  line-height: 1.2;
+}
+.ring-legend-sub {
+  font-size: 10px;
+  color: #8A94A6;
+}
+
+/* Jadwal Belajar */
+.jadwal-card .modul-right-title {
+  margin-bottom: 0;
+}
+.jadwal-illus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0 12px;
+}
+.jadwal-icon {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, #FFF0F5, #FFD6E8);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  color: #F74281;
+}
+.jadwal-title {
+  margin: 0 0 6px;
+  font-size: 13px;
+  text-align: center;
+  color: #1F172E;
+}
+.jadwal-desc {
+  margin: 0 0 14px;
+  font-size: 11px;
+  color: #8A94A6;
+  text-align: center;
+  line-height: 1.5;
+}
+.jadwal-card .btn-solid-pink {
+  width: 100%;
+  padding: 10px;
+  font-size: 12px;
+}
+
+/* Sumber Belajar */
+.sumber-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.sumber-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid #F3F4F6;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1F172E;
+  transition: color 0.15s;
+}
+.sumber-item:last-child { border-bottom: none; }
+.sumber-item:hover { color: #F74281; }
+.sumber-icon {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.sumber-item span { flex: 1; }
+.sumber-arrow {
+  color: #D1D5DB;
+  font-size: 11px;
+}
+.sumber-item:hover .sumber-arrow { color: #F74281; }
+
+/* HerAI Assistant Card */
+.assistant-card {
+  background: linear-gradient(135deg, #FFF5F8 0%, #FFFFFF 100%);
+  border-color: #FFE4ED;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 20px 16px 20px 20px;
+  overflow: hidden;
+}
+.assistant-content {
+  flex: 1;
+  min-width: 0;
+}
+.assistant-content h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #1F172E;
+}
+.assistant-content p {
+  margin: 0 0 14px;
+  font-size: 11px;
+  color: #8A94A6;
+  line-height: 1.4;
+}
+.assistant-content .btn-solid-pink {
+  padding: 8px 16px;
+  font-size: 11px;
+  width: auto;
+}
+.assistant-bot {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.bot-avatar-circle {
+  width: 52px; height: 52px;
+  background: #F74281;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  color: #fff;
+}

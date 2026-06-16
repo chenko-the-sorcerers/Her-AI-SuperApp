@@ -1,0 +1,397 @@
+/* css/frontend/fellow-proyek.css */
+
+/* =========================================
+   1. TABS & ACTION BUTTON (FASE 1)
+   ========================================= */
+.p-tabs-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 24px;
+}
+.p-tabs {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+}
+.p-tab {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7a90;
+    text-decoration: none;
+    padding-bottom: 16px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+    white-space: nowrap;
+}
+.p-tab:hover { color: #f53f7c; }
+.p-tab.active {
+    color: #f53f7c;
+    border-bottom-color: #f53f7c;
+}
+
+.p-btn-new {
+    background: #f53f7c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.p-btn-new:hover { background: #e02a63; }
+
+/* =========================================
+   2. KARTU STATISTIK (FASE 2)
+   ========================================= */
+.p-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.p-stat-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.p-stat-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+.p-stat-info {
+    display: flex;
+    flex-direction: column;
+}
+.p-stat-info small { font-size: 11px; font-weight: 600; color: #6b7a90; margin-bottom: 4px; line-height: 1;}
+.p-stat-info b { font-size: 20px; font-weight: 800; color: #1a0b2e; line-height: 1; margin-bottom: 4px;}
+.p-stat-info span { font-size: 10px; font-weight: 600; color: #8f9bba; line-height: 1;}
+
+.bg-pink-light { background: #ffeef4; }
+.bg-purple-light { background: #f5f3ff; }
+.bg-orange-light { background: #fffbeb; }
+.bg-green-light { background: #ecfdf5; }
+
+.text-pink { color: #f53f7c !important; }
+.text-purple { color: #7c3aed !important; }
+.text-orange { color: #f59e0b !important; }
+.text-green { color: #10b981 !important; }
+
+/* =========================================
+   3. DAFTAR PROYEK (FASE 3)
+   ========================================= */
+.p-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.p-list-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+.p-list-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Filters */
+.p-select-wrap {
+    position: relative;
+    display: flex; align-items: center;
+}
+.p-select-wrap i {
+    position: absolute;
+    right: 14px;
+    color: #8f9bba;
+    font-size: 12px;
+    pointer-events: none;
+}
+.p-select {
+    appearance: none;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 32px 8px 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7a90;
+    cursor: pointer;
+}
+.p-select:focus { outline: none; border-color: #f53f7c; }
+
+.p-btn-icon {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    color: #8f9bba;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.p-btn-icon:hover { color: #f53f7c; border-color: #f53f7c; }
+
+/* Project List */
+.p-project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.p-project-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    transition: box-shadow 0.2s;
+}
+.p-project-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+
+.p-proj-icon {
+    width: 72px; height: 72px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.p-proj-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.p-proj-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.p-proj-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+.p-proj-tag {
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+.p-status-badge {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+.p-status-green { color: #10b981; }
+.p-status-orange { color: #f59e0b; }
+.p-status-purple { color: #7c3aed; }
+.p-status-gray { color: #8f9bba; }
+
+.p-btn-dots {
+    background: none; border: none;
+    color: #8f9bba; font-size: 16px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+.p-btn-dots:hover { color: #1a0b2e; }
+
+.p-proj-desc {
+    margin: 0 0 16px;
+    font-size: 12px;
+    color: #6b7a90;
+    line-height: 1.5;
+    max-width: 80%;
+}
+
+.p-proj-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+.p-proj-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Avatar Group */
+.p-avatar-group {
+    display: flex;
+    align-items: center;
+}
+.p-avatar-group img, .p-avatar-more {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+    margin-left: -8px;
+}
+.p-avatar-group img:first-child { margin-left: 0; }
+.p-avatar-more {
+    background: #f5f3ff;
+    color: #7c3aed;
+    font-size: 10px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1;
+}
+
+.p-proj-time {
+    font-size: 11px;
+    font-weight: 600;
+    color: #8f9bba;
+}
+
+.p-proj-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.p-proj-progress span {
+    font-size: 12px;
+    font-weight: 800;
+    color: #6b7a90;
+    min-width: 36px;
+    text-align: right;
+}
+.p-prog-bar {
+    width: 100px; height: 6px;
+    background: #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.p-prog-fill {
+    height: 100%;
+    border-radius: 6px;
+}
+.bg-pink { background: #f53f7c !important; }
+
+/* =========================================
+   4. WIDGETS KANAN (FASE 4)
+   ========================================= */
+.p-widget {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+.p-widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.p-widget-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+.p-widget-link {
+    font-size: 11px;
+    font-weight: 700;
+    color: #f53f7c;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+.p-widget-link:hover { opacity: 0.8; }
+.p-widget-link i { font-size: 10px; margin-left: 4px; }
+
+/* Aktivitas Terbaru */
+.p-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.p-act-item {
+    display: flex;
+    gap: 12px;
+}
+.p-act-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+.p-act-info {
+    display: flex; flex-direction: column; gap: 4px;
+}
+.p-act-info h4 {
+    margin: 0; font-size: 11px; font-weight: 800; color: #1a0b2e;
+}
+.p-act-info p {
+    margin: 0; font-size: 11px; color: #6b7a90; line-height: 1.4;
+}
+.p-act-info small {
+    font-size: 10px; font-weight: 600; color: #8f9bba;
+}
+
+/* Promo Buat Proyek */
+.p-promo-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.p-promo-ill {
+    flex-shrink: 0;
+}
+.p-folder-icon {
+    width: 64px; height: 64px;
+    background: #ffeef4;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: #f53f7c;
+}
+.p-promo-text {
+    display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+}
+.p-promo-text p {
+    margin: 0; font-size: 11px; color: #6b7a90; line-height: 1.5; font-weight: 500;
+}
+
+/* Tips Proyek */
+.p-tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.p-tip-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+.p-tip-icon {
+    width: 28px; height: 28px;
+    background: #f5f3ff;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #7c3aed; font-size: 12px;
+    flex-shrink: 0;
+}
+.p-tip-item p {
+    margin: 0; font-size: 11px; color: #6b7a90; line-height: 1.5; font-weight: 500;
+}

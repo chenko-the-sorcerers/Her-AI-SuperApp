@@ -1,0 +1,421 @@
+/* css/frontend/modul.css */
+
+/* =========================================
+   2. TABS & STATS (FASE 2)
+   ========================================= */
+.m-tabs-container {
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 24px;
+}
+.m-tabs {
+    display: flex;
+    gap: 32px;
+}
+.m-tab {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7a90;
+    text-decoration: none;
+    padding-bottom: 16px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+}
+.m-tab:hover { color: #f53f7c; }
+.m-tab.active {
+    color: #f53f7c;
+    border-bottom-color: #f53f7c;
+}
+
+.m-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.m-stat-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.m-stat-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+.bg-pink-light { background: #ffeef4; }
+.bg-orange-light { background: #fffbeb; }
+.bg-purple-light { background: #f5f3ff; }
+.bg-green-light { background: #ecfdf5; }
+.text-pink { color: #f53f7c !important; }
+.text-orange { color: #f59e0b !important; }
+.text-purple { color: #7c3aed !important; }
+.text-green { color: #10b981 !important; }
+.bg-blue-light { background: #eff6ff; }
+.text-blue { color: #3b82f6 !important; }
+
+.m-stat-info {
+    display: flex; flex-direction: column;
+}
+.m-stat-info small { font-size: 11px; color: #6b7a90; margin-bottom: 4px; font-weight: 600; }
+.m-stat-info b { font-size: 24px; font-weight: 800; line-height: 1; color: #1a0b2e; margin-bottom: 4px;}
+.m-stat-info span { font-size: 11px; color: #8f9bba; font-weight: 500;}
+
+/* =========================================
+   3. FOUNDATION PHASE (FASE 3)
+   ========================================= */
+.m-section {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.m-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+.m-section-header h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+}
+.m-section-header i {
+    color: #8f9bba;
+    font-size: 13px;
+}
+
+.m-list {
+    display: flex;
+    flex-direction: column;
+}
+.m-list-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f9fafb;
+    transition: background 0.2s;
+}
+.m-list-item:hover {
+    background: #fdfafc;
+}
+
+.m-item-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #f9fafb;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: #8f9bba;
+    flex-shrink: 0;
+}
+.m-item-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+.m-item-info {
+    flex: 1;
+}
+.m-item-info h4 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+.m-item-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #8f9bba;
+}
+
+.m-item-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 160px;
+    flex-shrink: 0;
+}
+.m-prog-bar {
+    flex: 1;
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.m-prog-fill {
+    height: 100%;
+    background: #f53f7c;
+    border-radius: 10px;
+}
+.m-item-progress span {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6b7a90;
+    width: 36px;
+    text-align: right;
+}
+
+.m-btn-selesai {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1.5px solid #10b981;
+    color: #10b981;
+    font-size: 12px; font-weight: 700;
+    cursor: default;
+    width: 100px;
+    justify-content: center;
+}
+.m-btn-lanjutkan {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1.5px solid #f53f7c;
+    color: #f53f7c;
+    font-size: 12px; font-weight: 700;
+    cursor: pointer;
+    width: 100px;
+    transition: all 0.2s;
+}
+.m-btn-lanjutkan:hover { background: #fff1f6; }
+.m-btn-mulai {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1.5px solid #f53f7c;
+    color: #f53f7c;
+    font-size: 12px; font-weight: 700;
+    cursor: pointer;
+    width: 100px;
+    transition: all 0.2s;
+}
+.m-btn-mulai:hover { background: #fff1f6; }
+
+/* =========================================
+   4. SPECIALIZATION TRACK (FASE 4)
+   ========================================= */
+.m-grid-spec {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #f0f0f0;
+    gap: 1px;
+}
+.m-spec-card {
+    background: white;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+.m-spec-card:hover {
+    background: #fdfafc;
+}
+.m-spec-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+.m-spec-card h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+.m-spec-card p {
+    margin: 0 0 16px;
+    font-size: 12px;
+    color: #8f9bba;
+    line-height: 1.4;
+    flex: 1;
+}
+.m-spec-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.m-spec-footer span {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6b7a90;
+}
+.m-btn-arrow {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #f53f7c;
+    color: white;
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+/* =========================================
+   5. WIDGETS KANAN (FASE 5)
+   ========================================= */
+.m-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.m-widget {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 24px;
+}
+.m-widget-title {
+    margin: 0 0 20px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+.m-widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.m-widget-link {
+    font-size: 11px;
+    font-weight: 700;
+    color: #f53f7c;
+    text-decoration: none;
+}
+.m-widget-link:hover { text-decoration: underline; }
+
+/* Donut Chart */
+.m-donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.m-donut-chart {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#10b981 0% 30%, #f53f7c 30% 55%, #f0f0f0 55% 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.m-donut-inner {
+    width: 80px; height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.m-donut-inner b { font-size: 18px; font-weight: 800; color: #1a0b2e; line-height: 1; margin-bottom: 2px;}
+.m-donut-inner small { font-size: 8px; color: #8f9bba; text-align: center; line-height: 1.1; max-width: 50px;}
+
+.m-donut-legend {
+    display: flex; flex-direction: column; gap: 12px;
+}
+.m-legend-item {
+    display: flex; gap: 8px; align-items: flex-start;
+}
+.m-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 3px; flex-shrink: 0; }
+.bg-green { background: #10b981; }
+.bg-pink { background: #f53f7c; }
+.bg-gray { background: #f0f0f0; }
+
+.m-legend-item div { display: flex; flex-direction: column; }
+.m-legend-item b { font-size: 11px; font-weight: 700; color: #1a0b2e; }
+.m-legend-item small { font-size: 10px; color: #8f9bba; }
+
+/* Jadwal Belajar */
+.m-jadwal-icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #ffeef4;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+.m-btn-pink-full {
+    width: 100%;
+    background: #f53f7c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.m-btn-pink-full:hover { background: #d82b63; }
+
+/* Sumber Belajar */
+.m-sumber-list {
+    display: flex; flex-direction: column;
+}
+.m-sumber-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.m-sumber-item:last-child { border-bottom: none; padding-bottom: 0; }
+.m-sumber-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+}
+.m-sumber-item span {
+    flex: 1;
+    font-size: 12px; font-weight: 700; color: #1a0b2e;
+    transition: color 0.2s;
+}
+.m-sumber-arrow {
+    color: #d1d5db;
+    font-size: 10px;
+    transition: color 0.2s;
+}
+.m-sumber-item:hover span { color: #f53f7c; }
+.m-sumber-item:hover .m-sumber-arrow { color: #f53f7c; }
+
+/* Butuh Bantuan */
+.m-help-widget {
+    background: linear-gradient(135deg, #fff1f6, #ffffff);
+    border: 1px solid #ffeef4;
+    display: flex; align-items: center; gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+.m-help-content {
+    flex: 1;
+}
+.m-help-content h4 { margin: 0 0 6px; font-size: 14px; font-weight: 800; color: #1a0b2e; }
+.m-help-content p { margin: 0 0 16px; font-size: 11px; color: #6b7a90; line-height: 1.4; }
+.m-help-robot {
+    flex-shrink: 0;
+    align-self: flex-end;
+    margin-bottom: -24px;
+}
+.m-robot-circle {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #f53f7c;
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+}

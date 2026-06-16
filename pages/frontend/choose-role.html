@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Peran Kamu - HerAI Fellowship</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/frontend/auth.css">
+</head>
+<body>
+    <div class="auth-page-wrapper">
+        <div class="role-card-wrapper">
+            <div class="role-top-nav">
+                <a href="#/home"><i class="fas fa-arrow-left"></i> Kembali</a>
+                <img src="/assets/referensi/logo-her-ai-transparent.png" alt="HerAI Logo">
+            </div>
+
+            <div class="role-header">
+                <div class="role-icon-wrap"><i class="fas fa-user-friends"></i></div>
+                <h1>Pilih Peran Kamu</h1>
+                <p>Pilih peran yang paling sesuai dengan kamu.<br>Kamu bisa mengubahnya nanti di pengaturan.</p>
+            </div>
+
+            <div class="role-list">
+                <!-- Role 1 -->
+                <div class="role-item active" onclick="selectRole(this)">
+                    <img src="/assets/referensi/persona-her-ai.png" alt="Fellow" class="role-item-img">
+                    <div class="role-item-text">
+                        <h3>Fellow / Peserta</h3>
+                        <p>Saya ingin belajar AI, mengikuti modul, berdiskusi, dan mengerjakan proyek.</p>
+                    </div>
+                    <div class="role-radio"><div class="role-radio-inner"></div></div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="role-item" onclick="selectRole(this)">
+                    <img src="/assets/referensi/persona2.png" alt="Mentor" class="role-item-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                    <div class="role-item-text">
+                        <h3>Mentor</h3>
+                        <p>Saya ingin membimbing, berbagi ilmu, dan mendukung para fellow.</p>
+                    </div>
+                    <div class="role-radio"><div class="role-radio-inner"></div></div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="role-item" onclick="selectRole(this)">
+                    <img src="/assets/referensi/persona-her-ai.png" alt="Volunteer" class="role-item-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                    <div class="role-item-text">
+                        <h3>Volunteer</h3>
+                        <p>Saya ingin berkontribusi dalam kegiatan dan program HerAI Fellowship.</p>
+                    </div>
+                    <div class="role-radio"><div class="role-radio-inner"></div></div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="role-item" onclick="selectRole(this)">
+                    <img src="/assets/referensi/persona2.png" alt="Partner" class="role-item-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                    <div class="role-item-text">
+                        <h3>Partner / Sponsor</h3>
+                        <p>Saya mewakili organisasi yang ingin berkolaborasi dengan HerAI Fellowship.</p>
+                    </div>
+                    <div class="role-radio"><div class="role-radio-inner"></div></div>
+                </div>
+            </div>
+
+            <button class="auth-btn-primary" style="margin-top: 0;" onclick="window.location.hash='#/profile'">Lanjutkan</button>
+        </div>
+    </div>
+
+    <script>
+        function selectRole(element) {
+            // Remove active class from all items
+            document.querySelectorAll('.role-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            // Add active class to clicked item
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>

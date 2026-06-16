@@ -1,0 +1,404 @@
+/* css/frontend/tugas.css */
+
+/* =========================================
+   2. TABS, FILTER & DONUT CHART (FASE 2)
+   ========================================= */
+
+/* Tabs */
+.t-tabs-container {
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 24px;
+}
+.t-tabs {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+}
+.t-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7a90;
+    text-decoration: none;
+    padding-bottom: 16px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+    white-space: nowrap;
+}
+.t-tab:hover { color: #f53f7c; }
+.t-tab.active {
+    color: #f53f7c;
+    border-bottom-color: #f53f7c;
+}
+.t-badge {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 800;
+    display: inline-flex; align-items: center; justify-content: center;
+}
+.t-badge-pink {
+    background: #ffeef4;
+    color: #f53f7c;
+    border: 1px solid #f53f7c;
+}
+
+.bg-pink { background: #f53f7c !important; }
+.bg-purple { background: #7c3aed !important; }
+.bg-green { background: #10b981 !important; }
+.bg-orange { background: #f59e0b !important; }
+.text-white { color: white !important; }
+
+/* Filters */
+.t-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.t-select-wrap {
+    position: relative;
+    display: flex; align-items: center;
+}
+.t-select-wrap i {
+    position: absolute;
+    right: 14px;
+    color: #8f9bba;
+    font-size: 12px;
+    pointer-events: none;
+}
+.t-select {
+    appearance: none;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 36px 10px 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a0b2e;
+    cursor: pointer;
+    min-width: 140px;
+}
+.t-select:focus { outline: none; border-color: #f53f7c; }
+
+/* Widgets General */
+.t-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.t-widget {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 24px;
+}
+.t-widget-title {
+    margin: 0 0 20px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+
+/* Donut Chart (Ringkasan Tugas) */
+.t-donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.t-donut-chart {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    /* 8 pink, 2 purple, 2 green. 12 total.
+       pink: 8/12 = 66.6%
+       purple: 2/12 = 16.6% -> 66.6 to 83.3%
+       green: 2/12 = 16.6% -> 83.3 to 100%
+    */
+    background: conic-gradient(#f53f7c 0% 66.6%, #7c3aed 66.6% 83.3%, #10b981 83.3% 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.t-donut-inner {
+    width: 80px; height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.t-donut-inner b { font-size: 20px; font-weight: 800; color: #f53f7c; line-height: 1; margin-bottom: 2px;}
+.t-donut-inner small { font-size: 8px; color: #8f9bba; text-align: center; line-height: 1.1; max-width: 50px; font-weight: 600;}
+
+.t-donut-legend {
+    display: flex; flex-direction: column; gap: 12px; flex: 1;
+}
+.t-legend-item {
+    display: flex; justify-content: space-between; align-items: center;
+}
+.t-legend-left {
+    display: flex; gap: 8px; align-items: center;
+}
+.t-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.t-legend-left span:last-child { font-size: 11px; font-weight: 600; color: #1a0b2e; }
+.t-legend-item b { font-size: 12px; font-weight: 700; color: #1a0b2e; }
+
+/* =========================================
+   3. DAFTAR TUGAS (FASE 3)
+   ========================================= */
+.t-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.t-task-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    transition: box-shadow 0.2s;
+}
+.t-task-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.t-task-icon {
+    width: 64px; height: 64px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+.bg-pink-light { background: #ffeef4; }
+.bg-purple-light { background: #f5f3ff; }
+.bg-orange-light { background: #fffbeb; }
+.bg-green-light { background: #ecfdf5; }
+.text-pink { color: #f53f7c !important; }
+.text-purple { color: #7c3aed !important; }
+.text-orange { color: #f59e0b !important; }
+.text-green { color: #10b981 !important; }
+
+.t-task-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.t-task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+.t-task-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+.t-status-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+.t-status-pink { background: #ffeef4; color: #f53f7c; }
+.t-status-purple { background: #f5f3ff; color: #7c3aed; }
+.t-status-green { background: #ecfdf5; color: #10b981; }
+
+.t-task-module {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    width: fit-content;
+}
+
+.t-task-desc {
+    margin: 0 0 16px;
+    font-size: 12px;
+    color: #6b7a90;
+    line-height: 1.5;
+}
+
+.t-task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+}
+.t-task-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #6b7a90;
+    font-weight: 600;
+}
+.t-task-meta i { font-size: 12px; }
+.t-meta-divider {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #d1d5db;
+    margin: 0 4px;
+}
+
+.t-btn-action {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+.t-btn-pink-outline {
+    background: transparent;
+    border: 1.5px solid #f53f7c;
+    color: #f53f7c;
+}
+.t-btn-pink-outline:hover {
+    background: #ffeef4;
+}
+
+.t-task-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.t-task-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.t-task-progress span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7a90;
+}
+.t-prog-bar {
+    width: 60px;
+    height: 4px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.t-prog-fill {
+    height: 100%;
+    border-radius: 4px;
+}
+
+.t-task-dinilai {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a0b2e;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.t-task-dinilai i { font-size: 14px; }
+
+/* =========================================
+   4. KALENDER & DEADLINE (FASE 4)
+   ========================================= */
+
+/* Kalender */
+.t-cal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #1a0b2e;
+}
+.t-cal-header i { color: #f53f7c; cursor: pointer; }
+.t-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    text-align: center;
+}
+.t-cal-day {
+    font-size: 10px;
+    font-weight: 700;
+    color: #8f9bba;
+    margin-bottom: 4px;
+}
+.t-cal-date {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a0b2e;
+    width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.t-cal-muted { color: #d1d5db; }
+.t-cal-highlight { color: white; font-weight: 800; }
+.t-highlight-pink { background: #f53f7c; }
+.t-highlight-purple { background: #7c3aed; }
+.t-highlight-orange { background: #f59e0b; }
+
+/* Deadline Terdekat */
+.t-deadline-list {
+    display: flex; flex-direction: column;
+}
+.t-dl-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.t-dl-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+}
+.t-dl-info { flex: 1; }
+.t-dl-info h4 { margin: 0 0 4px; font-size: 11px; font-weight: 800; color: #1a0b2e; line-height: 1.3;}
+.t-dl-info p { margin: 0; font-size: 10px; color: #8f9bba; }
+.t-dl-badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* Leaderboard Promo */
+.t-promo-card {
+    background: linear-gradient(135deg, #fff1f6, #ffffff);
+    border: 1px solid #ffeef4;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex; align-items: center; gap: 12px;
+}
+.t-promo-content {
+    flex: 1; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+}
+.t-promo-content p {
+    margin: 0;
+    font-size: 12px;
+    color: #6b7a90;
+    line-height: 1.4;
+    font-weight: 500;
+}
+.t-promo-img {
+    flex-shrink: 0;
+}
+.t-trophy-circle {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #f53f7c;
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 4px 12px rgba(245, 63, 124, 0.2);
+}

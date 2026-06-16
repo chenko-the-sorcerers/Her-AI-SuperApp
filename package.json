@@ -1,0 +1,17 @@
+{
+  "name": "herai-fellowship",
+  "version": "1.0.0",
+  "description": "HerAI Fellowship - Event Control Panel SPA",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "lint:css": "npx stylelint 'css/**/*.css' --fix 2>/dev/null || echo 'stylelint not configured yet'",
+    "lint:js": "npx eslint 'js/**/*.js' 2>/dev/null || echo 'eslint not configured yet'",
+    "lint": "echo 'Run lint:css and lint:js after configuring linters'",
+    "test": "echo 'No automated tests yet - run smoke test manually per docs/GETTING_STARTED.md'",
+    "build": "echo 'SPA is static - no build step required. Use render.yaml for deployment.'"
+  },
+  "keywords": ["herai", "fellowship", "event", "spa"],
+  "license": "UNLICENSED"
+}

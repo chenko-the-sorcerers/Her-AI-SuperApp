@@ -1,140 +1,458 @@
-
-    <main class="leaderboard-page">
-        <section class="leaderboard-hero">
-            <div class="container">
-                <div class="leaderboard-header-content">
-                    <p class="tagline">LIVE RANKING</p>
-                    <h1>HerAI <span>Leaderboard</span></h1>
-                    <p class="lead-text">Peringkat performa fellows berdasarkan penyelesaian modul, nilai kuis, dan keaktifan project selama program berlangsung.</p>
-                </div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - HerAI Fellowship</title>
+</head>
+<body>
+<section class="fellow-page" style="padding: 0;">
+    <link rel="stylesheet" href="/css/frontend/fellow-dashboard.css">
+    <link rel="stylesheet" href="/css/frontend/leaderboard.css">
+    
+    <div class="dash-wrapper">
+        <!-- Sidebar Kiri -->
+        <aside class="dash-sidebar">
+            <div class="dash-logo-box">
+                <img src="/assets/referensi/logo-her-ai-transparent.png" alt="HerAI Fellowship Logo">
             </div>
-        </section>
+            
+            <nav class="dash-menu">
+                <div class="dash-menu-item">
+                    <a href="#/fellow-dashboard" class="dash-menu-link">
+                        <i class="fas fa-house"></i> 
+                        <span>Beranda</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/chatroom" class="dash-menu-link">
+                        <i class="fas fa-comment-dots"></i> 
+                        <span>Chatroom</span>
+                        <span class="dash-badge">3</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#" class="dash-menu-link">
+                        <i class="fas fa-user-graduate"></i> 
+                        <span>Mentor</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/modul" class="dash-menu-link">
+                        <i class="fas fa-book-open"></i> 
+                        <span>Modul</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/tugas" class="dash-menu-link">
+                        <i class="fas fa-clipboard-list"></i> 
+                        <span>Tugas</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/fellow-proyek" class="dash-menu-link">
+                        <i class="fas fa-diagram-project"></i> 
+                        <span>Proyek</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/events" class="dash-menu-link">
+                        <i class="fas fa-calendar-days"></i> 
+                        <span>Events</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/komunitas" class="dash-menu-link">
+                        <i class="fas fa-users"></i> 
+                        <span>Komunitas</span>
+                    </a>
+                </div>
 
-        <section class="podium-section">
-            <div class="container">
-                <div class="podium-container">
+                <div class="dash-menu-label">LAINNYA</div>
+
+                <div class="dash-menu-item">
+                    <a href="#/sertifikat" class="dash-menu-link">
+                        <i class="fas fa-certificate"></i> 
+                        <span>Sertifikat</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/leaderboard" class="dash-menu-link active">
+                        <i class="fas fa-trophy"></i> 
+                        <span>Leaderboard</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#/faq" class="dash-menu-link">
+                        <i class="fas fa-question-circle"></i> 
+                        <span>FAQ & Bantuan</span>
+                    </a>
+                </div>
+                <div class="dash-menu-item">
+                    <a href="#" class="dash-menu-link">
+                        <i class="fas fa-gear"></i> 
+                        <span>Pengaturan</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="dash-sidebar-spacer"></div>
+
+            <div class="dash-invite-card">
+                <div class="invite-ill">
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                    <div class="ill-dot"></div>
+                </div>
+                <h4>Ajak Temanmu!</h4>
+                <p>Dapatkan poin tambahan untuk setiap teman yang bergabung.</p>
+                <button class="dash-invite-btn">Undang Sekarang</button>
+            </div>
+        </aside>
+
+        <main class="dash-main">
+            <!-- Header Atas -->
+            <header class="dash-topbar" style="border-bottom: none; padding-bottom: 0;">
+                <div class="dash-header-left">
+                    <h2 style="font-size: 24px; font-weight: 700; color: #1a0b2e; margin: 0;">Leaderboard</h2>
+                    <p style="font-size: 14px; color: #6b7a90; margin: 4px 0 0 0;">Apresiasi untuk para perempuan inspiratif yang terus belajar dan berkembang.</p>
+                </div>
+
+                <div class="dash-header-right">
+                    <div class="dash-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cari nama atau pengguna...">
+                    </div>
                     
-                    <div class="podium-item rank-2">
-                        <div class="podium-avatar">
-                            <div class="medal silver"><i class="fas fa-medal"></i></div>
-                            <img src="https://ui-avatars.com/api/?name=N+A&background=f8f9fa&color=8A2BE2&bold=true" alt="Fellow">
+                    <div class="dash-notif">
+                        <i class="far fa-bell"></i>
+                        <span class="dash-icon-badge">5</span>
+                    </div>
+
+                    <a href="#/profil" class="dash-profile-pill" style="text-decoration: none;">
+                        <img src="/assets/referensi/persona-her-ai.png" alt="Aisyah Putri" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'%23ddd\\'%3E%3Ccircle cx=\\'12\\' cy=\\'12\\' r=\\'12\\'/%3E%3C/svg%3E'">
+                        <div class="dash-profile-name">
+                            <b>Aisyah Putri</b>
+                            <small>Fellow</small>
                         </div>
-                        <div class="podium-info">
-                            <h3>N***a A***ia</h3>
-                            <span class="track-badge">Data Science</span>
-                            <div class="points">9,450 XP</div>
+                        <i class="fas fa-chevron-down" style="color: #1a0b2e;"></i>
+                    </a>
+                </div>
+            </header>
+
+            <div class="dash-grid" style="grid-template-columns: 1fr 340px; gap: 30px; align-items: start; margin-top: 24px;">
+                <div class="dash-left-col">
+                    <!-- FASE 2: Banner & Tabs -->
+                    <div class="lb-banner">
+                        <div class="lbb-content">
+                            <h3>Terus belajar, terus bertumbuh!</h3>
+                            <p>Setiap poin mencerminkan usaha dan dedikasimu. Pertahankan posisimu di leaderboard atau kejar puncaknya! <i class="fas fa-sparkles" style="color:#f59e0b"></i></p>
+                            <button class="lbb-btn">Pelajari Cara Mendapat Poin <i class="fas fa-arrow-right"></i></button>
                         </div>
-                        <div class="podium-block silver-block">
-                            <span class="rank-num">2</span>
+                        <div class="lbb-ill">
+                            <!-- Trophy CSS Art / Icon -->
+                            <i class="fas fa-trophy" style="font-size: 110px; color: #fbbf24; filter: drop-shadow(0 10px 15px rgba(251,191,36,0.5));"></i>
                         </div>
                     </div>
 
-                    <div class="podium-item rank-1">
-                        <div class="podium-avatar highlight">
-                            <div class="crown"><i class="fas fa-crown"></i></div>
-                            <img src="https://ui-avatars.com/api/?name=S+P&background=FF69B4&color=fff&bold=true" alt="Fellow">
+                    <div class="lb-tabs-container">
+                        <nav class="lb-tabs">
+                            <a href="#" class="lbt-link active">Leaderboard Global</a>
+                            <a href="#" class="lbt-link">Leaderboard Mingguan</a>
+                            <a href="#" class="lbt-link">Leaderboard Bulanan</a>
+                            <a href="#" class="lbt-link">Leaderboard All Time</a>
+                        </nav>
+                    </div>
+
+                    <!-- FASE 3: Tabel Peringkat -->
+                    <div class="lb-filters">
+                        <div class="lb-select">
+                            <select>
+                                <option>Semua Kategori</option>
+                                <option>Data Science</option>
+                                <option>Machine Learning</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
                         </div>
-                        <div class="podium-info">
-                            <h3>S***i P***tri</h3>
-                            <span class="track-badge">Vision AI</span>
-                            <div class="points gold-text">9,820 XP</div>
-                        </div>
-                        <div class="podium-block gold-block">
-                            <span class="rank-num">1</span>
+                        <div class="lb-select">
+                            <i class="far fa-calendar-alt" style="margin-right: 8px; color: #8f9bba;"></i>
+                            <select>
+                                <option>Minggu Ini</option>
+                                <option>Bulan Ini</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
                         </div>
                     </div>
 
-                    <div class="podium-item rank-3">
-                        <div class="podium-avatar">
-                            <div class="medal bronze"><i class="fas fa-medal"></i></div>
-                            <img src="https://ui-avatars.com/api/?name=R+K&background=f8f9fa&color=8A2BE2&bold=true" alt="Fellow">
-                        </div>
-                        <div class="podium-info">
-                            <h3>R***a K***na</h3>
-                            <span class="track-badge">NLP Track</span>
-                            <div class="points">9,120 XP</div>
-                        </div>
-                        <div class="podium-block bronze-block">
-                            <span class="rank-num">3</span>
+                    <div class="lb-table-wrapper">
+                        <table class="lb-table">
+                            <thead>
+                                <tr>
+                                    <th width="50">#</th>
+                                    <th>Fellow</th>
+                                    <th style="text-align: right;">Poin</th>
+                                    <th style="text-align: right;">Minggu Ini</th>
+                                    <th style="text-align: center;" width="80">Badge</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rank 1 -->
+                                <tr>
+                                    <td><i class="fas fa-crown text-gold" style="font-size:18px;"></i> 1</td>
+                                    <td>
+                                        <div class="lbt-user">
+                                            <img src="/assets/referensi/persona-her-ai.png" alt="Dewi Lestari">
+                                            <div class="lbt-user-info">
+                                                <b>Dewi Lestari</b>
+                                                <small>@dewilestari</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;"><b class="text-pink">2.450</b></td>
+                                    <td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 450</span></td>
+                                    <td style="text-align: center;"><div class="lbt-badge hex-orange"><i class="fas fa-medal"></i></div></td>
+                                </tr>
+                                <!-- Rank 2 (Kamu) -->
+                                <tr class="lbt-highlight">
+                                    <td><i class="fas fa-crown text-silver" style="font-size:18px;"></i> 2</td>
+                                    <td>
+                                        <div class="lbt-user">
+                                            <img src="/assets/referensi/persona-her-ai.png" alt="Aisyah Putri">
+                                            <div class="lbt-user-info">
+                                                <b class="text-pink">Aisyah Putri (Kamu)</b>
+                                                <small class="text-pink">@aisyahputri</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;"><b class="text-pink">2.120</b></td>
+                                    <td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 320</span></td>
+                                    <td style="text-align: center;"><div class="lbt-badge hex-gray"><i class="fas fa-medal"></i></div></td>
+                                </tr>
+                                <!-- Rank 3 -->
+                                <tr>
+                                    <td><i class="fas fa-crown text-bronze" style="font-size:18px;"></i> 3</td>
+                                    <td>
+                                        <div class="lbt-user">
+                                            <img src="/assets/referensi/persona-her-ai.png" alt="Siti Aulia">
+                                            <div class="lbt-user-info">
+                                                <b>Siti Aulia</b>
+                                                <small>@sitiaulia</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;"><b class="text-pink">1.890</b></td>
+                                    <td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 280</span></td>
+                                    <td style="text-align: center;"><div class="lbt-badge hex-orange"><i class="fas fa-medal"></i></div></td>
+                                </tr>
+                                <!-- Rank 4 -->
+                                <tr>
+                                    <td><b>4</b></td>
+                                    <td>
+                                        <div class="lbt-user">
+                                            <img src="/assets/referensi/persona-her-ai.png" alt="Rani Mentari">
+                                            <div class="lbt-user-info">
+                                                <b>Rani Mentari</b>
+                                                <small>@ranimentari</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;"><b class="text-pink">1.450</b></td>
+                                    <td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 210</span></td>
+                                    <td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+                                </tr>
+                                <!-- Rank 5 -->
+                                <tr>
+                                    <td><b>5</b></td>
+                                    <td>
+                                        <div class="lbt-user">
+                                            <img src="/assets/referensi/persona-her-ai.png" alt="Nadia Putri">
+                                            <div class="lbt-user-info">
+                                                <b>Nadia Putri</b>
+                                                <small>@nadiaputri</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;"><b class="text-pink">1.230</b></td>
+                                    <td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 180</span></td>
+                                    <td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+                                </tr>
+                                <!-- Rank 6 -->
+                                <tr>
+                                    <td><b>6</b></td>
+                                    <td>
+                                        <div class="lbt-user">
+                                            <img src="/assets/referensi/persona-her-ai.png" alt="Putri Ananda">
+                                            <div class="lbt-user-info">
+                                                <b>Putri Ananda</b>
+                                                <small>@putriananda</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;"><b class="text-pink">1.120</b></td>
+                                    <td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 160</span></td>
+                                    <td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+                                </tr>
+                                <!-- Rank 7 -->
+                                <tr>
+                                    <td><b>7</b></td>
+                                    <td>
+                                        <div class="lbt-user">
+                                            <img src="/assets/referensi/persona-her-ai.png" alt="Larasati Dewi">
+                                            <div class="lbt-user-info">
+                                                <b>Larasati Dewi</b>
+                                                <small>@larasatidewi</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;"><b class="text-pink">980</b></td>
+                                    <td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 120</span></td>
+                                    <td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+                                </tr>
+                                <!-- Rank 8 -->
+                                <tr>
+                                    <td><b>8</b></td>
+                                    <td>
+                                        <div class="lbt-user">
+                                            <img src="/assets/referensi/persona-her-ai.png" alt="Maya Pratiwi">
+                                            <div class="lbt-user-info">
+                                                <b>Maya Pratiwi</b>
+                                                <small>@mayapratiwi</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;"><b class="text-pink">860</b></td>
+                                    <td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 110</span></td>
+                                    <td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="lb-view-more">
+                            <a href="#" class="text-pink">Lihat Selengkapnya <i class="fas fa-chevron-down"></i></a>
                         </div>
                     </div>
+                </div>
 
+                <div class="dash-right-col">
+                    <!-- FASE 4 & 5: Widget Kanan -->
+                    <div class="lb-widgets">
+                        <!-- Ringkasan Saya -->
+                        <div class="lb-widget">
+                            <h4 class="lb-widget-title">Ringkasan Saya</h4>
+                            <div class="lb-summary-grid">
+                                <div class="lb-summary-item">
+                                    <div class="lb-summary-icon bg-pink-light"><i class="fas fa-chess-queen text-pink"></i></div>
+                                    <div class="lb-summary-info">
+                                        <small>Peringkat</small>
+                                        <b class="text-pink">2</b>
+                                        <span>dari 1.250 Fellow</span>
+                                    </div>
+                                </div>
+                                <div class="lb-summary-item" style="border-left: 1px solid #f0f0f0; padding-left: 16px;">
+                                    <div class="lb-summary-icon bg-orange-light"><i class="fas fa-star text-orange"></i></div>
+                                    <div class="lb-summary-info">
+                                        <small>Total Poin</small>
+                                        <b class="text-orange">2.120 <span style="font-size: 13px; font-weight: 500; color: #1a0b2e;">Poin</span></b>
+                                        <span><i class="fas fa-arrow-up text-green"></i> 320 poin dari minggu lalu</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lb-summary-progress">
+                                <div class="lbs-prog-top">
+                                    <small>Menuju Peringkat 1</small>
+                                    <small>2.120 / 2.450</small>
+                                </div>
+                                <div class="lbs-prog-bar">
+                                    <div class="lbs-prog-fill" style="width: 86%;"></div>
+                                </div>
+                                <small class="lbs-prog-hint">Anda hanya perlu 330 poin lagi!</small>
+                            </div>
+                        </div>
+
+                        <!-- Cara Mendapat Poin -->
+                        <div class="lb-widget">
+                            <div class="lb-widget-header">
+                                <h4 class="lb-widget-title">Cara Mendapat Poin</h4>
+                                <a href="#" class="lb-widget-link">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="lb-action-list">
+                                <div class="lb-action-item">
+                                    <div class="lb-action-icon bg-pink-light text-pink"><i class="fas fa-book-open"></i></div>
+                                    <div class="lb-action-info">
+                                        <b>Menyelesaikan Modul</b>
+                                        <small>+100 poin</small>
+                                    </div>
+                                </div>
+                                <div class="lb-action-item">
+                                    <div class="lb-action-icon bg-purple-light text-purple"><i class="fas fa-clipboard-check"></i></div>
+                                    <div class="lb-action-info">
+                                        <b>Menyelesaikan Tugas</b>
+                                        <small>+150 poin</small>
+                                    </div>
+                                </div>
+                                <div class="lb-action-item">
+                                    <div class="lb-action-icon bg-orange-light text-orange"><i class="fas fa-folder-open"></i></div>
+                                    <div class="lb-action-info">
+                                        <b>Menyelesaikan Proyek</b>
+                                        <small>+200 poin</small>
+                                    </div>
+                                </div>
+                                <div class="lb-action-item">
+                                    <div class="lb-action-icon bg-green-light text-green"><i class="fas fa-calendar-alt"></i></div>
+                                    <div class="lb-action-info">
+                                        <b>Mengikuti Event / Workshop</b>
+                                        <small>+50 poin</small>
+                                    </div>
+                                </div>
+                                <div class="lb-action-item">
+                                    <div class="lb-action-icon bg-blue-light text-blue"><i class="fas fa-users"></i></div>
+                                    <div class="lb-action-info">
+                                        <b>Aktif di Komunitas</b>
+                                        <small>+20 poin</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pencapaian Terbaru -->
+                        <div class="lb-widget">
+                            <div class="lb-widget-header">
+                                <h4 class="lb-widget-title">Pencapaian Terbaru</h4>
+                                <a href="#" class="lb-widget-link">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="lb-achieve-list">
+                                <div class="lb-achieve-item">
+                                    <div class="lba-icon"><div class="pac-hex-wrap hex-pink-dark" style="transform: scale(0.65);"><div class="pac-hex"><i class="fas fa-star"></i></div></div></div>
+                                    <div class="lba-info">
+                                        <b>Rising Star</b>
+                                        <small>Masuk 3 besar leaderboard mingguan</small>
+                                        <span>Diraih 20 Mei 2024</span>
+                                    </div>
+                                </div>
+                                <div class="lb-achieve-item">
+                                    <div class="lba-icon"><div class="pac-hex-wrap hex-purple" style="transform: scale(0.65);"><div class="pac-hex"><i class="fas fa-fire"></i></div></div></div>
+                                    <div class="lba-info">
+                                        <b>Consistent Learner</b>
+                                        <small>Belajar 7 hari berturut-turut</small>
+                                        <span>Diraih 18 Mei 2024</span>
+                                    </div>
+                                </div>
+                                <div class="lb-achieve-item">
+                                    <div class="lba-icon"><div class="pac-hex-wrap hex-orange" style="transform: scale(0.65);"><div class="pac-hex"><i class="fas fa-medal"></i></div></div></div>
+                                    <div class="lba-info">
+                                        <b>Task Master</b>
+                                        <small>Menyelesaikan 10 tugas</small>
+                                        <span>Diraih 15 Mei 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <section class="leaderboard-list-section">
-            <div class="container">
-                <div class="list-wrapper">
-                    <div class="list-header">
-                        <div class="col-rank">Rank</div>
-                        <div class="col-name">Fellow Name</div>
-                        <div class="col-track">Specialization</div>
-                        <div class="col-trend">Trend</div>
-                        <div class="col-points">Total XP</div>
-                    </div>
-
-                    <div class="list-body">
-                        <div class="list-row">
-                            <div class="col-rank"><strong>4</strong></div>
-                            <div class="col-name">
-                                <img src="https://ui-avatars.com/api/?name=F+D&background=E9ECEF&color=4B0082" alt="Avatar">
-                                <span>F***a D***a</span>
-                            </div>
-                            <div class="col-track"><span class="track-pill">Infrastructure</span></div>
-                            <div class="col-trend"><i class="fas fa-caret-up text-success"></i> +2</div>
-                            <div class="col-points">8,950</div>
-                        </div>
-
-                        <div class="list-row">
-                            <div class="col-rank"><strong>5</strong></div>
-                            <div class="col-name">
-                                <img src="https://ui-avatars.com/api/?name=M+S&background=E9ECEF&color=4B0082" alt="Avatar">
-                                <span>M***a S***i</span>
-                            </div>
-                            <div class="col-track"><span class="track-pill">Bioinformatics</span></div>
-                            <div class="col-trend"><i class="fas fa-minus text-muted"></i></div>
-                            <div class="col-points">8,700</div>
-                        </div>
-
-                        <div class="list-row">
-                            <div class="col-rank"><strong>6</strong></div>
-                            <div class="col-name">
-                                <img src="https://ui-avatars.com/api/?name=A+L&background=E9ECEF&color=4B0082" alt="Avatar">
-                                <span>A***a L***a</span>
-                            </div>
-                            <div class="col-track"><span class="track-pill">Multimodal</span></div>
-                            <div class="col-trend"><i class="fas fa-caret-down text-danger"></i> -1</div>
-                            <div class="col-points">8,450</div>
-                        </div>
-
-                        <div class="list-row">
-                            <div class="col-rank"><strong>7</strong></div>
-                            <div class="col-name">
-                                <img src="https://ui-avatars.com/api/?name=D+W&background=E9ECEF&color=4B0082" alt="Avatar">
-                                <span>D***i W***i</span>
-                            </div>
-                            <div class="col-track"><span class="track-pill">Vision AI</span></div>
-                            <div class="col-trend"><i class="fas fa-caret-up text-success"></i> +4</div>
-                            <div class="col-points">8,120</div>
-                        </div>
-
-                        <div class="list-row self-rank">
-                            <div class="col-rank"><strong>42</strong></div>
-                            <div class="col-name">
-                                <img src="https://ui-avatars.com/api/?name=Y+O&background=FF69B4&color=fff" alt="Avatar">
-                                <span>You (Peserta)</span>
-                            </div>
-                            <div class="col-track"><span class="track-pill">NLP Track</span></div>
-                            <div class="col-trend"><i class="fas fa-caret-up text-success"></i> +5</div>
-                            <div class="col-points">4,500</div>
-                        </div>
-                    </div>
-
-                    <div class="load-more">
-                        <button class="btn btn-outline">Load Full Leaderboard <i class="fas fa-arrow-down"></i></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </main>
+    </div>
+</section>
+</body>
+</html>

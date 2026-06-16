@@ -1,30 +1,45 @@
 <section class="profile-page">
     <div class="container">
-        <div id="participantAuthView" class="profile-auth-card">
-            <div>
-                <span class="profile-badge">Participant Portal</span>
-                <h1>Masuk ke Profil Peserta</h1>
-                <p>Gunakan NIK yang dipakai saat pendaftaran. Jika pertama kali masuk, buat password baru untuk mengamankan profil.</p>
+    <link rel="stylesheet" href="/css/frontend/auth.css">
+
+    <!-- Auth View -->
+    <div id="participantAuthView" class="auth-page-wrapper">
+        <div class="auth-split-card">
+            <div class="auth-left-panel">
+                <img src="/assets/referensi/logo-her-ai-transparent.png" alt="HerAI Logo" class="auth-logo">
+                <img src="/assets/referensi/persona-her-ai.png" alt="HerAI Fellowship" class="auth-illustration">
             </div>
-
-            <form id="participantLoginForm" class="profile-form">
-                <label for="profileNik">NIK Peserta</label>
-                <input type="text" id="profileNik" maxlength="16" placeholder="16 digit NIK" required>
-
-                <label for="profilePassword">Password</label>
-                <input type="password" id="profilePassword" placeholder="Password profil" required>
-
-                <div id="newPasswordBox" class="new-password-box" style="display: none;">
-                    <label for="profilePasswordConfirm">Konfirmasi Password Baru</label>
-                    <input type="password" id="profilePasswordConfirm" placeholder="Ulangi password baru">
-                    <small>Peserta belum punya password. Password ini akan disimpan sebagai akses profil berikutnya.</small>
+            <div class="auth-right-panel">
+                <div class="auth-header">
+                    <h1>Bergabung dengan <br><span>HerAI Fellowship</span></h1>
+                    <p>Komunitas AI khusus untuk perempuan Indonesia yang ingin belajar, berkembang, dan berdampak.</p>
                 </div>
+                <form id="participantLoginForm">
+                    <div class="auth-input-group">
+                        <i class="far fa-id-badge left-icon"></i>
+                        <input type="text" id="profileNik" maxlength="16" placeholder="16 digit NIK" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <i class="fas fa-lock left-icon"></i>
+                        <input type="password" id="profilePassword" placeholder="Kata Sandi" required>
+                        <i class="far fa-eye-slash right-icon"></i>
+                    </div>
+                    
+                    <div id="newPasswordBox" style="display: none;">
+                        <div class="auth-input-group">
+                            <i class="fas fa-key left-icon"></i>
+                            <input type="password" id="profilePasswordConfirm" placeholder="Ulangi password baru">
+                            <i class="far fa-eye-slash right-icon"></i>
+                        </div>
+                    </div>
 
-                <button type="submit" class="btn btn-primary" id="btnParticipantLogin">Masuk Profil</button>
-                <button type="button" class="btn btn-outline" id="btnFirstLoginMode">Pertama kali masuk? Buat password</button>
-                <p id="participantLoginMessage" class="profile-message"></p>
-            </form>
+                    <button type="submit" class="auth-btn-primary" id="btnParticipantLogin" style="margin-top: 24px; width:100%;">Masuk Sekarang</button>
+                    <button type="button" class="auth-btn-outline" id="btnFirstLoginMode" style="display: none;"></button>
+                    <p id="participantLoginMessage" style="text-align: center; margin-top: 10px; font-size: 12px; color: #f53f7c;"></p>
+                </form>
+            </div>
         </div>
+    </div>
 
         <div id="participantDashboardView" class="fellow-app" style="display: none;">
             <aside class="fellow-sidebar" aria-label="Navigasi peserta">
