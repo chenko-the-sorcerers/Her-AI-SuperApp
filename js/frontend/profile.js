@@ -762,7 +762,7 @@ function renderParticipantTracks() {
         ['Multimodal AI', 'Gabungkan berbagai jenis data', 'fa-object-group', 'yellow']
     ];
     container.innerHTML = rows.map(([title, caption, icon, tone]) => `
-        <a href="#/curriculum" class="fellow-track is-${tone} nav-link">
+        <a href="#/curriculum" class="fellow-track is-${tone}">
             <span><i class="fas ${icon}"></i></span>
             <strong>${escapeProfileHtml(title)}</strong>
             <small>${escapeProfileHtml(caption)}</small>
@@ -927,7 +927,7 @@ function renderParticipantTracks() {
         ['Multimodal AI', 'Gabungkan berbagai jenis data', 'fa-object-group', 'yellow']
     ];
     container.innerHTML = rows.map(([title, caption, icon, tone]) => `
-        <a href="#/curriculum" class="participant-track-card is-${tone} nav-link">
+        <a href="#/curriculum" class="participant-track-card is-${tone}">
             <span><i class="fas ${icon}"></i></span>
             <strong>${escapeProfileHtml(title)}</strong>
             <small>${escapeProfileHtml(caption)}</small>
@@ -1037,7 +1037,7 @@ function renderParticipantTracks() {
         ['Multimodal AI', 'Gabungkan berbagai jenis data', 'fa-photo-video', 'pink']
     ];
     container.innerHTML = rows.map(([title, caption, icon, tone]) => `
-        <a href="#/curriculum" class="fellow-track is-${tone} nav-link"><span><i class="fas ${icon}"></i></span><strong>${escapeProfileHtml(title)}</strong><small>${escapeProfileHtml(caption)}</small></a>
+        <a href="#/curriculum" class="fellow-track is-${tone}"><span><i class="fas ${icon}"></i></span><strong>${escapeProfileHtml(title)}</strong><small>${escapeProfileHtml(caption)}</small></a>
     `).join('');
 }
 
