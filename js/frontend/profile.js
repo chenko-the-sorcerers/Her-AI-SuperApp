@@ -71,13 +71,7 @@ function bindParticipantEvents() {
     };
     document.getElementById('btnLogoutParticipantHold')?.addEventListener('click', logoutParticipant);
     document.getElementById('btnOpenProfile')?.addEventListener('click', () => {
-        window.location.hash = '#participant-profile';
-        // Mock a hash change click to trigger the router manually if needed
-        const a = document.createElement('a');
-        a.href = '#participant-profile';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        showFellowModuleWelcome('participant-profile');
     });
 
     document.getElementById('participantProfileForm')?.addEventListener('submit', async (event) => {
@@ -3328,7 +3322,7 @@ function renderFellowSettingsPage() {
                         <a href="#participant-settings"><i class="far fa-bell"></i> Notifikasi</a>
                         <a href="#participant-settings"><i class="fas fa-shield-alt"></i> Keamanan</a>
                         <a href="#participant-settings"><i class="fas fa-link"></i> Akun Tertaut</a>
-                        <a href="#participant-home" style="color: #ef4444; margin-top: 16px;"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+                        <a href="javascript:void(0)" onclick="sessionStorage.removeItem('heraiParticipantSession'); window.location.reload();" style="color: #ef4444; margin-top: 16px;"><i class="fas fa-sign-out-alt"></i> Keluar</a>
                     </nav>
                 </aside>
 
