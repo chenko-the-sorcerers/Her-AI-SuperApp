@@ -170,6 +170,9 @@
   border: 1px solid #F3F4F6;
   border-radius: 12px;
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .ms-card h3 {
   font-size: 16px;
