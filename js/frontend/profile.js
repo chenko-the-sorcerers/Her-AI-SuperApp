@@ -2335,7 +2335,6 @@ function renderFellowCommunityPage() {
 <button class="k-tab-btn">Pengumuman</button>
 </div>
 </div>
- Layout 2 Kolom (Kiri untuk Konten Utama, Kanan untuk Widget) 
 <div class="dash-grid" style="grid-template-columns: 1fr 300px; gap: 30px; align-items: start; margin-top: 32px;">
 <div class="dash-left-col">
 <!-- FASE 3: Hero Banner -->
