@@ -1211,7 +1211,9 @@ const FELLOW_SECTION_RENDERERS = {
     'participant-certificate': renderFellowCertificatePage,
     'participant-leaderboard': renderFellowLeaderboardPage,
     'participant-profile': renderFellowMyProfilePage
-};
+,
+    'participant-help': renderFellowHelpPage,
+    'participant-settings': renderFellowSettingsPage};
 
 function renderFellowMentorPage() {
     return `
@@ -1325,8 +1327,300 @@ function renderFellowMentorPage() {
 
 function renderFellowCertificatePage() {
     return `
-        <div class="fellow-certificate-page">
-            ${renderFellowTabs(['Semua Sertifikat', 'Pencapaian Modul', 'Event & Workshop', 'Proyek', 'Komunitas'])}
+        <div class="dash-wrapper-override">
+Header Atas & Baris Tabs 
+
+ FASE 2: Tabs Sertifikat 
+<div class="sert-tabs-container">
+<div class="sert-tabs">
+<button class="s-tab-btn active">Semua Sertifikat</button>
+<button class="s-tab-btn">Pencapaian Modul</button>
+<button class="s-tab-btn">Event &amp; Workshop</button>
+<button class="s-tab-btn">Proyek</button>
+<button class="s-tab-btn">Komunitas</button>
+</div>
+</div>
+<div class="dash-grid" style="grid-template-columns: 1fr 300px; gap: 30px; align-items: start; margin-top: 24px;">
+<div class="dash-left-col">
+<!-- FASE 2: Stats Cards -->
+<div class="sert-stats">
+<div class="sert-stat-card">
+<div class="ss-icon bg-pink"><i class="fas fa-award"></i></div>
+<div class="ss-info">
+<span class="ss-label">Total Sertifikat</span>
+<span class="ss-value">12</span>
+<span class="ss-desc">Sertifikat</span>
+</div>
+</div>
+<div class="sert-stat-card">
+<div class="ss-icon bg-green"><i class="far fa-check-circle"></i></div>
+<div class="ss-info">
+<span class="ss-label">Sertifikat Terselesaikan</span>
+<span class="ss-value">10</span>
+<span class="ss-desc">Sertifikat</span>
+</div>
+</div>
+<div class="sert-stat-card">
+<div class="ss-icon bg-orange"><i class="far fa-clock"></i></div>
+<div class="ss-info">
+<span class="ss-label">Sedang Diproses</span>
+<span class="ss-value">2</span>
+<span class="ss-desc">Sertifikat</span>
+</div>
+</div>
+<div class="sert-stat-card">
+<div class="ss-icon bg-purple"><i class="fas fa-trophy"></i></div>
+<div class="ss-info">
+<span class="ss-label">Total Poin dari Sertifikat</span>
+<span class="ss-value">1.250</span>
+<span class="ss-desc">Poin</span>
+</div>
+</div>
+</div>
+<!-- FASE 3: Filter & Pencarian Sertifikat -->
+<div class="sert-filter-row">
+<div class="sf-dropdown">
+<span>Terbaru</span> <i class="fas fa-chevron-down"></i>
+</div>
+<div class="sf-right">
+<div class="sf-search">
+<i class="fas fa-search"></i>
+<input placeholder="Cari sertifikat..." type="text"/>
+</div>
+<button class="sf-view-btn active"><i class="fas fa-th-large"></i></button>
+</div>
+</div>
+<!-- FASE 4: Grid Sertifikat -->
+<div class="sert-grid">
+<!-- Card 1: Pink -->
+<div class="s-card">
+<div class="sc-image-wrapper">
+<div class="sc-badge-corner bg-pink"><i class="fas fa-ribbon"></i></div>
+<div class="sc-cert-visual">
+<div class="sc-cert-title text-pink">SERTIFIKAT</div>
+<div class="sc-cert-subtitle">DIBERIKAN KEPADA</div>
+<div class="sc-cert-name">Aisyah Putri</div>
+<div class="sc-cert-desc">atas pencapaian dalam menyelesaikan</div>
+<div class="sc-cert-course">Python for AI Beginner</div>
+<div class="sc-cert-footer">
+<div class="sc-cert-sign">HerAI Team</div>
+<div class="sc-cert-seal bg-pink"><i class="fas fa-star"></i></div>
+<div class="sc-cert-date">Mei 2024</div>
+</div>
+</div>
+</div>
+<div class="sc-body">
+<h4>Python for AI Beginner</h4>
+<div class="sc-meta">Modul • Foundation Phase</div>
+<div class="sc-footer">
+<span class="sc-date">25 Mei 2024</span>
+<span class="sc-points text-pink"><i class="far fa-star"></i> 100 Poin</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Purple -->
+<div class="s-card">
+<div class="sc-image-wrapper">
+<div class="sc-badge-corner bg-purple"><i class="fas fa-medal"></i></div>
+<div class="sc-cert-visual">
+<div class="sc-cert-title text-purple">SERTIFIKAT</div>
+<div class="sc-cert-subtitle">DIBERIKAN KEPADA</div>
+<div class="sc-cert-name">Aisyah Putri</div>
+<div class="sc-cert-desc">atas pencapaian dalam menyelesaikan</div>
+<div class="sc-cert-course">Machine Learning Fundamentals</div>
+<div class="sc-cert-footer">
+<div class="sc-cert-sign">HerAI Team</div>
+<div class="sc-cert-seal bg-purple"><i class="fas fa-star"></i></div>
+<div class="sc-cert-date">Juni 2024</div>
+</div>
+</div>
+</div>
+<div class="sc-body">
+<h4>Machine Learning Fundamentals</h4>
+<div class="sc-meta">Modul • Foundation Phase</div>
+<div class="sc-footer">
+<span class="sc-date">15 Juni 2024</span>
+<span class="sc-points text-purple"><i class="far fa-star"></i> 150 Poin</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Orange -->
+<div class="s-card">
+<div class="sc-image-wrapper">
+<div class="sc-badge-corner bg-orange"><i class="far fa-calendar-alt"></i></div>
+<div class="sc-cert-visual">
+<div class="sc-cert-title text-orange">SERTIFIKAT</div>
+<div class="sc-cert-subtitle">DIBERIKAN KEPADA</div>
+<div class="sc-cert-name">Aisyah Putri</div>
+<div class="sc-cert-desc">atas partisipasi sebagai peserta</div>
+<div class="sc-cert-course">Data Visualization with Python Workshop</div>
+<div class="sc-cert-footer">
+<div class="sc-cert-sign">HerAI Team</div>
+<div class="sc-cert-seal bg-orange"><i class="fas fa-star"></i></div>
+<div class="sc-cert-date">Mei 2024</div>
+</div>
+</div>
+</div>
+<div class="sc-body">
+<h4>Data Visualization with Python</h4>
+<div class="sc-meta">Event • Workshop</div>
+<div class="sc-footer">
+<span class="sc-date">25 Mei 2024</span>
+<span class="sc-points text-orange"><i class="far fa-star"></i> 75 Poin</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Green -->
+<div class="s-card">
+<div class="sc-image-wrapper">
+<div class="sc-badge-corner bg-green"><i class="fas fa-desktop"></i></div>
+<div class="sc-cert-visual">
+<div class="sc-cert-title text-green">SERTIFIKAT</div>
+<div class="sc-cert-subtitle">DIBERIKAN KEPADA</div>
+<div class="sc-cert-name">Aisyah Putri</div>
+<div class="sc-cert-desc">atas pencapaian dalam menyelesaikan</div>
+<div class="sc-cert-course">Data Analysis with Pandas</div>
+<div class="sc-cert-footer">
+<div class="sc-cert-sign">HerAI Team</div>
+<div class="sc-cert-seal bg-green"><i class="fas fa-star"></i></div>
+<div class="sc-cert-date">Juni 2024</div>
+</div>
+</div>
+</div>
+<div class="sc-body">
+<h4>Data Analysis with Pandas</h4>
+<div class="sc-meta">Modul • Foundation Phase</div>
+<div class="sc-footer">
+<span class="sc-date">10 Juni 2024</span>
+<span class="sc-points text-green"><i class="far fa-star"></i> 125 Poin</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Blue (using primary or custom blue) -->
+<div class="s-card">
+<div class="sc-image-wrapper">
+<div class="sc-badge-corner bg-blue"><i class="fas fa-trophy"></i></div>
+<div class="sc-cert-visual">
+<div class="sc-cert-title text-blue">SERTIFIKAT</div>
+<div class="sc-cert-subtitle">DIBERIKAN KEPADA</div>
+<div class="sc-cert-name">Aisyah Putri</div>
+<div class="sc-cert-desc">atas partisipasi sebagai peserta</div>
+<div class="sc-cert-course">AI for Social Good Hackathon</div>
+<div class="sc-cert-footer">
+<div class="sc-cert-sign">HerAI Team</div>
+<div class="sc-cert-seal bg-blue"><i class="fas fa-star"></i></div>
+<div class="sc-cert-date">Juni 2024</div>
+</div>
+</div>
+</div>
+<div class="sc-body">
+<h4>AI for Social Good Hackathon</h4>
+<div class="sc-meta">Event • Hackathon</div>
+<div class="sc-footer">
+<span class="sc-date">8 Juni 2024</span>
+<span class="sc-points text-blue"><i class="far fa-star"></i> 200 Poin</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Pink (Komunitas) -->
+<div class="s-card">
+<div class="sc-image-wrapper">
+<div class="sc-badge-corner bg-pink-dark"><i class="fas fa-users"></i></div>
+<div class="sc-cert-visual">
+<div class="sc-cert-title text-pink-dark">SERTIFIKAT</div>
+<div class="sc-cert-subtitle">DIBERIKAN KEPADA</div>
+<div class="sc-cert-name">Aisyah Putri</div>
+<div class="sc-cert-desc">atas kontribusinya sebagai</div>
+<div class="sc-cert-course">Top Contributor Komunitas</div>
+<div class="sc-cert-footer">
+<div class="sc-cert-sign">HerAI Team</div>
+<div class="sc-cert-seal bg-pink-dark"><i class="fas fa-star"></i></div>
+<div class="sc-cert-date">Mei 2024</div>
+</div>
+</div>
+</div>
+<div class="sc-body">
+<h4>Top Contributor Komunitas</h4>
+<div class="sc-meta">Komunitas • Pencapaian</div>
+<div class="sc-footer">
+<span class="sc-date">18 Mei 2024</span>
+<span class="sc-points text-pink-dark"><i class="far fa-star"></i> 50 Poin</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dash-right-col">
+<!-- FASE 5 & 6: Widget Sidebar Kanan -->
+<div class="sert-widgets">
+<!-- Widget 1: Ringkasan Pencapaian -->
+<div class="sert-widget">
+<h4 class="sw-title">Ringkasan Pencapaian</h4>
+<div class="sw-chart-container">
+<div class="donut-chart">
+<div class="donut-inner">
+<b>12</b>
+<small>Total</small>
+</div>
+</div>
+<div class="chart-legend">
+<div class="legend-item"><span class="lg-dot bg-pink"></span> <span class="lg-text">Modul</span> <span class="lg-val">7</span></div>
+<div class="legend-item"><span class="lg-dot bg-purple"></span> <span class="lg-text">Event</span> <span class="lg-val">3</span></div>
+<div class="legend-item"><span class="lg-dot bg-orange"></span> <span class="lg-text">Proyek</span> <span class="lg-val">1</span></div>
+<div class="legend-item"><span class="lg-dot bg-green"></span> <span class="lg-text">Komunitas</span> <span class="lg-val">1</span></div>
+</div>
+</div>
+</div>
+<!-- Widget 2: Filter Sertifikat -->
+<div class="sert-widget">
+<div class="sw-header">
+<h4 class="sw-title">Filter Sertifikat</h4>
+<a class="sw-link" href="#">Reset</a>
+</div>
+<div class="sw-filters">
+<div class="sw-select"><span>Semua Kategori</span> <i class="fas fa-chevron-down"></i></div>
+<div class="sw-select"><span>Semua Sumber</span> <i class="fas fa-chevron-down"></i></div>
+<div class="sw-select"><span>Semua Status</span> <i class="fas fa-chevron-down"></i></div>
+<div class="sw-select"><span>Semua Tahun</span> <i class="fas fa-chevron-down"></i></div>
+</div>
+</div>
+<!-- Widget 3: Status Sertifikat -->
+<div class="sert-widget">
+<h4 class="sw-title">Status Sertifikat</h4>
+<div class="sw-status-list">
+<div class="sw-status-item">
+<div class="ssi-left"><i class="far fa-check-circle text-green"></i> Terselesaikan</div>
+<div class="ssi-right">10</div>
+</div>
+<div class="sw-status-item">
+<div class="ssi-left"><i class="far fa-clock text-orange"></i> Sedang Diproses</div>
+<div class="ssi-right">2</div>
+</div>
+<div class="sw-status-item">
+<div class="ssi-left"><i class="far fa-calendar-times text-pink"></i> Akan Kedaluwarsa</div>
+<div class="ssi-right">0</div>
+</div>
+<div class="sw-status-item">
+<div class="ssi-left"><i class="fas fa-history text-gray"></i> Kedaluwarsa</div>
+<div class="ssi-right">0</div>
+</div>
+</div>
+</div>
+<!-- Widget 4: Butuh Bantuan -->
+<div class="sw-help-card">
+<div class="sw-help-content">
+<h4>Butuh Bantuan?</h4>
+<p>Punya pertanyaan tentang sertifikatmu? Hubungi HerAI Assistant sekarang!</p>
+<button>Chat Sekarang</button>
+</div>
+<i class="fas fa-robot sw-help-icon"></i>
+</div>
+</div>
+</div>
+</div>
+        </div>
+    `;
+}
             
             <div class="fellow-stat-grid">
                 ${renderFellowStat('fa-award', 'Total Sertifikat', '12', 'Sertifikat', 'pink')}
@@ -1501,54 +1795,315 @@ function renderFellowCertCard(title, subtitle, date, points, color, icon) {
 
 function renderFellowLeaderboardPage() {
     return `
-        <div class="fellow-leaderboard-page">
-            <div class="flb-layout" style="grid-template-columns: minmax(0, 1fr) 400px; margin-bottom: 32px;">
-                <div class="flb-hero">
-                    <div class="flb-hero-content">
-                        <h2>Terus belajar, terus bertumbuh!</h2>
-                        <p>Setiap poin mencerminkan usaha dan dedikasimu. Pertahankan posisimu di leaderboard atau kejar puncaknya! ✨</p>
-                        <button>Pelajari Cara Mendapat Poin <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                    <img src="/assets/participant-sections/task-trophy.png" alt="" class="flb-hero-img">
-                </div>
-                <div class="flb-summary-card">
-                    <h3>Ringkasan Saya</h3>
-                    <div class="flb-summary-stats">
-                        <div class="flb-summary-item">
-                            <div class="flb-summary-icon is-pink"><i class="fas fa-medal"></i></div>
-                            <div class="flb-summary-info">
-                                <small>Peringkat</small>
-                                <strong class="is-pink">2</strong>
-                                <span>dari <b>1.250</b> Fellow</span>
-                            </div>
-                        </div>
-                        <div class="flb-summary-item">
-                            <div class="flb-summary-icon is-orange"><i class="fas fa-star"></i></div>
-                            <div class="flb-summary-info">
-                                <small>Total Poin</small>
-                                <strong class="is-orange">2.120 <span style="font-size:12px;color:#1E293B;">Poin</span></strong>
-                                <span class="is-green"><i class="fas fa-arrow-up"></i> 320 <span style="color:#94A3B8;font-weight:normal;">poin dari minggu lalu</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flb-progress-wrap">
-                        <div class="flb-progress-header">
-                            <span>Menuju Peringkat 1</span>
-                            <small>2.120 / 2.450</small>
-                        </div>
-                        <div class="flb-progress-bar">
-                            <b style="width: 86.5%"></b>
-                        </div>
-                        <div class="flb-progress-footer">
-                            Anda hanya perlu 330 poin lagi!
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="dash-wrapper-override">
+Header Atas 
 
-            <div class="flb-layout" style="grid-template-columns: minmax(0, 1fr) 320px;">
-                <main class="flb-main">
-                    ${renderFellowTabs(['Leaderboard Global', 'Leaderboard Mingguan', 'Leaderboard Bulanan', 'Leaderboard All Time'])}
+<div class="dash-grid" style="grid-template-columns: 1fr 340px; gap: 30px; align-items: start; margin-top: 24px;">
+<div class="dash-left-col">
+<!-- FASE 2: Banner & Tabs -->
+<div class="lb-banner">
+<div class="lbb-content">
+<h3>Terus belajar, terus bertumbuh!</h3>
+<p>Setiap poin mencerminkan usaha dan dedikasimu. Pertahankan posisimu di leaderboard atau kejar puncaknya! <i class="fas fa-sparkles" style="color:#f59e0b"></i></p>
+<button class="lbb-btn">Pelajari Cara Mendapat Poin <i class="fas fa-arrow-right"></i></button>
+</div>
+<div class="lbb-ill">
+<!-- Trophy CSS Art / Icon -->
+<i class="fas fa-trophy" style="font-size: 110px; color: #fbbf24; filter: drop-shadow(0 10px 15px rgba(251,191,36,0.5));"></i>
+</div>
+</div>
+<div class="lb-tabs-container">
+<nav class="lb-tabs">
+<a class="lbt-link active" href="#">Leaderboard Global</a>
+<a class="lbt-link" href="#">Leaderboard Mingguan</a>
+<a class="lbt-link" href="#">Leaderboard Bulanan</a>
+<a class="lbt-link" href="#">Leaderboard All Time</a>
+</nav>
+</div>
+<!-- FASE 3: Tabel Peringkat -->
+<div class="lb-filters">
+<div class="lb-select">
+<select>
+<option>Semua Kategori</option>
+<option>Data Science</option>
+<option>Machine Learning</option>
+</select>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="lb-select">
+<i class="far fa-calendar-alt" style="margin-right: 8px; color: #8f9bba;"></i>
+<select>
+<option>Minggu Ini</option>
+<option>Bulan Ini</option>
+</select>
+<i class="fas fa-chevron-down"></i>
+</div>
+</div>
+<div class="lb-table-wrapper">
+<table class="lb-table">
+<thead>
+<tr>
+<th width="50">#</th>
+<th>Fellow</th>
+<th style="text-align: right;">Poin</th>
+<th style="text-align: right;">Minggu Ini</th>
+<th style="text-align: center;" width="80">Badge</th>
+</tr>
+</thead>
+<tbody>
+<!-- Rank 1 -->
+<tr>
+<td><i class="fas fa-crown text-gold" style="font-size:18px;"></i> 1</td>
+<td>
+<div class="lbt-user">
+<img alt="Dewi Lestari" src="https://ui-avatars.com/api/?name=Dewi+Lestari&amp;background=FF1493&amp;color=fff"/>
+<div class="lbt-user-info">
+<b>Dewi Lestari</b>
+<small>@dewilestari</small>
+</div>
+</div>
+</td>
+<td style="text-align: right;"><b class="text-pink">2.450</b></td>
+<td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 450</span></td>
+<td style="text-align: center;"><div class="lbt-badge hex-orange"><i class="fas fa-medal"></i></div></td>
+</tr>
+<!-- Rank 2 (Kamu) -->
+<tr class="lbt-highlight">
+<td><i class="fas fa-crown text-silver" style="font-size:18px;"></i> 2</td>
+<td>
+<div class="lbt-user">
+<img alt="Aisyah Putri" src="https://ui-avatars.com/api/?name=Aisyah+Putri&amp;background=FF1493&amp;color=fff"/>
+<div class="lbt-user-info">
+<b class="text-pink">Aisyah Putri (Kamu)</b>
+<small class="text-pink">@aisyahputri</small>
+</div>
+</div>
+</td>
+<td style="text-align: right;"><b class="text-pink">2.120</b></td>
+<td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 320</span></td>
+<td style="text-align: center;"><div class="lbt-badge hex-gray"><i class="fas fa-medal"></i></div></td>
+</tr>
+<!-- Rank 3 -->
+<tr>
+<td><i class="fas fa-crown text-bronze" style="font-size:18px;"></i> 3</td>
+<td>
+<div class="lbt-user">
+<img alt="Siti Aulia" src="https://ui-avatars.com/api/?name=Siti+Aulia&amp;background=FF1493&amp;color=fff"/>
+<div class="lbt-user-info">
+<b>Siti Aulia</b>
+<small>@sitiaulia</small>
+</div>
+</div>
+</td>
+<td style="text-align: right;"><b class="text-pink">1.890</b></td>
+<td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 280</span></td>
+<td style="text-align: center;"><div class="lbt-badge hex-orange"><i class="fas fa-medal"></i></div></td>
+</tr>
+<!-- Rank 4 -->
+<tr>
+<td><b>4</b></td>
+<td>
+<div class="lbt-user">
+<img alt="Rani Mentari" src="/assets/referensi/persona-her-ai.png"/>
+<div class="lbt-user-info">
+<b>Rani Mentari</b>
+<small>@ranimentari</small>
+</div>
+</div>
+</td>
+<td style="text-align: right;"><b class="text-pink">1.450</b></td>
+<td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 210</span></td>
+<td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+</tr>
+<!-- Rank 5 -->
+<tr>
+<td><b>5</b></td>
+<td>
+<div class="lbt-user">
+<img alt="Nadia Putri" src="/assets/referensi/persona-her-ai.png"/>
+<div class="lbt-user-info">
+<b>Nadia Putri</b>
+<small>@nadiaputri</small>
+</div>
+</div>
+</td>
+<td style="text-align: right;"><b class="text-pink">1.230</b></td>
+<td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 180</span></td>
+<td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+</tr>
+<!-- Rank 6 -->
+<tr>
+<td><b>6</b></td>
+<td>
+<div class="lbt-user">
+<img alt="Putri Ananda" src="/assets/referensi/persona-her-ai.png"/>
+<div class="lbt-user-info">
+<b>Putri Ananda</b>
+<small>@putriananda</small>
+</div>
+</div>
+</td>
+<td style="text-align: right;"><b class="text-pink">1.120</b></td>
+<td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 160</span></td>
+<td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+</tr>
+<!-- Rank 7 -->
+<tr>
+<td><b>7</b></td>
+<td>
+<div class="lbt-user">
+<img alt="Larasati Dewi" src="/assets/referensi/persona-her-ai.png"/>
+<div class="lbt-user-info">
+<b>Larasati Dewi</b>
+<small>@larasatidewi</small>
+</div>
+</div>
+</td>
+<td style="text-align: right;"><b class="text-pink">980</b></td>
+<td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 120</span></td>
+<td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+</tr>
+<!-- Rank 8 -->
+<tr>
+<td><b>8</b></td>
+<td>
+<div class="lbt-user">
+<img alt="Maya Pratiwi" src="/assets/referensi/persona-her-ai.png"/>
+<div class="lbt-user-info">
+<b>Maya Pratiwi</b>
+<small>@mayapratiwi</small>
+</div>
+</div>
+</td>
+<td style="text-align: right;"><b class="text-pink">860</b></td>
+<td style="text-align: right;"><span class="text-green"><i class="fas fa-arrow-up"></i> 110</span></td>
+<td style="text-align: center;"><div class="lbt-badge hex-pink-dark"><i class="fas fa-star"></i></div></td>
+</tr>
+</tbody>
+</table>
+<div class="lb-view-more">
+<a class="text-pink" href="#">Lihat Selengkapnya <i class="fas fa-chevron-down"></i></a>
+</div>
+</div>
+</div>
+<div class="dash-right-col">
+<!-- FASE 4 & 5: Widget Kanan -->
+<div class="lb-widgets">
+<!-- Ringkasan Saya -->
+<div class="lb-widget">
+<h4 class="lb-widget-title">Ringkasan Saya</h4>
+<div class="lb-summary-grid">
+<div class="lb-summary-item">
+<div class="lb-summary-icon bg-pink-light"><i class="fas fa-chess-queen text-pink"></i></div>
+<div class="lb-summary-info">
+<small>Peringkat</small>
+<b class="text-pink">2</b>
+<span>dari 1.250 Fellow</span>
+</div>
+</div>
+<div class="lb-summary-item" style="border-left: 1px solid #f0f0f0; padding-left: 16px;">
+<div class="lb-summary-icon bg-orange-light"><i class="fas fa-star text-orange"></i></div>
+<div class="lb-summary-info">
+<small>Total Poin</small>
+<b class="text-orange">2.120 <span style="font-size: 13px; font-weight: 500; color: #1a0b2e;">Poin</span></b>
+<span><i class="fas fa-arrow-up text-green"></i> 320 poin dari minggu lalu</span>
+</div>
+</div>
+</div>
+<div class="lb-summary-progress">
+<div class="lbs-prog-top">
+<small>Menuju Peringkat 1</small>
+<small>2.120 / 2.450</small>
+</div>
+<div class="lbs-prog-bar">
+<div class="lbs-prog-fill" style="width: 86%;"></div>
+</div>
+<small class="lbs-prog-hint">Anda hanya perlu 330 poin lagi!</small>
+</div>
+</div>
+<!-- Cara Mendapat Poin -->
+<div class="lb-widget">
+<div class="lb-widget-header">
+<h4 class="lb-widget-title">Cara Mendapat Poin</h4>
+<a class="lb-widget-link" href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="lb-action-list">
+<div class="lb-action-item">
+<div class="lb-action-icon bg-pink-light text-pink"><i class="fas fa-book-open"></i></div>
+<div class="lb-action-info">
+<b>Menyelesaikan Modul</b>
+<small>+100 poin</small>
+</div>
+</div>
+<div class="lb-action-item">
+<div class="lb-action-icon bg-purple-light text-purple"><i class="fas fa-clipboard-check"></i></div>
+<div class="lb-action-info">
+<b>Menyelesaikan Tugas</b>
+<small>+150 poin</small>
+</div>
+</div>
+<div class="lb-action-item">
+<div class="lb-action-icon bg-orange-light text-orange"><i class="fas fa-folder-open"></i></div>
+<div class="lb-action-info">
+<b>Menyelesaikan Proyek</b>
+<small>+200 poin</small>
+</div>
+</div>
+<div class="lb-action-item">
+<div class="lb-action-icon bg-green-light text-green"><i class="fas fa-calendar-alt"></i></div>
+<div class="lb-action-info">
+<b>Mengikuti Event / Workshop</b>
+<small>+50 poin</small>
+</div>
+</div>
+<div class="lb-action-item">
+<div class="lb-action-icon bg-blue-light text-blue"><i class="fas fa-users"></i></div>
+<div class="lb-action-info">
+<b>Aktif di Komunitas</b>
+<small>+20 poin</small>
+</div>
+</div>
+</div>
+</div>
+<!-- Pencapaian Terbaru -->
+<div class="lb-widget">
+<div class="lb-widget-header">
+<h4 class="lb-widget-title">Pencapaian Terbaru</h4>
+<a class="lb-widget-link" href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="lb-achieve-list">
+<div class="lb-achieve-item">
+<div class="lba-icon"><div class="pac-hex-wrap hex-pink-dark" style="transform: scale(0.65);"><div class="pac-hex"><i class="fas fa-star"></i></div></div></div>
+<div class="lba-info">
+<b>Rising Star</b>
+<small>Masuk 3 besar leaderboard mingguan</small>
+<span>Diraih 20 Mei 2024</span>
+</div>
+</div>
+<div class="lb-achieve-item">
+<div class="lba-icon"><div class="pac-hex-wrap hex-purple" style="transform: scale(0.65);"><div class="pac-hex"><i class="fas fa-fire"></i></div></div></div>
+<div class="lba-info">
+<b>Consistent Learner</b>
+<small>Belajar 7 hari berturut-turut</small>
+<span>Diraih 18 Mei 2024</span>
+</div>
+</div>
+<div class="lb-achieve-item">
+<div class="lba-icon"><div class="pac-hex-wrap hex-orange" style="transform: scale(0.65);"><div class="pac-hex"><i class="fas fa-medal"></i></div></div></div>
+<div class="lba-info">
+<b>Task Master</b>
+<small>Menyelesaikan 10 tugas</small>
+<span>Diraih 15 Mei 2024</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+        </div>
+    `;
+}
                     <div class="flb-main-wrapper">
                         <div class="flb-filters">
                             <select class="flb-select"><option>Semua Kategori</option></select>
@@ -1731,6 +2286,43 @@ function renderFellowLeaderboardPage() {
                         </div>
                     </div>
                 </aside>
+
+                <!-- Konten Pengaturan -->
+                <main class="settings-content">
+                    <h2 class="settings-title">Profil Publik</h2>
+                    
+                    <div class="settings-avatar-section">
+                        <div class="settings-avatar-circle">
+                            A
+                        </div>
+                        <div class="settings-avatar-actions">
+                            <button class="btn-ubah-foto">Ubah Foto</button>
+                            <p>JPG, GIF atau PNG. Maksimal ukuran 2MB</p>
+                        </div>
+                    </div>
+
+                    <form class="settings-form" onsubmit="event.preventDefault(); alert('Pengaturan berhasil disimpan!');">
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" value="Aisyah Putri" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" value="aisyah.putri" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="aisyah@example.com" disabled style="background-color: #f9fafb;">
+                        </div>
+                        <div class="form-group">
+                            <label>Bio Singkat</label>
+                            <textarea placeholder="Tuliskan sedikit tentang dirimu..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </main>
             </div>
         </div>
     `;
@@ -2068,11 +2660,321 @@ function renderFellowMyProfilePage() {
 
 function renderFellowCommunityPage() {
     return `
-        <div class="fellow-community-page">
-            ${renderFellowTabs(
-                ['Untukmu', 'Grup', 'Diskusi', 'Mentor Corner', 'Pengumuman'], 
-                '<div class="search-container"><i class="fas fa-search"></i><input type="text" placeholder="Cari komunitas, topik, atau anggota..."></div>'
-            )}
+        <div class="dash-wrapper-override">
+FASE 2: Header Atas & Baris Tabs 
+
+ FASE 2: Tabs Komunitas 
+<div class="komunitas-tabs-container">
+<div class="komunitas-tabs">
+<button class="k-tab-btn active">Untukmu</button>
+<button class="k-tab-btn">Grup</button>
+<button class="k-tab-btn">Diskusi</button>
+<button class="k-tab-btn">Mentor Corner</button>
+<button class="k-tab-btn">Pengumuman</button>
+</div>
+</div>
+ Layout 2 Kolom (Kiri untuk Konten Utama, Kanan untuk Widget) 
+<div class="dash-grid" style="grid-template-columns: 1fr 300px; gap: 30px; align-items: start; margin-top: 32px;">
+<div class="dash-left-col">
+<!-- FASE 3: Hero Banner -->
+<div class="kom-hero">
+<div class="kom-hero-content">
+<h3>Bergabung dan tumbuh<br/>bersama komunitas AI wanita<br/>terbesar di Indonesia!</h3>
+<p>Temukan teman, mentor, dan peluang baru.</p>
+<button class="btn-buat-postingan">Buat Postingan <i class="fas fa-edit"></i></button>
+</div>
+<div class="kom-hero-ill">
+<div class="ill-circle ill-circle-1"><i class="fas fa-heart"></i></div>
+<div class="ill-circle ill-circle-2"><i class="fas fa-user-friends"></i></div>
+<img alt="Komunitas HerAI" class="ill-main" src="/assets/referensi/persona2.png"/>
+</div>
+</div>
+<!-- FASE 4: Grup Populer -->
+<div class="kom-section">
+<div class="kom-section-header">
+<h4>Grup Populer</h4>
+<a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="kom-groups-grid">
+<!-- Card 1 -->
+<div class="k-group-card">
+<div class="kg-icon bg-pink"><i class="fas fa-code"></i></div>
+<h5>AI &amp; Machine Learning Indonesia</h5>
+<span class="kg-members">12.4K anggota</span>
+<p>Diskusi seputar AI, ML, dan perkembangannya di Indonesia.</p>
+<button class="btn-bergabung txt-pink">Bergabung</button>
+</div>
+<!-- Card 2 -->
+<div class="k-group-card">
+<div class="kg-icon bg-purple"><i class="fas fa-rocket"></i></div>
+<h5>Data Scientist Community</h5>
+<span class="kg-members">8.7K anggota</span>
+<p>Belajar dan berbagi seputar data science, analisis, dan visualisasi.</p>
+<button class="btn-bergabung txt-purple">Bergabung</button>
+</div>
+<!-- Card 3 -->
+<div class="k-group-card">
+<div class="kg-icon bg-orange"><i class="fas fa-brain"></i></div>
+<h5>NLP Enthusiast</h5>
+<span class="kg-members">6.1K anggota</span>
+<p>Membahas Natural Language Processing dan aplikasinya.</p>
+<button class="btn-bergabung txt-orange">Bergabung</button>
+</div>
+<!-- Card 4 -->
+<div class="k-group-card">
+<div class="kg-icon bg-green"><i class="fas fa-address-card"></i></div>
+<h5>Project Collaborators</h5>
+<span class="kg-members">5.3K anggota</span>
+<p>Cari partner untuk mengerjakan proyek AI bersama.</p>
+<button class="btn-bergabung txt-green">Bergabung</button>
+</div>
+<!-- Card 5 (Action) -->
+<div class="k-group-card k-group-action">
+<div class="kg-icon bg-light"><i class="fas fa-plus"></i></div>
+<h5>Lihat Semua Grup</h5>
+<span class="kg-members" style="opacity:0;">-</span>
+<p>Temukan lebih banyak grup yang sesuai denganmu.</p>
+<button class="btn-bergabung txt-pink">Jelajahi</button>
+</div>
+</div>
+</div>
+<!-- FASE 5: Diskusi Terbaru -->
+<div class="kom-section">
+<div class="kom-section-header">
+<h4>Diskusi Terbaru</h4>
+<div class="kom-filters">
+<button class="k-filter-btn active">Terbaru</button>
+<button class="k-filter-btn">Populer</button>
+<button class="k-filter-btn">Mengikuti</button>
+</div>
+</div>
+<div class="kom-discussions">
+<!-- Diskusi 1 -->
+<div class="k-discussion-item">
+<img alt="Siti Aulia" class="kd-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="https://ui-avatars.com/api/?name=Siti+Aulia&amp;background=FF1493&amp;color=fff"/>
+<div class="kd-content">
+<div class="kd-title-row">
+<a class="kd-title" href="#">Tips belajar Python untuk pemula di bidang AI</a>
+<span class="kd-badge bg-pink">Pemula</span>
+</div>
+<div class="kd-meta">
+<b class="text-pink">Siti Aulia</b> • 2 jam yang lalu
+                                    </div>
+</div>
+<div class="kd-actions">
+<div class="kd-action"><i class="far fa-comment-dots"></i> 24</div>
+<div class="kd-action"><i class="far fa-heart"></i> 128</div>
+<button class="kd-btn-icon"><i class="far fa-bookmark"></i></button>
+<button class="kd-btn-icon"><i class="fas fa-ellipsis-h"></i></button>
+</div>
+</div>
+<!-- Diskusi 2 -->
+<div class="k-discussion-item">
+<img alt="Dewi Lestari" class="kd-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="https://ui-avatars.com/api/?name=Dewi+Lestari&amp;background=FF1493&amp;color=fff"/>
+<div class="kd-content">
+<div class="kd-title-row">
+<a class="kd-title" href="#">Rekomendasi dataset untuk project NLP</a>
+<span class="kd-badge bg-purple">NLP</span>
+</div>
+<div class="kd-meta">
+<b class="text-dark">Dewi Lestari</b> • 5 jam yang lalu
+                                    </div>
+</div>
+<div class="kd-actions">
+<div class="kd-action"><i class="far fa-comment-dots"></i> 18</div>
+<div class="kd-action"><i class="far fa-heart"></i> 96</div>
+<button class="kd-btn-icon"><i class="far fa-bookmark"></i></button>
+<button class="kd-btn-icon"><i class="fas fa-ellipsis-h"></i></button>
+</div>
+</div>
+<!-- Diskusi 3 -->
+<div class="k-discussion-item">
+<img alt="Rani Mentari" class="kd-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="https://ui-avatars.com/api/?name=Rani+Mentari&amp;background=FF1493&amp;color=fff"/>
+<div class="kd-content">
+<div class="kd-title-row">
+<a class="kd-title" href="#">Pengalaman ikut AI Hackathon pertama kali 🚀</a>
+<span class="kd-badge bg-green">Pengalaman</span>
+</div>
+<div class="kd-meta">
+<b class="text-pink">Rani Mentari</b> • 1 hari yang lalu
+                                    </div>
+</div>
+<div class="kd-actions">
+<div class="kd-action"><i class="far fa-comment-dots"></i> 32</div>
+<div class="kd-action"><i class="far fa-heart"></i> 156</div>
+<button class="kd-btn-icon"><i class="far fa-bookmark"></i></button>
+<button class="kd-btn-icon"><i class="fas fa-ellipsis-h"></i></button>
+</div>
+</div>
+<!-- Diskusi 4 -->
+<div class="k-discussion-item">
+<img alt="Aisyah Putri" class="kd-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="https://ui-avatars.com/api/?name=Aisyah+Putri&amp;background=FF1493&amp;color=fff"/>
+<div class="kd-content">
+<div class="kd-title-row">
+<a class="kd-title" href="#">Cara membangun portofolio AI yang menarik</a>
+<span class="kd-badge bg-orange">Karier</span>
+</div>
+<div class="kd-meta">
+<b class="text-pink">Aisyah Putri</b> • 2 hari yang lalu
+                                    </div>
+</div>
+<div class="kd-actions">
+<div class="kd-action"><i class="far fa-comment-dots"></i> 27</div>
+<div class="kd-action"><i class="far fa-heart"></i> 134</div>
+<button class="kd-btn-icon"><i class="far fa-bookmark"></i></button>
+<button class="kd-btn-icon"><i class="fas fa-ellipsis-h"></i></button>
+</div>
+</div>
+</div>
+<div style="text-align: center; margin-top: 16px;">
+<a class="kd-lihat-semua" href="#">Lihat Semua Diskusi <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+</div>
+<div class="dash-right-col">
+<!-- FASE 6: Widget Sidebar Kanan -->
+<div class="kom-widgets">
+<!-- Widget 1: Top Kontributor -->
+<div class="kom-widget">
+<div class="widget-header">
+<h4>Top Kontributor</h4>
+<a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="top-contributors">
+<div class="tc-item">
+<div class="tc-rank">1</div>
+<img alt="Dewi Lestari" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="/assets/referensi/11profil.png"/>
+<div class="tc-info">
+<b>Dewi Lestari</b>
+<small>@dewilestari</small>
+</div>
+<div class="tc-score">
+                                        2,450 poin <i class="fas fa-medal" style="color: #f59e0b;"></i>
+</div>
+</div>
+<div class="tc-item tc-highlight">
+<div class="tc-rank">2</div>
+<img alt="Aisyah Putri" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="/assets/referensi/persona2.png"/>
+<div class="tc-info">
+<b class="text-pink">Aisyah Putri (Kamu)</b>
+<small>@aisyahputri</small>
+</div>
+<div class="tc-score">
+                                        2,120 poin <i class="fas fa-medal" style="color: #9ca3af;"></i>
+</div>
+</div>
+<div class="tc-item">
+<div class="tc-rank">3</div>
+<img alt="Siti Aulia" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="/assets/referensi/persona-her-ai.png"/>
+<div class="tc-info">
+<b>Siti Aulia</b>
+<small>@sitiaulia</small>
+</div>
+<div class="tc-score">
+                                        1,890 poin <i class="fas fa-medal" style="color: #d97706;"></i>
+</div>
+</div>
+<div class="tc-item">
+<div class="tc-rank">4</div>
+<img alt="Rani Mentari" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="/assets/referensi/11profil.png"/>
+<div class="tc-info">
+<b>Rani Mentari</b>
+<small>@ranimentari</small>
+</div>
+<div class="tc-score">
+                                        1,450 poin <i class="fas fa-ellipsis-v" style="color: #cbd5e1; margin-left:4px;"></i>
+</div>
+</div>
+<div class="tc-item">
+<div class="tc-rank">5</div>
+<img alt="Nadia Putri" class="tc-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="/assets/referensi/persona2.png"/>
+<div class="tc-info">
+<b>Nadia Putri</b>
+<small>@nadiaputri</small>
+</div>
+<div class="tc-score">
+                                        1,230 poin <i class="fas fa-ellipsis-v" style="color: #cbd5e1; margin-left:4px;"></i>
+</div>
+</div>
+</div>
+</div>
+<!-- Widget 2: Upcoming Events -->
+<div class="kom-widget">
+<div class="widget-header">
+<h4>Upcoming Community Events</h4>
+<a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="upcoming-events">
+<div class="ue-item">
+<div class="ue-date">
+<span class="ue-day">24</span>
+<span class="ue-month">MEI</span>
+</div>
+<div class="ue-info">
+<b>Community Study: LangChain untuk Pemula</b>
+<small>Sab, 24 Mei 2024 • 10.00 WIB</small>
+</div>
+<button class="btn-gabung">Gabung</button>
+</div>
+<div class="ue-item">
+<div class="ue-date">
+<span class="ue-day">31</span>
+<span class="ue-month">MEI</span>
+</div>
+<div class="ue-info">
+<b>Data Talk: Tren AI 2024</b>
+<small>Sab, 31 Mei 2024 • 13.00 WIB</small>
+</div>
+<button class="btn-gabung">Gabung</button>
+</div>
+<div class="ue-item">
+<div class="ue-date">
+<span class="ue-day">7</span>
+<span class="ue-month">JUN</span>
+</div>
+<div class="ue-info">
+<b>AI Project Showcase</b>
+<small>Jum, 7 Juni 2024 • 19.00 WIB</small>
+</div>
+<button class="btn-gabung">Gabung</button>
+</div>
+</div>
+</div>
+<!-- Widget 3: Topik Populer -->
+<div class="kom-widget">
+<div class="widget-header">
+<h4>Topik Populer</h4>
+<a href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="topik-grid">
+<div class="topik-item">
+<div class="topik-tag"><span class="txt-purple">#</span> MachineLearning</div>
+<small>1.2K posts</small>
+</div>
+<div class="topik-item">
+<div class="topik-tag"><span class="txt-purple">#</span> NLP</div>
+<small>654 posts</small>
+</div>
+<div class="topik-item">
+<div class="topik-tag"><span class="txt-purple">#</span> Python</div>
+<small>980 posts</small>
+</div>
+<div class="topik-item">
+<div class="topik-tag"><span class="txt-purple">#</span> AIProject</div>
+<small>543 posts</small>
+</div>
+<div class="topik-item">
+<div class="topik-tag"><span class="txt-purple">#</span> DataScience</div>
+<small>876 posts</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+        </div>
+    `;
+}
             
             <div class="fc-layout">
                 <main class="fc-main">
@@ -2490,8 +3392,298 @@ function renderFellowProjectsPage() {
 
 function renderFellowEventsPage() {
     return `
-        <div class="fellow-section-page">
-            ${renderFellowTabs(['Semua Events', 'Webinar', 'Workshop', 'Mentor Session', 'Komunitas', 'Lomba', 'Career'])}
+        <div class="dash-wrapper-override">
+Header Atas (Top Bar) 
+
+ Layout 2 Kolom (Kiri untuk Event List, Kanan untuk Widget) 
+<div class="dash-grid" style="grid-template-columns: 1fr 300px; gap: 30px; align-items: start; margin-top: 32px;">
+<div class="dash-left-col">
+<!-- FASE 3: Tabs & Filter -->
+<div class="events-tabs-area">
+<div class="events-tabs">
+<button class="event-tab active">Semua Events</button>
+<button class="event-tab">Webinar</button>
+<button class="event-tab">Workshop</button>
+<button class="event-tab">Mentor Session</button>
+<button class="event-tab">Komunitas</button>
+<button class="event-tab">Lomba</button>
+<button class="event-tab">Career</button>
+</div>
+<div class="events-filters">
+<div class="filter-group-left">
+<button class="event-filter-btn">
+<span>Semua Kategori</span> <i class="fas fa-chevron-down"></i>
+</button>
+<button class="event-filter-btn">
+<i class="far fa-calendar"></i> <span>Tanggal</span>
+</button>
+<button class="event-filter-btn">
+<span>Format</span> <i class="fas fa-chevron-down"></i>
+</button>
+<button class="event-filter-btn">
+<span>Online &amp; Offline</span> <i class="fas fa-chevron-down"></i>
+</button>
+</div>
+<div class="filter-group-right">
+<button class="event-filter-btn">
+<span>Terbaru</span> <i class="fas fa-chevron-down"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- FASE 4: List Event -->
+<div class="events-list-area">
+<div class="events-list-header">
+<h3 class="events-list-title">Event Mendatang <span class="events-badge">5</span></h3>
+<a class="events-link-all" href="#">Lihat Semua <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="events-cards">
+<!-- Card 1 -->
+<div class="event-card">
+<div class="event-card-img" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);">
+<div class="event-card-placeholder-icon"><i class="fas fa-robot"></i></div>
+</div>
+<div class="event-card-body">
+<span class="event-category badge-webinar">Webinar</span>
+<h4 class="event-title">Build RAG Chatbot with LangChain</h4>
+<p class="event-desc">Pelajari cara membangun chatbot cerdas dengan Retrieval Augmented Generation menggunakan LangChain.</p>
+<div class="event-speaker">
+<img alt="Dewi Lestari" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="/assets/referensi/persona-her-ai.png"/>
+<div class="speaker-info">
+<b>Dewi Lestari</b>
+<small>AI Engineer at TechNova</small>
+</div>
+</div>
+</div>
+<div class="event-card-right">
+<div class="event-date-box">
+<span class="date-num">22</span>
+<span class="date-month">MEI</span>
+<span class="date-time">10.00 - 12.00 WIB</span>
+<span class="date-type">Online</span>
+</div>
+<div class="event-action-box">
+<button class="btn-daftar">Daftar</button>
+<span class="registered-count"><b>120</b> peserta terdaftar</span>
+<button class="btn-bookmark"><i class="far fa-bookmark"></i></button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="event-card">
+<div class="event-card-img" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
+<div class="event-card-placeholder-icon"><i class="fas fa-code"></i></div>
+</div>
+<div class="event-card-body">
+<span class="event-category badge-workshop">Workshop</span>
+<h4 class="event-title">Data Visualization with Python</h4>
+<p class="event-desc">Buat visualisasi data yang informatif dan menarik menggunakan Matplotlib, Seaborn, dan Plotly.</p>
+<div class="event-speaker">
+<img alt="Rizka Amelia" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="/assets/referensi/persona2.png"/>
+<div class="speaker-info">
+<b>Rizka Amelia</b>
+<small>Data Scientist</small>
+</div>
+</div>
+</div>
+<div class="event-card-right">
+<div class="event-date-box">
+<span class="date-num">25</span>
+<span class="date-month">MEI</span>
+<span class="date-time">13.00 - 16.00 WIB</span>
+<span class="date-type">Online</span>
+</div>
+<div class="event-action-box">
+<button class="btn-daftar">Daftar</button>
+<span class="registered-count"><b>86</b> peserta terdaftar</span>
+<button class="btn-bookmark"><i class="far fa-bookmark"></i></button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="event-card">
+<div class="event-card-img" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);">
+<div class="event-card-placeholder-icon"><i class="fas fa-user-friends"></i></div>
+</div>
+<div class="event-card-body">
+<span class="event-category badge-mentor">Mentor Session</span>
+<h4 class="event-title">Career in AI: Ask Me Anything</h4>
+<p class="event-desc">Sesi tanya jawab bersama mentor berpengalaman seputar karier di bidang AI/ML.</p>
+<div class="event-speaker">
+<img alt="Mentor Rani" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23ddd\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'12\'/%3E%3C/svg%3E'" src="/assets/referensi/persona-her-ai.png"/>
+<div class="speaker-info">
+<b>Mentor Rani</b>
+<small>ML Lead at Inovasi AI</small>
+</div>
+</div>
+</div>
+<div class="event-card-right">
+<div class="event-date-box">
+<span class="date-num">30</span>
+<span class="date-month">MEI</span>
+<span class="date-time">19.00 - 20.30 WIB</span>
+<span class="date-type">Online</span>
+</div>
+<div class="event-action-box">
+<button class="btn-daftar">Daftar</button>
+<span class="registered-count"><b>64</b> peserta terdaftar</span>
+<button class="btn-bookmark"><i class="far fa-bookmark"></i></button>
+</div>
+</div>
+</div>
+<!-- Card 4 (Lomba) -->
+<div class="event-card">
+<div class="event-card-img" style="background: linear-gradient(to top, #0ba360 0%, #3cba92 100%);">
+<div class="event-card-placeholder-icon"><i class="fas fa-trophy"></i></div>
+</div>
+<div class="event-card-body">
+<span class="event-category badge-lomba">Lomba</span>
+<h4 class="event-title">AI Project Challenge 2024</h4>
+<p class="event-desc">Tunjukkan ide dan kreasimu! Kompetisi proyek AI untuk semua Fellow HerAI.</p>
+<div class="event-speaker" style="opacity: 0;">
+<div class="speaker-info"><b>-</b></div>
+</div>
+</div>
+<div class="event-card-right">
+<div class="event-date-box">
+<span class="date-num">5</span>
+<span class="date-month">JUN</span>
+<span class="date-time">23.59 WIB</span>
+<span class="date-type">Deadline Pengumpulan</span>
+</div>
+<div class="event-action-box">
+<button class="btn-daftar btn-lomba">Ikut Lomba</button>
+<span class="registered-count"><b>35</b> tim terdaftar</span>
+<button class="btn-bookmark"><i class="far fa-bookmark"></i></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dash-right-col">
+<!-- FASE 5: Widget Sidebar Kanan -->
+<div class="events-widgets">
+<!-- Widget 1: Kalender -->
+<div class="events-widget">
+<div class="widget-header">
+<h4>Kalender Events</h4>
+<a href="#">Lihat Kalender</a>
+</div>
+<div class="calendar-widget">
+<div class="calendar-nav">
+<button><i class="fas fa-chevron-left"></i></button>
+<strong>Mei 2024</strong>
+<button><i class="fas fa-chevron-right"></i></button>
+</div>
+<div class="calendar-grid">
+<div class="cal-day-header">Min</div>
+<div class="cal-day-header">Sen</div>
+<div class="cal-day-header">Sel</div>
+<div class="cal-day-header">Rab</div>
+<div class="cal-day-header">Kam</div>
+<div class="cal-day-header">Jum</div>
+<div class="cal-day-header">Sab</div>
+<div class="cal-day text-muted">28</div>
+<div class="cal-day text-muted">29</div>
+<div class="cal-day text-muted">30</div>
+<div class="cal-day">1</div>
+<div class="cal-day">2</div>
+<div class="cal-day">3</div>
+<div class="cal-day">4</div>
+<div class="cal-day">5</div>
+<div class="cal-day">6</div>
+<div class="cal-day">7</div>
+<div class="cal-day">8</div>
+<div class="cal-day">9</div>
+<div class="cal-day">10</div>
+<div class="cal-day">11</div>
+<div class="cal-day">12</div>
+<div class="cal-day">13</div>
+<div class="cal-day">14</div>
+<div class="cal-day">15</div>
+<div class="cal-day">16</div>
+<div class="cal-day">17</div>
+<div class="cal-day">18</div>
+<div class="cal-day">19</div>
+<div class="cal-day">20</div>
+<div class="cal-day">21</div>
+<div class="cal-day active-pink">22</div>
+<div class="cal-day">23</div>
+<div class="cal-day">24</div>
+<div class="cal-day active-purple">25</div>
+<div class="cal-day">26</div>
+<div class="cal-day">27</div>
+<div class="cal-day">28</div>
+<div class="cal-day">29</div>
+<div class="cal-day active-orange">30</div>
+<div class="cal-day">31</div>
+<div class="cal-day text-muted">1</div>
+</div>
+</div>
+</div>
+<!-- Widget 2: Event yang Kamu Ikuti -->
+<div class="events-widget">
+<div class="widget-header">
+<h4>Event yang Kamu Ikuti</h4>
+<a href="#">Lihat Semua</a>
+</div>
+<div class="joined-events-list">
+<div class="joined-event-item">
+<div class="je-icon bg-pink"><i class="fas fa-robot"></i></div>
+<div class="je-info">
+<b>Build RAG Chatbot with LangChain</b>
+<small>22 Mei 2024, 10.00 WIB</small>
+</div>
+<span class="je-badge">Terdaftar</span>
+</div>
+<div class="joined-event-item">
+<div class="je-icon bg-purple"><i class="fas fa-code"></i></div>
+<div class="je-info">
+<b>Data Visualization with Python</b>
+<small>25 Mei 2024, 13.00 WIB</small>
+</div>
+<span class="je-badge">Terdaftar</span>
+</div>
+<div class="joined-event-item">
+<div class="je-icon bg-orange"><i class="fas fa-user-friends"></i></div>
+<div class="je-info">
+<b>Career in AI: Ask Me Anything</b>
+<small>30 Mei 2024, 19.00 WIB</small>
+</div>
+<span class="je-badge">Terdaftar</span>
+</div>
+</div>
+</div>
+<!-- Widget 3: Jangan Lewatkan! -->
+<div class="events-widget">
+<div class="widget-header">
+<h4>Jangan Lewatkan!</h4>
+<a href="#">Lihat Semua</a>
+</div>
+<div class="promo-card">
+<div class="promo-img">
+<!-- Use an inline SVG to mimic the hackathon banner visually since we don't have the exact image -->
+<div style="width:100%;height:100%;background:linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);display:flex;align-items:center;justify-content:center;color:white;font-size:40px;">
+<i class="fas fa-rocket"></i>
+</div>
+</div>
+<div class="promo-content">
+<h5>AI for Social Good Hackathon</h5>
+<p>Buat solusi AI untuk masalah sosial dan menangkan total hadiah jutaan rupiah!</p>
+<div class="promo-footer">
+<span>15 - 16 Juni 2024</span>
+<button class="btn-promo">Lihat Detail</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+        </div>
+    `;
+}
             <div class="fellow-filter-row"><button>Semua Kategori <i class="fas fa-chevron-down"></i></button><button><i class="far fa-calendar"></i> Tanggal</button><button>Format <i class="fas fa-chevron-down"></i></button><button>Online & Offline <i class="fas fa-chevron-down"></i></button><button>Terbaru <i class="fas fa-chevron-down"></i></button></div>
             <div class="fellow-section-layout">
                 <section class="fellow-panel fellow-event-panel">
@@ -2588,6 +3780,231 @@ function renderFellowMiniCalendar(title) {
     return `<section class="fellow-side-card fellow-calendar"><h3>${escapeProfileHtml(title)}</h3><header><button><i class="fas fa-chevron-left"></i></button><strong>Mei 2024</strong><button><i class="fas fa-chevron-right"></i></button></header><div>${['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'].map(day => `<b>${day}</b>`).join('')}${days.map(day => `<span class="${['22', '25', '28', '31'].includes(day) ? 'active' : ''}">${day}</span>`).join('')}</div></section>`;
 }
 
+function renderFellowHelpPage() {
+    return `
+        <div class="dash-wrapper-override">
+<div class="faq-content-area" style="padding-top: 32px;">
+<style>
+                    .faq-grid-custom {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                        gap: 24px;
+                    }
+                    .faq-card-custom {
+                        background: white;
+                        border: 1px solid #f0f0f0;
+                        border-radius: 16px;
+                        padding: 24px;
+                        transition: all 0.3s ease;
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    .faq-card-custom:hover {
+                        border-color: #fecfef;
+                        box-shadow: 0 10px 30px rgba(245, 63, 124, 0.05);
+                        transform: translateY(-2px);
+                    }
+                    .faq-card-custom::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 4px;
+                        height: 100%;
+                        background: #f53f7c;
+                        opacity: 0;
+                        transition: opacity 0.3s;
+                    }
+                    .faq-card-custom:hover::before {
+                        opacity: 1;
+                    }
+                    .faq-num-custom {
+                        font-size: 32px;
+                        font-weight: 800;
+                        color: #ffeef4;
+                        position: absolute;
+                        top: 16px;
+                        right: 24px;
+                        z-index: 0;
+                    }
+                    .faq-card-custom h4 {
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: #1a0b2e;
+                        margin: 0 0 12px 0;
+                        position: relative;
+                        z-index: 1;
+                    }
+                    .faq-card-custom p {
+                        font-size: 14px;
+                        color: #6b7a90;
+                        line-height: 1.6;
+                        margin: 0;
+                        position: relative;
+                        z-index: 1;
+                    }
+                    .faq-contact-box {
+                        background: linear-gradient(to right, #fff1f6, #fde7ee);
+                        border-radius: 16px;
+                        padding: 32px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-top: 40px;
+                    }
+                    .faq-contact-text h3 {
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: #1a0b2e;
+                        margin: 0 0 8px 0;
+                    }
+                    .faq-contact-text p {
+                        color: #6b7a90;
+                        font-size: 14px;
+                        margin: 0;
+                    }
+                    .faq-contact-btn {
+                        background: #f53f7c;
+                        color: white;
+                        border: none;
+                        padding: 12px 24px;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                    }
+                </style>
+<div class="faq-grid-custom">
+<div class="faq-card-custom">
+<div class="faq-num-custom">01</div>
+<h4>Apakah program ini berbayar?</h4>
+<p>Tidak. Program ini 100% Gratis bagi peserta yang lolos seleksi.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">02</div>
+<h4>Harus background IT?</h4>
+<p>Tidak wajib, namun memiliki minat yang kuat dan komitmen tinggi sangat diutamakan.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">03</div>
+<h4>Apa itu Jalur Afirmasi 3T?</h4>
+<p>Kuota khusus (30%) untuk pendaftar dari 122 kabupaten tertinggal (3T) di Indonesia (KTP/Domisili).</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">04</div>
+<h4>Bagaimana sistem belajarnya?</h4>
+<p>Intensif 8 minggu yang terbagi menjadi 3 fase: Foundation, Specialization, dan Application.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">05</div>
+<h4>Sertifikasi resmi NVIDIA?</h4>
+<p>Ya, peserta yang lulus ujian akan mendapatkan sertifikasi resmi global dari NVIDIA.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">06</div>
+<h4>Mentoring di Weekday?</h4>
+<p>Tidak, seluruh sesi mentoring dan kelas akan dilaksanakan setiap weekend.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">07</div>
+<h4>Bentuk Tes Kompetensi?</h4>
+<p>Tes seputar logika dasar, pengetahuan umum tentang data, dan matematika.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">08</div>
+<h4>Belum pernah belajar AI?</h4>
+<p>Tentu bisa! Fase Foundation akan mengajarkan dari nol (Math for AI &amp; Data Fundamental).</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">09</div>
+<h4>Benefit Awardee HerAI?</h4>
+<p>2 sertifikasi, networking expert, akses Woman Hub, dan akselerasi karir.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">10</div>
+<h4>Boleh mundur di tengah jalan?</h4>
+<p>Diharapkan komitmen penuh karena kuota beasiswa ini sangat terbatas.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">11</div>
+<h4>Apakah ada sesi mentorship?</h4>
+<p>Ya, bimbingan langsung eksklusif dari para expert Data Sorcerers.</p>
+</div>
+<div class="faq-card-custom">
+<div class="faq-num-custom">12</div>
+<h4>Online atau Offline?</h4>
+<p>Program dilakukan secara Online, bisa diikuti dari mana saja di seluruh Indonesia.</p>
+</div>
+</div>
+<div class="faq-contact-box">
+<div class="faq-contact-text">
+<h3>Masih punya pertanyaan?</h3>
+<p>Tim support kami siap membantu menjawab kebingunganmu tentang HerAI Fellowship.</p>
+</div>
+<button class="faq-contact-btn"><i class="far fa-envelope"></i> Hubungi Bantuan</button>
+</div>
+</div>
+        </div>
+    `;
+}
+
+function renderFellowSettingsPage() {
+    return `
+        <div id="participant-settings-view">
+            <div class="settings-container">
+                <!-- Sidebar Pengaturan -->
+                <aside class="settings-sidebar">
+                    <nav class="settings-nav">
+                        <a href="#participant-settings" class="active"><i class="far fa-user-circle"></i> Profil Publik</a>
+                        <a href="#participant-settings"><i class="far fa-bell"></i> Notifikasi</a>
+                        <a href="#participant-settings"><i class="fas fa-shield-alt"></i> Keamanan</a>
+                        <a href="#participant-settings"><i class="fas fa-link"></i> Akun Tertaut</a>
+                        <a href="#participant-home" style="color: #ef4444; margin-top: 16px;"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+                    </nav>
+                </aside>
+
+                <!-- Konten Pengaturan -->
+                <main class="settings-content">
+                    <h2 class="settings-title">Profil Publik</h2>
+                    
+                    <div class="settings-avatar-section">
+                        <div class="settings-avatar-circle">
+                            A
+                        </div>
+                        <div class="settings-avatar-actions">
+                            <button class="btn-ubah-foto">Ubah Foto</button>
+                            <p>JPG, GIF atau PNG. Maksimal ukuran 2MB</p>
+                        </div>
+                    </div>
+
+                    <form class="settings-form" onsubmit="event.preventDefault(); alert('Pengaturan berhasil disimpan!');">
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" value="Aisyah Putri" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" value="aisyah.putri" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="aisyah@example.com" disabled style="background-color: #f9fafb;">
+                        </div>
+                        <div class="form-group">
+                            <label>Bio Singkat</label>
+                            <textarea placeholder="Tuliskan sedikit tentang dirimu..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    `;
+}
 const FELLOW_MODULE_WELCOME = {
     'participant-chatroom': {
         icon: 'fa-comment-dots',

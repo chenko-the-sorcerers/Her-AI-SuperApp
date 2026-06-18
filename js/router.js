@@ -22,15 +22,15 @@ const router = {
         "/graduation": "/pages/frontend/graduation.html",
         "/register": "/pages/frontend/register.html",
         "/profile": "/pages/frontend/profile.html",
-        "/profil": "/pages/frontend/profile.html",
-        "/chatroom": "/pages/frontend/profile.html",
-        "/modul": "/pages/frontend/profile.html",
-        "/tugas": "/pages/frontend/profile.html",
-        "/fellow-proyek": "/pages/frontend/profile.html",
-        "/events": "/pages/frontend/profile.html",
-        "/komunitas": "/pages/frontend/profile.html",
-        "/sertifikat": "/pages/frontend/profile.html",
-        "/faq": "/pages/frontend/profile.html",
+        "/profil": "/pages/frontend/profil.html",
+        "/chatroom": "/pages/frontend/chatroom.html",
+        "/modul": "/pages/frontend/modul.html",
+        "/tugas": "/pages/frontend/tugas.html",
+        "/fellow-proyek": "/pages/frontend/fellow-proyek.html",
+        "/events": "/pages/frontend/events.html",
+        "/komunitas": "/pages/frontend/komunitas.html",
+        "/sertifikat": "/pages/frontend/sertifikat.html",
+        "/faq": "/pages/frontend/faq.html",
         "/meeting": "/pages/frontend/meeting.html",
         "/messaging": "/pages/frontend/messaging.html",
         "/competency-test": "/pages/frontend/competency-test.html",
@@ -98,17 +98,7 @@ const router = {
         "/x/at6l4": "/audit-trail",
         "/x/gs3n9": "/global-settings",
         "/x/rb8a2": "/rbac",
-        "/x/as4e6": "/assets",
-        "/chatroom": "/profile",
-        "/modul": "/profile",
-        "/tugas": "/profile",
-        "/fellow-proyek": "/profile",
-        "/events": "/profile",
-        "/komunitas": "/profile",
-        "/sertifikat": "/profile",
-        "/leaderboard": "/profile",
-        "/faq": "/profile",
-        "/profil": "/profile"
+        "/x/as4e6": "/assets"
     },
 
     currentPath: null,
@@ -341,7 +331,7 @@ const router = {
                 // 1. Logika Register & Twibbon
                 if (path === "/register" && typeof window.initRegisterLogic === "function") {
                     window.initRegisterLogic();
-                } else if (["/profile", "/profil", "/leaderboard", "/chatroom", "/modul", "/tugas", "/fellow-proyek", "/events", "/komunitas", "/sertifikat", "/faq"].includes(path) && typeof window.initParticipantProfile === "function") {
+                } else if (path === "/profile" && typeof window.initParticipantProfile === "function") {
                     window.initParticipantProfile();
                 } else if (path === "/competency-test" && typeof window.initCompetencyTest === "function") {
                     window.initCompetencyTest();
