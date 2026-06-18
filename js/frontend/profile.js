@@ -1317,7 +1317,7 @@ function renderFellowMentorPage() {
                     
                     <div class="ms-card">
                         <h3>Mau jadi Mentor?</h3>
-                        <img src="/assets/referensi/trophy-illustration.png" alt="Trophy" class="ms-hero-art" onerror="this.src='/assets/placeholder.png'">
+                        <img src="/assets/invite-illustration.png" alt="Trophy" class="ms-hero-art">
                         <p class="ms-hero-desc">Bagikan ilmumu dan bantu kembangkan talenta AI.</p>
                         <button class="btn-solid-pink">Daftar Sekarang</button>
                     </div>
