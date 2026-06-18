@@ -3516,7 +3516,7 @@ function bindFellowNavigation() {
             if (leadView) leadView.style.display = 'none';
             if (helpView) helpView.style.display = 'none';
             if (settingsView) settingsView.style.display = 'none';
-            if (fellowHeader) fellowHeader.style.display = 'flex';
+            if (fellowHeader) fellowHeader.style.display = '';
             
             const crSearch = document.getElementById('cr-sidebar-search');
             const crProfile = document.getElementById('cr-sidebar-profile');
@@ -3558,7 +3558,7 @@ function showFellowHome() {
             if (leadView) leadView.style.display = 'none';
             if (helpView) helpView.style.display = 'none';
             if (settingsView) settingsView.style.display = 'none';
-    if (fellowHeader) fellowHeader.style.display = 'flex';
+    if (fellowHeader) fellowHeader.style.display = '';
     
     const crSearch = document.getElementById('cr-sidebar-search');
     const crProfile = document.getElementById('cr-sidebar-profile');
