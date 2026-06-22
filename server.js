@@ -14,7 +14,7 @@ const SETTINGS_PATH = path.join(__dirname, '.cursor', 'global-settings.json');
 const PARTICIPANTS_PATH = path.join(__dirname, '.cursor', 'participants.json');
 const COMPETENCY_SESSIONS_PATH = path.join(__dirname, '.cursor', 'competency-sessions.json');
 const PROJECT_SUBMISSIONS_PATH = path.join(__dirname, '.cursor', 'project-submissions.json');
-const GAS_WEB_APP_URL = process.env.GAS_WEB_APP_URL || 'https://script.google.com/macros/s/AKfycbxivp4g8mVai8rZcei4w9pblh8s2Kks84CnRshveD_IR69erw_Ffbn_TwithrpNTEj_yw/exec';
+const GAS_WEB_APP_URL = process.env.GAS_WEB_APP_URL || '';
 const PUBLIC_PARTICIPANTS_CSV_URL = 'https://docs.google.com/spreadsheets/d/120NQtFqErJiIfITlPfVo8wV6G0_79qFKMTaptxNF-RA/export?format=csv';
 
 const TEST_PARTICIPANT = {
@@ -273,7 +273,15 @@ function proxyGasRequest(body, res) {
         res.end(JSON.stringify({ status: 'error', message: 'GAS_WEB_APP_URL belum dikonfigurasi.' }));
         return;
     }
-    const target = new URL(GAS_WEB_APP_URL);
+    let target;
+    try {
+        target = new URL(GAS_WEB_APP_URL);
+    } catch {
+        if (handleLocalGasFallback(body, res)) return;
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ status: 'error', message: 'GAS_WEB_APP_URL tidak valid.' }));
+        return;
+    }
     const request = https.request({
         hostname: target.hostname,
         path: target.pathname + target.search,
