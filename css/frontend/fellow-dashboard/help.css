@@ -135,77 +135,58 @@
     border-color: var(--fellow-pink);
 }
 
-/* Accordion */
-.faq-accordion {
+/* --- FAQ GRID CARDS --- */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+.faq-card {
+    background: #ffffff;
+    padding: 24px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--fellow-line);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
 }
 
-.accordion-item {
-    background: #fff;
-    border: 1px solid var(--fellow-line);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.2s;
+.faq-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--fellow-pink);
+    box-shadow: 0 10px 20px rgba(219, 39, 119, 0.08);
 }
 
-.accordion-item:hover {
-    border-color: #fbcfe8;
+.faq-card-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgba(219, 39, 119, 0.08);
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    line-height: 1;
 }
 
-.accordion-header {
-    width: 100%;
-    text-align: left;
-    background: transparent;
-    border: none;
-    padding: 20px;
+.faq-card h4 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--fellow-text);
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+    padding-right: 40px;
 }
 
-.accordion-header i {
-    color: var(--fellow-pink);
-    transition: transform 0.3s;
-}
-
-.accordion-content {
-    padding: 0 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    background: #fff;
-}
-
-.accordion-content p {
+.faq-card p {
     color: var(--fellow-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.6;
-    margin: 0 0 16px;
-}
-
-.accordion-content ul {
-    color: var(--fellow-muted);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin: 0 0 16px;
-    padding-left: 20px;
-}
-
-/* Open State */
-.accordion-item.open {
-    border-color: #fbcfe8;
-    box-shadow: 0 4px 12px rgba(219, 39, 119, 0.05);
-}
-
-.accordion-item.open .accordion-content {
-    max-height: 500px;
-    padding: 0 20px 20px;
+    margin: 0;
+    flex-grow: 1;
 }
 
 /* --- RIGHT WIDGETS --- */
