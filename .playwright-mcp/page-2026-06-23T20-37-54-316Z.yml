@@ -1,0 +1,104 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e4]:
+      - generic [ref=e5]: HerAI Fellowship
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /home
+        - listitem [ref=e9]:
+          - link "About Us" [ref=e10] [cursor=pointer]:
+            - /url: /about-us
+        - listitem [ref=e11]:
+          - link "Kurikulum" [ref=e12] [cursor=pointer]:
+            - /url: /curriculum
+        - listitem [ref=e13]:
+          - link "Projects" [ref=e14] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e15]:
+          - link "Explore " [ref=e16] [cursor=pointer]:
+            - /url: javascript:void(0)
+            - text: Explore
+            - generic [ref=e17]: 
+        - listitem [ref=e18]:
+          - link "Daftar Sekarang" [ref=e19] [cursor=pointer]:
+            - /url: /register
+  - main
+  - contentinfo [ref=e25]:
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - link "HerAI Fellowship" [ref=e28] [cursor=pointer]:
+          - /url: "#/home"
+        - paragraph [ref=e29]: Pemberdayaan talenta perempuan melalui AI. Inisiatif kolaboratif untuk masa depan inklusif.
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - strong [ref=e32]: "2026"
+            - text: Cohort
+          - generic [ref=e33]:
+            - strong [ref=e34]: "100"
+            - text: Fellows
+          - generic [ref=e35]:
+            - strong [ref=e36]: AI
+            - text: Portfolio
+        - generic [ref=e37]:
+          - generic [ref=e38]: 
+          - link "contact@data-sorcerers.com" [ref=e39] [cursor=pointer]:
+            - /url: mailto:contact@data-sorcerers.com
+      - generic [ref=e40]:
+        - heading "Explore" [level=4] [ref=e41]
+        - list [ref=e42]:
+          - listitem [ref=e43]:
+            - link "Home" [ref=e44] [cursor=pointer]:
+              - /url: "#/home"
+          - listitem [ref=e45]:
+            - link "About Us" [ref=e46] [cursor=pointer]:
+              - /url: "#/about-us"
+          - listitem [ref=e47]:
+            - link "Curriculum" [ref=e48] [cursor=pointer]:
+              - /url: "#/curriculum"
+          - listitem [ref=e49]:
+            - link "Registration" [ref=e50] [cursor=pointer]:
+              - /url: "#/register"
+      - generic [ref=e51]:
+        - heading "Fellowship" [level=4] [ref=e52]
+        - list [ref=e53]:
+          - listitem [ref=e54]:
+            - link "Announcement" [ref=e55] [cursor=pointer]:
+              - /url: "#/announcement"
+          - listitem [ref=e56]:
+            - link "Tahap 1 Result" [ref=e57] [cursor=pointer]:
+              - /url: "#/announcement-stage-1"
+          - listitem [ref=e58]:
+            - link "Tahap 2 Result" [ref=e59] [cursor=pointer]:
+              - /url: "#/announcement-stage-2"
+          - listitem [ref=e60]:
+            - link "Final Result" [ref=e61] [cursor=pointer]:
+              - /url: "#/announcement-final"
+          - listitem [ref=e62]:
+            - link "Projects" [ref=e63] [cursor=pointer]:
+              - /url: "#/projects"
+          - listitem [ref=e64]:
+            - link "Wall of Fame" [ref=e65] [cursor=pointer]:
+              - /url: "#/wall-of-fame"
+          - listitem [ref=e66]:
+            - link "Leaderboard" [ref=e67] [cursor=pointer]:
+              - /url: "#/leaderboard"
+      - generic [ref=e68]:
+        - heading "Follow Us" [level=4] [ref=e69]
+        - generic [ref=e70]:
+          - link " @datasorcerers" [ref=e71] [cursor=pointer]:
+            - /url: https://instagram.com/datasorcerers
+            - generic [ref=e72]: 
+            - generic [ref=e73]: "@datasorcerers"
+          - link " @womanhub.id" [ref=e74] [cursor=pointer]:
+            - /url: https://instagram.com/womanhub.id
+            - generic [ref=e75]: 
+            - generic [ref=e76]: "@womanhub.id"
+    - generic [ref=e78]:
+      - paragraph [ref=e79]:
+        - text: © 2026 HerAI Fellowship. Operated by
+        - strong [ref=e80]: Data Sorcerers
+        - text: with Womanhub.id.
+      - generic [ref=e81]:
+        - generic [ref=e82] [cursor=pointer]: Privacy Policy
+        - generic [ref=e83] [cursor=pointer]: Terms of Service

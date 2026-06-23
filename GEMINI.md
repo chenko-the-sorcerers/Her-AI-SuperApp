@@ -170,3 +170,7 @@ Setiap perubahan bisa berdampak pada:
 | SPA Router | `js/router.js` | Hash routing + semua route |
 | Dev Server | `server.js` | Node proxy + fallback |
 | Signaling | `signaling/main.go` | Go WebRTC signaling |
+
+
+
+ATURAN TAK TERTULIS SELALU COMMIT PERUBAHAN DISAAT NGERJAIN FITUR TAPI JANGAN DIPUSH 

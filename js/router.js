@@ -46,7 +46,7 @@ const router = {
         "/participant-help": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-settings": "/pages/frontend/fellow-dashboard/under-development.html",
         "/meeting": "/pages/frontend/meeting.html",
-        "/messaging": "/pages/frontend/messaging-closed.html",
+        "/messaging": "/pages/frontend/fellow-dashboard/chatroom.html",
         "/messaging-alt": "/pages/frontend/messaging.html",
         "/competency-test": "/pages/frontend/competency-test.html",
         "/retest": "/pages/frontend/retest.html",
