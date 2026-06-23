@@ -1543,6 +1543,7 @@
     .fellow-dashboard {
         display: block;
         padding-bottom: 0;
+        position: relative;
     }
 
     .fellow-menu-toggle {
@@ -1557,7 +1558,7 @@
         height: 46px;
         justify-content: center;
         left: 14px;
-        position: fixed;
+        position: absolute;
         top: 14px;
         width: 46px;
         z-index: 120;
@@ -1677,7 +1678,7 @@
 
     .fellow-main {
         margin-left: 0;
-        padding: 76px 14px 0;
+        padding: 14px 14px 0;
     }
 
     .under-dev-hero {
@@ -1729,11 +1730,24 @@
     }
 
     .fellow-topbar {
-        align-items: start;
-        gap: 18px;
-        margin-bottom: 20px;
+        position: relative;
+        top: 0;
+        margin-bottom: 24px;
         padding: 0;
-        top: 14px;
+        display: grid;
+        grid-template-areas: 
+            "empty bell avatar"
+            "greeting greeting greeting"
+            "search search search";
+        grid-template-columns: 1fr 46px 46px;
+        gap: 16px 12px;
+    }
+
+    .fellow-topbar > div:first-child {
+        grid-area: greeting;
+        padding-left: 0;
+        min-height: 0;
+        display: block;
     }
 
     .fellow-topbar h1 {
@@ -1741,11 +1755,11 @@
     }
 
     .fellow-actions {
-        gap: 10px;
-        grid-template-columns: 1fr 46px 46px;
+        display: contents;
     }
 
     .fellow-search {
+        grid-area: search;
         min-height: 48px;
         padding: 0 14px;
     }
@@ -1759,29 +1773,41 @@
         display: none;
     }
 
+    .fellow-user-menu {
+        grid-area: avatar;
+    }
+
     .fellow-user-button .avatar-img,
     .fellow-icon-button {
         height: 46px;
         width: 46px;
     }
+    
+    .fellow-icon-button {
+        grid-area: bell;
+    }
 
     .fellow-hero-card {
         grid-template-columns: 1fr;
         min-height: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .hero-copy {
-        padding: 28px 24px 0;
+        padding: 28px 24px 10px;
     }
 
     .fellow-hero-card h2 {
-        font-size: 1.55rem;
+        font-size: 1.35rem;
     }
 
     .fellow-hero-card img {
-        height: 210px;
+        height: 220px;
         max-height: none;
-        object-position: 50% 24%;
+        object-fit: contain;
+        object-position: center bottom;
+        margin-top: auto;
     }
 
     .module-grid,
@@ -1809,9 +1835,7 @@
 }
 
 @media (max-width: 520px) {
-    .fellow-actions {
-        grid-template-columns: 1fr 44px 44px;
-    }
+    /* Topbar grid is handled flawlessly by the 860px media query */
 
     .panel-heading {
         align-items: flex-start;
