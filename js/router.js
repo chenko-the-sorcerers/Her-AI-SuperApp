@@ -42,7 +42,7 @@ const router = {
         "/participant-events": "/pages/frontend/fellow-dashboard/events.html",
         "/participant-community": "/pages/frontend/fellow-dashboard/community.html",
         "/participant-certificates": "/pages/frontend/fellow-dashboard/certificates.html",
-        "/participant-leaderboard": "/pages/frontend/fellow-dashboard/under-development.html",
+        "/participant-leaderboard": "/pages/frontend/fellow-dashboard/leaderboard.html",
         "/participant-help": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-settings": "/pages/frontend/fellow-dashboard/under-development.html",
         "/meeting": "/pages/frontend/meeting.html",
