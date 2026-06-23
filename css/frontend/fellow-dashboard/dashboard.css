@@ -346,9 +346,8 @@
     grid-template-columns: minmax(260px, 1fr) minmax(520px, 0.95fr);
     margin-bottom: 26px;
     padding: 0;
-    position: sticky;
-    top: 24px;
-    z-index: 55;
+    position: relative;
+    z-index: 10;
 }
 
 .fellow-topbar h1 {
