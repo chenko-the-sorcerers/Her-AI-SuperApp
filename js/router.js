@@ -36,7 +36,7 @@ const router = {
         "/participant-ai-components": "/pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/lesson.html",
         "/participant-ai-applications": "/pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/lesson.html",
         "/participant-ai-summary": "/pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/lesson.html",
-        "/participant-mentor": "/pages/frontend/fellow-dashboard/under-development.html",
+        "/participant-mentor": "/pages/frontend/fellow-dashboard/mentor.html",
         "/participant-tasks": "/pages/frontend/fellow-dashboard/tasks.html",
         "/participant-projects": "/pages/frontend/fellow-dashboard/projects.html",
         "/participant-events": "/pages/frontend/fellow-dashboard/events.html",
