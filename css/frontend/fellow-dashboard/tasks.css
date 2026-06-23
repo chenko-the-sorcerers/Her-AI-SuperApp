@@ -40,6 +40,10 @@
     align-items: start;
 }
 
+.tasks-main-column, .tasks-widgets {
+    min-width: 0;
+}
+
 /* --- LEFT COLUMN: TABS & FILTERS --- */
 .tasks-tabs-container {
     border-bottom: 2px solid var(--fellow-line);

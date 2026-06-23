@@ -8,6 +8,10 @@
     align-items: start;
 }
 
+.projects-main-column, .projects-widgets {
+    min-width: 0;
+}
+
 /* --- HEADER ROW (TABS & BUTTON) --- */
 .projects-header-row {
     display: flex;
