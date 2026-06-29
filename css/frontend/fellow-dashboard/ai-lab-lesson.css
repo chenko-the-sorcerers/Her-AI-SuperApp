@@ -1300,3 +1300,53 @@
   .ai-lab-overview .arch-timeline { flex-direction: column; align-items: center; }
   .ai-lab-overview .arch-arrow { padding: 4px 0; }
 }
+
+/* ── Motivation Grid (ML Intro) ─────────────────── */
+.ai-lab-content .motivation-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0;
+}
+.ai-lab-content .motiv-card {
+  background: var(--ai-card); border: 1px solid var(--ai-border);
+  border-radius: var(--ai-r); padding: 20px; text-align: center;
+}
+.ai-lab-content .motiv-icon {
+  font-size: 2rem; margin-bottom: 10px; color: var(--ai-accent);
+}
+.ai-lab-content .motiv-title {
+  font-size: .9rem; font-weight: 700; color: var(--ai-text); margin-bottom: 6px;
+}
+.ai-lab-content .motiv-desc {
+  font-size: .76rem; color: var(--ai-text2); line-height: 1.6;
+}
+
+/* ── Paradigm Cards (ML Intro) ──────────────────── */
+.ai-lab-content .para-card {
+  background: var(--ai-card); border: 1px solid var(--ai-border);
+  border-radius: var(--ai-r-sm); padding: 18px; margin: 10px 0;
+  display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: start;
+}
+.ai-lab-content .para-card.supervised { border-left: 3px solid #22c55e; }
+.ai-lab-content .para-card.unsupervised { border-left: 3px solid var(--ai-accent); }
+.ai-lab-content .para-card.reinforcement { border-left: 3px solid #f59e0b; }
+.ai-lab-content .para-icon {
+  width: 48px; height: 48px; border-radius: 12px; display: flex;
+  align-items: center; justify-content: center; font-size: 1.3rem;
+}
+.ai-lab-content .para-card.supervised .para-icon { background: rgba(34,197,94,.1); color: #22c55e; }
+.ai-lab-content .para-card.unsupervised .para-icon { background: rgba(246,51,146,.1); color: var(--ai-accent); }
+.ai-lab-content .para-card.reinforcement .para-icon { background: rgba(245,158,11,.1); color: #f59e0b; }
+.ai-lab-content .para-num {
+  font-family: 'SF Mono', monospace; font-size: .56rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--ai-text3);
+  margin-bottom: 4px; grid-column: 1 / -1;
+}
+.ai-lab-content .para-title {
+  font-size: .88rem; font-weight: 700; color: var(--ai-text); margin-bottom: 4px;
+}
+.ai-lab-content .para-desc {
+  font-size: .78rem; color: var(--ai-text2); line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .ai-lab-content .motivation-grid { grid-template-columns: 1fr; }
+}
