@@ -70,21 +70,21 @@
     </div>
     <div class="problem-overview">
         <div class="prob-card">
-            <div class="prob-icon">🧩</div>
+            <div class="prob-icon"><i class="fas fa-puzzle-piece"></i></div>
             <div class="prob-num">Definisi</div>
             <div class="prob-title">Token = Unit Terkecil</div>
             <div class="prob-desc">Token adalah potongan teks paling kecil yang dikenali model. Setiap token dikonversi menjadi angka (Token ID), lalu dipetakan ke vektor berdimensi tinggi melalui embedding layer.</div>
         </div>
         <div class="prob-arrow">→</div>
         <div class="prob-card">
-            <div class="prob-icon">🔢</div>
+            <div class="prob-icon"><i class="fas fa-hashtag"></i></div>
             <div class="prob-num">Dampak</div>
             <div class="prob-title">Pilihan Token = Pilihan Model</div>
             <div class="prob-desc">Ukuran vocabulary, panjang sekuens, dan kemampuan menangani kata baru — semuanya ditentukan oleh strategi tokenisasi. Keputusan ini tidak bisa diubah setelah pre-training.</div>
         </div>
     </div>
     <div class="worked-box">
-        <div class="wb-badge">📐 Pipeline Teks → Angka</div>
+        <div class="wb-badge"><i class="fas fa-ruler-combined"></i> Pipeline Teks → Angka</div>
         <div class="wb-title">Tiga Tahap Tokenisasi</div>
         <div class="calc-chain">
             <div class="calc-step">
@@ -145,35 +145,35 @@
     <div class="strategy-grid">
         <div class="strategy-card">
             <div class="sc-header">
-                <span class="sc-icon word">🔤</span>
+                <span class="sc-icon word"><i class="fas fa-font"></i></span>
                 <div><div class="sc-title">Berbasis Kata</div></div>
             </div>
             <p class="sc-desc">Pisahkan berdasarkan spasi dan tanda baca. Paling intuitif — satu kata = satu token. Tapi vocab sangat besar dan tidak bisa menangani kata di luar daftar (OOV).</p>
         </div>
         <div class="strategy-card">
             <div class="sc-header">
-                <span class="sc-icon sub">🔬</span>
+                <span class="sc-icon sub"><i class="fas fa-microscope"></i></span>
                 <div><div class="sc-title">Subkata (BPE / WordPiece)</div></div>
             </div>
             <p class="sc-desc">Kata langka dipecah menjadi subunit yang lebih sering muncul. Kata umum tetap utuh. Standar industri — dipakai BERT, GPT, dan hampir semua LLM modern.</p>
         </div>
         <div class="strategy-card">
             <div class="sc-header">
-                <span class="sc-icon char">🔡</span>
+                <span class="sc-icon char"><i class="fas fa-text-height"></i></span>
                 <div><div class="sc-title">Karakter</div></div>
             </div>
             <p class="sc-desc">Setiap karakter adalah token. Vocab sangat kecil (26+ huruf), nol OOV. Tapi sekuens sangat panjang dan hubungan semantik jauh lebih sulit dipelajari model.</p>
         </div>
         <div class="strategy-card">
             <div class="sc-header">
-                <span class="sc-icon morph">📝</span>
+                <span class="sc-icon morph"><i class="fas fa-pen-to-square"></i></span>
                 <div><div class="sc-title">Kalimat</div></div>
             </div>
             <p class="sc-desc">Pisahkan berdasarkan batas kalimat (titik, tanda seru, tanya). Berguna untuk analisis diskursus, terjemahan paragraf, dan chunking dokumen untuk RAG pipeline.</p>
         </div>
     </div>
     <div class="worked-box">
-        <div class="wb-badge">🔬 BPE — Byte Pair Encoding</div>
+        <div class="wb-badge"><i class="fas fa-microscope"></i> BPE — Byte Pair Encoding</div>
         <div class="wb-title">Bagaimana BPE Membangun Vocabulary</div>
         <div class="prose" style="margin-bottom:16px;">
             BPE mulai dari karakter individual, lalu berulang kali menggabungkan pasangan yang paling sering muncul bersama. Proses ini diulangi ribuan kali hingga vocabulary target tercapai.
@@ -233,7 +233,7 @@
         Bahasa Inggris relatif "mudah" untuk tokenizer karena strukturnya relatif sederhana. Bahasa Indonesia jauh lebih kompleks karena sifatnya yang <strong>aglutinatif</strong> — makna dibentuk dengan menempelkan awalan, akhiran, dan konfiks pada kata dasar.
     </div>
     <div class="worked-box">
-        <div class="wb-badge">🌿 Morfologi Aglutinatif</div>
+        <div class="wb-badge"><i class="fas fa-leaf"></i> Morfologi Aglutinatif</div>
         <div class="wb-title">Satu Akar, Puluhan Derivasi — Contoh: "kerja"</div>
         <div class="calc-chain">
             <div class="calc-step">
@@ -267,14 +267,14 @@
         </div>
     </div>
     <div class="worked-box">
-        <div class="wb-badge">📱 Slang Digital &amp; Code-Switching</div>
+        <div class="wb-badge"><i class="fas fa-mobile-screen"></i> Slang Digital &amp; Code-Switching</div>
         <div class="wb-title">Bahasa Indonesia "Sungguhan" vs Bahasa Kamus</div>
         <div class="prose">
             Media sosial Indonesia penuh dengan singkatan, kreasi linguistik baru, dan campuran bahasa. Tokenizer berbasis Wikipedia saja akan menghasilkan fragmentasi yang tidak bermakna. Contoh "Gaskeun aja deh, gapapa belum perfect" — tokenizer global akan memecah "gaskeun" menjadi "gas" + "##keun". Tokenizer yang paham konteks lokal akan mengenalinya sebagai satu unit.
         </div>
     </div>
     <div class="worked-box">
-        <div class="wb-badge">📍 Entitas Lokal</div>
+        <div class="wb-badge"><i class="fas fa-location-dot"></i> Entitas Lokal</div>
         <div class="wb-title">Nama Tempat &amp; Merek Indonesia</div>
         <div class="prose">
             Indonesia punya ribuan nama tempat unik. Tokenizer global memecah "Tokopedia" menjadi "To" + "##ko" + "##pedia", dan "Tanjungsari" menjadi "Tan" + "##jung" + "##sari". Tokenizer yang dilatih dengan data lokal mengenali keduanya sebagai token utuh — berdampak langsung pada kualitas NER dan pemahaman konteks.
@@ -295,7 +295,7 @@
         Tokenizer modern bukan hanya memecah teks — mereka juga menambahkan <strong>token khusus</strong>, mengelola panjang sekuens, dan menghasilkan <strong>attention mask</strong> yang memberitahu model mana yang data nyata dan mana yang padding.
     </div>
     <div class="worked-box">
-        <div class="wb-badge">🏷️ Special Tokens</div>
+        <div class="wb-badge"><i class="fas fa-tag"></i> Special Tokens</div>
         <div class="wb-title">Token yang Bukan dari Teks Input</div>
         <div class="calc-chain">
             <div class="calc-step">
@@ -344,7 +344,7 @@ out = tok("Toko ini bagus.", "Saya suka.", padding=True, truncation=True, max_le
     <div class="sec-header">
         <span class="sec-num">05</span>
         <div>
-            <h2 class="sec-title">🧪 Lab Interaktif — Coba Sendiri</h2>
+            <h2 class="sec-title"><i class="fas fa-flask"></i> Lab Interaktif — Coba Sendiri</h2>
             <p class="sec-sub">Ketik teks Bahasa Indonesia apa saja dan lihat cara mesin memecahnya menjadi token secara real-time</p>
         </div>
     </div>
@@ -352,11 +352,11 @@ out = tok("Toko ini bagus.", "Saya suka.", padding=True, truncation=True, max_le
         Eksplorasi tiga mode tokenisasi yang berbeda. Mode <strong>Subkata</strong> juga akan menganalisis struktur morfologi kata-kata berafiks secara otomatis.
     </div>
     <div class="playground-box">
-        <h3>🧪 Laboratorium Tokenisasi</h3>
+        <h3><i class="fas fa-flask"></i> Laboratorium Tokenisasi</h3>
         <div class="mode-tabs">
-            <button class="mode-tab active" data-mode="word">🔤 Berbasis Kata</button>
-            <button class="mode-tab" data-mode="subword">🔬 Subkata (BPE)</button>
-            <button class="mode-tab" data-mode="char">🔡 Karakter</button>
+            <button class="mode-tab active" data-mode="word"><i class="fas fa-font"></i> Berbasis Kata</button>
+            <button class="mode-tab" data-mode="subword"><i class="fas fa-microscope"></i> Subkata (BPE)</button>
+            <button class="mode-tab" data-mode="char"><i class="fas fa-text-height"></i> Karakter</button>
         </div>
         <textarea class="play-textarea" id="inputText" placeholder="Ketik atau paste teks Bahasa Indonesia di sini…" spellcheck="false">Ojek online telah mengubah cara orang bepergian di Jakarta.</textarea>
         <div class="example-chips">
@@ -376,7 +376,7 @@ out = tok("Toko ini bagus.", "Saya suka.", padding=True, truncation=True, max_le
             <div class="pg-stat"><div class="pg-val" id="statCompression">0×</div><div class="pg-lbl">Rasio Kompresi</div></div>
         </div>
         <div class="morpho-panel" id="morphoPanel">
-            <h4>🌿 Analisis Morfologi</h4>
+            <h4><i class="fas fa-leaf"></i> Analisis Morfologi</h4>
             <div id="morphoGrid" style="font-size:14px;color:var(--ai-text2);">Ketik teks untuk melihat analisis morfologi...</div>
         </div>
         <div class="play-actions">

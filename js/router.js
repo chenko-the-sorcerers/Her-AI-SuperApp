@@ -46,6 +46,7 @@ const router = {
         "/participant-help": "/pages/frontend/fellow-dashboard/help.html",
         "/participant-settings": "/pages/frontend/fellow-dashboard/settings.html",
         "/participant-ai-lab-tokenization": "/pages/frontend/fellow-dashboard/ai-lab/lessons/tokenization.html",
+        "/participant-ai-lab-nlp": "/pages/frontend/fellow-dashboard/ai-lab/nlp.html",
         "/meeting": "/pages/frontend/meeting.html",
         "/messaging": "/pages/frontend/fellow-dashboard/chatroom.html",
         "/messaging-alt": "/pages/frontend/messaging.html",
@@ -268,7 +269,8 @@ const router = {
             "/participant-leaderboard",
             "/participant-help",
             "/participant-settings",
-            "/participant-ai-lab-tokenization"
+            "/participant-ai-lab-tokenization",
+            "/participant-ai-lab-nlp"
         ];
         const isParticipantDashboardPage = participantDashboardPages.includes(path);
         const adminPages = [
@@ -424,7 +426,12 @@ const router = {
                     window.initFellowDashboardPage("modules");
                 } else if (path.startsWith("/participant-ai-lab-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("ai-lab");
-                    if (typeof window.initAiLabTokenization === "function") window.initAiLabTokenization();
+                    if (path === "/participant-ai-lab-tokenization" && typeof window.initAiLabTokenization === "function") {
+                        window.initAiLabTokenization();
+                    }
+                    if (path === "/participant-ai-lab-nlp" && typeof window.initNlpOverview === "function") {
+                        window.initNlpOverview();
+                    }
                 } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
                 } else if (path === "/participant-profile" && typeof window.initFellowDashboardPage === "function") {
