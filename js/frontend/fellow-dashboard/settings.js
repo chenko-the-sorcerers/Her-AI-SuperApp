@@ -210,6 +210,18 @@
         if (!modulePage || modulePage.dataset.moduleReady) return;
         modulePage.dataset.moduleReady = 'true';
 
+        modulePage.querySelectorAll('.course-card').forEach(card => {
+            const link = card.querySelector('a');
+            if (!link || card.dataset.clickReady) return;
+            card.dataset.clickReady = 'true';
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('a, button, input, textarea')) {
+                    link.click();
+                }
+            });
+        });
+
         modulePage.querySelectorAll('[data-module-tab]').forEach((button) => {
             button.addEventListener('click', () => {
                 modulePage.querySelectorAll('[data-module-tab]').forEach(item => item.classList.toggle('active', item === button));

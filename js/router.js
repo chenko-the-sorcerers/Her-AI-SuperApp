@@ -45,6 +45,7 @@ const router = {
         "/participant-leaderboard": "/pages/frontend/fellow-dashboard/leaderboard.html",
         "/participant-help": "/pages/frontend/fellow-dashboard/help.html",
         "/participant-settings": "/pages/frontend/fellow-dashboard/settings.html",
+        "/participant-ai-lab-tokenization": "/pages/frontend/fellow-dashboard/ai-lab/lessons/tokenization.html",
         "/meeting": "/pages/frontend/meeting.html",
         "/messaging": "/pages/frontend/fellow-dashboard/chatroom.html",
         "/messaging-alt": "/pages/frontend/messaging.html",
@@ -266,7 +267,8 @@ const router = {
             "/participant-certificates",
             "/participant-leaderboard",
             "/participant-help",
-            "/participant-settings"
+            "/participant-settings",
+            "/participant-ai-lab-tokenization"
         ];
         const isParticipantDashboardPage = participantDashboardPages.includes(path);
         const adminPages = [
@@ -418,7 +420,12 @@ const router = {
                     window.initFellowDashboardPage("modules");
                 } else if (path === "/participant-ai-intro" && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
-                } else if ((path === "/participant-ai-intro-practice" || path === "/participant-ai-intro-quiz" || path === "/participant-ai-intro-discussion" || path.startsWith("/participant-ai-")) && typeof window.initFellowDashboardPage === "function") {
+                } else if ((path === "/participant-ai-intro-practice" || path === "/participant-ai-intro-quiz" || path === "/participant-ai-intro-discussion") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                } else if (path.startsWith("/participant-ai-lab-") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("ai-lab");
+                    if (typeof window.initAiLabTokenization === "function") window.initAiLabTokenization();
+                } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
                 } else if (path === "/participant-profile" && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("profile");
