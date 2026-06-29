@@ -46,6 +46,7 @@ const router = {
         "/participant-help": "/pages/frontend/fellow-dashboard/help.html",
         "/participant-settings": "/pages/frontend/fellow-dashboard/settings.html",
         "/participant-ai-lab-tokenization": "/pages/frontend/fellow-dashboard/ai-lab/lessons/tokenization.html",
+        "/participant-ai-lab-preprocessing": "/pages/frontend/fellow-dashboard/ai-lab/lessons/preprocessing.html",
         "/participant-ai-lab-nlp": "/pages/frontend/fellow-dashboard/ai-lab/nlp.html",
         "/meeting": "/pages/frontend/meeting.html",
         "/messaging": "/pages/frontend/fellow-dashboard/chatroom.html",
@@ -270,6 +271,7 @@ const router = {
             "/participant-help",
             "/participant-settings",
             "/participant-ai-lab-tokenization",
+            "/participant-ai-lab-preprocessing",
             "/participant-ai-lab-nlp"
         ];
         const isParticipantDashboardPage = participantDashboardPages.includes(path);
@@ -428,6 +430,9 @@ const router = {
                     window.initFellowDashboardPage("ai-lab");
                     if (path === "/participant-ai-lab-tokenization" && typeof window.initAiLabTokenization === "function") {
                         window.initAiLabTokenization();
+                    }
+                    if (path === "/participant-ai-lab-preprocessing" && typeof window.initAiLabPreprocessing === "function") {
+                        window.initAiLabPreprocessing();
                     }
                     if (path === "/participant-ai-lab-nlp" && typeof window.initNlpOverview === "function") {
                         window.initNlpOverview();
