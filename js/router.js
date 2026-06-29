@@ -51,6 +51,11 @@ const router = {
         "/participant-ai-lab-bow": "/pages/frontend/fellow-dashboard/ai-lab/lessons/bow.html",
         "/participant-ai-lab-tfidf": "/pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html",
         "/participant-ai-lab-nlp": "/pages/frontend/fellow-dashboard/ai-lab/nlp.html",
+        "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/ai-lab/machine-learning.html",
+        "/participant-ai-lab-ml-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-intro.html",
+        "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-hypothesis.html",
+        "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-vc-dim.html",
+        "/participant-ai-lab-ml-bias-variance": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-bias-variance.html",
         "/meeting": "/pages/frontend/meeting.html",
         "/messaging": "/pages/frontend/fellow-dashboard/chatroom.html",
         "/messaging-alt": "/pages/frontend/messaging.html",
@@ -278,7 +283,12 @@ const router = {
             "/participant-ai-lab-pos-ner",
             "/participant-ai-lab-bow",
             "/participant-ai-lab-tfidf",
-            "/participant-ai-lab-nlp"
+            "/participant-ai-lab-nlp",
+            "/participant-ai-lab-ml",
+            "/participant-ai-lab-ml-intro",
+            "/participant-ai-lab-ml-hypothesis",
+            "/participant-ai-lab-ml-vc-dim",
+            "/participant-ai-lab-ml-bias-variance"
         ];
         const isParticipantDashboardPage = participantDashboardPages.includes(path);
         const adminPages = [
@@ -451,6 +461,9 @@ const router = {
                     }
                     if (path === "/participant-ai-lab-nlp" && typeof window.initNlpOverview === "function") {
                         window.initNlpOverview();
+                    }
+                    if (path === "/participant-ai-lab-ml" && typeof window.initMlOverview === "function") {
+                        window.initMlOverview();
                     }
                 } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
