@@ -1350,3 +1350,86 @@
 @media (max-width: 768px) {
   .ai-lab-content .motivation-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Hypothesis: Tab Switcher + Canvas ──────────── */
+.ai-lab-content .fv-tabs {
+  display: flex; gap: 4px; margin: 16px 0;
+}
+.ai-lab-content .fv-tab {
+  font-family: 'SF Mono', monospace; font-size: .7rem; font-weight: 600;
+  padding: 8px 16px; border-radius: 8px; border: 1px solid var(--ai-border);
+  background: #fff; color: var(--ai-text3); cursor: pointer; transition: all .15s;
+}
+.ai-lab-content .fv-tab.active {
+  background: rgba(246,51,146,.1); border-color: rgba(246,51,146,.25); color: var(--ai-accent);
+}
+.ai-lab-content .fv-content.hidden { display: none; }
+.ai-lab-content .fv-content {
+  background: var(--ai-card); border: 1px solid var(--ai-border);
+  border-radius: var(--ai-r-sm); padding: 20px;
+}
+
+.ai-lab-content .canvas-wrap {
+  margin: 20px 0; padding: 16px; background: var(--ai-bg);
+  border: 1px solid var(--ai-border); border-radius: var(--ai-r-sm);
+  text-align: center; overflow-x: auto;
+}
+.ai-lab-content .canvas-legend {
+  margin-top: 12px; display: flex; gap: 16px; justify-content: center;
+  font-size: .72rem; color: var(--ai-text3); flex-wrap: wrap;
+}
+
+/* ── Definition Box ─────────────────────────────── */
+.ai-lab-content .def-box {
+  background: rgba(34,197,94,.05); border: 1px solid rgba(34,197,94,.2);
+  border-radius: var(--ai-r-sm); padding: 18px 20px; margin: 16px 0;
+  font-size: .84rem; color: var(--ai-text2); line-height: 1.7;
+}
+.ai-lab-content .def-box strong { color: #22c55e; }
+
+/* ── Bias Types Cards ───────────────────────────── */
+.ai-lab-content .bias-types {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0;
+}
+.ai-lab-content .bt-card {
+  background: var(--ai-card); border: 1px solid var(--ai-border);
+  border-radius: var(--ai-r); padding: 20px;
+}
+.ai-lab-content .bt-card.preference { border-left: 3px solid var(--ai-accent); }
+.ai-lab-content .bt-card.restriction { border-left: 3px solid #f59e0b; }
+.ai-lab-content .bt-num {
+  font-family: 'SF Mono', monospace; font-size: .58rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--ai-text3); margin-bottom: 8px;
+}
+.ai-lab-content .bt-title {
+  font-size: .9rem; font-weight: 700; color: var(--ai-text); margin-bottom: 4px;
+}
+.ai-lab-content .bt-subtitle {
+  font-size: .76rem; color: var(--ai-text2); line-height: 1.55; margin-bottom: 12px;
+}
+.ai-lab-content .bt-desc {
+  font-size: .74rem; color: var(--ai-text3); line-height: 1.6; margin-bottom: 10px;
+}
+.ai-lab-content .bt-tradeoff {
+  display: flex; gap: 12px; margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid var(--ai-border);
+}
+.ai-lab-content .btt-plus { color: #22c55e; font-size: .72rem; font-weight: 600; }
+.ai-lab-content .btt-minus { color: #ef4444; font-size: .72rem; font-weight: 600; }
+.ai-lab-content .bte-item {
+  font-size: .7rem; color: var(--ai-text2); margin-bottom: 4px;
+}
+.ai-lab-content .bte-label {
+  font-family: 'SF Mono', monospace; font-size: .62rem; color: var(--ai-accent);
+}
+
+/* ── Checklist Items ────────────────────────────── */
+.ai-lab-content .cl-item {
+  font-size: .82rem; color: var(--ai-text2); padding: 6px 0;
+}
+.ai-lab-content .cl-item.pos::before { content: "\f00c  "; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #22c55e; }
+.ai-lab-content .cl-item.neg::before { content: "\f00d  "; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #ef4444; }
+
+@media (max-width: 768px) {
+  .ai-lab-content .bias-types { grid-template-columns: 1fr; }
+}
