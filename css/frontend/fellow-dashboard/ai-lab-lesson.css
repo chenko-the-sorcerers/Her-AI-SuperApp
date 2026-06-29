@@ -927,6 +927,95 @@
   font-size: .88rem; font-weight: 700; color: #22c55e; text-align: center;
 }
 
+/* ── BoW Vector Demo ─────────────────────────────── */
+.ai-lab-content .bow-vector-demo {
+  display: flex; flex-direction: column; gap: 16px; margin: 20px 0;
+}
+.ai-lab-content .bvd-doc {
+  background: var(--ai-card); border: 1px solid var(--ai-border);
+  border-radius: var(--ai-r-sm); padding: 16px;
+}
+.ai-lab-content .bvd-doc-header {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.ai-lab-content .bvd-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.ai-lab-content .bvd-label {
+  font-size: .76rem; font-weight: 700; color: var(--ai-text);
+}
+.ai-lab-content .bvd-sentence {
+  font-size: .82rem; color: var(--ai-text2); margin-bottom: 10px;
+}
+.ai-lab-content .bvd-sentence strong { color: var(--ai-accent); }
+.ai-lab-content .bvd-vector {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.ai-lab-content .bvd-cell {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 6px 10px; border-radius: 6px; border: 1px solid transparent;
+  background: rgba(255,255,255,.02); min-width: 44px;
+}
+.ai-lab-content .bvd-cell.active {
+  background: rgba(246,51,146,.06); border-color: rgba(246,51,146,.2);
+}
+.ai-lab-content .bvd-word {
+  font-family: var(--ai-mono); font-size: .62rem; color: var(--ai-text3);
+}
+.ai-lab-content .bvd-count {
+  font-family: var(--ai-mono); font-size: .78rem; font-weight: 700;
+}
+
+/* ── Sparse Visual ───────────────────────────────── */
+.ai-lab-content .sparse-visual-wrap {
+  margin: 16px 0; padding: 16px;
+  background: var(--ai-bg); border: 1px solid var(--ai-border);
+  border-radius: var(--ai-r-sm); overflow-x: auto;
+}
+.ai-lab-content .sparse-visual-wrap h4 {
+  font-size: .72rem; color: var(--ai-text3); margin-bottom: 10px;
+}
+
+/* ── Cosine Lab ───────────────────────────────────── */
+.ai-lab-content .cosine-lab {
+  background: var(--ai-card); border: 1px solid rgba(246,51,146,.14);
+  border-radius: var(--ai-r); padding: 24px; margin: 20px 0;
+}
+.ai-lab-content .cosine-lab h4 {
+  font-size: 1rem; font-weight: 700; color: var(--ai-text); margin-bottom: 12px;
+}
+.ai-lab-content .cl-inputs {
+  display: grid; gap: 10px; margin-bottom: 14px;
+}
+.ai-lab-content .cl-doc-input {
+  width: 100%; min-height: 40px; background: var(--ai-bg);
+  border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm);
+  color: var(--ai-text); font-family: var(--ai-font); font-size: .8rem;
+  padding: 10px 14px; resize: vertical; outline: none;
+}
+.ai-lab-content .cl-doc-input:focus { border-color: var(--ai-accent); }
+.ai-lab-content .cl-sim-matrix {
+  display: grid; gap: 6px; margin: 14px 0;
+}
+.ai-lab-content .cl-sim-row {
+  display: flex; align-items: center; gap: 8px;
+}
+.ai-lab-content .cl-sim-label {
+  font-size: .72rem; font-weight: 700; color: var(--ai-text); min-width: 24px;
+}
+.ai-lab-content .cl-sim-cell {
+  flex: 1; text-align: center; padding: 10px 8px; border-radius: 8px;
+  font-family: var(--ai-mono); font-size: .78rem; font-weight: 700;
+  background: var(--ai-bg); border: 1px solid var(--ai-border); color: var(--ai-text3);
+}
+.ai-lab-content .cl-sim-cell.diagonal {
+  background: rgba(246,51,146,.06); border-color: rgba(246,51,146,.14);
+  color: var(--ai-accent);
+}
+.ai-lab-content .cl-actions {
+  display: flex; gap: 8px; margin-top: 10px;
+}
+
 /* ── Progress bar ────────────────────────────────── */
 .ai-overview-progress {
   height: 2px; background: rgba(246,51,146,.06);
