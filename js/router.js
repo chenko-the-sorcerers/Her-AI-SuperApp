@@ -52,6 +52,7 @@ const router = {
         "/participant-ai-lab-tfidf": "/pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html",
         "/participant-ai-lab-nlp": "/pages/frontend/fellow-dashboard/ai-lab/nlp.html",
         "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/ai-lab/machine-learning.html",
+        "/participant-ai-lab-cv": "/pages/frontend/fellow-dashboard/ai-lab/computer-vision.html",
         "/participant-ai-lab-ml-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-intro.html",
         "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-hypothesis.html",
         "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-vc-dim.html",
@@ -285,6 +286,7 @@ const router = {
             "/participant-ai-lab-tfidf",
             "/participant-ai-lab-nlp",
             "/participant-ai-lab-ml",
+            "/participant-ai-lab-cv",
             "/participant-ai-lab-ml-intro",
             "/participant-ai-lab-ml-hypothesis",
             "/participant-ai-lab-ml-vc-dim",
@@ -461,6 +463,9 @@ const router = {
                     }
                     if (path === "/participant-ai-lab-nlp" && typeof window.initNlpOverview === "function") {
                         window.initNlpOverview();
+                    }
+                    if (path === "/participant-ai-lab-cv" && typeof window.initCvOverview === "function") {
+                        window.initCvOverview();
                     }
                     if (path === "/participant-ai-lab-ml" && typeof window.initMlOverview === "function") {
                         window.initMlOverview();
