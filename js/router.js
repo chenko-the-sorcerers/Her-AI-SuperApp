@@ -471,6 +471,12 @@ const router = {
                     if (path === "/participant-ai-lab-ml-hypothesis" && typeof window.initAiLabMlHypothesis === "function") {
                         window.initAiLabMlHypothesis();
                     }
+                    if (path === "/participant-ai-lab-ml-vc-dim" && typeof window.initAiLabMlVcDim === "function") {
+                        window.initAiLabMlVcDim();
+                    }
+                    if (path === "/participant-ai-lab-ml-bias-variance" && typeof window.initAiLabMlBiasVariance === "function") {
+                        window.initAiLabMlBiasVariance();
+                    }
                 } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
                 } else if (path === "/participant-profile" && typeof window.initFellowDashboardPage === "function") {
