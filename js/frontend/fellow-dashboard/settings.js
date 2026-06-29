@@ -136,10 +136,11 @@
             if (persist) localStorage.setItem(SIDEBAR_STATE_KEY, open ? 'true' : 'false');
         };
 
-        setDesktopSidebar(localStorage.getItem(SIDEBAR_STATE_KEY) === 'true', false);
+        const stored = localStorage.getItem(SIDEBAR_STATE_KEY);
+        setDesktopSidebar(stored === 'true', false);
 
         logo?.setAttribute('role', 'button');
-        logo?.setAttribute('aria-expanded', 'false');
+        logo?.setAttribute('aria-expanded', String(sidebar.classList.contains('is-expanded')));
         logo?.addEventListener('click', (event) => {
             if (window.matchMedia('(max-width: 860px)').matches) return;
             event.preventDefault();
@@ -809,9 +810,6 @@
         setActiveFellowNav(pageName);
         const settings = await fetchSettings();
         applySettings(settings, pageName);
-        attachSidebarRail();
-        initFellowUserMenu();
-        setActiveFellowNav(pageName);
         if (pageName === 'dashboard') {
             initParticipantDashboardData();
         }

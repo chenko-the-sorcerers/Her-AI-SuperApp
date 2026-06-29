@@ -134,21 +134,53 @@
     align-items: center;
     cursor: pointer;
     display: flex;
-    height: 58px;
+    height: auto;
     justify-content: center;
     margin: 0 auto 8px;
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
     width: 66px;
     transition: width 0.24s ease;
+}
+
+.fellow-logo::after {
+    content: "\f0da";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.58rem;
+    color: #c4b5ce;
+    position: absolute;
+    right: -4px;
+    top: -2px;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.24s ease;
+    transform: rotate(0deg);
+}
+
+.fellow-sidebar:not(.is-expanded) .fellow-logo:hover::after,
+.fellow-sidebar:not(.is-expanded) .fellow-logo:focus-visible::after {
+    opacity: 1;
+}
+
+.fellow-sidebar.is-expanded .fellow-logo::after {
+    content: "\f0d9";
+    opacity: 0;
+    right: 4px;
+    top: 4px;
+}
+
+.fellow-sidebar.is-expanded .fellow-logo:hover::after,
+.fellow-sidebar.is-expanded .fellow-logo:focus-visible::after {
+    opacity: 1;
 }
 
 .fellow-logo img {
     display: block;
     height: auto;
-    max-height: 54px;
+    max-height: 64px;
     object-fit: contain;
     object-position: center;
-    width: 58px;
+    width: 66px;
 }
 
 .fellow-sidebar.is-expanded .fellow-logo {
