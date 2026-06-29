@@ -1478,3 +1478,52 @@
 }
 .ai-lab-content .mc-btn.active { background: rgba(246,51,146,.1); border-color: rgba(246,51,146,.25); color: var(--ai-accent); }
 .ai-lab-content .mci-desc { font-size: .72rem; color: var(--ai-text2); line-height: 1.6; }
+
+/* ── CNN: Landmark Cards ──────────────────────── */
+.ai-lab-content .landmark-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0;
+}
+.ai-lab-content .lm-card {
+  background: var(--ai-card); border: 1px solid var(--ai-border);
+  border-radius: var(--ai-r-sm); padding: 14px; display: flex; gap: 12px;
+}
+.ai-lab-content .lm-card img {
+  width: 80px; height: 80px; object-fit: cover; border-radius: 8px; flex-shrink: 0;
+}
+.ai-lab-content .lm-name { font-size: .82rem; font-weight: 700; color: var(--ai-text); }
+.ai-lab-content .lm-loc  { font-size: .68rem; color: var(--ai-text3); margin: 2px 0 6px; }
+.ai-lab-content .lm-desc { font-size: .7rem; color: var(--ai-text2); line-height: 1.5; }
+
+/* ── CNN: Compare Box ──────────────────────────── */
+.ai-lab-content .compare-box {
+  display: grid; grid-template-columns: 1fr 40px 1fr; gap: 12px; align-items: start; margin: 20px 0;
+}
+.ai-lab-content .cb-side { background: var(--ai-card); border: 1px solid var(--ai-border); border-radius: var(--ai-r-sm); padding: 16px; }
+.ai-lab-content .cb-title { font-size: .8rem; font-weight: 700; margin-bottom: 10px; }
+.ai-lab-content .cb-title.bad { color: #ef4444; }
+.ai-lab-content .cb-title.good { color: #22c55e; }
+.ai-lab-content .cb-body { font-size: .74rem; color: var(--ai-text2); line-height: 1.5; }
+.ai-lab-content .cb-vs { align-self: center; text-align: center; font-size: .8rem; font-weight: 800; color: var(--ai-text3); }
+
+/* ── CNN: Convolution Visualizer ──────────────── */
+.ai-lab-content .conv-demo { background: var(--ai-card); border: 1px solid rgba(246,51,146,.14); border-radius: var(--ai-r); padding: 20px; margin: 20px 0; }
+.ai-lab-content .conv-controls { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+.ai-lab-content .conv-controls button { padding: 6px 14px; border-radius: 6px; border: 1px solid var(--ai-border); background: #fff; font-size: .72rem; font-weight: 600; color: var(--ai-text2); cursor: pointer; transition: all .15s; }
+.ai-lab-content .conv-controls button:hover { border-color: var(--ai-accent); color: var(--ai-accent); }
+.ai-lab-content .conv-controls button.active { background: rgba(246,51,146,.1); border-color: rgba(246,51,146,.25); color: var(--ai-accent); }
+
+/* ── CNN: Pipeline Demo ───────────────────────── */
+.ai-lab-content .cnn-pipeline { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0; }
+.ai-lab-content .pipeline-stage { background: var(--ai-card); border: 1px solid var(--ai-border); border-radius: 8px; padding: 10px 14px; cursor: pointer; text-align: center; transition: all .15s; }
+.ai-lab-content .pipeline-stage:hover, .pipeline-stage.active { border-color: var(--ai-accent); background: rgba(246,51,146,.05); }
+.ai-lab-content .pipeline-arrow { color: var(--ai-text3); font-size: .8rem; }
+.ai-lab-content .cnn-results { margin: 16px 0; }
+.ai-lab-content .cnn-bar-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.ai-lab-content .cnn-bar-track { flex: 1; height: 6px; background: rgba(246,51,146,.06); border-radius: 3px; overflow: hidden; }
+.ai-lab-content .cnn-bar-fill { height: 100%; background: linear-gradient(90deg, #f63392, #ff6b9d); border-radius: 3px; }
+
+@media (max-width: 768px) {
+  .ai-lab-content .landmark-intro { grid-template-columns: 1fr; }
+  .ai-lab-content .compare-box { grid-template-columns: 1fr; }
+  .ai-lab-content .cb-vs { display: none; }
+}
