@@ -58,6 +58,7 @@ const router = {
         "/participant-ai-lab-cv-cnn-relu": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-relu.html",
         "/participant-ai-lab-cv-filtering-kernels": "/pages/frontend/fellow-dashboard/ai-lab/lessons/filtering-kernels.html",
         "/participant-ai-lab-cv-cnn-fc": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-fc.html",
+        "/participant-ai-lab-cv-cnn-hands": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-hands.html",
         "/participant-ai-lab-ml-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-intro.html",
         "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-hypothesis.html",
         "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-vc-dim.html",
@@ -297,6 +298,7 @@ const router = {
             "/participant-ai-lab-cv-cnn-relu",
             "/participant-ai-lab-cv-filtering-kernels",
             "/participant-ai-lab-cv-cnn-fc",
+            "/participant-ai-lab-cv-cnn-hands",
             "/participant-ai-lab-ml-intro",
             "/participant-ai-lab-ml-hypothesis",
             "/participant-ai-lab-ml-vc-dim",
@@ -479,6 +481,9 @@ const router = {
                     }
                     if (path === "/participant-ai-lab-cv-cnn-why" && typeof window.initAiLabCnnWhy === "function") {
                         window.initAiLabCnnWhy();
+                    }
+                    if (path === "/participant-ai-lab-cv-cnn-hands" && typeof window.initAiLabCnnHands === "function") {
+                        window.initAiLabCnnHands();
                     }
                     if (path === "/participant-ai-lab-cv-cnn-fc" && typeof window.initAiLabCnnFc === "function") {
                         window.initAiLabCnnFc();
