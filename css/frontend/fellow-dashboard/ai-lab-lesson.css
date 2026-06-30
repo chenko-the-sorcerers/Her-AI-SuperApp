@@ -1969,3 +1969,91 @@
   .ud-canvases { gap: 6px; }
   .ud-item canvas { width: 100px !important; height: 75px !important; }
 }
+
+/* ═══ CNN FC lesson styles ═══ */
+/* ── Softmax Calculator ──────────────────────────────────────── */
+.ai-lab-content .softmax-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.ai-lab-content .sm-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 60px 80px;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-lab-content .sm-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.ai-lab-content .sm-slider { width: 100%; }
+
+.ai-lab-content .sm-val {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: right;
+}
+
+.ai-lab-content .sm-prob {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-2);
+  text-align: right;
+}
+
+.ai-lab-content .softmax-bars {
+  margin-bottom: 12px;
+}
+
+.ai-lab-content .softmax-sum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+  text-align: center;
+  padding: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  margin-top: 8px;
+}
+
+/* ── Cross-Entropy Demo ──────────────────────────────────────── */
+.ai-lab-content .ce-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ai-lab-content .ce-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 80px;
+  align-items: center;
+  gap: 16px;
+}
+
+.ai-lab-content .ce-result {
+  margin-top: 4px;
+}
+
+/* ── Architecture table ──────────────────────────────────────── */
+.ai-lab-content .arch-table-wrap {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .sm-row   { grid-template-columns: 1fr 1fr; }
+  .sm-label { grid-column: 1 / -1; }
+  .ce-row   { grid-template-columns: 1fr; }
+}
