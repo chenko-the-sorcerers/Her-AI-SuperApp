@@ -1,0 +1,154 @@
+<section class="fellow-dashboard fellow-modules-page ai-lab-overview ml-overview" data-fellow-page="modules">
+<button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
+<div class="fellow-sidebar-scrim" aria-hidden="true"></div>
+<aside class="fellow-sidebar" aria-label="Navigasi peserta">
+<a href="#/participant-dashboard" class="fellow-logo" aria-label="Buka sidebar peserta"><img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI Fellowship"></a>
+<nav class="fellow-menu">
+<a href="#/participant-dashboard" data-fellow-nav="dashboard"><i class="fas fa-house"></i><span>Beranda</span></a>
+<a href="#/messaging" data-fellow-nav="chatroom"><i class="far fa-comment-dots"></i><span>Chatroom</span><strong>3</strong></a>
+<a href="#/participant-mentor" data-fellow-nav="mentor"><i class="fas fa-user-group"></i><span>Mentor</span></a>
+<a class="active" href="#/participant-modules" data-fellow-nav="modules"><i class="fas fa-book-open"></i><span>Modul</span></a>
+<a href="#/participant-tasks" data-fellow-nav="tasks"><i class="fas fa-list-check"></i><span>Tugas</span></a>
+<a href="#/participant-projects" data-fellow-nav="projects"><i class="far fa-folder-open"></i><span>Proyek</span></a>
+<a href="#/participant-events" data-fellow-nav="events"><i class="far fa-calendar-days"></i><span>Events</span></a>
+<a href="#/participant-community" data-fellow-nav="community"><i class="fas fa-users"></i><span>Komunitas</span></a>
+</nav>
+<nav class="fellow-menu secondary">
+<a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
+<a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
+<a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
+<a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
+</nav>
+</aside>
+
+<main class="fellow-main">
+<header class="lesson-topbar">
+<nav class="lesson-breadcrumb" aria-label="Breadcrumb">
+<a href="#/participant-modules"><i class="fas fa-arrow-left"></i><span>Modul</span></a>
+<span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
+<span>Machine Learning</span>
+</nav>
+<div class="fellow-actions">
+<label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul..."></label>
+<button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
+<a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a>
+</div>
+</header>
+
+<div class="ai-overview-progress" id="mlProgressBar"><b id="mlProgressFill"></b></div>
+
+<section class="lesson-hero">
+<div class="lesson-hero-copy">
+<h1>Machine Learning</h1>
+<p>Dari regresi linear hingga neural network, pelajari algoritma yang menggerakkan ekosistem AI modern.</p>
+<div class="lesson-meta-row">
+<span><i class="far fa-clock"></i> 8 Modul</span>
+<span><i class="fas fa-layer-group"></i> 50+ Topik</span>
+<b><i class="fas fa-flask"></i> AI Lab · Marchel Andrian Shevchenko</b>
+</div>
+</div>
+<img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Machine Learning">
+</section>
+
+<div class="ai-overview-layout">
+<div class="ai-overview-content" id="mlContent">
+
+<section class="ai-module" id="ml-m1" data-color="#f63392">
+<div class="ai-module-head">
+<span class="ai-module-num">01</span>
+<div><span class="ai-module-tag">Foundation</span><h2>Pengantar Machine Learning</h2><p>Pahami apa yang sebenarnya dilakukan ML dan mengapa cara berpikirnya berbeda dari pemrograman biasa.</p></div>
+</div>
+<div class="ai-topic-list">
+<div class="ai-topic-item is-linked"><div class="ai-topic-icon"><i class="fas fa-brain"></i></div><div class="ai-topic-body"><h3><a href="#/participant-ai-lab-ml-intro">Apa itu Machine Learning?</a></h3><p>Perbedaan pemrograman klasik dan ML: dari aturan eksplisit menuju induksi dari data. Tiga paradigma utama adalah supervised, unsupervised, dan reinforcement learning.</p><div class="ai-topic-tags"><span>Supervised</span><span>Unsupervised</span><span>Reinforcement</span><span>Inductive Learning</span></div></div></div>
+<div class="ai-topic-item is-linked"><div class="ai-topic-icon"><i class="fas fa-ruler-combined"></i></div><div class="ai-topic-body"><h3><a href="#/participant-ai-lab-ml-hypothesis">Hipotesis, Model & Ruang Fitur</a></h3><p>Contoh latih direpresentasikan sebagai vektor fitur. Hipotesis adalah fungsi yang dipelajari dari data, sedangkan model adalah ruang pilihan fungsi yang mungkin.</p><div class="ai-topic-tags"><span>Feature Vector</span><span>Hypothesis</span><span>Training Set</span><span>Instance Space</span></div></div></div>
+<div class="ai-topic-item is-linked"><div class="ai-topic-icon"><i class="fas fa-chart-simple"></i></div><div class="ai-topic-body"><h3><a href="#/participant-ai-lab-ml-vc-dim">VC Dimension & Kapasitas Model</a></h3><p>VC dimension mengukur kapasitas model: seberapa kompleks pola yang dapat dipisahkan. Kapasitas tinggi meningkatkan fleksibilitas, tetapi juga risiko overfitting.</p><div class="ai-topic-tags"><span>VC Dimension</span><span>Shatter</span><span>Model Capacity</span><span>Generalization</span></div></div></div>
+<div class="ai-topic-item is-linked"><div class="ai-topic-icon"><i class="fas fa-scale-balanced"></i></div><div class="ai-topic-body"><h3><a href="#/participant-ai-lab-ml-bias-variance">Bias-Variance Tradeoff</a></h3><p>Overfitting terjadi saat model terlalu kompleks dan menghafal noise. Underfitting muncul saat model terlalu sederhana. Keduanya dikendalikan lewat bias, variance, dan regularisasi.</p><div class="ai-topic-tags"><span>Overfitting</span><span>Underfitting</span><span>Bias</span><span>Variance</span></div></div></div>
+</div>
+</section>
+
+<section class="ai-module" id="ml-m2" data-color="#f63392">
+<div class="ai-module-head"><span class="ai-module-num">02</span><div><span class="ai-module-tag">Core Concept</span><h2>Supervised Learning</h2><p>Kerangka paling umum dalam ML: belajar dari data berlabel untuk memprediksi label baru.</p></div></div>
+<div class="ai-topic-list">
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-gears"></i></div><div class="ai-topic-body"><h3>Komponen Algoritma ML</h3><p>Setiap algoritma supervised learning memiliki model, fungsi loss, dan prosedur optimisasi. Pilihan ketiganya membentuk inductive bias.</p><div class="ai-topic-tags"><span>Model</span><span>Loss Function</span><span>Optimization</span><span>Empirical Risk</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-vial-circle-check"></i></div><div class="ai-topic-body"><h3>Model Selection & Cross-Validation</h3><p>Training, validation, dan test set membantu mengukur generalisasi. k-Fold cross-validation memberi estimasi performa yang lebih stabil.</p><div class="ai-topic-tags"><span>k-Fold CV</span><span>Train/Val/Test</span><span>SRM</span><span>AIC</span><span>BIC</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-diagram-project"></i></div><div class="ai-topic-body"><h3>Generatif vs Diskriminatif</h3><p>Model generatif memodelkan distribusi data dan kelas, sedangkan model diskriminatif langsung memodelkan batas keputusan atau probabilitas kelas.</p><div class="ai-topic-tags"><span>Generatif</span><span>Diskriminatif</span><span>Parametrik</span><span>Non-parametrik</span></div></div></div>
+</div>
+</section>
+
+<section class="ai-module" id="ml-m3" data-color="#f63392">
+<div class="ai-module-head"><span class="ai-module-num">03</span><div><span class="ai-module-tag">Algorithm</span><h2>Regresi & Klasifikasi Dasar</h2><p>Algoritma fundamental yang tetap relevan untuk baseline, interpretasi, dan data tabular.</p></div></div>
+<div class="ai-topic-list">
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-chart-line"></i></div><div class="ai-topic-body"><h3>Linear & Polynomial Regression</h3><p>Regresi memodelkan hubungan fitur dan target kontinu. Least squares mencari parameter yang meminimalkan jumlah kuadrat error prediksi.</p><div class="ai-topic-tags"><span>Least Squares</span><span>Pseudoinverse</span><span>Polynomial</span><span>Residuals</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-sitemap"></i></div><div class="ai-topic-body"><h3>Decision Trees & Ensembles</h3><p>Pohon keputusan mempartisi ruang fitur. Random Forest memakai bagging, sedangkan Gradient Boosting membangun model secara sekuensial.</p><div class="ai-topic-tags"><span>Information Gain</span><span>Gini</span><span>Random Forest</span><span>XGBoost</span><span>Bagging</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-location-dot"></i></div><div class="ai-topic-body"><h3>k-Nearest Neighbors</h3><p>k-NN melakukan prediksi berdasarkan mayoritas tetangga terdekat. Sederhana dan non-parametrik, tetapi mahal saat prediksi pada dataset besar.</p><div class="ai-topic-tags"><span>k-NN</span><span>Euclidean Distance</span><span>Lazy Learning</span><span>Curse of Dimensionality</span></div></div></div>
+</div>
+</section>
+
+<section class="ai-module" id="ml-m4" data-color="#f63392">
+<div class="ai-module-head"><span class="ai-module-num">04</span><div><span class="ai-module-tag">Probabilistic</span><h2>Probabilistic Models</h2><p>Menggunakan teori probabilitas untuk membangun model yang mengekspresikan ketidakpastian.</p></div></div>
+<div class="ai-topic-list">
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-chart-pie"></i></div><div class="ai-topic-body"><h3>Teori Probabilitas untuk ML</h3><p>Ekspektasi, variansi, independensi, Bernoulli, Multinomial, dan Gaussian menjadi building blocks untuk model probabilistik.</p><div class="ai-topic-tags"><span>MLE</span><span>Gaussian</span><span>Bernoulli</span><span>Ekspektasi</span><span>Variansi</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-calculator"></i></div><div class="ai-topic-body"><h3>Naive Bayes Classifier</h3><p>Naive Bayes memakai teorema Bayes dan asumsi independensi kondisional. Cepat, interpretable, dan efektif untuk klasifikasi teks.</p><div class="ai-topic-tags"><span>Bayes Theorem</span><span>Cond. Independence</span><span>Gaussian NB</span><span>Laplace Smoothing</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-share-nodes"></i></div><div class="ai-topic-body"><h3>Bayesian Networks</h3><p>Bayesian Network memodelkan dependensi antar fitur menggunakan directed acyclic graph, sehingga asumsi independensi dapat dibuat lebih fleksibel.</p><div class="ai-topic-tags"><span>DAG</span><span>TAN</span><span>FSSJ</span><span>Mutual Information</span></div></div></div>
+</div>
+</section>
+
+<section class="ai-module" id="ml-m5" data-color="#f63392">
+<div class="ai-module-head"><span class="ai-module-num">05</span><div><span class="ai-module-tag">Industry Core</span><h2>Linear Discriminative Models</h2><p>Model yang langsung memodelkan batas keputusan, sering menjadi baseline kuat untuk production.</p></div></div>
+<div class="ai-topic-list">
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-pen-ruler"></i></div><div class="ai-topic-body"><h3>Generalized Linear Model</h3><p>GLM memperluas regresi linear untuk klasifikasi melalui fungsi aktivasi. Geometrinya adalah hyperplane pemisah di ruang fitur.</p><div class="ai-topic-tags"><span>Hyperplane</span><span>Decision Boundary</span><span>One-vs-Rest</span><span>Multi-class</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-wave-square"></i></div><div class="ai-topic-body"><h3>Logistic Regression</h3><p>Logistic regression menghasilkan probabilitas kelas melalui sigmoid. Cross-entropy, gradient descent, dan regularisasi membuatnya stabil untuk klasifikasi.</p><div class="ai-topic-tags"><span>Sigmoid</span><span>Cross-Entropy</span><span>Gradient Descent</span><span>L1/L2 Reg</span><span>SGD</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-list-check"></i></div><div class="ai-topic-body"><h3>Evaluasi Model Klasifikasi</h3><p>Confusion matrix, precision, recall, F1, ROC curve, dan AUC membantu memilih threshold dan memahami trade-off performa.</p><div class="ai-topic-tags"><span>Confusion Matrix</span><span>Precision</span><span>Recall</span><span>F1</span><span>ROC-AUC</span></div></div></div>
+</div>
+</section>
+
+<section class="ai-module" id="ml-m6" data-color="#f63392">
+<div class="ai-module-head"><span class="ai-module-num">06</span><div><span class="ai-module-tag">Advanced</span><h2>Support Vector Machine</h2><p>Algoritma klasifikasi yang memaksimalkan margin untuk mendorong generalisasi yang lebih baik.</p></div></div>
+<div class="ai-topic-list">
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-arrows-left-right-to-line"></i></div><div class="ai-topic-body"><h3>Hard Margin vs Soft Margin</h3><p>Hard margin menuntut data linearly separable sempurna. Soft margin menambahkan toleransi misklasifikasi melalui parameter C.</p><div class="ai-topic-tags"><span>Margin</span><span>Slack Variables</span><span>Outlier</span><span>Parameter C</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-ruler"></i></div><div class="ai-topic-body"><h3>Maximum Margin Hyperplane</h3><p>SVM mencari hyperplane dengan margin maksimum. Support vectors adalah titik paling kritis yang menentukan batas keputusan.</p><div class="ai-topic-tags"><span>Quadratic Programming</span><span>Lagrange</span><span>Support Vectors</span><span>Dual Problem</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-bezier-curve"></i></div><div class="ai-topic-body"><h3>Kernel Trick</h3><p>Kernel trick memungkinkan SVM menangani data non-linear dengan menghitung kemiripan di ruang fitur berdimensi tinggi secara implisit.</p><div class="ai-topic-tags"><span>RBF Kernel</span><span>Polynomial Kernel</span><span>Mercer Theorem</span><span>Non-linear</span></div></div></div>
+</div>
+</section>
+
+<section class="ai-module" id="ml-m7" data-color="#f63392">
+<div class="ai-module-head"><span class="ai-module-num">07</span><div><span class="ai-module-tag">Must Know</span><h2>Neural Networks</h2><p>Dari perceptron satu neuron hingga deep network berlapis, fondasi arsitektur AI modern.</p></div></div>
+<div class="ai-topic-list">
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-bolt"></i></div><div class="ai-topic-body"><h3>Single Layer Perceptron</h3><p>Perceptron menghitung kombinasi linear fitur lalu menerapkan aktivasi. Ia konvergen jika data linearly separable, tetapi tidak mampu memecahkan XOR.</p><div class="ai-topic-tags"><span>Perceptron Rule</span><span>Step Function</span><span>Convergence</span><span>Linear Separability</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-layer-group"></i></div><div class="ai-topic-body"><h3>Multi-Layer Perceptron</h3><p>MLP menyusun input, hidden layers, dan output. Aktivasi non-linear seperti ReLU dan sigmoid membuat jaringan mampu memodelkan pola kompleks.</p><div class="ai-topic-tags"><span>Forward Pass</span><span>ReLU</span><span>Softmax</span><span>Hidden Layer</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-rotate"></i></div><div class="ai-topic-body"><h3>Backpropagation</h3><p>Backpropagation menghitung gradien loss terhadap bobot secara efisien menggunakan chain rule dari output menuju input.</p><div class="ai-topic-tags"><span>Chain Rule</span><span>Gradient</span><span>Vanishing Gradient</span><span>BatchNorm</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-rocket"></i></div><div class="ai-topic-body"><h3>Optimisasi & Regularisasi</h3><p>SGD, momentum, RMSprop, Adam, dropout, weight decay, dan early stopping membantu training lebih stabil dan generalisasi lebih baik.</p><div class="ai-topic-tags"><span>Adam</span><span>SGD</span><span>Dropout</span><span>Weight Decay</span><span>Early Stopping</span></div></div></div>
+</div>
+</section>
+
+<section class="ai-module" id="ml-m8" data-color="#f63392">
+<div class="ai-module-head"><span class="ai-module-num">08</span><div><span class="ai-module-tag">Unsupervised</span><h2>Unsupervised Learning</h2><p>Menemukan struktur tersembunyi dalam data tanpa label melalui clustering, reduksi dimensi, dan density estimation.</p></div></div>
+<div class="ai-topic-list">
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-bullseye"></i></div><div class="ai-topic-body"><h3>K-Means Clustering</h3><p>K-Means mempartisi data ke K cluster dengan meminimalkan variasi dalam cluster. Pemilihan K dapat memakai elbow method atau silhouette score.</p><div class="ai-topic-tags"><span>K-Means</span><span>K-Medoids</span><span>Elbow Method</span><span>Silhouette</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-tree"></i></div><div class="ai-topic-body"><h3>Hierarchical & Density Clustering</h3><p>Agglomerative clustering membangun dendrogram. DBSCAN menemukan cluster bentuk arbitrer berdasarkan density dan lebih robust terhadap noise.</p><div class="ai-topic-tags"><span>Dendrogram</span><span>Agglomerative</span><span>DBSCAN</span><span>Ward Linkage</span></div></div></div>
+<div class="ai-topic-item"><div class="ai-topic-icon"><i class="fas fa-shuffle"></i></div><div class="ai-topic-body"><h3>Gaussian Mixture Models & EM</h3><p>GMM memodelkan data sebagai campuran distribusi Gaussian. Expectation-Maximization memperbarui soft assignment dan parameter distribusi secara iteratif.</p><div class="ai-topic-tags"><span>GMM</span><span>EM Algorithm</span><span>Soft Clustering</span><span>PCA</span><span>t-SNE</span></div></div></div>
+</div>
+</section>
+
+</div>
+
+<aside class="ai-overview-toc" id="mlToc">
+<p class="ai-toc-label">Isi Materi</p>
+<ul class="ai-toc-list">
+<li><a href="#ml-m1" class="ai-toc-link active" data-module="ml-m1"><span class="ai-toc-num">01</span>Pengantar ML</a></li>
+<li><a href="#ml-m2" class="ai-toc-link" data-module="ml-m2"><span class="ai-toc-num">02</span>Supervised Learning</a></li>
+<li><a href="#ml-m3" class="ai-toc-link" data-module="ml-m3"><span class="ai-toc-num">03</span>Regresi & Klasifikasi</a></li>
+<li><a href="#ml-m4" class="ai-toc-link" data-module="ml-m4"><span class="ai-toc-num">04</span>Probabilistic Models</a></li>
+<li><a href="#ml-m5" class="ai-toc-link" data-module="ml-m5"><span class="ai-toc-num">05</span>Linear Models</a></li>
+<li><a href="#ml-m6" class="ai-toc-link" data-module="ml-m6"><span class="ai-toc-num">06</span>SVM</a></li>
+<li><a href="#ml-m7" class="ai-toc-link" data-module="ml-m7"><span class="ai-toc-num">07</span>Neural Networks</a></li>
+<li><a href="#ml-m8" class="ai-toc-link" data-module="ml-m8"><span class="ai-toc-num">08</span>Unsupervised Learning</a></li>
+</ul>
+<div class="ai-toc-progress">
+<span>Progress</span><span id="mlTocProgressPct">0%</span>
+<b><i id="mlTocProgressFill"></i></b>
+</div>
+</aside>
+</div>
+</main>
+</section>
