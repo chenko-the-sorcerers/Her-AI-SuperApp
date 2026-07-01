@@ -167,6 +167,17 @@
 .ai-lab-content .lemma-out { font-family: var(--ai-mono); color: #22c55e; font-weight: 700; }
 .ai-lab-content .same { color: #22c55e; font-size: 12px; }
 .ai-lab-content .diff { color: #f59e0b; font-size: 12px; }
+.ai-lab-content .norm-categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+.ai-lab-content .nc-group { background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 12px; }
+.ai-lab-content .nc-title { font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ai-accent); margin-bottom: 10px; }
+.ai-lab-content .nc-pairs { display: flex; flex-direction: column; gap: 6px; }
+.ai-lab-content .nc-pair { display: flex; align-items: center; gap: 6px; font-family: var(--ai-mono); font-size: 11px; }
+.ai-lab-content .nc-from { color: #ef4444; background: rgba(239,68,68,.08); padding: 2px 6px; border-radius: 4px; }
+.ai-lab-content .nc-arr { color: var(--ai-text3); }
+.ai-lab-content .nc-to { color: #22c55e; background: rgba(34,197,94,.08); padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+.ai-lab-content .norm-diff { font-family: var(--ai-mono); font-size: 12px; margin-top: 8px; }
+.ai-lab-content .norm-diff .nd-changed { color: var(--ai-accent); font-weight: 700; }
+@media (max-width: 700px) { .ai-lab-content .norm-categories { grid-template-columns: 1fr; } }
 </style>
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
