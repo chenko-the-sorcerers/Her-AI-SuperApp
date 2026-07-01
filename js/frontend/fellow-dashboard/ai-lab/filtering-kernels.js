@@ -158,7 +158,7 @@ function initFilteringKernelEditor() {
     if (progEl)   progEl.style.width = ((currentPos / (POSITIONS.length-1)) * 100) + '%';
   }
 
-  window.convStep = function(dir) {
+  window.FK_convStep = function(dir) {
     currentPos = Math.max(0, Math.min(POSITIONS.length-1, currentPos + dir));
     render();
   };
@@ -805,9 +805,9 @@ const quizData = [
 ];
 
 let quizScore = 0;
-var FK_FK_quizAnswered = {};
+var FK_quizAnswered = {};
 
-(function buildQuiz() {
+function buildQuiz() {
   const container = document.getElementById('quizContainer');
   if (!container) return;
   quizData.forEach((q, qi) => {
@@ -824,7 +824,11 @@ var FK_FK_quizAnswered = {};
       '<div class="quiz-feedback" id="qfb-' + qi + '"></div>';
     container.appendChild(div);
   });
-})();
+}
+
+function initFilteringQuiz() {
+  buildQuiz();
+}
 
 window.FK_answerQuiz = function(qi, oi) {
   if (FK_quizAnswered[qi]) return;
@@ -945,10 +949,12 @@ window.initAiLabFilteringKernels = function() {
   var content = document.getElementById('filtering-kernels-content');
   if (!content || content.dataset.ready) return;
   content.dataset.ready = 'true';
+  document.querySelectorAll('.run-btn').forEach(b => { b.disabled = true; b.title = 'Loading Python runtime...'; });
   if (typeof initFilteringKernelEditor === 'function') initFilteringKernelEditor();
   if (typeof initFilteringGaussianDemo === 'function') initFilteringGaussianDemo();
   if (typeof initFilteringMedianDemo === 'function') initFilteringMedianDemo();
   if (typeof initFilteringUnsharpMask === 'function') initFilteringUnsharpMask();
   if (typeof initFilteringOtsu === 'function') initFilteringOtsu();
   if (typeof initFilteringQuiz === 'function') initFilteringQuiz();
+  if (typeof initPyodide === 'function') initPyodide();
 };

@@ -512,7 +512,7 @@ var OPENCV_quizData = [
   }
 ];
 
-var OPENCV_OPENCV_quizScore = 0;
+var OPENCV_quizScore = 0;
 var OPENCV_quizAnswered = {};
 
 function initOpencvQuiz() {
@@ -675,6 +675,7 @@ window.initAiLabOpencv = function() {
   var content = document.getElementById('opencv-content');
   if (!content || content.dataset.ready) return;
   content.dataset.ready = 'true';
+  document.querySelectorAll('.run-btn').forEach(b => { b.disabled = true; b.title = 'Loading Python runtime...'; });
   if (typeof initOpencvPixelInspector === 'function') initOpencvPixelInspector();
   if (typeof initOpencvResize === 'function') initOpencvResize();
   if (typeof initOpencvCropROI === 'function') initOpencvCropROI();

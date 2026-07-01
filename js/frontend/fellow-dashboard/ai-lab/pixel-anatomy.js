@@ -60,16 +60,16 @@ function initPixelCoords() {
     ctx.clearRect(0, 0, W, H);
     for (let row=0; row<ROWS; row++) for (let col=0; col<COLS; col++) {
       const act = col===hx && row===hy;
-      ctx.fillStyle = act ? 'rgba(41,151,255,.18)' : 'transparent';
+      ctx.fillStyle = act ? 'rgba(246,51,146,.12)' : 'transparent';
       ctx.fillRect(col*cw, row*ch, cw, ch);
-      ctx.strokeStyle = 'rgba(255,255,255,.08)'; ctx.lineWidth = .5;
+      ctx.strokeStyle = 'rgba(246,51,146,.15)'; ctx.lineWidth = .5;
       ctx.strokeRect(col*cw, row*ch, cw, ch);
       ctx.font = act ? 'bold 11px monospace' : '10px monospace';
-      ctx.fillStyle = act ? '#2997ff' : 'rgba(255,255,255,.25)';
+      ctx.fillStyle = act ? '#f63392' : 'rgba(23,24,39,.35)';
       ctx.textAlign = 'center';
       ctx.fillText(`${col},${row}`, col*cw+cw/2, row*ch+ch/2+4);
     }
-    ctx.fillStyle = '#2997ff'; ctx.font = 'bold 11px monospace';
+    ctx.fillStyle = '#f63392'; ctx.font = 'bold 11px monospace';
     ctx.textAlign = 'start'; ctx.fillText('x →', 6, 14);
     ctx.textAlign = 'center'; ctx.fillText('y ↓', 10, H-6);
   }
@@ -86,7 +86,7 @@ function initPixelCoords() {
 }
 
 /* ── 7. RGB channel canvas ───────────────────────────────────── */
-(function () {
+function initPixelRgb() {
   const canvas = document.getElementById('rgbCanvas');
   if (!canvas) return;
   function render() {
@@ -110,7 +110,7 @@ function initPixelCoords() {
     });
   }
   render(); window.addEventListener('resize', render);
-})();
+}
 
 /* ── 8. Live calculator ──────────────────────────────────────── */
 function rgbToHsv(r,g,b) {
@@ -162,7 +162,7 @@ async function initPyodide() {
     pyReady = true;
     if(status){ status.textContent = '<i class="fas fa-snake"></i> Python ready'; status.className = 'py-status ready'; }
     if(overlay) overlay.style.display = 'none';
-    document.querySelectorAll('.run-btn').forEach(b => { b.disabled = false; });
+    document.querySelectorAll('.run-btn').forEach(b => { b.disabled = false; b.title = ''; });
   } catch(e) {
     if(status){ status.textContent = '❌ Python failed'; status.className = 'py-status error'; }
     if(overlay) overlay.style.display = 'none';
@@ -196,13 +196,13 @@ _buf.getvalue()
   try {
     const result = await pyodide.runPythonAsync(captureCode);
     const output = String(result || '').trim();
-    if(outWrap) outWrap.style.display = 'block';
+    if(outWrap){ outWrap.style.display = 'block'; outWrap.classList.remove('is-error'); }
     if(outPre){ outPre.textContent = output || '(no output)'; outPre.style.color = ''; }
     if(checkId) autoCheck(checkId, output);
     PIXEL_updateFinalScore();
   } catch(err) {
-    if(outWrap) outWrap.style.display = 'block';
-    if(outPre){ outPre.textContent = 'Error:\n' + err.message; outPre.style.color = '#ff375f'; }
+    if(outWrap){ outWrap.style.display = 'block'; outWrap.classList.add('is-error'); }
+    if(outPre){ outPre.textContent = 'Error:\n' + err.message; outPre.style.color = ''; }
     if(checkEl) checkEl.style.display = 'none';
   }
   if(btn){ btn.textContent = '▶ Run'; btn.disabled = false; }
@@ -369,13 +369,107 @@ function initPixelRGB() {
   });
 })();
 
+/* ── 16. Playground ──────────────────────────────────────────── */
+const PIXEL_playgroundDefault = `import numpy as np
+
+# Create a sample 5x5 RGB image
+img = np.random.randint(0, 256, (5, 5, 3), dtype=np.uint8)
+
+print("Image shape:", img.shape)
+print("Image dtype:", img.dtype)
+print("\\nFirst row of pixels:")
+print(img[0])
+print("\\nPixel at center (row=2, col=2):")
+print(img[2, 2])
+
+r_mean = img[:,:,0].mean()
+g_mean = img[:,:,1].mean()
+b_mean = img[:,:,2].mean()
+print(f"\\nChannel means — R:{r_mean:.1f} G:{g_mean:.1f} B:{b_mean:.1f}")`;
+
+const PIXEL_playgroundSnippets = {
+  pixels: `import numpy as np
+
+img = np.random.randint(0, 256, (10, 10, 3), dtype=np.uint8)
+print("Shape:", img.shape)
+print("First 3 pixels of first row:")
+print(img[0, :3])`,
+  channels: `import numpy as np
+
+img = np.random.randint(0, 256, (4, 4, 3), dtype=np.uint8)
+r = img[:,:,0]
+g = img[:,:,1]
+b = img[:,:,2]
+print("Red channel:\\n", r)
+print("\\nGreen channel:\\n", g)
+print("\\nBlue channel:\\n", b)`,
+  grayscale: `import numpy as np
+
+img = np.random.randint(0, 256, (5, 5, 3), dtype=np.uint8)
+gray = (0.299 * img[:,:,0] + 0.587 * img[:,:,1] + 0.114 * img[:,:,2]).astype(np.uint8)
+print("Original shape:", img.shape)
+print("Grayscale:\\n", gray)`,
+  stats: `import numpy as np
+
+img = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)
+print("Shape:", img.shape)
+print("Mean:", img.mean())
+print("Std:", img.std())
+print("Min:", img.min())
+print("Max:", img.max())
+print("\\nPer channel means:")
+print("R:", img[:,:,0].mean())
+print("G:", img[:,:,1].mean())
+print("B:", img[:,:,2].mean())`,
+};
+
+window.loadSnippet = function(name) {
+  const ed = document.getElementById('playground-editor');
+  if (ed && PIXEL_playgroundSnippets[name]) ed.value = PIXEL_playgroundSnippets[name];
+};
+window.runPlayground = async function() {
+  const ed  = document.getElementById('playground-editor');
+  const out = document.getElementById('pg-output-pre');
+  if (!ed || !out) return;
+  const wrap = out.closest('.output-wrap');
+  if (wrap) { wrap.style.display = 'block'; wrap.classList.remove('is-error'); }
+  out.textContent = 'Running\u2026';
+  out.style.color = '';
+  if (!pyReady) { out.textContent = 'Python runtime not ready yet\u2026'; return; }
+  try {
+    let stdout = '';
+    pyodide.setStdout({ batched: (s) => { stdout += s + '\n'; } });
+    await pyodide.runPythonAsync(ed.value);
+    out.textContent = stdout || '(no output)';
+  } catch(err) {
+    if (wrap) wrap.classList.add('is-error');
+    out.textContent = 'Error:\n' + err.message;
+    out.style.color = '';
+  }
+};
+window.resetPlayground = function() {
+  const ed = document.getElementById('playground-editor');
+  if (ed) ed.value = PIXEL_playgroundDefault;
+  const out = document.getElementById('pg-output');
+  if (out) out.style.display = 'none';
+};
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    if (document.activeElement?.classList.contains('playground-editor')) {
+      e.preventDefault();
+      runPlayground();
+    }
+  }
+});
 
 /* ── Init ──────────────────────────────── */
 window.initAiLabPixel = function() {
   var content = document.getElementById('pixel-content');
   if (!content || content.dataset.ready) return;
   content.dataset.ready = 'true';
+  document.querySelectorAll('.run-btn').forEach(b => { b.disabled = true; b.title = 'Loading Python runtime...'; });
   if (typeof initPixelInspector === 'function') initPixelInspector();
+  if (typeof initPixelRgb === 'function') initPixelRgb();
   if (typeof initPixelCoords === 'function') initPixelCoords();
   if (typeof initPixelRGB === 'function') initPixelRGB();
   if (typeof initPixelColorSpaces === 'function') initPixelColorSpaces();

@@ -21,13 +21,15 @@
 ### Pola kerja
 Copy konten dari AI Lab source → bungkus layout HerAI → inline CSS → Playwright test → commit per lesson.
 
+Catatan sesi terakhir: fokus sempat pindah ke polish `#/participant-ai-lab-cv`, dan issue brace lama di `ai-lab-lesson.css` sudah FIXED.
+
 ---
 
 ## ══════════════════════════════════
 ## 2. APA YANG SUDAH DIKERJAKAN (Sesi Ini)
 ## ══════════════════════════════════
 
-### 2.1 CV Course — 9 lessons ported
+### 2.1 CV Course — 10 lessons ported
 | # | Lesson | Route | Status |
 |---|---|---|---|
 | 1 | CNN Why | `#/participant-ai-lab-cv-cnn-why` | ✅ |
@@ -46,10 +48,15 @@ Copy konten dari AI Lab source → bungkus layout HerAI → inline CSS → Playw
 - Add missing `IMAGES`, `currentConvImg`, `customImgSrc` variables
 - Replace emoji with FA icons in LANDMARKS data
 
-### 2.3 Generative AI overview
+### 2.3 CV Overview polish
+- Fill missing icon slots on `#/participant-ai-lab-cv`
+- Improve hero spacing and card rhythm
+- Increase contrast on code blocks so teks tetap kebaca
+
+### 2.4 Generative AI overview
 - Ported overview page (`#/participant-ai-lab-gen`) with animated noise canvas
 
-### 2.4 NLP Pages — Full Rebuild dengan Inline CSS
+### 2.5 NLP Pages — Full Rebuild dengan Inline CSS
 | Page | Status | Notes |
 |---|---|---|
 | **tokenization** | ✅ Full rebuild | Tambah comparison table (IndoBERT/BERT/XLM-R/GPT-4), strategy cards pros/cons, morpho morphology demo, slang token viz, entitas lokal, code block syntax highlighting, lab interactive CSS |
@@ -57,7 +64,7 @@ Copy konten dari AI Lab source → bungkus layout HerAI → inline CSS → Playw
 | **pos-ner** | ✅ Full rebuild | POS tagger, NER highlighter, Viterbi table, confusion matrix, quiz, ner-span pills, next-lesson-cta |
 | **bow** | ✅ Full rebuild | 3-col demo grid, doc-term matrix, sparse viz, cosine sim cards, cmpare-2 pros/cons, lab explorer CSS |
 
-### 2.5 Quiz Variable Collision Fix (CRITICAL)
+### 2.6 Quiz Variable Collision Fix (CRITICAL)
 `window.answerQuiz` didefinisikan di 4 file berbeda. Karena semua JS loaded di global scope dan di-overwrite oleh file yang load terakhir (image-processing-opencv.js), quiz di halaman lain rusak.
 
 **Fix**: Rename semua `window.answerQuiz` menjadi unik:
@@ -68,7 +75,7 @@ Copy konten dari AI Lab source → bungkus layout HerAI → inline CSS → Playw
 
 Juga rename variable collisions: `quizAnswered`, `quizData`, `quizScore` → prefix per file.
 
-### 2.6 Pyodide Auto-Init Guard
+### 2.7 Pyodide Auto-Init Guard
 Wrap `initPyodide()` auto-call di filtering-kernels.js, morphological, opencv, pixel dengan:
 ```js
 if (typeof loadPyodide !== "undefined") { initPyodide(); }
@@ -94,7 +101,7 @@ Her-AI-SuperApp/
 │       └── ai-lab/                     ← Semua JS lesson
 │
 ├── css/frontend/fellow-dashboard/
-│   ├── ai-lab-lesson.css              ← External CSS (ADA PARSE ISSUE!)
+│   ├── ai-lab-lesson.css              ← External CSS (brace issue FIXED)
 │   └── modules.css / dashboard.css
 │
 ├── pages/frontend/fellow-dashboard/
@@ -242,9 +249,7 @@ STEP 10: Playwright test
 
 **KENAPA HARUS INLINE `<style>`?**
 
-File `css/frontend/fellow-dashboard/ai-lab-lesson.css` punya parse error yang menyebabkan browser STOP parsing rules di sekitar line 996 (dari 5357 total lines). Semua CSS rules setelah line ~996 tidak di-apply.
-
-**AKIBAT**: Halaman yang hanya mengandalkan external CSS akan kehilangan sebagian besar styling-nya.
+✅ **FIXED 2026-07-01** — 3 unclosed braces ditutup. CSS external sekarang ter-apply normal (1979 rules).
 
 **SOLUSI**: Setiap lesson HTML HARUS punya inline `<style>` block di dalam file:
 ```html
@@ -311,7 +316,7 @@ done
 | # | Page | Inline CSS | Playwright | Emoji | Notes |
 |---|---|---|---|---|---|
 | — | ml (overview) | N/A | ✅ | 0 | TOC scroll-spy |
-| 1 | ml-intro | ❌ | ✅ | 0 | **Perlu inline CSS** |
+| 1 | ml-intro | ❌ (via external) | ✅ | 0 | ✅ CSS fix (3 braces + sticky) |
 | 2 | ml-hypothesis | ❌ | ✅ | 0 | **Perlu inline CSS** |
 | 3 | ml-vc-dim | ❌ | ⚠️ | 0 | **Perlu inline CSS** + ready flag |
 | 4 | ml-bias-variance | ❌ | ⚠️ | 0 | **Perlu inline CSS** + ready flag |
@@ -527,7 +532,7 @@ js/frontend/fellow-dashboard/ai-lab/[nama].js               ← JS
 
 ---
 
-*Last updated: 2026-07-01*  
+*Last updated: 2026-07-02 WIB (CV overview polish + docs refresh)*  
 *Session: CV course complete (10 lessons) + NLP rebuild (4 pages) + quiz collision fix*
 *Total commits this session: 45+*
 *Branch: `design`*

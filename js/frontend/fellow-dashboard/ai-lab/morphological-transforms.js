@@ -858,10 +858,15 @@ window.initAiLabMorph = function() {
   var content = document.getElementById('morph-content');
   if (!content || content.dataset.ready) return;
   content.dataset.ready = 'true';
+  document.querySelectorAll('.run-btn').forEach(b => { b.disabled = true; b.title = 'Loading Python runtime...'; });
   if (typeof initMorphPresetEditor === 'function') initMorphPresetEditor();
   if (typeof initMorphDrawingTool === 'function') initMorphDrawingTool();
   if (typeof initMorphSandbox === 'function') initMorphSandbox();
   if (typeof initMorphQuiz === 'function') initMorphQuiz();
+  if (typeof initMorphMisc5 === 'function') initMorphMisc5();
+  if (typeof initMorphMisc6 === 'function') initMorphMisc6();
+  if (typeof initMorphMisc7 === 'function') initMorphMisc7();
+  if (typeof initMorphMisc8 === 'function') initMorphMisc8();
   if (typeof initPyodide === 'function') initPyodide();
   if (typeof initMorphPlayground === 'function') initMorphPlayground();
 };

@@ -1,4 +1,781 @@
-<section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page opencv-page" data-fellow-page="modules">
+<style>
+  .opencv-page{
+    --px-bg:#fff7fb; --px-bg-2:#fff0f7; --px-card:#ffffff;
+    --px-line:rgba(246,51,146,.16); --px-line-strong:rgba(246,51,146,.24);
+    --px-text:#171827; --px-text-2:#6f7282; --px-text-3:#6f7282;
+    --px-accent:#f63392; --px-accent-soft:rgba(246,51,146,.08);
+    --px-shadow:0 18px 50px rgba(246,51,146,.08);
+    --px-shadow-lg:0 24px 60px rgba(23,24,39,.08);
+    --px-radius:20px; --px-radius-sm:14px;
+    --px-font-disp:'Plus Jakarta Sans', sans-serif;
+    --px-font-body:'Inter', sans-serif;
+    --px-font-mono:'SF Mono','Space Mono',monospace;
+    --px-red:#e11d48; --px-green:#16a34a; --px-blue:#2563eb;
+    background:
+      radial-gradient(circle at top left, rgba(246,51,146,.10), transparent 30%),
+      radial-gradient(circle at 85% 12%, rgba(246,51,146,.06), transparent 22%),
+      var(--px-bg);
+    color:var(--px-text); font-family:var(--px-font-body);
+  }
+
+  /* ── Topbar ────────────────────────────────────── */
+  .opencv-page .lesson-topbar{
+    position:sticky; top:0; z-index:100;
+    padding:0; background:transparent;
+  }
+  .opencv-page .lesson-topbar-inner{
+    max-width:1600px; width:100%; margin:0 auto;
+    display:flex; align-items:center; height:68px;
+  }
+  .opencv-page .navbar-left{
+    flex:0 0 30%; display:flex; align-items:center;
+    padding-left:24px; min-width:0;
+  }
+  .opencv-page .navbar-center{
+    flex:0 0 40%; display:flex; align-items:center; justify-content:center;
+    text-align:center; min-width:0;
+    font-family:var(--px-font-disp); font-size:15px; font-weight:700;
+    color:var(--px-text);
+  }
+  .opencv-page .navbar-right{
+    flex:0 0 30%; display:flex; align-items:center; justify-content:flex-end;
+    padding-right:24px; min-width:0;
+  }
+  .opencv-page .lesson-breadcrumb{
+    display:flex; align-items:center; gap:8px; flex-shrink:0;
+    color:var(--px-text-2);
+  }
+  .opencv-page .lesson-breadcrumb a{
+    display:inline-flex; align-items:center; gap:6px;
+    color:var(--px-text-2); text-decoration:none; transition:color .2s;
+  }
+  .opencv-page .lesson-breadcrumb a:hover{ color:var(--px-accent); }
+  .opencv-page .lesson-breadcrumb-separator{ color:var(--px-text-3); font-size:10px; }
+  .opencv-page .lesson-breadcrumb > span:last-child{ font-weight:600; color:var(--px-text); }
+  .opencv-page .fellow-actions{
+    display:flex; align-items:center; gap:10px; flex-shrink:0;
+  }
+  .opencv-page .fellow-search{
+    display:flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.95); height:40px;
+    border:1px solid rgba(246,51,146,.12);
+    border-radius:100px; padding:0 16px;
+    transition:all .2s; min-width:200px;
+  }
+  .opencv-page .fellow-search:focus-within{
+    border-color:rgba(246,51,146,.3);
+    box-shadow:0 0 0 3px rgba(246,51,146,.08);
+  }
+  .opencv-page .fellow-search i{ color:var(--px-text-3); font-size:14px; }
+  .opencv-page .fellow-search input{
+    border:none; outline:none; background:transparent;
+    font-size:13px; color:var(--px-text); width:120px;
+    font-family:var(--px-font-body);
+  }
+  .opencv-page .fellow-search input::placeholder{ color:var(--px-text-3); }
+  .opencv-page .fellow-icon-button{
+    display:flex; align-items:center; justify-content:center;
+    width:40px; height:40px; padding:0;
+    background:rgba(255,255,255,.95); border:1px solid rgba(246,51,146,.12);
+    border-radius:100px; cursor:pointer; position:relative;
+    transition:all .2s; color:var(--px-text-2);
+  }
+  .opencv-page .fellow-icon-button:hover{
+    border-color:rgba(246,51,146,.25);
+    background:#fff; color:var(--px-text);
+  }
+  .opencv-page .fellow-icon-button span{
+    position:absolute; top:-4px; right:-4px;
+    background:var(--px-accent); color:#fff; font-size:10px; font-weight:700;
+    width:18px; height:18px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .opencv-page .fellow-user-button{
+    display:flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.95); border:1px solid rgba(246,51,146,.12);
+    border-radius:100px; padding:5px 12px 5px 6px;
+    text-decoration:none; transition:all .2s; color:var(--px-text);
+  }
+  .opencv-page .fellow-user-button:hover{
+    border-color:rgba(246,51,146,.25);
+    background:#fff;
+  }
+  .opencv-page .fellow-user-button .avatar-img{
+    width:30px; height:30px; border-radius:50%;
+    background:linear-gradient(135deg, var(--px-accent), #ff8ab7);
+  }
+  .opencv-page .fellow-user-button strong{ font-size:13px; font-weight:700; display:block; }
+  .opencv-page .fellow-user-button small{ font-size:10px; color:var(--px-text-3); display:block; }
+  .opencv-page .fellow-user-button > i{ font-size:10px; color:var(--px-text-3); margin-left:2px; }
+
+  /* ── Layout ────────────────────────────────── */
+  .opencv-page .lesson-layout{
+    display:grid; grid-template-columns:minmax(0,1fr) 320px;
+    gap:24px; align-items:start;
+    max-width:1600px; margin:0 auto;
+    padding:24px 24px 56px;
+  }
+  .opencv-page .lesson-main-content{ min-width:0; }
+
+  /* ── Hero ──────────────────────────────────── */
+  .opencv-page .lesson-hero{
+    display:grid; grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);
+    gap:28px; align-items:center;
+    padding:42px 44px 30px; margin-bottom:20px;
+    border:1px solid var(--px-line); border-radius:28px;
+    background:
+      radial-gradient(circle at 0 0, rgba(246,51,146,.10), transparent 38%),
+      linear-gradient(135deg, #ffffff 0%, #fff7fb 58%, #fff0f7 100%);
+    box-shadow:var(--px-shadow-lg); overflow:hidden;
+  }
+  .opencv-page .lesson-hero h1{ font-family:var(--px-font-disp); color:var(--px-text); letter-spacing:-.04em; }
+  .opencv-page .lesson-hero p,
+  .opencv-page .lesson-meta-row{ color:var(--px-text-2); }
+  .opencv-page .lesson-hero img{
+    max-width:240px; width:100%; justify-self:end;
+    filter:drop-shadow(0 18px 30px rgba(246,51,146,.10));
+  }
+  .opencv-page .lesson-material-panel{ display:grid; gap:18px; }
+  .opencv-page .lesson-tabs a{
+    background:rgba(255,255,255,.92); border:1px solid var(--px-line);
+    box-shadow:var(--px-shadow); border-radius:var(--px-radius-sm);
+    padding:8px 18px; align-self:center; margin:0;
+  }
+  .opencv-page .lesson-tabs a.active{
+    background:var(--px-accent-soft); color:var(--px-accent);
+    border-color:var(--px-line-strong);
+  }
+  .opencv-page .lesson-article{ max-width:800px; }
+
+  /* ── Sections ──────────────────────────────── */
+  .opencv-page .lesson-sec{
+    padding-bottom:48px; margin-bottom:8px;
+    border-bottom:1px solid var(--px-line);
+    scroll-margin-top:120px;
+  }
+  .opencv-page .lesson-sec:last-child{ border-bottom:none; }
+  .opencv-page .sec-header{
+    display:flex; align-items:flex-start; gap:16px; margin-bottom:24px;
+  }
+  .opencv-page .sec-num{
+    font-family:var(--px-font-mono); font-size:12px; color:var(--px-accent);
+    padding:4px 0; letter-spacing:.06em; flex-shrink:0; min-width:26px;
+  }
+  .opencv-page .sec-title{
+    font-family:var(--px-font-disp); font-size:clamp(22px,3vw,30px);
+    font-weight:700; letter-spacing:-.02em; color:var(--px-text); margin-bottom:4px;
+  }
+  .opencv-page .sec-sub{ font-size:14px; color:var(--px-text-2); }
+
+  /* ── Prose ──────────────────────────────────── */
+  .opencv-page .prose{
+    font-size:15px; color:var(--px-text-2); line-height:1.75;
+    margin-bottom:20px; max-width:640px;
+  }
+  .opencv-page .prose strong{ color:var(--px-text); font-weight:500; }
+  .opencv-page .prose code{
+    font-family:var(--px-font-mono); font-size:12.5px;
+    padding:2px 6px; border-radius:4px; color:var(--px-text);
+  }
+
+  /* ── Callouts ──────────────────────────────── */
+  .opencv-page .callout{
+    display:flex; gap:12px; padding:14px 16px;
+    border-radius:14px; margin-bottom:20px;
+    font-size:13.5px; line-height:1.65; color:var(--px-text-2);
+  }
+  .opencv-page .callout strong{ color:var(--px-text); }
+  .opencv-page .callout-icon{ flex-shrink:0; font-size:16px; line-height:1.5; }
+  .opencv-page .callout.info{
+    background:linear-gradient(135deg, rgba(246,51,146,.05), rgba(255,255,255,.98));
+    border:1px solid var(--px-line);
+  }
+  .opencv-page .callout.warn{
+    background:linear-gradient(135deg, rgba(255,193,7,.08), rgba(255,255,255,.98));
+    border:1px solid rgba(255,193,7,.25);
+  }
+  .opencv-page .callout.danger{
+    background:linear-gradient(135deg, rgba(246,51,146,.06), rgba(255,255,255,.98));
+    border:1px solid rgba(246,51,146,.2);
+  }
+
+  /* ── Code blocks ──────────────────────────── */
+  .opencv-page .code-block{
+    background:#fff; border:1px solid var(--px-line);
+    border-radius:14px; box-shadow:var(--px-shadow); overflow:hidden; margin-bottom:20px;
+  }
+  .opencv-page .cb-label{
+    background:var(--px-bg); border-bottom:1px solid var(--px-line);
+    padding:8px 16px; font-family:var(--px-font-mono);
+    font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--px-text-2);
+  }
+  .opencv-page .code-block pre{ padding:18px 20px; overflow-x:auto; margin:0; }
+  .opencv-page .code-block code{
+    font-family:var(--px-font-mono); font-size:13px; line-height:1.75;
+    background:#fff; padding:0; color:var(--px-text);
+  }
+  .opencv-page .kw{ color:#db2777; font-weight:600; }
+  .opencv-page .fn{ color:#7c3aed; }
+  .opencv-page .str{ color:#15803d; }
+  .opencv-page .num{ color:#b45309; }
+  .opencv-page .op{ color:#667085; }
+  .opencv-page .cm{ color:#98a2b3; font-style:italic; }
+
+  /* ── Widget cards ─────────────────────────── */
+  .opencv-page .widget-card{
+    background:rgba(255,255,255,.96);
+    border:1px solid var(--px-line); border-radius:var(--px-radius);
+    box-shadow:var(--px-shadow); padding:20px; margin-bottom:20px; overflow:hidden;
+  }
+  .opencv-page .widget-label{
+    font-family:var(--px-font-mono); font-size:10px; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--px-text-3); margin-bottom:16px;
+  }
+
+  /* ── Two columns + info card ──────────────── */
+  .opencv-page .two-col{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;
+  }
+  .opencv-page .two-col .code-block{ margin-bottom:0; }
+  .opencv-page .info-card{
+    background:rgba(255,255,255,.96); border:1px solid var(--px-line);
+    border-radius:var(--px-radius); padding:20px;
+  }
+  .opencv-page .info-card .ic-title{
+    font-family:var(--px-font-disp); font-size:14px; font-weight:600;
+    color:var(--px-text); margin-bottom:10px;
+  }
+  .opencv-page .info-card p{ font-size:13px; color:var(--px-text); line-height:1.7; }
+  .opencv-page .info-card p strong{ color:var(--px-text); font-weight:600; }
+  .opencv-page .info-card code{
+    color:var(--px-text); background:var(--px-bg-2);
+    padding:2px 6px; border-radius:4px; font-family:var(--px-font-mono); font-size:12.5px;
+  }
+
+  /* ── Challenge cards ───────────────────────── */
+  .opencv-page .challenge-card{
+    display:block; padding:20px; min-height:auto;
+    background:rgba(255,255,255,.96);
+    border:1px solid var(--px-line);
+    border-radius:var(--px-radius);
+    box-shadow:var(--px-shadow);
+    align-items:normal; gap:0;
+    grid-template-columns:none;
+  }
+  .opencv-page .challenge-card h2{ font-size:inherit; color:inherit; margin:0; line-height:inherit; }
+  .opencv-page .challenge-card p{ font-size:inherit; color:inherit; margin:0; line-height:inherit; }
+  .opencv-page .challenge-header{
+    display:flex; align-items:center; gap:10px; padding:14px 18px;
+    border-bottom:1px solid var(--px-line); flex-wrap:wrap;
+  }
+  .opencv-page .challenge-badge{
+    font-family:var(--px-font-mono); font-size:10px; text-transform:uppercase;
+    letter-spacing:.06em; padding:3px 8px; border-radius:4px;
+    background:rgba(246,51,146,.1); color:var(--px-accent);
+    border:1px solid rgba(246,51,146,.2); white-space:nowrap;
+  }
+  .opencv-page .challenge-title{ font-size:14px; font-weight:500; color:var(--px-text); }
+  .opencv-page .challenge-desc{ padding:12px 18px; font-size:13px; color:var(--px-text-2); line-height:1.6; border-bottom:1px solid var(--px-line); }
+  .opencv-page .challenge-editor{ margin-top:12px; }
+  .opencv-page .editor-tabs{
+    display:flex; gap:0; border-bottom:1px solid var(--px-line);
+  }
+  .opencv-page .editor-tab{
+    padding:8px 16px; font-family:var(--px-font-mono); font-size:11px;
+    color:var(--px-text-3); background:var(--px-bg);
+    border:1px solid var(--px-line); border-bottom:none;
+    border-radius:8px 8px 0 0; margin-bottom:-1px;
+  }
+  .opencv-page .editor-tab.active{
+    background:var(--px-bg-2); color:var(--px-text); border-bottom-color:var(--px-bg-2);
+  }
+  .opencv-page .code-editor-wrap{ position:relative; }
+  .opencv-page .code-editor{
+    width:100%; min-height:180px; padding:16px;
+    background:var(--px-bg-2); border:1px solid var(--px-line);
+    border-top:none; border-radius:0 0 12px 12px;
+    font-size:13px; line-height:1.75; color:var(--px-text);
+    resize:vertical; outline:none; tab-size:2;
+  }
+  .opencv-page .editor-actions{
+    display:flex; gap:8px; margin-top:10px; align-items:center;
+  }
+  .opencv-page .run-btn{
+    padding:8px 18px; border-radius:8px; border:none;
+    background:var(--px-accent); color:#fff; font-size:13px; font-weight:600;
+    cursor:pointer; font-family:var(--px-font-body); transition:all .2s;
+  }
+  .opencv-page .run-btn:hover{ background:#d42a7d; }
+  .opencv-page .hint-btn, .opencv-page .reset-btn{
+    padding:7px 14px; border-radius:8px;
+    border:1px solid var(--px-line); background:#fff;
+    font-size:12px; cursor:pointer; font-family:var(--px-font-body);
+    color:var(--px-text-2); transition:all .2s;
+  }
+  .opencv-page .hint-btn:hover, .opencv-page .reset-btn:hover{
+    background:var(--px-bg); border-color:var(--px-line-strong); color:var(--px-text);
+  }
+  .opencv-page .hint-box{
+    margin-top:10px; padding:12px 16px; border-radius:10px;
+    background:var(--px-bg); border:1px solid var(--px-line);
+    font-size:12.5px; color:var(--px-text-2); line-height:1.65;
+  }
+
+  /* ── Output wrap ──────────────────────────── */
+  .opencv-page .output-wrap{
+    margin-top:10px; border-radius:10px;
+    background:#fff0f7; color:#171827; overflow:hidden;
+    border:1px solid rgba(246,51,146,.18);
+  }
+  .opencv-page .output-label{
+    padding:6px 14px; font-family:var(--px-font-mono); font-size:10px;
+    text-transform:uppercase; letter-spacing:.06em;
+    color:#171827; background:rgba(246,51,146,.08);
+  }
+  .opencv-page .output-pre{
+    padding:12px 16px; font-size:13px; line-height:1.7; margin:0;
+    color:#171827; white-space:pre-wrap; background:transparent;
+  }
+  .opencv-page .output-wrap.is-error{
+    background:#fce4f0; border-color:rgba(246,51,146,.3);
+  }
+  .opencv-page .check-result{
+    margin-top:10px; padding:10px 14px; border-radius:10px; font-size:13px; font-weight:500;
+  }
+  .opencv-page .check-result.pass{ background:rgba(22,163,74,.08); color:#16a34a; border:1px solid rgba(22,163,74,.2); }
+  .opencv-page .check-result.fail{ background:rgba(225,29,72,.08); color:#e11d48; border:1px solid rgba(225,29,72,.2); }
+  .opencv-page .expected-box{
+    margin-top:10px; padding:12px 16px; border-radius:10px;
+    background:var(--px-bg); border:1px solid var(--px-line);
+    font-size:13px; color:var(--px-text-2);
+  }
+  .opencv-page .expected-label{
+    font-family:var(--px-font-disp); font-size:11px; font-weight:600;
+    color:var(--px-text-3); display:block; margin-bottom:6px; text-transform:uppercase;
+  }
+  .opencv-page .expected-box code{
+    font-size:13px; line-height:1.7; color:var(--px-text); background:transparent; padding:0;
+  }
+
+  /* ── Right panel ──────────────────────────── */
+  .opencv-page .lesson-nav-footer a,
+  .opencv-page .lesson-list-card,
+  .opencv-page .lesson-progress-card{
+    background:rgba(255,255,255,.92);
+    border:1px solid var(--px-line); box-shadow:var(--px-shadow);
+  }
+  .opencv-page .lesson-list-card h4,
+  .opencv-page .lpc-header{ font-family:var(--px-font-disp); }
+  .opencv-page .lesson-list-item{
+    padding:6px 10px; border-radius:8px; color:var(--px-text); font-size:13px;
+    display:flex; align-items:center; gap:8px; cursor:default;
+  }
+  .opencv-page .lesson-list-item.active,
+  .opencv-page .lesson-list-item:hover{
+    background:rgba(246,51,146,.08); color:var(--px-text);
+  }
+  .opencv-page .lesson-list-item.active .lli-dot{ background:var(--px-accent); }
+  .opencv-page .lli-dot{
+    width:8px; height:8px; border-radius:50%; background:rgba(246,51,146,.2); flex-shrink:0;
+  }
+  .opencv-page .lesson-list-item.done .lli-dot{ background:#16a34a; }
+  .opencv-page .lpc-meta{
+    display:flex; gap:12px; font-size:12px; color:var(--px-text-2); margin-top:10px;
+  }
+  .opencv-page .lesson-nav-footer a:last-child{
+    background:var(--px-accent); color:#fff; border-color:var(--px-accent);
+  }
+  .opencv-page .lesson-right-panel{
+    position:sticky; top:88px; align-self:start;
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .opencv-page .lesson-right-panel > *{ border-radius:20px; }
+
+  /* ── OpenCV-specific widgets ──────────────── */
+  .opencv-page canvas{
+    border-radius:8px; border:1px solid var(--px-line); display:block;
+  }
+  .opencv-page .imread-demo{
+    display:grid; grid-template-columns:240px 1fr; gap:20px; align-items:start;
+  }
+  .opencv-page .imread-info{ display:flex; flex-direction:column; gap:8px; }
+  .opencv-page .imd-row{
+    display:flex; justify-content:space-between; padding:4px 8px;
+    background:var(--px-bg); border-radius:6px; font-size:12px;
+  }
+  .opencv-page .imd-key{ font-family:var(--px-font-mono); color:var(--px-accent); }
+  .opencv-page .imd-val{ color:var(--px-text); font-weight:600; }
+  .opencv-page .imd-val.mono{ font-family:var(--px-font-mono); }
+  .opencv-page .imd-divider{ height:1px; background:var(--px-line); margin:4px 0; }
+  .opencv-page .imd-note{ font-size:11px; color:var(--px-text-3); font-style:italic; }
+  .opencv-page .imd-channels{ display:flex; flex-direction:column; gap:6px; }
+  .opencv-page .imd-ch{
+    display:flex; align-items:center; gap:8px;
+  }
+  .opencv-page .ch-letter{
+    font-family:var(--px-font-mono); font-size:12px; font-weight:700; min-width:12px;
+  }
+  .opencv-page .ch-letter.b{ color:var(--px-blue); }
+  .opencv-page .ch-letter.g{ color:var(--px-green); }
+  .opencv-page .ch-letter.r{ color:var(--px-red); }
+  .opencv-page .imd-bar-track{
+    flex:1; height:8px; background:rgba(246,51,146,.10); border-radius:4px; overflow:hidden;
+  }
+  .opencv-page .imd-bar-fill{
+    height:100%; border-radius:4px; background:var(--c,var(--px-accent));
+    width:0%; transition:width .12s ease;
+  }
+  .opencv-page .imd-ch-num{
+    font-family:var(--px-font-mono); font-size:12px; color:var(--px-text-2); min-width:28px; text-align:right;
+  }
+  .opencv-page .resize-demo{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  }
+  .opencv-page .resize-canvas-wrap{ position:relative; }
+  .opencv-page .resize-overlay{
+    position:absolute; top:0; left:0; right:0; bottom:0;
+    pointer-events:none; border:2px solid var(--px-accent); border-radius:8px;
+    opacity:0; transition:opacity .2s;
+  }
+  .opencv-page .resize-controls{ display:flex; flex-direction:column; gap:12px; }
+  .opencv-page .rc-row{
+    display:flex; align-items:center; gap:12px;
+  }
+  .opencv-page .rc-label{ font-size:12px; color:var(--px-text-2); min-width:40px; }
+  .opencv-page .rc-val{
+    font-family:var(--px-font-mono); font-size:12px; color:var(--px-text-2); min-width:44px; text-align:right;
+  }
+  .opencv-page .interp-btns{
+    display:flex; gap:6px; flex-wrap:wrap;
+  }
+  .opencv-page .interp-btn{
+    padding:4px 10px; border-radius:6px; border:1px solid var(--px-line);
+    background:#fff; font-size:10px; font-family:var(--px-font-mono);
+    cursor:pointer; color:var(--px-text-2); transition:all .2s;
+  }
+  .opencv-page .interp-btn.active{
+    background:var(--px-accent); color:#fff; border-color:var(--px-accent);
+  }
+  .opencv-page .interp-btn:hover:not(.active){
+    border-color:var(--px-line-strong); color:var(--px-text);
+  }
+  .opencv-page .resize-stats{
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;
+  }
+  .opencv-page .rs-item{
+    background:var(--px-bg); border-radius:6px; padding:8px; text-align:center;
+  }
+  .opencv-page .rs-label{ font-size:10px; color:var(--px-text-3); display:block; margin-bottom:4px; }
+  .opencv-page .rs-val{ font-size:13px; color:var(--px-text); font-weight:600; font-family:var(--px-font-mono); }
+  .opencv-page .interp-table{
+    margin-bottom:20px; border-radius:14px; overflow:hidden;
+    border:1px solid var(--px-line);
+  }
+  .opencv-page .it-header{
+    display:grid; grid-template-columns:1fr 1.5fr 80px 80px;
+    gap:0; background:var(--px-bg); border-bottom:1px solid var(--px-line);
+  }
+  .opencv-page .it-header > div{
+    padding:10px 14px; font-family:var(--px-font-disp); font-size:11px;
+    font-weight:700; color:var(--px-text); text-transform:uppercase; letter-spacing:.04em;
+  }
+  .opencv-page .it-row{
+    display:grid; grid-template-columns:1fr 1.5fr 80px 80px;
+    gap:0; background:#fff; border-bottom:1px solid var(--px-line);
+  }
+  .opencv-page .it-row.accent{ background:var(--px-bg); }
+  .opencv-page .it-row > div{
+    padding:10px 14px; font-size:12px; color:var(--px-text-2); display:flex; align-items:center;
+  }
+  .opencv-page .it-name{ font-family:var(--px-font-mono); color:var(--px-text); font-weight:500; }
+  .opencv-page .it-speed{ justify-content:center; }
+  .opencv-page .it-q{ justify-content:center; }
+  .opencv-page .crop-demo{
+    display:grid; grid-template-columns:320px 1fr; gap:20px; align-items:start;
+  }
+  .opencv-page .crop-canvas-wrap{ position:relative; }
+  .opencv-page .crop-info-panel{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .opencv-page .crop-coords{
+    display:grid; grid-template-columns:1fr 1fr; gap:6px;
+  }
+  .opencv-page .cc-row{
+    display:flex; align-items:center; gap:6px;
+    padding:4px 8px; background:var(--px-bg); border-radius:6px;
+  }
+  .opencv-page .cc-label{
+    font-family:var(--px-font-mono); font-size:11px; color:var(--px-accent); min-width:16px;
+  }
+  .opencv-page .cc-val{
+    font-family:var(--px-font-mono); font-size:12px; color:var(--px-text); font-weight:600;
+  }
+  .opencv-page .crop-code-live{
+    padding:8px 12px; background:var(--px-bg-2); border-radius:8px;
+    font-family:var(--px-font-mono); font-size:12px; color:var(--px-text);
+  }
+  .opencv-page .cl-prompt{ color:var(--px-text-3); }
+  .opencv-page #ccSlice{ color:var(--px-accent); font-weight:700; }
+  .opencv-page .crop-size-info{ font-size:12px; color:var(--px-text-3); }
+  .opencv-page .crop-btn{
+    padding:6px 16px; border-radius:8px; border:1px solid var(--px-line);
+    background:#fff; cursor:pointer; font-size:12px; color:var(--px-text-2); transition:all .2s;
+  }
+  .opencv-page .crop-btn:hover{
+    border-color:var(--px-line-strong); color:var(--px-text);
+  }
+  .opencv-page .flip-demo{
+    display:flex; flex-direction:row; align-items:center; justify-content:center;
+    gap:20px;
+  }
+  .opencv-page .flip-demo canvas,
+  .opencv-page #flipSrc, .opencv-page #flipDst{
+    width:200px; height:150px; flex-shrink:0;
+    border-radius:8px; border:1px solid var(--px-line);
+    display:block;
+  }
+  .opencv-page .flip-controls{
+    display:flex; flex-direction:column; gap:6px; align-items:center;
+  }
+  .opencv-page .flip-btn{
+    padding:8px 16px; border-radius:8px; border:1px solid var(--px-line);
+    background:#fff; cursor:pointer; font-size:12px; font-family:var(--px-font-body);
+    color:var(--px-text-2); text-align:center; line-height:1.3; transition:all .2s;
+    width:120px; white-space:nowrap;
+  }
+  .opencv-page .flip-btn.active{
+    background:var(--px-accent); color:#fff; border-color:var(--px-accent);
+  }
+  .opencv-page .flip-btn.rot{ background:var(--px-bg); }
+  .opencv-page .flip-btn.rot.active{ background:var(--px-accent); }
+  .opencv-page .flip-btn:hover:not(.active){
+    border-color:var(--px-line-strong); color:var(--px-text);
+  }
+  .opencv-page .flip-code{
+    display:block; font-family:var(--px-font-mono); font-size:9px; opacity:.7;
+  }
+  .opencv-page .flip-labels{
+    display:flex; gap:16px; margin-top:8px;
+  }
+  .opencv-page .flip-labels span{
+    flex:1; text-align:center; font-family:var(--px-font-mono); font-size:11px; color:var(--px-text-3);
+  }
+  .opencv-page .bitwise-demo{
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .opencv-page .bw-canvas-row{
+    display:flex; flex-direction:row; align-items:center; justify-content:center;
+    gap:20px; flex-wrap:wrap;
+  }
+  .opencv-page .bw-item{
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+  }
+  .opencv-page .bw-item canvas{
+    width:120px; height:120px; flex-shrink:0;
+    border-radius:8px; border:1px solid var(--px-line);
+    display:block;
+  }
+  .opencv-page .bw-item .bw-lbl,
+  .opencv-page .bw-lbl{
+    font-family:var(--px-font-mono); font-size:10px; color:var(--px-text-3);
+    text-transform:uppercase; letter-spacing:.04em;
+  }
+  .opencv-page .bw-op-select select{
+    padding:8px 14px; border-radius:8px; border:1px solid var(--px-line);
+    background:#fff; font-size:13px; font-weight:600; cursor:pointer;
+    font-family:var(--px-font-body); color:var(--px-text);
+    min-width:90px; text-align:center;
+    transition:all .2s;
+  }
+  .opencv-page .bw-op-select select:hover{
+    border-color:var(--px-line-strong);
+  }
+  .opencv-page .bw-eq{
+    font-family:var(--px-font-disp); font-size:24px; font-weight:700;
+    color:var(--px-text-3); line-height:1;
+  }
+  .opencv-page .bw-desc{
+    padding:14px 18px; border-radius:12px;
+    background:var(--px-bg); font-size:13px; color:var(--px-text-2); line-height:1.6;
+  }
+  .opencv-page .usecase-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px;
+  }
+  .opencv-page .uc-card{
+    background:rgba(255,255,255,.96); border:1px solid var(--px-line);
+    border-radius:var(--px-radius-sm); padding:18px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .opencv-page .uc-icon{ font-size:20px; color:var(--px-accent); }
+  .opencv-page .uc-title{
+    font-family:var(--px-font-disp); font-size:14px; font-weight:700; color:var(--px-text);
+  }
+  .opencv-page .uc-desc{ font-size:13px; color:var(--px-text-2); line-height:1.6; }
+  .opencv-page .playground-editor{
+    background:var(--px-bg-2); border:none; border-radius:0; min-height:160px;
+  }
+  .opencv-page .playground-card{
+    background:rgba(255,255,255,.96); border:1px solid var(--px-line);
+    border-radius:var(--px-radius); overflow:hidden; margin-top:20px;
+  }
+  .opencv-page .playground-toolbar{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:10px; padding:12px 16px;
+    background:var(--px-bg); border-bottom:1px solid var(--px-line);
+  }
+  .opencv-page .pg-title{
+    font-family:var(--px-font-disp); font-size:13px; font-weight:600; color:var(--px-text);
+  }
+  .opencv-page .py-ready-dot{
+    width:8px; height:8px; border-radius:50%; background:#16a34a; flex-shrink:0;
+  }
+  .opencv-page .pg-toolbar-right{ display:flex; gap:6px; flex-wrap:wrap; }
+  .opencv-page .pg-snippet-btn{
+    padding:5px 12px; border-radius:6px; border:1px solid var(--px-line);
+    background:#fff; font-size:11px; cursor:pointer;
+    font-family:var(--px-font-mono); color:var(--px-text-2); transition:all .2s;
+  }
+  .opencv-page .pg-snippet-btn:hover{ border-color:var(--px-line-strong); color:var(--px-text); }
+  .opencv-page .playground-actions{
+    display:flex; gap:8px; padding:12px 16px; align-items:center;
+    border-top:1px solid var(--px-line);
+  }
+  .opencv-page .pg-note{
+    margin-left:auto; font-size:11px; color:var(--px-text-3);
+    font-family:var(--px-font-mono);
+  }
+  .opencv-page .quiz-block-title{
+    font-family:var(--px-font-disp); font-size:15px; font-weight:700;
+    color:var(--px-text); margin-bottom:20px; padding-top:4px;
+  }
+  .opencv-page .quiz-item{ margin-bottom:28px; }
+  .opencv-page .quiz-q-num{
+    font-family:var(--px-font-mono); font-size:10px;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--px-text-3); margin-bottom:8px;
+  }
+  .opencv-page .quiz-q-text{
+    font-size:15px; font-weight:500; color:var(--px-text); margin-bottom:14px; line-height:1.6;
+  }
+  .opencv-page .quiz-opts{ display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+  .opencv-page .quiz-opt{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:12px 16px; border-radius:10px;
+    border:1px solid var(--px-line); background:#fff;
+    cursor:pointer; font-size:13.5px; color:var(--px-text-2);
+    transition:all .15s; text-align:left; width:100%; font-family:var(--px-font-body);
+  }
+  .opencv-page .quiz-opt:hover:not(:disabled){
+    background:var(--px-bg); border-color:var(--px-line-strong); color:var(--px-text);
+  }
+  .opencv-page .quiz-opt.correct{
+    background:rgba(22,163,74,.06); border-color:rgba(22,163,74,.25); color:#16a34a;
+  }
+  .opencv-page .quiz-opt.wrong{
+    background:rgba(225,29,72,.06); border-color:rgba(225,29,72,.25); color:#e11d48;
+  }
+  .opencv-page .quiz-opt.muted{ opacity:.4; }
+  .opencv-page .quiz-opt-badge{
+    width:24px; height:24px; border-radius:50%;
+    background:var(--px-bg); display:flex; align-items:center; justify-content:center;
+    font-family:var(--px-font-mono); font-size:11px; color:var(--px-text-3); flex-shrink:0;
+  }
+  .opencv-page .quiz-feedback{
+    padding:12px 16px; border-radius:10px; font-size:13px; line-height:1.6; display:none; color:var(--px-text-2);
+  }
+  .opencv-page .quiz-feedback.show{ display:block; }
+  .opencv-page .quiz-feedback.ok{
+    background:rgba(22,163,74,.06); border:1px solid rgba(22,163,74,.2); color:#16a34a;
+  }
+  .opencv-page .quiz-feedback.bad{
+    background:rgba(225,29,72,.06); border:1px solid rgba(225,29,72,.2); color:#e11d48;
+  }
+  .opencv-page .final-score-card{ padding:28px; margin-top:24px; text-align:center; }
+  .opencv-page .fs-title{
+    font-family:var(--px-font-disp); font-size:20px; font-weight:700; color:var(--px-text); margin-bottom:16px;
+  }
+  .opencv-page .fs-scores{
+    display:flex; gap:24px; justify-content:center; margin-bottom:12px; flex-wrap:wrap;
+  }
+  .opencv-page .fs-msg{ font-size:13px; }
+  .opencv-page .next-lesson-cta{
+    margin-top:32px; padding:32px; text-align:center;
+  }
+  .opencv-page .paint-canvas-wrap{ position:relative; }
+  .opencv-page .paint-controls{
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .opencv-page .pc-row{
+    display:flex; align-items:center; gap:10px;
+  }
+  .opencv-page .pc-label{ font-size:12px; color:var(--px-text-2); min-width:50px; }
+  .opencv-page .color-options{
+    display:flex; gap:6px; flex-wrap:wrap;
+  }
+  .opencv-page .color-opt{
+    width:28px; height:28px; border-radius:50%; border:2px solid var(--px-line);
+    cursor:pointer; transition:all .2s;
+  }
+  .opencv-page .color-opt.active{ border-color:var(--px-text); transform:scale(1.15); }
+  .opencv-page .brush-sizes{
+    display:flex; gap:6px; align-items:center;
+  }
+  .opencv-page .brush-size{
+    border-radius:50%; border:2px solid var(--px-line);
+    cursor:pointer; transition:all .2s; background:#fff;
+  }
+  .opencv-page .brush-size.active{ border-color:var(--px-accent); }
+  .opencv-page .paint-code-live{
+    padding:6px 10px; background:var(--px-bg-2); border-radius:6px;
+    font-family:var(--px-font-mono); font-size:11px; color:var(--px-text-2);
+    margin-top:4px;
+  }
+  .opencv-page input[type="range"]{
+    -webkit-appearance:none; height:4px; border-radius:2px;
+    background:rgba(246,51,146,.12); outline:none; cursor:pointer; flex:1;
+  }
+  .opencv-page input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:16px; height:16px; border-radius:50%;
+    background:var(--px-accent); cursor:pointer;
+    border:2px solid #fff; box-shadow:0 2px 8px rgba(246,51,146,.25);
+    transition:transform .15s;
+  }
+  .opencv-page input[type="range"]::-webkit-slider-thumb:hover{ transform:scale(1.2); }
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width: 1200px){
+    .opencv-page .lesson-layout{ grid-template-columns:1fr; }
+    .opencv-page .lesson-article{ max-width:none; }
+    .opencv-page .lesson-right-panel{ position:static; flex-direction:row; flex-wrap:wrap; }
+    .opencv-page .lesson-right-panel > *{ flex:1 1 280px; }
+    .opencv-page .imread-demo{ grid-template-columns:1fr; }
+    .opencv-page .resize-demo{ grid-template-columns:1fr; }
+    .opencv-page .crop-demo{ grid-template-columns:1fr; }
+    .opencv-page .bitwise-demo{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 900px){
+    .opencv-page .lesson-topbar-inner{ height:60px; }
+    .opencv-page .navbar-left{ padding-left:16px; }
+    .opencv-page .navbar-right{ padding-right:16px; }
+    .opencv-page .lesson-hero{ grid-template-columns:1fr; padding:28px 24px 24px; }
+    .opencv-page .lesson-hero img{ justify-self:center; max-width:210px; }
+    .opencv-page .lesson-layout{ padding-inline:16px; }
+    .opencv-page .flip-demo{ flex-direction:column; align-items:center; }
+    .opencv-page #flipSrc, .opencv-page #flipDst{ width:200px; height:150px; }
+    .opencv-page .two-col{ grid-template-columns:1fr; }
+    .opencv-page .crop-demo{ grid-template-columns:1fr; }
+    .opencv-page .resize-stats{ grid-template-columns:1fr 1fr; }
+    .opencv-page .interp-table{ overflow-x:auto; }
+  }
+  @media (max-width: 600px){
+    .opencv-page .bitwise-demo{ flex-direction:column; align-items:center; }
+    .opencv-page .bw-canvas-row{ flex-direction:column; gap:12px; }
+    .opencv-page .bw-item canvas{ width:100px; height:100px; }
+    .opencv-page .usecase-grid{ grid-template-columns:1fr; }
+    .opencv-page .flip-demo canvas{ width:140px; height:105px; }
+    .opencv-page .flip-btn{ width:100px; font-size:11px; padding:6px 10px; }
+  }
+</style>
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
 <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -25,16 +802,22 @@
 </div>
 </aside>
 <main class="fellow-main">
-<header class="lesson-topbar">
+ <header class="lesson-topbar">
+<div class="lesson-topbar-inner">
+<div class="navbar-left">
 <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
 <a href="#/participant-ai-lab-cv"><i class="fas fa-arrow-left"></i><span>Computer Vision</span></a>
 <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
-<span>Image Processing with OpenCV</span>
 </nav>
+</div>
+<div class="navbar-center">Image Processing with OpenCV</div>
+<div class="navbar-right">
 <div class="fellow-actions">
 <label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label>
 <button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
 <a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a>
+</div>
+</div>
 </div>
 </header>
 <div class="lesson-layout">
@@ -239,7 +1022,7 @@ new_h = <span class="fn">int</span>(h * scale)
 resized_ar = cv2.<span class="fn">resize</span>(img, (target_w, new_h),
                          interpolation=cv2.INTER_LINEAR)</code></pre>
         </div>
-        <div class="callout warn"><span class="callout-icon">⚠️</span><div><strong>Width vs height order:</strong> <code>cv2.resize()</code> takes <code>(width, height)</code> as the destination size — the opposite of NumPy's <code>.shape</code> which returns <code>(height, width, channels)</code>. This trips up everyone at first.</div></div>
+        <div class="callout warn"><span class="callout-icon"><i class="fas fa-triangle-exclamation"></i></span><div><strong>Width vs height order:</strong> <code>cv2.resize()</code> takes <code>(width, height)</code> as the destination size — the opposite of NumPy's <code>.shape</code> which returns <code>(height, width, channels)</code>. This trips up everyone at first.</div></div>
 
         <div class="challenge-card" id="ch-2">
           <div class="challenge-header"><span class="challenge-badge"><i class="fas fa-snake"></i> Mini Challenge</span><span class="challenge-title">Resize while preserving aspect ratio</span></div>
@@ -331,7 +1114,7 @@ cy, cx = H//<span class="num">2</span>, W//<span class="num">2</span>
 roi = img[cy-<span class="num">112</span>:cy+<span class="num">112</span>,
           cx-<span class="num">112</span>:cx+<span class="num">112</span>]</code></pre></div>
           <div class="info-card">
-            <div class="ic-title">⚠️ View, not copy</div>
+             <div class="ic-title"><i class="fas fa-triangle-exclamation"></i> View, not copy</div>
             <p>NumPy slices are <strong>views</strong> into the original array. Modifying <code>roi</code> modifies <code>img</code> too. Use <code>roi = img[...].copy()</code> to make an independent copy.</p>
           </div>
         </div>
@@ -792,21 +1575,6 @@ print("Row 10 pixel:", step4[10, 0])</textarea></div>
         </div>
       </section>
 
-        <!-- Permanent lesson navigation -->
-        <div class="lesson-pagination">
-          <a href="/pages/ai-lab/pixel-anatomy.html" class="lpag-btn prev">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 4L3 8l4 4"/></svg>
-            Pixel Anatomy
-          </a>
-          <span class="lpag-label">Module 1 · 2 of 4</span>
-          <a href="#" class="lpag-btn next disabled">
-            Filtering &amp; Kernels
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </a>
-        </div>
-      </section>
-
-    </div>
 </article>
 <footer class="lesson-nav-footer">
 <a href="#/participant-ai-lab-cv-morph" class="lnf-prev">
