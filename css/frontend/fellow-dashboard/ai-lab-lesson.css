@@ -5334,24 +5334,24 @@
 }
 
 /* ═══ Tokenization: morpho + token display ═══ */
-.ai-lab-content .example-block { background: #0d0d14; border: 1px solid var(--border-s); border-radius: var(--r-sm); padding: 14px 16px; margin-top: 14px; }
-.ai-lab-content .ex-label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); margin-bottom: 8px; display: block; }
+.ai-lab-content .example-block { background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 14px 16px; margin-top: 14px; }
+.ai-lab-content .ex-label { font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--ai-text3); margin-bottom: 8px; display: block; }
 .ai-lab-content .ex-tokens { display: flex; flex-wrap: wrap; gap: 6px; }
-.ai-lab-content .ex-token { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 6px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em; transition: transform .15s; }
+.ai-lab-content .ex-token { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 6px; font-family: var(--ai-mono); font-size: 11px; letter-spacing: .02em; transition: transform .15s; }
 .ai-lab-content .ex-token:hover { transform: translateY(-2px); }
 .ai-lab-content .tok-word    { background: rgba(191,90,242,.12); border: 1px solid rgba(191,90,242,.3); color: #bf5af2; }
 .ai-lab-content .tok-prefix  { background: rgba(41,151,255,.12);  border: 1px solid rgba(41,151,255,.3);  color: #2997ff; }
 .ai-lab-content .tok-suffix  { background: rgba(255,159,10,.12);  border: 1px solid rgba(255,159,10,.3);  color: #ff9f0a; }
-.ai-lab-content .tok-punct   { background: rgba(255,255,255,.05); border: 1px solid var(--border); color: var(--text-3); }
+.ai-lab-content .tok-punct   { background: rgba(255,255,255,.05); border: 1px solid var(--ai-border); color: var(--ai-text3); }
 .ai-lab-content .tok-special { background: rgba(0,199,190,.12);   border: 1px solid rgba(0,199,190,.3);   color: #00c7be; font-weight: 700; }
 .ai-lab-content .morpho-demo { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
-.ai-lab-content .morpho-word-card { background: #0d0d14; border: 1px solid var(--border-s); border-radius: var(--r-sm); padding: 12px 14px; }
-.ai-lab-content .morpho-original { font-family: var(--font-disp); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.ai-lab-content .morpho-word-card { background: var(--ai-card); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 12px 14px; }
+.ai-lab-content .morpho-original { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--ai-text); margin-bottom: 8px; }
 .ai-lab-content .morpho-breakdown { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .ai-lab-content .morpho-piece { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.ai-lab-content .morpho-value { padding: 4px 10px; border-radius: 6px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; }
-.ai-lab-content .morpho-type { font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); font-family: var(--font-mono); }
-.ai-lab-content .morpho-sep { color: var(--text-3); font-size: 16px; padding-top: 4px; }
+.ai-lab-content .morpho-value { padding: 4px 10px; border-radius: 6px; font-family: var(--ai-mono); font-size: 12px; font-weight: 700; }
+.ai-lab-content .morpho-type { font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: var(--ai-text3); font-family: var(--ai-mono); }
+.ai-lab-content .morpho-sep { color: var(--ai-text3); font-size: 16px; padding-top: 4px; }
 .ai-lab-content .m-prefix .morpho-value { background: rgba(41,151,255,.12); border: 1px solid rgba(41,151,255,.3); color: #2997ff; }
 .ai-lab-content .m-root   .morpho-value { background: rgba(48,209,88,.12);  border: 1px solid rgba(48,209,88,.3);  color: #30d158; }
 .ai-lab-content .m-suffix .morpho-value { background: rgba(255,159,10,.12); border: 1px solid rgba(255,159,10,.3); color: #ff9f0a; }
