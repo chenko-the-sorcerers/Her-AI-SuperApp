@@ -5136,3 +5136,197 @@
     outline: none;
     resize: vertical;
     tab-size: 4;
+
+/* ═══ Generative AI overview styles ═══ */
+.ai-lab-overview .gen-hero { overflow: hidden; }
+.ai-lab-overview .gen-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: .18; pointer-events: none;
+}
+
+/* ── Level badges ────────────────────────────────────────────── */
+.ai-lab-overview .level-badges { display: flex; gap: 6px; margin-bottom: 8px; }
+.ai-lab-overview .lvl {
+  font-family: var(--font-mono, 'Space Mono', monospace);
+  font-size: 9px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 99px;
+}
+.ai-lab-overview .lvl.pemula  { background: rgba(52,199,89,.12);  color: #34c759; border: 1px solid rgba(52,199,89,.25); }
+.ai-lab-overview .lvl.inter   { background: rgba(41,151,255,.12); color: #2997ff; border: 1px solid rgba(41,151,255,.25); }
+.ai-lab-overview .lvl.adv     { background: rgba(239,68,68,.12);  color: #ef4444; border: 1px solid rgba(239,68,68,.25); }
+
+/* ── Learning path guide in sidebar ─────────────────────────── */
+.ai-lab-overview .gen-path-guide { margin-top: 8px; }
+.ai-lab-overview .gpg-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+.ai-lab-overview .gpg-badge {
+  font-family: var(--font-mono, monospace); font-size: 9px; font-weight: 700;
+  padding: 2px 7px; border-radius: 4px; flex-shrink: 0; margin-top: 1px;
+}
+.ai-lab-overview .gpg-badge.pemula { background: rgba(52,199,89,.12);  color: #34c759; }
+.ai-lab-overview .gpg-badge.inter  { background: rgba(41,151,255,.12); color: #2997ff; }
+.ai-lab-overview .gpg-badge.adv    { background: rgba(239,68,68,.12);  color: #ef4444; }
+.ai-lab-overview .gpg-text { font-size: 11px; color: var(--text-3, #55556a); line-height: 1.5; }
+
+/* ── Diffusion process bar ───────────────────────────────────── */
+.ai-lab-overview .gen-process-bar {
+  display: flex; align-items: center; gap: 8px;
+  margin: 0 0 28px; overflow-x: auto; padding: 4px 0;
+}
+.ai-lab-overview .gpb-step {
+  flex-shrink: 0; padding: 10px 14px; border-radius: 8px;
+  font-family: var(--font-mono, monospace); font-size: 11px;
+  font-weight: 700; border: 1px solid rgba(255,255,255,.1);
+  text-align: center; min-width: 70px;
+}
+.ai-lab-overview .gpb-step.noise-100 { background: rgba(168,85,247,.25); color: #a855f7; }
+.ai-lab-overview .gpb-step.noise-75  { background: rgba(168,85,247,.18); color: #b06ef5; }
+.ai-lab-overview .gpb-step.noise-50  { background: rgba(168,85,247,.12); color: #c090f0; }
+.ai-lab-overview .gpb-step.noise-25  { background: rgba(168,85,247,.07); color: #d4b0f8; }
+.ai-lab-overview .gpb-step.image     { background: rgba(52,199,89,.12);  color: #34c759; border-color: rgba(52,199,89,.25); }
+.ai-lab-overview .gpb-arrow { color: rgba(255,255,255,.3); font-size: 14px; flex-shrink: 0; }
+
+/* ── GAN dynamic ─────────────────────────────────────────────── */
+.ai-lab-overview .gan-dynamic {
+  display: flex; align-items: center; gap: 0;
+  margin: 0 0 28px; background: var(--bg-card, #14141d);
+  border: 1px solid rgba(255,255,255,.07); border-radius: 12px;
+  overflow: hidden;
+}
+.ai-lab-overview .gd-box {
+  flex: 1; padding: 18px 20px; text-align: center;
+}
+.ai-lab-overview .gd-box.generator     { border-right: 1px solid rgba(255,255,255,.07); }
+.ai-lab-overview .gd-box.discriminator {}
+.ai-lab-overview .gd-label {
+  font-family: var(--font-disp, 'Syne', sans-serif); font-size: 15px;
+  font-weight: 700; margin-bottom: 4px;
+}
+.ai-lab-overview .gd-box.generator     .gd-label { color: #ef4444; }
+.ai-lab-overview .gd-box.discriminator .gd-label { color: #2997ff; }
+.ai-lab-overview .gd-desc { font-family: var(--font-mono, monospace); font-size: 11px; color: rgba(255,255,255,.4); }
+.ai-lab-overview .gd-arrows {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 0 20px; flex-shrink: 0;
+}
+.ai-lab-overview .gd-arrow-top, .gd-arrow-bot {
+  font-family: var(--font-mono, monospace); font-size: 11px;
+  color: rgba(255,255,255,.3); white-space: nowrap;
+}
+.ai-lab-overview .gd-arrow-bot { color: rgba(239,68,68,.5); }
+
+/* ── VLM arch strip ──────────────────────────────────────────── */
+.ai-lab-overview .vlm-arch-strip {
+  display: flex; align-items: center; gap: 6px;
+  margin: 0 0 28px; overflow-x: auto; padding: 4px 0;
+  flex-wrap: wrap;
+}
+.ai-lab-overview .vas-block {
+  padding: 12px 16px; border-radius: 8px; font-size: 12px;
+  font-weight: 600; text-align: center; flex-shrink: 0;
+  font-family: var(--font-mono, monospace); line-height: 1.4;
+}
+.ai-lab-overview .vas-block.image   { background: rgba(41,151,255,.1);  color: #2997ff; }
+.ai-lab-overview .vas-block.encoder { background: rgba(168,85,247,.1);  color: #a855f7; }
+.ai-lab-overview .vas-block.align   { background: rgba(52,199,89,.1);   color: #34c759; }
+.ai-lab-overview .vas-block.text    { background: rgba(255,159,10,.1);  color: #ff9f0a; }
+.ai-lab-overview .vas-arrow { font-size: 16px; color: rgba(255,255,255,.25); flex-shrink: 0; }
+
+/* ── Prompt anatomy ──────────────────────────────────────────── */
+.ai-lab-overview .prompt-anatomy {
+  display: flex; align-items: center; gap: 6px;
+  margin: 0 0 28px; overflow-x: auto; padding: 4px 0;
+  flex-wrap: wrap;
+}
+.ai-lab-overview .pa-block {
+  padding: 12px 16px; border-radius: 8px; font-size: 12px;
+  font-weight: 600; text-align: center; flex-shrink: 0;
+  font-family: var(--font-mono, monospace); line-height: 1.4;
+}
+.ai-lab-overview .pa-block.system   { background: rgba(99,102,241,.1);  color: #6366f1; }
+.ai-lab-overview .pa-block.examples { background: rgba(245,158,11,.1);  color: #f59e0b; }
+.ai-lab-overview .pa-block.query    { background: rgba(41,151,255,.1);  color: #2997ff; }
+.ai-lab-overview .pa-block.output   { background: rgba(52,199,89,.1);   color: #34c759; border: 1px solid rgba(52,199,89,.25); }
+.ai-lab-overview .pa-plus { font-size: 16px; color: rgba(255,255,255,.25); flex-shrink: 0; }
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .gen-process-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .vlm-arch-strip { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .prompt-anatomy { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+@media (max-width: 768px) {
+  .gan-dynamic { flex-direction: column; }
+  .gd-box.generator { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); }
+  .gd-arrows { flex-direction: row; padding: 12px 0; }
+  .gen-process-bar, .vlm-arch-strip, .prompt-anatomy { 
+    gap: 4px; 
+    padding: 8px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gpb-step, .vas-block, .pa-block {
+    padding: 8px 12px;
+    font-size: 10px;
+    min-width: auto;
+  }
+  .level-badges { gap: 4px; margin-bottom: 6px; }
+  .lvl { font-size: 8px; padding: 2px 6px; }
+  .gen-path-guide { margin-top: 6px; }
+  .gpg-item { gap: 6px; margin-bottom: 8px; }
+  .gpg-badge { font-size: 8px; padding: 2px 5px; }
+  .gpg-text { font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .gan-dynamic { flex-direction: column; }
+  .gd-box { padding: 14px 16px; }
+  .gd-box.generator { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); }
+  .gd-label { font-size: 13px; margin-bottom: 3px; }
+  .gd-desc { font-size: 10px; }
+  .gd-arrows { flex-direction: row; padding: 10px 0; gap: 6px; }
+  .gd-arrow-top, .gd-arrow-bot { font-size: 10px; }
+  .gen-process-bar { 
+    gap: 3px; 
+    padding: 6px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 0 20px;
+  }
+  .gpb-step {
+    padding: 6px 10px;
+    font-size: 9px;
+    min-width: 60px;
+  }
+  .gpb-arrow { font-size: 12px; }
+  .vlm-arch-strip { 
+    gap: 3px; 
+    padding: 6px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 0 20px;
+  }
+  .vas-block {
+    padding: 6px 10px;
+    font-size: 9px;
+  }
+  .vas-arrow { font-size: 14px; }
+  .prompt-anatomy { 
+    gap: 3px; 
+    padding: 6px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 0 20px;
+  }
+  .pa-block {
+    padding: 6px 10px;
+    font-size: 9px;
+  }
+  .pa-plus { font-size: 14px; }
+  .level-badges { gap: 3px; margin-bottom: 4px; }
+  .lvl { font-size: 7px; padding: 2px 5px; }
+  .gen-path-guide { margin-top: 4px; }
+  .gpg-item { gap: 4px; margin-bottom: 6px; }
+  .gpg-badge { font-size: 7px; padding: 2px 4px; }
+  .gpg-text { font-size: 9px; }
+}

@@ -53,6 +53,7 @@ const router = {
         "/participant-ai-lab-nlp": "/pages/frontend/fellow-dashboard/ai-lab/nlp.html",
         "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/ai-lab/machine-learning.html",
         "/participant-ai-lab-cv": "/pages/frontend/fellow-dashboard/ai-lab/computer-vision.html",
+        "/participant-ai-lab-gen": "/pages/frontend/fellow-dashboard/ai-lab/generative-ai.html",
         "/participant-ai-lab-cv-cnn-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-intro.html",
         "/participant-ai-lab-cv-cnn-why": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-why.html",
         "/participant-ai-lab-cv-cnn-relu": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-relu.html",
@@ -518,6 +519,9 @@ const router = {
                     }
                     if (path === "/participant-ai-lab-cv-cnn-relu" && typeof window.initAiLabCnnRelu === "function") {
                         window.initAiLabCnnRelu();
+                    }
+                    if (path === "/participant-ai-lab-gen" && typeof window.initGenAiOverview === "function") {
+                        window.initGenAiOverview();
                     }
                     if (path === "/participant-ai-lab-cv" && typeof window.initCvOverview === "function") {
                         window.initCvOverview();
