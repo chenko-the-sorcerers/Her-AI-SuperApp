@@ -303,7 +303,7 @@ const CM_DATA = {
   }
 };
 
-(function buildCM() {
+function buildCM() {
   const container = document.getElementById('confusionMatrix');
   if (!container) return;
   const totals = CM_DATA.matrix.map(row => row.reduce((a,b)=>a+b,0));
@@ -339,10 +339,10 @@ const CM_DATA = {
         }
       });
       div.appendChild(cell);
-    });
-    container.appendChild(div);
   });
-})();
+  container.appendChild(div);
+  });
+}
 
 /* ════════════════════════════════════════════════════════════════
    POS TAGGER
@@ -532,6 +532,7 @@ window.initAiLabPosNer = function() {
   if (!content || content.dataset.ready) return;
   content.dataset.ready = 'true';
 
+  buildCM();
   // POS demo
   const posInput = document.getElementById('posInput');
   if (posInput && !posInput.dataset.ready) {
