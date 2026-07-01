@@ -494,43 +494,60 @@
         <div class="wb-title">Token yang Bukan dari Teks Input</div>
         <div class="calc-chain">
             <div class="calc-step">
-                <div class="cs-num-circle">[C]</div>
+                <div class="cs-num-circle" style="background:#00c7be;">[C]</div>
                 <div class="cs-content">
                     <div class="cs-label">[CLS] — Classification Token</div>
-                    <div class="math-line"><span class="math-comment">Ditambahkan di awal setiap sekuens. Representasinya dipakai untuk klasifikasi.</span></div>
+                    <div class="math-line"><span class="math-comment">// Ditambahkan di awal setiap sekuens. Representasinya dipakai untuk klasifikasi.</span></div>
                 </div>
             </div>
             <div class="calc-step">
-                <div class="cs-num-circle">[S]</div>
+                <div class="cs-num-circle" style="background:#2997ff;">[S]</div>
                 <div class="cs-content">
                     <div class="cs-label">[SEP] — Separator Token</div>
-                    <div class="math-line"><span class="math-comment">Memisahkan dua kalimat dalam task QA/NLI. Ditambahkan di akhir setiap kalimat.</span></div>
+                    <div class="math-line"><span class="math-comment">// Memisahkan dua kalimat dalam task QA/NLI. Ditambahkan di akhir setiap kalimat.</span></div>
                 </div>
             </div>
             <div class="calc-step">
-                <div class="cs-num-circle">[P]</div>
+                <div class="cs-num-circle" style="background:#ff9f0a;">[P]</div>
                 <div class="cs-content">
                     <div class="cs-label">[PAD] — Padding Token</div>
-                    <div class="math-line"><span class="math-comment">Mengisi sekuens agar sama panjang dalam batch. Attention mask = 0 di posisi ini.</span></div>
+                    <div class="math-line"><span class="math-comment">// Mengisi sekuens agar sama panjang dalam batch. Attention mask = 0 di posisi ini.</span></div>
                 </div>
             </div>
             <div class="calc-step">
-                <div class="cs-num-circle">[M]</div>
+                <div class="cs-num-circle" style="background:#ef4444;">[M]</div>
                 <div class="cs-content">
                     <div class="cs-label">[MASK] — Mask Token</div>
-                    <div class="math-line"><span class="math-comment">Dipakai saat pre-training MLM — mengganti 15% token secara acak untuk diprediksi model.</span></div>
+                    <div class="math-line"><span class="math-comment">// Dipakai saat pre-training MLM — mengganti 15% token secara acak untuk diprediksi model.</span></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="code-preview">
-from transformers import AutoTokenizer
-tok = AutoTokenizer.from_pretrained("indolem/indobert-base-uncased")
-out = tok("Toko ini bagus.", "Saya suka.", padding=True, truncation=True, max_length=512)
-# [CLS] toko ini bagus . [SEP] saya suka . [SEP]
+    <div class="code-block">
+<pre><code><span class="c-kw">from</span> transformers <span class="c-kw">import</span> AutoTokenizer
+
+tok <span class="c-op">=</span> AutoTokenizer.<span class="c-fn">from_pretrained</span>(<span class="c-str">"indolem/indobert-base-uncased"</span>)
+
+<span class="c-cmt"># Tokenisasi dua kalimat untuk NLI</span>
+out <span class="c-op">=</span> tok(
+    <span class="c-str">"Toko ini sangat bagus."</span>,
+    <span class="c-str">"Saya suka belanja di sini."</span>,
+    padding<span class="c-op">=</span><span class="c-kw">True</span>,
+    truncation<span class="c-op">=</span><span class="c-kw">True</span>,
+    max_length<span class="c-op">=</span><span class="c-num">512</span>,
+    return_tensors<span class="c-op">=</span><span class="c-str">"pt"</span>
+)
+
+<span class="c-cmt"># [CLS] toko ini sangat bagus . [SEP] saya suka belanja di sini . [SEP]</span>
+<span class="c-cmt"># attention_mask: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</span>
+<span class="c-cmt"># (semua 1 karena tidak ada padding di contoh ini)</span></code></pre>
     </div>
-    <div class="prose" style="margin-top:14px;">
-        <strong>Fast Tokenizer (Rust backend)</strong>: Hugging Face merilis tokenizer dengan backend Rust yang bisa memproses jutaan token per detik. Selain kecepatan, fast tokenizer mendukung <em>offset mapping</em> — melacak posisi setiap token dalam string asli, penting untuk NER.
+
+    <div class="insight-callout">
+        <div class="ic-icon"><i class="fas fa-bolt"></i></div>
+        <div class="ic-body">
+            <strong>Fast Tokenizer (Rust backend)</strong>: Hugging Face merilis tokenizer dengan backend Rust yang bisa memproses jutaan token per detik. Selain kecepatan, fast tokenizer mendukung <em>offset mapping</em> — melacak posisi setiap token dalam string asli, sangat penting untuk NER agar label bisa dipetakan kembali ke span teks yang tepat.
+        </div>
     </div>
 </section>
 
