@@ -66,7 +66,7 @@ function simToColor(val) {
   return {
     bg:     `rgba(48,209,88,${alpha.toFixed(2)})`,
     border: `rgba(48,209,88,${(alpha * 1.6).toFixed(2)})`,
-    color:  val > 0.5 ? '#30d158' : val > 0.2 ? '#e8e8f0' : '#8888a0',
+    color:  val > 0.5 ? '#f63392' : val > 0.2 ? '#e8e8f0' : '#8888a0',
   };
 }
 
@@ -78,9 +78,9 @@ function buildStaticDemo() {
   if (!container) return;
 
   const sentences = [
-    { label: 'D1 — Transportasi', text: 'Gojek ojek online Jakarta', color: '#30d158' },
-    { label: 'D2 — E-commerce', text: 'Tokopedia Shopee belanja online', color: '#2997ff' },
-    { label: 'D3 — Startup', text: 'Gojek Tokopedia startup Indonesia', color: '#bf5af2' },
+    { label: 'D1 — Transportasi', text: 'Gojek ojek online Jakarta', color: '#f63392' },
+    { label: 'D2 — E-commerce', text: 'Tokopedia Shopee belanja online', color: '#a855f7' },
+    { label: 'D3 — Startup', text: 'Gojek Tokopedia startup Indonesia', color: '#f59e0b' },
   ];
   const sharedVocab = ['gojek', 'ojek', 'online', 'jakarta', 'tokopedia', 'shopee', 'belanja', 'startup', 'indonesia'];
 
@@ -171,7 +171,7 @@ let currentVocab   = [];
 let currentVectors = [];
 let currentDocs    = [...DEFAULT_DOCS];
 
-const DOC_COLORS = ['#30d158', '#2997ff', '#bf5af2'];
+const DOC_COLORS = ['#f63392', '#a855f7', '#f59e0b'];
 const DOC_NAMES  = ['D1', 'D2', 'D3'];
 
 /* ── Tab switching ──────────────────────────────────────────── */
@@ -217,7 +217,7 @@ function renderVocab(vocab) {
   if (cnt) cnt.textContent = `${currentVocab.length} kata`;
 
   el.innerHTML = '';
-  if (!vocab.length) { el.innerHTML = '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Tidak ada kata setelah stop word dihapus.</span>'; return; }
+  if (!vocab.length) { el.innerHTML = '<span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">Tidak ada kata setelah stop word dihapus.</span>'; return; }
 
   vocab.forEach(({ word, count }, i) => {
     const chip = document.createElement('div');
@@ -235,7 +235,7 @@ function renderMatrix(vocab, vectors) {
   const el = document.getElementById('matrixTable');
   const info = document.getElementById('matrixInfo');
   if (!el) return;
-  if (!vocab.length) { el.innerHTML = '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">—</span>'; return; }
+  if (!vocab.length) { el.innerHTML = '<span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">—</span>'; return; }
 
   if (info) info.textContent = `${vectors.length} dok × ${vocab.length} kata`;
 
@@ -287,7 +287,7 @@ function renderHeatmap() {
   if (!el) return;
 
   if (!currentVocab.length) {
-    el.innerHTML = '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">—</span>';
+    el.innerHTML = '<span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">—</span>';
     return;
   }
 
@@ -316,7 +316,7 @@ function renderHeatmap() {
   colLabels.style.cssText = `display:flex;gap:0;margin-left:${LABEL_W}px;`;
   DOC_NAMES.forEach((name, j) => {
     const lbl = document.createElement('div');
-    lbl.style.cssText = `width:${CELL_SIZE}px;text-align:center;font-family:var(--font-mono);font-size:11px;color:${DOC_COLORS[j]};padding-bottom:6px;font-weight:700;`;
+    lbl.style.cssText = `width:${CELL_SIZE}px;text-align:center;font-family:var(--ai-mono);font-size:11px;color:${DOC_COLORS[j]};padding-bottom:6px;font-weight:700;`;
     lbl.textContent = name;
     colLabels.appendChild(lbl);
   });
@@ -329,7 +329,7 @@ function renderHeatmap() {
 
     // Row label
     const rowLabel = document.createElement('div');
-    rowLabel.style.cssText = `width:${LABEL_W}px;font-family:var(--font-mono);font-size:11px;color:${DOC_COLORS[i]};font-weight:700;padding-right:8px;text-align:right;flex-shrink:0;`;
+    rowLabel.style.cssText = `width:${LABEL_W}px;font-family:var(--ai-mono);font-size:11px;color:${DOC_COLORS[i]};font-weight:700;padding-right:8px;text-align:right;flex-shrink:0;`;
     rowLabel.textContent = DOC_NAMES[i];
     rowEl.appendChild(rowLabel);
 
@@ -344,15 +344,15 @@ function renderHeatmap() {
         border-radius:8px; margin-right:3px;
         display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
         cursor:default; position:relative; transition:all .2s;
-        font-family:var(--font-mono);
+        font-family:var(--ai-mono);
       `;
 
       const scoreEl = document.createElement('div');
-      scoreEl.style.cssText = `font-size:20px;font-weight:800;color:${isDiag ? 'var(--text-3)' : c.color};line-height:1;`;
+      scoreEl.style.cssText = `font-size:20px;font-weight:800;color:${isDiag ? 'var(--ai-text3)' : c.color};line-height:1;`;
       scoreEl.textContent = isDiag ? '—' : val.toFixed(2);
 
       const labelEl = document.createElement('div');
-      labelEl.style.cssText = 'font-size:9px;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;';
+      labelEl.style.cssText = 'font-size:9px;color:var(--ai-text3);text-transform:uppercase;letter-spacing:.06em;';
       labelEl.textContent = isDiag ? 'sama' : val >= 0.7 ? 'sangat mirip' : val >= 0.4 ? 'cukup mirip' : val >= 0.1 ? 'sedikit mirip' : 'berbeda';
 
       // Tooltip
