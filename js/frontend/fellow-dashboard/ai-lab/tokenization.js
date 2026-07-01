@@ -139,6 +139,7 @@
         style = colorMap[key];
       }
       chip.style.cssText = `background:${style.bg};border:1px solid ${style.border};color:${style.color};animation-delay:${Math.min(i * 0.025, 1)}s`;
+      chip.title = tok.type === 'word' ? 'Token kata: ' + tok.text : typeLabels[tok.type] ? 'Token ' + typeLabels[tok.type] + ': ' + tok.text : 'Token #' + i;
 
       const txt = document.createElement('span');
       txt.textContent = tok.text;

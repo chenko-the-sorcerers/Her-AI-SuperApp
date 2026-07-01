@@ -30,6 +30,29 @@
 .ai-lab-content .c-fn  { color: #a855f7; }
 .ai-lab-content .c-num { color: #f59e0b; }
 .ai-lab-content .c-cmt { color: var(--ai-text3); font-style: italic; }
+.ai-lab-content .pgb-header { text-align: center; padding: 0 0 16px 0; margin-bottom: 20px; border-bottom: 1px solid var(--ai-border-s); }
+.ai-lab-content .pgb-badge { display: inline-block; font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--ai-accent); background: rgba(246,51,146,.08); padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; }
+.ai-lab-content .pgb-title { font-family: "Plus Jakarta Sans", sans-serif; font-size: 20px; font-weight: 700; color: var(--ai-text); margin-bottom: 4px; }
+.ai-lab-content .pgb-sub { font-size: 12px; color: var(--ai-text3); }
+.ai-lab-content .pg-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.ai-lab-content .pg-panel { background: var(--ai-card); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r); overflow: hidden; }
+.ai-lab-content .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--ai-bg); border-bottom: 1px solid var(--ai-border-s); }
+.ai-lab-content .panel-label { font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ai-text3); }
+.ai-lab-content .panel-actions { display: flex; align-items: center; gap: 8px; }
+.ai-lab-content .panel-btn { font-size: 11px; color: var(--ai-accent); background: none; border: 1px solid var(--ai-border-s); border-radius: 6px; padding: 4px 10px; cursor: pointer; font-family: var(--ai-mono); }
+.ai-lab-content .panel-btn:hover { background: var(--ai-bg2); }
+.ai-lab-content .pg-stat-num { font-family: "Plus Jakarta Sans", sans-serif; font-size: 22px; font-weight: 700; color: var(--ai-accent); line-height: 1.2; }
+.ai-lab-content .pg-stat-label { font-size: 11px; font-weight: 500; color: var(--ai-text); margin-top: 2px; }
+.ai-lab-content .pg-stat-sub { font-size: 9px; color: var(--ai-text3); font-family: var(--ai-mono); margin-top: 1px; }
+.ai-lab-content .morpho-panel-header { display: flex; align-items: center; gap: 8px; padding: 12px 14px; background: var(--ai-bg); border-radius: var(--ai-r-sm); margin-bottom: 10px; }
+.ai-lab-content .morpho-panel-title { font-family: "Plus Jakarta Sans", sans-serif; font-size: 13px; font-weight: 700; color: var(--ai-text); }
+.ai-lab-content .morpho-panel-sub { font-size: 10px; color: var(--ai-text3); font-family: var(--ai-mono); margin-left: auto; }
+.ai-lab-content .morpho-grid-pg { display: flex; flex-wrap: wrap; gap: 10px; }
+.ai-lab-content .morpho-empty { font-size: 13px; color: var(--ai-text3); padding: 16px; text-align: center; width: 100%; }
+.ai-lab-content .token-chip { cursor: default; position: relative; animation: tokenPopIn .3s ease-out both; }
+.ai-lab-content .token-chip:hover { transform: translateY(-2px); filter: brightness(1.1); }
+@keyframes tokenPopIn { from { opacity: 0; transform: scale(.8) translateY(6px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@media (max-width: 700px) { .ai-lab-content .pg-panels { grid-template-columns: 1fr; } }
     </style>
     <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
     <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
@@ -595,38 +618,90 @@ out <span class="c-op">=</span> tok(
     <div class="prose">
         Eksplorasi tiga mode tokenisasi yang berbeda. Mode <strong>Subkata</strong> juga akan menganalisis struktur morfologi kata-kata berafiks secara otomatis.
     </div>
-    <div class="playground-box">
-        <h3><i class="fas fa-flask"></i> Laboratorium Tokenisasi</h3>
-        <div class="mode-tabs">
+        <!-- PLAYGROUND BOX -->
+        <div class="playground-box">
+          <div class="pgb-header">
+            <div class="pgb-badge"><i class="fas fa-flask"></i> Laboratorium Tokenisasi</div>
+            <div class="pgb-title">Tokenizer Interaktif</div>
+            <div class="pgb-sub">Hasil berubah real-time saat kamu mengetik</div>
+          </div>
+
+          <!-- Mode tabs -->
+          <div class="mode-tabs">
             <button class="mode-tab active" data-mode="word"><i class="fas fa-font"></i> Berbasis Kata</button>
             <button class="mode-tab" data-mode="subword"><i class="fas fa-microscope"></i> Subkata (BPE)</button>
             <button class="mode-tab" data-mode="char"><i class="fas fa-text-height"></i> Karakter</button>
-        </div>
-        <textarea class="play-textarea" id="inputText" placeholder="Ketik atau paste teks Bahasa Indonesia di sini…" spellcheck="false">Ojek online telah mengubah cara orang bepergian di Jakarta.</textarea>
-        <div class="example-chips">
-            <span class="example-chip" data-text="Ojek online telah mengubah cara orang bepergian di Jakarta.">Ojek online...</span>
-            <span class="example-chip" data-text="Saya sudah mempertanggungjawabkan semua kesalahan yang saya buat.">mempertanggung...</span>
-            <span class="example-chip" data-text="Gaskeun aja deh, gapapa kalau belum perfect, yang penting progress.">Gaskeun slang...</span>
-            <span class="example-chip" data-text="Fix aja yang urgent, meeting-nya reschedule ke besok pagi ya.">Code-switching...</span>
-            <span class="example-chip" data-text="Pemerintah Kabupaten Tanjungsari mengadakan musyawarah pembangunan.">Nama tempat...</span>
-        </div>
-        <div class="token-output" id="tokenOutput"></div>
-        <div class="token-count-badge" id="tokenCountBadge" style="display:block;margin-bottom:8px;font-size:12px;color:var(--ai-text3)">0 token</div>
-        <div class="mode-description" id="modeDesc" style="margin-bottom:10px;font-size:13px;color:var(--ai-text3)"><strong>Berbasis Kata:</strong> Pisahkan teks berdasarkan spasi dan tanda baca.</div>
-        <div class="pg-stats">
-            <div class="pg-stat"><div class="pg-val" id="statTotal">0</div><div class="pg-lbl">Total Token</div></div>
-            <div class="pg-stat"><div class="pg-val" id="statUnique">0</div><div class="pg-lbl">Token Unik</div></div>
-            <div class="pg-stat"><div class="pg-val" id="statAvgLen">0</div><div class="pg-lbl">Panjang Rata-rata</div></div>
-            <div class="pg-stat"><div class="pg-val" id="statCompression">0×</div><div class="pg-lbl">Rasio Kompresi</div></div>
-        </div>
-        <div class="morpho-panel" id="morphoPanel">
-            <h4><i class="fas fa-leaf"></i> Analisis Morfologi</h4>
-            <div id="morphoGrid" style="font-size:14px;color:var(--ai-text2);">Ketik teks untuk melihat analisis morfologi...</div>
-        </div>
-        <div class="play-actions">
-            <button id="btnClear">Hapus Semua</button>
-        </div>
-    </div>
+          </div>
+
+          <!-- Input | Output -->
+          <div class="pg-panels">
+            <div class="pg-panel">
+              <div class="panel-header">
+                <span class="panel-label">Input Teks</span>
+                <div class="panel-actions">
+                  <button class="panel-btn" id="btnClear">Hapus</button>
+                </div>
+              </div>
+              <textarea class="play-textarea" id="inputText" placeholder="Ketik atau paste teks Bahasa Indonesia di sini…" spellcheck="false">Ojek online telah mengubah cara orang bepergian di Jakarta.</textarea>
+              <div class="example-chips">
+                <span class="example-chip" data-text="Ojek online telah mengubah cara orang bepergian di Jakarta.">Ojek online...</span>
+                <span class="example-chip" data-text="Saya sudah mempertanggungjawabkan semua kesalahan yang saya buat.">mempertanggung...</span>
+                <span class="example-chip" data-text="Gaskeun aja deh, gapapa kalau belum perfect, yang penting progress.">Gaskeun slang...</span>
+                <span class="example-chip" data-text="Fix aja yang urgent, meeting-nya reschedule ke besok pagi ya.">Code-switching...</span>
+                <span class="example-chip" data-text="Pemerintah Kabupaten Tanjungsari mengadakan musyawarah pembangunan.">Nama tempat...</span>
+              </div>
+              <div class="mode-description" id="modeDesc">
+                <strong>Berbasis Kata:</strong> Pisahkan teks berdasarkan spasi dan tanda baca. Satu kata = satu token.
+              </div>
+            </div>
+
+            <div class="pg-panel">
+              <div class="panel-header">
+                <span class="panel-label">Hasil Token</span>
+                <div class="panel-actions">
+                  <span class="token-count-badge" id="tokenCountBadge">0 token</span>
+                </div>
+              </div>
+              <div class="token-output" id="tokenOutput"></div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="pg-stats">
+            <div class="pg-stat">
+              <div class="pg-stat-num" id="statTotal">0</div>
+              <div class="pg-stat-label">Total Token</div>
+              <div class="pg-stat-sub">termasuk tanda baca</div>
+            </div>
+            <div class="pg-stat">
+              <div class="pg-stat-num" id="statUnique">0</div>
+              <div class="pg-stat-label">Token Unik</div>
+              <div class="pg-stat-sub">ukuran vocab lokal</div>
+            </div>
+            <div class="pg-stat">
+              <div class="pg-stat-num" id="statAvgLen">0</div>
+              <div class="pg-stat-label">Panjang Rata-rata</div>
+              <div class="pg-stat-sub">karakter per token</div>
+            </div>
+            <div class="pg-stat">
+              <div class="pg-stat-num" id="statCompression">0×</div>
+              <div class="pg-stat-label">Rasio Kompresi</div>
+              <div class="pg-stat-sub">karakter ÷ token</div>
+            </div>
+          </div>
+
+          <!-- Morphology panel -->
+          <div class="morpho-panel" id="morphoPanel">
+            <div class="morpho-panel-header">
+              <span style="font-size:18px;"><i class="fas fa-leaf"></i></span>
+              <div class="morpho-panel-title">Analisis Morfologi Bahasa Indonesia</div>
+              <span class="morpho-panel-sub">Deteksi awalan &amp; akhiran otomatis</span>
+            </div>
+            <div class="morpho-grid-pg" id="morphoGrid">
+              <div class="morpho-empty">Ketik teks untuk melihat analisis morfologi...</div>
+            </div>
+          </div>
+        </div><!-- /playground-box -->
 </section>
 
                     </article>
