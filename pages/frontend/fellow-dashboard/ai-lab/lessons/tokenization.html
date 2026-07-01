@@ -328,54 +328,151 @@
         </div>
     </div>
     <div class="prose">
-        Bahasa Inggris relatif "mudah" untuk tokenizer karena strukturnya relatif sederhana. Bahasa Indonesia jauh lebih kompleks karena sifatnya yang <strong>aglutinatif</strong> — makna dibentuk dengan menempelkan awalan, akhiran, dan konfiks pada kata dasar.
+        Bahasa Inggris relatif "mudah" untuk tokenizer karena strukturnya relatif sederhana — satu kata, satu unit makna. Bahasa Indonesia jauh lebih kompleks karena sifatnya yang <strong>aglutinatif</strong> — makna dibentuk dengan menempelkan awalan, akhiran, dan konfiks pada kata dasar.
     </div>
+
     <div class="worked-box">
         <div class="wb-badge"><i class="fas fa-leaf"></i> Morfologi Aglutinatif</div>
-        <div class="wb-title">Satu Akar, Puluhan Derivasi — Contoh: "kerja"</div>
-        <div class="calc-chain">
-            <div class="calc-step">
-                <div class="cs-num-circle">1</div>
-                <div class="cs-content">
-                    <div class="cs-label">bekerja</div>
-                    <div class="math-line"><span class="math-term purple">ber-</span><span class="math-op">+</span><span class="math-result green">kerja</span><span class="math-comment">// awalan + akar</span></div>
+        <div class="wb-title">Satu Akar, Puluhan Derivasi</div>
+        <div class="prose" style="margin-bottom:16px;">
+            Kata dasar <strong>"kerja"</strong> bisa menghasilkan puluhan bentuk hanya dengan afiksasi. Tokenizer perlu memutuskan apakah setiap bentuk adalah token tersendiri atau dipecah berdasarkan morfem.
+        </div>
+        <div class="morpho-demo">
+            <div class="morpho-word-card">
+                <div class="morpho-original">bekerja</div>
+                <div class="morpho-breakdown">
+                    <div class="morpho-piece m-prefix"><div class="morpho-value">ber-</div><div class="morpho-type">awalan</div></div>
+                    <div class="morpho-sep">+</div>
+                    <div class="morpho-piece m-root"><div class="morpho-value">kerja</div><div class="morpho-type">akar</div></div>
                 </div>
             </div>
-            <div class="calc-step">
-                <div class="cs-num-circle">2</div>
-                <div class="cs-content">
-                    <div class="cs-label">mengerjakan</div>
-                    <div class="math-line"><span class="math-term purple">me-</span><span class="math-op">+</span><span class="math-result green">ngerja</span><span class="math-op">+</span><span class="math-term orange">-kan</span><span class="math-comment">// prefiks + akar + sufiks</span></div>
+            <div class="morpho-word-card">
+                <div class="morpho-original">mengerjakan</div>
+                <div class="morpho-breakdown">
+                    <div class="morpho-piece m-prefix"><div class="morpho-value">me-</div><div class="morpho-type">awalan</div></div>
+                    <div class="morpho-sep">+</div>
+                    <div class="morpho-piece m-root"><div class="morpho-value">ngerja</div><div class="morpho-type">akar</div></div>
+                    <div class="morpho-sep">+</div>
+                    <div class="morpho-piece m-suffix"><div class="morpho-value">-kan</div><div class="morpho-type">akhiran</div></div>
                 </div>
             </div>
-            <div class="calc-step">
-                <div class="cs-num-circle">3</div>
-                <div class="cs-content">
-                    <div class="cs-label">pekerjaan</div>
-                    <div class="math-line"><span class="math-term purple">pe-</span><span class="math-op">+</span><span class="math-result green">kerja</span><span class="math-op">+</span><span class="math-term orange">-an</span><span class="math-comment">// prefiks + akar + sufiks</span></div>
+            <div class="morpho-word-card">
+                <div class="morpho-original">pekerjaan</div>
+                <div class="morpho-breakdown">
+                    <div class="morpho-piece m-prefix"><div class="morpho-value">pe-</div><div class="morpho-type">awalan</div></div>
+                    <div class="morpho-sep">+</div>
+                    <div class="morpho-piece m-root"><div class="morpho-value">kerja</div><div class="morpho-type">akar</div></div>
+                    <div class="morpho-sep">+</div>
+                    <div class="morpho-piece m-suffix"><div class="morpho-value">-an</div><div class="morpho-type">akhiran</div></div>
                 </div>
             </div>
-            <div class="calc-step">
-                <div class="cs-num-circle">4</div>
-                <div class="cs-content">
-                    <div class="cs-label">mempekerjakan</div>
-                    <div class="math-line"><span class="math-term purple">memper-</span><span class="math-op">+</span><span class="math-result green">kerja</span><span class="math-op">+</span><span class="math-term orange">-kan</span><span class="math-comment">// prefiks ganda + akar + sufiks</span></div>
+            <div class="morpho-word-card">
+                <div class="morpho-original">mempekerjakan</div>
+                <div class="morpho-breakdown">
+                    <div class="morpho-piece m-prefix"><div class="morpho-value">memper-</div><div class="morpho-type">awalan</div></div>
+                    <div class="morpho-sep">+</div>
+                    <div class="morpho-piece m-root"><div class="morpho-value">kerja</div><div class="morpho-type">akar</div></div>
+                    <div class="morpho-sep">+</div>
+                    <div class="morpho-piece m-suffix"><div class="morpho-value">-kan</div><div class="morpho-type">akhiran</div></div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="prose">
+        Tiga tantangan lain yang sering diabaikan tapi sangat berdampak pada kualitas NLP untuk konten Indonesia:
+    </div>
+
     <div class="worked-box">
         <div class="wb-badge"><i class="fas fa-mobile-screen"></i> Slang Digital &amp; Code-Switching</div>
         <div class="wb-title">Bahasa Indonesia "Sungguhan" vs Bahasa Kamus</div>
-        <div class="prose">
-            Media sosial Indonesia penuh dengan singkatan, kreasi linguistik baru, dan campuran bahasa. Tokenizer berbasis Wikipedia saja akan menghasilkan fragmentasi yang tidak bermakna. Contoh "Gaskeun aja deh, gapapa belum perfect" — tokenizer global akan memecah "gaskeun" menjadi "gas" + "##keun". Tokenizer yang paham konteks lokal akan mengenalinya sebagai satu unit.
+
+        <div style="margin-bottom:20px;">
+            <div style="font-size:13px;color:var(--text-2);margin-bottom:10px;line-height:1.65;">
+                Media sosial Indonesia penuh dengan singkatan, kreasi linguistik baru, dan campuran bahasa. Tokenizer berbasis Wikipedia saja akan menghasilkan fragmentasi yang tidak bermakna.
+            </div>
+            <div class="example-block">
+                <span class="ex-label">Input: "Gaskeun aja deh, gapapa belum perfect"</span>
+                <div style="margin-bottom:8px;font-size:11px;color:var(--text-3);font-family:var(--font-mono);">Tokenizer global (kurang tepat):</div>
+                <div class="ex-tokens">
+                    <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">Gas</span>
+                    <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">##keun</span>
+                    <span class="ex-token tok-word">aja</span>
+                    <span class="ex-token tok-word">deh</span>
+                    <span class="ex-token tok-punct">,</span>
+                    <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">ga</span>
+                    <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">##papa</span>
+                    <span class="ex-token tok-word">belum</span>
+                    <span class="ex-token tok-word">perfect</span>
+                </div>
+                <div style="margin-top:10px;font-size:11px;color:var(--text-3);font-family:var(--font-mono);">Tokenizer lokal yang lebih baik:</div>
+                <div class="ex-tokens" style="margin-top:6px;">
+                    <span class="ex-token tok-word">gaskeun</span>
+                    <span class="ex-token tok-word">aja</span>
+                    <span class="ex-token tok-word">deh</span>
+                    <span class="ex-token tok-punct">,</span>
+                    <span class="ex-token tok-word">gapapa</span>
+                    <span class="ex-token tok-word">belum</span>
+                    <span class="ex-token tok-special">perfect</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div style="font-size:13px;color:var(--text-2);margin-bottom:10px;line-height:1.65;">
+                <strong style="color:var(--text);">Code-switching</strong> — mencampur Bahasa Indonesia dan Inggris dalam satu kalimat — adalah fenomena alami di kalangan profesional Indonesia.
+            </div>
+            <div class="example-block">
+                <span class="ex-label">Input: "Fix aja yang urgent, meeting-nya reschedule ke besok"</span>
+                <div class="ex-tokens">
+                    <span class="ex-token tok-word">Fix</span>
+                    <span class="ex-token tok-word">aja</span>
+                    <span class="ex-token tok-word">yang</span>
+                    <span class="ex-token tok-special">urgent</span>
+                    <span class="ex-token tok-punct">,</span>
+                    <span class="ex-token tok-word">meeting</span>
+                    <span class="ex-token tok-suffix">##-nya</span>
+                    <span class="ex-token tok-prefix">re</span>
+                    <span class="ex-token tok-suffix">##schedule</span>
+                    <span class="ex-token tok-word">ke</span>
+                    <span class="ex-token tok-word">besok</span>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="worked-box">
         <div class="wb-badge"><i class="fas fa-location-dot"></i> Entitas Lokal</div>
         <div class="wb-title">Nama Tempat &amp; Merek Indonesia</div>
-        <div class="prose">
-            Indonesia punya ribuan nama tempat unik. Tokenizer global memecah "Tokopedia" menjadi "To" + "##ko" + "##pedia", dan "Tanjungsari" menjadi "Tan" + "##jung" + "##sari". Tokenizer yang dilatih dengan data lokal mengenali keduanya sebagai token utuh — berdampak langsung pada kualitas NER dan pemahaman konteks.
+        <div class="prose" style="margin-bottom:14px;">
+            Indonesia punya ribuan nama tempat unik dan ekosistem startup lokal yang besar. Nama-nama ini sering tidak ada di vocab tokenizer global dan dipecah tidak bermakna — berdampak langsung pada kualitas NER.
+        </div>
+        <div class="example-block">
+            <span class="ex-label">Tokenizer global vs lokal</span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div>
+                    <div style="font-size:10px;font-family:var(--font-mono);color:var(--text-3);margin-bottom:6px;">GLOBAL (kurang tepat)</div>
+                    <div class="ex-tokens" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                        <div class="ex-tokens">
+                            <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">To</span>
+                            <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">##ko</span>
+                            <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">##pedia</span>
+                        </div>
+                        <div class="ex-tokens">
+                            <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">Tan</span>
+                            <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">##jung</span>
+                            <span class="ex-token" style="background:rgba(255,55,95,.1);border:1px solid rgba(255,55,95,.3);color:#ff375f;">##sari</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size:10px;font-family:var(--font-mono);color:var(--text-3);margin-bottom:6px;">LOKAL (lebih baik)</div>
+                    <div class="ex-tokens" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                        <div class="ex-tokens"><span class="ex-token tok-special">Tokopedia</span></div>
+                        <div class="ex-tokens"><span class="ex-token tok-special">Tanjungsari</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
