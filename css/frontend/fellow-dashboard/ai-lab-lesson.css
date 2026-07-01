@@ -1336,6 +1336,441 @@
   border-radius: 12px;
   padding: 14px;
 }
+.ml-lesson-content .lesson-body {
+  display: grid;
+  gap: 30px;
+}
+.ml-lesson-content .lesson-sec {
+  position: relative;
+  scroll-margin-top: 96px;
+}
+.ml-lesson-content .lesson-sec + .lesson-sec {
+  padding-top: 10px;
+}
+.ml-lesson-content .sec-header {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+.ml-lesson-content .sec-num {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(246,51,146,.14), rgba(255,240,247,.92));
+  color: #f63392;
+  border: 1px solid rgba(246,51,146,.2);
+  font-family: 'SF Mono', monospace;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(246,51,146,.08);
+}
+.ml-lesson-content .sec-title {
+  margin: 0;
+  color: #171827;
+  font-size: clamp(1.28rem, 2vw, 1.7rem);
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+.ml-lesson-content .sec-sub {
+  margin: 6px 0 0;
+  color: #6f7282;
+  line-height: 1.55;
+  font-size: .9rem;
+}
+.ml-lesson-content .prose {
+  color: #3a3d4f;
+  font-size: .94rem;
+  line-height: 1.78;
+  background: linear-gradient(180deg, #fff, #fffafd);
+  border: 1px solid rgba(246,51,146,.1);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.ml-lesson-content .prose strong {
+  color: #171827;
+  font-weight: 800;
+}
+.ml-lesson-content .worked-box,
+.ml-lesson-content .def-box,
+.ml-lesson-content .shatter-count-table,
+.ml-lesson-content .next-lesson-cta {
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, rgba(246,51,146,.32), rgba(244,143,188,.08)) border-box;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 14px 34px rgba(246,51,146,.08);
+}
+.ml-lesson-content .wb-badge,
+.ml-lesson-content .def-label,
+.ml-lesson-content .nlc-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  color: #f63392;
+  background: rgba(246,51,146,.08);
+  border: 1px solid rgba(246,51,146,.16);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.ml-lesson-content .wb-title,
+.ml-lesson-content .sct-title,
+.ml-lesson-content .nlc-title {
+  margin: 12px 0 14px;
+  color: #171827;
+  font-size: 1.08rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+.ml-lesson-content .def-body,
+.ml-lesson-content .def-note,
+.ml-lesson-content .nlc-desc,
+.ml-lesson-content .motiv-desc,
+.ml-lesson-content .para-desc,
+.ml-lesson-content .ut-desc,
+.ml-lesson-content .wl-desc,
+.ml-lesson-content .rlc-def,
+.ml-lesson-content .vci-copy,
+.ml-lesson-content .vc-desc {
+  color: #6f7282;
+  font-size: .84rem;
+  line-height: 1.66;
+}
+.ml-lesson-content .def-formula,
+.ml-lesson-content .formula-box,
+.ml-lesson-content .math-display {
+  margin: 14px 0;
+  background: #171827;
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: 'SF Mono', monospace;
+  font-size: .82rem;
+  line-height: 1.65;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.ml-lesson-content .math-term,
+.ml-lesson-content .math-result,
+.ml-lesson-content .math-op,
+.ml-lesson-content .cs-label,
+.ml-lesson-content .pce-label,
+.ml-lesson-content .ps-label {
+  font-weight: 800;
+}
+.ml-lesson-content .blue,
+.ml-lesson-content .green,
+.ml-lesson-content .purple,
+.ml-lesson-content .red,
+.ml-lesson-content .orange {
+  color: #f63392;
+}
+.ml-lesson-content [style*="background:#"],
+.ml-lesson-content [style*="background: #"] {
+  background: #f63392 !important;
+}
+.ml-lesson-content .three-paradigms,
+.ml-lesson-content .unsup-tasks,
+.ml-lesson-content .when-grid,
+.ml-lesson-content .rl-concepts,
+.ml-lesson-content .bv-matrix,
+.ml-lesson-content .error-decomp-grid,
+.ml-lesson-content .regularization-grid,
+.ml-lesson-content .capacity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.ml-lesson-content .three-paradigms {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.ml-lesson-content .para-card,
+.ml-lesson-content .ut-card,
+.ml-lesson-content .when-col,
+.ml-lesson-content .rlc-row,
+.ml-lesson-content .bvc-col,
+.ml-lesson-content .vci-card,
+.ml-lesson-content .vc-card,
+.ml-lesson-content .hspace-card,
+.ml-lesson-content .motiv-card,
+.ml-lesson-content .wl-item {
+  position: relative;
+  overflow: hidden;
+}
+.ml-lesson-content .para-card::before,
+.ml-lesson-content .ut-card::before,
+.ml-lesson-content .motiv-card::before,
+.ml-lesson-content .wl-item::before,
+.ml-lesson-content .vci-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, #f63392, rgba(246,51,146,.16));
+}
+.ml-lesson-content .para-num,
+.ml-lesson-content .arch-year,
+.ml-lesson-content .sct-val.highlight {
+  color: #f63392;
+  font-family: 'SF Mono', monospace;
+  font-weight: 900;
+}
+.ml-lesson-content .para-icon,
+.ml-lesson-content .ut-icon,
+.ml-lesson-content .wl-icon,
+.ml-lesson-content .rll-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(246,51,146,.1);
+  color: #f63392;
+  margin-bottom: 10px;
+}
+.ml-lesson-content .para-icon:empty::before,
+.ml-lesson-content .ut-icon:empty::before,
+.ml-lesson-content .wl-icon:empty::before,
+.ml-lesson-content .rll-icon:empty::before,
+.ml-lesson-content .ic-icon:empty::before,
+.ml-lesson-content .motiv-icon:empty::before {
+  content: "\f0eb";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+.ml-lesson-content .para-tagline,
+.ml-lesson-content .ps-val,
+.ml-lesson-content .pe-label-ex,
+.ml-lesson-content .uta,
+.ml-lesson-content .ccard-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: rgba(246,51,146,.07);
+  color: #f63392;
+  border: 1px solid rgba(246,51,146,.14);
+  font-size: .68rem;
+  font-weight: 800;
+}
+.ml-lesson-content .para-examples,
+.ml-lesson-content .ut-algos,
+.ml-lesson-content .when-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+.ml-lesson-content .pe-row,
+.ml-lesson-content .rlc-row,
+.ml-lesson-content .sct-grid > div {
+  background: #fff7fb;
+  border: 1px solid rgba(246,51,146,.1);
+  border-radius: 10px;
+  padding: 9px 11px;
+}
+.ml-lesson-content .pe-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.ml-lesson-content .rl-loop {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  place-items: center;
+  padding: 24px;
+  margin: 18px 0;
+  background: #fff7fb;
+  border: 1px solid rgba(246,51,146,.12);
+  border-radius: 18px;
+}
+.ml-lesson-content .rll-center {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ml-lesson-content .rll-agent,
+.ml-lesson-content .rll-env {
+  min-width: 150px;
+  background: #fff;
+  border: 1px solid rgba(246,51,146,.16);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+}
+.ml-lesson-content .rll-label {
+  color: #171827;
+  font-weight: 900;
+}
+.ml-lesson-content .rll-arrows {
+  display: grid;
+  gap: 8px;
+  color: #6f7282;
+  font-size: .78rem;
+}
+.ml-lesson-content .capacity-spectrum {
+  background: #fff;
+  border: 1px solid rgba(246,51,146,.14);
+  border-radius: 18px;
+  padding: 24px 18px 18px;
+  margin: 18px 0;
+}
+.ml-lesson-content .cs-track {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: #fff0f7;
+}
+.ml-lesson-content .cs-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f48fbc, #f63392, #8e91a0);
+}
+.ml-lesson-content .cs-marker {
+  position: absolute;
+  top: -8px;
+  transform: translateX(-50%);
+  text-align: center;
+  min-width: 110px;
+}
+.ml-lesson-content .csm-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 0 auto 8px;
+  background: #fff;
+  border: 6px solid #f63392;
+  box-shadow: 0 6px 16px rgba(246,51,146,.16);
+}
+.ml-lesson-content .csm-label {
+  color: #171827;
+  font-size: .72rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.ml-lesson-content .csm-label span,
+.ml-lesson-content .cs-axis {
+  color: #8e91a0;
+  font-weight: 700;
+}
+.ml-lesson-content .cs-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 44px;
+  font-size: .7rem;
+}
+.ml-lesson-content .sd-controls,
+.ml-lesson-content .sd-canvas-wrap,
+.ml-lesson-content .shatter-summary {
+  background: #fff7fb;
+  border: 1px solid rgba(246,51,146,.12);
+  border-radius: 14px;
+  padding: 14px;
+}
+.ml-lesson-content .shatter-demo {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 14px;
+}
+.ml-lesson-content button,
+.ml-lesson-content .sd-btn,
+.ml-lesson-content .nlc-btn {
+  border: 1px solid rgba(246,51,146,.18);
+  background: #fff;
+  color: #171827;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.ml-lesson-content button:hover,
+.ml-lesson-content .sd-btn.active,
+.ml-lesson-content .nlc-btn {
+  background: #f63392;
+  color: #fff;
+}
+.ml-lesson-content canvas {
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid rgba(246,51,146,.12);
+  border-radius: 12px;
+}
+.ml-lesson-content .ss-row,
+.ml-lesson-content .sct-grid {
+  display: grid;
+  gap: 8px;
+}
+.ml-lesson-content .sct-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.ml-lesson-content .sct-header {
+  background: #f63392 !important;
+  color: #fff !important;
+  font-weight: 900;
+}
+.ml-lesson-content .ok,
+.ml-lesson-content .ssr-result.ok {
+  color: #f63392;
+  font-weight: 800;
+}
+.ml-lesson-content .fail,
+.ml-lesson-content .ssr-result.fail {
+  color: #8e91a0;
+  font-weight: 800;
+}
+.ml-lesson-content .next-lesson-cta {
+  text-align: center;
+  background:
+    radial-gradient(circle at top left, rgba(246,51,146,.11), transparent 34%),
+    #fff;
+}
+.ml-lesson-content .nlc-btn {
+  display: inline-flex;
+  text-decoration: none;
+  margin-top: 12px;
+}
+.ml-lesson-content .sec-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+.ml-lesson-content .sec-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  text-decoration: none;
+  color: #171827;
+  background: #fff;
+  border: 1px solid rgba(246,51,146,.16);
+  border-radius: 999px;
+  padding: 9px 13px;
+  font-size: .78rem;
+  font-weight: 800;
+}
+.ml-lesson-content .sec-nav-btn:hover {
+  color: #f63392;
+  background: #fff7fb;
+}
 
 @media (max-width: 1024px) {
   .ai-overview-layout { grid-template-columns: 1fr; }
@@ -1351,6 +1786,34 @@
   .ml-lesson-content .vc-grid,
   .ml-lesson-content .hspace-grid {
     grid-template-columns: 1fr;
+  }
+  .ml-lesson-content .three-paradigms,
+  .ml-lesson-content .unsup-tasks,
+  .ml-lesson-content .when-grid,
+  .ml-lesson-content .rl-concepts,
+  .ml-lesson-content .bv-matrix,
+  .ml-lesson-content .error-decomp-grid,
+  .ml-lesson-content .regularization-grid,
+  .ml-lesson-content .capacity-grid,
+  .ml-lesson-content .shatter-demo {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ml-lesson-content .sec-header,
+  .ml-lesson-content .insight-callout,
+  .ml-lesson-content .warning-callout,
+  .ml-lesson-content .key-takeaway {
+    grid-template-columns: 1fr;
+  }
+  .ml-lesson-content .sct-grid {
+    grid-template-columns: 1fr;
+  }
+  .ml-lesson-content .sec-nav-buttons,
+  .ml-lesson-content .pe-row {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
