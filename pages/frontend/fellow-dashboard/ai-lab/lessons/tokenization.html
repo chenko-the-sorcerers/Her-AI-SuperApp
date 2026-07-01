@@ -128,6 +128,49 @@
     <div class="prose">
         Ukuran <strong>vocabulary (vocab size)</strong> adalah salah satu keputusan terpenting dalam desain model. Vocab kecil memaksa kata-kata dipecah menjadi subunit — kalimat jadi lebih panjang, komputasi lebih mahal. Vocab besar lebih ekspresif tapi membutuhkan memori embedding masif.
     </div>
+
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Tokenizer</th>
+            <th>Vocab Size</th>
+            <th>Strategi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IndoBERT</td>
+            <td>WordPiece</td>
+            <td class="tc-mid">32.000</td>
+            <td>Subkata — spesifik Bahasa Indonesia</td>
+          </tr>
+          <tr>
+            <td>BERT Base</td>
+            <td>WordPiece</td>
+            <td class="tc-mid">30.522</td>
+            <td>Subkata — dominan Bahasa Inggris</td>
+          </tr>
+          <tr>
+            <td>XLM-R</td>
+            <td>SentencePiece (BPE)</td>
+            <td class="tc-good">250.000</td>
+            <td>Multilingual — 100+ bahasa</td>
+          </tr>
+          <tr>
+            <td>GPT-4</td>
+            <td>tiktoken (BPE)</td>
+            <td class="tc-good">~100.000</td>
+            <td>BPE efisien untuk bahasa Inggris + code</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <strong>IndoBERT</strong> dilatih dari Wikipedia Bahasa Indonesia dan artikel berita. Vocab 32.000-nya sudah mencakup kata-kata formal dengan baik, tapi masih kesulitan dengan slang, kata daerah, dan nama entitas lokal yang tidak ada di data latih.
+    </div>
 </section>
 
 <!-- ══════════ SEC 2: EMPAT STRATEGI ══════════ -->
