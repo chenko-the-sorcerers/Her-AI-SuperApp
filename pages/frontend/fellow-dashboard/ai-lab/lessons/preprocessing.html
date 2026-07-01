@@ -1,4 +1,48 @@
 <section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+<style>
+.ai-lab-content .pipeline-visual { display: flex; align-items: center; gap: 0; margin: 24px 0; flex-wrap: wrap; justify-content: center; }
+.ai-lab-content .pv-step { background: var(--ai-card); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r); padding: 14px 12px; text-align: center; min-width: 90px; flex-shrink: 0; transition: transform .2s; }
+.ai-lab-content .pv-step:hover { transform: translateY(-2px); }
+.ai-lab-content .pv-step.active { border-color: var(--ai-accent); box-shadow: 0 0 0 1px rgba(246,51,146,.2); }
+.ai-lab-content .pvs-icon { font-size: 20px; margin-bottom: 6px; }
+.ai-lab-content .pvs-label { font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--ai-text3); margin-bottom: 4px; }
+.ai-lab-content .pvs-example { font-size: 11px; color: var(--ai-text2); line-height: 1.4; }
+.ai-lab-content .pv-arrow { font-size: 18px; color: var(--ai-text3); flex-shrink: 0; padding: 0 4px; }
+.ai-lab-content .edge-cases { display: flex; flex-direction: column; gap: 10px; }
+.ai-lab-content .ec-item { background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 12px 14px; }
+.ai-lab-content .ec-original { font-family: var(--ai-mono); font-size: 13px; color: var(--ai-text); margin-bottom: 4px; }
+.ai-lab-content .ec-arrow { color: var(--ai-text3); margin: 0 6px; }
+.ai-lab-content .ec-result { font-weight: 700; }
+.ai-lab-content .ec-result.wrong { color: #ef4444; }
+.ai-lab-content .ec-result.ok { color: #34c759; }
+.ai-lab-content .ec-note { font-size: 11px; color: var(--ai-text3); }
+.ai-lab-content .use-table-wrap { overflow-x: auto; margin-top: 12px; }
+.ai-lab-content .use-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.ai-lab-content .use-table th { background: var(--ai-bg); border-bottom: 1px solid var(--ai-border-s); padding: 8px 10px; text-align: left; font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--ai-text3); }
+.ai-lab-content .use-table td { padding: 8px 10px; border-bottom: 1px solid var(--ai-border-s); color: var(--ai-text2); }
+.ai-lab-content .use-table .yes { color: #34c759; }
+.ai-lab-content .use-table .no { color: #ef4444; }
+.ai-lab-content .use-table .maybe { color: #f59e0b; }
+.ai-lab-content .lower-demo, .ai-lab-content .noise-demo, .ai-lab-content .stopword-demo, .ai-lab-content .stemming-demo, .ai-lab-content .preprocessing-box { background: var(--ai-card); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r); padding: 16px; margin: 16px 0; }
+.ai-lab-content .lower-demo .demo-input, .ai-lab-content .noise-demo .demo-input { width: 100%; min-height: 50px; background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); color: var(--ai-text); font-family: var(--ai-font); font-size: 13px; padding: 10px 14px; resize: vertical; outline: none; }
+.ai-lab-content .lower-demo .demo-input:focus, .ai-lab-content .noise-demo .demo-input:focus { border-color: var(--ai-accent); }
+.ai-lab-content .demo-btns { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+.ai-lab-content .demo-btn { font-size: 11px; font-family: var(--ai-mono); color: var(--ai-accent); background: none; border: 1px solid var(--ai-border-s); border-radius: 6px; padding: 6px 14px; cursor: pointer; }
+.ai-lab-content .demo-btn:hover { background: var(--ai-bg2); }
+.ai-lab-content .demo-btn.active { background: var(--ai-accent); color: #fff; border-color: var(--ai-accent); }
+.ai-lab-content .demo-output { background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 12px 14px; font-family: var(--ai-mono); font-size: 12px; color: var(--ai-text2); min-height: 50px; }
+.ai-lab-content .stopword-word { display: inline-block; padding: 3px 8px; border-radius: 4px; font-family: var(--ai-mono); font-size: 11px; margin: 2px; cursor: pointer; border: 1px solid var(--ai-border-s); color: var(--ai-text2); }
+.ai-lab-content .stopword-word.active { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.3); color: #ef4444; text-decoration: line-through; }
+.ai-lab-content .stopword-word.removed { opacity: 0.3; text-decoration: line-through; }
+.ai-lab-content .nlp-step-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
+.ai-lab-content .nlp-step-toggle { position: relative; display: inline-block; width: 40px; height: 22px; flex-shrink: 0; }
+.ai-lab-content .nlp-step-toggle input { opacity: 0; width: 0; height: 0; }
+.ai-lab-content .nlp-step-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: 11px; transition: .3s; }
+.ai-lab-content .nlp-step-slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background: var(--ai-accent); border-radius: 50%; transition: .3s; }
+.ai-lab-content .nlp-step-toggle input:checked + .nlp-step-slider:before { transform: translateX(16px); }
+.ai-lab-content .nlp-step-label { font-size: 12px; color: var(--ai-text); cursor: pointer; }
+@media (max-width: 700px) { .ai-lab-content .pipeline-visual { flex-direction: column; } .ai-lab-content .pv-arrow { transform: rotate(90deg); } }
+</style>
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
 <aside class="fellow-sidebar" aria-label="Navigasi peserta">
