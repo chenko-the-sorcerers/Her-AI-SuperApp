@@ -490,24 +490,30 @@ function buildQuiz() {
 window.answerQuiz = function(qi, opt, btn) {
   if (PN_quizAnswered[qi]) return;
   PN_quizAnswered[qi] = true;
-  const q = QUIZ_QUESTIONS[qi];
-  const isCorrect = opt === q.answer;
+  var q = QUIZ_QUESTIONS[qi];
+  var isCorrect = opt === q.answer;
   if (isCorrect) quizScoreVal++;
-  document.getElementById('quizScore').textContent = quizScoreVal;
+  var scoreEl = document.getElementById('quizScore');
+  if (scoreEl) scoreEl.textContent = quizScoreVal;
 
   // Style buttons
-  const btns = document.querySelectorAll(`#qq-${qi} .quiz-opt`);
-  btns.forEach(b => {
+  var btns = document.querySelectorAll('#qq-' + qi + ' .quiz-opt');
+  for (var i = 0; i < btns.length; i++) {
+    var b = btns[i];
     b.classList.add('answered');
-    if (b.textContent === q.answer) b.classList.add(isCorrect && b===btn ? 'correct' : 'reveal');
-  });
-  if (!isCorrect) btn.classList.add('wrong');
+    if (b.textContent === q.answer) {
+      b.classList.add(isCorrect && b === btn ? 'correct' : 'reveal');
+    }
+  }
+  if (!isCorrect && btn) btn.classList.add('wrong');
 
   // Feedback
-  const fb = document.getElementById(`qf-${qi}`);
-  fb.style.display='block';
-  fb.className = `quiz-feedback ${isCorrect?'ok':'bad'}`;
-  fb.textContent = isCorrect ? `<i class="fas fa-circle-check"></i> Benar! ${q.explain}` : `<i class="fas fa-circle-xmark"></i> Salah. Jawaban: ${q.answer}. ${q.explain}`;
+  var fb = document.getElementById('qf-' + qi);
+  if (fb) {
+    fb.style.display = 'block';
+    fb.className = 'quiz-feedback ' + (isCorrect ? 'ok' : 'bad');
+    fb.innerHTML = isCorrect ? '<i class="fas fa-circle-check"></i> Benar! ' + q.explain : '<i class="fas fa-circle-xmark"></i> Salah. Jawaban: ' + q.answer + '. ' + q.explain;
+  }
 
   // Check if all done
   if (PN_quizAnswered.every(Boolean)) {

@@ -769,13 +769,13 @@ function initMorphQuiz() {
     const div=document.createElement('div');div.className='quiz-item';
     div.innerHTML='<div class="quiz-q-num">Question '+(qi+1)+' of '+MORPH_quizData.length+'</div>'+
     '<div class="quiz-q-text">'+q.q+'</div><div class="quiz-opts">'+
-    q.opts.map((o,oi)=>'<button class="quiz-opt" onclick="answerQuiz('+qi+','+oi+')" id="qopt-'+qi+'-'+oi+'"><span class="quiz-opt-badge">'+String.fromCharCode(65+oi)+'</span>'+o+'</button>').join('')+
+    q.opts.map((o,oi)=>'<button class="quiz-opt" onclick="MORPH_answerQuiz('+qi+','+oi+')" id="qopt-'+qi+'-'+oi+'"><span class="quiz-opt-badge">'+String.fromCharCode(65+oi)+'</span>'+o+'</button>').join('')+
     '</div><div class="quiz-feedback" id="qfb-'+qi+'"></div>';
     con.appendChild(div);
   });
 }
 
-window.answerQuiz=function(qi,oi){
+window.MORPH_answerQuiz=function(qi,oi){
   if(MORPH_quizAnswered[qi])return;
   MORPH_quizAnswered[qi]=true;
   const q=MORPH_quizData[qi];const fb=document.getElementById('qfb-'+qi);

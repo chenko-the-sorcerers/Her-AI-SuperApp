@@ -526,7 +526,7 @@ function initOpencvQuiz() {
       <div class="quiz-q-text">${q.q}</div>
       <div class="quiz-opts">
         ${q.opts.map((o, oi) => `
-          <button class="quiz-opt" onclick="answerQuiz(${qi},${oi})" id="qopt-${qi}-${oi}">
+          <button class="quiz-opt" onclick="OPENCV_answerQuiz(${qi},${oi})" id="qopt-${qi}-${oi}">
             <span class="quiz-opt-badge">${String.fromCharCode(65+oi)}</span>
             ${o}
           </button>`).join('')}
@@ -537,7 +537,7 @@ function initOpencvQuiz() {
   });
 }
 
-window.answerQuiz = function(qi, oi) {
+window.OPENCV_answerQuiz = function(qi, oi) {
   if (OPENCV_quizAnswered[qi]) return;
   OPENCV_quizAnswered[qi] = true;
   const q   = OPENCV_quizData[qi];

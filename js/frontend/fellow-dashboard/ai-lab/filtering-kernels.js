@@ -818,7 +818,7 @@ var FK_FK_quizAnswered = {};
       '<div class="quiz-q-text">' + q.q + '</div>' +
       '<div class="quiz-opts">' +
       q.opts.map((o, oi) =>
-        '<button class="quiz-opt" onclick="answerQuiz(' + qi + ',' + oi + ')" id="qopt-' + qi + '-' + oi + '">' +
+        '<button class="quiz-opt" onclick="FK_answerQuiz(' + qi + ',' + oi + ')" id="qopt-' + qi + '-' + oi + '">' +
         '<span class="quiz-opt-badge">' + String.fromCharCode(65+oi) + '</span>' + o + '</button>'
       ).join('') + '</div>' +
       '<div class="quiz-feedback" id="qfb-' + qi + '"></div>';
@@ -826,7 +826,7 @@ var FK_FK_quizAnswered = {};
   });
 })();
 
-window.answerQuiz = function(qi, oi) {
+window.FK_answerQuiz = function(qi, oi) {
   if (FK_quizAnswered[qi]) return;
   FK_quizAnswered[qi] = true;
   const q   = quizData[qi];
