@@ -1,4 +1,52 @@
 <section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+<style>
+.ai-lab-content .bow-demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.ai-lab-content .bow-doc-card{background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:var(--ai-r);padding:14px;overflow:hidden}
+.ai-lab-content .bdc-title{font-family:var(--ai-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ai-accent);margin-bottom:8px}
+.ai-lab-content .bdc-sentence{font-size:12px;color:var(--ai-text);margin-bottom:10px;line-height:1.5}
+.ai-lab-content .bdc-words{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.ai-lab-content .bdc-word{background:var(--ai-bg);border:1px solid var(--ai-border-s);border-radius:4px;padding:4px 6px;text-align:center;font-family:var(--ai-mono);font-size:10px}
+.ai-lab-content .bdc-word.has-word{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.3);color:#22c55e;font-weight:700}
+.ai-lab-content .bdc-word.no-word{background:var(--ai-bg);color:var(--ai-text3);opacity:.5}
+.ai-lab-content .doc-term-table{overflow-x:auto;margin:14px 0}
+.ai-lab-content .doc-term-table table{width:100%;border-collapse:collapse;font-family:var(--ai-mono);font-size:11px}
+.ai-lab-content .doc-term-table th{background:var(--ai-bg);border:1px solid var(--ai-border-s);padding:6px 8px;text-align:center;font-size:10px;color:var(--ai-text3)}
+.ai-lab-content .doc-term-table td{background:var(--ai-card);border:1px solid var(--ai-border-s);padding:6px 8px;text-align:center;color:var(--ai-text2)}
+.ai-lab-content .doc-term-table td.cell-on{background:rgba(34,197,94,.12);color:#22c55e;font-weight:700}
+.ai-lab-content .sparse-viz{display:grid;gap:1px;margin:14px 0;background:rgba(255,255,255,.04);border:1px solid var(--ai-border-s);border-radius:4px;overflow:hidden}
+.ai-lab-content .sparse-viz .sv-cell{aspect-ratio:1;background:var(--ai-bg)}
+.ai-lab-content .sparse-viz .sv-cell.filled{background:rgba(34,197,94,.25)}
+.ai-lab-content .cosine-calc-chain{display:flex;flex-direction:column;gap:0}
+.ai-lab-content .ccc-step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--ai-border-s);align-items:flex-start}
+.ai-lab-content .ccc-step:last-child{border-bottom:none}
+.ai-lab-content .ccc-num{width:24px;height:24px;border-radius:50%;background:var(--ai-accent);color:#fff;font-family:var(--ai-mono);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ai-lab-content .ccc-body{flex:1}
+.ai-lab-content .ccc-label{font-size:12px;font-weight:500;color:var(--ai-text);margin-bottom:6px}
+.ai-lab-content .ccc-math{font-family:var(--ai-mono);font-size:12px;color:var(--ai-text2);line-height:1.8}
+.ai-lab-content .sim-bars{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.ai-lab-content .sim-bar-row{display:flex;align-items:center;gap:10px}
+.ai-lab-content .sim-bar-label{font-family:var(--ai-mono);font-size:11px;color:var(--ai-text2);width:80px;text-align:right}
+.ai-lab-content .sim-bar-track{flex:1;height:10px;background:var(--ai-bg);border-radius:5px;overflow:hidden}
+.ai-lab-content .sim-bar-fill{height:100%;border-radius:5px;background:var(--ai-accent);min-width:4px;transition:width .4s}
+.ai-lab-content .sim-bar-val{font-family:var(--ai-mono);font-size:12px;font-weight:700;color:var(--ai-accent);width:40px}
+.ai-lab-content .pros-cons-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.ai-lab-content .pc-card{background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:var(--ai-r);padding:16px}
+.ai-lab-content .pc-card.pro-card{border-top:3px solid #22c55e}
+.ai-lab-content .pc-card.con-card{border-top:3px solid #ef4444}
+.ai-lab-content .pc-card ul{list-style:none;padding:0;margin:0}
+.ai-lab-content .pc-card li{font-size:12px;color:var(--ai-text2);padding:6px 0;border-bottom:1px solid var(--ai-border-s);line-height:1.5}
+.ai-lab-content .pc-card li:last-child{border-bottom:none}
+.ai-lab-content .pc-card li::before{font-family:"Font Awesome 6 Free";margin-right:8px;font-size:10px}
+.ai-lab-content .pro-card li::before{content:"\f00c";color:#22c55e;font-weight:900}
+.ai-lab-content .con-card li::before{content:"\f00d";color:#ef4444;font-weight:900}
+.ai-lab-content .next-lesson-cta{background:var(--ai-bg2);border:1px solid var(--fellow-line);border-radius:var(--ai-r);padding:32px;text-align:center;margin-top:48px}
+.ai-lab-content .nlc-label{font-family:var(--ai-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ai-accent);margin-bottom:8px;display:block}
+.ai-lab-content .nlc-title{font-family:"Plus Jakarta Sans",sans-serif;font-size:22px;font-weight:700;color:var(--ai-text);margin-bottom:8px}
+.ai-lab-content .nlc-desc{font-size:14px;color:var(--ai-text2);margin-bottom:20px}
+.ai-lab-content .nlc-btn{display:inline-block;padding:12px 28px;border-radius:8px;background:var(--ai-accent);color:#fff;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s}
+.ai-lab-content .nlc-btn:hover{opacity:.9;transform:translateY(-2px)}
+@media(max-width:700px){.ai-lab-content .bow-demo-grid{grid-template-columns:1fr}.ai-lab-content .pros-cons-grid{grid-template-columns:1fr}.ai-lab-content .bdc-words{grid-template-columns:repeat(3,1fr)}}
+</style>
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
 <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -45,8 +93,8 @@
 <p>Cara paling sederhana mengubah teks menjadi angka — dan bagaimana menghitung kemiripan antar dokumen.</p>
 <div class="lesson-meta-row">
 <span><i class="far fa-clock"></i> 40 menit</span>
-<span><i class="fas fa-layer-group"></i> NLP · Text Representations</span>
-<b><i class="fas fa-flask"></i> Interaktif</b>
+<span><i class="fas fa-layer-group"></i> NLP &middot; Text Representations</span>
+<b>Interaktif</b>
 </div>
 </div>
 <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI BoW">
@@ -54,28 +102,9 @@
 <section class="lesson-material-panel">
 <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
 <a href="#/participant-ai-lab-bow" class="active"><i class="fas fa-book-open"></i> Materi</a>
-<a href="#/participant-ai-lab-tokenization"><i class="fas fa-pen-to-square"></i> Kembali ke Tokenization</a>
 <a href="#/participant-ai-lab-nlp"><i class="fas fa-layer-group"></i> Katalog NLP</a>
 </div>
 <article class="lesson-article ai-lab-content" id="bow-content">
-
-  <main class="lesson-main">
-    <div class="lesson-topbar">
-      <div class="ltb-left">
-        <button class="ltb-menu" id="menuBtn" onclick="toggleSidebar()">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
-        </button>
-        <span class="ltb-crumb">Bag-of-Words</span>
-      </div>
-      <div class="ltb-right">
-        <a href="/ai-lab/nlp/tokenisasi.html" class="ltb-btn">← Tokenisasi</a>
-        <a href="/ai-lab/nlp/tfidf.html" class="ltb-btn primary">TF-IDF →</a>
-      </div>
-    </div>
-
-    <div class="lesson-body">
-
-      <!-- ══════════ SEC 1: INTUISI ══════════ -->
       <section class="lesson-sec" id="sec-intuisi">
         <div class="sec-header">
           <span class="sec-num">01</span>
@@ -95,7 +124,7 @@
 
         <!-- Three-sentence demo -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-bag-shopping"></i>️ Demo Sederhana</div>
+          <div class="wb-badge"><i class="fas fa-bag-shopping"></i> Demo Sederhana</div>
           <div class="wb-title">Tiga Kalimat → Tiga Vektor</div>
           <div class="bow-vector-demo" id="staticBowDemo">
             <!-- Populated by JS -->
@@ -129,7 +158,7 @@
         </div>
 
         <div class="worked-box">
-          <div class="wb-badge">⚙️ Pipeline BoW — Step by Step</div>
+          <div class="wb-badge"><i class="fas fa-gear"></i> Pipeline BoW — Step by Step</div>
           <div class="wb-title">Dari Tiga Berita ke Document-Term Matrix</div>
           <div class="calc-chain">
             <div class="calc-step">
@@ -487,7 +516,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
         </div>
 
         <div class="insight-callout">
-          <div class="ic-icon"><i class="fas fa-calendar-days"></i>️</div>
+          <div class="ic-icon"><i class="fas fa-calendar"></i></div>
           <div class="ic-body">
             <strong>BoW masih dipakai di dunia nyata untuk:</strong> filter spam email, kategori tiket support, moderasi konten level pertama, pencarian dokumen internal perusahaan, dan feature engineering dalam sistem rekomendasi. Selalu coba BoW + Naive Bayes atau Logistic Regression dulu sebelum loncat ke BERT — sering kali hasilnya sudah 85–90% dan 100× lebih cepat.
           </div>
@@ -600,7 +629,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
           <div class="pg-tabs">
             <button class="pg-tab active" data-tab="vocab"><i class="fas fa-book"></i> Vocabulary</button>
             <button class="pg-tab" data-tab="matrix"><i class="fas fa-chart-simple"></i> Matrix</button>
-            <button class="pg-tab" data-tab="heatmap"><i class="fas fa-temperature-half"></i>️ Similarity</button>
+            <button class="pg-tab" data-tab="heatmap"><i class="fas fa-temperature-half"></i> Similarity</button>
             <button class="pg-tab" data-tab="search"><i class="fas fa-magnifying-glass"></i> Cari Dokumen</button>
           </div>
 
@@ -673,36 +702,34 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
       </section>
 
     </div><!-- /lesson-body -->
-  </main>
-</div><!-- /lesson-layout -->
-
-<div id="footer-placeholder"></div>
-</body>
-</html>
 </article>
 <footer class="lesson-nav-footer">
-<a href="#/participant-ai-lab-pos-ner"><i class="fas fa-chevron-left"></i> Sebelumnya</a>
-<a href="#/participant-ai-lab-nlp">Katalog NLP <i class="fas fa-arrow-right"></i></a>
+<a href="#/participant-ai-lab-pos-ner" class="lnf-prev">
+<span class="lnf-label">Sebelumnya</span>
+<span class="lnf-title">POS &amp; NER <i class="fas fa-arrow-left"></i></span>
+</a>
+<a href="#/participant-ai-lab-tfidf" class="lnf-next">
+<span class="lnf-label">Lesson berikutnya</span>
+<span class="lnf-title">TF-IDF <i class="fas fa-arrow-right"></i></span>
+</a>
 </footer>
 </section>
 </div>
 <aside class="lesson-right-panel">
-<section class="module-side-card lesson-progress-card">
-<h2>Progres Materi</h2>
-<div class="lesson-progress-mini"><b style="--value:0%"></b><strong>0%</strong></div>
-<p>Bag-of-Words — Text Representations</p>
-<a href="#sec-lab">Live Lab</a>
-</section>
-<section class="module-side-card lesson-list-card">
-<h2>Daftar Section</h2>
+<div class="lesson-progress-card">
+<div class="lpc-header"><i class="fas fa-chart-simple"></i> Progress NLP</div>
+<div class="lpc-ring-wrap"><svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="30" stroke="var(--border)" stroke-width="5" fill="none"/><circle cx="36" cy="36" r="30" stroke="var(--fellow-pink)" stroke-width="5" fill="none" stroke-dasharray="188.5" stroke-dashoffset="75" stroke-linecap="round"/></svg><div class="lpc-ring-text"><strong>60%</strong></div></div>
+</div>
+<div class="lesson-list-card">
+<h4>Daftar Section</h4>
 <ol>
-<li class="active"><span>1</span><a href="#sec-intuisi">Intuisi BoW</a><i class="far fa-circle-play"></i></li>
-<li><span>2</span><a href="#sec-membangun">Membangun Vocabulary</a><i class="far fa-circle"></i></li>
-<li><span>3</span><a href="#sec-cosine">Cosine Similarity</a><i class="far fa-circle"></i></li>
-<li><span>4</span><a href="#sec-batas">Batasan &amp; Kelemahan</a><i class="far fa-circle"></i></li>
-<li><span>5</span><a href="#sec-lab" class="lab-highlight">Live Lab</a><i class="fas fa-flask"></i></li>
+<li><span>1</span><a href="#sec-intuisi">Intuisi BoW</a></li>
+<li><span>2</span><a href="#sec-membangun">Membangun Vocabulary</a></li>
+<li><span>3</span><a href="#sec-cosine">Cosine Similarity</a></li>
+<li><span>4</span><a href="#sec-batas">Batas &amp; Kelebihan</a></li>
+<li><span>5</span><a href="#sec-lab">Lab Interaktif</a></li>
 </ol>
-</section>
+</div>
 </aside>
 </div>
 </main>
