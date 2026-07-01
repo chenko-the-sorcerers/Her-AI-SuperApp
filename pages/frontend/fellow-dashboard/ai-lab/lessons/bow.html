@@ -12,10 +12,11 @@
 .ai-lab-content .doc-term-table table{width:100%;border-collapse:collapse;font-family:var(--ai-mono);font-size:11px}
 .ai-lab-content .doc-term-table th{background:var(--ai-bg);border:1px solid var(--ai-border-s);padding:6px 8px;text-align:center;font-size:10px;color:var(--ai-text3)}
 .ai-lab-content .doc-term-table td{background:var(--ai-card);border:1px solid var(--ai-border-s);padding:6px 8px;text-align:center;color:var(--ai-text2)}
-.ai-lab-content .doc-term-table td.cell-on{background:rgba(34,197,94,.12);color:#22c55e;font-weight:700}
-.ai-lab-content .sparse-viz{display:grid;gap:1px;margin:14px 0;background:rgba(255,255,255,.04);border:1px solid var(--ai-border-s);border-radius:4px;overflow:hidden}
-.ai-lab-content .sparse-viz .sv-cell{aspect-ratio:1;background:var(--ai-bg)}
-.ai-lab-content .sparse-viz .sv-cell.filled{background:rgba(34,197,94,.25)}
+.ai-lab-content .doc-term-table td.cell-on{background:rgba(246,51,146,.15);color:#f63392;font-weight:700;border:1px solid rgba(246,51,146,.3)}
+.ai-lab-content .doc-term-table td.cell-off{color:var(--ai-text3);opacity:.4}
+.ai-lab-content .sparse-viz{display:grid;gap:2px;margin:14px 0;background:rgba(246,51,146,.06);border:1px solid var(--fellow-line);border-radius:var(--ai-r-sm);overflow:hidden;padding:2px}
+.ai-lab-content .sparse-viz .sv-cell{aspect-ratio:1;background:var(--ai-bg);border:1px solid rgba(142,145,160,.08);border-radius:2px;min-width:8px;min-height:8px}
+.ai-lab-content .sparse-viz .sv-cell.filled{background:rgba(246,51,146,.35);border:1px solid rgba(246,51,146,.5);box-shadow:0 0 3px rgba(246,51,146,.15)}
 .ai-lab-content .cosine-calc-chain{display:flex;flex-direction:column;gap:0}
 .ai-lab-content .ccc-step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--ai-border-s);align-items:flex-start}
 .ai-lab-content .ccc-step:last-child{border-bottom:none}
@@ -139,7 +140,7 @@
           <div class="bow-vector-demo" id="staticBowDemo">
             <!-- Populated by JS -->
           </div>
-          <div style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--text-3);">
+          <div style="margin-top:12px;font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">
             ↑ Sel hijau = kata muncul. Angka = berapa kali. Urutan kata <strong style="color:var(--text)">tidak tersimpan</strong>.
           </div>
         </div>
@@ -176,7 +177,7 @@
               <div class="cs-content">
                 <div class="cs-label">Kumpulkan semua dokumen (korpus)</div>
                 <div class="math-line">
-                  <span class="math-term">D1: <span style="color:#30d158">"gojek ojek online jakarta"</span></span>
+                  <span class="math-term">D1: <span style="color:#f63392">"gojek ojek online jakarta"</span></span>
                 </div>
                 <div class="math-line">
                   <span class="math-term">D2: <span style="color:#2997ff">"tokopedia shopee belanja online"</span></span>
@@ -203,7 +204,7 @@
               <div class="cs-content">
                 <div class="cs-label">Hitung frekuensi tiap kata per dokumen</div>
                 <div class="math-line">
-                  <span class="math-term" style="color:#30d158">D1</span>
+                  <span class="math-term" style="color:#f63392">D1</span>
                   <span class="math-op">=</span>
                   <span class="math-result">[0, 1, 0, 1, 1, 1, 0, 0, 0]</span>
                   <span class="math-comment">// gojek=1, jakarta=1, ojek=1, online=1</span>
@@ -227,57 +228,57 @@
               <div class="cs-content">
                 <div class="cs-label">Hasil: Document-Term Matrix (3 dokumen × 9 kata)</div>
                 <div style="overflow-x:auto;margin-top:8px;">
-                  <table style="border-collapse:collapse;font-family:var(--font-mono);font-size:11px;min-width:480px;">
+                  <table style="border-collapse:collapse;font-family:var(--ai-mono);font-size:11px;min-width:480px;">
                     <thead>
                       <tr>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:left;">Dok</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">belanja</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">gojek</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">indonesia</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">jakarta</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">ojek</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">online</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">shopee</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">startup</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">tokopedia</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:left;">Dok</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">belanja</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">gojek</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">indonesia</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">jakarta</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">ojek</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">online</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">shopee</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">startup</th>
+                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">tokopedia</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:600;">D1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:700;text-align:center;background:rgba(48,209,88,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:700;text-align:center;background:rgba(48,209,88,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:700;text-align:center;background:rgba(48,209,88,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:700;text-align:center;background:rgba(48,209,88,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:600;">D1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
                       </tr>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:600;">D2</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:600;">D2</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
                       </tr>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:600;">D3</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:600;">D3</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
                       </tr>
                     </tbody>
                   </table>
@@ -324,7 +325,7 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
             Bayangkan 500 dokumen berita dengan vocabulary 10.000 kata. Tiap dokumen rata-rata menggunakan 200 kata unik. Ini berarti hanya <strong>2% sel yang berisi angka</strong>, sisanya nol.
           </div>
           <div id="sparseVisual" style="overflow-x:auto;"></div>
-          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--text-3);">
+          <div style="margin-top:8px;font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">
             ↑ Simulasi 20 dokumen × 60 kata. Hijau = ada nilai. Gelap = nol. Representasi sebenarnya jauh lebih sparse dari ini.
           </div>
         </div>
@@ -358,7 +359,7 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
             <span class="op"> / (</span>‖<span class="fv">A</span>‖ <span class="op">×</span> ‖<span class="fb">B</span>‖<span class="op">)</span>
           </div>
           <div class="fb-legend">
-            <div class="fb-leg"><span class="fb-sym" style="color:#30d158;">A·B</span> <span class="fb-desc">= dot product (jumlah elemen berpasangan dikalikan)</span></div>
+            <div class="fb-leg"><span class="fb-sym" style="color:#f63392;">A·B</span> <span class="fb-desc">= dot product (jumlah elemen berpasangan dikalikan)</span></div>
             <div class="fb-leg"><span class="fb-sym" style="color:#2997ff;">‖A‖</span> <span class="fb-desc">= magnitudo vektor A (akar kuadrat jumlah elemen²)</span></div>
           </div>
         </div>
@@ -372,7 +373,7 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
               <div class="cs-content">
                 <div class="cs-label">Vektor dua dokumen (dari vocabulary 9 kata di atas)</div>
                 <div class="math-line">
-                  <span class="math-term" style="color:#30d158;">D1</span>
+                  <span class="math-term" style="color:#f63392;">D1</span>
                   <span class="math-op">=</span>
                   <span class="math-term">[0, 1, 0, 1, 1, 1, 0, 0, 0]</span>
                 </div>
@@ -454,15 +455,15 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
           </div>
           <div class="sim-card">
             <div class="sim-pair">D1 · D3</div>
-            <div class="sim-score" style="color:#30d158;">0.50</div>
+            <div class="sim-score" style="color:#f63392;">0.50</div>
             <div class="sim-interp">Cukup mirip — berbagi kata "gojek"</div>
-            <div class="sim-bar"><div class="sim-bar-fill" style="width:50%;background:#30d158;"></div></div>
+            <div class="sim-bar"><div class="sim-bar-fill" style="width:50%;background:#f63392;"></div></div>
           </div>
           <div class="sim-card">
             <div class="sim-pair">D2 · D3</div>
-            <div class="sim-score" style="color:#30d158;">0.50</div>
+            <div class="sim-score" style="color:#f63392;">0.50</div>
             <div class="sim-interp">Cukup mirip — berbagi kata "tokopedia"</div>
-            <div class="sim-bar"><div class="sim-bar-fill" style="width:50%;background:#30d158;"></div></div>
+            <div class="sim-bar"><div class="sim-bar-fill" style="width:50%;background:#f63392;"></div></div>
           </div>
         </div>
 
@@ -538,9 +539,9 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
           <div class="wb-title">Dari BoW ke Transformer — Tiap Langkah Memperbaiki Kelemahan Sebelumnya</div>
           <div class="calc-chain">
             <div class="calc-step">
-              <div class="cs-num-circle" style="background:#30d158;">1</div>
+              <div class="cs-num-circle" style="background:#f63392;">1</div>
               <div class="cs-content">
-                <div class="cs-label" style="color:#30d158;">Bag-of-Words (lesson ini)</div>
+                <div class="cs-label" style="color:#f63392;">Bag-of-Words (lesson ini)</div>
                 <div class="math-line"><span class="math-comment">// Frekuensi kata, tanpa urutan, tanpa semantik</span></div>
                 <div class="math-line">
                   <span class="math-term">Kelemahan: kata umum mendominasi, semua kata dianggap sama penting</span>
@@ -608,7 +609,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
           <div class="doc-inputs">
             <div class="doc-input-row">
               <div class="doc-label">
-                <div class="doc-label-dot" style="background:#30d158;"></div>
+                <div class="doc-label-dot" style="background:#f63392;"></div>
                 <div class="doc-label-num">D1</div>
               </div>
               <textarea class="doc-textarea" id="doc1" placeholder="Dokumen pertama…">Ojek online seperti Gojek dan Grab sudah mengubah cara masyarakat Jakarta bepergian setiap hari.</textarea>
@@ -651,7 +652,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
                 <span class="vs-count" id="vocabCount">0 kata</span>
               </div>
               <div class="vocab-chips" id="vocabChips">
-                <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Klik "Jalankan BoW" untuk melihat vocabulary…</span>
+                <span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">Klik "Jalankan BoW" untuk melihat vocabulary…</span>
               </div>
             </div>
           </div>
@@ -664,7 +665,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
                 <span class="vs-count" id="matrixInfo">—</span>
               </div>
               <div class="matrix-wrap">
-                <div id="matrixTable" style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);padding:20px;">
+                <div id="matrixTable" style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);padding:20px;">
                   Klik "Jalankan BoW" untuk melihat matrix…
                 </div>
               </div>
@@ -679,7 +680,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
                 <span class="vs-count" id="heatmapInfo">—</span>
               </div>
               <div id="heatmapGrid" style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
-                <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Klik "Jalankan BoW" untuk melihat heatmap…</span>
+                <span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">Klik "Jalankan BoW" untuk melihat heatmap…</span>
               </div>
             </div>
           </div>
@@ -728,7 +729,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
 <aside class="lesson-right-panel">
 <div class="lesson-progress-card">
 <div class="lpc-header"><i class="fas fa-chart-simple"></i> Progress NLP</div>
-<div class="lpc-ring-wrap"><svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="30" stroke="var(--border)" stroke-width="5" fill="none"/><circle cx="36" cy="36" r="30" stroke="var(--fellow-pink)" stroke-width="5" fill="none" stroke-dasharray="188.5" stroke-dashoffset="75" stroke-linecap="round"/></svg><div class="lpc-ring-text"><strong>60%</strong></div></div>
+<div class="lpc-ring-wrap"><svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="30" stroke="var(--ai-border-s)" stroke-width="5" fill="none"/><circle cx="36" cy="36" r="30" stroke="var(--fellow-pink)" stroke-width="5" fill="none" stroke-dasharray="188.5" stroke-dashoffset="75" stroke-linecap="round"/></svg><div class="lpc-ring-text"><strong>60%</strong></div></div>
 </div>
 <div class="lesson-list-card">
 <h4>Daftar Section</h4>
