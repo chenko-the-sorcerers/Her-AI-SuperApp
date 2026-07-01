@@ -131,6 +131,37 @@
 .ai-lab-content .norm-output { background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 14px; min-height: 50px; font-size: 13px; color: var(--ai-text2); font-family: var(--ai-mono); }
 .ai-lab-content .norm-output .norm-changed { color: var(--ai-accent); font-weight: 700; }
 .ai-lab-content .lab-pipeline-box { background: var(--ai-card); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r); padding: 16px; margin: 16px 0; }
+.ai-lab-content .stopword-categories { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
+.ai-lab-content .swc-group { background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 12px; }
+.ai-lab-content .swc-title { font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ai-accent); margin-bottom: 8px; }
+.ai-lab-content .swc-words { display: flex; flex-wrap: wrap; gap: 4px; }
+.ai-lab-content .sw-chip { padding: 2px 8px; border-radius: 4px; font-family: var(--ai-mono); font-size: 10px; color: var(--ai-text2); background: rgba(142,145,160,.08); border: 1px solid rgba(142,145,160,.15); }
+.ai-lab-content .ib-hint { font-size: 11px; color: var(--ai-text3); margin-left: auto; }
+.ai-lab-content .ib-btn.danger { background: #ef4444; color: #fff; border-color: #ef4444; }
+.ai-lab-content .mt-type { display: inline-block; padding: 2px 8px; border-radius: 4px; font-family: var(--ai-mono); font-size: 10px; font-weight: 700; }
+.ai-lab-content .mt-type.prefix { background: rgba(41,151,255,.12); color: #2997ff; }
+.ai-lab-content .mt-type.suffix { background: rgba(255,159,10,.12); color: #ff9f0a; }
+.ai-lab-content .mt-type.confix { background: rgba(168,85,247,.12); color: #a855f7; }
+.ai-lab-content .mt-type.infix { background: rgba(34,197,94,.12); color: #22c55e; }
+.ai-lab-content .stem-steps { display: flex; flex-direction: column; border: 1px solid var(--ai-border-s); border-radius: var(--ai-r); overflow: hidden; }
+.ai-lab-content .ss-step { display: flex; gap: 14px; padding: 16px; border-bottom: 1px solid var(--ai-border-s); align-items: flex-start; }
+.ai-lab-content .ss-step:last-child, .ai-lab-content .ss-step.result { border-bottom: none; }
+.ai-lab-content .ss-step.result { background: rgba(34,197,94,.06); }
+.ai-lab-content .ss-num { width: 24px; height: 24px; border-radius: 50%; background: var(--ai-accent); color: #fff; font-family: var(--ai-mono); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ai-lab-content .ss-step.result .ss-num { background: #34c759; }
+.ai-lab-content .ss-content { flex: 1; }
+.ai-lab-content .ss-label { font-size: 12px; font-weight: 500; color: var(--ai-text); margin-bottom: 6px; }
+.ai-lab-content .ss-word { font-family: var(--ai-mono); font-size: 16px; margin-bottom: 4px; display: flex; align-items: center; gap: 0; }
+.ai-lab-content .sw-full { color: var(--ai-text); font-weight: 700; }
+.ai-lab-content .sw-removed { color: #ef4444; text-decoration: line-through; opacity: .7; font-size: 13px; }
+.ai-lab-content .sw-result { color: #22c55e; font-weight: 700; font-size: 18px; }
+.ai-lab-content .ss-action { font-size: 11px; color: var(--ai-text3); font-family: var(--ai-mono); }
+.ai-lab-content .stem-input-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.ai-lab-content .stem-single-input { flex: 1; background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); color: var(--ai-text); font-family: var(--ai-font); font-size: 14px; padding: 8px 14px; outline: none; }
+.ai-lab-content .stem-single-input:focus { border-color: var(--ai-accent); }
+.ai-lab-content .stem-result-visual { font-family: var(--ai-mono); font-size: 14px; padding: 10px; }
+.ai-lab-content .stem-batch-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--ai-border-s); }
+@media (max-width: 700px) { .ai-lab-content .stopword-categories { grid-template-columns: 1fr; } .ai-lab-content .stem-input-row { flex-direction: column; } }
 </style>
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
