@@ -710,7 +710,7 @@ async function initPyodide(){
     if(st){st.textContent='❌ Python failed';st.className='py-status error';}
   }
 }
-initPyodide();
+if (typeof loadPyodide !== "undefined") { initPyodide(); }
 
 async function runCode(code,outPre,checkEl,checkFn){
   if(!MORPH_pyodideInstance){if(outPre){outPre.textContent='Python runtime not ready…';outPre.closest('.output-wrap').style.display='block';}return;}

@@ -170,7 +170,7 @@ async function initPyodide() {
   }
 }
 document.querySelectorAll('.run-btn').forEach(b => { b.disabled = true; b.title = 'Loading Python runtime...'; });
-initPyodide();
+if (typeof loadPyodide !== "undefined") { initPyodide(); }
 
 /* ── 10. Run code ────────────────────────────────────────────── */
 window.runChallenge = async function(editorId, outputWrapId, checkId) {

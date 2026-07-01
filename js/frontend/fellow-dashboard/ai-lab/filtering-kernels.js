@@ -678,7 +678,7 @@ async function initPyodide() {
     console.error('Pyodide failed:', err);
   }
 }
-initPyodide();
+if (typeof loadPyodide !== "undefined") { initPyodide(); }
 
 async function runCode(code, outPre, checkEl, checkFn) {
   if (!pyodideInstance) {

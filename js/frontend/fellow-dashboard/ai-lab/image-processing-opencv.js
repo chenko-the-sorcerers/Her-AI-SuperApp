@@ -387,7 +387,7 @@ async function initPyodide() {
     console.error('Pyodide failed:', err);
   }
 }
-initPyodide();
+if (typeof loadPyodide !== "undefined") { initPyodide(); }
 
 async function runCode(code, outPre, checkEl, checkFn) {
   if (!OPENCV_pyodideInstance) { if (outPre) { outPre.textContent = 'Python runtime not ready yet…'; outPre.closest('.output-wrap').style.display = 'block'; } return; }
