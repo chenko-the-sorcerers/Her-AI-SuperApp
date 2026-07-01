@@ -59,7 +59,7 @@ function buildIdfScaleDemo() {
   const words = [
     { word: '"dan" (stop word)',    df: 1000, color: '#ef4444' },
     { word: '"jakarta"',            df: 420,  color: '#ff9f0a' },
-    { word: '"startup"',            df: 85,   color: '#2997ff' },
+    { word: '"startup"',            df: 85,   color: '#f63392' },
     { word: '"unicorn"',            df: 12,   color: '#30d158' },
     { word: '"korupsi" (langka)',   df: 3,    color: '#bf5af2' },
   ];
@@ -96,7 +96,7 @@ function buildTfidfWordDemo() {
   const words = [
     { word: '"dan"',     tf: 0.18, idf: 0.001, color: '#ef4444' },
     { word: '"indonesia"', tf: 0.06, idf: 1.8,  color: '#ff9f0a' },
-    { word: '"startup"', tf: 0.09, idf: 3.2,  color: '#2997ff' },
+    { word: '"startup"', tf: 0.09, idf: 3.2,  color: '#f63392' },
   ];
 
   // Header
@@ -134,7 +134,7 @@ function buildTfidfWordDemo() {
    INTERACTIVE PLAYGROUND
    ══════════════════════════════════════════════════════════════ */
 
-const TFIDF_DOC_COLORS = ['#2997ff','#30d158','#bf5af2','#ff9f0a','#ff6b6b','#00c7be'];
+const TFIDF_DOC_COLORS = ['#f63392','#30d158','#bf5af2','#ff9f0a','#ff6b6b','#00c7be'];
 const TFIDF_DOC_NAMES  = ['D1','D2','D3','D4','D5','D6'];
 
 const TFIDF_DEFAULT_DOCS = [
@@ -295,7 +295,7 @@ function runSearch() {
     qa.innerHTML = `
       <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);margin-bottom:6px;">Token query setelah preprocessing:</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px;">
-        ${qTerms.map(([w, s]) => `<span style="padding:3px 10px;border-radius:6px;background:rgba(41,151,255,.12);border:1px solid rgba(41,151,255,.3);color:#2997ff;font-family:var(--font-mono);font-size:11px;">${w}<span style="opacity:.6;margin-left:4px;">${s.toFixed(3)}</span></span>`).join('')}
+        ${qTerms.map(([w, s]) => `<span style="padding:3px 10px;border-radius:6px;background:rgba(246,51,146,.12);border:1px solid rgba(246,51,146,.3);color:#f63392;font-family:var(--font-mono);font-size:11px;">${w}<span style="opacity:.6;margin-left:4px;">${s.toFixed(3)}</span></span>`).join('')}
         ${qTerms.length === 0 ? '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Tidak ada token tersisa setelah stopword removal</span>' : ''}
       </div>
     `;
