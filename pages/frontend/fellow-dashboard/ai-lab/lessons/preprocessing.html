@@ -162,6 +162,11 @@
 .ai-lab-content .stem-result-visual { font-family: var(--ai-mono); font-size: 14px; padding: 10px; }
 .ai-lab-content .stem-batch-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--ai-border-s); }
 @media (max-width: 700px) { .ai-lab-content .stopword-categories { grid-template-columns: 1fr; } .ai-lab-content .stem-input-row { flex-direction: column; } }
+.ai-lab-content .stem-out { font-family: var(--ai-mono); color: var(--ai-text2); }
+.ai-lab-content .stem-out.wrong { color: #ef4444; text-decoration: line-through; opacity: .7; }
+.ai-lab-content .lemma-out { font-family: var(--ai-mono); color: #22c55e; font-weight: 700; }
+.ai-lab-content .same { color: #22c55e; font-size: 12px; }
+.ai-lab-content .diff { color: #f59e0b; font-size: 12px; }
 </style>
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
@@ -869,7 +874,7 @@
 
         <!-- Stemming vs Lemma comparison -->
         <div class="worked-box">
-          <div class="wb-badge">⚡ Stemming vs Lemmatization — Perbandingan Eksak</div>
+          <div class="wb-badge"><i class="fas fa-bolt"></i> Stemming vs Lemmatization — Perbandingan Eksak</div>
           <div class="wb-title">Kasus di mana hasilnya berbeda signifikan</div>
           <div class="comparison-table-wrap">
             <table class="comparison-table">
@@ -917,7 +922,7 @@
             </table>
           </div>
           <div class="insight-callout" style="margin-top:14px;">
-            <div class="ic-icon">⚡</div>
+            <div class="ic-icon"><i class="fas fa-bolt"></i></div>
             <div class="ic-body">
               <strong>Stemming lebih cepat</strong> (rule-based, O(n)) tapi less accurate.
               <strong>Lemmatization lebih akurat</strong> (dictionary lookup, O(n log n)) tapi lambat.
