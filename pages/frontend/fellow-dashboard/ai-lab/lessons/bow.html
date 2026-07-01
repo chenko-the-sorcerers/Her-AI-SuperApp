@@ -1,22 +1,22 @@
 <section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
 <style>
 .ai-lab-content .bow-demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
-.ai-lab-content .bow-doc-card{background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:var(--ai-r);padding:14px;overflow:hidden}
+.ai-lab-content .bow-doc-card{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r);padding:14px;overflow:hidden}
 .ai-lab-content .bdc-title{font-family:var(--ai-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ai-accent);margin-bottom:8px}
 .ai-lab-content .bdc-sentence{font-size:12px;color:var(--ai-text);margin-bottom:10px;line-height:1.5}
 .ai-lab-content .bdc-words{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-.ai-lab-content .bdc-word{background:var(--ai-bg);border:1px solid var(--ai-border-s);border-radius:4px;padding:4px 6px;text-align:center;font-family:var(--ai-mono);font-size:10px}
+.ai-lab-content .bdc-word{background:var(--ai-bg);border:2px solid var(--ai-border-s);border-radius:4px;padding:4px 6px;text-align:center;font-family:var(--ai-mono);font-size:10px}
 .ai-lab-content .bdc-word.has-word{background:rgba(246,51,146,.12);border-color:rgba(246,51,146,.3);color:#f63392;font-weight:700}
 .ai-lab-content .bdc-word.no-word{background:var(--ai-bg);color:var(--ai-text3);opacity:.5}
 .ai-lab-content .doc-term-table{overflow-x:auto;margin:14px 0}
 .ai-lab-content .doc-term-table table{width:100%;border-collapse:collapse;font-family:var(--ai-mono);font-size:11px}
-.ai-lab-content .doc-term-table th{background:var(--ai-bg);border:1px solid var(--ai-border-s);padding:6px 8px;text-align:center;font-size:10px;color:var(--ai-text3)}
-.ai-lab-content .doc-term-table td{background:var(--ai-card);border:1px solid var(--ai-border-s);padding:6px 8px;text-align:center;color:var(--ai-text2)}
+.ai-lab-content .doc-term-table th{background:var(--ai-bg);border:2px solid var(--ai-border-s);padding:6px 10px;text-align:center;font-size:10px;color:var(--ai-text3)}
+.ai-lab-content .doc-term-table td{background:var(--ai-card);border:2px solid var(--ai-border-s);padding:6px 10px;text-align:center;color:var(--ai-text2);font-size:12px}
 .ai-lab-content .doc-term-table td.cell-on{background:rgba(246,51,146,.15);color:#f63392;font-weight:700;border:1px solid rgba(246,51,146,.3)}
 .ai-lab-content .doc-term-table td.cell-off{color:var(--ai-text3);opacity:.4}
-.ai-lab-content .sparse-viz{display:grid;gap:2px;margin:14px 0;background:rgba(246,51,146,.06);border:1px solid var(--fellow-line);border-radius:var(--ai-r-sm);overflow:hidden;padding:2px}
-.ai-lab-content .sparse-viz .sv-cell{aspect-ratio:1;background:var(--ai-bg);border:1px solid rgba(142,145,160,.08);border-radius:2px;min-width:8px;min-height:8px}
-.ai-lab-content .sparse-viz .sv-cell.filled{background:rgba(246,51,146,.35);border:1px solid rgba(246,51,146,.5);box-shadow:0 0 3px rgba(246,51,146,.15)}
+.ai-lab-content .sparse-viz{display:grid;gap:3px;margin:14px 0;background:rgba(246,51,146,.08);border:2px solid var(--fellow-line);border-radius:var(--ai-r-sm);overflow:hidden;padding:3px}
+.ai-lab-content .sparse-viz .sv-cell{aspect-ratio:1;background:var(--ai-bg);border:2px solid rgba(142,145,160,.25);border-radius:3px;min-width:10px;min-height:10px}
+.ai-lab-content .sparse-viz .sv-cell.filled{background:rgba(246,51,146,.45);border:2px solid rgba(246,51,146,.6);box-shadow:0 0 4px rgba(246,51,146,.2)}
 .ai-lab-content .cosine-calc-chain{display:flex;flex-direction:column;gap:0}
 .ai-lab-content .ccc-step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--ai-border-s);align-items:flex-start}
 .ai-lab-content .ccc-step:last-child{border-bottom:none}
@@ -31,32 +31,32 @@
 .ai-lab-content .sim-bar-fill{height:100%;border-radius:5px;background:var(--ai-accent);min-width:4px;transition:width .4s}
  .ai-lab-content .sim-bar-val{font-family:var(--ai-mono);font-size:12px;font-weight:700;color:var(--ai-accent);width:40px}
  .ai-lab-content .sim-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
- .ai-lab-content .sim-card{background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:16px;text-align:center;display:flex;flex-direction:column;gap:6px}
+ .ai-lab-content .sim-card{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:16px;text-align:center;display:flex;flex-direction:column;gap:6px}
  .ai-lab-content .sim-pair{font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);text-transform:uppercase;letter-spacing:.04em}
  .ai-lab-content .sim-score{font-family:"Plus Jakarta Sans",sans-serif;font-size:28px;font-weight:800}
  .ai-lab-content .sim-interp{font-size:11px;color:var(--ai-text3);line-height:1.4}
  .ai-lab-content .sim-card .sim-bar{width:100%;height:6px;background:var(--ai-bg);border-radius:3px;overflow:hidden;margin-top:4px}
  .ai-lab-content .sim-card .sim-bar-fill{height:100%;border-radius:3px}
- .ai-lab-content .bow-explorer{background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:var(--ai-r);padding:16px;margin:16px 0}
+ .ai-lab-content .bow-explorer{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r);padding:16px;margin:16px 0}
  .ai-lab-content .bow-explorer .exp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
  .ai-lab-content .bow-explorer .exp-doc-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
  .ai-lab-content .bow-explorer .exp-doc-label{font-family:var(--ai-mono);font-size:10px;font-weight:700;color:var(--ai-accent);width:24px;flex-shrink:0;padding-top:8px}
- .ai-lab-content .bow-explorer textarea{flex:1;min-height:50px;background:var(--ai-bg);border:1px solid var(--ai-border-s);border-radius:var(--ai-r-sm);color:var(--ai-text);font-family:var(--ai-font);font-size:12px;padding:8px 12px;resize:vertical;outline:none}
+ .ai-lab-content .bow-explorer textarea{flex:1;min-height:50px;background:var(--ai-bg);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);color:var(--ai-text);font-family:var(--ai-font);font-size:12px;padding:8px 12px;resize:vertical;outline:none}
  .ai-lab-content .bow-explorer textarea:focus{border-color:var(--ai-accent)}
  .ai-lab-content .bow-explorer .exp-actions{display:flex;gap:8px;margin:10px 0}
- .ai-lab-content .bow-explorer .exp-btn{font-size:12px;font-family:var(--ai-mono);padding:8px 16px;border-radius:var(--ai-r-sm);cursor:pointer;border:1px solid var(--ai-border-s);background:var(--ai-bg);color:var(--ai-text2)}
+ .ai-lab-content .bow-explorer .exp-btn{font-size:12px;font-family:var(--ai-mono);padding:8px 16px;border-radius:var(--ai-r-sm);cursor:pointer;border:2px solid var(--ai-border-s);background:var(--ai-bg);color:var(--ai-text2)}
  .ai-lab-content .bow-explorer .exp-btn.primary{background:var(--ai-accent);color:#fff;border-color:var(--ai-accent)}
  .ai-lab-content .bow-explorer .exp-btn:hover{opacity:.85}
  .ai-lab-content .bow-explorer .exp-stats{font-size:11px;color:var(--ai-text3);font-family:var(--ai-mono);margin:8px 0}
  .ai-lab-content .bow-explorer .exp-tabs{display:flex;gap:4px;margin:10px 0}
- .ai-lab-content .bow-explorer .exp-tab{font-size:11px;font-family:var(--ai-mono);padding:6px 12px;border-radius:20px;cursor:pointer;background:var(--ai-bg);border:1px solid var(--ai-border-s);color:var(--ai-text2)}
+ .ai-lab-content .bow-explorer .exp-tab{font-size:11px;font-family:var(--ai-mono);padding:6px 12px;border-radius:20px;cursor:pointer;background:var(--ai-bg);border:2px solid var(--ai-border-s);color:var(--ai-text2)}
  .ai-lab-content .bow-explorer .exp-tab.active{background:var(--ai-accent);color:#fff;border-color:var(--ai-accent)}
- .ai-lab-content .bow-explorer .exp-output{background:var(--ai-bg);border:1px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:14px;min-height:60px;margin-top:8px}
+ .ai-lab-content .bow-explorer .exp-output{background:var(--ai-bg);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:14px;min-height:60px;margin-top:8px}
  .ai-lab-content .bow-explorer .exp-query{display:flex;gap:8px;margin-top:8px}
- .ai-lab-content .bow-explorer .exp-query input{flex:1;background:var(--ai-bg);border:1px solid var(--ai-border-s);border-radius:var(--ai-r-sm);color:var(--ai-text);font-family:var(--ai-font);font-size:13px;padding:8px 12px;outline:none}
+ .ai-lab-content .bow-explorer .exp-query input{flex:1;background:var(--ai-bg);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);color:var(--ai-text);font-family:var(--ai-font);font-size:13px;padding:8px 12px;outline:none}
  .ai-lab-content .bow-explorer .exp-query input:focus{border-color:var(--ai-accent)}
  .ai-lab-content .cmp-card{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
- .ai-lab-content .cmp-card>div{background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:18px}
+ .ai-lab-content .cmp-card>div{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:18px}
  .ai-lab-content .cmp-card>div:first-child{border-top:3px solid #22c55e}
  .ai-lab-content .cmp-card>div:last-child{border-top:3px solid #ef4444}
  .ai-lab-content .cmp-head{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:700;color:var(--ai-text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
@@ -69,27 +69,27 @@
  .ai-lab-content .cmp-badge{font-family:var(--ai-mono);font-size:9px;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:4px;font-weight:700}
  .ai-lab-content .cmp-badge.good{background:rgba(34,197,94,.12);color:#22c55e}
  .ai-lab-content .cmp-badge.bad{background:rgba(239,68,68,.12);color:#ef4444}
- .ai-lab-content .bow-vector-demo{background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:var(--ai-r);padding:16px;margin:16px 0}
- .ai-lab-content .bow-vector-demo textarea{width:100%;min-height:50px;background:var(--ai-bg);border:1px solid var(--ai-border-s);border-radius:var(--ai-r-sm);color:var(--ai-text);font-family:var(--ai-font);font-size:12px;padding:8px 12px;resize:vertical;outline:none;margin-bottom:10px}
+ .ai-lab-content .bow-vector-demo{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r);padding:16px;margin:16px 0}
+ .ai-lab-content .bow-vector-demo textarea{width:100%;min-height:50px;background:var(--ai-bg);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);color:var(--ai-text);font-family:var(--ai-font);font-size:12px;padding:8px 12px;resize:vertical;outline:none;margin-bottom:10px}
  .ai-lab-content .bow-vector-demo textarea:focus{border-color:var(--ai-accent)}
- .ai-lab-content .bow-vector-demo button{font-size:12px;font-family:var(--ai-mono);padding:8px 16px;border-radius:var(--ai-r-sm);cursor:pointer;border:1px solid var(--ai-border-s);background:var(--ai-bg);color:var(--ai-text2);margin-right:8px}
+ .ai-lab-content .bow-vector-demo button{font-size:12px;font-family:var(--ai-mono);padding:8px 16px;border-radius:var(--ai-r-sm);cursor:pointer;border:2px solid var(--ai-border-s);background:var(--ai-bg);color:var(--ai-text2);margin-right:8px}
  .ai-lab-content .bow-vector-demo button.primary{background:var(--ai-accent);color:#fff;border-color:var(--ai-accent)}
  .ai-lab-content .bow-vector-demo button:hover{opacity:.85}
- .ai-lab-content .bow-vector-demo .bow-output{background:var(--ai-bg);border:1px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:14px;min-height:50px;margin-top:10px}
- .ai-lab-content .bvd-doc{background:var(--ai-bg);border:1px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:12px;margin-bottom:8px}
+ .ai-lab-content .bow-vector-demo .bow-output{background:var(--ai-bg);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:14px;min-height:50px;margin-top:10px}
+ .ai-lab-content .bvd-doc{background:var(--ai-bg);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:12px;margin-bottom:8px}
  .ai-lab-content .bvd-doc-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
  .ai-lab-content .bvd-dot{width:8px;height:8px;border-radius:50%}
  .ai-lab-content .bvd-label{font-family:var(--ai-mono);font-size:10px;color:var(--ai-text3);text-transform:uppercase;letter-spacing:.06em}
  .ai-lab-content .bvd-sentence{font-size:12px;color:var(--ai-text2);margin-bottom:6px}
  .ai-lab-content .bvd-vector{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
- .ai-lab-content .bvd-cell{background:var(--ai-bg2);border:1px solid var(--ai-border-s);border-radius:2px;padding:3px;text-align:center;font-family:var(--ai-mono);font-size:8px;color:var(--ai-text3)}
+ .ai-lab-content .bvd-cell{background:var(--ai-bg2);border:2px solid var(--ai-border-s);border-radius:2px;padding:3px;text-align:center;font-family:var(--ai-mono);font-size:8px;color:var(--ai-text3)}
  .ai-lab-content .bvd-cell.active{background:rgba(246,51,146,.25);border-color:rgba(246,51,146,.5);box-shadow:0 0 4px rgba(246,51,146,.2)}
  .ai-lab-content .bvd-word{display:block;color:var(--ai-text2)}
  .ai-lab-content .bvd-count{display:block;font-weight:700}
- .ai-lab-content .vocab-chip{display:inline-flex;align-items:center;gap:4px;background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:6px;padding:3px 8px;margin:2px;font-family:var(--ai-mono);font-size:10px;color:var(--ai-text2)}
+ .ai-lab-content .vocab-chip{display:inline-flex;align-items:center;gap:4px;background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:6px;padding:3px 8px;margin:2px;font-family:var(--ai-mono);font-size:10px;color:var(--ai-text2)}
  .ai-lab-content .vocab-chip-count{font-weight:700;color:var(--ai-accent)}
  .ai-lab-content .pros-cons-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
-.ai-lab-content .pc-card{background:var(--ai-card);border:1px solid var(--ai-border-s);border-radius:var(--ai-r);padding:16px}
+.ai-lab-content .pc-card{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r);padding:16px}
 .ai-lab-content .pc-card.pro-card{border-top:3px solid #22c55e}
 .ai-lab-content .pc-card.con-card{border-top:3px solid #ef4444}
 .ai-lab-content .pc-card ul{list-style:none;padding:0;margin:0}
@@ -289,54 +289,54 @@
                   <table style="border-collapse:collapse;font-family:var(--ai-mono);font-size:11px;min-width:480px;">
                     <thead>
                       <tr>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:left;">Dok</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">belanja</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">gojek</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">indonesia</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">jakarta</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">ojek</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">online</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">shopee</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">startup</th>
-                        <th style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);">tokopedia</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:left;">Dok</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">belanja</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">gojek</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">indonesia</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">jakarta</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">ojek</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">online</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">shopee</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">startup</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">tokopedia</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:600;">D1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:600;">D1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
                       </tr>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:600;">D2</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:600;">D2</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
                       </tr>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:600;">D3</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:600;">D3</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
                       </tr>
                     </tbody>
                   </table>
@@ -384,7 +384,7 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
           </div>
           <div id="sparseVisual" style="overflow-x:auto;"></div>
           <div style="margin-top:8px;font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">
-            ↑ Simulasi 20 dokumen × 60 kata. Hijau = ada nilai. Gelap = nol. Representasi sebenarnya jauh lebih sparse dari ini.
+            ↑ Simulasi 20 dokumen × 60 kata. Merah = ada nilai. Putih = nol. Representasi sebenarnya jauh lebih sparse dari ini.
           </div>
         </div>
 

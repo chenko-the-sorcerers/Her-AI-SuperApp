@@ -129,24 +129,25 @@ function buildSparseVisual() {
   const DENSITY = 0.08; // ~8% non-zero
 
   const grid = document.createElement('div');
-  grid.style.cssText = `display:grid;grid-template-columns:repeat(${COLS},18px);gap:2px;`;
+  grid.style.cssText = `display:grid;grid-template-columns:repeat(${COLS},18px);gap:2px;padding:2px;background:rgba(246,51,146,.06);border:2px solid rgba(244,143,188,.26);border-radius:8px;`;
 
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
       const cell = document.createElement('div');
-      cell.style.cssText = 'width:18px;height:14px;border-radius:2px;transition:all .2s;cursor:default;';
+      cell.style.cssText = 'width:18px;height:14px;border-radius:3px;transition:all .2s;cursor:default;';
       const rand = Math.random();
       if (rand < DENSITY * 0.3) {
-        cell.style.background = 'rgba(48,209,88,.35)';
-        cell.style.border = '1px solid rgba(48,209,88,.5)';
+        cell.style.background = 'rgba(246,51,146,.45)';
+        cell.style.border = '2px solid rgba(246,51,146,.6)';
+        cell.style.boxShadow = '0 0 4px rgba(246,51,146,.2)';
         cell.title = `Doc ${r+1} × Word ${c+1} = 2`;
       } else if (rand < DENSITY) {
-        cell.style.background = 'rgba(48,209,88,.18)';
-        cell.style.border = '1px solid rgba(48,209,88,.3)';
+        cell.style.background = 'rgba(246,51,146,.22)';
+        cell.style.border = '2px solid rgba(246,51,146,.35)';
         cell.title = `Doc ${r+1} × Word ${c+1} = 1`;
       } else {
-        cell.style.background = 'rgba(255,255,255,.03)';
-        cell.style.border = '1px solid rgba(255,255,255,.04)';
+        cell.style.background = '#fff7fb';
+        cell.style.border = '2px solid rgba(142,145,160,.2)';
         cell.title = `Doc ${r+1} × Word ${c+1} = 0`;
       }
       cell.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.5)'; this.style.zIndex = '5'; });
