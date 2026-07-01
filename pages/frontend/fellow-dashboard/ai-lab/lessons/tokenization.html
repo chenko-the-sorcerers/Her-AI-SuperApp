@@ -188,31 +188,59 @@
     <div class="strategy-grid">
         <div class="strategy-card">
             <div class="sc-header">
-                <span class="sc-icon word"><i class="fas fa-font"></i></span>
-                <div><div class="sc-title">Berbasis Kata</div></div>
+                <span class="sc-icon"><i class="fas fa-font"></i></span>
+                <div>
+                    <div class="sc-name">Berbasis Kata</div>
+                    <div class="sc-level">Word-level</div>
+                </div>
             </div>
             <p class="sc-desc">Pisahkan berdasarkan spasi dan tanda baca. Paling intuitif — satu kata = satu token. Tapi vocab sangat besar dan tidak bisa menangani kata di luar daftar (OOV).</p>
+            <div class="sc-pros-cons">
+                <ul class="sc-pros"><li>Intuitif</li><li>Cepat</li></ul>
+                <ul class="sc-cons"><li>OOV tinggi</li><li>Vocab besar</li></ul>
+            </div>
         </div>
         <div class="strategy-card">
             <div class="sc-header">
-                <span class="sc-icon sub"><i class="fas fa-microscope"></i></span>
-                <div><div class="sc-title">Subkata (BPE / WordPiece)</div></div>
+                <span class="sc-icon"><i class="fas fa-microscope"></i></span>
+                <div>
+                    <div class="sc-name">Subkata</div>
+                    <div class="sc-level">Subword (BPE / WordPiece)</div>
+                </div>
             </div>
             <p class="sc-desc">Kata langka dipecah menjadi subunit yang lebih sering muncul. Kata umum tetap utuh. Standar industri — dipakai BERT, GPT, dan hampir semua LLM modern.</p>
+            <div class="sc-pros-cons">
+                <ul class="sc-pros"><li>Vocab efisien</li><li>Minim OOV</li></ul>
+                <ul class="sc-cons"><li>Kurang intuitif</li><li>Sekuens lebih panjang</li></ul>
+            </div>
         </div>
         <div class="strategy-card">
             <div class="sc-header">
-                <span class="sc-icon char"><i class="fas fa-text-height"></i></span>
-                <div><div class="sc-title">Karakter</div></div>
+                <span class="sc-icon"><i class="fas fa-text-height"></i></span>
+                <div>
+                    <div class="sc-name">Karakter</div>
+                    <div class="sc-level">Character-level</div>
+                </div>
             </div>
             <p class="sc-desc">Setiap karakter adalah token. Vocab sangat kecil (26+ huruf), nol OOV. Tapi sekuens sangat panjang dan hubungan semantik jauh lebih sulit dipelajari model.</p>
+            <div class="sc-pros-cons">
+                <ul class="sc-pros"><li>Nol OOV</li><li>Vocab minimal</li></ul>
+                <ul class="sc-cons"><li>Sekuens panjang</li><li>Komputasi mahal</li></ul>
+            </div>
         </div>
         <div class="strategy-card">
             <div class="sc-header">
-                <span class="sc-icon morph"><i class="fas fa-pen-to-square"></i></span>
-                <div><div class="sc-title">Kalimat</div></div>
+                <span class="sc-icon"><i class="fas fa-pen-to-square"></i></span>
+                <div>
+                    <div class="sc-name">Kalimat</div>
+                    <div class="sc-level">Sentence-level</div>
+                </div>
             </div>
             <p class="sc-desc">Pisahkan berdasarkan batas kalimat (titik, tanda seru, tanya). Berguna untuk analisis diskursus, terjemahan paragraf, dan chunking dokumen untuk RAG pipeline.</p>
+            <div class="sc-pros-cons">
+                <ul class="sc-pros"><li>Konteks penuh</li><li>Ideal RAG</li></ul>
+                <ul class="sc-cons"><li>Granular rendah</li><li>Batas ambigu</li></ul>
+            </div>
         </div>
     </div>
     <div class="worked-box">
