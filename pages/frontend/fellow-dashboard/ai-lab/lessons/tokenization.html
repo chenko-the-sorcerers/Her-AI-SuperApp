@@ -43,10 +43,37 @@
                             <span><i class="far fa-clock"></i> 45 menit</span>
                             <span><i class="fas fa-language"></i> NLP · Text Fundamentals</span>
                             <b><i class="fas fa-flask"></i> Interaktif</b>
-                        </div>
-                    </div>
-                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow belajar tokenisasi">
-                </section>
+        </div>
+    </div>
+
+    <div class="three-props">
+        <div class="prop-card">
+            <div class="prop-num">BPE</div>
+            <div class="prop-title">Byte Pair Encoding</div>
+            <div class="prop-desc">Merge berdasarkan frekuensi pasangan. Dipakai GPT-2, GPT-4, RoBERTa. Tidak butuh pre-tokenisasi bahasa spesifik.</div>
+            <div class="prop-note"><i class="fas fa-circle-check"></i> GPT, RoBERTa</div>
+        </div>
+        <div class="prop-card">
+            <div class="prop-num">WP</div>
+            <div class="prop-title">WordPiece</div>
+            <div class="prop-desc">Merge berdasarkan likelihood, bukan frekuensi. Token lanjutan ditandai dengan <code style="color:#bf5af2">##</code>. Dipakai BERT dan IndoBERT.</div>
+            <div class="prop-note"><i class="fas fa-circle-check"></i> BERT, IndoBERT</div>
+        </div>
+        <div class="prop-card">
+            <div class="prop-num">SP</div>
+            <div class="prop-title">SentencePiece</div>
+            <div class="prop-desc">Bekerja langsung dari teks mentah tanpa pre-tokenisasi. Gunakan <code style="color:#bf5af2">&#9633;</code> untuk tanda awal kata. Ideal untuk bahasa non-Latin.</div>
+            <div class="prop-note"><i class="fas fa-circle-check"></i> T5, mBERT, XLM-R</div>
+        </div>
+    </div>
+
+    <div class="insight-callout">
+        <div class="ic-icon"><i class="fas fa-key"></i></div>
+        <div class="ic-body">
+            <strong>Aturan praktis:</strong> Untuk Bahasa Indonesia, IndoBERT (WordPiece, 32K) adalah pilihan terbaik untuk teks formal. Untuk konten media sosial atau multilingual, XLM-R (SentencePiece, 250K) lebih kuat karena vocab yang jauh lebih besar memberikan coverage yang lebih luas termasuk slang dan campuran bahasa.
+        </div>
+    </div>
+</section>
                 <section class="lesson-material-panel">
                     <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
                         <a href="#/participant-ai-lab-tokenization" class="active"><i class="fas fa-book-open"></i> Materi</a>
