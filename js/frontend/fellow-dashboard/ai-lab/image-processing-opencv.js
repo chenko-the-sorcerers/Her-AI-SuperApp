@@ -512,17 +512,17 @@ var OPENCV_quizData = [
   }
 ];
 
-var OPENCV_quizScore = 0;
+var OPENCV_OPENCV_quizScore = 0;
 var OPENCV_quizAnswered = {};
 
 function initOpencvQuiz() {
   const container = document.getElementById('quizContainer');
   if (!container) return;
-  quizData.forEach((q, qi) => {
+  OPENCV_quizData.forEach((q, qi) => {
     const div = document.createElement('div');
     div.className = 'quiz-item';
     div.innerHTML = `
-      <div class="quiz-q-num">Question ${qi+1} of ${quizData.length}</div>
+      <div class="quiz-q-num">Question ${qi+1} of ${OPENCV_quizData.length}</div>
       <div class="quiz-q-text">${q.q}</div>
       <div class="quiz-opts">
         ${q.opts.map((o, oi) => `
@@ -538,15 +538,15 @@ function initOpencvQuiz() {
 }
 
 window.answerQuiz = function(qi, oi) {
-  if (quizAnswered[qi]) return;
-  quizAnswered[qi] = true;
-  const q   = quizData[qi];
+  if (OPENCV_quizAnswered[qi]) return;
+  OPENCV_quizAnswered[qi] = true;
+  const q   = OPENCV_quizData[qi];
   const fb  = document.getElementById(`qfb-${qi}`);
   const all = document.querySelectorAll(`[id^="qopt-${qi}-"]`);
 
   all.forEach(btn => { btn.disabled = true; });
   const correct = oi === q.correct;
-  if (correct) quizScore++;
+  if (correct) OPENCV_quizScore++;
 
   document.getElementById(`qopt-${qi}-${oi}`).classList.add(correct ? 'correct' : 'wrong');
   document.getElementById(`qopt-${qi}-${q.correct}`).classList.add('correct');
@@ -563,8 +563,8 @@ window.answerQuiz = function(qi, oi) {
 };
 
 function OPENCV_checkFinalScore() {
-  const totalQ     = quizData.length;
-  const answered   = Object.keys(quizAnswered).length;
+  const totalQ     = OPENCV_quizData.length;
+  const answered   = Object.keys(OPENCV_quizAnswered).length;
   const cq1Done    = document.getElementById('cq-1-check')?.classList.contains('show');
   const cq2Done    = document.getElementById('cq-2-check')?.classList.contains('show');
   const cq3Done    = document.getElementById('cq-3-check')?.classList.contains('show');
@@ -575,7 +575,7 @@ function OPENCV_checkFinalScore() {
   const cq2Pass = document.getElementById('cq-2-check')?.classList.contains('pass');
   const cq3Pass = document.getElementById('cq-3-check')?.classList.contains('pass');
   const codingScore = [cq1Pass, cq2Pass, cq3Pass].filter(Boolean).length;
-  const total       = quizScore + codingScore;
+  const total       = OPENCV_quizScore + codingScore;
   const max         = totalQ + 3;
 
   const fsEl  = document.getElementById('finalScore');
@@ -586,7 +586,7 @@ function OPENCV_checkFinalScore() {
   if (fsEl) {
     fsEl.style.display = 'block';
     fsScores.innerHTML = `
-      <div class="fs-score-item"><div class="fs-score-num">${quizScore}/${totalQ}</div><div class="fs-score-lbl">Theory</div></div>
+      <div class="fs-score-item"><div class="fs-score-num">${OPENCV_quizScore}/${totalQ}</div><div class="fs-score-lbl">Theory</div></div>
       <div class="fs-score-divider"></div>
       <div class="fs-score-item"><div class="fs-score-num">${codingScore}/3</div><div class="fs-score-lbl">Coding</div></div>
       <div class="fs-score-divider"></div>

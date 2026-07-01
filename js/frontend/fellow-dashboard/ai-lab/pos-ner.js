@@ -462,12 +462,12 @@ const QUIZ_QUESTIONS = [
   },
 ];
 
-let quizAnswered = [];
+let PN_quizAnswered = [];
 let quizScoreVal = 0;
 
 function buildQuiz() {
   const container = document.getElementById('quizContainer');
-  quizAnswered = new Array(QUIZ_QUESTIONS.length).fill(false);
+  PN_quizAnswered = new Array(QUIZ_QUESTIONS.length).fill(false);
   quizScoreVal = 0;
   document.getElementById('quizScore').textContent = '0';
   document.getElementById('quizTotal').textContent = QUIZ_QUESTIONS.length;
@@ -488,8 +488,8 @@ function buildQuiz() {
 }
 
 window.answerQuiz = function(qi, opt, btn) {
-  if (quizAnswered[qi]) return;
-  quizAnswered[qi] = true;
+  if (PN_quizAnswered[qi]) return;
+  PN_quizAnswered[qi] = true;
   const q = QUIZ_QUESTIONS[qi];
   const isCorrect = opt === q.answer;
   if (isCorrect) quizScoreVal++;
@@ -510,7 +510,7 @@ window.answerQuiz = function(qi, opt, btn) {
   fb.textContent = isCorrect ? `<i class="fas fa-circle-check"></i> Benar! ${q.explain}` : `<i class="fas fa-circle-xmark"></i> Salah. Jawaban: ${q.answer}. ${q.explain}`;
 
   // Check if all done
-  if (quizAnswered.every(Boolean)) {
+  if (PN_quizAnswered.every(Boolean)) {
     setTimeout(() => {
       const fin = document.getElementById('quiz-finish');
       fin.style.display='block';
