@@ -1033,7 +1033,38 @@
   display: flex; gap: 8px; margin-top: 10px;
 }
 
+
+/* ── Lesson Hero (overview pages) ───────────────── */
+.ai-lab-overview .lesson-hero {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; padding: 32px 0 24px; border-bottom: 1px solid var(--fellow-line);
+}
+.ai-lab-overview .lesson-hero-copy { flex: 1; min-width: 0; }
+.ai-lab-overview .lesson-hero h1 {
+  font-size: 2rem; font-weight: 900; color: #171827; margin: 0 0 8px;
+  letter-spacing: -.01em; line-height: 1.15;
+}
+.ai-lab-overview .lesson-hero h1 span { color: #f63392; }
+.ai-lab-overview .lesson-hero p {
+  font-size: .92rem; color: #6f7282; margin: 0 0 14px; max-width: 520px; line-height: 1.65;
+}
+.ai-lab-overview .lesson-meta-row {
+  display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+}
+.ai-lab-overview .lesson-meta-row span,
+.ai-lab-overview .lesson-meta-row b {
+  font-size: .78rem; color: #8e91a0; font-weight: 600;
+  display: flex; align-items: center; gap: 5px;
+}
+.ai-lab-overview .lesson-meta-row span i,
+.ai-lab-overview .lesson-meta-row b i { color: #f63392; font-size: .75rem; }
+.ai-lab-overview .lesson-hero img {
+  height: 160px; width: auto; object-fit: contain; flex-shrink: 0;
+  border-radius: 16px; filter: drop-shadow(0 8px 24px rgba(246,51,146,.12));
+}
+
 /* ── Progress bar ────────────────────────────────── */
+
 .ai-overview-progress {
   height: 2px; background: rgba(246,51,146,.06);
 }
