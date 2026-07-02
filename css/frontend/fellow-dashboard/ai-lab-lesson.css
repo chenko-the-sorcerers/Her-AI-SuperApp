@@ -8631,3 +8631,41 @@
     padding: 24px;
   }
 }
+
+/* ML topbar reset: keep reference-site topbar CSS from leaking into HerAI layout */
+.ml-lesson-page .lesson-topbar {
+  position: static;
+  top: auto;
+  z-index: auto;
+  height: auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0 0 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.ml-overview .lesson-topbar {
+  position: relative;
+  top: auto;
+  z-index: auto;
+  height: auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 20px 0 16px;
+  border: 0;
+  border-bottom: 1px solid var(--fellow-line);
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
