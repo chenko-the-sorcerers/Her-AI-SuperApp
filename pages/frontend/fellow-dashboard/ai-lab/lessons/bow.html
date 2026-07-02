@@ -1,4 +1,173 @@
 <section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+<style>
+.ai-lab-content .bow-demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.ai-lab-content .bow-doc-card{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r);padding:14px;overflow:hidden}
+.ai-lab-content .bdc-title{font-family:var(--ai-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ai-accent);margin-bottom:8px}
+.ai-lab-content .bdc-sentence{font-size:12px;color:var(--ai-text);margin-bottom:10px;line-height:1.5}
+.ai-lab-content .bdc-words{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.ai-lab-content .bdc-word{background:var(--ai-bg);border:2px solid var(--ai-border-s);border-radius:4px;padding:4px 6px;text-align:center;font-family:var(--ai-mono);font-size:10px}
+.ai-lab-content .bdc-word.has-word{background:rgba(246,51,146,.12);border-color:rgba(246,51,146,.3);color:#f63392;font-weight:700}
+.ai-lab-content .bdc-word.no-word{background:var(--ai-bg);color:var(--ai-text3);opacity:.5}
+.ai-lab-content .doc-term-table{overflow-x:auto;margin:14px 0}
+.ai-lab-content .doc-term-table table{width:100%;border-collapse:collapse;font-family:var(--ai-mono);font-size:11px}
+.ai-lab-content .doc-term-table th{background:var(--ai-bg);border:2px solid var(--ai-border-s);padding:6px 10px;text-align:center;font-size:10px;color:var(--ai-text3)}
+.ai-lab-content .doc-term-table td{background:var(--ai-card);border:2px solid var(--ai-border-s);padding:6px 10px;text-align:center;color:var(--ai-text2);font-size:12px}
+.ai-lab-content .doc-term-table td.cell-on{background:rgba(246,51,146,.15);color:#f63392;font-weight:700;border:1px solid rgba(246,51,146,.3)}
+.ai-lab-content .doc-term-table td.cell-off{color:var(--ai-text3);opacity:.4}
+.ai-lab-content .sparse-viz{display:grid;gap:3px;margin:14px 0;background:rgba(246,51,146,.08);border:2px solid var(--fellow-line);border-radius:var(--ai-r-sm);overflow:hidden;padding:3px}
+.ai-lab-content .sparse-viz .sv-cell{aspect-ratio:1;background:var(--ai-bg);border:2px solid rgba(142,145,160,.25);border-radius:3px;min-width:10px;min-height:10px}
+.ai-lab-content .sparse-viz .sv-cell.filled{background:rgba(246,51,146,.45);border:2px solid rgba(246,51,146,.6);box-shadow:0 0 4px rgba(246,51,146,.2)}
+.ai-lab-content .cosine-calc-chain{display:flex;flex-direction:column;gap:0}
+.ai-lab-content .ccc-step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--ai-border-s);align-items:flex-start}
+.ai-lab-content .ccc-step:last-child{border-bottom:none}
+.ai-lab-content .ccc-num{width:24px;height:24px;border-radius:50%;background:var(--ai-accent);color:#fff;font-family:var(--ai-mono);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ai-lab-content .ccc-body{flex:1}
+.ai-lab-content .ccc-label{font-size:12px;font-weight:500;color:var(--ai-text);margin-bottom:6px}
+.ai-lab-content .ccc-math{font-family:var(--ai-mono);font-size:12px;color:var(--ai-text2);line-height:1.8}
+.ai-lab-content .sim-bars{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.ai-lab-content .sim-bar-row{display:flex;align-items:center;gap:10px}
+.ai-lab-content .sim-bar-label{font-family:var(--ai-mono);font-size:11px;color:var(--ai-text2);width:80px;text-align:right}
+.ai-lab-content .sim-bar-track{flex:1;height:10px;background:var(--ai-bg);border-radius:5px;overflow:hidden}
+.ai-lab-content .sim-bar-fill{height:100%;border-radius:5px;background:var(--ai-accent);min-width:4px;transition:width .4s}
+ .ai-lab-content .sim-bar-val{font-family:var(--ai-mono);font-size:12px;font-weight:700;color:var(--ai-accent);width:40px}
+ .ai-lab-content .sim-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+ .ai-lab-content .sim-card{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:16px;text-align:center;display:flex;flex-direction:column;gap:6px}
+ .ai-lab-content .sim-pair{font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);text-transform:uppercase;letter-spacing:.04em}
+ .ai-lab-content .sim-score{font-family:"Plus Jakarta Sans",sans-serif;font-size:28px;font-weight:800}
+ .ai-lab-content .sim-interp{font-size:11px;color:var(--ai-text3);line-height:1.4}
+ .ai-lab-content .sim-card .sim-bar{width:100%;height:6px;background:var(--ai-bg);border-radius:3px;overflow:hidden;margin-top:4px}
+ .ai-lab-content .sim-card .sim-bar-fill{height:100%;border-radius:3px}
+ .ai-lab-content .playground-box { background: var(--ai-card); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r); overflow: hidden; margin: 24px 0; position: relative; }
+ .ai-lab-content .playground-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #f63392, #2997ff, #bf5af2); }
+ .ai-lab-content .pgb-header { padding: 18px 22px; border-bottom: 1px solid var(--ai-border-s); background: rgba(246,51,146,.04); }
+ .ai-lab-content .pgb-badge { font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ai-accent); margin-bottom: 8px; }
+ .ai-lab-content .pgb-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; color: var(--ai-text); margin-bottom: 4px; letter-spacing: -.01em; }
+ .ai-lab-content .pgb-sub { font-size: 13px; color: var(--ai-text2); }
+ .ai-lab-content .pg-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--ai-border-s); }
+ .ai-lab-content .pg-tab { padding: 11px 20px; font-family: var(--ai-mono); font-size: 11px; letter-spacing: .04em; color: var(--ai-text3); background: transparent; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all .2s; display: flex; align-items: center; gap: 6px; }
+ .ai-lab-content .pg-tab:hover { color: var(--ai-text); background: rgba(246,51,146,.03); }
+ .ai-lab-content .pg-tab.active { color: var(--ai-accent); border-bottom-color: var(--ai-accent); background: rgba(246,51,146,.04); }
+ .ai-lab-content .pg-pane { display: none; }
+ .ai-lab-content .pg-pane.active { display: block; }
+ .ai-lab-content .doc-inputs { padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+ .ai-lab-content .doc-input-row { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+ .ai-lab-content .doc-label { display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 10px; }
+ .ai-lab-content .doc-label-dot { width: 10px; height: 10px; border-radius: 50%; }
+ .ai-lab-content .doc-label-num { font-family: var(--ai-mono); font-size: 9px; color: var(--ai-text3); }
+ .ai-lab-content .doc-textarea { width: 100%; min-height: 64px; max-height: 120px; background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 10px 12px; color: var(--ai-text); font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.6; resize: vertical; outline: none; caret-color: var(--ai-accent); transition: border-color .2s; }
+ .ai-lab-content .doc-textarea:focus { border-color: rgba(246,51,146,.4); }
+ .ai-lab-content .doc-textarea::placeholder { color: var(--ai-text3); }
+ .ai-lab-content .pg-actions { display: flex; align-items: center; gap: 10px; padding: 0 22px 18px; }
+ .ai-lab-content .pg-run-btn { padding: 9px 22px; border-radius: var(--ai-r-sm); background: var(--ai-accent); color: #fff; font-family: var(--ai-mono); font-size: 12px; font-weight: 700; letter-spacing: .04em; border: none; cursor: pointer; transition: all .2s; }
+ .ai-lab-content .pg-run-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+ .ai-lab-content .pg-reset-btn { padding: 9px 16px; border-radius: var(--ai-r-sm); background: var(--ai-bg2); border: 1px solid var(--ai-border-s); color: var(--ai-text3); font-family: var(--ai-mono); font-size: 11px; cursor: pointer; transition: all .2s; }
+ .ai-lab-content .pg-reset-btn:hover { color: var(--ai-text); background: var(--ai-bg); }
+ .ai-lab-content .pg-word-count { font-family: var(--ai-mono); font-size: 11px; color: var(--ai-text3); margin-left: auto; }
+ .ai-lab-content .vocab-section { padding: 20px 22px; border-top: 1px solid var(--ai-border-s); }
+ .ai-lab-content .vs-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+ .ai-lab-content .vs-title { font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--ai-text3); }
+ .ai-lab-content .vs-count { font-family: var(--ai-mono); font-size: 11px; color: var(--ai-accent); }
+ .ai-lab-content .vocab-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+ .ai-lab-content .vocab-chip { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px; font-family: var(--ai-mono); font-size: 11px; background: rgba(246,51,146,.08); border: 1px solid rgba(246,51,146,.2); color: #f63392; transition: all .2s; }
+ .ai-lab-content .vocab-chip:hover { background: rgba(246,51,146,.16); transform: translateY(-2px); }
+ .ai-lab-content .vocab-chip-count { font-size: 9px; opacity: .65; background: rgba(246,51,146,.15); padding: 1px 5px; border-radius: 3px; }
+ .ai-lab-content .matrix-section { padding: 20px 22px; border-top: 1px solid var(--ai-border-s); }
+ .ai-lab-content .matrix-wrap { overflow-x: auto; border-radius: var(--ai-r-sm); border: 1px solid var(--ai-border-s); }
+ .ai-lab-content .matrix-table { border-collapse: collapse; width: 100%; min-width: 400px; font-family: var(--ai-mono); font-size: 11px; }
+ .ai-lab-content .matrix-table th { padding: 8px 12px; background: var(--ai-bg2); border-bottom: 1px solid var(--ai-border-s); border-right: 1px solid var(--ai-border-s); color: var(--ai-text3); text-align: center; letter-spacing: .04em; font-weight: 400; white-space: nowrap; }
+ .ai-lab-content .matrix-table th.row-header { text-align: left; color: var(--ai-text2); }
+ .ai-lab-content .matrix-table td { padding: 8px 12px; border-bottom: 1px solid var(--ai-border-s); border-right: 1px solid var(--ai-border-s); text-align: center; transition: background .2s; position: relative; }
+ .ai-lab-content .matrix-table td.doc-name { text-align: left; color: var(--ai-text2); font-size: 11px; white-space: nowrap; }
+ .ai-lab-content .matrix-table td.cell-0 { color: var(--ai-text3); }
+ .ai-lab-content .matrix-table td.cell-1 { background: rgba(246,51,146,.08); color: #f63392; font-weight: 600; }
+ .ai-lab-content .matrix-table td.cell-2 { background: rgba(246,51,146,.16); color: #f63392; font-weight: 700; }
+ .ai-lab-content .matrix-table td.cell-3 { background: rgba(246,51,146,.26); color: #f63392; font-weight: 700; }
+ .ai-lab-content .matrix-table tr:last-child td { border-bottom: none; }
+ .ai-lab-content .matrix-table td:last-child, .ai-lab-content .matrix-table th:last-child { border-right: none; }
+ .ai-lab-content .matrix-table td:hover { filter: brightness(0.95); }
+ .ai-lab-content .sim-section { padding: 20px 22px; border-top: 1px solid var(--ai-border-s); }
+ .ai-lab-content .sim-grid { display: inline-grid; gap: 3px; }
+ .ai-lab-content .sim-cell { display: flex; align-items: center; justify-content: center; border-radius: 6px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; transition: all .3s; cursor: default; position: relative; }
+ .ai-lab-content .sim-cell:hover .sim-tooltip { opacity: 1; visibility: visible; }
+ .ai-lab-content .sim-tooltip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--ai-card); border: 1px solid var(--ai-border-s); border-radius: 6px; padding: 5px 10px; font-family: var(--ai-mono); font-size: 10px; color: var(--ai-text2); white-space: nowrap; opacity: 0; visibility: hidden; transition: all .15s; z-index: 20; pointer-events: none; }
+ .ai-lab-content .sim-labels { display: flex; }
+ .ai-lab-content .sim-label-row, .ai-lab-content .sim-label-col { font-family: var(--ai-mono); font-size: 10px; color: var(--ai-text3); letter-spacing: .04em; }
+ .ai-lab-content .search-section { padding: 20px 22px; border-top: 1px solid var(--ai-border-s); }
+ .ai-lab-content .search-row { display: flex; gap: 10px; margin-bottom: 14px; }
+ .ai-lab-content .search-input { flex: 1; padding: 9px 12px; border-radius: var(--ai-r-sm); background: var(--ai-bg); border: 1px solid var(--ai-border-s); color: var(--ai-text); font-family: 'Inter', sans-serif; font-size: 13px; outline: none; caret-color: var(--ai-accent); transition: border-color .2s; }
+ .ai-lab-content .search-input:focus { border-color: rgba(246,51,146,.4); }
+ .ai-lab-content .search-input::placeholder { color: var(--ai-text3); }
+ .ai-lab-content .search-btn { padding: 9px 18px; border-radius: var(--ai-r-sm); background: rgba(246,51,146,.1); border: 1px solid rgba(246,51,146,.3); color: var(--ai-accent); font-family: var(--ai-mono); font-size: 11px; cursor: pointer; transition: all .2s; }
+ .ai-lab-content .search-btn:hover { background: rgba(246,51,146,.18); }
+ .ai-lab-content .search-results { display: flex; flex-direction: column; gap: 10px; }
+ .ai-lab-content .search-result { background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); padding: 14px; display: flex; align-items: center; gap: 14px; transition: all .2s; }
+ .ai-lab-content .search-result.top-result { border-color: rgba(246,51,146,.4); background: rgba(246,51,146,.04); }
+ .ai-lab-content .sr-rank { font-family: var(--ai-mono); font-size: 20px; font-weight: 800; color: var(--ai-text3); min-width: 24px; }
+ .ai-lab-content .search-result.top-result .sr-rank { color: var(--ai-accent); }
+ .ai-lab-content .sr-body { flex: 1; }
+ .ai-lab-content .sr-text { font-size: 13px; color: var(--ai-text2); line-height: 1.6; margin-bottom: 6px; }
+ .ai-lab-content .sr-bar-wrap { height: 4px; background: var(--ai-border-s); border-radius: 2px; overflow: hidden; }
+ .ai-lab-content .sr-bar { height: 100%; background: var(--ai-accent); border-radius: 2px; transition: width .6s ease; }
+ .ai-lab-content .search-result.top-result .sr-bar { background: #f63392; }
+ .ai-lab-content .sr-score { font-family: var(--ai-mono); font-size: 13px; font-weight: 700; color: var(--ai-text3); text-align: right; min-width: 44px; }
+ .ai-lab-content .search-result.top-result .sr-score { color: var(--ai-accent); }
+ .ai-lab-content .sr-empty { font-family: var(--ai-mono); font-size: 12px; color: var(--ai-text3); padding: 20px; text-align: center; }
+ .ai-lab-content .compare-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+ .ai-lab-content .cmp-card{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r-sm);padding:18px}
+ .ai-lab-content .cmp-card:first-child{border-top:3px solid #22c55e}
+ .ai-lab-content .cmp-card:last-child{border-top:3px solid #ef4444}
+ .ai-lab-content .cmp-head{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:700;color:var(--ai-text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+ .ai-lab-content .cmp-list{list-style:none;padding:0;margin:0}
+ .ai-lab-content .cmp-list li{font-size:12px;color:var(--ai-text2);padding:7px 0;border-bottom:1px solid var(--ai-border-s);line-height:1.5}
+ .ai-lab-content .cmp-list li:last-child{border-bottom:none}
+ .ai-lab-content .cmp-list li::before{font-family:"Font Awesome 6 Free";margin-right:8px;font-size:10px}
+ .ai-lab-content .cmp-list li.good::before{content:"\f00c";color:#22c55e;font-weight:900}
+ .ai-lab-content .cmp-list li.bad::before{content:"\f00d";color:#ef4444;font-weight:900}
+ .ai-lab-content .cmp-badge{font-family:var(--ai-mono);font-size:9px;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:4px;font-weight:700}
+ .ai-lab-content .cmp-badge.good{background:rgba(34,197,94,.12);color:#22c55e}
+ .ai-lab-content .cmp-badge.bad{background:rgba(239,68,68,.12);color:#ef4444}
+ .ai-lab-content .bow-vector-demo { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+ .ai-lab-content .bvd-doc { background: var(--ai-bg); border: 1px solid var(--ai-border-s); border-radius: var(--ai-r-sm); overflow: hidden; }
+ .ai-lab-content .bvd-doc-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--ai-border-s); background: rgba(246,51,146,.02); }
+ .ai-lab-content .bvd-label { font-family: var(--ai-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ai-text3); flex: 1; }
+ .ai-lab-content .bvd-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+ .ai-lab-content .bvd-sentence { font-size: 13px; color: var(--ai-text2); padding: 10px 14px; border-bottom: 1px solid var(--ai-border-s); line-height: 1.6; }
+ .ai-lab-content .bvd-sentence strong { color: var(--ai-accent); }
+ .ai-lab-content .bvd-vector { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 14px; }
+ .ai-lab-content .bvd-cell { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 5px 8px; border-radius: 5px; background: rgba(246,51,146,.04); border: 1px solid var(--ai-border-s); min-width: 40px; transition: all .2s; }
+ .ai-lab-content .bvd-cell.active { background: rgba(246,51,146,.1); border-color: rgba(246,51,146,.3); }
+ .ai-lab-content .bvd-word { font-family: var(--ai-mono); font-size: 9px; color: var(--ai-text3); }
+ .ai-lab-content .bvd-count { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--ai-text3); line-height: 1; }
+ .ai-lab-content .bvd-cell.active .bvd-count { color: var(--ai-accent); }
+
+ .ai-lab-content .pros-cons-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.ai-lab-content .pc-card{background:var(--ai-card);border:2px solid var(--ai-border-s);border-radius:var(--ai-r);padding:16px}
+.ai-lab-content .pc-card.pro-card{border-top:3px solid #22c55e}
+.ai-lab-content .pc-card.con-card{border-top:3px solid #ef4444}
+.ai-lab-content .pc-card ul{list-style:none;padding:0;margin:0}
+.ai-lab-content .pc-card li{font-size:12px;color:var(--ai-text2);padding:6px 0;border-bottom:1px solid var(--ai-border-s);line-height:1.5}
+.ai-lab-content .pc-card li:last-child{border-bottom:none}
+.ai-lab-content .pc-card li::before{font-family:"Font Awesome 6 Free";margin-right:8px;font-size:10px}
+.ai-lab-content .pro-card li::before{content:"\f00c";color:#22c55e;font-weight:900}
+.ai-lab-content .con-card li::before{content:"\f00d";color:#ef4444;font-weight:900}
+.ai-lab-content .next-lesson-cta{background:var(--ai-bg2);border:1px solid var(--fellow-line);border-radius:var(--ai-r);padding:32px;text-align:center;margin-top:48px}
+.ai-lab-content .nlc-label{font-family:var(--ai-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ai-accent);margin-bottom:8px;display:block}
+.ai-lab-content .nlc-title{font-family:"Plus Jakarta Sans",sans-serif;font-size:22px;font-weight:700;color:var(--ai-text);margin-bottom:8px}
+.ai-lab-content .nlc-desc{font-size:14px;color:var(--ai-text2);margin-bottom:20px}
+.ai-lab-content .nlc-btn{display:inline-block;padding:12px 28px;border-radius:8px;background:var(--ai-accent);color:#fff;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s}
+.ai-lab-content .nlc-btn:hover{opacity:.9;transform:translateY(-2px)}
+.ai-lab-content .code-block{background:var(--ai-bg2);border:1px solid var(--fellow-line);border-radius:var(--ai-r);padding:16px 18px;margin:16px 0;overflow-x:auto}
+.ai-lab-content .code-block pre{margin:0}
+.ai-lab-content .code-block code{font-family:var(--ai-mono);font-size:12px;line-height:1.7;color:var(--ai-text)}
+.ai-lab-content .c-kw{color:#f63392;font-weight:700}
+.ai-lab-content .c-str{color:#22c55e}
+.ai-lab-content .c-op{color:var(--ai-text3)}
+.ai-lab-content .c-fn{color:#a855f7}
+.ai-lab-content .c-num{color:#f59e0b}
+.ai-lab-content .c-cmt{color:var(--ai-text3);font-style:italic}
+.ai-lab-content .c-cls{color:#14b8a6;font-weight:700}
+@media(max-width:700px){.ai-lab-content .bow-demo-grid{grid-template-columns:1fr}.ai-lab-content .pros-cons-grid{grid-template-columns:1fr}.ai-lab-content .bdc-words{grid-template-columns:repeat(3,1fr)}.ai-lab-content .sim-trio{grid-template-columns:1fr}.ai-lab-content .doc-input-row{grid-template-columns:1fr}.ai-lab-content .doc-label{flex-direction:row;padding-top:0}.ai-lab-content .bow-vector-demo{grid-template-columns:1fr}}
+</style>
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
 <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -45,8 +214,8 @@
 <p>Cara paling sederhana mengubah teks menjadi angka — dan bagaimana menghitung kemiripan antar dokumen.</p>
 <div class="lesson-meta-row">
 <span><i class="far fa-clock"></i> 40 menit</span>
-<span><i class="fas fa-layer-group"></i> NLP · Text Representations</span>
-<b><i class="fas fa-flask"></i> Interaktif</b>
+<span><i class="fas fa-layer-group"></i> NLP &middot; Text Representations</span>
+<b>Interaktif</b>
 </div>
 </div>
 <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI BoW">
@@ -54,28 +223,9 @@
 <section class="lesson-material-panel">
 <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
 <a href="#/participant-ai-lab-bow" class="active"><i class="fas fa-book-open"></i> Materi</a>
-<a href="#/participant-ai-lab-tokenization"><i class="fas fa-pen-to-square"></i> Kembali ke Tokenization</a>
 <a href="#/participant-ai-lab-nlp"><i class="fas fa-layer-group"></i> Katalog NLP</a>
 </div>
 <article class="lesson-article ai-lab-content" id="bow-content">
-
-  <main class="lesson-main">
-    <div class="lesson-topbar">
-      <div class="ltb-left">
-        <button class="ltb-menu" id="menuBtn" onclick="toggleSidebar()">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
-        </button>
-        <span class="ltb-crumb">Bag-of-Words</span>
-      </div>
-      <div class="ltb-right">
-        <a href="/ai-lab/nlp/tokenisasi.html" class="ltb-btn">← Tokenisasi</a>
-        <a href="/ai-lab/nlp/tfidf.html" class="ltb-btn primary">TF-IDF →</a>
-      </div>
-    </div>
-
-    <div class="lesson-body">
-
-      <!-- ══════════ SEC 1: INTUISI ══════════ -->
       <section class="lesson-sec" id="sec-intuisi">
         <div class="sec-header">
           <span class="sec-num">01</span>
@@ -95,13 +245,13 @@
 
         <!-- Three-sentence demo -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-bag-shopping"></i>️ Demo Sederhana</div>
+          <div class="wb-badge"><i class="fas fa-bag-shopping"></i> Demo Sederhana</div>
           <div class="wb-title">Tiga Kalimat → Tiga Vektor</div>
           <div class="bow-vector-demo" id="staticBowDemo">
             <!-- Populated by JS -->
           </div>
-          <div style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--text-3);">
-            ↑ Sel hijau = kata muncul. Angka = berapa kali. Urutan kata <strong style="color:var(--text)">tidak tersimpan</strong>.
+          <div style="margin-top:12px;font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">
+            ↑ Sel berwarna = kata muncul. Angka = berapa kali. Urutan kata <strong style="color:var(--ai-text)">tidak tersimpan</strong>.
           </div>
         </div>
 
@@ -129,7 +279,7 @@
         </div>
 
         <div class="worked-box">
-          <div class="wb-badge">⚙️ Pipeline BoW — Step by Step</div>
+          <div class="wb-badge"><i class="fas fa-gear"></i> Pipeline BoW — Step by Step</div>
           <div class="wb-title">Dari Tiga Berita ke Document-Term Matrix</div>
           <div class="calc-chain">
             <div class="calc-step">
@@ -137,7 +287,7 @@
               <div class="cs-content">
                 <div class="cs-label">Kumpulkan semua dokumen (korpus)</div>
                 <div class="math-line">
-                  <span class="math-term">D1: <span style="color:#30d158">"gojek ojek online jakarta"</span></span>
+                  <span class="math-term">D1: <span style="color:#f63392">"gojek ojek online jakarta"</span></span>
                 </div>
                 <div class="math-line">
                   <span class="math-term">D2: <span style="color:#2997ff">"tokopedia shopee belanja online"</span></span>
@@ -164,7 +314,7 @@
               <div class="cs-content">
                 <div class="cs-label">Hitung frekuensi tiap kata per dokumen</div>
                 <div class="math-line">
-                  <span class="math-term" style="color:#30d158">D1</span>
+                  <span class="math-term" style="color:#f63392">D1</span>
                   <span class="math-op">=</span>
                   <span class="math-result">[0, 1, 0, 1, 1, 1, 0, 0, 0]</span>
                   <span class="math-comment">// gojek=1, jakarta=1, ojek=1, online=1</span>
@@ -188,57 +338,57 @@
               <div class="cs-content">
                 <div class="cs-label">Hasil: Document-Term Matrix (3 dokumen × 9 kata)</div>
                 <div style="overflow-x:auto;margin-top:8px;">
-                  <table style="border-collapse:collapse;font-family:var(--font-mono);font-size:11px;min-width:480px;">
+                  <table style="border-collapse:collapse;font-family:var(--ai-mono);font-size:11px;min-width:480px;">
                     <thead>
                       <tr>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:left;">Dok</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">belanja</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">gojek</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">indonesia</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">jakarta</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">ojek</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">online</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">shopee</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">startup</th>
-                        <th style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);">tokopedia</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:left;">Dok</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">belanja</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">gojek</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">indonesia</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">jakarta</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">ojek</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">online</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">shopee</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">startup</th>
+                        <th style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);">tokopedia</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:600;">D1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:700;text-align:center;background:rgba(48,209,88,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:700;text-align:center;background:rgba(48,209,88,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:700;text-align:center;background:rgba(48,209,88,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#30d158;font-weight:700;text-align:center;background:rgba(48,209,88,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:600;">D1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#f63392;font-weight:700;text-align:center;background:rgba(246,51,146,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
                       </tr>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:600;">D2</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:600;">D2</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#2997ff;font-weight:700;text-align:center;background:rgba(41,151,255,.08);">1</td>
                       </tr>
                       <tr>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:600;">D3</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:var(--text-3);text-align:center;">0</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
-                        <td style="padding:6px 10px;border:1px solid var(--border);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:600;">D3</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:var(--ai-text3);text-align:center;">0</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
+                        <td style="padding:6px 10px;border:2px solid var(--ai-border-s);color:#bf5af2;font-weight:700;text-align:center;background:rgba(191,90,242,.08);">1</td>
                       </tr>
                     </tbody>
                   </table>
@@ -285,8 +435,8 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
             Bayangkan 500 dokumen berita dengan vocabulary 10.000 kata. Tiap dokumen rata-rata menggunakan 200 kata unik. Ini berarti hanya <strong>2% sel yang berisi angka</strong>, sisanya nol.
           </div>
           <div id="sparseVisual" style="overflow-x:auto;"></div>
-          <div style="margin-top:8px;font-family:var(--font-mono);font-size:11px;color:var(--text-3);">
-            ↑ Simulasi 20 dokumen × 60 kata. Hijau = ada nilai. Gelap = nol. Representasi sebenarnya jauh lebih sparse dari ini.
+          <div style="margin-top:8px;font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">
+            ↑ Simulasi 20 dokumen × 60 kata. Merah = ada nilai. Putih = nol. Representasi sebenarnya jauh lebih sparse dari ini.
           </div>
         </div>
 
@@ -319,7 +469,7 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
             <span class="op"> / (</span>‖<span class="fv">A</span>‖ <span class="op">×</span> ‖<span class="fb">B</span>‖<span class="op">)</span>
           </div>
           <div class="fb-legend">
-            <div class="fb-leg"><span class="fb-sym" style="color:#30d158;">A·B</span> <span class="fb-desc">= dot product (jumlah elemen berpasangan dikalikan)</span></div>
+            <div class="fb-leg"><span class="fb-sym" style="color:#f63392;">A·B</span> <span class="fb-desc">= dot product (jumlah elemen berpasangan dikalikan)</span></div>
             <div class="fb-leg"><span class="fb-sym" style="color:#2997ff;">‖A‖</span> <span class="fb-desc">= magnitudo vektor A (akar kuadrat jumlah elemen²)</span></div>
           </div>
         </div>
@@ -333,7 +483,7 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
               <div class="cs-content">
                 <div class="cs-label">Vektor dua dokumen (dari vocabulary 9 kata di atas)</div>
                 <div class="math-line">
-                  <span class="math-term" style="color:#30d158;">D1</span>
+                  <span class="math-term" style="color:#f63392;">D1</span>
                   <span class="math-op">=</span>
                   <span class="math-term">[0, 1, 0, 1, 1, 1, 0, 0, 0]</span>
                 </div>
@@ -415,15 +565,15 @@ X   <span class="c-op">=</span> vec.<span class="c-fn">fit_transform</span>(korp
           </div>
           <div class="sim-card">
             <div class="sim-pair">D1 · D3</div>
-            <div class="sim-score" style="color:#30d158;">0.50</div>
+            <div class="sim-score" style="color:#f63392;">0.50</div>
             <div class="sim-interp">Cukup mirip — berbagi kata "gojek"</div>
-            <div class="sim-bar"><div class="sim-bar-fill" style="width:50%;background:#30d158;"></div></div>
+            <div class="sim-bar"><div class="sim-bar-fill" style="width:50%;background:#f63392;"></div></div>
           </div>
           <div class="sim-card">
             <div class="sim-pair">D2 · D3</div>
-            <div class="sim-score" style="color:#30d158;">0.50</div>
+            <div class="sim-score" style="color:#f63392;">0.50</div>
             <div class="sim-interp">Cukup mirip — berbagi kata "tokopedia"</div>
-            <div class="sim-bar"><div class="sim-bar-fill" style="width:50%;background:#30d158;"></div></div>
+            <div class="sim-bar"><div class="sim-bar-fill" style="width:50%;background:#f63392;"></div></div>
           </div>
         </div>
 
@@ -487,7 +637,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
         </div>
 
         <div class="insight-callout">
-          <div class="ic-icon"><i class="fas fa-calendar-days"></i>️</div>
+          <div class="ic-icon"><i class="fas fa-calendar"></i></div>
           <div class="ic-body">
             <strong>BoW masih dipakai di dunia nyata untuk:</strong> filter spam email, kategori tiket support, moderasi konten level pertama, pencarian dokumen internal perusahaan, dan feature engineering dalam sistem rekomendasi. Selalu coba BoW + Naive Bayes atau Logistic Regression dulu sebelum loncat ke BERT — sering kali hasilnya sudah 85–90% dan 100× lebih cepat.
           </div>
@@ -499,9 +649,9 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
           <div class="wb-title">Dari BoW ke Transformer — Tiap Langkah Memperbaiki Kelemahan Sebelumnya</div>
           <div class="calc-chain">
             <div class="calc-step">
-              <div class="cs-num-circle" style="background:#30d158;">1</div>
+              <div class="cs-num-circle" style="background:#f63392;">1</div>
               <div class="cs-content">
-                <div class="cs-label" style="color:#30d158;">Bag-of-Words (lesson ini)</div>
+                <div class="cs-label" style="color:#f63392;">Bag-of-Words (lesson ini)</div>
                 <div class="math-line"><span class="math-comment">// Frekuensi kata, tanpa urutan, tanpa semantik</span></div>
                 <div class="math-line">
                   <span class="math-term">Kelemahan: kata umum mendominasi, semua kata dianggap sama penting</span>
@@ -569,7 +719,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
           <div class="doc-inputs">
             <div class="doc-input-row">
               <div class="doc-label">
-                <div class="doc-label-dot" style="background:#30d158;"></div>
+                <div class="doc-label-dot" style="background:#f63392;"></div>
                 <div class="doc-label-num">D1</div>
               </div>
               <textarea class="doc-textarea" id="doc1" placeholder="Dokumen pertama…">Ojek online seperti Gojek dan Grab sudah mengubah cara masyarakat Jakarta bepergian setiap hari.</textarea>
@@ -600,7 +750,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
           <div class="pg-tabs">
             <button class="pg-tab active" data-tab="vocab"><i class="fas fa-book"></i> Vocabulary</button>
             <button class="pg-tab" data-tab="matrix"><i class="fas fa-chart-simple"></i> Matrix</button>
-            <button class="pg-tab" data-tab="heatmap"><i class="fas fa-temperature-half"></i>️ Similarity</button>
+            <button class="pg-tab" data-tab="heatmap"><i class="fas fa-temperature-half"></i> Similarity</button>
             <button class="pg-tab" data-tab="search"><i class="fas fa-magnifying-glass"></i> Cari Dokumen</button>
           </div>
 
@@ -612,7 +762,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
                 <span class="vs-count" id="vocabCount">0 kata</span>
               </div>
               <div class="vocab-chips" id="vocabChips">
-                <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Klik "Jalankan BoW" untuk melihat vocabulary…</span>
+                <span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">Klik "Jalankan BoW" untuk melihat vocabulary…</span>
               </div>
             </div>
           </div>
@@ -625,7 +775,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
                 <span class="vs-count" id="matrixInfo">—</span>
               </div>
               <div class="matrix-wrap">
-                <div id="matrixTable" style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);padding:20px;">
+                <div id="matrixTable" style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);padding:20px;">
                   Klik "Jalankan BoW" untuk melihat matrix…
                 </div>
               </div>
@@ -640,7 +790,7 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
                 <span class="vs-count" id="heatmapInfo">—</span>
               </div>
               <div id="heatmapGrid" style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
-                <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Klik "Jalankan BoW" untuk melihat heatmap…</span>
+                <span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">Klik "Jalankan BoW" untuk melihat heatmap…</span>
               </div>
             </div>
           </div>
@@ -667,42 +817,39 @@ ranking <span class="c-op">=</span> np.<span class="c-fn">argsort</span>(scores)
           <span class="nlc-label">Lesson berikutnya</span>
           <h3 class="nlc-title">TF-IDF &amp; Document Search →</h3>
           <p class="nlc-desc">BoW punya kelemahan besar: kata umum seperti "dan", "ini", "yang" mendominasi vector padahal tidak bermakna. TF-IDF memperbaikinya dengan memberi bobot lebih pada kata yang langka tapi diskriminatif.</p>
-          <a href="/ai-lab/nlp/tfidf.html" class="nlc-btn">Lanjut ke TF-IDF</a>
+          <a href="#/participant-ai-lab-tfidf" class="nlc-btn">Lanjut ke TF-IDF</a>
         </div>
 
       </section>
 
-    </div><!-- /lesson-body -->
-  </main>
-</div><!-- /lesson-layout -->
-
-<div id="footer-placeholder"></div>
-</body>
-</html>
 </article>
 <footer class="lesson-nav-footer">
-<a href="#/participant-ai-lab-pos-ner"><i class="fas fa-chevron-left"></i> Sebelumnya</a>
-<a href="#/participant-ai-lab-nlp">Katalog NLP <i class="fas fa-arrow-right"></i></a>
+<a href="#/participant-ai-lab-pos-ner" class="lnf-prev">
+<span class="lnf-label">Sebelumnya</span>
+<span class="lnf-title">POS &amp; NER <i class="fas fa-arrow-left"></i></span>
+</a>
+<a href="#/participant-ai-lab-tfidf" class="lnf-next">
+<span class="lnf-label">Lesson berikutnya</span>
+<span class="lnf-title">TF-IDF <i class="fas fa-arrow-right"></i></span>
+</a>
 </footer>
 </section>
 </div>
 <aside class="lesson-right-panel">
-<section class="module-side-card lesson-progress-card">
-<h2>Progres Materi</h2>
-<div class="lesson-progress-mini"><b style="--value:0%"></b><strong>0%</strong></div>
-<p>Bag-of-Words — Text Representations</p>
-<a href="#sec-lab">Live Lab</a>
-</section>
-<section class="module-side-card lesson-list-card">
-<h2>Daftar Section</h2>
+<div class="lesson-progress-card">
+<div class="lpc-header"><i class="fas fa-chart-simple"></i> Progress NLP</div>
+<div class="lpc-ring-wrap"><svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="30" stroke="#e2e8f0" stroke-width="5" fill="none"/><circle cx="36" cy="36" r="30" stroke="var(--fellow-pink, #f63392)" stroke-width="5" fill="none" stroke-dasharray="188.5" stroke-dashoffset="75" stroke-linecap="round"/></svg><div class="lpc-ring-text"><strong>60%</strong></div></div>
+</div>
+<div class="lesson-list-card">
+<h4>Daftar Section</h4>
 <ol>
-<li class="active"><span>1</span><a href="#sec-intuisi">Intuisi BoW</a><i class="far fa-circle-play"></i></li>
-<li><span>2</span><a href="#sec-membangun">Membangun Vocabulary</a><i class="far fa-circle"></i></li>
-<li><span>3</span><a href="#sec-cosine">Cosine Similarity</a><i class="far fa-circle"></i></li>
-<li><span>4</span><a href="#sec-batas">Batasan &amp; Kelemahan</a><i class="far fa-circle"></i></li>
-<li><span>5</span><a href="#sec-lab" class="lab-highlight">Live Lab</a><i class="fas fa-flask"></i></li>
+<li><span>1</span><a href="#sec-intuisi">Intuisi BoW</a></li>
+<li><span>2</span><a href="#sec-membangun">Membangun Vocabulary</a></li>
+<li><span>3</span><a href="#sec-cosine">Cosine Similarity</a></li>
+<li><span>4</span><a href="#sec-batas">Batas &amp; Kelebihan</a></li>
+<li><span>5</span><a href="#sec-lab">Lab Interaktif</a></li>
 </ol>
-</section>
+</div>
 </aside>
 </div>
 </main>

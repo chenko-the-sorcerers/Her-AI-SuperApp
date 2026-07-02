@@ -52,6 +52,20 @@ const router = {
         "/participant-ai-lab-tfidf": "/pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html",
         "/participant-ai-lab-nlp": "/pages/frontend/fellow-dashboard/ai-lab/nlp.html",
         "/participant-ai-lab-machine-learning": "/pages/frontend/fellow-dashboard/ai-lab/machine-learning.html",
+        "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/ai-lab/machine-learning.html",
+        "/participant-ai-lab-cv": "/pages/frontend/fellow-dashboard/ai-lab/computer-vision.html",
+        "/participant-ai-lab-gen": "/pages/frontend/fellow-dashboard/ai-lab/generative-ai.html",
+        "/participant-ai-lab-cv-cnn-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-intro.html",
+        "/participant-ai-lab-cv-cnn-why": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-why.html",
+        "/participant-ai-lab-cv-cnn-relu": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-relu.html",
+        "/participant-ai-lab-cv-filtering-kernels": "/pages/frontend/fellow-dashboard/ai-lab/lessons/filtering-kernels.html",
+        "/participant-ai-lab-cv-cnn-fc": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-fc.html",
+        "/participant-ai-lab-cv-cnn-hands": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-hands.html",
+        "/participant-ai-lab-cv-cnn-arch": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-arch.html",
+        "/participant-ai-lab-cv-morph": "/pages/frontend/fellow-dashboard/ai-lab/lessons/morphological-transforms.html",
+        "/participant-ai-lab-cv-opencv": "/pages/frontend/fellow-dashboard/ai-lab/lessons/image-processing-opencv.html",
+        "/participant-ai-lab-cv-pixel": "/pages/frontend/fellow-dashboard/ai-lab/lessons/pixel-anatomy.html",
+        "/participant-ai-lab-cv-cnn-arch-builder": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-arch-builder.html",
         "/participant-ai-lab-ml-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-intro.html",
         "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-hypothesis.html",
         "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-vc-dim.html",
@@ -285,6 +299,19 @@ const router = {
             "/participant-ai-lab-tfidf",
             "/participant-ai-lab-nlp",
             "/participant-ai-lab-machine-learning",
+            "/participant-ai-lab-ml",
+            "/participant-ai-lab-cv",
+            "/participant-ai-lab-cv-cnn-intro",
+            "/participant-ai-lab-cv-cnn-why",
+            "/participant-ai-lab-cv-cnn-relu",
+            "/participant-ai-lab-cv-filtering-kernels",
+            "/participant-ai-lab-cv-cnn-fc",
+            "/participant-ai-lab-cv-cnn-hands",
+            "/participant-ai-lab-cv-cnn-arch",
+            "/participant-ai-lab-cv-morph",
+            "/participant-ai-lab-cv-opencv",
+            "/participant-ai-lab-cv-pixel",
+            "/participant-ai-lab-cv-cnn-arch-builder",
             "/participant-ai-lab-ml-intro",
             "/participant-ai-lab-ml-hypothesis",
             "/participant-ai-lab-ml-vc-dim",
@@ -462,8 +489,59 @@ const router = {
                     if (path === "/participant-ai-lab-nlp" && typeof window.initNlpOverview === "function") {
                         window.initNlpOverview();
                     }
-                    if (path === "/participant-ai-lab-machine-learning" && typeof window.initMachineLearningOverview === "function") {
-                        window.initMachineLearningOverview();
+                    if (path === "/participant-ai-lab-cv-cnn-intro" && typeof window.initAiLabCnnIntro === "function") {
+                        window.initAiLabCnnIntro();
+                    }
+                    if (path === "/participant-ai-lab-cv-cnn-why" && typeof window.initAiLabCnnWhy === "function") {
+                        window.initAiLabCnnWhy();
+                    }
+                    if (path === "/participant-ai-lab-cv-cnn-arch-builder" && typeof window.initAiLabCnnArchBuilder === "function") {
+                        window.initAiLabCnnArchBuilder();
+                    }
+                    if (path === "/participant-ai-lab-cv-pixel" && typeof window.initAiLabPixel === "function") {
+                        window.initAiLabPixel();
+                    }
+                    if (path === "/participant-ai-lab-cv-opencv" && typeof window.initAiLabOpencv === "function") {
+                        window.initAiLabOpencv();
+                    }
+                    if (path === "/participant-ai-lab-cv-morph" && typeof window.initAiLabMorph === "function") {
+                        window.initAiLabMorph();
+                    }
+                    if (path === "/participant-ai-lab-cv-cnn-arch" && typeof window.initAiLabCnnArch === "function") {
+                        window.initAiLabCnnArch();
+                    }
+                    if (path === "/participant-ai-lab-cv-cnn-hands" && typeof window.initAiLabCnnHands === "function") {
+                        window.initAiLabCnnHands();
+                    }
+                    if (path === "/participant-ai-lab-cv-cnn-fc" && typeof window.initAiLabCnnFc === "function") {
+                        window.initAiLabCnnFc();
+                    }
+                    if (path === "/participant-ai-lab-cv-filtering-kernels" && typeof window.initAiLabFilteringKernels === "function") {
+                        window.initAiLabFilteringKernels();
+                    }
+                    if (path === "/participant-ai-lab-cv-cnn-relu" && typeof window.initAiLabCnnRelu === "function") {
+                        window.initAiLabCnnRelu();
+                    }
+                    if (path === "/participant-ai-lab-gen" && typeof window.initGenAiOverview === "function") {
+                        window.initGenAiOverview();
+                    }
+                    if (path === "/participant-ai-lab-cv" && typeof window.initCvOverview === "function") {
+                        window.initCvOverview();
+                    }
+                    if ((path === "/participant-ai-lab-ml" || path === "/participant-ai-lab-machine-learning") && typeof window.initMlOverview === "function") {
+                        window.initMlOverview();
+                    }
+                    if (path === "/participant-ai-lab-ml-intro" && typeof window.initAiLabMlIntro === "function") {
+                        window.initAiLabMlIntro();
+                    }
+                    if (path === "/participant-ai-lab-ml-hypothesis" && typeof window.initAiLabMlHypothesis === "function") {
+                        window.initAiLabMlHypothesis();
+                    }
+                    if (path === "/participant-ai-lab-ml-vc-dim" && typeof window.initAiLabMlVcDim === "function") {
+                        window.initAiLabMlVcDim();
+                    }
+                    if (path === "/participant-ai-lab-ml-bias-variance" && typeof window.initAiLabMlBiasVariance === "function") {
+                        window.initAiLabMlBiasVariance();
                     }
                 } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");

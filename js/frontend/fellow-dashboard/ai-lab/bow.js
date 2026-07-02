@@ -5,25 +5,25 @@
    ══════════════════════════════════════════════════════════════ */
 
 /* ── Indonesian stopwords ───────────────────────────────────── */
-const ID_STOPWORDS = new Set([
+const BOW_ID_STOPWORDS = new Set([
   'orang','orang','masyarakat','sejak','sejak','lalu','kemudian','selain',
   'berbagai','beberapa','banyak','sebuah','salah','satu','dua','tiga',
 ]);
 
 /* ── Simple Indonesian tokenizer (no library) ──────────────── */
-function tokenizeId(text) {
+function BOW_tokenizeId(text) {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, ' ')
     .split(/\s+/)
-    .filter(w => w.length > 2 && !ID_STOPWORDS.has(w));
+    .filter(w => w.length > 2 && !BOW_ID_STOPWORDS.has(w));
 }
 
 /* ── Build vocabulary from array of documents ──────────────── */
-function buildVocabulary(docs) {
+function BOW_buildVocabulary(docs) {
   const freq = {};
   docs.forEach(doc => {
-    const tokens = tokenizeId(doc);
+    const tokens = BOW_tokenizeId(doc);
     tokens.forEach(t => { freq[t] = (freq[t] || 0) + 1; });
   });
   // Sort by frequency desc, then alpha
@@ -33,59 +33,59 @@ function buildVocabulary(docs) {
 }
 
 /* ── Build BoW vector for a single document ─────────────────── */
-function bowVector(text, vocab) {
-  const tokens = tokenizeId(text);
+function BOW_bowVector(text, vocab) {
+  const tokens = BOW_tokenizeId(text);
   const counts = {};
   tokens.forEach(t => { counts[t] = (counts[t] || 0) + 1; });
   return vocab.map(({ word }) => counts[word] || 0);
 }
 
 /* ── Dot product ────────────────────────────────────────────── */
-function dot(a, b) {
+function BOW_dot(a, b) {
   return a.reduce((sum, v, i) => sum + v * b[i], 0);
 }
 
 /* ── Magnitude ──────────────────────────────────────────────── */
-function magnitude(v) {
+function BOW_magnitude(v) {
   return Math.sqrt(v.reduce((sum, x) => sum + x * x, 0));
 }
 
 /* ── Cosine similarity ──────────────────────────────────────── */
-function cosineSim(a, b) {
-  const magA = magnitude(a);
-  const magB = magnitude(b);
+function BOW_cosineSim(a, b) {
+  const magA = BOW_magnitude(a);
+  const magB = BOW_magnitude(b);
   if (magA === 0 || magB === 0) return 0;
-  return dot(a, b) / (magA * magB);
+  return BOW_dot(a, b) / (magA * magB);
 }
 
 /* ── Colour for similarity value ────────────────────────────── */
-function simToColor(val) {
+function BOW_simToColor(val) {
   // 0 = dark, 1 = vivid green
   const alpha = 0.05 + val * 0.7;
   const intensity = Math.round(40 + val * 180);
   return {
     bg:     `rgba(48,209,88,${alpha.toFixed(2)})`,
     border: `rgba(48,209,88,${(alpha * 1.6).toFixed(2)})`,
-    color:  val > 0.5 ? '#30d158' : val > 0.2 ? '#e8e8f0' : '#8888a0',
+    color:  val > 0.5 ? '#f63392' : val > 0.2 ? '#e8e8f0' : '#8888a0',
   };
 }
 
 /* ══════════════════════════════════════════════════════════════
    STATIC DEMOS (Section 1)
    ══════════════════════════════════════════════════════════════ */
-function buildStaticDemo() {
+function BOW_buildStaticDemo() {
   const container = document.getElementById('staticBowDemo');
   if (!container) return;
 
   const sentences = [
-    { label: 'D1 — Transportasi', text: 'Gojek ojek online Jakarta', color: '#30d158' },
-    { label: 'D2 — E-commerce', text: 'Tokopedia Shopee belanja online', color: '#2997ff' },
-    { label: 'D3 — Startup', text: 'Gojek Tokopedia startup Indonesia', color: '#bf5af2' },
+    { label: 'D1 — Transportasi', text: 'Gojek ojek online Jakarta', color: '#f63392' },
+    { label: 'D2 — E-commerce', text: 'Tokopedia Shopee belanja online', color: '#a855f7' },
+    { label: 'D3 — Startup', text: 'Gojek Tokopedia startup Indonesia', color: '#f59e0b' },
   ];
   const sharedVocab = ['gojek', 'ojek', 'online', 'jakarta', 'tokopedia', 'shopee', 'belanja', 'startup', 'indonesia'];
 
   sentences.forEach((s, si) => {
-    const tokens = tokenizeId(s.text);
+    const tokens = BOW_tokenizeId(s.text);
     const counts = {};
     tokens.forEach(t => { counts[t] = (counts[t] || 0) + 1; });
 
@@ -120,7 +120,7 @@ function buildStaticDemo() {
 /* ══════════════════════════════════════════════════════════════
    SPARSE MATRIX VISUAL (Section 2)
    ══════════════════════════════════════════════════════════════ */
-function buildSparseVisual() {
+function BOW_buildSparseVisual() {
   const container = document.getElementById('sparseVisual');
   if (!container) return;
 
@@ -129,24 +129,25 @@ function buildSparseVisual() {
   const DENSITY = 0.08; // ~8% non-zero
 
   const grid = document.createElement('div');
-  grid.style.cssText = `display:grid;grid-template-columns:repeat(${COLS},18px);gap:2px;`;
+  grid.style.cssText = `display:grid;grid-template-columns:repeat(${COLS},18px);gap:2px;padding:2px;background:rgba(246,51,146,.06);border:2px solid rgba(244,143,188,.26);border-radius:8px;`;
 
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
       const cell = document.createElement('div');
-      cell.style.cssText = 'width:18px;height:14px;border-radius:2px;transition:all .2s;cursor:default;';
+      cell.style.cssText = 'width:18px;height:14px;border-radius:3px;transition:all .2s;cursor:default;';
       const rand = Math.random();
       if (rand < DENSITY * 0.3) {
-        cell.style.background = 'rgba(48,209,88,.35)';
-        cell.style.border = '1px solid rgba(48,209,88,.5)';
+        cell.style.background = 'rgba(246,51,146,.45)';
+        cell.style.border = '2px solid rgba(246,51,146,.6)';
+        cell.style.boxShadow = '0 0 4px rgba(246,51,146,.2)';
         cell.title = `Doc ${r+1} × Word ${c+1} = 2`;
       } else if (rand < DENSITY) {
-        cell.style.background = 'rgba(48,209,88,.18)';
-        cell.style.border = '1px solid rgba(48,209,88,.3)';
+        cell.style.background = 'rgba(246,51,146,.22)';
+        cell.style.border = '2px solid rgba(246,51,146,.35)';
         cell.title = `Doc ${r+1} × Word ${c+1} = 1`;
       } else {
-        cell.style.background = 'rgba(255,255,255,.03)';
-        cell.style.border = '1px solid rgba(255,255,255,.04)';
+        cell.style.background = '#fff7fb';
+        cell.style.border = '2px solid rgba(142,145,160,.2)';
         cell.title = `Doc ${r+1} × Word ${c+1} = 0`;
       }
       cell.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.5)'; this.style.zIndex = '5'; });
@@ -161,18 +162,18 @@ function buildSparseVisual() {
    INTERACTIVE PLAYGROUND
    ══════════════════════════════════════════════════════════════ */
 
-const DEFAULT_DOCS = [
+const BOW_DEFAULT_DOCS = [
   'Ojek online seperti Gojek dan Grab sudah mengubah cara masyarakat Jakarta bepergian setiap hari.',
   'Tokopedia dan Shopee bersaing ketat di pasar belanja online Indonesia dengan jutaan transaksi setiap hari.',
   'Startup teknologi Indonesia seperti Gojek dan Tokopedia sudah berkembang menjadi perusahaan besar kelas dunia.',
 ];
 
-let currentVocab   = [];
-let currentVectors = [];
-let currentDocs    = [...DEFAULT_DOCS];
+let BOW_currentVocab   = [];
+let BOW_currentVectors = [];
+let BOW_currentDocs    = [...BOW_DEFAULT_DOCS];
 
-const DOC_COLORS = ['#30d158', '#2997ff', '#bf5af2'];
-const DOC_NAMES  = ['D1', 'D2', 'D3'];
+const BOW_DOC_COLORS = ['#f63392', '#a855f7', '#f59e0b'];
+const BOW_DOC_NAMES  = ['D1', 'D2', 'D3'];
 
 /* ── Tab switching ──────────────────────────────────────────── */
 document.querySelectorAll('.pg-tab').forEach(tab => {
@@ -186,38 +187,38 @@ document.querySelectorAll('.pg-tab').forEach(tab => {
 });
 
 /* ── Run BoW ────────────────────────────────────────────────── */
-function runBoW() {
+function BOW_runBoW() {
   const d1 = (document.getElementById('doc1') || {}).value || '';
   const d2 = (document.getElementById('doc2') || {}).value || '';
   const d3 = (document.getElementById('doc3') || {}).value || '';
-  currentDocs = [d1, d2, d3];
+  BOW_currentDocs = [d1, d2, d3];
 
   // Build vocab
-  currentVocab = buildVocabulary(currentDocs);
+  BOW_currentVocab = BOW_buildVocabulary(BOW_currentDocs);
 
   // Build vectors (use top 30 words max for display)
-  const displayVocab = currentVocab.slice(0, 30);
-  currentVectors = currentDocs.map(doc => bowVector(doc, displayVocab));
+  const displayVocab = BOW_currentVocab.slice(0, 30);
+  BOW_currentVectors = BOW_currentDocs.map(doc => BOW_bowVector(doc, displayVocab));
 
   // Word count info
-  const totalWords = currentDocs.reduce((sum, d) => sum + tokenizeId(d).length, 0);
+  const totalWords = BOW_currentDocs.reduce((sum, d) => sum + BOW_tokenizeId(d).length, 0);
   const wc = document.getElementById('wordCountInfo');
-  if (wc) wc.textContent = `${currentVocab.length} kata unik · ${totalWords} total token`;
+  if (wc) wc.textContent = `${BOW_currentVocab.length} kata unik · ${totalWords} total token`;
 
-  renderVocab(displayVocab);
-  renderMatrix(displayVocab, currentVectors);
-  renderHeatmap();
+  BOW_renderVocab(displayVocab);
+  BOW_renderMatrix(displayVocab, BOW_currentVectors);
+  BOW_renderHeatmap();
 }
 
 /* ── Render vocabulary chips ────────────────────────────────── */
-function renderVocab(vocab) {
+function BOW_renderVocab(vocab) {
   const el = document.getElementById('vocabChips');
   const cnt = document.getElementById('vocabCount');
   if (!el) return;
-  if (cnt) cnt.textContent = `${currentVocab.length} kata`;
+  if (cnt) cnt.textContent = `${BOW_currentVocab.length} kata`;
 
   el.innerHTML = '';
-  if (!vocab.length) { el.innerHTML = '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Tidak ada kata setelah stop word dihapus.</span>'; return; }
+  if (!vocab.length) { el.innerHTML = '<span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">Tidak ada kata setelah stop word dihapus.</span>'; return; }
 
   vocab.forEach(({ word, count }, i) => {
     const chip = document.createElement('div');
@@ -231,11 +232,11 @@ function renderVocab(vocab) {
 }
 
 /* ── Render document-term matrix table ──────────────────────── */
-function renderMatrix(vocab, vectors) {
+function BOW_renderMatrix(vocab, vectors) {
   const el = document.getElementById('matrixTable');
   const info = document.getElementById('matrixInfo');
   if (!el) return;
-  if (!vocab.length) { el.innerHTML = '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">—</span>'; return; }
+  if (!vocab.length) { el.innerHTML = '<span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">—</span>'; return; }
 
   if (info) info.textContent = `${vectors.length} dok × ${vocab.length} kata`;
 
@@ -263,7 +264,7 @@ function renderMatrix(vocab, vectors) {
     const tr = document.createElement('tr');
     const td0 = document.createElement('td');
     td0.className = 'doc-name';
-    td0.innerHTML = `<span style="color:${DOC_COLORS[ri]};font-weight:700;">${DOC_NAMES[ri]}</span>`;
+    td0.innerHTML = `<span style="color:${BOW_DOC_COLORS[ri]};font-weight:700;">${BOW_DOC_NAMES[ri]}</span>`;
     tr.appendChild(td0);
 
     vec.forEach(cnt => {
@@ -281,20 +282,20 @@ function renderMatrix(vocab, vectors) {
 }
 
 /* ── Render cosine similarity heatmap ──────────────────────── */
-function renderHeatmap() {
+function BOW_renderHeatmap() {
   const el   = document.getElementById('heatmapGrid');
   const info = document.getElementById('heatmapInfo');
   if (!el) return;
 
-  if (!currentVocab.length) {
-    el.innerHTML = '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">—</span>';
+  if (!BOW_currentVocab.length) {
+    el.innerHTML = '<span style="font-family:var(--ai-mono);font-size:11px;color:var(--ai-text3);">—</span>';
     return;
   }
 
   // Compute 3×3 sim matrix
-  const n = currentVectors.length;
+  const n = BOW_currentVectors.length;
   const sims = Array.from({ length: n }, (_, i) =>
-    Array.from({ length: n }, (_, j) => cosineSim(currentVectors[i], currentVectors[j]))
+    Array.from({ length: n }, (_, j) => BOW_cosineSim(BOW_currentVectors[i], BOW_currentVectors[j]))
   );
 
   if (info) {
@@ -314,9 +315,9 @@ function renderHeatmap() {
   // Column labels row
   const colLabels = document.createElement('div');
   colLabels.style.cssText = `display:flex;gap:0;margin-left:${LABEL_W}px;`;
-  DOC_NAMES.forEach((name, j) => {
+  BOW_DOC_NAMES.forEach((name, j) => {
     const lbl = document.createElement('div');
-    lbl.style.cssText = `width:${CELL_SIZE}px;text-align:center;font-family:var(--font-mono);font-size:11px;color:${DOC_COLORS[j]};padding-bottom:6px;font-weight:700;`;
+    lbl.style.cssText = `width:${CELL_SIZE}px;text-align:center;font-family:var(--ai-mono);font-size:11px;color:${BOW_DOC_COLORS[j]};padding-bottom:6px;font-weight:700;`;
     lbl.textContent = name;
     colLabels.appendChild(lbl);
   });
@@ -329,13 +330,13 @@ function renderHeatmap() {
 
     // Row label
     const rowLabel = document.createElement('div');
-    rowLabel.style.cssText = `width:${LABEL_W}px;font-family:var(--font-mono);font-size:11px;color:${DOC_COLORS[i]};font-weight:700;padding-right:8px;text-align:right;flex-shrink:0;`;
-    rowLabel.textContent = DOC_NAMES[i];
+    rowLabel.style.cssText = `width:${LABEL_W}px;font-family:var(--ai-mono);font-size:11px;color:${BOW_DOC_COLORS[i]};font-weight:700;padding-right:8px;text-align:right;flex-shrink:0;`;
+    rowLabel.textContent = BOW_DOC_NAMES[i];
     rowEl.appendChild(rowLabel);
 
     row.forEach((val, j) => {
       const isDiag = i === j;
-      const c = simToColor(isDiag ? 1 : val);
+      const c = BOW_simToColor(isDiag ? 1 : val);
       const cell = document.createElement('div');
       cell.style.cssText = `
         width:${CELL_SIZE}px; height:${CELL_SIZE}px;
@@ -344,15 +345,15 @@ function renderHeatmap() {
         border-radius:8px; margin-right:3px;
         display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
         cursor:default; position:relative; transition:all .2s;
-        font-family:var(--font-mono);
+        font-family:var(--ai-mono);
       `;
 
       const scoreEl = document.createElement('div');
-      scoreEl.style.cssText = `font-size:20px;font-weight:800;color:${isDiag ? 'var(--text-3)' : c.color};line-height:1;`;
+      scoreEl.style.cssText = `font-size:20px;font-weight:800;color:${isDiag ? 'var(--ai-text3)' : c.color};line-height:1;`;
       scoreEl.textContent = isDiag ? '—' : val.toFixed(2);
 
       const labelEl = document.createElement('div');
-      labelEl.style.cssText = 'font-size:9px;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;';
+      labelEl.style.cssText = 'font-size:9px;color:var(--ai-text3);text-transform:uppercase;letter-spacing:.06em;';
       labelEl.textContent = isDiag ? 'sama' : val >= 0.7 ? 'sangat mirip' : val >= 0.4 ? 'cukup mirip' : val >= 0.1 ? 'sedikit mirip' : 'berbeda';
 
       // Tooltip
@@ -364,7 +365,7 @@ function renderHeatmap() {
         opacity:0;visibility:hidden;transition:all .15s;z-index:20;pointer-events:none;
       `;
       if (!isDiag) {
-        tip.textContent = `sim(${DOC_NAMES[i]}, ${DOC_NAMES[j]}) = ${val.toFixed(4)}`;
+        tip.textContent = `sim(${BOW_DOC_NAMES[i]}, ${BOW_DOC_NAMES[j]}) = ${val.toFixed(4)}`;
       }
 
       cell.addEventListener('mouseenter', function() {
@@ -391,19 +392,19 @@ function renderHeatmap() {
 }
 
 /* ── Document search ────────────────────────────────────────── */
-function runSearch() {
+function BOW_runSearch() {
   const query = (document.getElementById('searchInput') || {}).value || '';
   const el    = document.getElementById('searchResults');
   if (!el) return;
 
-  if (!query.trim() || !currentVocab.length) {
+  if (!query.trim() || !BOW_currentVocab.length) {
     el.innerHTML = '<div class="sr-empty">Jalankan BoW terlebih dahulu, lalu masukkan query.</div>';
     return;
   }
 
-  const displayVocab = currentVocab.slice(0, 30);
-  const qVec = bowVector(query, displayVocab);
-  const qMag = magnitude(qVec);
+  const displayVocab = BOW_currentVocab.slice(0, 30);
+  const qVec = BOW_bowVector(query, displayVocab);
+  const qMag = BOW_magnitude(qVec);
 
   if (qMag === 0) {
     el.innerHTML = '<div class="sr-empty">Tidak ada kata dalam query yang cocok dengan vocabulary. Coba kata lain.</div>';
@@ -411,9 +412,9 @@ function runSearch() {
   }
 
   // Score each doc
-  const scored = currentDocs.map((doc, i) => ({
+  const scored = BOW_currentDocs.map((doc, i) => ({
     doc, i,
-    score: cosineSim(qVec, currentVectors[i]),
+    score: BOW_cosineSim(qVec, BOW_currentVectors[i]),
   })).sort((a, b) => b.score - a.score);
 
   const maxScore = scored[0].score;
@@ -432,52 +433,129 @@ function runSearch() {
     div.innerHTML = `
       <div class="sr-rank">${rank === 0 ? '🥇' : rank === 1 ? '🥈' : '🥉'}</div>
       <div class="sr-body">
-        <div class="sr-text" style="color:${DOC_COLORS[item.i]}80;">
-          <strong style="color:${DOC_COLORS[item.i]};">${DOC_NAMES[item.i]}</strong> — ${snippetWords}
+        <div class="sr-text" style="color:${BOW_DOC_COLORS[item.i]}80;">
+          <strong style="color:${BOW_DOC_COLORS[item.i]};">${BOW_DOC_NAMES[item.i]}</strong> — ${snippetWords}
         </div>
-        <div class="sr-bar-wrap"><div class="sr-bar" style="width:${barWidth.toFixed(1)}%;background:${DOC_COLORS[item.i]};"></div></div>
+        <div class="sr-bar-wrap"><div class="sr-bar" style="width:${barWidth.toFixed(1)}%;background:${BOW_DOC_COLORS[item.i]};"></div></div>
       </div>
-      <div class="sr-score" style="color:${DOC_COLORS[item.i]};">${(item.score * 100).toFixed(1)}%</div>
+      <div class="sr-score" style="color:${BOW_DOC_COLORS[item.i]};">${(item.score * 100).toFixed(1)}%</div>
     `;
     el.appendChild(div);
   });
 }
 
-/* ── Wire up buttons ────────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
+/* ── Scroll Spy & Smooth Scroll ─────────────────────────────── */
+function BOW_setupScrollSpy() {
+  const links = document.querySelectorAll('.lesson-list-card a');
+  const secs = Array.from(document.querySelectorAll('.lesson-sec[id]'));
+  const ring = document.querySelector('.lpc-ring-wrap circle:nth-child(2)');
+  const pctText = document.querySelector('.lpc-ring-text strong');
+  
+  if (!links.length || !secs.length) return;
+
+  // Smooth scroll and prevent default hash behavior
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#sec-')) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+
+  const scrollContainer = document.querySelector('.fellow-main') || window;
+  
+  function updateScroll() {
+    let activeIdx = 0;
+    secs.forEach((s, i) => {
+      const rect = s.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.4) activeIdx = i;
+    });
+    
+    links.forEach((l, i) => {
+      const li = l.closest('li');
+      if (li) li.classList.toggle('active', i === activeIdx);
+    });
+
+    const p = Math.round((activeIdx / Math.max(1, secs.length - 1)) * 100);
+    if (ring) ring.style.strokeDashoffset = 188.5 * (1 - p/100);
+    if (pctText) pctText.textContent = p + '%';
+  }
+
+  if (window.BOW_scrollHandler) {
+    window.removeEventListener('scroll', window.BOW_scrollHandler);
+  }
+  window.BOW_scrollHandler = updateScroll;
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  
+  updateScroll();
+}
+
+/* ── Init & Wire up ─────────────────────────────────────────── */
+window.initAiLabBow = function() {
+  var content = document.getElementById('bow-content');
+  if (!content || content.dataset.ready) return;
+  content.dataset.ready = 'true';
+
+  if (document.getElementById('staticBowDemo') && !document.getElementById('staticBowDemo').children.length) {
+    BOW_buildStaticDemo();
+  }
+  if (document.getElementById('sparseVisual') && !document.getElementById('sparseVisual').children.length) {
+    BOW_buildSparseVisual();
+  }
+  
+  BOW_setupScrollSpy();
+
+  /* ── Tab switching ──────────────────────────────────────────── */
+  document.querySelectorAll('.pg-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.pg-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.pg-pane').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const pane = document.getElementById('pane-' + tab.dataset.tab);
+      if (pane) pane.classList.add('active');
+    });
+  });
+
+  /* ── Wire up buttons ────────────────────────────────────────── */
   const btnRun   = document.getElementById('btnRun');
   const btnReset = document.getElementById('btnReset');
   const searchBtn = document.getElementById('searchBtn');
   const searchInput = document.getElementById('searchInput');
 
-  if (btnRun) btnRun.addEventListener('click', runBoW);
+  if (btnRun) btnRun.addEventListener('click', BOW_runBoW);
 
   if (btnReset) btnReset.addEventListener('click', () => {
     ['doc1','doc2','doc3'].forEach((id, i) => {
       const el = document.getElementById(id);
-      if (el) el.value = DEFAULT_DOCS[i];
+      if (el) el.value = BOW_DEFAULT_DOCS[i];
     });
-    runBoW();
+    BOW_runBoW();
   });
 
-  if (searchBtn) searchBtn.addEventListener('click', runSearch);
+  if (searchBtn) searchBtn.addEventListener('click', BOW_runSearch);
   if (searchInput) {
-    searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
+    searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') BOW_runSearch(); });
   }
 
   // Auto-run on doc input change (debounced)
-  let debounce = null;
+  let BOW_debounce = null;
   ['doc1','doc2','doc3'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', () => {
-      clearTimeout(debounce);
-      debounce = setTimeout(runBoW, 400);
+      clearTimeout(BOW_debounce);
+      BOW_debounce = setTimeout(BOW_runBoW, 400);
     });
   });
 
   // Initial run
-  runBoW();
-});
+  BOW_runBoW();
+};
 
 /* ── CSS animation keyframe (dynamic injection) ─────────────── */
 (function() {
@@ -490,17 +568,3 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.head.appendChild(style);
 })();
-
-
-/* ── Init ─────────────────────────────────────────────────── */
-window.initAiLabBow = function() {
-  var content = document.getElementById('bow-content');
-  if (!content || content.dataset.ready) return;
-  content.dataset.ready = 'true';
-  if (document.getElementById('staticBowDemo') && !document.getElementById('staticBowDemo').children.length) {
-    buildStaticDemo();
-  }
-  if (document.getElementById('sparseVisual') && !document.getElementById('sparseVisual').children.length) {
-    buildSparseVisual();
-  }
-};

@@ -200,12 +200,51 @@ Tambahkan style baru di `css/frontend/fellow-dashboard/ai-lab-lesson.css`, **sel
 
 ```bash
 npx playwright install chromium  # first time only
-node --input-type=module -e '...'
+node --input-type=module -e '
+import { chromium } from "playwright";
+const browser = await chromium.launch({ headless: true,
+  executablePath: "/home/faiz/.cache/ms-playwright/chromium-1208/chrome-linux64/chrome" });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+const errors = [];
+page.on("pageerror", e => errors.push(e.message));
+await page.goto("http://localhost:3000/#/YOUR-ROUTE", { waitUntil: "networkidle", timeout: 15000 });
+await page.waitForTimeout(2500);
+const check = await page.evaluate(() => ({
+  contentReady: document.getElementById("YOUR-content")?.dataset.ready,
+  sections: document.querySelectorAll(".lesson-sec[id]").length,
+  emojiCount: (document.body.innerText.match(/[\u{1F000}-\u{1FFFF}]/gu) || []).length,
+}));
+console.log(JSON.stringify(check, null, 2));
+console.log("Errors:", errors.length > 0 ? errors : "None");
+await browser.close();
+'
 ```
 
 ---
 
-## 4. Design System
+## 4. Variable Name Collisions — CRITICAL
+
+Semua JS file loaded di global scope via `<script>` tags di `index.html`. **Setiap `const`/`let`/`var` harus unique** antar semua file.
+
+### Known collisions (already fixed):
+| Variable | Files | Fix |
+|---|---|---|
+| `DOC_COLORS` | bow.js + tfidf.js | Rename to `TFIDF_DOC_COLORS` |
+| `DOC_NAMES` | bow.js + tfidf.js | Rename to `TFIDF_DOC_NAMES` |
+| `DEFAULT_DOCS` | bow.js + tfidf.js | Rename to `TFIDF_DEFAULT_DOCS` |
+| `STOP_WORDS` | bow.js | Renamed internally `ID_STOPWORDS` |
+
+### How to check for new lesson:
+```bash
+for f in bow.js tfidf.js ml-intro.js ml-hypothesis.js ml-vc-dim.js ml-bias-variance.js; do
+  join <(grep -oP '^(const|let|var) \w+' js/.../ai-lab/$f | sed 's/const\|let\|var\s*//' | sort -u) \
+       <(grep -oP '^(const|let|var) \w+' js/.../ai-lab/NEW_FILE.js | sed 's/const\|let\|var\s*//' | sort -u)
+done
+```
+
+---
+
+## 5. Design System
 
 ### Warna HerAI
 ```css
@@ -233,11 +272,15 @@ node --input-type=module -e '...'
 |---|---|---|
 | Page blank/404 | Route gak terdaftar | Cek `router.js` routes object |
 | Function undefined | IIFE running before DOM ready | Wrap dalam `initAiLab*` function |
-| `ReferenceError` | Variable name mismatch | Cek nama variabel antara declaration & usage |
+| `ReferenceError` | Variable name mismatch | Cek Section 4 — use `join` command |
+| `Identifier already declared` | `const`/`let` redeclared in 2 files | Prefix with unique name (`TFIDF_`, `ML_`, `CV_`) |
 | `ERR_CONNECTION_REFUSED :8092` | Participant portal gak nyala | **Ignore** — expected di local dev |
 | Emoji masih muncul | Belum diganti di JS generated content | Cek `innerHTML` assignments di JS |
-| Topic card gak bisa diklik | Link masih ke `#/participant-modules` | Update di `nlp.html` |
+| Topic card gak bisa diklik | Link masih ke `#/participant-modules` | Update di overview page (nlp/ml/cv.html) |
 | CSS gak applied | Class gak di-scope `.ai-lab-content` | Tambahin prefix `.ai-lab-content ` |
+| Base64 image error | Single quote inside base64 in JS file | Escape or strip single quote from data |
+| `<script>` tags gak execute | `innerHTML` doesn't run scripts | Pindahin const/vars dari HTML ke JS file |
+| IIFE conversion breaks JS | `})();` leftover after rename | Check with `grep -n '})();' file.js` |
 
 ---
 

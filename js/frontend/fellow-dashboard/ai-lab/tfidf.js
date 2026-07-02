@@ -2,8 +2,10 @@
 
 /* ═══ HerAI TF-IDF — AI Lab port ═══ */
 
+const TFIDF_STOP_ID = new Set(['orang','masyarakat','sejak','lalu','kemudian','selain','berbagai','beberapa','banyak','sebuah','salah','satu','dua','tiga']);
+
 function tokenize(text) {
-  return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(w => w.length > 2 && !STOP_ID.has(w));
+  return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(w => w.length > 2 && !TFIDF_STOP_ID.has(w));
 }
 
 function computeTF(tokens) {
@@ -57,7 +59,7 @@ function buildIdfScaleDemo() {
   const words = [
     { word: '"dan" (stop word)',    df: 1000, color: '#ef4444' },
     { word: '"jakarta"',            df: 420,  color: '#ff9f0a' },
-    { word: '"startup"',            df: 85,   color: '#2997ff' },
+    { word: '"startup"',            df: 85,   color: '#f63392' },
     { word: '"unicorn"',            df: 12,   color: '#30d158' },
     { word: '"korupsi" (langka)',   df: 3,    color: '#bf5af2' },
   ];
@@ -94,7 +96,7 @@ function buildTfidfWordDemo() {
   const words = [
     { word: '"dan"',     tf: 0.18, idf: 0.001, color: '#ef4444' },
     { word: '"indonesia"', tf: 0.06, idf: 1.8,  color: '#ff9f0a' },
-    { word: '"startup"', tf: 0.09, idf: 3.2,  color: '#2997ff' },
+    { word: '"startup"', tf: 0.09, idf: 3.2,  color: '#f63392' },
   ];
 
   // Header
@@ -132,8 +134,8 @@ function buildTfidfWordDemo() {
    INTERACTIVE PLAYGROUND
    ══════════════════════════════════════════════════════════════ */
 
-const TFIDF_TFIDF_DOC_COLORS = ['#2997ff','#30d158','#bf5af2','#ff9f0a','#ff6b6b','#00c7be'];
-const TFIDF_TFIDF_DOC_NAMES  = ['D1','D2','D3','D4','D5','D6'];
+const TFIDF_DOC_COLORS = ['#f63392','#30d158','#bf5af2','#ff9f0a','#ff6b6b','#00c7be'];
+const TFIDF_DOC_NAMES  = ['D1','D2','D3','D4','D5','D6'];
 
 const TFIDF_DEFAULT_DOCS = [
   'Gojek startup unicorn Indonesia berhasil meluncurkan layanan ojek online pertama di Jakarta',
@@ -293,7 +295,7 @@ function runSearch() {
     qa.innerHTML = `
       <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);margin-bottom:6px;">Token query setelah preprocessing:</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px;">
-        ${qTerms.map(([w, s]) => `<span style="padding:3px 10px;border-radius:6px;background:rgba(41,151,255,.12);border:1px solid rgba(41,151,255,.3);color:#2997ff;font-family:var(--font-mono);font-size:11px;">${w}<span style="opacity:.6;margin-left:4px;">${s.toFixed(3)}</span></span>`).join('')}
+        ${qTerms.map(([w, s]) => `<span style="padding:3px 10px;border-radius:6px;background:rgba(246,51,146,.12);border:1px solid rgba(246,51,146,.3);color:#f63392;font-family:var(--font-mono);font-size:11px;">${w}<span style="opacity:.6;margin-left:4px;">${s.toFixed(3)}</span></span>`).join('')}
         ${qTerms.length === 0 ? '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Tidak ada token tersisa setelah stopword removal</span>' : ''}
       </div>
     `;
@@ -333,43 +335,7 @@ function runSearch() {
   });
 }
 
-/* ── Wire up ────────────────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
-  renderCorpus();
-
-  const btnAdd   = document.getElementById('btnAddDoc');
-  const btnBuild = document.getElementById('btnBuild');
-  const btnReset = document.getElementById('btnReset');
-  const searchBtn   = document.getElementById('searchBtn');
-  const searchInput = document.getElementById('searchInput');
-
-  if (btnAdd) btnAdd.addEventListener('click', () => {
-    if (tfidfCorpusDocs.length >= 6) return;
-    tfidfCorpusDocs.push('');
-    tfidfIndexBuilt = false;
-    renderCorpus();
-  });
-
-  if (btnBuild) btnBuild.addEventListener('click', buildIndex);
-
-  if (btnReset) btnReset.addEventListener('click', () => {
-    tfidfCorpusDocs = [...TFIDF_DEFAULT_DOCS];
-    tfidfIndexBuilt = false;
-    renderCorpus();
-    document.getElementById('indexTable').innerHTML = 'Build index terlebih dahulu…';
-    document.getElementById('indexInfo').textContent = '—';
-    document.getElementById('searchResults').innerHTML = '<div class="sr-empty">Build index terlebih dahulu.</div>';
-    if (document.getElementById('queryAnalysis')) document.getElementById('queryAnalysis').style.display = 'none';
-    // Switch to corpus tab
-    document.querySelectorAll('.pg-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.pg-pane').forEach(p => p.classList.remove('active'));
-    document.querySelector('[data-tab="corpus"]').classList.add('active');
-    document.getElementById('pane-corpus').classList.add('active');
-  });
-
-  if (searchBtn) searchBtn.addEventListener('click', runSearch);
-  if (searchInput) searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
-});
+/* ── Wire up (Moved to initAiLabTfidf) ────────────────────────── */
 
 /* ── CSS animation ──────────────────────────────────────────── */
 (function() {
@@ -403,4 +369,53 @@ window.initAiLabTfidf = function() {
 
   if (typeof buildIdfScaleDemo === 'function') buildIdfScaleDemo();
   if (typeof buildTfidfWordDemo === 'function') buildTfidfWordDemo();
+
+  /* ── Tab switching ──────────────────────────────────────────── */
+  document.querySelectorAll('.pg-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.pg-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.pg-pane').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const pane = document.getElementById('pane-' + tab.dataset.tab);
+      if (pane) pane.classList.add('active');
+    });
+  });
+
+  /* ── Wire up ────────────────────────────────────────────────── */
+  renderCorpus();
+
+  const btnAdd   = document.getElementById('btnAddDoc');
+  const btnBuild = document.getElementById('btnBuild');
+  const btnReset = document.getElementById('btnReset');
+  const searchBtn   = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('searchInput');
+
+  if (btnAdd) btnAdd.addEventListener('click', () => {
+    if (tfidfCorpusDocs.length >= 6) return;
+    tfidfCorpusDocs.push('');
+    tfidfIndexBuilt = false;
+    renderCorpus();
+  });
+
+  if (btnBuild) btnBuild.addEventListener('click', buildIndex);
+
+  if (btnReset) btnReset.addEventListener('click', () => {
+    tfidfCorpusDocs = [...TFIDF_DEFAULT_DOCS];
+    tfidfIndexBuilt = false;
+    renderCorpus();
+    document.getElementById('indexTable').innerHTML = 'Build index terlebih dahulu…';
+    document.getElementById('indexInfo').textContent = '—';
+    document.getElementById('searchResults').innerHTML = '<div class="sr-empty">Build index terlebih dahulu.</div>';
+    if (document.getElementById('queryAnalysis')) document.getElementById('queryAnalysis').style.display = 'none';
+    // Switch to corpus tab
+    document.querySelectorAll('.pg-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pg-pane').forEach(p => p.classList.remove('active'));
+    const corpusTab = document.querySelector('[data-tab="corpus"]');
+    const paneCorpus = document.getElementById('pane-corpus');
+    if (corpusTab) corpusTab.classList.add('active');
+    if (paneCorpus) paneCorpus.classList.add('active');
+  });
+
+  if (searchBtn) searchBtn.addEventListener('click', runSearch);
+  if (searchInput) searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
 };

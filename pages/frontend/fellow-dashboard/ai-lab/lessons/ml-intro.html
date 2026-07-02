@@ -1,4 +1,4 @@
-<section class="fellow-dashboard fellow-modules-page ai-lab-lesson ml-lesson-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page ml-lesson-page" data-fellow-page="modules">
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
 <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -16,14 +16,18 @@
 <nav class="fellow-menu secondary">
 <a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
 <a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
-<a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
+<a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ &amp; Bantuan</span></a>
 <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
 </nav>
+<div class="invite-card course-help-mini">
+<div><strong>Butuh bantuan?</strong><p>Tanya HerAI Assistant tentang modul dan pembelajaran.</p></div>
+<button type="button">Chat Sekarang</button>
+</div>
 </aside>
 <main class="fellow-main">
 <header class="lesson-topbar">
 <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
-<a href="#/participant-ai-lab-machine-learning"><i class="fas fa-arrow-left"></i><span>Machine Learning</span></a>
+<a href="#/participant-ai-lab-ml"><i class="fas fa-arrow-left"></i><span>Machine Learning</span></a>
 <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
 <span>Pengantar ML</span>
 </nav>
@@ -37,20 +41,23 @@
 <div class="lesson-main-content">
 <section class="lesson-hero">
 <div class="lesson-hero-copy">
-<h1>Apa itu Machine Learning?</h1>
-<p>Pahami perbedaan pemrograman klasik dan machine learning, tiga paradigma utama, serta kapan ML layak digunakan.</p>
+<h1>Pengantar Machine Learning</h1>
+<p>Perbedaan fundamental antara pemrograman klasik dan ML — dari aturan eksplisit ke induksi dari data.</p>
 <div class="lesson-meta-row">
 <span><i class="far fa-clock"></i> 40 menit</span>
-<span><i class="fas fa-diagram-project"></i> Machine Learning · Pengantar</span>
-<b><i class="fas fa-flask"></i> AI Lab</b>
+<span><i class="fas fa-layer-group"></i> ML · Pengantar ML</span>
+<b>Fondasi</b>
 </div>
 </div>
-<img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Machine Learning">
+<img src="/assets/messaging/herai-chat-persona.png" alt="HerAI ML learning">
 </section>
 <section class="lesson-material-panel">
-<div class="lesson-tabs" role="tablist" aria-label="Jenis materi"><a href="#/participant-ai-lab-ml-intro" class="active"><i class="fas fa-book-open"></i> Materi</a><a href="#/participant-ai-lab-ml-hypothesis"><i class="fas fa-arrow-right"></i> Berikutnya: Hipotesis & Model</a><a href="#/participant-ai-lab-machine-learning"><i class="fas fa-layer-group"></i> Katalog ML</a></div>
-<article class="lesson-article ai-lab-content ml-lesson-content" id="ml-intro-content">
-<div class="lesson-body">
+<div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
+<a href="#/participant-ai-lab-ml-intro" class="active"><i class="fas fa-book-open"></i> Materi</a>
+<a href="#/participant-ai-lab-ml"><i class="fas fa-layer-group"></i> Katalog ML</a>
+</div>
+<article class="lesson-article ai-lab-content" id="mlintro-content">
+
 
       <!-- ═══ SEC 1: DEFINISI ═══ -->
       <section class="lesson-sec" id="sec-definisi">
@@ -76,9 +83,9 @@
             <div class="pc-flow">
               <div class="pc-box input"><i class="fas fa-inbox"></i> Data Input</div>
               <div class="pc-arrow">+</div>
-              <div class="pc-box rules"><i class="fas fa-clipboard-list"></i> Aturan (oleh programmer)</div>
+              <div class="pc-box rules"><i class="fas fa-clipboard"></i> Aturan (oleh programmer)</div>
               <div class="pc-arrow">↓</div>
-              <div class="pc-box output"><i class="fas fa-share-from-square"></i> Output / Jawaban</div>
+              <div class="pc-box output"><i class="fas fa-paper-plane"></i> Output / Jawaban</div>
             </div>
             <div class="pc-example">
               <span class="pce-label">Contoh:</span>
@@ -131,12 +138,12 @@
               <div class="motiv-desc">Internet menghasilkan miliaran titik data setiap hari. ML bisa memanfaatkan data ini untuk menemukan pola yang tidak terlihat manusia.</div>
             </div>
             <div class="motiv-card">
-              <div class="motiv-icon"><i class="fas fa-rotate"></i></div>
+              <div class="motiv-icon"><i class="fas fa-arrows-rotate"></i></div>
               <div class="motiv-title">Lingkungan Dinamis</div>
               <div class="motiv-desc">Filter spam harus adaptif — spammer terus berubah taktik. Aturan statis tidak bisa mengikuti, tapi model ML bisa belajar terus.</div>
             </div>
             <div class="motiv-card">
-              <div class="motiv-icon"></div>
+              <div class="motiv-icon"><i class="fas fa-magnifying-glass"></i></div>
               <div class="motiv-title">Menemukan Pola Tersembunyi</div>
               <div class="motiv-desc">Pola dalam data genomik, perilaku finansial, atau cuaca — terlalu kompleks dan multidimensional untuk ditemukan secara manual.</div>
             </div>
@@ -184,7 +191,7 @@
 
           <div class="para-card unsupervised">
             <div class="para-num">02</div>
-            <div class="para-icon"></div>
+            <div class="para-icon"><i class="fas fa-magnifying-glass"></i></div>
             <div class="para-title">Unsupervised Learning</div>
             <div class="para-tagline">Temukan struktur tanpa label</div>
             <div class="para-desc">
@@ -204,7 +211,7 @@
 
           <div class="para-card reinforcement">
             <div class="para-num">03</div>
-            <div class="para-icon"></div>
+            <div class="para-icon"><i class="fas fa-gamepad"></i></div>
             <div class="para-title">Reinforcement Learning</div>
             <div class="para-tagline">Belajar dari interaksi & reward</div>
             <div class="para-desc">
@@ -244,7 +251,7 @@
         <div class="task-split">
           <div class="ts-col">
             <div class="ts-header">
-              <span class="ts-icon">️</span>
+              <span class="ts-icon"><i class="fas fa-tag"></i>️</span>
               <div>
                 <div class="ts-title">Klasifikasi</div>
                 <div class="ts-sub">Output diskrit</div>
@@ -267,7 +274,7 @@
           <div class="ts-divider"></div>
           <div class="ts-col">
             <div class="ts-header">
-              <span class="ts-icon"></span>
+              <span class="ts-icon"><i class="fas fa-chart-line"></i></span>
               <div>
                 <div class="ts-title">Regresi</div>
                 <div class="ts-sub">Output kontinu</div>
@@ -290,7 +297,7 @@
         </div>
 
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-gears"></i> Bagaimana Supervised Learning Bekerja</div>
+          <div class="wb-badge">⚙️ Bagaimana Supervised Learning Bekerja</div>
           <div class="wb-title">Pipeline Lengkap — 4 Langkah</div>
           <div class="pipeline-steps">
             <div class="ps-step">
@@ -360,7 +367,7 @@
           </div>
           <div class="ut-card">
             <div class="ut-accent" style="background:#a855f7"></div>
-            <div class="ut-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="ut-icon"><i class="fas fa-chart-line-down"></i></div>
             <div class="ut-title">Dimensionality Reduction</div>
             <div class="ut-desc">Meringkas data berdimensi tinggi ke representasi lebih padat tanpa kehilangan informasi penting. Berguna untuk visualisasi, kompresi, dan feature engineering sebelum supervised learning.</div>
             <div class="ut-algos">
@@ -409,7 +416,7 @@
               <div class="rll-label">Agent</div>
             </div>
             <div class="rll-env">
-              <div class="rll-icon"></div>
+              <div class="rll-icon"><i class="fas fa-globe"></i></div>
               <div class="rll-label">Environment</div>
             </div>
           </div>
@@ -445,7 +452,7 @@
         </div>
 
         <div class="insight-callout">
-          <div class="ic-icon"></div>
+          <div class="ic-icon"><i class="fas fa-gamepad"></i></div>
           <div class="ic-body">
             <strong>AlphaGo Zero (DeepMind, 2017)</strong> — belajar bermain Go dari nol hanya dengan RL,
             tanpa data partai manusia sama sekali. Setelah 3 hari, ia mengalahkan AlphaGo versi sebelumnya
@@ -475,7 +482,7 @@
             <div class="when-header"><i class="fas fa-circle-check"></i> Gunakan ML</div>
             <div class="when-list">
               <div class="wl-item">
-                <div class="wl-icon"></div>
+                <div class="wl-icon"><i class="fas fa-box"></i></div>
                 <div class="wl-content">
                   <div class="wl-title">Aturan tidak bisa ditulis manual</div>
                   <div class="wl-desc">Pengenalan wajah, pemahaman bahasa natural — terlalu kompleks untuk di-hardcode.</div>
@@ -496,7 +503,7 @@
                 </div>
               </div>
               <div class="wl-item">
-                <div class="wl-icon"><i class="fas fa-rotate"></i></div>
+                <div class="wl-icon"><i class="fas fa-arrows-rotate"></i></div>
                 <div class="wl-content">
                   <div class="wl-title">Pola bisa berubah seiring waktu</div>
                   <div class="wl-desc">Model bisa di-retrain dengan data baru, sedangkan aturan statis butuh update manual.</div>
@@ -509,14 +516,14 @@
             <div class="when-header"><i class="fas fa-circle-xmark"></i> Jangan Pakai ML</div>
             <div class="when-list">
               <div class="wl-item">
-                <div class="wl-icon"><i class="fas fa-clipboard-list"></i></div>
+                <div class="wl-icon"><i class="fas fa-clipboard"></i></div>
                 <div class="wl-content">
                   <div class="wl-title">Aturan sudah jelas dan simpel</div>
                   <div class="wl-desc">if-else yang simpel lebih cepat, lebih mudah di-debug, dan lebih explainable dari model ML manapun.</div>
                 </div>
               </div>
               <div class="wl-item">
-                <div class="wl-icon"><i class="fas fa-folder-tree"></i></div>
+                <div class="wl-icon"><i class="fas fa-file-lines"></i>️</div>
                 <div class="wl-content">
                   <div class="wl-title">Data sangat sedikit</div>
                   <div class="wl-desc">Model ML butuh data yang cukup untuk generalisasi. Dengan data terlalu sedikit, hasil tidak bisa dipercaya.</div>
@@ -530,7 +537,7 @@
                 </div>
               </div>
               <div class="wl-item">
-                <div class="wl-icon"></div>
+                <div class="wl-icon"><i class="fas fa-sack-dollar"></i></div>
                 <div class="wl-content">
                   <div class="wl-title">Biaya lebih besar dari manfaat</div>
                   <div class="wl-desc">Mengumpulkan data, training, deployment, monitoring — semua berbiaya. Pastikan ROI-nya worth it.</div>
@@ -553,20 +560,33 @@
       </section>
 
     </div><!-- /lesson-body -->
-  
+  </main>
+</div><!-- /lesson-layout -->
+
 </article>
-<footer class="lesson-nav-footer"><span></span><a href="#/participant-ai-lab-ml-hypothesis"><span>Berikutnya</span><strong>Hipotesis & Model</strong><i class="fas fa-arrow-right"></i></a></footer>
+<footer class="lesson-nav-footer">
+<a href="#/participant-ai-lab-ml"><i class="fas fa-chevron-left"></i> Kembali ke Katalog</a>
+<a href="#/participant-ai-lab-ml-hypothesis">Selanjutnya <i class="fas fa-arrow-right"></i></a>
+</footer>
 </section>
 </div>
 <aside class="lesson-right-panel">
-<section class="lesson-side-card">
-<span>Course</span>
-<h3>Machine Learning</h3>
-<p>Submateri pengantar dari source AI Lab Chen, dipindahkan ke layout HerAI.</p>
+<section class="module-side-card lesson-progress-card">
+<h2>Progres Materi</h2>
+<div class="lesson-progress-mini"><b style="--value:0%"></b><strong>0%</strong></div>
+<p>Pengantar Machine Learning</p>
+<a href="#/participant-ai-lab-ml">Kembali ke Katalog</a>
 </section>
-<section class="lesson-side-card lesson-list-card">
-<span>Submateri</span>
-<a href="#/participant-ai-lab-ml-intro" class="lesson-mini-link active"><span>01</span><strong>Pengantar ML</strong></a><a href="#/participant-ai-lab-ml-hypothesis" class="lesson-mini-link"><span>02</span><strong>Hipotesis & Model</strong></a><a href="#/participant-ai-lab-ml-vc-dim" class="lesson-mini-link"><span>03</span><strong>VC Dimension</strong></a><a href="#/participant-ai-lab-ml-bias-variance" class="lesson-mini-link"><span>04</span><strong>Bias-Variance</strong></a>
+<section class="module-side-card lesson-list-card">
+<h2>Daftar Section</h2>
+<ol>
+<li class="active"><span>1</span><a href="#sec-definisi">Apa itu ML?</a><i class="far fa-circle-play"></i></li>
+<li><span>2</span><a href="#sec-paradigma">Tiga Paradigma</a><i class="far fa-circle"></i></li>
+<li><span>3</span><a href="#sec-supervised">Supervised Learning</a><i class="far fa-circle"></i></li>
+<li><span>4</span><a href="#sec-unsupervised">Unsupervised Learning</a><i class="far fa-circle"></i></li>
+<li><span>5</span><a href="#sec-reinforcement">Reinforcement Learning</a><i class="far fa-circle"></i></li>
+<li><span>6</span><a href="#sec-kapan">Kapan Pakai ML?</a><i class="far fa-circle"></i></li>
+</ol>
 </section>
 </aside>
 </div>

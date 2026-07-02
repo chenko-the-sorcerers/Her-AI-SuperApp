@@ -1,8 +1,8 @@
-<section class="fellow-dashboard fellow-modules-page ai-lab-lesson ml-lesson-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page ml-lesson-page" data-fellow-page="modules">
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
 <aside class="fellow-sidebar" aria-label="Navigasi peserta">
-<a href="#/participant-dashboard" class="fellow-logo" aria-label="Buka sidebar peserta"><img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI Fellowship"></a>
+<a href="#/participant-dashboard" class="fellow-logo"><img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI"></a>
 <nav class="fellow-menu">
 <a href="#/participant-dashboard" data-fellow-nav="dashboard"><i class="fas fa-house"></i><span>Beranda</span></a>
 <a href="#/messaging" data-fellow-nav="chatroom"><i class="far fa-comment-dots"></i><span>Chatroom</span><strong>3</strong></a>
@@ -16,41 +16,29 @@
 <nav class="fellow-menu secondary">
 <a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
 <a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
-<a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
+<a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ</span></a>
 <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
 </nav>
 </aside>
 <main class="fellow-main">
 <header class="lesson-topbar">
-<nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
-<a href="#/participant-ai-lab-machine-learning"><i class="fas fa-arrow-left"></i><span>Machine Learning</span></a>
-<span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
-<span>VC Dimension</span>
-</nav>
+<nav class="lesson-breadcrumb"><a href="#/participant-ai-lab-ml"><i class="fas fa-arrow-left"></i><span>ML</span></a><span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span><span>VC Dimension</span></nav>
 <div class="fellow-actions">
-<label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label>
+<label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari..."></label>
 <button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
 <a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a>
 </div>
 </header>
-<div class="lesson-layout">
-<div class="lesson-main-content">
-<section class="lesson-hero">
-<div class="lesson-hero-copy">
-<h1>VC Dimension & Kapasitas Model</h1>
-<p>Memahami kapasitas model, shattering, dan hubungan kompleksitas hipotesis dengan generalisasi.</p>
-<div class="lesson-meta-row">
-<span><i class="far fa-clock"></i> 50 menit</span>
-<span><i class="fas fa-diagram-project"></i> Machine Learning · Pengantar</span>
-<b><i class="fas fa-flask"></i> AI Lab</b>
-</div>
-</div>
-<img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Machine Learning">
-</section>
+<div class="lesson-layout"><div class="lesson-main-content">
+<section class="lesson-hero"><div class="lesson-hero-copy">
+<h1>VC Dimension &amp; Kapasitas Model</h1>
+<p>Vapnik-Chervonenkis dimension sebagai ukuran kapasitas model — berapa banyak titik yang bisa di-shatter oleh H.</p>
+<div class="lesson-meta-row"><span><i class="far fa-clock"></i> 55 menit</span><span><i class="fas fa-layer-group"></i> ML · Pengantar ML</span><b><i class="fas fa-ruler-combined"></i> Matematis</b></div>
+</div><img src="/assets/messaging/herai-chat-persona.png" alt="HerAI VC-Dim"></section>
 <section class="lesson-material-panel">
-<div class="lesson-tabs" role="tablist" aria-label="Jenis materi"><a href="#/participant-ai-lab-ml-vc-dim" class="active"><i class="fas fa-book-open"></i> Materi</a><a href="#/participant-ai-lab-ml-hypothesis"><i class="fas fa-arrow-left"></i> Sebelumnya: Hipotesis & Model</a><a href="#/participant-ai-lab-ml-bias-variance"><i class="fas fa-arrow-right"></i> Berikutnya: Bias-Variance</a><a href="#/participant-ai-lab-machine-learning"><i class="fas fa-layer-group"></i> Katalog ML</a></div>
-<article class="lesson-article ai-lab-content ml-lesson-content" id="ml-vc-dim-content">
-<div class="lesson-body">
+<div class="lesson-tabs"><a href="#/participant-ai-lab-ml-vc-dim" class="active"><i class="fas fa-book-open"></i> Materi</a><a href="#/participant-ai-lab-ml"><i class="fas fa-layer-group"></i> Katalog ML</a></div>
+<article class="lesson-article ai-lab-content" id="vcdim-content">
+
 
       <!-- ═══ SEC 1: KAPASITAS ═══ -->
       <section class="lesson-sec" id="sec-kapasitas">
@@ -99,7 +87,7 @@
         </div>
 
         <div class="insight-callout">
-          <div class="ic-icon">‍<i class="fas fa-microscope"></i></div>
+          <div class="ic-icon">‍</div>
           <div class="ic-body">
             <strong>Vladimir Vapnik & Alexey Chervonenkis (1971)</strong> mengembangkan teori ini
             sebagai fondasi dari <em>Statistical Learning Theory</em>. Kerja mereka kemudian
@@ -159,9 +147,9 @@
             <div class="sd-controls">
               <div class="sd-ctrl-label">Jumlah titik:</div>
               <div class="sd-btns">
-                <button class="sd-btn active">2 titik</button>
-                <button class="sd-btn">3 titik</button>
-                <button class="sd-btn">4 titik</button>
+                <button class="sd-btn active" onclick="setPoints(2)">2 titik</button>
+                <button class="sd-btn" onclick="setPoints(3)">3 titik</button>
+                <button class="sd-btn" onclick="setPoints(4)">4 titik</button>
               </div>
               <div class="sd-ctrl-label" style="margin-top:12px">Pilih pelabelan:</div>
               <div class="sd-labelings" id="labelingBtns"></div>
@@ -193,7 +181,7 @@
             </div>
           </div>
           <div class="insight-callout" style="margin-top:12px">
-            <div class="ic-icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="ic-icon"></div>
             <div class="ic-body">
               Dalam graph lengkap dengan 4 simpul, selalu ada 2 edge yang bersilangan.
               Jika titik positif di ujung satu edge dan negatif di ujung edge lain yang bersilangan,
@@ -235,7 +223,7 @@
 
         <!-- Step by step proof intuition -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-ruler-combined"></i> Bukti Intuitif — VC(H_linear di ℝⁿ) = n+1</div>
+          <div class="wb-badge"> Bukti Intuitif — VC(H_linear di ℝⁿ) = n+1</div>
           <div class="wb-title">Dua langkah: tunjukkan bisa shatter n+1, lalu tidak bisa n+2</div>
 
           <div class="proof-steps">
@@ -409,9 +397,9 @@
           <div class="wb-title">Pilih model — lihat apa yang bisa dan tidak bisa ia shatter</div>
           <div class="model-compare">
             <div class="mc-selector">
-              <button class="mc-btn active">Garis (VC=3)</button>
-              <button class="mc-btn">Persegi (VC=4)</button>
-              <button class="mc-btn">Lingkaran (VC=1)</button>
+              <button class="mc-btn active" onclick="selectModel('line')">Garis (VC=3)</button>
+              <button class="mc-btn" onclick="selectModel('rect')">Persegi (VC=4)</button>
+              <button class="mc-btn" onclick="selectModel('circle')">Lingkaran (VC=1)</button>
             </div>
             <div class="mc-canvas-wrap">
               <canvas id="modelCompareCanvas" width="480" height="280"></canvas>
@@ -443,7 +431,7 @@
 
         <!-- Worked 1: Interval -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-pen"></i> Contoh 1 · Interval [a, b] di ℝ¹</div>
+          <div class="wb-badge">✏️ Contoh 1 · Interval [a, b] di ℝ¹</div>
           <div class="wb-title">Buktikan VC(H_interval) = 2</div>
           <div class="wp-proof">
             <div class="wpp-step">
@@ -481,7 +469,7 @@
 
         <!-- Worked 2: Rectangle -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-pen"></i> Contoh 2 · Persegi Panjang Axis-Aligned di ℝ²</div>
+          <div class="wb-badge">✏️ Contoh 2 · Persegi Panjang Axis-Aligned di ℝ²</div>
           <div class="wb-title">Buktikan VC(H_rect) = 4</div>
           <div class="wp-proof">
             <div class="wpp-step">
@@ -538,7 +526,7 @@
             <div class="pt-row"><span>SVM (hard margin)</span><span class="mono">n+1</span><span class="mono green">≤ R²/γ²</span><span>VC-dim bergantung margin γ, bukan n!</span></div>
           </div>
           <div class="insight-callout" style="margin-top:16px">
-            <div class="ic-icon"><i class="fas fa-key"></i></div>
+            <div class="ic-icon"></div>
             <div class="ic-body">
               <strong>Pelajaran:</strong> VC-dim mengukur kapasitas <em>fungsional</em>, bukan jumlah parameter.
               SVM bisa punya VC-dim kecil meski berdimensi tinggi — karena memaksimalkan margin γ
@@ -549,7 +537,7 @@
 
         <!-- Growth function & Sauer's lemma -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-ruler-combined"></i> Teori Lanjutan · Growth Function & Sauer's Lemma</div>
+          <div class="wb-badge"> Teori Lanjutan · Growth Function & Sauer's Lemma</div>
           <div class="wb-title">Mengapa VC-dim cukup untuk karakterisasi learnability?</div>
           <div class="prose" style="margin-bottom:16px">
             VC-dim bekerja melalui konsep <strong>growth function</strong> — jumlah maksimal pola berbeda
@@ -680,12 +668,12 @@
             <div class="vci-body">Complexity penalty ∝ 1/√N. Dengan N → ∞, bound mendekati empirical error. Ini membenarkan "lebih banyak data selalu membantu".</div>
           </div>
           <div class="vci-card">
-            <div class="vci-icon"><i class="fas fa-arrow-up"></i></div>
+            <div class="vci-icon">⬆️</div>
             <div class="vci-title">VC(H) lebih besar → bound lebih longgar</div>
             <div class="vci-body">Model dengan kapasitas tinggi punya complexity penalty lebih besar. Bahkan jika empirical error = 0, bound generalisasi bisa sangat besar.</div>
           </div>
           <div class="vci-card">
-            <div class="vci-icon"><i class="fas fa-scale-balanced"></i></div>
+            <div class="vci-icon">⚖️</div>
             <div class="vci-title">Tradeoff fundamental</div>
             <div class="vci-body">Kapasitas lebih besar → empirical error lebih kecil, tapi complexity penalty lebih besar. Kapasitas optimal meminimalkan jumlah keduanya.</div>
           </div>
@@ -746,7 +734,7 @@
         </div>
 
         <div class="insight-callout">
-          <div class="ic-icon"><i class="fas fa-key"></i></div>
+          <div class="ic-icon"></div>
           <div class="ic-body">
             <strong>Mengapa SVM optimal secara VC?</strong> Support Vector Machine secara eksplisit
             memaksimalkan margin — dan terbukti bahwa memaksimalkan margin ekuivalen dengan
@@ -756,10 +744,10 @@
         </div>
 
         <div class="vc-limitations">
-          <div class="vcl-title"><i class="fas fa-triangle-exclamation"></i> Keterbatasan VC-Dimension</div>
+          <div class="vcl-title">⚠️ Keterbatasan VC-Dimension</div>
           <div class="vcl-items">
             <div class="vcl-item">
-              <span class="vcli-icon"><i class="fas fa-chart-line"></i></span>
+              <span class="vcli-icon"></span>
               <div>
                 <strong>Bound sangat pesimistis</strong> — dalam praktik, model sering generalisasi
                 jauh lebih baik dari yang dijamin bound. VC bound adalah <em>worst-case</em>.
@@ -795,23 +783,18 @@
 
       </section>
 
-    </div><!-- /lesson-body -->
-  
 </article>
-<footer class="lesson-nav-footer"><a href="#/participant-ai-lab-ml-hypothesis"><i class="fas fa-arrow-left"></i><span>Sebelumnya</span><strong>Hipotesis & Model</strong></a><a href="#/participant-ai-lab-ml-bias-variance"><span>Berikutnya</span><strong>Bias-Variance</strong><i class="fas fa-arrow-right"></i></a></footer>
-</section>
-</div>
+<footer class="lesson-nav-footer"><a href="#/participant-ai-lab-ml-hypothesis"><i class="fas fa-chevron-left"></i> Sebelumnya</a><a href="#/participant-ai-lab-ml-bias-variance">Selanjutnya <i class="fas fa-arrow-right"></i></a></footer>
+</section></div>
 <aside class="lesson-right-panel">
-<section class="lesson-side-card">
-<span>Course</span>
-<h3>Machine Learning</h3>
-<p>Submateri pengantar dari source AI Lab Chen, dipindahkan ke layout HerAI.</p>
-</section>
-<section class="lesson-side-card lesson-list-card">
-<span>Submateri</span>
-<a href="#/participant-ai-lab-ml-intro" class="lesson-mini-link"><span>01</span><strong>Pengantar ML</strong></a><a href="#/participant-ai-lab-ml-hypothesis" class="lesson-mini-link"><span>02</span><strong>Hipotesis & Model</strong></a><a href="#/participant-ai-lab-ml-vc-dim" class="lesson-mini-link active"><span>03</span><strong>VC Dimension</strong></a><a href="#/participant-ai-lab-ml-bias-variance" class="lesson-mini-link"><span>04</span><strong>Bias-Variance</strong></a>
-</section>
-</aside>
-</div>
-</main>
-</section>
+<section class="module-side-card lesson-progress-card"><h2>Progres</h2><div class="lesson-progress-mini"><b style="--value:0%"></b><strong>0%</strong></div><p>VC Dimension</p><a href="#/participant-ai-lab-ml">Katalog ML</a></section>
+<section class="module-side-card lesson-list-card"><h2>Section</h2><ol>
+<li class="active"><span>1</span><a href="#sec-kapasitas">Kapasitas Model</a><i class="far fa-circle-play"></i></li>
+<li><span>2</span><a href="#sec-shatter">Shatter</a><i class="far fa-circle"></i></li>
+<li><span>3</span><a href="#sec-linear">Linear Models</a><i class="far fa-circle"></i></li>
+<li><span>4</span><a href="#sec-models">VC Models</a><i class="far fa-circle"></i></li>
+<li><span>5</span><a href="#sec-worked">Worked Examples</a><i class="far fa-circle"></i></li>
+<li><span>6</span><a href="#sec-generalisasi">Generalisasi</a><i class="far fa-circle"></i></li>
+<li><span>7</span><a href="#sec-srmvc">SRM+VC</a><i class="far fa-circle"></i></li>
+</ol></section>
+</aside></div></main></section>

@@ -1,8 +1,8 @@
-<section class="fellow-dashboard fellow-modules-page ai-lab-lesson ml-lesson-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page ml-lesson-page" data-fellow-page="modules">
 <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
 <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
 <aside class="fellow-sidebar" aria-label="Navigasi peserta">
-<a href="#/participant-dashboard" class="fellow-logo" aria-label="Buka sidebar peserta"><img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI Fellowship"></a>
+<a href="#/participant-dashboard" class="fellow-logo"><img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI"></a>
 <nav class="fellow-menu">
 <a href="#/participant-dashboard" data-fellow-nav="dashboard"><i class="fas fa-house"></i><span>Beranda</span></a>
 <a href="#/messaging" data-fellow-nav="chatroom"><i class="far fa-comment-dots"></i><span>Chatroom</span><strong>3</strong></a>
@@ -16,43 +16,29 @@
 <nav class="fellow-menu secondary">
 <a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
 <a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
-<a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
+<a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ</span></a>
 <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
 </nav>
 </aside>
 <main class="fellow-main">
 <header class="lesson-topbar">
-<nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
-<a href="#/participant-ai-lab-machine-learning"><i class="fas fa-arrow-left"></i><span>Machine Learning</span></a>
-<span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
-<span>Bias-Variance</span>
-</nav>
+<nav class="lesson-breadcrumb"><a href="#/participant-ai-lab-ml"><i class="fas fa-arrow-left"></i><span>ML</span></a><span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span><span>Bias-Variance</span></nav>
 <div class="fellow-actions">
-<label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label>
+<label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari..."></label>
 <button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
 <a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a>
 </div>
 </header>
-<div class="lesson-layout">
-<div class="lesson-main-content">
-<section class="lesson-hero">
-<div class="lesson-hero-copy">
+<div class="lesson-layout"><div class="lesson-main-content">
+<section class="lesson-hero"><div class="lesson-hero-copy">
 <h1>Bias-Variance Tradeoff</h1>
-<p>Mengurai overfitting, underfitting, bias, variance, dan cara memilih kompleksitas model secara sehat.</p>
-<div class="lesson-meta-row">
-<span><i class="far fa-clock"></i> 50 menit</span>
-<span><i class="fas fa-diagram-project"></i> Machine Learning · Pengantar</span>
-<b><i class="fas fa-flask"></i> AI Lab</b>
-</div>
-</div>
-<img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Machine Learning">
-</section>
+<p>Overfitting terjadi saat model terlalu kompleks. Underfitting saat terlalu sederhana. The No Free Lunch Theorem.</p>
+<div class="lesson-meta-row"><span><i class="far fa-clock"></i> 55 menit</span><span><i class="fas fa-layer-group"></i> ML · Pengantar ML</span><b><i class="fas fa-scale-balanced"></i> Interaktif</b></div>
+</div><img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Bias-Variance"></section>
 <section class="lesson-material-panel">
-<div class="lesson-tabs" role="tablist" aria-label="Jenis materi"><a href="#/participant-ai-lab-ml-bias-variance" class="active"><i class="fas fa-book-open"></i> Materi</a><a href="#/participant-ai-lab-ml-vc-dim"><i class="fas fa-arrow-left"></i> Sebelumnya: VC Dimension</a><a href="#/participant-ai-lab-machine-learning"><i class="fas fa-layer-group"></i> Katalog ML</a></div>
-<article class="lesson-article ai-lab-content ml-lesson-content" id="ml-bias-variance-content">
-<div class="lesson-body">
+<div class="lesson-tabs"><a href="#/participant-ai-lab-ml-bias-variance" class="active"><i class="fas fa-book-open"></i> Materi</a><a href="#/participant-ai-lab-ml"><i class="fas fa-layer-group"></i> Katalog ML</a></div>
+<article class="lesson-article ai-lab-content" id="biasvariance-content">
 
-      <!-- ═══ SEC 1: INTUISI ═══ -->
       <section class="lesson-sec" id="sec-intuisi">
         <div class="sec-header">
           <span class="sec-num">01</span>
@@ -152,7 +138,7 @@
 
         <!-- Step-by-step derivation -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-ruler-combined"></i> Penurunan Matematis Lengkap</div>
+          <div class="wb-badge"> Penurunan Matematis Lengkap</div>
           <div class="wb-title">Dari E[(y−ĥ)²] ke Bias² + Var + σ²</div>
           <div class="derivation-steps">
             <div class="ds-step">
@@ -194,16 +180,16 @@
           <div class="dv-title">Visualisasi: 100 model yang dilatih pada dataset berbeda</div>
           <canvas id="decompCanvas" width="560" height="280"></canvas>
           <div class="dv-controls">
-            <button class="dv-btn active">Low Bias, Low Var</button>
-            <button class="dv-btn">High Bias, Low Var</button>
-            <button class="dv-btn">Low Bias, High Var</button>
-            <button class="dv-btn">High Bias, High Var</button>
+            <button class="dv-btn active" onclick="setDecompMode('low-bias-low-var')">Low Bias, Low Var</button>
+            <button class="dv-btn" onclick="setDecompMode('high-bias-low-var')">High Bias, Low Var</button>
+            <button class="dv-btn" onclick="setDecompMode('low-bias-high-var')">Low Bias, High Var</button>
+            <button class="dv-btn" onclick="setDecompMode('high-bias-high-var')">High Bias, High Var</button>
           </div>
           <div class="dv-stats" id="dvStats"></div>
         </div>
 
         <div class="insight-callout">
-          <div class="ic-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          <div class="ic-icon">⚠️</div>
           <div class="ic-body">
             <strong>σ² tidak bisa diminimasi</strong> — ini adalah batas bawah absolut error yang bisa dicapai.
             Bahkan oracle yang tahu fungsi target f(x) sepenuhnya pun masih punya error σ².
@@ -229,10 +215,10 @@
         </div>
 
         <div class="bv-characteristics">
-          <div class="bvc-header bias"><i class="fas fa-arrow-up"></i> High Bias — Karakteristik</div>
+          <div class="bvc-header bias">⬆ High Bias — Karakteristik</div>
           <div class="bvc-grid">
             <div class="bvc-item">
-              <div class="bvci-icon"><i class="fas fa-chart-simple"></i></div>
+              <div class="bvci-icon"></div>
               <div class="bvci-title">Training error tinggi</div>
               <div class="bvci-desc">Model bahkan tidak bisa fit data latihnya sendiri. E_train ≫ 0.</div>
             </div>
@@ -242,12 +228,12 @@
               <div class="bvci-desc">Gap kecil antara train dan test — keduanya sama-sama buruk.</div>
             </div>
             <div class="bvc-item">
-              <div class="bvci-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="bvci-icon"></div>
               <div class="bvci-title">Plateau cepat pada learning curve</div>
               <div class="bvci-desc">Menambah lebih banyak data tidak membantu — masalah bukan di data.</div>
             </div>
             <div class="bvc-item">
-              <div class="bvci-icon"><i class="fas fa-lock"></i></div>
+              <div class="bvci-icon"></div>
               <div class="bvci-title">Asumsi model terlalu kuat</div>
               <div class="bvci-desc">Contoh: pakai linear model untuk data yang fundamentally non-linear.</div>
             </div>
@@ -257,9 +243,9 @@
         <div class="bias-examples">
           <div class="be-title">Contoh nyata underfitting:</div>
           <div class="be-grid">
-            <div class="be-item"><span class="be-icon"><i class="fas fa-ruler"></i></span><span>Regresi linear pada data sinusoidal</span></div>
-            <div class="be-item"><span class="be-icon"><i class="fas fa-tree"></i></span><span>Decision tree depth=1 untuk XOR</span></div>
-            <div class="be-item"><span class="be-icon"><i class="fas fa-brain"></i></span><span>MLP 1 neuron untuk MNIST</span></div>
+            <div class="be-item"><span class="be-icon"></span><span>Regresi linear pada data sinusoidal</span></div>
+            <div class="be-item"><span class="be-icon"></span><span>Decision tree depth=1 untuk XOR</span></div>
+            <div class="be-item"><span class="be-icon"></span><span>MLP 1 neuron untuk MNIST</span></div>
             <div class="be-item"><span class="be-icon"></span><span>Naive Bayes ketika fitur sangat berkorelasi</span></div>
           </div>
         </div>
@@ -293,15 +279,15 @@
         </div>
 
         <div class="bv-characteristics">
-          <div class="bvc-header variance"><i class="fas fa-arrow-up"></i> High Variance — Karakteristik</div>
+          <div class="bvc-header variance">⬆ High Variance — Karakteristik</div>
           <div class="bvc-grid">
             <div class="bvc-item">
-              <div class="bvci-icon"><i class="fas fa-circle-check"></i></div>
+              <div class="bvci-icon">✅</div>
               <div class="bvci-title">Training error sangat rendah</div>
               <div class="bvci-desc">Model "hafal" semua data latih, termasuk noise-nya. E_train ≈ 0.</div>
             </div>
             <div class="bvc-item">
-              <div class="bvci-icon"><i class="fas fa-circle-xmark"></i></div>
+              <div class="bvci-icon">❌</div>
               <div class="bvci-title">Test error jauh lebih tinggi</div>
               <div class="bvci-desc">Gap besar antara train dan test error — tanda overfitting yang jelas.</div>
             </div>
@@ -311,7 +297,7 @@
               <div class="bvci-desc">Ganti sedikit data latih → prediksi berubah drastis. Var[ĥ(x)] besar.</div>
             </div>
             <div class="bvc-item">
-              <div class="bvci-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="bvci-icon"></div>
               <div class="bvci-title">Membaik dengan lebih banyak data</div>
               <div class="bvci-desc">Tidak seperti underfitting — menambah data latih membantu mengurangi variance.</div>
             </div>
@@ -334,7 +320,7 @@
                 <input type="range" id="slDataN" min="8" max="40" step="4" value="16">
                 <span class="ndc-val" id="valDataN">16</span>
               </div>
-              <button class="nd-resample"><i class="fas fa-rotate"></i> Resample Data</button>
+              <button class="nd-resample" onclick="resampleNoise()"> Resample Data</button>
             </div>
             <canvas id="noiseCanvas" width="460" height="280"></canvas>
           </div>
@@ -428,7 +414,7 @@
         </div>
 
         <div class="insight-callout">
-          <div class="ic-icon"><i class="fas fa-lightbulb"></i></div>
+          <div class="ic-icon"></div>
           <div class="ic-body">
             <strong>CNN dan Spatial Invariance:</strong> CNN secara eksplisit encode asumsi bahwa
             fitur visual (tepi, tekstur, bentuk) sama pentingnya di semua lokasi gambar —
@@ -468,17 +454,17 @@
           <div class="nfli-title">Implikasi Praktis</div>
           <div class="nfli-grid">
             <div class="nfli-card good">
-              <div class="nflic-icon"><i class="fas fa-circle-check"></i></div>
+              <div class="nflic-icon">✅</div>
               <div class="nflic-title">Yang berarti...</div>
               <div class="nflic-body">Setiap algoritma punya "niche" — ada distribusi data di mana ia unggul. Tidak ada yang universal inferior.</div>
             </div>
             <div class="nfli-card bad">
-              <div class="nflic-icon"><i class="fas fa-circle-xmark"></i></div>
+              <div class="nflic-icon">❌</div>
               <div class="nflic-title">Yang tidak berarti...</div>
               <div class="nflic-body">Bukan berarti semua algoritma sama baik pada masalah spesifik! Pada domain tertentu (misal: gambar), CNN jelas unggul.</div>
             </div>
             <div class="nfli-card key">
-              <div class="nflic-icon"><i class="fas fa-key"></i></div>
+              <div class="nflic-icon"></div>
               <div class="nflic-title">Kesimpulan utama</div>
               <div class="nflic-body">Pilih algoritma berdasarkan asumsi yang sesuai dengan struktur masalahmu. Domain knowledge sangat penting.</div>
             </div>
@@ -509,13 +495,13 @@
 
         <!-- Learning curves -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-chart-simple"></i> Learning Curves — Error vs Jumlah Data N</div>
+          <div class="wb-badge"> Learning Curves — Error vs Jumlah Data N</div>
           <div class="wb-title">Pilih skenario untuk melihat pola diagnostik</div>
           <div class="lc-demo">
             <div class="lc-tabs">
-              <button class="lc-tab active">Underfitting</button>
-              <button class="lc-tab">Overfitting</button>
-              <button class="lc-tab">Good Fit</button>
+              <button class="lc-tab active" onclick="setLC('underfit')">Underfitting</button>
+              <button class="lc-tab" onclick="setLC('overfit')">Overfitting</button>
+              <button class="lc-tab" onclick="setLC('good')">Good Fit</button>
             </div>
             <canvas id="lcCanvas" width="540" height="240"></canvas>
             <div class="lc-insight" id="lcInsight">
@@ -526,7 +512,7 @@
 
         <!-- Complexity curves -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-chart-simple"></i> Complexity Curves — Error vs Derajat Kebebasan Model</div>
+          <div class="wb-badge"> Complexity Curves — Error vs Derajat Kebebasan Model</div>
           <div class="wb-title">Temukan sweet spot kompleksitas optimal</div>
           <canvas id="ccCanvas" width="560" height="240"></canvas>
           <div class="cc-legend">
@@ -607,7 +593,7 @@
 
         <!-- Ensemble methods -->
         <div class="worked-box">
-          <div class="wb-badge"><i class="fas fa-bullseye"></i> Ensemble Methods — Bagging vs Boosting</div>
+          <div class="wb-badge"> Ensemble Methods — Bagging vs Boosting</div>
           <div class="wb-title">Dua strategi berbeda untuk target yang berbeda</div>
           <div class="ensemble-compare">
             <div class="ec-col bagging">
@@ -688,7 +674,7 @@
         </div>
 
         <div class="insight-callout">
-          <div class="ic-icon"><i class="fas fa-microscope"></i></div>
+          <div class="ic-icon"></div>
           <div class="ic-body">
             <strong>Benign Overfitting (Bartlett et al., 2020):</strong> Model yang persis
             menginterpolasi training data bisa tetap generalisasi baik jika dimensi fitur jauh
@@ -716,28 +702,35 @@
             <span class="nlc-label">Modul berikutnya</span>
             <h3 class="nlc-title">Supervised Learning →</h3>
             <p class="nlc-desc">Fondasi teoritis sudah kamu kuasai. Saatnya masuk ke algoritma konkret — regresi, klasifikasi Bayesian, logistic regression, SVM, dan neural networks.</p>
-            <a href="#/participant-ai-lab-machine-learning" class="nlc-btn">Kembali ke ML Overview</a>
+            <a href="/pages/ai-lab/machine-learning.html" class="nlc-btn">Kembali ke ML Overview</a>
           </div>
         </div>
       </section>
 
     </div><!-- /lesson-body -->
-  
+  </main>
+</div><!-- /lesson-layout -->
+
+<div id="footer-placeholder"></div>
+<script src="/js/shared.js"></script>
+<script src="/js/lang.js"></script>
+<script src="/js/ml-bias-variance.js"></script>
+</body>
+</html>
 </article>
-<footer class="lesson-nav-footer"><a href="#/participant-ai-lab-ml-vc-dim"><i class="fas fa-arrow-left"></i><span>Sebelumnya</span><strong>VC Dimension</strong></a><a href="#/participant-ai-lab-machine-learning"><span>Kembali</span><strong>Katalog Machine Learning</strong><i class="fas fa-layer-group"></i></a></footer>
-</section>
-</div>
+<footer class="lesson-nav-footer"><a href="#/participant-ai-lab-ml-vc-dim"><i class="fas fa-chevron-left"></i> Sebelumnya</a><a href="#/participant-ai-lab-ml">Katalog ML <i class="fas fa-arrow-right"></i></a></footer>
+</section></div>
 <aside class="lesson-right-panel">
-<section class="lesson-side-card">
-<span>Course</span>
-<h3>Machine Learning</h3>
-<p>Submateri pengantar dari source AI Lab Chen, dipindahkan ke layout HerAI.</p>
-</section>
-<section class="lesson-side-card lesson-list-card">
-<span>Submateri</span>
-<a href="#/participant-ai-lab-ml-intro" class="lesson-mini-link"><span>01</span><strong>Pengantar ML</strong></a><a href="#/participant-ai-lab-ml-hypothesis" class="lesson-mini-link"><span>02</span><strong>Hipotesis & Model</strong></a><a href="#/participant-ai-lab-ml-vc-dim" class="lesson-mini-link"><span>03</span><strong>VC Dimension</strong></a><a href="#/participant-ai-lab-ml-bias-variance" class="lesson-mini-link active"><span>04</span><strong>Bias-Variance</strong></a>
-</section>
-</aside>
-</div>
-</main>
-</section>
+<section class="module-side-card lesson-progress-card"><h2>Progres</h2><div class="lesson-progress-mini"><b style="--value:0%"></b><strong>0%</strong></div><p>Bias-Variance</p><a href="#/participant-ai-lab-ml">Katalog ML</a></section>
+<section class="module-side-card lesson-list-card"><h2>Section</h2><ol>
+<li class="active"><span>1</span><a href="#sec-intuisi">Intuisi</a><i class="far fa-circle-play"></i></li>
+<li><span>2</span><a href="#sec-decomp">Dekomposisi Error</a><i class="far fa-circle"></i></li>
+<li><span>3</span><a href="#sec-highbias">High Bias</a><i class="far fa-circle"></i></li>
+<li><span>4</span><a href="#sec-highvar">High Variance</a><i class="far fa-circle"></i></li>
+<li><span>5</span><a href="#sec-inductive">Inductive Bias</a><i class="far fa-circle"></i></li>
+<li><span>6</span><a href="#sec-nfl">No Free Lunch</a><i class="far fa-circle"></i></li>
+<li><span>7</span><a href="#sec-diagnosis">Diagnosis & Curves</a><i class="far fa-circle"></i></li>
+<li><span>8</span><a href="#sec-mitigasi">Mitigasi</a><i class="far fa-circle"></i></li>
+<li><span>9</span><a href="#sec-double">Double Descent</a><i class="far fa-circle"></i></li>
+</ol></section>
+</aside></div></main></section>

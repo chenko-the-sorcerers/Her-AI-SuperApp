@@ -111,8 +111,8 @@
     prefix: { bg:'rgba(246,51,146,.14)',  border:'rgba(246,51,146,.4)',  color:'#f63392' },
     root:   { bg:'rgba(34,197,94,.14)',   border:'rgba(34,197,94,.4)',   color:'#22c55e' },
     suffix: { bg:'rgba(168,85,247,.14)',  border:'rgba(168,85,247,.4)',  color:'#a855f7' },
-    punct:  { bg:'rgba(255,255,255,.05)', border:'rgba(255,255,255,.12)',color:'#55556a' },
-    space:  { bg:'rgba(255,255,255,.03)', border:'rgba(255,255,255,.06)',color:'#44445a' },
+    punct:  { bg:'rgba(142,145,160,.1)',  border:'rgba(142,145,160,.35)', color:'#6f7282' },
+    space:  { bg:'rgba(142,145,160,.06)', border:'rgba(142,145,160,.2)',  color:'#8e91a0' },
   };
   const MODE_DESCRIPTIONS = {
     word:    '<strong>Berbasis Kata:</strong> Pisahkan teks berdasarkan spasi dan tanda baca. Satu kata = satu token.',
@@ -139,6 +139,7 @@
         style = colorMap[key];
       }
       chip.style.cssText = `background:${style.bg};border:1px solid ${style.border};color:${style.color};animation-delay:${Math.min(i * 0.025, 1)}s`;
+      chip.title = tok.type === 'word' ? 'Token kata: ' + tok.text : typeLabels[tok.type] ? 'Token ' + typeLabels[tok.type] + ': ' + tok.text : 'Token #' + i;
 
       const txt = document.createElement('span');
       txt.textContent = tok.text;
