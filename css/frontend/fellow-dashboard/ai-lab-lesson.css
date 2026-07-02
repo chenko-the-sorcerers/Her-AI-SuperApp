@@ -8670,989 +8670,229 @@
   box-shadow: none;
 }
 
-/* AI Lab layout normalization: align lesson pages with AI Fundamentals shell */
-.ai-lab-overview,
-.lesson-detail-page {
-  --ai-shell-bg: #fffafe;
-  --ai-shell-card: #ffffff;
-  --ai-shell-soft: #fff7fb;
-  --ai-shell-soft-2: #fff0f7;
-  --ai-shell-line: var(--fellow-line, #ffe0ef);
-  --ai-shell-text: #171827;
-  --ai-shell-muted: #6f7282;
-  --ai-shell-pink: var(--fellow-pink, #f63392);
-  --accent: var(--fellow-pink, #f63392) !important;
-  --accent-2: var(--fellow-pink, #f63392) !important;
-  --mc: var(--fellow-pink, #f63392) !important;
-  --tc: var(--fellow-pink, #f63392) !important;
-  --px-blue: var(--fellow-pink, #f63392) !important;
-  --px-green: var(--fellow-pink, #f63392) !important;
-  --px-red: #8e91a0 !important;
-  --fk-blue: var(--fellow-pink, #f63392) !important;
-  --fk-green: var(--fellow-pink, #f63392) !important;
-  --mblue: var(--fellow-pink, #f63392) !important;
-  --mgreen: var(--fellow-pink, #f63392) !important;
-  background: var(--ai-shell-bg) !important;
-  color: var(--ai-shell-text) !important;
+/* HerAI shell guard: stop standalone lesson CSS from overriding dashboard pages */
+.lesson-detail-page,
+.ai-lab-lesson,
+.ai-lab-overview {
+  --bg: #fffafe;
+  --bg-2: #fff7fb;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --border: var(--fellow-line, #f2dfe9);
+  --border-s: rgba(246,51,146,.14);
+  --text: #171827;
+  --text-2: #6f7282;
+  --text-3: #8e91a0;
+  --accent: var(--fellow-pink, #f63392);
 }
 
 .lesson-detail-page .fellow-main,
+.ai-lab-lesson .fellow-main,
 .ai-lab-overview .fellow-main {
-  min-width: 0;
-  padding-top: 34px;
+  color: #171827;
+  font-family: "Inter", sans-serif;
 }
 
 .lesson-detail-page .lesson-topbar,
+.ai-lab-lesson .lesson-topbar,
 .ai-lab-overview .lesson-topbar {
-  position: static !important;
-  top: auto !important;
-  z-index: auto !important;
-  height: auto !important;
-  min-height: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  flex-wrap: wrap !important;
-  gap: 16px !important;
-  margin: 0 0 24px !important;
-  padding: 0 0 18px !important;
-  border: 0 !important;
-  border-bottom: 1px solid var(--ai-shell-line) !important;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  box-shadow: none !important;
+  position: static;
+  top: auto;
+  z-index: auto;
+  height: auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0 0 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #171827;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
-.lesson-detail-page .lesson-topbar-inner {
-  width: 100% !important;
-  max-width: none !important;
-  height: auto !important;
-  min-height: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 16px !important;
-  margin: 0 !important;
-  padding: 0 !important;
+.ai-lab-overview .lesson-topbar {
+  position: relative;
+  gap: 16px;
+  margin: 0;
+  padding: 20px 0 16px;
+  border-bottom: 1px solid var(--fellow-line, #f2dfe9);
+}
+
+.lesson-detail-page .lesson-topbar-inner,
+.ai-lab-lesson .lesson-topbar-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  height: auto;
+  min-height: 0;
+  background: transparent;
 }
 
 .lesson-detail-page .navbar-left,
-.lesson-detail-page .navbar-right {
-  min-width: 0 !important;
-  flex: 0 1 auto !important;
-  padding: 0 !important;
+.lesson-detail-page .navbar-center,
+.lesson-detail-page .navbar-right,
+.ai-lab-lesson .navbar-left,
+.ai-lab-lesson .navbar-center,
+.ai-lab-lesson .navbar-right {
+  min-width: 0;
 }
 
 .lesson-detail-page .lesson-breadcrumb,
+.ai-lab-lesson .lesson-breadcrumb,
 .ai-lab-overview .lesson-breadcrumb {
   min-width: 0;
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 5px !important;
-  color: #697083 !important;
-  font-size: .86rem !important;
-  font-weight: 850 !important;
-  letter-spacing: 0 !important;
+  color: #697083;
 }
 
 .lesson-detail-page .lesson-breadcrumb a,
-.ai-lab-overview .lesson-breadcrumb a {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 7px !important;
-  color: var(--ai-shell-pink) !important;
-  text-decoration: none !important;
-}
-
+.ai-lab-lesson .lesson-breadcrumb a,
+.ai-lab-overview .lesson-breadcrumb a,
 .lesson-detail-page .lesson-breadcrumb a span,
+.ai-lab-lesson .lesson-breadcrumb a span,
 .ai-lab-overview .lesson-breadcrumb a span {
-  color: var(--ai-shell-pink) !important;
-}
-
-.lesson-detail-page .lesson-breadcrumb-separator,
-.ai-lab-overview .lesson-breadcrumb-separator {
-  display: inline-flex !important;
-  align-items: center !important;
-  color: #c7cbd4 !important;
-  font-size: .62rem !important;
-  margin: 0 -1px !important;
+  color: var(--fellow-pink, #f63392);
 }
 
 .lesson-detail-page .lesson-breadcrumb > span:not(.lesson-breadcrumb-separator),
+.ai-lab-lesson .lesson-breadcrumb > span:not(.lesson-breadcrumb-separator),
 .ai-lab-overview .lesson-breadcrumb > span:not(.lesson-breadcrumb-separator) {
-  color: var(--ai-shell-text) !important;
+  color: #171827;
+}
+
+.lesson-detail-page .lesson-breadcrumb-separator,
+.ai-lab-lesson .lesson-breadcrumb-separator,
+.ai-lab-overview .lesson-breadcrumb-separator {
+  color: #c7cbd4;
 }
 
 .lesson-detail-page .fellow-actions,
-.ai-lab-overview .fellow-actions,
-.lesson-detail-page .navbar-right,
-.ai-lab-overview .navbar-right {
-  min-width: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-end !important;
-  gap: 12px !important;
-  flex-wrap: nowrap !important;
+.ai-lab-lesson .fellow-actions,
+.ai-lab-overview .fellow-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
 }
 
 .lesson-detail-page .fellow-search,
+.ai-lab-lesson .fellow-search,
 .ai-lab-overview .fellow-search {
-  min-width: min(280px, 34vw) !important;
-  max-width: 340px !important;
-  background: #fff !important;
-  border: 1px solid var(--ai-shell-line) !important;
-  color: var(--ai-shell-muted) !important;
+  min-width: 220px;
+  max-width: 340px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 16px;
+  border: 1px solid var(--fellow-line, #f2dfe9);
+  border-radius: 999px;
+  background: #fff;
+  color: #697083;
 }
 
 .lesson-detail-page .fellow-search input,
+.ai-lab-lesson .fellow-search input,
 .ai-lab-overview .fellow-search input {
-  min-width: 0 !important;
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #171827;
+  font-family: "Inter", sans-serif;
 }
 
 .lesson-detail-page .fellow-icon-button,
+.ai-lab-lesson .fellow-icon-button,
 .ai-lab-overview .fellow-icon-button,
 .lesson-detail-page .fellow-user-button,
+.ai-lab-lesson .fellow-user-button,
 .ai-lab-overview .fellow-user-button {
-  background: #fff !important;
-  border: 1px solid var(--ai-shell-line) !important;
-  color: var(--ai-shell-text) !important;
-  box-shadow: 0 8px 20px rgba(246,51,146,.05) !important;
+  background: #fff;
+  border: 1px solid var(--fellow-line, #f2dfe9);
+  color: #171827;
+  box-shadow: 0 10px 24px rgba(246,51,146,.06);
 }
 
-.lesson-detail-page .lesson-layout {
-  width: 100% !important;
-  max-width: none !important;
-  min-height: 0 !important;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 310px) !important;
-  align-items: start !important;
-  gap: 18px !important;
-  margin: 0 !important;
-  padding: 0 !important;
+.lesson-detail-page .lesson-layout,
+.ai-lab-lesson .lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 310px);
+  align-items: start;
+  gap: 18px;
+  min-height: 0;
+  padding-top: 0;
 }
 
-.lesson-detail-page .lesson-layout > .lesson-main-content {
-  min-width: 0 !important;
-  width: 100% !important;
+.lesson-detail-page .lesson-main,
+.ai-lab-lesson .lesson-main {
+  min-width: 0;
+  display: block;
 }
 
-.lesson-detail-page .lesson-layout > .lesson-article,
-.lesson-detail-page .lesson-layout > .ai-lab-overview {
-  min-width: 0 !important;
-  width: 100% !important;
-  grid-column: 1 / -1;
+.lesson-detail-page .lesson-main-content,
+.ai-lab-lesson .lesson-main-content {
+  min-width: 0;
 }
 
-.lesson-detail-page .lesson-right-panel {
-  position: sticky !important;
-  top: 20px !important;
-  min-width: 0 !important;
-  display: grid !important;
-  align-content: start !important;
-  gap: 14px !important;
-}
-
-.lesson-detail-page .lesson-hero,
-.ai-lab-overview .lesson-hero,
-.ai-lab-overview .ai-overview-hero,
-.lesson-detail-page .cv-hero {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 420px) !important;
-  align-items: center !important;
-  gap: 24px !important;
-  min-height: 270px !important;
-  margin: 0 0 18px !important;
-  padding: 26px 26px 0 18px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--ai-shell-line) !important;
-  border-radius: 18px !important;
-  background: linear-gradient(100deg, #fff 0%, #fff 42%, #ffe7f2 100%) !important;
-  box-shadow: 0 10px 28px rgba(170,52,104,.06) !important;
-}
-
-.lesson-detail-page .lesson-hero-copy,
-.ai-lab-overview .lesson-hero-copy,
-.ai-lab-overview .ai-hero-copy,
-.lesson-detail-page .hero-inner {
-  min-width: 0 !important;
-  max-width: 760px !important;
-  align-self: center !important;
-  padding-bottom: 28px !important;
-}
-
-.lesson-detail-page .lesson-hero h1,
-.ai-lab-overview .lesson-hero h1,
-.ai-lab-overview .ai-overview-hero h1,
-.lesson-detail-page .cv-hero h1,
-.lesson-detail-page .hero-title {
-  color: #121421 !important;
-  font-size: clamp(2.1rem, 4.4vw, 4rem) !important;
-  line-height: 1.04 !important;
-  letter-spacing: 0 !important;
-  text-wrap: balance;
-}
-
-.lesson-detail-page .lesson-hero p,
-.ai-lab-overview .lesson-hero p,
-.ai-lab-overview .ai-overview-hero p,
-.lesson-detail-page .cv-hero p,
-.lesson-detail-page .hero-subtitle {
-  max-width: 680px !important;
-  color: #4d5469 !important;
-  font-size: 1rem !important;
-  line-height: 1.75 !important;
-}
-
-.lesson-detail-page .lesson-hero img,
-.ai-lab-overview .lesson-hero img,
-.ai-lab-overview .ai-hero-visual img {
-  width: 100% !important;
-  max-width: 300px !important;
-  max-height: 270px !important;
-  justify-self: end !important;
-  object-fit: contain !important;
-  object-position: bottom right !important;
-  filter: drop-shadow(0 24px 38px rgba(170,52,104,.14)) !important;
-}
-
-.lesson-detail-page .lesson-meta-row,
-.ai-lab-overview .lesson-meta-row,
-.ai-lab-overview .ai-hero-meta {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 10px !important;
-}
-
-.lesson-detail-page .lesson-meta-row span,
-.lesson-detail-page .lesson-meta-row b,
-.ai-lab-overview .lesson-meta-row span,
-.ai-lab-overview .lesson-meta-row b,
-.ai-lab-overview .ai-hero-meta span,
-.ai-lab-overview .ai-hero-meta b {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 7px !important;
-  width: fit-content !important;
-  border: 1px solid #ffe0ef !important;
-  border-radius: 999px !important;
-  background: #fff !important;
-  color: #6f7282 !important;
-  padding: 7px 11px !important;
-  font-size: .78rem !important;
-  font-weight: 800 !important;
-}
-
-.lesson-detail-page .lesson-meta-row b,
-.ai-lab-overview .lesson-meta-row b,
-.ai-lab-overview .ai-hero-meta b {
-  color: var(--ai-shell-pink) !important;
-}
-
-.lesson-detail-page .lesson-material-panel,
-.lesson-detail-page .lesson-article,
-.ai-lab-overview .ai-module,
-.ai-lab-overview .module,
-.ai-lab-overview .ai-overview-toc,
-.lesson-detail-page .lesson-side-card,
-.lesson-detail-page .module-side-card {
-  min-width: 0 !important;
-  border: 1px solid var(--ai-shell-line) !important;
-  border-radius: 18px !important;
-  background: #fff !important;
-  box-shadow: 0 8px 24px rgba(246,51,146,.04) !important;
-}
-
-.lesson-detail-page .lesson-material-panel,
-.lesson-detail-page .lesson-article {
-  overflow: hidden !important;
-}
-
-.lesson-detail-page .ai-lab-content,
-.lesson-detail-page .lesson-body {
-  min-width: 0 !important;
-  max-width: none !important;
-}
-
-.lesson-detail-page .lesson-body {
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 28px !important;
-}
-
-.lesson-detail-page .lesson-tabs {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  padding: 8px !important;
-  border-bottom: 1px solid var(--ai-shell-line) !important;
-  background: var(--ai-shell-soft) !important;
-}
-
-.lesson-detail-page .lesson-tabs a {
-  min-height: 40px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  border-radius: 10px !important;
-  color: #596074 !important;
-  text-decoration: none !important;
-  white-space: normal !important;
-}
-
-.lesson-detail-page .lesson-tabs a.active,
-.lesson-detail-page .lesson-tabs a:hover {
-  background: #fff !important;
-  color: var(--ai-shell-pink) !important;
-}
-
-.lesson-detail-page .lesson-sec {
-  min-width: 0 !important;
-  padding-bottom: 36px !important;
-  margin-bottom: 20px !important;
-  border-bottom: 1px solid rgba(246,51,146,.10) !important;
-  scroll-margin-top: 24px !important;
-}
-
-.lesson-detail-page .sec-header {
-  display: grid !important;
-  grid-template-columns: 46px minmax(0, 1fr) !important;
-  align-items: start !important;
-  gap: 14px !important;
-  margin-bottom: 18px !important;
-}
-
-.lesson-detail-page .sec-num,
-.ai-lab-overview .ai-module-num,
-.ai-lab-overview .module-num-badge {
-  width: 44px !important;
-  height: 44px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border: 1px solid #ffd2e5 !important;
-  border-radius: 13px !important;
-  background: var(--ai-shell-soft) !important;
-  color: var(--ai-shell-pink) !important;
-  font-weight: 900 !important;
-}
-
-.lesson-detail-page .sec-title,
-.ai-lab-overview .ai-module-head h2,
-.ai-lab-overview .module-header h2,
-.ai-lab-overview .module-title {
-  color: var(--ai-shell-text) !important;
-  letter-spacing: 0 !important;
-  text-wrap: balance;
-}
-
-.lesson-detail-page .sec-sub,
-.ai-lab-overview .ai-module-head p,
-.ai-lab-overview .module-header p,
-.ai-lab-overview .module-sub {
-  color: var(--ai-shell-muted) !important;
-  line-height: 1.65 !important;
-}
-
-.ai-lab-overview .ai-module-head,
-.ai-lab-overview .module-header {
-  display: flex !important;
-  align-items: flex-start !important;
-  gap: 18px !important;
-  border-bottom: 1px solid var(--ai-shell-line) !important;
-}
-
-.ai-lab-overview .ai-module-tag,
-.ai-lab-overview .module-tag,
-.ai-lab-overview .topic-tags span,
-.ai-lab-overview .ttag,
-.lesson-detail-page .hero-tag,
-.lesson-detail-page .hero-breadcrumb a {
-  border-color: #ffd2e5 !important;
-  background: var(--ai-shell-soft) !important;
-  color: var(--ai-shell-pink) !important;
-}
-
-.ai-lab-overview .ai-topic-item,
-.ai-lab-overview .topic-item {
-  min-width: 0 !important;
-  border: 1px solid transparent !important;
-  border-radius: 14px !important;
-}
-
-.ai-lab-overview .ai-topic-item:hover,
-.ai-lab-overview .topic-item:hover {
-  border-color: rgba(246,51,146,.18) !important;
-  background: var(--ai-shell-soft) !important;
-}
-
-.ai-lab-overview .ai-topic-icon,
-.ai-lab-overview .topic-icon {
-  border: 1px solid #ffd2e5 !important;
-  background: #fff0f7 !important;
-  color: var(--ai-shell-pink) !important;
-}
-
-.ai-lab-overview .topic-icon:empty::before,
-.ai-lab-overview .ai-topic-icon:empty::before {
-  content: "\f1c0";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-}
-
-.ai-lab-overview a,
-.lesson-detail-page a {
-  color: var(--ai-shell-pink);
-}
-
-.lesson-detail-page .prose,
-.lesson-detail-page .worked-box,
-.lesson-detail-page .def-box,
-.lesson-detail-page .insight-callout,
-.lesson-detail-page .warning-callout,
-.lesson-detail-page .key-takeaway,
-.lesson-detail-page .canvas-wrap,
-.lesson-detail-page .lab-panel,
-.lesson-detail-page .demo-card,
-.lesson-detail-page .example-card {
-  border-color: rgba(246,51,146,.14) !important;
-  background: #fff !important;
-  color: #313445 !important;
-}
-
-.lesson-detail-page code,
-.ai-lab-overview code {
-  max-width: 100%;
-  overflow-wrap: anywhere;
-}
-
-.lesson-detail-page pre,
-.lesson-detail-page .code-block,
-.lesson-detail-page .formula-box,
-.lesson-detail-page .math-display,
-.lesson-detail-page .proof-formula,
-.lesson-detail-page .ds-formula,
-.lesson-detail-page .def-formula {
-  max-width: 100% !important;
-  overflow-x: auto !important;
-  border: 1px solid rgba(246,51,146,.14) !important;
-  background: var(--ai-shell-soft) !important;
-  color: #171827 !important;
-}
-
-.lesson-detail-page table,
-.ai-lab-overview table {
+.lesson-detail-page .lesson-body,
+.ai-lab-lesson .lesson-body {
   width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
 }
 
-.lesson-detail-page .table-wrap,
-.lesson-detail-page .model-table-wrap,
-.lesson-detail-page .vc-table-wrap,
-.lesson-detail-page .diagnosis-table-wrap,
-.ai-lab-overview .table-wrap {
-  max-width: 100% !important;
-  overflow-x: auto !important;
-}
-
-.lesson-detail-page canvas,
-.ai-lab-overview canvas,
-.lesson-detail-page svg,
-.ai-lab-overview svg {
-  max-width: 100% !important;
-}
-
-.lesson-detail-page img,
-.ai-lab-overview img {
-  max-width: 100%;
-}
-
-@media (max-width: 1240px) {
-  .lesson-detail-page .lesson-layout {
-    grid-template-columns: 1fr !important;
-  }
-
-  .lesson-detail-page .lesson-right-panel {
-    position: static !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+@media (max-width: 1120px) {
+  .lesson-detail-page .lesson-layout,
+  .ai-lab-lesson .lesson-layout {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 820px) {
   .lesson-detail-page .lesson-topbar,
+  .ai-lab-lesson .lesson-topbar,
   .ai-lab-overview .lesson-topbar,
-  .lesson-detail-page .lesson-topbar-inner {
-    align-items: stretch !important;
+  .lesson-detail-page .lesson-topbar-inner,
+  .ai-lab-lesson .lesson-topbar-inner {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .lesson-detail-page .fellow-actions,
-  .ai-lab-overview .fellow-actions,
-  .lesson-detail-page .navbar-right {
-    width: 100% !important;
-    justify-content: flex-start !important;
-    flex-wrap: wrap !important;
+  .ai-lab-lesson .fellow-actions,
+  .ai-lab-overview .fellow-actions {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .lesson-detail-page .fellow-search,
+  .ai-lab-lesson .fellow-search,
   .ai-lab-overview .fellow-search {
-    flex: 1 1 220px !important;
-    min-width: 0 !important;
-  }
-
-  .lesson-detail-page .lesson-hero,
-  .ai-lab-overview .lesson-hero,
-  .ai-lab-overview .ai-overview-hero,
-  .lesson-detail-page .cv-hero {
-    grid-template-columns: 1fr !important;
-    min-height: 0 !important;
-    padding: 24px !important;
-  }
-
-  .lesson-detail-page .lesson-hero-copy,
-  .ai-lab-overview .lesson-hero-copy,
-  .ai-lab-overview .ai-hero-copy,
-  .lesson-detail-page .hero-inner {
-    padding-bottom: 0 !important;
-  }
-
-  .lesson-detail-page .lesson-hero img,
-  .ai-lab-overview .lesson-hero img,
-  .ai-lab-overview .ai-hero-visual img {
-    justify-self: center !important;
-    max-width: 220px !important;
+    flex: 1 1 220px;
+    min-width: 0;
   }
 }
 
-@media (max-width: 760px) {
-  .lesson-detail-page .fellow-main,
-  .ai-lab-overview .fellow-main {
-    padding-top: 24px;
-  }
-
-  .lesson-detail-page .lesson-breadcrumb,
-  .ai-lab-overview .lesson-breadcrumb {
-    font-size: .78rem !important;
+@media (max-width: 560px) {
+  .lesson-detail-page .fellow-actions,
+  .ai-lab-lesson .fellow-actions,
+  .ai-lab-overview .fellow-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
   }
 
   .lesson-detail-page .fellow-user-button span:not(.avatar-img),
   .lesson-detail-page .fellow-user-button > i,
+  .ai-lab-lesson .fellow-user-button span:not(.avatar-img),
+  .ai-lab-lesson .fellow-user-button > i,
   .ai-lab-overview .fellow-user-button span:not(.avatar-img),
   .ai-lab-overview .fellow-user-button > i {
-    display: none !important;
-  }
-
-  .lesson-detail-page .lesson-hero h1,
-  .ai-lab-overview .lesson-hero h1,
-  .ai-lab-overview .ai-overview-hero h1,
-  .lesson-detail-page .cv-hero h1,
-  .lesson-detail-page .hero-title {
-    font-size: clamp(1.9rem, 10vw, 2.85rem) !important;
-  }
-
-  .lesson-detail-page .lesson-body {
-    padding: 18px !important;
-  }
-
-  .lesson-detail-page .sec-header,
-  .ai-lab-overview .ai-module-head,
-  .ai-lab-overview .module-header {
-    grid-template-columns: 1fr !important;
-    flex-direction: column !important;
-  }
-
-  .lesson-detail-page .lesson-right-panel {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 520px) {
-  .lesson-detail-page .lesson-topbar,
-  .ai-lab-overview .lesson-topbar {
-    gap: 12px !important;
-  }
-
-  .lesson-detail-page .fellow-actions,
-  .ai-lab-overview .fellow-actions {
-    display: grid !important;
-    grid-template-columns: 1fr auto auto !important;
-  }
-
-  .lesson-detail-page .fellow-search,
-  .ai-lab-overview .fellow-search {
-    min-width: 0 !important;
-  }
-
-  .lesson-detail-page .fellow-icon-button,
-  .ai-lab-overview .fellow-icon-button {
-    width: 44px !important;
-  }
-
-  .lesson-detail-page .lesson-tabs a {
-    flex: 1 1 100% !important;
-  }
-}
-
-/* Legacy AI Lab lesson shell uses .ai-lab-lesson instead of .lesson-detail-page */
-.ai-lab-lesson {
-  --ai-shell-bg: #fffafe;
-  --ai-shell-card: #ffffff;
-  --ai-shell-soft: #fff7fb;
-  --ai-shell-soft-2: #fff0f7;
-  --ai-shell-line: var(--fellow-line, #ffe0ef);
-  --ai-shell-text: #171827;
-  --ai-shell-muted: #6f7282;
-  --ai-shell-pink: var(--fellow-pink, #f63392);
-  --accent: var(--fellow-pink, #f63392) !important;
-  --ai-accent: var(--fellow-pink, #f63392) !important;
-  background: var(--ai-shell-bg) !important;
-  color: var(--ai-shell-text) !important;
-}
-
-.ai-lab-lesson .fellow-main {
-  min-width: 0;
-  padding-top: 34px;
-}
-
-.ai-lab-lesson .lesson-topbar {
-  position: static !important;
-  top: auto !important;
-  z-index: auto !important;
-  height: auto !important;
-  min-height: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  flex-wrap: wrap !important;
-  gap: 16px !important;
-  margin: 0 0 24px !important;
-  padding: 0 0 18px !important;
-  border: 0 !important;
-  border-bottom: 1px solid var(--ai-shell-line) !important;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  box-shadow: none !important;
-}
-
-.ai-lab-lesson .lesson-breadcrumb {
-  min-width: 0;
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 5px !important;
-  color: #697083 !important;
-  font-size: .86rem !important;
-  font-weight: 850 !important;
-}
-
-.ai-lab-lesson .lesson-breadcrumb a {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 7px !important;
-  color: var(--ai-shell-pink) !important;
-  text-decoration: none !important;
-}
-
-.ai-lab-lesson .lesson-breadcrumb a span {
-  color: var(--ai-shell-pink) !important;
-}
-
-.ai-lab-lesson .lesson-breadcrumb-separator {
-  color: #c7cbd4 !important;
-  font-size: .62rem !important;
-  margin: 0 -1px !important;
-}
-
-.ai-lab-lesson .lesson-breadcrumb > span:not(.lesson-breadcrumb-separator) {
-  color: var(--ai-shell-text) !important;
-}
-
-.ai-lab-lesson .fellow-actions {
-  min-width: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-end !important;
-  gap: 12px !important;
-}
-
-.ai-lab-lesson .fellow-search {
-  min-width: min(280px, 34vw) !important;
-  max-width: 340px !important;
-  background: #fff !important;
-  border: 1px solid var(--ai-shell-line) !important;
-  color: var(--ai-shell-muted) !important;
-}
-
-.ai-lab-lesson .fellow-icon-button,
-.ai-lab-lesson .fellow-user-button {
-  background: #fff !important;
-  border: 1px solid var(--ai-shell-line) !important;
-  color: var(--ai-shell-text) !important;
-  box-shadow: 0 8px 20px rgba(246,51,146,.05) !important;
-}
-
-.ai-lab-lesson .lesson-layout {
-  width: 100% !important;
-  max-width: none !important;
-  min-height: 0 !important;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 310px) !important;
-  align-items: start !important;
-  gap: 18px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.ai-lab-lesson .lesson-main-content {
-  min-width: 0 !important;
-  width: 100% !important;
-}
-
-.ai-lab-lesson .lesson-right-panel {
-  position: sticky !important;
-  top: 20px !important;
-  min-width: 0 !important;
-  display: grid !important;
-  align-content: start !important;
-  gap: 14px !important;
-}
-
-.ai-lab-lesson .lesson-hero {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 420px) !important;
-  align-items: center !important;
-  gap: 24px !important;
-  min-height: 270px !important;
-  margin: 0 0 18px !important;
-  padding: 26px 26px 0 18px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--ai-shell-line) !important;
-  border-radius: 18px !important;
-  background: linear-gradient(100deg, #fff 0%, #fff 42%, #ffe7f2 100%) !important;
-  box-shadow: 0 10px 28px rgba(170,52,104,.06) !important;
-}
-
-.ai-lab-lesson .lesson-hero-copy {
-  min-width: 0 !important;
-  max-width: 760px !important;
-  align-self: center !important;
-  padding-bottom: 28px !important;
-}
-
-.ai-lab-lesson .lesson-hero h1 {
-  color: #121421 !important;
-  font-size: clamp(2.1rem, 4.4vw, 4rem) !important;
-  line-height: 1.04 !important;
-  letter-spacing: 0 !important;
-  text-wrap: balance;
-}
-
-.ai-lab-lesson .lesson-hero p {
-  max-width: 680px !important;
-  color: #4d5469 !important;
-  font-size: 1rem !important;
-  line-height: 1.75 !important;
-}
-
-.ai-lab-lesson .lesson-hero img {
-  width: 100% !important;
-  max-width: 300px !important;
-  max-height: 270px !important;
-  justify-self: end !important;
-  object-fit: contain !important;
-  object-position: bottom right !important;
-  filter: drop-shadow(0 24px 38px rgba(170,52,104,.14)) !important;
-}
-
-.ai-lab-lesson .lesson-meta-row {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 10px !important;
-}
-
-.ai-lab-lesson .lesson-meta-row span,
-.ai-lab-lesson .lesson-meta-row b {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 7px !important;
-  width: fit-content !important;
-  border: 1px solid #ffe0ef !important;
-  border-radius: 999px !important;
-  background: #fff !important;
-  color: #6f7282 !important;
-  padding: 7px 11px !important;
-  font-size: .78rem !important;
-  font-weight: 800 !important;
-}
-
-.ai-lab-lesson .lesson-meta-row b {
-  color: var(--ai-shell-pink) !important;
-}
-
-.ai-lab-lesson .lesson-material-panel,
-.ai-lab-lesson .lesson-article,
-.ai-lab-lesson .lesson-side-card {
-  min-width: 0 !important;
-  border: 1px solid var(--ai-shell-line) !important;
-  border-radius: 18px !important;
-  background: #fff !important;
-  box-shadow: 0 8px 24px rgba(246,51,146,.04) !important;
-  overflow: hidden !important;
-}
-
-.ai-lab-lesson .lesson-body {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 28px !important;
-}
-
-.ai-lab-lesson .lesson-tabs {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  padding: 8px !important;
-  border-bottom: 1px solid var(--ai-shell-line) !important;
-  background: var(--ai-shell-soft) !important;
-}
-
-.ai-lab-lesson .lesson-tabs a {
-  min-height: 40px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  border-radius: 10px !important;
-  color: #596074 !important;
-  text-decoration: none !important;
-}
-
-.ai-lab-lesson .lesson-tabs a.active,
-.ai-lab-lesson .lesson-tabs a:hover {
-  background: #fff !important;
-  color: var(--ai-shell-pink) !important;
-}
-
-.ai-lab-lesson .lesson-sec {
-  min-width: 0 !important;
-  padding-bottom: 36px !important;
-  margin-bottom: 20px !important;
-  border-bottom: 1px solid rgba(246,51,146,.10) !important;
-}
-
-.ai-lab-lesson .sec-header {
-  display: grid !important;
-  grid-template-columns: 46px minmax(0, 1fr) !important;
-  align-items: start !important;
-  gap: 14px !important;
-  margin-bottom: 18px !important;
-}
-
-.ai-lab-lesson .sec-num {
-  width: 44px !important;
-  height: 44px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border: 1px solid #ffd2e5 !important;
-  border-radius: 13px !important;
-  background: var(--ai-shell-soft) !important;
-  color: var(--ai-shell-pink) !important;
-  font-weight: 900 !important;
-}
-
-.ai-lab-lesson .sec-title {
-  color: var(--ai-shell-text) !important;
-  letter-spacing: 0 !important;
-  text-wrap: balance;
-}
-
-.ai-lab-lesson .sec-sub {
-  color: var(--ai-shell-muted) !important;
-  line-height: 1.65 !important;
-}
-
-.ai-lab-lesson canvas,
-.ai-lab-lesson img,
-.ai-lab-lesson svg {
-  max-width: 100% !important;
-}
-
-@media (max-width: 1240px) {
-  .ai-lab-lesson .lesson-layout {
-    grid-template-columns: 1fr !important;
-  }
-
-  .ai-lab-lesson .lesson-right-panel {
-    position: static !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-}
-
-@media (max-width: 980px) {
-  .ai-lab-lesson .lesson-topbar {
-    align-items: stretch !important;
-  }
-
-  .ai-lab-lesson .fellow-actions {
-    width: 100% !important;
-    justify-content: flex-start !important;
-    flex-wrap: wrap !important;
-  }
-
-  .ai-lab-lesson .fellow-search {
-    flex: 1 1 220px !important;
-    min-width: 0 !important;
-  }
-
-  .ai-lab-lesson .lesson-hero {
-    grid-template-columns: 1fr !important;
-    min-height: 0 !important;
-    padding: 24px !important;
-  }
-
-  .ai-lab-lesson .lesson-hero-copy {
-    padding-bottom: 0 !important;
-  }
-
-  .ai-lab-lesson .lesson-hero img {
-    justify-self: center !important;
-    max-width: 220px !important;
-  }
-}
-
-@media (max-width: 760px) {
-  .ai-lab-lesson .fellow-main {
-    padding-top: 24px;
-  }
-
-  .ai-lab-lesson .fellow-user-button span:not(.avatar-img),
-  .ai-lab-lesson .fellow-user-button > i {
-    display: none !important;
-  }
-
-  .ai-lab-lesson .lesson-hero h1 {
-    font-size: clamp(1.9rem, 10vw, 2.85rem) !important;
-  }
-
-  .ai-lab-lesson .lesson-body {
-    padding: 18px !important;
-  }
-
-  .ai-lab-lesson .sec-header,
-  .ai-lab-lesson .lesson-right-panel {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 520px) {
-  .ai-lab-lesson .fellow-actions {
-    display: grid !important;
-    grid-template-columns: 1fr auto auto !important;
-  }
-
-  .ai-lab-lesson .lesson-tabs a {
-    flex: 1 1 100% !important;
+    display: none;
   }
 }

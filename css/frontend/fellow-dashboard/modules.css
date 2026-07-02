@@ -1245,21 +1245,12 @@
     grid-template-columns: minmax(0, 1fr) minmax(260px, 310px);
 }
 
-.lesson-main-content {
-    display: grid;
-    align-content: start;
-    gap: 12px;
-    min-width: 0;
-}
-
+.lesson-main-content,
 .lesson-right-panel {
     display: grid;
     align-content: start;
     gap: 12px;
     min-width: 0;
-    position: sticky;
-    top: 100px;
-    align-self: start;
 }
 
 .lesson-hero {
