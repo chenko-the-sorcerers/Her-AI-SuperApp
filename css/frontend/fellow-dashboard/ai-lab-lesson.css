@@ -1162,15 +1162,15 @@
   display: block;
 }
 
-.lesson-side-card {
+.ml-lesson-page .lesson-side-card {
   background: #fff;
   border: 1px solid var(--fellow-line);
   border-radius: 16px;
   padding: 18px;
   box-shadow: 0 6px 20px rgba(246,51,146,.05);
 }
-.lesson-side-card + .lesson-side-card { margin-top: 14px; }
-.lesson-side-card > span {
+.ml-lesson-page .lesson-side-card + .lesson-side-card { margin-top: 14px; }
+.ml-lesson-page .lesson-side-card > span {
   display: block;
   color: #f63392;
   font-size: .68rem;
@@ -1179,9 +1179,9 @@
   text-transform: uppercase;
   margin-bottom: 8px;
 }
-.lesson-side-card h3 { margin: 0 0 8px; color: #171827; font-size: 1rem; }
-.lesson-side-card p { margin: 0; color: #6f7282; font-size: .8rem; line-height: 1.6; }
-.lesson-mini-link {
+.ml-lesson-page .lesson-side-card h3 { margin: 0 0 8px; color: #171827; font-size: 1rem; }
+.ml-lesson-page .lesson-side-card p { margin: 0; color: #6f7282; font-size: .8rem; line-height: 1.6; }
+.ml-lesson-page .lesson-mini-link {
   display: grid;
   grid-template-columns: 32px minmax(0, 1fr);
   gap: 10px;
@@ -1192,18 +1192,18 @@
   border-radius: 10px;
   border: 1px solid transparent;
 }
-.lesson-mini-link:hover,
-.lesson-mini-link.active {
+.ml-lesson-page .lesson-mini-link:hover,
+.ml-lesson-page .lesson-mini-link.active {
   background: #fff7fb;
   border-color: rgba(246,51,146,.16);
 }
-.lesson-mini-link span {
+.ml-lesson-page .lesson-mini-link span {
   color: #f63392;
   font-family: 'SF Mono', monospace;
   font-size: .68rem;
   font-weight: 800;
 }
-.lesson-mini-link strong {
+.ml-lesson-page .lesson-mini-link strong {
   font-size: .78rem;
   font-weight: 700;
   min-width: 0;
@@ -1825,4 +1825,1426 @@
   .ai-module-num { width: 36px; height: 36px; font-size: .72rem; }
   .ai-topic-item { grid-template-columns: 1fr; gap: 8px; padding: 12px; }
   .ai-topic-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+}
+
+/* ML lesson readability pass: scoped to Machine Learning submateri only */
+.ml-lesson-page .lesson-layout {
+  align-items: start;
+}
+.ml-lesson-page .lesson-material-panel {
+  overflow: visible;
+}
+.ml-lesson-page .lesson-tabs {
+  gap: 8px;
+  padding: 8px;
+  background: #fff7fb;
+  border-color: rgba(246,51,146,.14);
+}
+.ml-lesson-page .lesson-tabs a {
+  min-height: 40px;
+  border-radius: 10px;
+  white-space: normal;
+  line-height: 1.3;
+}
+.ml-lesson-page .lesson-right-panel {
+  top: 20px;
+}
+.ml-lesson-page .lesson-side-card {
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(24,25,38,.05);
+}
+.ml-lesson-page .lesson-mini-link {
+  min-height: 44px;
+}
+.ml-lesson-page .lesson-mini-link span {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: rgba(246,51,146,.08);
+}
+.ml-lesson-page .lesson-mini-link.active span {
+  background: #f63392;
+  color: #fff;
+}
+.ml-lesson-content {
+  color: #313445;
+}
+.ml-lesson-content .lesson-body {
+  gap: 38px;
+}
+.ml-lesson-content .lesson-sec {
+  padding: 2px 0;
+}
+.ml-lesson-content .sec-header {
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.ml-lesson-content .sec-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  font-size: .78rem;
+  box-shadow: none;
+}
+.ml-lesson-content .sec-title {
+  max-width: 780px;
+  font-size: clamp(1.22rem, 1.8vw, 1.55rem);
+}
+.ml-lesson-content .sec-sub {
+  max-width: 760px;
+  font-size: .86rem;
+}
+.ml-lesson-content .prose {
+  padding: 18px 20px;
+  font-size: .95rem;
+  line-height: 1.82;
+  background: #fff;
+  border-color: rgba(246,51,146,.12);
+  box-shadow: 0 8px 22px rgba(24,25,38,.035);
+}
+.ml-lesson-content .worked-box,
+.ml-lesson-content .def-box,
+.ml-lesson-content .shatter-count-table,
+.ml-lesson-content .next-lesson-cta,
+.ml-lesson-content .decomp-formula-box,
+.ml-lesson-content .decomp-viz,
+.ml-lesson-content .dartboard-grid,
+.ml-lesson-content .poly-demo {
+  background: #fff;
+  border: 1px solid rgba(246,51,146,.14);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 10px 28px rgba(24,25,38,.05);
+}
+.ml-lesson-content .worked-box {
+  background:
+    linear-gradient(180deg, rgba(255,247,251,.9), #fff 42%),
+    #fff;
+}
+.ml-lesson-content .wb-badge,
+.ml-lesson-content .def-label,
+.ml-lesson-content .nlc-label,
+.ml-lesson-content .dfb-label {
+  border-radius: 8px;
+  letter-spacing: .05em;
+}
+.ml-lesson-content .wb-title,
+.ml-lesson-content .sct-title,
+.ml-lesson-content .nlc-title,
+.ml-lesson-content .dv-title {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.ml-lesson-content .pc-col,
+.ml-lesson-content .compare-card,
+.ml-lesson-content .bvc-col,
+.ml-lesson-content .vci-card,
+.ml-lesson-content .motiv-card,
+.ml-lesson-content .para-card,
+.ml-lesson-content .ut-card,
+.ml-lesson-content .wl-item,
+.ml-lesson-content .ps-step,
+.ml-lesson-content .hspace-card,
+.ml-lesson-content .vc-card,
+.ml-lesson-content .when-col,
+.ml-lesson-content .rlc-row,
+.ml-lesson-content .db-cell,
+.ml-lesson-content .pcs-item,
+.ml-lesson-content .ds-step,
+.ml-lesson-content .dfbl-item {
+  background: #fff;
+  border: 1px solid rgba(246,51,146,.12);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(24,25,38,.035);
+}
+.ml-lesson-content .para-card,
+.ml-lesson-content .ut-card,
+.ml-lesson-content .motiv-card,
+.ml-lesson-content .wl-item,
+.ml-lesson-content .vci-card {
+  padding-top: 18px;
+}
+.ml-lesson-content .pc-box,
+.ml-lesson-content .calc-step,
+.ml-lesson-content .flow-step,
+.ml-lesson-content .math-line,
+.ml-lesson-content .pe-row,
+.ml-lesson-content .sct-grid > div {
+  background: #fff7fb;
+  border-color: rgba(246,51,146,.12);
+}
+.ml-lesson-content .insight-callout,
+.ml-lesson-content .warning-callout,
+.ml-lesson-content .key-takeaway {
+  background: #fff7fb;
+  border-left: 4px solid #f63392;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(246,51,146,.04);
+}
+.ml-lesson-content .ic-body,
+.ml-lesson-content .def-body,
+.ml-lesson-content .def-note,
+.ml-lesson-content .nlc-desc,
+.ml-lesson-content .motiv-desc,
+.ml-lesson-content .para-desc,
+.ml-lesson-content .ut-desc,
+.ml-lesson-content .wl-desc,
+.ml-lesson-content .rlc-def,
+.ml-lesson-content .vci-copy,
+.ml-lesson-content .vc-desc,
+.ml-lesson-content .db-desc,
+.ml-lesson-content .ds-note {
+  font-size: .86rem;
+  line-height: 1.72;
+}
+.ml-lesson-content .para-title,
+.ml-lesson-content .motiv-title,
+.ml-lesson-content .ut-title,
+.ml-lesson-content .wl-title,
+.ml-lesson-content .rlc-term,
+.ml-lesson-content .db-label,
+.ml-lesson-content .ds-title {
+  font-size: .95rem;
+  line-height: 1.35;
+}
+.ml-lesson-content .three-paradigms,
+.ml-lesson-content .unsup-tasks,
+.ml-lesson-content .when-grid,
+.ml-lesson-content .motivation-grid,
+.ml-lesson-content .dartboard-grid,
+.ml-lesson-content .pc-stats,
+.ml-lesson-content .derivation-steps,
+.ml-lesson-content .dfb-legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.ml-lesson-content .three-paradigms {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.ml-lesson-content .pc-example,
+.ml-lesson-content code {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.ml-lesson-content code {
+  background: rgba(246,51,146,.07);
+  color: #171827;
+  border: 1px solid rgba(246,51,146,.12);
+  border-radius: 6px;
+  padding: 1px 5px;
+}
+.ml-lesson-content pre code {
+  background: transparent;
+  color: inherit;
+  border: 0;
+  padding: 0;
+}
+.ml-lesson-content .def-formula,
+.ml-lesson-content .formula-box,
+.ml-lesson-content .math-display,
+.ml-lesson-content .ds-formula,
+.ml-lesson-content .dfb-main,
+.ml-lesson-content .dfb-expand {
+  background: #201923;
+  color: #fff;
+  border-radius: 12px;
+  padding: 13px 15px;
+  overflow-x: auto;
+  font-family: 'SF Mono', monospace;
+  font-size: .8rem;
+  line-height: 1.65;
+}
+.ml-lesson-content .dfb-expand {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 8px;
+}
+.ml-lesson-content table {
+  display: block;
+  overflow-x: auto;
+  border-spacing: 0;
+  border: 1px solid rgba(246,51,146,.14);
+  border-radius: 14px;
+}
+.ml-lesson-content tbody,
+.ml-lesson-content thead,
+.ml-lesson-content tr {
+  width: 100%;
+}
+.ml-lesson-content th {
+  background: #fff0f7;
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.ml-lesson-content td {
+  background: #fff;
+  font-size: .82rem;
+  line-height: 1.55;
+}
+.ml-lesson-content canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 180px;
+}
+.ml-lesson-content .db-cell {
+  text-align: center;
+}
+.ml-lesson-content .db-canvas {
+  max-width: 180px;
+  margin: 0 auto 12px;
+}
+.ml-lesson-content input[type="range"] {
+  width: 100%;
+  accent-color: #f63392;
+}
+.ml-lesson-content .pc-row,
+.ml-lesson-content .poly-controls,
+.ml-lesson-content .dv-controls,
+.ml-lesson-content .sd-btns,
+.ml-lesson-content .sd-labelings {
+  display: grid;
+  gap: 10px;
+}
+.ml-lesson-content .dv-controls,
+.ml-lesson-content .sd-btns,
+.ml-lesson-content .sd-labelings {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+.ml-lesson-content button,
+.ml-lesson-content .sd-btn,
+.ml-lesson-content .dv-btn,
+.ml-lesson-content .nlc-btn {
+  min-height: 38px;
+}
+.ml-lesson-content .next-lesson-cta {
+  text-align: left;
+}
+.ml-lesson-content .nlc-inner {
+  max-width: 680px;
+}
+.ml-lesson-content .sec-nav-buttons {
+  border-top: 1px solid rgba(246,51,146,.12);
+  padding-top: 16px;
+}
+.ml-lesson-content .sec-nav-btn {
+  max-width: 48%;
+  justify-content: center;
+}
+
+@media (max-width: 1180px) {
+  .ml-lesson-content .three-paradigms {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ml-lesson-page .lesson-tabs {
+    grid-template-columns: 1fr;
+  }
+  .ml-lesson-content .three-paradigms,
+  .ml-lesson-content .unsup-tasks,
+  .ml-lesson-content .when-grid,
+  .ml-lesson-content .motivation-grid,
+  .ml-lesson-content .dartboard-grid,
+  .ml-lesson-content .pc-stats,
+  .ml-lesson-content .derivation-steps,
+  .ml-lesson-content .dfb-legend {
+    grid-template-columns: 1fr;
+  }
+  .ml-lesson-content .worked-box,
+  .ml-lesson-content .def-box,
+  .ml-lesson-content .shatter-count-table,
+  .ml-lesson-content .next-lesson-cta,
+  .ml-lesson-content .decomp-formula-box,
+  .ml-lesson-content .decomp-viz,
+  .ml-lesson-content .dartboard-grid,
+  .ml-lesson-content .poly-demo,
+  .ml-lesson-content .prose {
+    padding: 14px;
+  }
+  .ml-lesson-content .sec-nav-btn {
+    max-width: none;
+  }
+}
+
+/* Chen-inspired visual polish: scoped to Machine Learning lessons only */
+.ml-lesson-page {
+  --ml-ink: #151723;
+  --ml-muted: #6d7182;
+  --ml-soft: #fff7fb;
+  --ml-line: rgba(246,51,146,.14);
+  --ml-stage: #17151f;
+  --ml-stage-2: #211925;
+  --ml-cyan: #32bfd3;
+  --ml-green: #3bbf7b;
+  --ml-amber: #f2a938;
+  --ml-pink: #f63392;
+}
+.ml-lesson-page .lesson-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  align-items: center;
+  min-height: 300px;
+  padding: 34px 30px 0;
+  border: 1px solid rgba(246,51,146,.16);
+  border-radius: 22px 22px 0 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(135deg, #181720 0%, #271924 54%, #fff2f8 100%);
+  background-size: 36px 36px, 36px 36px, auto;
+}
+.ml-lesson-page .lesson-hero::after {
+  content: "";
+  align-self: end;
+  justify-self: end;
+  width: min(330px, 100%);
+  aspect-ratio: 1 / 1;
+  background: url("/assets/messaging/herai-chat-persona.png") bottom right / contain no-repeat;
+  filter: drop-shadow(0 24px 34px rgba(246,51,146,.24));
+  opacity: .96;
+  pointer-events: none;
+}
+.ml-lesson-page .lesson-hero-copy {
+  max-width: 760px;
+  padding-bottom: 34px;
+}
+.ml-lesson-page .lesson-hero h1 {
+  color: #fff;
+  font-size: clamp(2.25rem, 4vw, 3.85rem);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.ml-lesson-page .lesson-hero p {
+  color: rgba(255,255,255,.82);
+  max-width: 640px;
+}
+.ml-lesson-page .lesson-meta-row span,
+.ml-lesson-page .lesson-meta-row b {
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+.ml-lesson-page .lesson-side-card:first-child {
+  position: relative;
+  overflow: hidden;
+  padding-top: 86px;
+  background:
+    linear-gradient(180deg, rgba(255,247,251,.92), #fff 58%),
+    #fff;
+}
+.ml-lesson-page .lesson-side-card:first-child::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 72px;
+  height: 72px;
+  background: url("/assets/branding/logo-her-ai-transparent.png") center / contain no-repeat;
+  opacity: .34;
+}
+.ml-lesson-page .lesson-side-card:first-child::after {
+  content: "\f544";
+  position: absolute;
+  top: 22px;
+  left: 18px;
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--ml-stage);
+  color: var(--ml-pink);
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  box-shadow: 0 14px 28px rgba(24,25,38,.12);
+}
+.ml-lesson-page .lesson-mini-link {
+  border-color: rgba(24,25,38,.08);
+}
+.ml-lesson-page .lesson-mini-link:hover,
+.ml-lesson-page .lesson-mini-link.active {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(246,51,146,.08);
+}
+.ml-lesson-content .lesson-sec {
+  position: relative;
+}
+.ml-lesson-content .lesson-sec + .lesson-sec {
+  border-top: 1px solid rgba(246,51,146,.09);
+  padding-top: 36px;
+}
+.ml-lesson-content .sec-num {
+  background: var(--ml-stage);
+  color: var(--ml-pink);
+  border: 1px solid rgba(246,51,146,.28);
+}
+.ml-lesson-content .sec-title {
+  color: var(--ml-ink);
+  text-wrap: balance;
+}
+.ml-lesson-content .sec-sub {
+  color: var(--ml-muted);
+}
+.ml-lesson-content .worked-box,
+.ml-lesson-content .def-box,
+.ml-lesson-content .model-zoo,
+.ml-lesson-content .distinction-box,
+.ml-lesson-content .bias-types,
+.ml-lesson-content .capacity-spectrum,
+.ml-lesson-content .shatter-demo,
+.ml-lesson-content .vc-bound-box,
+.ml-lesson-content .sauer-box,
+.ml-lesson-content .decomp-formula-box,
+.ml-lesson-content .decomp-viz,
+.ml-lesson-content .solution-box,
+.ml-lesson-content .bv-summary,
+.ml-lesson-content .next-lesson-cta {
+  border: 1px solid var(--ml-line);
+  box-shadow: 0 18px 42px rgba(24,25,38,.07);
+}
+.ml-lesson-content .worked-box,
+.ml-lesson-content .def-box,
+.ml-lesson-content .next-lesson-cta {
+  position: relative;
+  overflow: hidden;
+}
+.ml-lesson-content .worked-box::before,
+.ml-lesson-content .def-box::before,
+.ml-lesson-content .next-lesson-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ml-pink), var(--ml-cyan), var(--ml-green));
+}
+.ml-lesson-content .wb-badge,
+.ml-lesson-content .def-label,
+.ml-lesson-content .vbb-label,
+.ml-lesson-content .sct-title,
+.ml-lesson-content .dfb-label,
+.ml-lesson-content .dv-title,
+.ml-lesson-content .nlc-label {
+  color: var(--ml-pink);
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.ml-lesson-content .wb-title,
+.ml-lesson-content .def-eq,
+.ml-lesson-content .dist-title,
+.ml-lesson-content .mz-name,
+.ml-lesson-content .vci-title,
+.ml-lesson-content .it-title,
+.ml-lesson-content .bvc-header,
+.ml-lesson-content .sb-header,
+.ml-lesson-content .nlc-title {
+  color: var(--ml-ink);
+  letter-spacing: 0;
+}
+.ml-lesson-content .canvas-wrap,
+.ml-lesson-content .hypo-canvas-wrap,
+.ml-lesson-content .mc-canvas-wrap,
+.ml-lesson-content .bound-chart-wrap,
+.ml-lesson-content .srmd-canvas-wrap,
+.ml-lesson-content .sb-chart-wrap,
+.ml-lesson-content .wp-visual,
+.ml-lesson-content .dv-canvas-wrap,
+.ml-lesson-content .poly-canvas-wrap,
+.ml-lesson-content .nd-canvas-wrap,
+.ml-lesson-content .dd-canvas-wrap,
+.ml-lesson-content .ec-canvas-wrap,
+.ml-lesson-content .lc-canvas-wrap,
+.ml-lesson-content .cc-canvas-wrap,
+.ml-lesson-content .vbb-visual,
+.ml-lesson-content .sd-canvas-wrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(145deg, var(--ml-stage), var(--ml-stage-2));
+  background-size: 28px 28px, 28px 28px, auto;
+  box-shadow: inset 0 0 0 1px rgba(246,51,146,.08);
+}
+.ml-lesson-content .canvas-wrap::before,
+.ml-lesson-content .hypo-canvas-wrap::before,
+.ml-lesson-content .mc-canvas-wrap::before,
+.ml-lesson-content .bound-chart-wrap::before,
+.ml-lesson-content .srmd-canvas-wrap::before,
+.ml-lesson-content .sb-chart-wrap::before,
+.ml-lesson-content .wp-visual::before,
+.ml-lesson-content .dv-canvas-wrap::before,
+.ml-lesson-content .poly-canvas-wrap::before,
+.ml-lesson-content .nd-canvas-wrap::before,
+.ml-lesson-content .dd-canvas-wrap::before,
+.ml-lesson-content .ec-canvas-wrap::before,
+.ml-lesson-content .lc-canvas-wrap::before,
+.ml-lesson-content .cc-canvas-wrap::before,
+.ml-lesson-content .sd-canvas-wrap::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  z-index: 1;
+  width: 54px;
+  height: 5px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ml-pink), var(--ml-cyan));
+  pointer-events: none;
+}
+.ml-lesson-content canvas {
+  position: relative;
+  z-index: 0;
+  border: 0;
+  background: transparent;
+}
+.ml-lesson-content .fv-demo,
+.ml-lesson-content .hypo-demo,
+.ml-lesson-content .model-compare,
+.ml-lesson-content .vc-calc,
+.ml-lesson-content .poly-demo,
+.ml-lesson-content .noise-demo,
+.ml-lesson-content .decomp-viz,
+.ml-lesson-content .srm-diagram,
+.ml-lesson-content .double-descent-demo {
+  background: var(--ml-stage);
+  border: 1px solid rgba(246,51,146,.2);
+  border-radius: 18px;
+  padding: 16px;
+  color: #fff;
+}
+.ml-lesson-content .fv-split,
+.ml-lesson-content .vc-calc,
+.ml-lesson-content .poly-demo,
+.ml-lesson-content .noise-demo {
+  align-items: stretch;
+}
+.ml-lesson-content .fv-left,
+.ml-lesson-content .fv-right,
+.ml-lesson-content .hypo-controls,
+.ml-lesson-content .vcc-sliders,
+.ml-lesson-content .vcc-result,
+.ml-lesson-content .poly-controls,
+.ml-lesson-content .nd-controls,
+.ml-lesson-content .mc-info,
+.ml-lesson-content .dv-stats,
+.ml-lesson-content .bc-legend,
+.ml-lesson-content .srmd-labels,
+.ml-lesson-content .dd-controls {
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  background: rgba(255,255,255,.055);
+  padding: 14px;
+}
+.ml-lesson-content .fv-tabs,
+.ml-lesson-content .mc-selector,
+.ml-lesson-content .dv-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.ml-lesson-content .fv-tab,
+.ml-lesson-content .mc-btn,
+.ml-lesson-content .dv-btn,
+.ml-lesson-content .sd-btn,
+.ml-lesson-content .sd-lab-btn {
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.82);
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: .75rem;
+}
+.ml-lesson-content .fv-tab:hover,
+.ml-lesson-content .fv-tab.active,
+.ml-lesson-content .mc-btn:hover,
+.ml-lesson-content .mc-btn.active,
+.ml-lesson-content .dv-btn:hover,
+.ml-lesson-content .dv-btn.active,
+.ml-lesson-content .sd-btn:hover,
+.ml-lesson-content .sd-btn.active,
+.ml-lesson-content .sd-lab-btn:hover,
+.ml-lesson-content .sd-lab-btn.active {
+  background: var(--ml-pink);
+  border-color: var(--ml-pink);
+  color: #fff;
+}
+.ml-lesson-content .fv-object {
+  width: 66px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: rgba(246,51,146,.14);
+  color: var(--ml-pink);
+  font-size: 0;
+}
+.ml-lesson-content .fv-object::before {
+  content: "\f015";
+  font-family: "Font Awesome 6 Free";
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+.ml-lesson-content #demo-email .fv-object::before { content: "\f0e0"; }
+.ml-lesson-content #demo-pasien .fv-object::before { content: "\f0f0"; }
+.ml-lesson-content .fv-object-label,
+.ml-lesson-content .fv-vector-label,
+.ml-lesson-content .hc-label,
+.ml-lesson-content .pc-label,
+.ml-lesson-content .ndc-label,
+.ml-lesson-content .vcc-label,
+.ml-lesson-content .mci-vc {
+  color: #fff;
+}
+.ml-lesson-content .fv-attr,
+.ml-lesson-content .fv-vec-row,
+.ml-lesson-content .vcc-res-row,
+.ml-lesson-content .pcs-item,
+.ml-lesson-content .ndc-row {
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.78);
+}
+.ml-lesson-content .fva-val,
+.ml-lesson-content .fvr-val,
+.ml-lesson-content .hc-val,
+.ml-lesson-content .pc-val,
+.ml-lesson-content .ndc-val,
+.ml-lesson-content .vcc-val,
+.ml-lesson-content .vcc-hint,
+.ml-lesson-content .vcc-res-val,
+.ml-lesson-content .mci-vc,
+.ml-lesson-content .stat-val {
+  color: var(--ml-pink);
+}
+.ml-lesson-content .fvr-bar {
+  background: linear-gradient(90deg, var(--ml-pink), var(--ml-cyan));
+}
+.ml-lesson-content .fvr-bar.green-bar { background: linear-gradient(90deg, var(--ml-green), var(--ml-cyan)); }
+.ml-lesson-content .fvr-bar.red-bar { background: linear-gradient(90deg, var(--ml-amber), var(--ml-pink)); }
+.ml-lesson-content .fv-target,
+.ml-lesson-content .fv-target.spam,
+.ml-lesson-content .fv-target.danger {
+  border: 1px solid rgba(246,51,146,.24);
+  background: rgba(246,51,146,.12);
+  color: #fff;
+}
+.ml-lesson-content .fvt-val,
+.ml-lesson-content .fv-target.spam .fvt-val,
+.ml-lesson-content .fv-target.danger .fvt-val {
+  color: var(--ml-green);
+}
+.ml-lesson-content .distinction-box,
+.ml-lesson-content .summary-flow,
+.ml-lesson-content .bv-summary {
+  align-items: stretch;
+}
+.ml-lesson-content .dist-col,
+.ml-lesson-content .sf-node,
+.ml-lesson-content .tc-item,
+.ml-lesson-content .bt-card,
+.ml-lesson-content .de-item,
+.ml-lesson-content .vci-card,
+.ml-lesson-content .it-card,
+.ml-lesson-content .bvc-item,
+.ml-lesson-content .rce-card,
+.ml-lesson-content .reg-card,
+.ml-lesson-content .ec-card,
+.ml-lesson-content .dd-phase,
+.ml-lesson-content .summary-card,
+.ml-lesson-content .para-card,
+.ml-lesson-content .motiv-card,
+.ml-lesson-content .ut-card,
+.ml-lesson-content .wl-item,
+.ml-lesson-content .when-col,
+.ml-lesson-content .rlc-row,
+.ml-lesson-content .vc-card,
+.ml-lesson-content .hspace-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(246,51,146,.12);
+  background:
+    linear-gradient(180deg, rgba(255,247,251,.82), #fff 54%),
+    #fff;
+}
+.ml-lesson-content .dist-col::before,
+.ml-lesson-content .sf-node::before,
+.ml-lesson-content .tc-item::before,
+.ml-lesson-content .bt-card::before,
+.ml-lesson-content .de-item::before,
+.ml-lesson-content .vci-card::before,
+.ml-lesson-content .it-card::before,
+.ml-lesson-content .bvc-item::before,
+.ml-lesson-content .rce-card::before,
+.ml-lesson-content .reg-card::before,
+.ml-lesson-content .ec-card::before,
+.ml-lesson-content .dd-phase::before,
+.ml-lesson-content .summary-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ml-pink), var(--ml-cyan));
+}
+.ml-lesson-content .model-zoo,
+.ml-lesson-content .mz-grid,
+.ml-lesson-content .dim-examples,
+.ml-lesson-content .vc-insights,
+.ml-lesson-content .inductive-types,
+.ml-lesson-content .bv-characteristics .bvc-grid,
+.ml-lesson-content .bias-examples .be-grid,
+.ml-lesson-content .reg-compare,
+.ml-lesson-content .ensemble-compare,
+.ml-lesson-content .dd-explanation,
+.ml-lesson-content .bv-summary,
+.ml-lesson-content .summary-grid {
+  display: grid;
+  gap: 14px;
+}
+.ml-lesson-content .mz-grid,
+.ml-lesson-content .dim-examples,
+.ml-lesson-content .vc-insights,
+.ml-lesson-content .inductive-types,
+.ml-lesson-content .reg-compare,
+.ml-lesson-content .ensemble-compare,
+.ml-lesson-content .dd-explanation,
+.ml-lesson-content .summary-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+.ml-lesson-content .mz-card {
+  overflow: hidden;
+  border: 1px solid rgba(246,51,146,.12);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 24px rgba(24,25,38,.06);
+}
+.ml-lesson-content .mz-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(246,51,146,.32);
+  box-shadow: 0 18px 34px rgba(246,51,146,.12);
+}
+.ml-lesson-content .mz-canvas,
+.ml-lesson-content .de-canvas {
+  width: 100%;
+  min-height: 132px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,.04) 1px, transparent 1px),
+    var(--ml-stage);
+  background-size: 24px 24px, 24px 24px, auto;
+}
+.ml-lesson-content .capacity-spectrum {
+  background: var(--ml-stage);
+  color: #fff;
+  padding: 28px 22px 22px;
+}
+.ml-lesson-content .cs-track {
+  height: 12px;
+  background: rgba(255,255,255,.12);
+}
+.ml-lesson-content .cs-fill {
+  background: linear-gradient(90deg, var(--ml-cyan), var(--ml-green), var(--ml-amber), var(--ml-pink));
+}
+.ml-lesson-content .csm-dot {
+  border-color: var(--ml-stage);
+  background: var(--ml-pink);
+}
+.ml-lesson-content .csm-dot.low { background: var(--ml-cyan); }
+.ml-lesson-content .csm-dot.sweet { background: var(--ml-green); }
+.ml-lesson-content .csm-dot.high { background: var(--ml-pink); }
+.ml-lesson-content .csm-label,
+.ml-lesson-content .csm-label.sweet,
+.ml-lesson-content .cs-axis {
+  color: rgba(255,255,255,.82);
+}
+.ml-lesson-content .shatter-demo {
+  background: var(--ml-stage);
+  border-radius: 18px;
+  padding: 16px;
+}
+.ml-lesson-content .sd-controls,
+.ml-lesson-content .shatter-summary,
+.ml-lesson-content .shatter-count-table {
+  background: #fff;
+}
+.ml-lesson-content .ss-row {
+  grid-template-columns: 80px 120px minmax(0, 1fr);
+  align-items: center;
+}
+.ml-lesson-content .sct-grid {
+  overflow: hidden;
+  border: 1px solid rgba(246,51,146,.14);
+  border-radius: 14px;
+  background: #fff;
+}
+.ml-lesson-content .sct-grid > div {
+  border-radius: 0;
+  margin: 0;
+}
+.ml-lesson-content .dartboard-grid {
+  background: var(--ml-stage);
+  border-color: rgba(246,51,146,.2);
+}
+.ml-lesson-content .db-cell {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.1);
+  color: #fff;
+}
+.ml-lesson-content .db-label,
+.ml-lesson-content .db-desc {
+  color: rgba(255,255,255,.84);
+}
+.ml-lesson-content .db-good { color: var(--ml-green); }
+.ml-lesson-content .db-bad { color: var(--ml-amber); }
+.ml-lesson-content .decomp-formula-box,
+.ml-lesson-content .vc-bound-box,
+.ml-lesson-content .sauer-box {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    var(--ml-stage);
+  background-size: 30px 30px, 30px 30px, auto;
+  color: #fff;
+}
+.ml-lesson-content .dfb-main,
+.ml-lesson-content .dfb-expand,
+.ml-lesson-content .vbb-formula,
+.ml-lesson-content .sb-formula,
+.ml-lesson-content .proof-formula,
+.ml-lesson-content .ds-formula,
+.ml-lesson-content .def-formula,
+.ml-lesson-content .math-display,
+.ml-lesson-content .formula-box {
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.07);
+  color: #fff;
+}
+.ml-lesson-content .dfb-term.bias,
+.ml-lesson-content .dfbl-dot.bias,
+.ml-lesson-content .vbbl-sym.purple,
+.ml-lesson-content .mt-num.purple,
+.ml-lesson-content .vct-num.purple {
+  color: var(--ml-pink);
+}
+.ml-lesson-content .dfb-term.var,
+.ml-lesson-content .dfbl-dot.var,
+.ml-lesson-content .vbbl-sym.blue,
+.ml-lesson-content .mt-num.blue,
+.ml-lesson-content .vct-num.blue {
+  color: var(--ml-cyan);
+}
+.ml-lesson-content .dfb-term.irr,
+.ml-lesson-content .dfbl-dot.irr,
+.ml-lesson-content .vbbl-sym.green,
+.ml-lesson-content .vct-num.green {
+  color: var(--ml-green);
+}
+.ml-lesson-content .vct-num.orange,
+.ml-lesson-content .vbbl-sym.orange {
+  color: var(--ml-amber);
+}
+.ml-lesson-content .vct-num.red,
+.ml-lesson-content .pt-row .red,
+.ml-lesson-content .stat-red {
+  color: var(--ml-pink);
+}
+.ml-lesson-content .solution-box {
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+}
+.ml-lesson-content .solution-box .sb-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ml-ink);
+}
+.ml-lesson-content .solution-box .sb-header::before {
+  content: "\f0eb";
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: rgba(246,51,146,.1);
+  color: var(--ml-pink);
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+.ml-lesson-content .sbi,
+.ml-lesson-content .ite-row,
+.ml-lesson-content .be-item,
+.ml-lesson-content .rce-item,
+.ml-lesson-content .dd-phase,
+.ml-lesson-content .diag-card,
+.ml-lesson-content .vcl-item {
+  border: 1px solid rgba(246,51,146,.1);
+  border-radius: 12px;
+  background: var(--ml-soft);
+  padding: 10px 12px;
+}
+.ml-lesson-content .sbi-num,
+.ml-lesson-content .it-num,
+.ml-lesson-content .bt-num,
+.ml-lesson-content .tc-num,
+.ml-lesson-content .srms-num,
+.ml-lesson-content .wpp-num {
+  background: var(--ml-stage);
+  color: var(--ml-pink);
+  border: 1px solid rgba(246,51,146,.22);
+}
+.ml-lesson-content .diagnosis-table-wrap,
+.ml-lesson-content .model-table-wrap,
+.ml-lesson-content .vc-table-wrap,
+.ml-lesson-content .paradox-table,
+.ml-lesson-content .wp-table {
+  overflow-x: auto;
+  border: 1px solid rgba(246,51,146,.14);
+  border-radius: 16px;
+  box-shadow: 0 12px 26px rgba(24,25,38,.05);
+}
+.ml-lesson-content .diagnosis-table,
+.ml-lesson-content .model-table,
+.ml-lesson-content .vc-table {
+  display: table;
+  min-width: 680px;
+  border-collapse: collapse;
+}
+.ml-lesson-content .diagnosis-table th,
+.ml-lesson-content .model-table th,
+.ml-lesson-content .vc-table th,
+.ml-lesson-content .pt-row.header,
+.ml-lesson-content .wpt-row.header {
+  background: var(--ml-stage);
+  color: rgba(255,255,255,.84);
+}
+.ml-lesson-content .diagnosis-table td,
+.ml-lesson-content .model-table td,
+.ml-lesson-content .vc-table td {
+  background: #fff;
+  border-bottom: 1px solid rgba(246,51,146,.08);
+}
+.ml-lesson-content .hypo-overlay {
+  z-index: 2;
+}
+.ml-lesson-content .hypo-stat {
+  border: 1px solid rgba(246,51,146,.18);
+  background: rgba(23,21,31,.78);
+  color: rgba(255,255,255,.82);
+}
+.ml-overview .ai-topic-item {
+  position: relative;
+  overflow: hidden;
+}
+.ml-overview .ai-topic-item::after {
+  content: "";
+  position: absolute;
+  inset: auto 16px 14px auto;
+  width: 70px;
+  height: 42px;
+  border: 1px solid rgba(246,51,146,.16);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, transparent 38%, rgba(246,51,146,.24) 39%, rgba(246,51,146,.24) 42%, transparent 43%),
+    linear-gradient(90deg, rgba(21,23,35,.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(21,23,35,.08) 1px, transparent 1px),
+    #fff7fb;
+  background-size: auto, 12px 12px, 12px 12px, auto;
+  opacity: .9;
+}
+
+@media (max-width: 1024px) {
+  .ml-lesson-page .lesson-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 28px;
+  }
+  .ml-lesson-page .lesson-hero::after {
+    display: none;
+  }
+  .ml-lesson-content .fv-split,
+  .ml-lesson-content .hypo-demo,
+  .ml-lesson-content .distinction-box,
+  .ml-lesson-content .three-components,
+  .ml-lesson-content .shatter-demo,
+  .ml-lesson-content .vc-calc,
+  .ml-lesson-content .poly-demo,
+  .ml-lesson-content .noise-demo {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .ml-lesson-page .lesson-hero {
+    border-radius: 16px 16px 0 0;
+    padding: 22px;
+  }
+  .ml-lesson-page .lesson-hero h1 {
+    font-size: clamp(2rem, 13vw, 2.8rem);
+  }
+  .ml-lesson-content .ss-row,
+  .ml-lesson-content .fv-vec-row,
+  .ml-lesson-content .pt-row,
+  .ml-lesson-content .wpt-row {
+    grid-template-columns: 1fr;
+  }
+  .ml-lesson-content .fv-demo,
+  .ml-lesson-content .hypo-demo,
+  .ml-lesson-content .model-compare,
+  .ml-lesson-content .vc-calc,
+  .ml-lesson-content .poly-demo,
+  .ml-lesson-content .noise-demo,
+  .ml-lesson-content .decomp-viz,
+  .ml-lesson-content .srm-diagram,
+  .ml-lesson-content .double-descent-demo {
+    padding: 12px;
+  }
+}
+
+/* HerAI palette correction: keep ML visuals inside the main dashboard language */
+.ml-lesson-page {
+  --ml-ink: #171827;
+  --ml-muted: #6f7282;
+  --ml-soft: #fff7fb;
+  --ml-line: rgba(246,51,146,.14);
+  --ml-stage: #fff;
+  --ml-stage-2: #fff7fb;
+  --ml-cyan: #f63392;
+  --ml-green: #f63392;
+  --ml-amber: #8e91a0;
+  --ml-pink: var(--fellow-pink, #f63392);
+}
+.ml-lesson-page .lesson-hero {
+  min-height: 270px;
+  padding: 26px 26px 0 16px;
+  border: 1px solid var(--fellow-line);
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(100deg, #fff 0%, #fff 42%, #ffe7f2 100%);
+}
+.ml-lesson-page .lesson-hero::after {
+  width: min(280px, 38%);
+  background-image: url("/assets/messaging/herai-chat-persona.png");
+  filter: drop-shadow(0 24px 38px rgba(170,52,104,.14));
+  opacity: 1;
+}
+.ml-lesson-page .lesson-hero-copy {
+  padding-bottom: 28px;
+}
+.ml-lesson-page .lesson-hero h1 {
+  color: #121421;
+  font-size: clamp(2.35rem, 4.6vw, 4.25rem);
+}
+.ml-lesson-page .lesson-hero p {
+  color: #4d5469;
+}
+.ml-lesson-page .lesson-meta-row span,
+.ml-lesson-page .lesson-meta-row b {
+  border: 1px solid #ffe0ef;
+  background: #fff;
+  color: #6f7282;
+  backdrop-filter: none;
+}
+.ml-lesson-page .lesson-meta-row b {
+  color: var(--fellow-pink, #f63392);
+}
+.ml-lesson-page .lesson-side-card:first-child {
+  padding-top: 18px;
+  background: #fff;
+}
+.ml-lesson-page .lesson-side-card:first-child::before,
+.ml-lesson-page .lesson-side-card:first-child::after {
+  content: none;
+}
+.ml-lesson-content .sec-num,
+.ml-lesson-content .sbi-num,
+.ml-lesson-content .it-num,
+.ml-lesson-content .bt-num,
+.ml-lesson-content .tc-num,
+.ml-lesson-content .srms-num,
+.ml-lesson-content .wpp-num {
+  background: #fff7fb;
+  color: var(--fellow-pink, #f63392);
+  border-color: #ffd2e5;
+}
+.ml-lesson-content .worked-box,
+.ml-lesson-content .def-box,
+.ml-lesson-content .model-zoo,
+.ml-lesson-content .distinction-box,
+.ml-lesson-content .bias-types,
+.ml-lesson-content .capacity-spectrum,
+.ml-lesson-content .shatter-demo,
+.ml-lesson-content .vc-bound-box,
+.ml-lesson-content .sauer-box,
+.ml-lesson-content .decomp-formula-box,
+.ml-lesson-content .decomp-viz,
+.ml-lesson-content .solution-box,
+.ml-lesson-content .bv-summary,
+.ml-lesson-content .next-lesson-cta,
+.ml-lesson-content .fv-demo,
+.ml-lesson-content .hypo-demo,
+.ml-lesson-content .model-compare,
+.ml-lesson-content .vc-calc,
+.ml-lesson-content .poly-demo,
+.ml-lesson-content .noise-demo,
+.ml-lesson-content .srm-diagram,
+.ml-lesson-content .double-descent-demo,
+.ml-lesson-content .dartboard-grid {
+  background: #fff;
+  color: #171827;
+  border-color: rgba(246,51,146,.14);
+  box-shadow: 0 10px 28px rgba(24,25,38,.05);
+}
+.ml-lesson-content .worked-box::before,
+.ml-lesson-content .def-box::before,
+.ml-lesson-content .next-lesson-cta::before,
+.ml-lesson-content .dist-col::before,
+.ml-lesson-content .sf-node::before,
+.ml-lesson-content .tc-item::before,
+.ml-lesson-content .bt-card::before,
+.ml-lesson-content .de-item::before,
+.ml-lesson-content .vci-card::before,
+.ml-lesson-content .it-card::before,
+.ml-lesson-content .bvc-item::before,
+.ml-lesson-content .rce-card::before,
+.ml-lesson-content .reg-card::before,
+.ml-lesson-content .ec-card::before,
+.ml-lesson-content .dd-phase::before,
+.ml-lesson-content .summary-card::before {
+  background: var(--fellow-pink, #f63392);
+}
+.ml-lesson-content .canvas-wrap,
+.ml-lesson-content .hypo-canvas-wrap,
+.ml-lesson-content .mc-canvas-wrap,
+.ml-lesson-content .bound-chart-wrap,
+.ml-lesson-content .srmd-canvas-wrap,
+.ml-lesson-content .sb-chart-wrap,
+.ml-lesson-content .wp-visual,
+.ml-lesson-content .dv-canvas-wrap,
+.ml-lesson-content .poly-canvas-wrap,
+.ml-lesson-content .nd-canvas-wrap,
+.ml-lesson-content .dd-canvas-wrap,
+.ml-lesson-content .ec-canvas-wrap,
+.ml-lesson-content .lc-canvas-wrap,
+.ml-lesson-content .cc-canvas-wrap,
+.ml-lesson-content .vbb-visual,
+.ml-lesson-content .sd-canvas-wrap,
+.ml-lesson-content .mz-canvas,
+.ml-lesson-content .de-canvas {
+  border: 1px solid rgba(246,51,146,.14);
+  background:
+    linear-gradient(90deg, rgba(246,51,146,.06) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(246,51,146,.06) 1px, transparent 1px),
+    #fff;
+  background-size: 24px 24px, 24px 24px, auto;
+  box-shadow: inset 0 0 0 1px rgba(246,51,146,.04);
+}
+.ml-lesson-content .canvas-wrap::before,
+.ml-lesson-content .hypo-canvas-wrap::before,
+.ml-lesson-content .mc-canvas-wrap::before,
+.ml-lesson-content .bound-chart-wrap::before,
+.ml-lesson-content .srmd-canvas-wrap::before,
+.ml-lesson-content .sb-chart-wrap::before,
+.ml-lesson-content .wp-visual::before,
+.ml-lesson-content .dv-canvas-wrap::before,
+.ml-lesson-content .poly-canvas-wrap::before,
+.ml-lesson-content .nd-canvas-wrap::before,
+.ml-lesson-content .dd-canvas-wrap::before,
+.ml-lesson-content .ec-canvas-wrap::before,
+.ml-lesson-content .lc-canvas-wrap::before,
+.ml-lesson-content .cc-canvas-wrap::before,
+.ml-lesson-content .sd-canvas-wrap::before {
+  background: var(--fellow-pink, #f63392);
+  opacity: .42;
+}
+.ml-lesson-content .fv-left,
+.ml-lesson-content .fv-right,
+.ml-lesson-content .hypo-controls,
+.ml-lesson-content .vcc-sliders,
+.ml-lesson-content .vcc-result,
+.ml-lesson-content .poly-controls,
+.ml-lesson-content .nd-controls,
+.ml-lesson-content .mc-info,
+.ml-lesson-content .dv-stats,
+.ml-lesson-content .bc-legend,
+.ml-lesson-content .srmd-labels,
+.ml-lesson-content .dd-controls,
+.ml-lesson-content .sd-controls,
+.ml-lesson-content .shatter-summary {
+  border: 1px solid rgba(246,51,146,.12);
+  background: #fff7fb;
+  color: #171827;
+}
+.ml-lesson-content .fv-tab,
+.ml-lesson-content .mc-btn,
+.ml-lesson-content .dv-btn,
+.ml-lesson-content .sd-btn,
+.ml-lesson-content .sd-lab-btn,
+.ml-lesson-content button {
+  border: 1px solid rgba(246,51,146,.18);
+  background: #fff;
+  color: #171827;
+}
+.ml-lesson-content .fv-tab:hover,
+.ml-lesson-content .fv-tab.active,
+.ml-lesson-content .mc-btn:hover,
+.ml-lesson-content .mc-btn.active,
+.ml-lesson-content .dv-btn:hover,
+.ml-lesson-content .dv-btn.active,
+.ml-lesson-content .sd-btn:hover,
+.ml-lesson-content .sd-btn.active,
+.ml-lesson-content .sd-lab-btn:hover,
+.ml-lesson-content .sd-lab-btn.active,
+.ml-lesson-content button:hover {
+  background: var(--fellow-pink, #f63392);
+  border-color: var(--fellow-pink, #f63392);
+  color: #fff;
+}
+.ml-lesson-content .fv-object-label,
+.ml-lesson-content .fv-vector-label,
+.ml-lesson-content .hc-label,
+.ml-lesson-content .pc-label,
+.ml-lesson-content .ndc-label,
+.ml-lesson-content .vcc-label,
+.ml-lesson-content .mci-vc,
+.ml-lesson-content .db-label {
+  color: #171827;
+}
+.ml-lesson-content .fv-attr,
+.ml-lesson-content .fv-vec-row,
+.ml-lesson-content .vcc-res-row,
+.ml-lesson-content .pcs-item,
+.ml-lesson-content .ndc-row,
+.ml-lesson-content .db-cell {
+  border: 1px solid rgba(246,51,146,.12);
+  background: #fff;
+  color: #313445;
+}
+.ml-lesson-content .fva-val,
+.ml-lesson-content .fvr-val,
+.ml-lesson-content .hc-val,
+.ml-lesson-content .pc-val,
+.ml-lesson-content .ndc-val,
+.ml-lesson-content .vcc-val,
+.ml-lesson-content .vcc-hint,
+.ml-lesson-content .vcc-res-val,
+.ml-lesson-content .mci-vc,
+.ml-lesson-content .stat-val,
+.ml-lesson-content .db-good,
+.ml-lesson-content .dfb-term.bias,
+.ml-lesson-content .dfb-term.var,
+.ml-lesson-content .dfb-term.irr,
+.ml-lesson-content .vbbl-sym,
+.ml-lesson-content .mt-num,
+.ml-lesson-content .vct-num,
+.ml-lesson-content .pt-row .blue,
+.ml-lesson-content .pt-row .green,
+.ml-lesson-content .pt-row .red,
+.ml-lesson-content .stat-red {
+  color: var(--fellow-pink, #f63392);
+}
+.ml-lesson-content .db-bad,
+.ml-lesson-content .fail,
+.ml-lesson-content .ssr-result.fail {
+  color: #8e91a0;
+}
+.ml-lesson-content .fvr-bar,
+.ml-lesson-content .fvr-bar.green-bar,
+.ml-lesson-content .fvr-bar.red-bar,
+.ml-lesson-content .cs-fill {
+  background: linear-gradient(90deg, #f63392, #ffd2e5);
+}
+.ml-lesson-content .fv-target,
+.ml-lesson-content .fv-target.spam,
+.ml-lesson-content .fv-target.danger {
+  border: 1px solid rgba(246,51,146,.16);
+  background: #fff7fb;
+  color: #171827;
+}
+.ml-lesson-content .fvt-val,
+.ml-lesson-content .fv-target.spam .fvt-val,
+.ml-lesson-content .fv-target.danger .fvt-val {
+  color: var(--fellow-pink, #f63392);
+}
+.ml-lesson-content .capacity-spectrum {
+  padding: 24px 18px 18px;
+}
+.ml-lesson-content .cs-track {
+  background: #ffe0ef;
+}
+.ml-lesson-content .csm-dot,
+.ml-lesson-content .csm-dot.low,
+.ml-lesson-content .csm-dot.sweet,
+.ml-lesson-content .csm-dot.high {
+  border-color: #fff;
+  background: var(--fellow-pink, #f63392);
+}
+.ml-lesson-content .csm-label,
+.ml-lesson-content .csm-label.sweet,
+.ml-lesson-content .cs-axis,
+.ml-lesson-content .db-desc {
+  color: #6f7282;
+}
+.ml-lesson-content .decomp-formula-box,
+.ml-lesson-content .vc-bound-box,
+.ml-lesson-content .sauer-box {
+  background: linear-gradient(145deg, #fff, #fff7fb);
+  color: #171827;
+}
+.ml-lesson-content .dfb-main,
+.ml-lesson-content .dfb-expand,
+.ml-lesson-content .vbb-formula,
+.ml-lesson-content .sb-formula,
+.ml-lesson-content .proof-formula,
+.ml-lesson-content .ds-formula,
+.ml-lesson-content .def-formula,
+.ml-lesson-content .math-display,
+.ml-lesson-content .formula-box {
+  border: 1px solid rgba(246,51,146,.14);
+  background: #fff7fb;
+  color: #171827;
+}
+.ml-lesson-content .solution-box .sb-header,
+.ml-lesson-content .diagnosis-table th,
+.ml-lesson-content .model-table th,
+.ml-lesson-content .vc-table th,
+.ml-lesson-content .pt-row.header,
+.ml-lesson-content .wpt-row.header {
+  background: #fff7fb;
+  color: #171827;
+}
+.ml-lesson-content .hypo-stat {
+  border: 1px solid rgba(246,51,146,.18);
+  background: rgba(255,255,255,.92);
+  color: #171827;
+}
+.ml-lesson-content table {
+  display: table;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .ml-lesson-page .lesson-hero {
+    padding: 24px;
+  }
 }
