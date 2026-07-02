@@ -397,6 +397,36 @@
     max-width: 760px;
 }
 
+@media (min-width: 861px) {
+    .fellow-dashboard > .fellow-main:has(> .fellow-topbar ~ :is(.fellow-grid, .participant-profile-shell, .tasks-layout, .projects-layout, .events-layout, .community-layout, .mentor-layout, .certificates-layout, .settings-layout, .help-layout, .lb-layout)) {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .fellow-dashboard > .fellow-main:has(> .fellow-topbar ~ :is(.fellow-grid, .participant-profile-shell, .tasks-layout, .projects-layout, .events-layout, .community-layout, .mentor-layout, .certificates-layout, .settings-layout, .help-layout, .lb-layout)) > .fellow-topbar,
+    .fellow-dashboard > .fellow-main:has(> .fellow-topbar ~ .lb-layout) > .lb-top-grid {
+        flex: 0 0 auto;
+    }
+
+    .fellow-dashboard > .fellow-main > :is(.fellow-grid, .participant-profile-shell, .tasks-layout, .projects-layout, .events-layout, .community-layout, .mentor-layout, .certificates-layout, .settings-layout, .help-layout, .lb-layout) {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-gutter: stable;
+    }
+
+    .fellow-dashboard > .fellow-main > :is(.fellow-grid, .tasks-layout, .projects-layout, .events-layout, .community-layout, .mentor-layout, .certificates-layout, .help-layout, .lb-layout) > :is(.fellow-right, .tasks-widgets, .projects-widgets, .events-widgets, .community-widgets, .mentor-widgets, .certificates-widgets, .help-widgets, .lb-widgets) {
+        align-self: start;
+        position: sticky;
+        top: 0;
+    }
+}
+
 .fellow-actions {
     align-items: center;
     display: grid;
