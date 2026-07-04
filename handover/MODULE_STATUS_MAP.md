@@ -55,5 +55,28 @@ ai-fundamental/
 | **Modul 6: Evolution** | Seluruh File | 🔴 **Belum Dibuat** | Belum ada struktur direktori maupun rute di `js/router.js`. |
 
 ---
+
+### 🚀 Tabel Status Jalur Spesialisasi (AI Lab / Advanced)
+
+| Track/Modul (modules.html) | Rute (router.js) | Status Konten | Keterangan / Action Item Selanjutnya |
+|---|---|---|---|
+| **Machine Learning** | `#/participant-ai-lab-ml` | 🟢 **Selesai (Ada)** | Sub-bab: *Intro, Hypothesis, VC-Dim, Bias-Variance*. (Perlu direview kelengkapannya). |
+| **Computer Vision (CV)** | `#/participant-ai-lab-cv` | 🟢 **Selesai (Ada)** | Sub-bab: *CNN, Filtering, Pixel Anatomy, OpenCV, Builder*. |
+| **NLP** | `#/participant-ai-lab-nlp` | 🟢 **Selesai (Ada)** | Sub-bab: *Tokenization, Preprocessing, POS/NER, BOW, TF-IDF*. |
+| **Generative AI** | `#/participant-ai-lab-gen` | 🟢 **Selesai (Ada)** | Belum ada sub-bab spesifik di *router*. |
+| **Math for AI** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Deep Learning** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Reinforcement Learning**| ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **LLM (Language Model)** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **VLM (Vision-Lang)** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Multimodal LLM** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Agentic AI** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Bioinformatics** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Data Eng. & Data Sci.** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Ops & Infra** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Product (Front/Back)** | ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+| **Bisnis, Health, Design**| ❌ (Placeholder) | 🔴 **Belum Dibuat** | Tombol di `modules.html` masih mengarah ke `#participant-modules`. |
+
+---
 **Catatan untuk Developer Selanjutnya:**  
-Gunakan dokumen ini untuk menentukan fokus pekerjaan. Jangan melompat mengerjakan Modul 4 jika file `latihan.html` pada Modul 3 belum beroperasi dengan normal. Pastikan setiap membuat modul baru, daftarkan rutenya di `js/router.js`.
+Gunakan dokumen ini untuk menentukan fokus pekerjaan. Jangan melompat mengerjakan Modul 4 (Reasoning) jika file `latihan.html` pada Modul 3 belum beroperasi dengan normal. Untuk *track* spesialisasi yang masih *placeholder*, pembuatan direktori baru disarankan diletakkan di bawah `/pages/frontend/fellow-dashboard/ai-lab/` untuk menjaga konsistensi. Pastikan setiap membuat modul baru, daftarkan rutenya di `js/router.js`.
