@@ -9,19 +9,20 @@
         </div>
 
         <div class="cdd-step">
-            <h3>Learning Objective</h3>
+            <h3 style="border-bottom: 2px solid rgba(246,51,146,.1); padding-bottom: 12px; margin-bottom: 20px; color: var(--fellow-text);">Chapter 1: Resep Dapur AI (Fungsi & Parameter)</h3>
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Learning Objective</h4>
             <p>Peserta mampu mendefinisikan fungsi (Function), menggunakan parameter untuk kustomisasi, serta memahami perbedaan fundamental antara mencetak ke layar (<code>print</code>) dan mengembalikan nilai (<code>return</code>).</p>
         </div>
 
         <div class="cdd-step">
-            <h3>Analogy</h3>
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Analogy</h4>
             <p>Bayangkan kamu punya bisnis toko kue. Jika setiap kali ada pesanan kue tart kamu harus membaca buku resep dari awal dan menimbang terigu satu per satu, kamu pasti akan kelelahan. Solusinya, kamu membuat "Resep Standar" di dapurmu.</p>
             <p><strong>Fungsi (Function)</strong> ibarat Resep Standar tersebut. Kamu cukup membuat resepnya satu kali (<code>def bikin_kue()</code>). Kapanpun ada pesanan, kamu tinggal panggil fungsi itu berulang kali tanpa menulis ulang langkah-langkahnya.</p>
             <p><strong>Parameter</strong> ibarat <em>custom topping</em> dari pelanggan. Mereka bisa memesan <code>bikin_kue(topping="Keju")</code> atau <code>bikin_kue(topping="Cokelat")</code> menggunakan resep dasar yang sama.</p>
         </div>
 
         <div class="cdd-step">
-            <h3>Theory</h3>
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Theory</h4>
             <p>Di Python, kita mendefinisikan fungsi menggunakan kata kunci <code>def</code>. Sebuah fungsi bisa menerima masukan (parameter) dan menghasilkan keluaran (return).</p>
             <ul>
                 <li><strong>Mendefinisikan Fungsi:</strong> Selalu gunakan huruf kecil dan garis bawah untuk nama fungsi (contoh: <code>hitung_diskon</code>).</li>
@@ -30,7 +31,7 @@
         </div>
 
         <div class="cdd-step">
-            <h3>Syntax & Code Example</h3>
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Syntax & Code Example</h4>
             <p>Mari kita lihat bagaimana sebuah fungsi didefinisikan dan dipanggil berulang kali dengan parameter yang berbeda.</p>
             
             <div class="playground-wrapper" style="margin-top: 16px;">
@@ -69,12 +70,66 @@ print("Tagihan Bella: Rp", harga_bella)
         </div>
         
         <div class="cdd-step">
-            <h3>Common Mistakes</h3>
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Common Mistakes</h4>
             <p>Kesalahan fatal yang sering dilakukan pemula adalah mengganti <code>return</code> dengan <code>print</code> di dalam sebuah fungsi. Mengapa salah? Karena jika fungsi hanya mencetak ke layar, nilainya kosong (None) dan tidak bisa disimpan ke dalam variabel (misalnya <code>harga_aisyah</code> akan bernilai kosong). Akibatnya, kamu tidak bisa melakukan operasi matematika lebih lanjut dengan hasil tersebut.</p>
+        </div>
+
+        <div class="cdd-step" style="margin-top: 40px;">
+            <h3 style="border-bottom: 2px solid rgba(246,51,146,.1); padding-bottom: 12px; margin-bottom: 20px; color: var(--fellow-text);">Chapter 2: Jurus Instan AI (Lambda & Generator)</h3>
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Learning Objective</h4>
+            <p>Mengenal fungsi instan satu baris (Lambda) dan cara menangani jutaan baris data AI tanpa membuat laptop menjadi lelet menggunakan konsep Generator.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Analogy</h4>
+            <p><strong>Lambda:</strong> Ibarat <em>Pop-up Store</em> kosmetik. Kamu tidak perlu membangun gedung toko permanen yang butuh izin IMB (seperti <code>def</code>). Kamu cukup mendirikan tenda kecil untuk jualan sehari, lalu dibongkar lagi. Cepat, praktis, dan instan.</p>
+            <p><strong>Generator:</strong> Bayangkan kamu sedang mencuci piring pasca pesta pernikahan. Jika kamu mengambil <strong>semua</strong> 1.000 piring kotor sekaligus (List biasa), kedua tanganmu akan patah (RAM laptopmu akan penuh & <em>crash</em>). Solusinya? Ambil piringnya <strong>satu per satu</strong> saat mau dicuci. Inilah yang dilakukan Generator (konsep <em>Lazy Evaluation</em>) untuk memproses Big Data tanpa membuat memori meledak.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Syntax & Code Example</h4>
+            <p>Di dunia AI, Data Scientist sangat sering menggunakan <code>lambda</code> (fungsi tanpa nama) untuk mengubah data secara cepat, dan <code>yield</code> untuk membuat Generator pembaca data.</p>
+            
+            <div class="playground-wrapper" style="margin-top: 16px;">
+                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>lambda_gen.py</div>
+                    <div class="py-actions" style="display: flex; gap: 8px;">
+                        <button class="py-reset" data-play="gen" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
+                        <button class="py-run" id="btn-run-gen" data-play="gen" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
+                    </div>
+                </div>
+                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
+<textarea class="py-editor" id="play-gen" style="width: 100%; min-height: 250px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
+# 1. LAMBDA (Fungsi Instan)
+# Ibarat def diskon(harga): return harga * 0.5
+diskon_50 = lambda harga: harga * 0.5
+print("Harga setelah diskon:", diskon_50(200000))
+
+print("===================")
+
+# 2. GENERATOR (Lazy Evaluation dengan yield)
+def pembuat_nomor_antrean():
+    yield "Antrean A-1"
+    yield "Antrean A-2"
+    yield "Antrean A-3"
+
+# Generator tidak memproses semua sekaligus
+mesin_antrean = pembuat_nomor_antrean()
+
+print("Panggilan ke-1:", next(mesin_antrean))
+print("Panggilan ke-2:", next(mesin_antrean))
+# Coba kamu tambahkan print untuk Panggilan ke-3 di bawah ini!
+</textarea>
+                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
+                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
+                        <pre class="py-output" id="out-gen" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="cdd-step">
-            <h3>Interactive Exercise & Challenge</h3>
+            <h4 style="color: var(--fellow-pink); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Interactive Exercise & Challenge</h4>
             <p>Buka <strong>Tab Latihan</strong> sekarang. Coba buat fungsi baru bernama <code>sapa_pelanggan(nama)</code> yang mengembalikan nilai (return) berupa <em>string</em>: "Halo [nama], selamat datang di HerAI!".</p>
         </div>
     </section>
