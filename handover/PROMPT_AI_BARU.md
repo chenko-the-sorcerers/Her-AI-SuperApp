@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 4 Juli 2026  
+**Tanggal:** 5 Juli 2026 (Final)  
 **Proyek:** HerAI Fellowship SuperApp  
 **Branch aktif:** `design`
 

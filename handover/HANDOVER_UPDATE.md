@@ -1,211 +1,204 @@
 # HerAI Development Handover & Checkpoint
-**Tanggal:** 4 Juli 2026 (Sesi Malam)  
+**Tanggal:** 5 Juli 2026 (Sesi Sore - Final)  
 **Branch:** `design`  
-**Commit Terakhir:** `850e178`
+**Commit Terakhir:** (akan di-commit)
 
 Dokumen ini ditulis sebagai pedoman *handover* untuk tim developer atau AI Agent berikutnya agar bisa langsung melanjutkan pekerjaan tanpa kehilangan konteks.
 
 ---
 
-## Changelog Sesi Ini (4 Juli 2026, ~14:00 – 23:30 WIB)
+## Changelog Sesi Ini (5 Juli 2026)
 
-### A. Modul 1 — Pengantar AI (`#/participant-ai-intro`)
+### A. Merge Math for AI dari Nazril
 
-**Perubahan besar:**
+**File BARU dari Nazril (7 file):**
+- `js/frontend/fellow-dashboard/ai-math-for-ai.js` — Controller Math for AI (760 lines)
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/overview.html`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/practice.html`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/quiz.html`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/discussion.html`
+- `docs-nazril/` (4 file docs referensi — **tidak di-push ke GitHub**)
 
-1. **Konsolidasi dari 11 topik → 4 halaman padat.**  
-   Sebelumnya Modul 1 punya 11 route terpisah (`/participant-ai-intro`, `/participant-ai-history`, `/participant-ai-types`, `/participant-ai-components`, `/participant-ai-applications`, `/participant-ai-pipeline`, `/participant-ai-ml-dl`, `/participant-ai-pros-cons`, `/participant-ai-ethics`, `/participant-ai-future`, `/participant-ai-summary`). Sekarang diringkas jadi 4:
-   
-   | # | Route | Judul |
-   |---|---|---|
-   | 1 | `/participant-ai-intro` | Pengantar & Sejarah AI |
-   | 2 | `/participant-ai-types` | Jenis & Komponen AI |
-   | 3 | `/participant-ai-applications` | Penerapan & Masa Depan AI |
-   | 4 | `/participant-ai-summary` | Ringkasan Modul 1 |
+**Status:** ⚠️ **Under development** — semua route Math for AI (11 route) diarahkan ke `under-development.html`
 
-2. **Konten mentor asli TIDAK dihapus, ditambahkan kembali.**  
-   Bagian yang sempat hilang:
-   - **"Hubungan AI, Machine Learning, dan Deep Learning"** — penjelasan hierarki + rumus `y = f(x) + ε`
-   - **Diagram `ai-hierarchy-diagram`** — nested box AI → ML → DL
-   - **Referensi WTTC** — dikombinasi dengan referensi Stuart Russell & Peter Norvig
-   
-3. **Timeline Sejarah AI** ditambahkan ke halaman pertama (section 1.5) — dari 1943 Artificial Neuron sampai 2022 Generative AI.
+### B. ML Module — Tetap Under Development
 
-4. **Card grid "AI di Sekitar Kita" di-fix.**
-   - Sebelumnya: `repeat(auto-fit, minmax(200px, 1fr))` → 5 card di baris pertama + 1 orphan
-   - Sekarang: `repeat(3, 1fr)` → 3×2 grid rapi
-   - Semua ikon diubah jadi warna pink konsisten (sebelumnya warna-warni brand: biru Google, hijau Spotify, dll)
+ML dari Nazril (legacy AI Lab lesson files) digabung, tapi semua route tetap under development:
+- `/participant-ai-lab-ml` → `under-development.html`
+- `/participant-ai-lab-ml-intro` → `under-development.html`
+- `/participant-ai-lab-ml-hypothesis` → `under-development.html`
+- `/participant-ai-lab-ml-vc-dim` → `under-development.html`
+- `/participant-ai-lab-ml-bias-variance` → `under-development.html`
+- `/participant-ai-lab-ml-practice` → `under-development.html`
+- `/participant-ai-lab-ml-quiz` → `under-development.html`
+- `/participant-ai-lab-ml-discussion` → `under-development.html`
 
-5. **Progress sidebar** di-update dari "1 dari 11" → "1 dari 4" (25%).
+### C. Generative AI — Under Development
 
-6. **Footer nav** difix — tombol "Topik Selanjutnya" sekarang mengarah ke `#/participant-ai-types` (bukan `#/participant-ai-history` yang sudah tidak ada).
+`/participant-ai-lab-gen` → `under-development.html`
 
-7. **Bug JS di `settings.js`** — ada duplikat `};` yang menyebabkan syntax error, sudah dihapus.
+### D. CV Routes — Restored
 
-**File yang disentuh:**
-- `pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/materi.html`
-- `pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/latihan.html` (sidebar update)
-- `pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/kuis.html` (sidebar update)
-- `js/frontend/fellow-dashboard/settings.js` (introLessonRoutes + generatedLessonContent)
+Nazril tidak sengaja menghapus 12 route CV dari `routes` object. Sudah dikembalikan:
 
----
+| Route | File |
+|---|---|
+| `/participant-ai-lab-cv` | `ai-lab/computer-vision.html` |
+| `/participant-ai-lab-cv-cnn-intro` | `lessons/cnn-intro.html` |
+| `/participant-ai-lab-cv-cnn-why` | `lessons/cnn-why.html` |
+| `/participant-ai-lab-cv-cnn-relu` | `lessons/cnn-relu.html` |
+| `/participant-ai-lab-cv-filtering-kernels` | `lessons/filtering-kernels.html` |
+| `/participant-ai-lab-cv-cnn-fc` | `lessons/cnn-fc.html` |
+| `/participant-ai-lab-cv-cnn-hands` | `lessons/cnn-hands.html` |
+| `/participant-ai-lab-cv-cnn-arch` | `lessons/cnn-arch.html` |
+| `/participant-ai-lab-cv-morph` | `lessons/morphological-transforms.html` |
+| `/participant-ai-lab-cv-opencv` | `lessons/image-processing-opencv.html` |
+| `/participant-ai-lab-cv-pixel` | `lessons/pixel-anatomy.html` |
+| `/participant-ai-lab-cv-cnn-arch-builder` | `lessons/cnn-arch-builder.html` |
 
-### B. Modul 3 — Machine Learning (`#/participant-ai-lab-ml`)
+### E. NLP Lessons — Single Page (Tab Latihan/Kuis/Diskusi Dihapus)
 
-**Perubahan besar:**
+5 NLP lesson files dihilangkan tab Latihan, Kuis, Diskusi karena route-nya belum ada:
+- `tokenization.html`
+- `preprocessing.html`
+- `pos-ner.html`
+- `bow.html`
+- `tfidf.html`
 
-1. **Dibuat dari nol** — Modul ML sekarang punya struktur lengkap seperti Modul 2 Python:
-   - `materi.html` — container dinamis dengan sidebar navigasi 4 chapter
-   - `latihan.html` — form studi kasus reflektif (bukan Pyodide coding)
-   - `kuis.html` — 5 soal pilihan ganda tentang konsep ML
-   - `diskusi.html` — forum diskusi standar
-
-2. **4 Chapter materi** diekstrak dari lesson-lesson lama yang sudah ada di AI Lab:
-   - `chapter-1.html` — dari `ml-intro.html` (Introduction to ML)
-   - `chapter-2.html` — dari `ml-hypothesis.html` (Hypothesis Space)
-   - `chapter-3.html` — dari `ml-vc-dim.html` (VC Dimension)
-   - `chapter-4.html` — dari `ml-bias-variance.html` (Bias-Variance Tradeoff)
-
-3. **JavaScript controller** — file baru `ai-ml-basic.js` dibuat dengan porting dari `ai-python-basic.js`:
-   - `window.initAiMlMateri()` — load chapter dinamis, navigasi prev/next
-   - `window.initAiMlBasic()` — save/load latihan via localStorage
-   - `window.initAiMlQuiz()` — skoring kuis single attempt
-   - `window.initAiMlDiscussion()` — posting diskusi via localStorage
-
-4. **Route baru** didaftarkan di `js/router.js`:
-   ```
-   /participant-ai-lab-ml          → materi.html
-   /participant-ai-lab-ml-practice → latihan.html
-   /participant-ai-lab-ml-quiz     → kuis.html
-   /participant-ai-lab-ml-discussion → diskusi.html
-   ```
-
-5. **Script di-register** di `index.html`:
-   ```html
-   <script src="/js/frontend/fellow-dashboard/ai-ml-basic.js?v=20260704-ml"></script>
-   ```
-
-6. **ID Broken di-fix** — pada saat rename otomatis, beberapa ID jadi `aiMachine LearningQuizForm` (ada spasi). Sudah difix jadi `aiMlQuizForm`, `aiMlDiscussionForm`, `aiMlDiscussionList`, dll.
-
-**File yang disentuh:**
-- `js/frontend/fellow-dashboard/ai-ml-basic.js` (BARU)
-- `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html` (BARU)
-- `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/latihan.html` (BARU)
-- `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/kuis.html` (BARU)
-- `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/diskusi.html` (BARU)
-- `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/chapters/chapter-{1,2,3,4}.html` (BARU)
-- `js/router.js` (route mapping + init hooks)
-- `index.html` (script include)
+Masing-masing sekarang cuma punya tab **Materi** (single page).
 
 ---
 
-### C. CV Module — Pixel Anatomy (`#/participant-ai-lab-cv-pixel`)
+## Complete Route Map
 
-**Perubahan:**
-- Halaman `pixel-anatomy.html` di-split menjadi 3 tab: **Materi**, **Latihan**, **Kuis**
-- Tab switching dilakukan via fungsi `switchPixelTab()` yang inline di halaman
-- Challenge cards dipindah ke tab Latihan dengan label konteks
-- Quiz section dipindah ke tab Kuis
-- Footer navigation per-tab (Materi → Latihan, Latihan → Kuis, Kuis → Katalog CV)
+### ✅ ACTIVE — Ada Konten
 
-**File yang disentuh:**
-- `pages/frontend/fellow-dashboard/ai-lab/lessons/pixel-anatomy.html`
-
----
-
-## Arsitektur yang WAJIB Dipahami
-
-### Sistem Routing Modul 1 (Pengantar AI)
-Modul 1 menggunakan **2 template HTML**:
-- **`materi.html`** — halaman pertama, konten hardcoded langsung di HTML
-- **`lesson.html`** — template generik untuk halaman 2-4, konten di-inject oleh JS
-
-Alur render halaman 2-4:
-```
-User navigasi ke #/participant-ai-types
-  → router.js memetakan ke lesson.html
-  → settings.js: initGeneratedLessonPage() dipanggil
-  → Membaca generatedLessonContent['/participant-ai-types']
-  → Inject HTML ke [data-lesson-content], update sidebar, progress, footer
-```
-
-### Sistem Routing ML Module
-ML module menggunakan **chapter-based dynamic loading** (sama seperti Modul 2 Python):
-```
-User navigasi ke #/participant-ai-lab-ml
-  → router.js memetakan ke 03-machine-learning/materi.html
-  → router.js memanggil window.initAiMlMateri()
-  → ai-ml-basic.js: fetch chapter-{N}.html → inject ke #ml-chapter-container
-  → Sidebar tracking via localStorage key 'heraiAiMlCurrentChapter'
-```
-
-### Pola Penamaan ID Penting
-| Module | Form ID | Quiz Result | Quiz Next | Discussion Form | Discussion List |
-|---|---|---|---|---|---|
-| Python | `mlPracticeForm` | `aiPythonQuizResult` | `aiPythonQuizNext` | `aiPythonDiscussionForm` | `aiPythonDiscussionList` |
-| ML | `aiMlPracticeForm` | `aiMlQuizResult` | `aiMlQuizNext` | `aiMlDiscussionForm` | `aiMlDiscussionList` |
-
-> **PERINGATAN:** Jangan pernah pakai spasi di ID HTML. Bug sebelumnya terjadi karena rename otomatis "Python" → "Machine Learning" menghasilkan `aiMachine LearningQuizForm` yang invalid.
-
----
-
-## Lokasi File Kunci
-
-| File | Fungsi | Risiko |
+| Halaman | Route | File |
 |---|---|---|
-| `js/router.js` | Otak SPA — semua route mapping | 🔴 KRITIS |
-| `js/frontend/fellow-dashboard/settings.js` | Konten dinamis Modul 1 (generatedLessonContent) + init page | 🟠 TINGGI |
-| `js/frontend/fellow-dashboard/ai-python-basic.js` | Controller Modul 2 Python (Pyodide, chapter loading) | 🟠 TINGGI |
-| `js/frontend/fellow-dashboard/ai-ml-basic.js` | Controller ML module (chapter loading, quiz, discussion) | 🟠 TINGGI |
-| `js/frontend/fellow-dashboard/ai-modern.js` | Controller Modul 3 Konsep AI Modern | 🟠 TINGGI |
-| `index.html` | Entry point — semua `<script>` di-load di sini | 🟠 TINGGI |
+| Home | `/` atau `/home` | `frontend/home.html` |
+| Projects | `/projects` | `frontend/projects.html` |
+| Announcement | `/announcement` (+ stage vars) | `frontend/announcement.html` |
+| Wall of Fame | `/wall-of-fame` | `frontend/wall-of-fame.html` |
+| Leaderboard | `/leaderboard` | `frontend/leaderboard.html` |
+| Graduation | `/graduation` | `frontend/graduation.html` |
+| Register | `/register` | `frontend/register.html` |
+| Login | `/profile` atau `/participant-login` | `frontend/participant-login.html` |
+| Meeting | `/meeting` | `frontend/meeting.html` |
+| Messaging | `/messaging` | `fellow-dashboard/chatroom.html` |
+| Competency Test | `/competency-test` | `frontend/competency-test.html` |
+| Retest | `/retest` | `frontend/retest.html` |
+| Twibbon | `/twibbon` | `frontend/twibbon.html` |
+| About Us | `/about-us` | `frontend/about-us.html` |
+| Curriculum | `/curriculum` | `frontend/curriculum.html` |
+| FAQ | `/faq` | `frontend/faq.html` |
+| Industry Apps | `/industry-applications` | `frontend/industry-applications.html` |
+
+### ✅ PARTICIPANT DASHBOARD — Ada Konten
+
+| Halaman | Route | File |
+|---|---|---|
+| Dashboard | `/participant-dashboard` | `fellow-dashboard/dashboard.html` |
+| Modules | `/participant-modules` | `fellow-dashboard/modules.html` |
+| AI Fundamentals | `/participant-ai-fundamentals` | `fellow-dashboard/ai-fundamentals.html` |
+| Modul 1 - Pengantar AI | `/participant-ai-intro` | `01-pengantar-ai/materi.html` |
+| Modul 1 - Latihan | `/participant-ai-intro-practice` | `01-pengantar-ai/latihan.html` |
+| Modul 1 - Kuis | `/participant-ai-intro-quiz` | `01-pengantar-ai/kuis.html` |
+| Modul 1 - Diskusi | `/participant-ai-intro-discussion` | `01-pengantar-ai/diskusi.html` |
+| Modul 1 - Sub-topik | `/participant-ai-types` dll | `01-pengantar-ai/lesson.html` (via settings.js) |
+| Modul 2 - Python | `/participant-ai-python` | `02-python-untuk-ai/materi.html` |
+| Modul 2 - Latihan | `/participant-ai-python-practice` | `02-python-untuk-ai/latihan.html` |
+| Modul 2 - Kuis | `/participant-ai-python-quiz` | `02-python-untuk-ai/kuis.html` |
+| Modul 2 - Diskusi | `/participant-ai-python-discussion` | `02-python-untuk-ai/diskusi.html` |
+| Computer Vision | `/participant-ai-lab-cv` | `ai-lab/computer-vision.html` |
+| CV - 12 Sub-lesson | `/participant-ai-lab-cv-*` | `ai-lab/lessons/cnn-*.html` dll |
+| NLP | `/participant-ai-lab-nlp` | `ai-lab/nlp.html` |
+| NLP - 5 Lessons | `/participant-ai-lab-tokenization` dll | `ai-lab/lessons/*.html` |
+| Profile | `/participant-profile` | `fellow-dashboard/profile.html` |
+| Mentor | `/participant-mentor` | `fellow-dashboard/mentor.html` |
+| Tasks | `/participant-tasks` | `fellow-dashboard/tasks.html` |
+| Projects | `/participant-projects` | `fellow-dashboard/projects.html` |
+| Events | `/participant-events` | `fellow-dashboard/events.html` |
+| Community | `/participant-community` | `fellow-dashboard/community.html` |
+| Certificates | `/participant-certificates` | `fellow-dashboard/certificates.html` |
+| Leaderboard | `/participant-leaderboard` | `fellow-dashboard/leaderboard.html` |
+| Help | `/participant-help` | `fellow-dashboard/help.html` |
+| Settings | `/participant-settings` | `fellow-dashboard/settings.html` |
+
+### ⚠️ UNDER DEVELOPMENT (20 route)
+
+Semua route berikut mengarah ke `under-development.html`:
+
+| Route | Keterangan |
+|---|---|
+| `/participant-under-development` | Fallback global |
+| `/participant-ai-modern` | Konsep AI Modern (materi ada, latihan/kuis blm) |
+| `/participant-ai-modern-practice` | — |
+| `/participant-ai-modern-quiz` | — |
+| `/participant-ai-modern-discussion` | — |
+| `/participant-ai-lab-gen` | Generative AI |
+| `/participant-ai-lab-machine-learning` | ML overview |
+| `/participant-ai-lab-ml` | ML module |
+| `/participant-ai-lab-ml-practice` | — |
+| `/participant-ai-lab-ml-quiz` | — |
+| `/participant-ai-lab-ml-discussion` | — |
+| `/participant-ai-lab-ml-intro` | ML lesson |
+| `/participant-ai-lab-ml-hypothesis` | ML lesson |
+| `/participant-ai-lab-ml-vc-dim` | ML lesson |
+| `/participant-ai-lab-ml-bias-variance` | ML lesson |
+| `/participant-ai-lab-math` | Math for AI |
+| `/participant-ai-lab-math-intro` | — |
+| `/participant-ai-lab-math-linear-algebra` | — |
+| `/participant-ai-lab-math-statistics` | — |
+| `/participant-ai-lab-math-probability` | — |
+| `/participant-ai-lab-math-calculus` | — |
+| `/participant-ai-lab-math-optimization` | — |
+| `/participant-ai-lab-math-case-study` | — |
+| `/participant-ai-lab-math-practice` | — |
+| `/participant-ai-lab-math-quiz` | — |
+| `/participant-ai-lab-math-discussion` | — |
+
+### 🔴 DASHBOARD ADMIN (19 route)
+
+Semua route `/dashboard`, `/skoring`, `/ai-prescreening`, `/anti-fraud`, dll → ✅ Active.
 
 ---
 
-## Known Issues & TODO
+## File yang Disentuh Sesi Ini
 
-### Bugs yang Masih Ada
-1. **`ai-ml-basic.js` punya teks "Ml runtime"** — Sisa dari rename otomatis Python→ML. Ini muncul di status Pyodide loading (yang sebenarnya nggak dipakai di ML karena ML nggak pakai Pyodide). Tidak breaking tapi terlihat aneh jika di-inspect.
-2. **`runMlAsync`** — fungsi `pyodideInstance.runMlAsync()` di `ai-ml-basic.js` line 82 — ini typo dari rename. Seharusnya `runPythonAsync`. Tidak breaking karena ML module tidak mengaktifkan Pyodide.
-3. **Folder `03-konsep-ai-modern/`** masih ada tapi belum punya latihan, kuis, diskusi. Route-nya belum terdaftar penuh.
-4. **Folder `03-machine-learning/`** dan `03-konsep-ai-modern/` sama-sama pakai prefix `03-`. Ini ambigu — perlu diputuskan mau dipisah atau digabung.
-
-### TODO Prioritas Tinggi
-- [ ] **Tentukan hierarki modul** — Apakah "Machine Learning" masuk AI Fundamentals (modul 3) atau tetap di AI Lab saja?
-- [ ] **Bersihkan `ai-ml-basic.js`** — hapus seluruh blok Pyodide (loadPyodide, runMlAsync) karena ML tidak butuh Python runtime
-- [ ] **Latihan ML** — form studi kasus saat ini sangat basic (2 soal reflektif). Perlu ditambah atau diubah ke format interaktif
-- [ ] **Kuis ML** — baru 5 soal. Idealnya 10 soal seperti modul lain
-- [ ] **Konten chapter ML** — diekstrak mentah dari lesson lama, perlu di-review dan diperkaya dengan gaya "tech bestie"
-
-### TODO Prioritas Sedang
-- [ ] Modul 3 Konsep AI Modern — lengkapi `latihan.html`, `kuis.html`, `diskusi.html`
-- [ ] Pixel Anatomy tab switching — test responsif di mobile
-- [ ] Update progress tracking agar dinamis (sekarang hardcoded di HTML)
+| File | Perubahan |
+|---|---|
+| `js/router.js` | +11 route Math for AI, +restore 12 CV routes, ML tetap under-dev, hapus init hooks Math |
+| `index.html` | +1 script `ai-math-for-ai.js` |
+| `pages/frontend/fellow-dashboard/modules.html` | Card Math → `#/participant-under-development` |
+| `pages/frontend/fellow-dashboard/ai-fundamentals.html` | Dikembalikan ke versi kita (talak Nazril) |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/tokenization.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/preprocessing.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/pos-ner.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/bow.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `js/frontend/fellow-dashboard/ai-math-for-ai.js` | **BARU** — dari Nazril |
+| `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/*` | **BARU** — 5 file dari Nazril |
+| `docs-nazril/` | **BARU** — 4 docs (tidak di-push ke GitHub) |
 
 ---
 
 ## Aturan Besi untuk Developer/AI Selanjutnya
 
-1. **BACA `GEMINI.md`** sebelum ngapa-ngapain. Di sana ada design rules, zona bahaya, dan arsitektur lengkap.
-2. **Jangan hapus konten mentor** — kalau mau ubah, TAMBAHIN, jangan replace.
-3. **Jangan pakai emoji di UI** — semua harus FontAwesome icons (kecuali di dalam bubble chat HerAI Buddy yang boleh pakai emoji teks).
-4. **Border-radius TIDAK BOLEH 0** — card `14-20px`, button `100px`, input `14-20px`.
-5. **Warna icon di card grid harus konsisten pink** — jangan pakai warna brand asli (biru Google, hijau Spotify).
-6. **Semua perubahan WAJIB di-commit** tapi JANGAN di-push tanpa izin.
-7. **Test di `http://localhost:3000`** dengan Hard Refresh setelah setiap perubahan.
+1. **BACA `GEMINI.md`** sebelum ngapa-ngapain.
+2. **Jangan hapus konten mentor** — TAMBAHIN, jangan replace.
+3. **Jangan pakai emoji di UI** — FontAwesome icons.
+4. **Border-radius TIDAK BOLEH 0** — card 14-20px, button 100px, input 14-20px.
+5. **Warna icon di card grid konsisten pink** — jangan warna brand asli.
+6. **`docs-faiz/` dan `docs-nazril/` JANGAN di-push ke GitHub** — ada di `.gitignore`.
+7. **Semua perubahan WAJIB di-commit** tapi JANGAN di-push tanpa izin.
+8. **Test di `http://localhost:3000`** dengan Hard Refresh setelah setiap perubahan.
 
 ---
 
 ## Git Checkpoint
 
 ```bash
-# Untuk melihat semua perubahan sesi ini:
-git log --oneline da6c5d2..HEAD
-
-# Untuk rollback ke sebelum sesi ini:
-git reset --hard da6c5d2
-
-# Untuk rollback hanya Modul 1:
-git checkout da6c5d2 -- pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/
-git checkout da6c5d2 -- js/frontend/fellow-dashboard/settings.js
+# Lihat perubahan sesi ini:
+git log --oneline HEAD~5..HEAD
 ```

@@ -1,5 +1,5 @@
 # Peta Status Kurikulum HerAI (AI Fundamentals + AI Lab)
-**Tanggal:** 4 Juli 2026 (Update Malam)  
+**Tanggal:** 5 Juli 2026 (Final)  
 **Branch:** `design`
 
 Dokumen ini berfungsi sebagai peta jalan (*roadmap*) bagi tim *developer* atau AI Agent untuk mengetahui dengan pasti mana saja halaman/modul yang sudah selesai dibangun, mana yang masih berbentuk *template* kaku, dan mana yang benar-benar belum dibuat.
@@ -35,13 +35,13 @@ pages/frontend/fellow-dashboard/ai-fundamental/
 │   ├── kuis.html                 (❌ TIDAK ADA — File belum dibuat)
 │   └── diskusi.html              (❌ TIDAK ADA — File belum dibuat)
 │
-├── 03-machine-learning/          (⚠️ BARU — Prefix "03" duplikat dengan konsep-ai-modern)
-│   ├── chapters/                 (✅ SELESAI — 4 Chapter: Intro, Hypothesis, VC-Dim, Bias-Variance)
+├── 03-machine-learning/          (⚠️ UNDER DEVELOPMENT — Semua route diarahkan ke under-development)
+│   ├── chapters/                 (🟡 File ada — 4 chapter: Intro, Hypothesis, VC-Dim, Bias-Variance)
 │   │   ├── chapter-1.html ... chapter-4.html
-│   ├── materi.html               (✅ SELESAI — Container dinamis + sidebar)
-│   ├── latihan.html              (🟡 BASIC — 2 soal studi kasus reflektif)
-│   ├── kuis.html                 (🟡 BASIC — 5 soal pilihan ganda)
-│   └── diskusi.html              (✅ SELESAI — Forum standar, ID sudah benar)
+│   ├── materi.html               (🟡 File ada — CSS bermasalah, perlu review)
+│   ├── latihan.html              (🟡 File ada)
+│   ├── kuis.html                 (🟡 File ada)
+│   └── diskusi.html              (🟡 File ada)
 │
 ├── 04-reasoning/                 (❌ TIDAK ADA — Direktori belum dibuat)
 ├── 05-evaluation/                (❌ TIDAK ADA — Direktori belum dibuat)
@@ -57,7 +57,7 @@ pages/frontend/fellow-dashboard/ai-fundamental/
 | **01 — Pengantar AI** | ✅ 4 topik padat | 🟡 Template lama | 🟡 Sudah jalan | 🟡 Template lama | `settings.js` | Konten mentor + tech bestie sudah digabung |
 | **02 — Python untuk AI** | ✅ 6 chapter dinamis | ✅ Pyodide sandbox | ✅ Skoring + highlight | 🟡 Template | `ai-python-basic.js` | Paling matang |
 | **03a — Konsep AI Modern** | ✅ 4 chapter dinamis | ❌ Belum ada | ❌ Belum ada | ❌ Belum ada | `ai-modern.js` | Latihan/kuis/diskusi belum dibuat |
-| **03b — Machine Learning** | ✅ 4 chapter dinamis | 🟡 2 soal basic | 🟡 5 soal basic | ✅ Forum standar | `ai-ml-basic.js` | Route: `#/participant-ai-lab-ml` |
+| **03b — Machine Learning** | ⚠️ Under development | ⚠️ Under development | ⚠️ Under development | ⚠️ Under development | `ai-ml-basic.js` | Route: `#/participant-ai-lab-ml` → under-development |
 | **04 — Reasoning** | ❌ | ❌ | ❌ | ❌ | — | Belum ada folder/route |
 | **05 — Evaluation** | ❌ | ❌ | ❌ | ❌ | — | Belum ada folder/route |
 | **06 — Evolution of AI** | ❌ | ❌ | ❌ | ❌ | — | Belum ada folder/route |
@@ -68,11 +68,11 @@ pages/frontend/fellow-dashboard/ai-fundamental/
 
 | Track | Route | Status Konten | Sub-lesson yang Ada |
 |---|---|---|---|
-| **Machine Learning** | `#/participant-ai-lab-ml` | ✅ **Baru dirombak** | Intro, Hypothesis, VC-Dim, Bias-Variance (4 chapter) |
-| **Computer Vision** | `#/participant-ai-lab-cv` | ✅ Selesai | CNN Intro, Filtering, Color Space, Edge, Segmentation, Feature, Transfer, AR, OpenCV, Pixel Anatomy |
-| **NLP** | `#/participant-ai-lab-nlp` | ✅ Selesai | Tokenization, Preprocessing, POS/NER, BOW, TF-IDF |
-| **Generative AI** | `#/participant-ai-lab-gen` | 🟡 Overview only | Belum ada sub-lesson |
-| Math for AI | — | ❌ Placeholder | Belum ada route |
+| **Machine Learning** | `#/participant-ai-lab-ml` | ⚠️ **Under development** | Semua route → `under-development.html` |
+| **Computer Vision** | `#/participant-ai-lab-cv` | ✅ **Selesai** | 12 sub-lesson (CNN, Filtering, OpenCV, Pixel, dll) |
+| **NLP** | `#/participant-ai-lab-nlp` | ✅ **Selesai** | 5 sub-lesson (Tokenization, Preprocessing, POS/NER, BOW, TF-IDF) — single page |
+| **Generative AI** | `#/participant-ai-lab-gen` | ⚠️ **Under development** | → `under-development.html` |
+| **Math for AI** | `#/participant-ai-lab-math` | ⚠️ **Under development** | File dari Nazril, route diarahkan |
 | Deep Learning | — | ❌ Placeholder | Belum ada route |
 | Reinforcement Learning | — | ❌ Placeholder | Belum ada route |
 | LLM | — | ❌ Placeholder | Belum ada route |
@@ -100,21 +100,17 @@ pages/frontend/fellow-dashboard/ai-fundamental/
 | `/participant-ai-intro-quiz` | `01-pengantar-ai/kuis.html` | — |
 | `/participant-ai-intro-discussion` | `01-pengantar-ai/diskusi.html` | — |
 
-### Modul 3b: Machine Learning
-| Route | File HTML | Init Function |
-|---|---|---|
-| `/participant-ai-lab-ml` | `03-machine-learning/materi.html` | `initAiMlMateri()` |
-| `/participant-ai-lab-ml-practice` | `03-machine-learning/latihan.html` | `initAiMlBasic()` |
-| `/participant-ai-lab-ml-quiz` | `03-machine-learning/kuis.html` | `initAiMlQuiz()` |
-| `/participant-ai-lab-ml-discussion` | `03-machine-learning/diskusi.html` | `initAiMlDiscussion()` |
-
-### Alias Routes (mengarah ke materi.html ML)
-| Route | Asal |
+### Modul 3b: Machine Learning (Under Development)
+| Route | File HTML |
 |---|---|
-| `/participant-ai-lab-ml-intro` | Legacy lesson route |
-| `/participant-ai-lab-ml-hypothesis` | Legacy lesson route |
-| `/participant-ai-lab-ml-vc-dim` | Legacy lesson route |
-| `/participant-ai-lab-ml-bias-variance` | Legacy lesson route |
+| `/participant-ai-lab-ml` | `under-development.html` |
+| `/participant-ai-lab-ml-practice` | `under-development.html` |
+| `/participant-ai-lab-ml-quiz` | `under-development.html` |
+| `/participant-ai-lab-ml-discussion` | `under-development.html` |
+| `/participant-ai-lab-ml-intro` | `under-development.html` |
+| `/participant-ai-lab-ml-hypothesis` | `under-development.html` |
+| `/participant-ai-lab-ml-vc-dim` | `under-development.html` |
+| `/participant-ai-lab-ml-bias-variance` | `under-development.html` |
 
 ---
 
@@ -135,4 +131,17 @@ pages/frontend/fellow-dashboard/ai-fundamental/
 ---
 
 **Catatan untuk Developer Selanjutnya:**  
-Gunakan dokumen ini untuk menentukan fokus pekerjaan. Prioritas tertinggi adalah **melengkapi latihan, kuis, dan diskusi untuk Modul 3a (Konsep AI Modern)** karena materinya sudah lengkap tapi belum ada file pendukung. Untuk modul ML, review dan perkaya konten chapter yang masih berupa copy mentah dari lesson lama. Pastikan setiap membuat modul baru, daftarkan rutenya di `js/router.js` DAN tambahkan init hook-nya.
+
+**Under Development (20+ route):**
+- ML module (8 route) — file ada, tapi diarahkan ke under-development
+- Math for AI (11 route) — file dari Nazril, diarahkan ke under-development
+- GenAI (1 route) — diarahkan
+- Konsep AI Modern (4 route) — materi ada, latihan/kuis/diskusi belum
+
+**Konten AKTIF yang bisa dipelajari:**
+1. Modul 1 (Pengantar AI) ✅ — 4 topik padat
+2. Modul 2 (Python untuk AI) ✅ — 6 chapter, Pyodide, kuis
+3. Computer Vision ✅ — 12 sub-lesson
+4. NLP ✅ — 5 sub-lesson (single page, tanpa tab practice/quiz)
+
+**PENTING:** Saat membuat modul baru, daftarkan di 3 tempat: `routes` object, `participantDashboardPages` array, dan init hooks di `handleRouting()`.
