@@ -6514,6 +6514,7 @@
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
+  margin-left: auto;
 }
 
 .lesson-detail-page .fellow-search,
@@ -6606,10 +6607,23 @@
     justify-content: flex-start;
   }
 
+  .lesson-detail-page .fellow-icon-button,
+  .ai-lab-lesson .fellow-icon-button,
+  .ai-lab-overview .fellow-icon-button {
+    margin-left: auto;
+  }
+
   .lesson-detail-page .fellow-search,
   .ai-lab-lesson .fellow-search,
   .ai-lab-overview .fellow-search {
     flex: 1 1 220px;
+    min-width: 0;
+  }
+
+  .lesson-detail-page .fellow-user-button,
+  .ai-lab-lesson .fellow-user-button,
+  .ai-lab-overview .fellow-user-button,
+  .ai-lab-overview .lesson-topbar .fellow-user-button {
     min-width: 0;
   }
 }
