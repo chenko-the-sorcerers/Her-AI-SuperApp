@@ -275,7 +275,14 @@
             duration: '35 menit',
             tag: 'Konteks',
             content: `
-                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-hourglass-half"></i> Topik 2: Sejarah Singkat Artificial Intelligence</h2>
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-hourglass-half"></i> Topik 2: Sejarah Singkat Artificial Intelligence
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Memahami perjalanan AI dari awal mula hingga meledak seperti sekarang.
+                    </p>
+                </div>
                 
                 <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -334,7 +341,14 @@
             duration: '40 menit',
             tag: 'Klasifikasi',
             content: `
-                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-layer-group"></i> Topik 3: Jenis-Jenis Artificial Intelligence</h2>
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-layer-group"></i> Topik 3: Jenis-Jenis Artificial Intelligence
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Memahami klasifikasi AI berdasarkan kapabilitas dan fungsionalitasnya.
+                    </p>
+                </div>
                 
                 <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -408,8 +422,14 @@
             duration: '45 menit',
             tag: 'Fondasi',
             content: `
-            content: `
-                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-cubes"></i> Topik 4: Komponen Utama AI (Trinitas AI Modern)</h2>
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-cubes"></i> Topik 4: Komponen Utama AI (Trinitas AI Modern)
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Memahami tiga pilar utama yang membuat AI modern menjadi sangat cerdas.
+                    </p>
+                </div>
                 
                 <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -462,7 +482,14 @@
             duration: '40 menit',
             tag: 'Aplikasi',
             content: `
-                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-globe"></i> Topik 5: Penerapan AI di Kehidupan Nyata</h2>
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-globe"></i> Topik 5: Penerapan AI di Kehidupan Nyata
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Melihat bagaimana AI digunakan di berbagai industri dan dampaknya.
+                    </p>
+                </div>
                 
                 <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -538,8 +565,14 @@
             duration: '25 menit',
             tag: 'Review',
             content: `
-            content: `
-                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-clipboard-check"></i> Topik 6: Ringkasan Pengantar AI</h2>
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-clipboard-check"></i> Topik 6: Ringkasan Pengantar AI
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Merangkum seluruh konsep inti sebelum melangkah ke praktik selanjutnya.
+                    </p>
+                </div>
                 
                 <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -622,13 +655,13 @@
         page.querySelector('[data-lesson-title]').textContent = lesson.title;
         page.querySelector('[data-lesson-description]').textContent = lesson.description;
         page.querySelector('[data-lesson-duration]').textContent = lesson.duration;
-        page.querySelector('[data-lesson-position]').textContent = `Topik ${index + 1} dari ${introLessonRoutes.length}`;
+        page.querySelector('[data-lesson-position]').textContent = `Modul 1 dari 6`;
         page.querySelector('[data-lesson-tag]').textContent = lesson.tag;
         page.querySelector('[data-lesson-content]').innerHTML = lesson.content;
         page.querySelector('[data-lesson-list]').innerHTML = renderLessonList(path);
         page.querySelector('[data-lesson-progress-bar]').style.setProperty('--value', `${progress}%`);
         page.querySelector('[data-lesson-progress-text]').textContent = `${progress}%`;
-        page.querySelector('[data-lesson-progress-caption]').textContent = `${index + 1} dari ${introLessonRoutes.length} materi Pengantar AI`;
+        page.querySelector('[data-lesson-progress-caption]').textContent = `${index + 1} dari ${introLessonRoutes.length} materi selesai`;
         const prevLink = page.querySelector('[data-lesson-prev]');
         const nextLink = page.querySelector('[data-lesson-next]');
         prevLink.href = `#${prev.path}`;
