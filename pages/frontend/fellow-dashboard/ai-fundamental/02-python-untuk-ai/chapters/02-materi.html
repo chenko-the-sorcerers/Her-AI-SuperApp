@@ -1,0 +1,131 @@
+<div class="lesson-module-content">
+    <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+        <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-rocket"></i> Module 2: Koleksi & Alur Logika
+        </h3>
+        <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+            Goal: Mampu menyimpan ribuan data menggunakan Struktur Data dan mengatur jalannya program menggunakan Control Flow.
+        </p>
+    </div>
+
+    <!-- CHAPTER 1: STRUKTUR DATA (LIST & TUPLE) -->
+    <section class="cdd-chapter">
+        <h2>Chapter 1: Menyimpan Jutaan Data</h2>
+        
+        <div class="cdd-step">
+            <h3>Learning Objective</h3>
+            <p>Peserta mampu menjelaskan perbedaan utama List, Tuple, Dictionary, dan Set, serta kapan waktu yang tepat untuk menggunakannya dalam konteks pemrosesan data AI.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Analogy</h3>
+            <p>Bayangkan jika kamu harus mendata nama 1.000 peserta Fellowship. Jika hanya menggunakan variabel biasa, kamu harus membuat 1.000 variabel (<code>nama_1</code>, <code>nama_2</code>, dst). Tentu sangat melelahkan!</p>
+            <p><strong>Struktur Data</strong> ibarat sebuah "Lemari Kabinet" yang memiliki banyak laci berurut. Dengan satu nama lemari (misalnya: <code>peserta</code>), kamu bisa menyimpan jutaan data di dalam laci-lacinya secara rapi.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Theory</h3>
+            <p>Python memiliki 4 struktur data utama (built-in):</p>
+            <ul>
+                <li><strong>List (Daftar):</strong> Koleksi berurutan yang isinya bisa ditambah, diubah, atau dihapus (<em>mutable</em>). Sangat fleksibel.</li>
+                <li><strong>Tuple (Konstan):</strong> Mirip List, tapi isinya <strong>terkunci</strong> dan tidak bisa diubah (<em>immutable</em>). Lebih cepat dari List dan aman dari perubahan tidak sengaja.</li>
+                <li><strong>Dictionary (Kamus):</strong> Menyimpan data dengan pasangan <em>Key</em> (Kata Kunci) dan <em>Value</em> (Nilai). Digunakan saat kita butuh mencari data berdasarkan label, bukan urutan nomor.</li>
+                <li><strong>Set (Himpunan):</strong> Koleksi yang <strong>tidak memiliki data kembar</strong>. Sangat berguna di AI (seperti NLP) untuk mencari kosakata unik dari jutaan kata.</li>
+            </ul>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Syntax & Code Example</h3>
+            <p>Cobalah jalankan kode di bawah ini untuk melihat bagaimana kita membuat List dan Tuple.</p>
+            
+            <div class="interactive-playground" id="play-list" style="border: 1px solid var(--fellow-line); border-radius: 12px; overflow: hidden; margin-bottom: 24px;">
+                <div class="playground-header" style="background: var(--fellow-line); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family: monospace; font-weight: 600; color: var(--fellow-text);"><i class="fab fa-python" style="color: #f63392;"></i> struktur_data.py</span>
+                    <button type="button" class="btn-run py-run" id="btn-run-list" style="background: #f63392; color: white; border: none; padding: 6px 16px; border-radius: 100px; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-play"></i> Run Code
+                    </button>
+                </div>
+                <div class="playground-body" style="display: flex; flex-direction: column;">
+                    <textarea class="py-editor" spellcheck="false" autocomplete="off" style="width: 100%; height: 260px; padding: 16px; border: none; font-family: monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical;">
+# 1. LIST (Pakai kurung siku [ ])
+peserta = ["Aisyah", "Budi", "Citra"]
+peserta.append("Deni")  # Menambah data baru
+print("List Peserta:", peserta)
+print("Peserta pertama:", peserta[0])  # Komputer menghitung dari 0!
+
+# 2. TUPLE (Pakai kurung biasa ( ))
+koordinat = (3.14, 2.71)
+print("Titik koordinat:", koordinat)
+# koordinat[0] = 9.99 # Ini akan ERROR jika dijalankan!
+
+# 3. DICTIONARY (Pakai kurung kurawal { })
+profil = {"nama": "Aisyah", "skor": 95}
+print("Skor Aisyah:", profil["skor"])
+</textarea>
+                    <div class="playground-output" style="background: #171827; color: #00ff00; padding: 16px;">
+                        <div class="output-header" style="color: #8e91a0; font-size: 0.8rem; margin-bottom: 8px; text-transform: uppercase;">Terminal Output</div>
+                        <pre class="py-output" id="out-list" style="margin: 0; font-family: monospace; font-size: 14px;">Menunggu eksekusi...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cdd-step">
+            <h3>Common Mistakes</h3>
+            <p>Pemula sering terjebak dengan konsep <strong>Zero-based Indexing</strong>. Di dunia nyata kita mulai berhitung dari angka 1, tapi komputer mulai berhitung dari <strong>0</strong>. Jadi data pertama berada di laci nomor 0, data kedua di laci 1, dan seterusnya.</p>
+        </div>
+    </section>
+
+    <!-- CHAPTER 2: CONTROL FLOW (IF-ELSE & LOOPS) -->
+    <section class="cdd-chapter">
+        <h2>Chapter 2: Pengendali Alur (Logika AI)</h2>
+        
+        <div class="cdd-step">
+            <h3>Learning Objective</h3>
+            <p>Peserta memahami cara kerja percabangan logika (If-Else) dan kemampuan perulangan (For/While) untuk memproses jutaan baris data tanpa henti secara otomatis.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Analogy</h3>
+            <p>Logika percabangan (<strong>If-Else</strong>) ibarat satpam di depan gedung acara. "JIKA kamu membawa tiket VIP, arahkan ke karpet merah. JIKA TIDAK, arahkan ke pintu masuk biasa."</p>
+            <p>Logika perulangan (<strong>Looping</strong>) ibarat mesin fotokopi. Daripada menekan tombol 'cetak' 1.000 kali untuk mencetak 1.000 dokumen, kamu cukup mengatur angka perulangan sebanyak 1.000 dan mesin akan mengerjakannya sendiri.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Syntax & Code Example</h3>
+            <p>Di sini kita akan menggunakan perulangan <code>for</code> untuk memeriksa data skor peserta dan <code>if</code> untuk menentukan apakah mereka lolos seleksi.</p>
+            
+            <div class="interactive-playground" id="play-loop" style="border: 1px solid var(--fellow-line); border-radius: 12px; overflow: hidden; margin-bottom: 24px;">
+                <div class="playground-header" style="background: var(--fellow-line); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-family: monospace; font-weight: 600; color: var(--fellow-text);"><i class="fab fa-python" style="color: #f63392;"></i> seleksi.py</span>
+                    <button type="button" class="btn-run py-run" id="btn-run-loop" style="background: #f63392; color: white; border: none; padding: 6px 16px; border-radius: 100px; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-play"></i> Run Code
+                    </button>
+                </div>
+                <div class="playground-body" style="display: flex; flex-direction: column;">
+                    <textarea class="py-editor" spellcheck="false" autocomplete="off" style="width: 100%; height: 260px; padding: 16px; border: none; font-family: monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical;">
+daftar_skor = [65, 90, 85, 40, 75]
+
+# Melakukan perulangan untuk mengecek setiap skor
+for skor in daftar_skor:
+    if skor >= 80:
+        print("Skor", skor, "=> LOLOS Seleksi")
+    elif skor >= 60:
+        print("Skor", skor, "=> Masuk Daftar Cadangan")
+    else:
+        print("Skor", skor, "=> TIDAK Lolos")
+</textarea>
+                    <div class="playground-output" style="background: #171827; color: #00ff00; padding: 16px;">
+                        <div class="output-header" style="color: #8e91a0; font-size: 0.8rem; margin-bottom: 8px; text-transform: uppercase;">Terminal Output</div>
+                        <pre class="py-output" id="out-loop" style="margin: 0; font-family: monospace; font-size: 14px;">Menunggu eksekusi...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Interactive Exercise & Challenge</h3>
+            <p>Buka <strong>Tab Latihan</strong> sekarang. Coba buat program kecil yang bisa mencetak deret bilangan ganjil dari angka 1 sampai 20 dengan menggunakan <code>for</code> loop dan <code>if</code>!</p>
+        </div>
+    </section>
+</div>

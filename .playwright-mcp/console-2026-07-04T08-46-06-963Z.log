@@ -13,3 +13,4 @@
     at http://localhost:3000/js/frontend/fellow-dashboard/ai-python-basic.js?v=20260704-pyodide3:253:26 @ http://localhost:3000/js/frontend/fellow-dashboard/ai-python-basic.js?v=20260704-pyodide3:262
 [ 2629115ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
 [ 5182025ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
+[ 5274625ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
