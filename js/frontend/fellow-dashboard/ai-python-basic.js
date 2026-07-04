@@ -78,7 +78,9 @@
         pyodideInstance.setStdout({ batched: function(text) { captured += text + '\n'; } });
         pyodideInstance.setStderr({ batched: function(text) { captured += text + '\n'; } });
 
-        pyodideInstance.runPythonAsync(code).then(function(result) {
+        pyodideInstance.loadPackagesFromImports(code).then(function() {
+            return pyodideInstance.runPythonAsync(code);
+        }).then(function(result) {
             var resultText = result !== undefined ? String(result) : '';
             var final = captured ? captured.trimEnd() : '';
             if (resultText && final) final += '\n' + resultText;
@@ -247,7 +249,7 @@
 
         var STORAGE_KEY_CHAPTER = 'heraiAiPythonCurrentChapter';
         var currentChapter = parseInt(localStorage.getItem(STORAGE_KEY_CHAPTER) || '1', 10);
-        var totalChapters = 4; // Currently Module 1 to 4 are ready
+        var totalChapters = 5; // All 5 modules are complete
 
         var btnPrev = document.getElementById('btn-prev-chapter');
         var btnNext = document.getElementById('btn-next-chapter');

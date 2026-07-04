@@ -1,0 +1,149 @@
+<div class="lesson-module-content">
+    <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+        <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-rocket"></i> Module 5: Ekosistem Data Science
+        </h3>
+        <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+            Goal: Membuka gerbang menuju AI dengan menggunakan pustaka (library) esensial pengolah angka dan tabel.
+        </p>
+    </div>
+
+    <!-- CHAPTER 1: NUMPY -->
+    <section class="cdd-chapter">
+        <h2>Chapter 1: Kalkulator Massal (NumPy)</h2>
+        
+        <div class="cdd-step">
+            <h3>Learning Objective</h3>
+            <p>Peserta memahami bagaimana <code>NumPy</code> digunakan untuk melakukan perhitungan matematika kompleks pada ribuan data sekaligus tanpa perlu perulangan (loop) manual.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Analogy</h3>
+            <p>Bayangkan kamu adalah kasir di minimarket. Jika pakai List Python biasa, kamu harus men-scan dan menghitung total harga barang <strong>satu per satu</strong> (menggunakan <em>Loop</em>).</p>
+            <p>Dengan <strong>NumPy</strong>, ibarat kamu punya <em>scanner</em> keranjang pintar: Cukup letakkan sekeranjang penuh barang, dan NumPy akan mengalikan semua jumlah barang dengan harga diskonnya secara <strong>serentak dalam 1 detik!</strong> (Komputasi Vektorisasi).</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Syntax & Code Example</h3>
+            <p>Pertama, kita harus <em>import</em> (meminjam) alat NumPy ini ke dalam program kita.</p>
+            
+            <div class="playground-wrapper" id="play-np" style="margin-top: 16px;">
+                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>numpy_kasir.py</div>
+                    <div class="py-actions" style="display: flex; gap: 8px;">
+                        <button class="py-reset" data-play="np" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
+                        <button class="py-run" id="btn-run-np" data-play="np" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
+                    </div>
+                </div>
+                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
+<textarea class="py-editor" style="width: 100%; min-height: 250px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
+import numpy as np
+
+# List biasa (lambat)
+harga_list = [10000, 20000, 30000, 40000]
+
+# NumPy Array (Super cepat & Kuat!)
+harga_np = np.array([10000, 20000, 30000, 40000])
+
+# Semua barang didiskon 50%! 
+# Di NumPy, kita bisa langsung mengalikan semuanya sekaligus:
+harga_diskon = harga_np * 0.5
+
+print("Harga awal  :", harga_np)
+print("Harga diskon:", harga_diskon)
+</textarea>
+                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
+                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output <span style="font-size:0.7rem; color:var(--fellow-muted); text-transform:none;">(NumPy butuh waktu beberapa detik untuk diunduh pertama kali)</span></div>
+                        <pre class="py-output" id="out-np" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAPTER 2: PANDAS -->
+    <section class="cdd-chapter">
+        <h2>Chapter 2: Excel Super Canggih (Pandas)</h2>
+        
+        <div class="cdd-step">
+            <h3>Learning Objective</h3>
+            <p>Peserta memahami apa itu <code>DataFrame</code> di Pandas dan bagaimana Pandas digunakan untuk menganalisis data dalam format baris dan kolom persis seperti Microsoft Excel.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Analogy</h3>
+            <p>NumPy ahli dalam menghitung angka murni, tapi kurang ramah kalau kita punya data campur aduk (ada teks nama orang, ada angka umur, ada uang). Di sinilah <strong>Pandas</strong> masuk!</p>
+            <p><strong>Pandas DataFrame</strong> ibarat <em>spreadsheet</em> (lembar kerja) Excel yang super canggih. Kamu bisa menyaring <em>(filter)</em>, mengelompokkan <em>(group)</em>, dan membersihkan data kosong dalam sekejap mata lewat kode.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Syntax & Code Example</h3>
+            <p>Mari kita buat tabel data member salon sederhana menggunakan tipe data <code>Dictionary</code> dan mengubahnya menjadi tabel DataFrame Pandas.</p>
+            
+            <div class="playground-wrapper" id="play-pd" style="margin-top: 16px;">
+                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>pandas_salon.py</div>
+                    <div class="py-actions" style="display: flex; gap: 8px;">
+                        <button class="py-reset" data-play="pd" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
+                        <button class="py-run" id="btn-run-pd" data-play="pd" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
+                    </div>
+                </div>
+                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
+<textarea class="py-editor" style="width: 100%; min-height: 280px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
+import pandas as pd
+
+# Data mentah kita (Dictionary)
+data_mentah = {
+    "Nama": ["Aisyah", "Budi", "Citra", "Diana"],
+    "Umur": [25, 30, 22, 28],
+    "VIP": [True, False, False, True]
+}
+
+# Menyulapnya menjadi tabel rapi (DataFrame)
+df = pd.DataFrame(data_mentah)
+
+print("Tabel Keseluruhan:")
+print(df)
+
+print("\n--- Cari Member VIP Saja ---")
+vip_saja = df[df["VIP"] == True]
+print(vip_saja)
+</textarea>
+                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
+                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
+                        <pre class="py-output" id="out-pd" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CHAPTER 3: MEMBACA CSV -->
+    <section class="cdd-chapter">
+        <h2>Chapter 3: Membaca Dataset CSV</h2>
+        
+        <div class="cdd-step">
+            <h3>Theory & Practical Use</h3>
+            <p>Di dunia AI sungguhan, kita hampir tidak pernah mengetik data manual seperti contoh di atas. <em>Data Scientist</em> biasanya mengunduh file <strong>CSV (Comma Separated Values)</strong> yang berisi jutaan baris data, lalu memintanya dibaca oleh Pandas.</p>
+            <p>Fungsi sakti yang digunakan adalah <code>pd.read_csv("nama_file.csv")</code>.</p>
+            <p>Contoh <em>pseudocode</em> di dunia nyata:</p>
+            
+            <div class="code-block" style="margin-top: 12px; margin-bottom: 16px;">
+                <pre><code><span class="co">import</span> pandas <span class="co">as</span> pd
+
+<span class="cm"># Membaca data penjualan e-commerce selama 5 tahun</span>
+dataset_penjualan = pd.read_csv(<span class="st">"penjualan_sepatu_2020_2025.csv"</span>)
+
+<span class="cm"># Menampilkan 5 baris pertama untuk ngintip datanya</span>
+<span class="fn">print</span>(dataset_penjualan.head())</code></pre>
+            </div>
+        </div>
+        
+        <div class="cdd-step" style="background: linear-gradient(135deg, rgba(246,51,146,.05) 0%, rgba(246,51,146,.15) 100%); padding: 32px; border-radius: 16px; margin-top: 40px; text-align: center; border: 1px solid rgba(246,51,146,.3);">
+            <h3 style="margin-top:0; font-size: 1.6rem; color: #f63392;">🎓 Selamat! Kamu Lulus Bootcamp Dasar!</h3>
+            <p style="font-size: 1.1rem; color: #171827; margin-bottom: 24px;">Kamu telah menuntaskan seluruh fondasi penting Python untuk AI: dari membuat variabel, logika loop, mengemas kode dalam fungsi & class, hingga menyentuh NumPy dan Pandas! Langkah selanjutnya? Masuk ke proyek AI pertamamu!</p>
+            <a href="#/participant-ai-python-practice" class="fellow-btn-primary" style="display: inline-block; text-decoration: none;"><i class="fas fa-trophy"></i> Lanjut ke Ujian Kelulusan (Latihan)</a>
+        </div>
+    </section>
+
+</div>

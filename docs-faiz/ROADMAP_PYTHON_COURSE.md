@@ -79,15 +79,22 @@ Memahami konsep Object-Oriented Programming (OOP) tingkat dasar, menangani error
 ---
 
 ## 🎯 Modul 5: Ekosistem Data Science (NumPy & Pandas)
-**Status:** ⏳ Dalam Antrean (Target File: `05-materi.html`)
+**Status:** ✅ Selesai (File: `05-materi.html`)
 
 **Tujuan Pembelajaran:** 
 Membuka gerbang awal menuju Machine Learning dengan menggunakan library esensial pengolah data.
 
-**Rencana Chapter:**
-- Pengenalan NumPy (Komputasi Vektor & Array)
-- Pengenalan Pandas (Dataframe, Baris, dan Kolom)
-- Membaca data CSV (Dataset)
+**Daftar Chapter (SUDAH LENGKAP):**
+- **Chapter 1: Kalkulator Massal (NumPy)**
+  - Vektorisasi pada komputasi massal tanpa loop
+  - Analogi: Scanner kasir pintar yang diskon seluruh isi keranjang serentak
+  - Interactive Playground: `numpy_kasir.py`
+- **Chapter 2: Excel Super Canggih (Pandas)**
+  - Konsep DataFrame, filter, dan Dictionary ke Tabel
+  - Analogi: Excel versi lebih canggih untuk memfilter VIP member salon
+  - Interactive Playground: `pandas_salon.py`
+- **Chapter 3: Membaca Dataset CSV**
+  - Praktek `pd.read_csv()` untuk membaca file eksternal
 
 ---
 
