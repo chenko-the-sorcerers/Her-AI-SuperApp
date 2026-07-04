@@ -6506,7 +6506,9 @@
 .lesson-detail-page .lesson-breadcrumb-separator,
 .ai-lab-lesson .lesson-breadcrumb-separator,
 .ai-lab-overview .lesson-breadcrumb-separator {
-  color: #c7cbd4;
+  color: #8e91a0;
+  font-size: 0.75rem;
+  margin: 0 4px;
 }
 
 .lesson-detail-page .fellow-actions,

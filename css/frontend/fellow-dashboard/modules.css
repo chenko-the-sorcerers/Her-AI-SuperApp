@@ -1283,11 +1283,11 @@
 
 .lesson-breadcrumb-separator {
     align-items: center;
-    color: #c7cbd4;
+    color: #8e91a0;
     display: inline-flex;
-    font-size: 0.62rem;
-    font-weight: 500;
-    margin: 0 -1px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0 4px;
 }
 
 .lesson-breadcrumb a {
