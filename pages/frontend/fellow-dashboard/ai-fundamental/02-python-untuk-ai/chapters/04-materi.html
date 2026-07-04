@@ -132,11 +132,65 @@ finally:
                     </div>
                 </div>
             </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAPTER 3: INTERAKSI FILE (I/O) -->
+    <section class="cdd-chapter">
+        <h2>Chapter 3: Buku Tamu Digital (File I/O)</h2>
+        
+        <div class="cdd-step">
+            <h3>Learning Objective</h3>
+            <p>Peserta mampu membaca data dari sebuah file teks dan menyimpan hasil pemrosesan AI kembali ke dalam file menggunakan fungsi <code>open()</code>.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Analogy</h3>
+            <p>Membaca dan menulis file <strong>(I/O)</strong> ibarat menjaga meja penerima tamu di sebuah acara. Saat tamu datang, kamu <strong>membaca</strong> daftar undangan (File Read). Saat tamu menyerahkan kado, kamu <strong>menulis</strong> namanya di buku tanda terima kado (File Write). Begitulah cara AI berinteraksi dengan dunia luar: mengambil dataset, lalu mencetak laporan.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Syntax & Code Example</h3>
+            <p>Kita menggunakan fungsi bawaan <code>open()</code> dengan mode <code>"r"</code> untuk <em>Read</em> (membaca) dan mode <code>"w"</code> untuk <em>Write</em> (menulis/menimpa).</p>
+            
+            <div class="playground-wrapper" id="play-io" style="margin-top: 16px;">
+                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>buku_tamu.py</div>
+                    <div class="py-actions" style="display: flex; gap: 8px;">
+                        <button class="py-reset" data-play="io" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
+                        <button class="py-run" id="btn-run-io" data-play="io" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
+                    </div>
+                </div>
+                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
+<textarea class="py-editor" style="width: 100%; min-height: 250px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
+# 1. Menulis ke dalam file (Mode "w")
+# Jika file belum ada, Python akan membuatnya secara otomatis!
+file_tulis = open("buku_tamu.txt", "w")
+file_tulis.write("Tamu 1: Aisyah Putri\n")
+file_tulis.write("Tamu 2: Budi Santoso\n")
+file_tulis.close()  # JANGAN LUPA DITUTUP!
+print("Berhasil menulis 2 nama ke buku_tamu.txt")
+
+# 2. Membaca isi file (Mode "r")
+print("\n--- Membuka Buku Tamu ---")
+file_baca = open("buku_tamu.txt", "r")
+isi_buku = file_baca.read()
+print(isi_buku)
+file_baca.close()
+</textarea>
+                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
+                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
+                        <pre class="py-output" id="out-io" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 16px; color: var(--fellow-muted); font-size: 0.9rem;"><strong>Pro Tip:</strong> <em>Data Scientist</em> masa kini biasanya memakai perintah <code>with open(...) as file:</code> agar tidak perlu repot memanggil <code>.close()</code>, karena file akan tertutup otomatis saat proses selesai.</p>
         </div>
         
         <div class="cdd-step">
             <h3>Summary</h3>
-            <p>Hari ini kamu belajar menjadi arsitek <em>software</em> yang tangguh! Melalui <strong>OOP</strong> kamu membungkus rapi data layaknya <em>blueprint</em> produk, dan melalui <strong>Error Handling</strong> kamu mengantisipasi hari hujan yang tak terduga.</p>
+            <p>Selamat! Di Modul 4 ini kamu resmi menjadi arsitek <em>software</em> yang tangguh! Melalui <strong>OOP</strong> kamu membungkus data layaknya <em>blueprint</em> produk, melalui <strong>Error Handling</strong> kamu mengantisipasi hari hujan yang tak terduga, dan lewat <strong>File I/O</strong> kamu berhasil menghubungkan programmu dengan dunia luar.</p>
         </div>
     </section>
 
