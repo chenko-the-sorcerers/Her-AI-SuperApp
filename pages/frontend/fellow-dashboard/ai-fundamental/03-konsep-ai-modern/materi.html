@@ -82,53 +82,77 @@
                     <article class="lesson-article" id="materi-ai-modern">
                         <div class="chapter-content">
                             <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 1: Mesin Paham Konteks (Transformer)</h2>
-                            <p>Pernahkah kamu menyadari bagaimana AI zaman sekarang seperti ChatGPT bisa memahami kalimat yang sangat panjang tanpa kehilangan konteks? Rahasianya ada pada sebuah arsitektur bernama <strong>Transformer</strong> dan mekanismenya yang disebut <strong>Self-Attention</strong>.</p>
+                            <p>Pernahkah kamu menyadari bagaimana AI zaman sekarang seperti ChatGPT bisa memahami kalimat yang sangat panjang tanpa kehilangan konteks? Rahasianya ada pada sebuah arsitektur <em>neural network</em> bernama <strong>Transformer</strong> dan mekanismenya yang disebut <strong>Self-Attention</strong>.</p>
                             
+                            <h3 style="font-size: 1.1rem; color: #171827; margin-top: 24px; margin-bottom: 12px;">Masalah pada AI Zaman Dulu</h3>
+                            <p>Sebelum tahun 2017, AI pemroses teks (seperti RNN atau LSTM) membaca kalimat persis seperti manusia mengeja kata baru: <strong>satu per satu dari kiri ke kanan</strong>. Masalahnya, ketika kalimatnya sangat panjang, AI akan "lupa" kata-kata di awal kalimat saat ia mencapai akhir kalimat. Bayangkan disuruh meringkas buku tapi kamu hanya boleh mengingat satu kata pada satu waktu; pasti sangat sulit membangun konteks utuhnya.</p>
+
+                            <h3 style="font-size: 1.1rem; color: #171827; margin-top: 24px; margin-bottom: 12px;">Revolusi Self-Attention</h3>
+                            <p>Arsitektur <strong>Transformer</strong> memecahkan masalah ini dengan membaca <strong>seluruh kata secara serentak</strong>. Ia menggunakan matematika untuk menghitung "skor koneksi" antar kata dalam sebuah kalimat, tak peduli seberapa jauh jarak kata-kata tersebut. Mekanisme inilah yang disebut <em>Self-Attention</em>.</p>
+
                             <div class="analogy-card" style="background: #fff7fb; border-left: 4px solid var(--fellow-pink); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0;">
                                 <h4 style="margin-top: 0; color: #171827;"><i class="fas fa-lightbulb" style="color: var(--fellow-pink); margin-right: 8px;"></i> Analogi HerAI</h4>
-                                <p style="margin-bottom: 0;">Bayangkan kamu sedang membaca <strong>grup chat gosip</strong> yang sangat panjang. AI zaman dulu (sebelum Transformer) membaca chat itu kata per kata, dan sering lupa siapa yang sedang digosipkan begitu sampai di akhir halaman.</p>
-                                <p style="margin-bottom: 0; margin-top: 12px;">Sebaliknya, otak kita (dan Transformer) punya mekanisme <strong>Attention</strong>. Saat membaca pesan, mata kita otomatis meloncat dan <strong>langsung fokus ke nama orang yang diomongin dan inti dramanya</strong> secara bersamaan. Kita mengabaikan kata-kata pengisi yang tidak penting. Itulah yang membuat Transformer sangat cepat dan cerdas!</p>
+                                <p style="margin-bottom: 0;">Bayangkan kamu sedang membaca <strong>grup chat gosip</strong> yang sangat panjang dan penuh intrik. AI zaman dulu (sebelum Transformer) membaca chat itu kata per kata, dan sering lupa siapa yang sedang digosipkan begitu sampai di akhir halaman.</p>
+                                <p style="margin-bottom: 0; margin-top: 12px;">Sebaliknya, otak kita (dan Transformer) punya mekanisme <strong>Attention</strong>. Saat membaca pesan panjang, mata kita otomatis meloncat dan <strong>langsung fokus ke nama orang yang diomongin dan inti dramanya</strong> secara bersamaan. Kita mengabaikan kata-kata pengisi yang tidak penting (seperti "dan", "yang", "di"). Hubungan langsung antara subjek dan tindakan inilah yang dipetakan oleh Transformer!</p>
                             </div>
 
-                            <p>Arsitektur ini pertama kali diperkenalkan oleh Google dalam jurnal riset legendaris berjudul <em>"Attention Is All You Need"</em> pada tahun 2017. Sejak saat itu, hampir seluruh model AI modern dibangun di atas fondasi Transformer.</p>
+                            <p>Arsitektur brilian ini pertama kali diperkenalkan oleh para peneliti Google dalam jurnal riset legendaris berjudul <em>"Attention Is All You Need"</em> pada tahun 2017. Sejak saat itu, hampir seluruh model AI modern dibangun di atas fondasi Transformer, yang memungkinkan paralelisme komputasi dan melahirkan era AI super cerdas.</p>
                         </div>
 
                         <div class="chapter-content" style="margin-top: 60px; border-top: 1px solid var(--fellow-line); padding-top: 40px;">
-                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 2: Lahirnya Raksasa (Foundation Models)</h2>
-                            <p>Berkat kecepatan Transformer, para ilmuwan mulai melatih AI dengan data berskala super masif (hampir seluruh teks di internet). Hasilnya adalah <strong>Foundation Models</strong> atau <strong>LLM (Large Language Model)</strong>.</p>
+                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 2: Lahirnya Raksasa (Foundation Models & LLM)</h2>
+                            <p>Berkat kecepatan komputasi dari Transformer, para ilmuwan akhirnya bisa melatih AI dengan data berskala super masif—mencakup hampir seluruh teks publik yang ada di internet. Hasil dari pelatihan raksasa ini disebut <strong>Foundation Models</strong> atau <strong>LLM (Large Language Model)</strong>.</p>
                             
-                            <ul style="margin-bottom: 24px; color: var(--fellow-text);">
-                                <li><strong>Pre-training:</strong> Proses melatih AI dengan triliunan teks agar ia paham bahasa manusia, logika, dan pengetahuan umum.</li>
-                                <li><strong>Fine-tuning:</strong> Proses melatih ulang AI agar menjadi spesialis di bidang tertentu (misalnya asisten medis, atau ahli coding).</li>
+                            <h3 style="font-size: 1.1rem; color: #171827; margin-top: 24px; margin-bottom: 12px;">Apa itu Parameter?</h3>
+                            <p>Saat membaca berita tentang AI, kamu sering mendengar istilah "7 Miliar Parameter" atau "175 Miliar Parameter". Parameter ibarat <strong>"sinapsis saraf"</strong> pada otak AI. Semakin banyak parameter yang dilatih, semakin pintar model tersebut memahami pola bahasa, logika, dan bahkan matematika, yang sering memunculkan <em>Emergent Abilities</em> (kemampuan tiba-tiba yang tidak secara eksplisit diajarkan).</p>
+
+                            <h3 style="font-size: 1.1rem; color: #171827; margin-top: 24px; margin-bottom: 12px;">Dua Fase Pembuatan AI</h3>
+                            <ul style="margin-bottom: 24px; color: var(--fellow-text); padding-left: 20px;">
+                                <li style="margin-bottom: 12px;"><strong>Pre-training (Pelatihan Awal):</strong> Model diberi makan triliunan token kata dari internet (Wikipedia, artikel, buku). Tujuannya satu: melatih AI untuk bisa menebak kata apa yang muncul selanjutnya. Di fase ini, AI jadi sangat berpengetahuan, tapi ia belum bisa merespons layaknya asisten.</li>
+                                <li><strong>Fine-tuning & RLHF:</strong> Model mentah tadi dilatih ulang dengan instruksi tanya-jawab (Q&A) spesifik, dan diberikan <em>reward</em> oleh manusia (RLHF - Reinforcement Learning from Human Feedback) agar ia merespons dengan sopan, terstruktur, dan aman.</li>
                             </ul>
 
                             <div class="analogy-card" style="background: #fff7fb; border-left: 4px solid var(--fellow-pink); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0;">
                                 <h4 style="margin-top: 0; color: #171827;"><i class="fas fa-lightbulb" style="color: var(--fellow-pink); margin-right: 8px;"></i> Analogi HerAI</h4>
-                                <p style="margin-bottom: 0;"><strong>Pre-training</strong> itu ibarat pabrik membuat lembaran kain sutra mentah kualitas super yang panjangnya ber-kilo-kilometer. Kain ini serba guna tapi belum punya bentuk.</p>
-                                <p style="margin-bottom: 0; margin-top: 12px;">Nah, <strong>Fine-tuning</strong> adalah proses di mana seorang desainer (AI Engineer) memotong dan menjahit kain sutra tersebut menjadi gaun pengantin mewah sesuai dengan pesanan spesifik klien.</p>
+                                <p style="margin-bottom: 0;"><strong>Pre-training</strong> itu ibarat pabrik membuat lembaran kain sutra mentah kualitas super yang panjangnya ber-kilo-kilometer. Kain ini serba guna, teksturnya sempurna, tapi belum punya bentuk fisik baju sama sekali.</p>
+                                <p style="margin-bottom: 0; margin-top: 12px;">Nah, <strong>Fine-tuning</strong> adalah proses di mana seorang desainer (AI Engineer) memotong dan menjahit kain sutra tersebut menjadi gaun pengantin mewah sesuai dengan pesanan spesifik klien (asisten cerdas yang sopan dan <em>helpful</em>).</p>
                             </div>
                         </div>
 
                         <div class="chapter-content" style="margin-top: 60px; border-top: 1px solid var(--fellow-line); padding-top: 40px;">
-                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 3: AI Sebagai Pekerja (AI Agents)</h2>
-                            <p>Jika LLM (seperti ChatGPT) adalah "ensiklopedia pintar", maka <strong>AI Agent</strong> adalah "asisten yang bisa bertindak". AI masa kini mulai dibekali kemampuan <em>Tool Use</em> (memanggil fungsi eksternal).</p>
+                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 3: AI Sebagai Pekerja Aktif (AI Agents)</h2>
+                            <p>Evolusi terbesar di tahun ini bukan sekadar membuat LLM yang lebih pintar mengobrol, tetapi mengubahnya menjadi <strong>Pekerja Aktif</strong>. Jika LLM standar adalah "ensiklopedia pintar", maka <strong>AI Agent</strong> adalah "asisten yang bisa mengambil tindakan di dunia nyata".</p>
                             
+                            <h3 style="font-size: 1.1rem; color: #171827; margin-top: 24px; margin-bottom: 12px;">Framework ReAct (Reasoning & Acting)</h3>
+                            <p>AI Agent bekerja dengan framework yang disebut <strong>ReAct</strong>. Saat diberikan tugas, Agent tidak langsung memuntahkan teks jawaban. Ia akan melakukan proses internal:</p>
+                            <ol style="margin-bottom: 24px; color: var(--fellow-text); padding-left: 20px;">
+                                <li style="margin-bottom: 8px;"><strong>Thought:</strong> "User meminta rangkuman berita keuangan hari ini. Saya tidak tahu berita hari ini karena data saya terbatas sampai tahun lalu."</li>
+                                <li style="margin-bottom: 8px;"><strong>Action:</strong> "Saya akan menggunakan <em>Tool Browser Search</em> dengan kata kunci 'Berita Keuangan Terkini'."</li>
+                                <li style="margin-bottom: 8px;"><strong>Observation:</strong> "Mendapatkan hasil pencarian artikel dari internet."</li>
+                                <li><strong>Thought/Answer:</strong> "Sekarang saya akan merangkum artikel tersebut dan merespons user."</li>
+                            </ol>
+
                             <div class="analogy-card" style="background: #fff7fb; border-left: 4px solid var(--fellow-pink); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0;">
                                 <h4 style="margin-top: 0; color: #171827;"><i class="fas fa-lightbulb" style="color: var(--fellow-pink); margin-right: 8px;"></i> Analogi HerAI</h4>
-                                <p style="margin-bottom: 0;">Chatbot biasa = Kamu nanya resep kue, dia kasih tau bahannya.</p>
-                                <p style="margin-bottom: 0; margin-top: 12px;">AI Agent = Kamu nanya resep kue, dia mikir <em>"Oh, aku butuh browser"</em>, lalu dia buka internet, cari harga bahan kue termurah, buka aplikasi GoMart kamu, masukin ke keranjang, lalu bilang: <em>"Resep udah dapet, bahan udah aku masukin ke keranjang belanjamu, tinggal bayar ya!"</em></p>
+                                <p style="margin-bottom: 0;">Chatbot LLM biasa = Kamu nanya resep kue, dia kasih tau bahannya berdasarkan hafalan dari buku resep yang dia baca setahun lalu.</p>
+                                <p style="margin-bottom: 0; margin-top: 12px;">AI Agent = Kamu nanya resep kue, dia mikir <em>"Oh, aku butuh bahan segar"</em>, lalu dia memanggil fitur (Tool) <strong>Browser</strong>, mencari resep terbaru, memanggil fitur <strong>Aplikasi Belanja</strong>, memasukkan telur dan terigu ke keranjang, lalu bilang ke kamu: <em>"Resep kekinian udah dapet, bahan udah aku masukin ke keranjang GoMart kamu, tinggal kamu klik bayar ya!"</em></p>
                             </div>
-                            <p>Sistem <strong>HerAI</strong> ini sendiri nantinya akan dirancang menjadi sebuah AI Agent cerdas yang mendampingi belajarmu secara aktif!</p>
+                            <p style="font-weight: 500; color: var(--fellow-pink);">Tahukah kamu? Sistem <strong>HerAI</strong> yang sedang menemanimu belajar ini juga dirancang sebagai AI Agent yang aktif berkolaborasi di balik layar!</p>
                         </div>
 
                         <div class="chapter-content" style="margin-top: 60px; border-top: 1px solid var(--fellow-line); padding-top: 40px;">
-                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 4: Solusi AI Halu (RAG)</h2>
-                            <p>Kelemahan terbesar AI saat ini adalah <strong>Halusinasi</strong> (mengarang bebas dengan penuh percaya diri). Untuk mengatasi ini, industri menggunakan metode <strong>RAG (Retrieval-Augmented Generation)</strong>.</p>
+                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 4: Mengobati AI Halu (RAG)</h2>
+                            <p>Kelemahan terbesar AI saat ini adalah penyakit <strong>Halusinasi</strong>. Karena pada dasarnya AI adalah mesin penebak kata selanjutnya secara statistik, ia bisa mengarang fakta, angka, atau referensi buku fiktif dengan nada bahasa yang sangat meyakinkan.</p>
                             
+                            <h3 style="font-size: 1.1rem; color: #171827; margin-top: 24px; margin-bottom: 12px;">Solusi Industri: RAG (Retrieval-Augmented Generation)</h3>
+                            <p>Bagaimana cara perusahaan hukum atau rumah sakit menggunakan AI jika AI suka berhalusinasi? Solusinya bukan melatih ulang (retraining) model AI dari nol—karena itu memakan biaya jutaan dolar. Solusinya adalah <strong>RAG</strong>.</p>
+                            
+                            <p>Dengan RAG, kita menyuntikkan <strong>Database Pengetahuan Lokal</strong> (seperti file PDF pedoman medis, SOP perusahaan, dll) ke dalam proses pencarian AI. Saat kamu bertanya, sistem tidak menyuruh AI menjawab dari hafalannya. Sistem akan menarik dokumen lokal yang relevan, menempelkannya ke <em>prompt</em>, dan memaksa AI menjawab <strong>HANYA</strong> berdasarkan dokumen tersebut.</p>
+
                             <div class="analogy-card" style="background: #fff7fb; border-left: 4px solid var(--fellow-pink); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0;">
                                 <h4 style="margin-top: 0; color: #171827;"><i class="fas fa-lightbulb" style="color: var(--fellow-pink); margin-right: 8px;"></i> Analogi HerAI</h4>
-                                <p style="margin-bottom: 0;">AI halu itu ibarat anak sekolah yang kepedean jawab ujian pakai logika kosong padahal dia nggak belajar sama sekali.</p>
-                                <p style="margin-bottom: 0; margin-top: 12px;">RAG itu ibarat sistem ujian <em>open-book</em>. Sebelum si anak (AI) ngejawab soal, kita kasih dia buku pedoman rahasia perusahaan, dan kita suruh dia merangkum jawaban <strong>hanya</strong> berdasarkan buku itu. Alhasil, jawabannya 100% akurat tanpa ngarang.</p>
+                                <p style="margin-bottom: 0;">AI berhalusinasi itu persis seperti anak sekolah yang kepedean jawab soal esai ujian pakai logika ngarang kosong, padahal semalam dia ketiduran dan nggak belajar sama sekali.</p>
+                                <p style="margin-bottom: 0; margin-top: 12px;">RAG itu ibarat sistem ujian <strong>open-book</strong>. Sebelum si anak (AI) mengeksekusi soal, kita wajibkan dia membuka buku pedoman SOP perusahaan di mejanya. Kita suruh dia merangkum jawaban <strong>hanya</strong> dengan mengutip buku tersebut. Hasilnya? Jawaban yang 100% akurat tanpa *ngarang* bebas.</p>
                             </div>
                         </div>
 
