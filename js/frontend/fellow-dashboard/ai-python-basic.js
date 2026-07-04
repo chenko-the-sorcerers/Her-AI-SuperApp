@@ -246,7 +246,7 @@
         if (!container) return;
 
         var currentChapter = 1;
-        var totalChapters = 3; // Currently Module 1 to 3 are ready
+        var totalChapters = 4; // Currently Module 1 to 4 are ready
 
         var btnPrev = document.getElementById('btn-prev-chapter');
         var btnNext = document.getElementById('btn-next-chapter');
