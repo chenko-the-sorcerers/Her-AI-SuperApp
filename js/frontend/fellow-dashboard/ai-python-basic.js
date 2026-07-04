@@ -330,6 +330,32 @@
                         });
                         btn.removeAttribute('onclick');
                     });
+                    
+                    // Update sidebar list styling
+                    var listItems = document.querySelectorAll('#python-sidebar-list li');
+                    listItems.forEach(function(li) {
+                        var chapter = parseInt(li.getAttribute('data-chapter') || '0', 10);
+                        var icon = li.querySelector('i');
+                        if (chapter === chapterNumber) {
+                            li.classList.add('active');
+                            icon.className = 'far fa-circle-play';
+                        } else if (chapter < chapterNumber) {
+                            li.classList.add('active');
+                            icon.className = 'fas fa-circle-check';
+                        } else {
+                            li.classList.remove('active');
+                            icon.className = 'far fa-circle';
+                        }
+                    });
+                    
+                    // Update progress percentage
+                    var progressValue = Math.round(((chapterNumber - 1) / totalChapters) * 100);
+                    var progressB = document.querySelector('.lesson-progress-mini b');
+                    var progressStrong = document.querySelector('.lesson-progress-mini strong');
+                    var progressText = document.querySelector('.lesson-progress-card p');
+                    if (progressB) progressB.style.setProperty('--value', progressValue + '%');
+                    if (progressStrong) progressStrong.textContent = progressValue + '%';
+                    if (progressText) progressText.textContent = (chapterNumber - 1) + ' dari ' + totalChapters + ' materi selesai';
                 })
                 .catch(function(err) {
                     console.error("Modul load error:", err);
@@ -360,6 +386,14 @@
                 }
             });
         }
+
+        window.loadPythonChapter = function(chapterNum) {
+            if (chapterNum >= 1 && chapterNum <= totalChapters) {
+                currentChapter = chapterNum;
+                localStorage.setItem(STORAGE_KEY_CHAPTER, currentChapter.toString());
+                loadChapter(currentChapter);
+            }
+        };
 
         // Load immediately
         loadChapter(currentChapter);
