@@ -1,0 +1,203 @@
+<div class="lesson-module-content">
+    <div style="background: linear-gradient(145deg, #fff7fb, #ffffff); border: 1px solid rgba(246,51,146,.2); padding: 32px; border-radius: 20px; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(246,51,146,.05);">
+        <h1 style="margin-top:0; border:none; padding-bottom:0; font-size: 1.8rem; color: #f63392;"><i class="fas fa-rocket" style="margin-right: 8px;"></i> Module 1: Memulai dengan Python</h1>
+        <p style="margin-bottom:0; font-size: 1.1rem; color: var(--fellow-text); font-weight: 500;">Goal: Memahami fundamental Python, menyiapkan environment development tingkat industri, dan menulis kode pertama.</p>
+    </div>
+
+    <!-- CHAPTER 1: APA ITU PYTHON -->
+    <section class="cdd-chapter" style="margin-bottom: 60px;">
+        <h2 style="color: var(--fellow-text); border-bottom: 2px solid var(--fellow-line); padding-bottom: 12px;">Chapter 1: Apa itu Python?</h2>
+        
+        <div class="cdd-step">
+            <h3>1. Learning Objective</h3>
+            <p>Peserta mampu menjelaskan alasan Python menjadi bahasa utama AI, mengetahui sejarah, filosofi, serta membandingkannya dengan bahasa pemrograman lain secara objektif.</p>
+        </div>
+        
+        <div class="cdd-step">
+            <h3>2. Prerequisite</h3>
+            <p>Mampu menghidupkan komputer dan mengoperasikan sistem operasi (Windows/Mac/Linux).</p>
+        </div>
+        
+        <div class="cdd-step">
+            <h3>3. Introduction</h3>
+            <p>Selamat datang di dunia Python! Sebelum kita menyelam ke dalam kode buatan (*syntax*), kita harus paham dulu alat apa yang sedang kita gunakan. Menjadi <em>AI Engineer</em> bukan hanya soal mengetik kode, tapi tentang memecahkan masalah. Python adalah "palu" yang paling sering digunakan untuk "memaku" algoritma AI modern.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>4. Theory</h3>
+            <p><strong>Sejarah & Filosofi:</strong> Python diciptakan oleh Guido van Rossum pada tahun 1991. Berbeda dengan bahasa lama yang kaku, Guido merancang Python dengan filosofi yang terangkum dalam <em>Zen of Python</em>: "Keterbacaan itu penting" (Readability counts) dan "Sederhana lebih baik daripada kompleks".</p>
+            <p><strong>Kenapa Python untuk AI?</strong> AI sangat haus akan perhitungan matematika yang rumit. Python menjadi primadona karena ia menjembatani manusia dan mesin: Sintaksnya sangat mirip bahasa manusia (Inggris), namun ia didukung oleh pustaka (*library*) C/C++ di balik layar yang mampu menghitung triliunan data dalam sekejap.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>5. Visual Explanation</h3>
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 1px dashed var(--fellow-line); text-align: center; margin: 16px 0;">
+                <i class="fas fa-brain" style="font-size: 3rem; color: #f63392; margin-bottom: 12px;"></i>
+                <p style="font-weight: 600; margin:0;">Manusia (Peneliti) ➔ Kode Python (Sederhana) ➔ C++ Engine (Sangat Cepat) ➔ Hardware (GPU/TPU)</p>
+            </div>
+        </div>
+
+        <div class="cdd-step">
+            <h3>6. Analogy</h3>
+            <p>Bayangkan kamu adalah seorang arsitek yang merancang gedung pencakar langit. Menggunakan bahasa seperti C++ ibarat kamu harus mengaduk semen dan membuat batu bata satu per satu sendiri. Menggunakan <strong>Python</strong> ibarat kamu memesan modul beton pracetak (*precast*); kamu hanya perlu fokus pada desain arsitektur (logika AI), dan pekerja lain (Library Python) akan menyatukannya untukmu dengan cepat.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>7. Syntax & 8. Code Example</h3>
+            <p>Mari kita lihat perbandingan filosofi sintaks (cara penulisan) yang membuktikan kenapa Python sangat disukai.</p>
+            <pre class="code-block"><code><span class="cm">/* Dalam Bahasa Java (Rumit dan bertele-tele) */</span>
+<span class="kw">public class</span> <span class="fn">HelloWorld</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        System.out.println(<span class="str">"Halo AI!"</span>);
+    }
+}
+
+<span class="cm"># -------------------------------------</span>
+<span class="cm"># Dalam Bahasa Python (Cukup 1 baris, seperti bahasa manusia!)</span>
+<span class="fn">print</span>(<span class="str">"Halo AI!"</span>)</code></pre>
+        </div>
+
+        <div class="cdd-step">
+            <h3>9. Best Practice</h3>
+            <p>Tanamkan <em>Software Engineering Mindset</em> sejak hari pertama: Jangan gunakan Python untuk membuat game 3D berskala berat atau sistem operasi, karena Python didesain bukan untuk kecepatan eksekusi grafis. Gunakan Python untuk Data, AI, Backend, dan Automasi.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>10. Common Mistakes</h3>
+            <p>Pemula sering mengira Python lebih lambat dari bahasa lain, sehingga enggan mempelajarinya. Faktanya, lambatnya Python tidak relevan di dunia AI, karena komputasi berat (Matrix Multiplication) langsung dioper ke library berbasi C (seperti NumPy) atau langsung ke GPU (CUDA), sementara Python hanya bertugas sebagai 'Remote Control'.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>11. Interactive Exercise</h3>
+            <p>Pikirkan satu aplikasi favorit di *handphone* kamu. Cari tahu di Google: "Apakah [Nama Aplikasi] menggunakan Python?". Kamu akan terkejut bahwa Instagram, Spotify, dan Netflix sangat bergantung pada Python.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>12. Quiz & 13. Coding Challenge</h3>
+            <p>Kuis konsep dan Coding Challenge interaktif untuk *Chapter 1* tersedia di tab <strong>Kuis</strong>. Kamu tidak akan ditantang menulis kode, melainkan mencocokkan fakta arsitektur Python.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>14. Summary</h3>
+            <p>Python mendominasi AI karena keseimbangan sempurna antara kemudahan baca (sintaks intuitif layaknya bahasa Inggris) dan ekosistem library raksasa (NumPy, PyTorch). Ia ibarat bahasa penghubung (*lingua franca*) antar Data Scientist di seluruh dunia.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>15. What's Next?</h3>
+            <p>Sekarang kamu tahu MENGAPA kita memilih Python. Selanjutnya di <strong>Chapter 2</strong>, kita akan membangun *Environment Development* lokal di komputermu sendiri agar setara dengan *setup* para insinyur AI di Silicon Valley.</p>
+        </div>
+    </section>
+
+    <!-- CHAPTER 2: INSTALASI -->
+    <section class="cdd-chapter" style="margin-bottom: 60px;">
+        <h2 style="color: var(--fellow-text); border-bottom: 2px solid var(--fellow-line); padding-bottom: 12px;">Chapter 2: Instalasi & Environment</h2>
+        
+        <div class="cdd-step">
+            <h3>1. Learning Objective</h3>
+            <p>Peserta mampu menginstal Python, mengkonfigurasi Visual Studio Code (VS Code), memahami penggunaan Terminal, dan mengisolasi proyek AI menggunakan Virtual Environment.</p>
+        </div>
+
+        <!-- Bagian CDD yang dioptimasi untuk keterbacaan web -->
+        <p><em>(Catatan: Sesuai kurikulum standar, peserta diwajibkan menginstal <strong>Python 3.10+</strong> dan <strong>Visual Studio Code</strong> beserta ekstensi resmi Microsoft Python. Panduan instalasi interaktif dengan ilustrasi lengkap tersedia di Modul Orientasi Platform.)</em></p>
+
+        <div class="cdd-step">
+            <h3>6. Analogy: Virtual Environment (venv)</h3>
+            <p>Bayangkan kamu sedang mengerjakan dua proyek rakitan meja di garasimu. Meja A butuh paku ukuran 5cm, Meja B butuh paku ukuran 10cm. Jika semua paku ditumpah di satu ember besar, kamu akan kebingungan dan berisiko salah pakai paku. <br><br><strong>Virtual Environment (venv)</strong> ibarat membuat ember kecil terpisah untuk masing-masing proyek. Di dunia Python, proyek AI yang satu mungkin butuh Pandas versi 1.0, proyek lain butuh Pandas versi 2.0. Dengan venv, paket (<em>library</em>) antar proyek tidak akan bentrok.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>7. Syntax & 8. Code Example</h3>
+            <p>Perintah terminal untuk membuat dan mengaktifkan isolasi lingkungan (*Virtual Environment*):</p>
+            <pre class="code-block"><code><span class="cm"># 1. Membuat virtual environment bernama "myenv"</span>
+python -m venv myenv
+
+<span class="cm"># 2. Mengaktifkannya (Windows)</span>
+myenv\Scripts\activate
+
+<span class="cm"># 2. Mengaktifkannya (Mac/Linux)</span>
+<span class="kw">source</span> myenv/bin/activate
+
+<span class="cm"># 3. Menginstall library dengan pip (Package Installer for Python)</span>
+pip install numpy pandas</code></pre>
+        </div>
+
+        <div class="cdd-step">
+            <h3>9. Best Practice</h3>
+            <p><strong>Jangan pernah</strong> menginstal library (seperti TensorFlow atau Django) secara global di komputer (tanpa mengaktifkan venv). Selalu, SELALU buat <em>Virtual Environment</em> setiap kali memulai folder proyek AI baru. Ini adalah standar baku industri (*Software Engineering Fundamental*).</p>
+        </div>
+    </section>
+
+    <!-- CHAPTER 3: PROGRAM PERTAMA -->
+    <section class="cdd-chapter" style="margin-bottom: 60px;">
+        <h2 style="color: var(--fellow-text); border-bottom: 2px solid var(--fellow-line); padding-bottom: 12px;">Chapter 3: Program Pertama & Sintaks Dasar</h2>
+        
+        <div class="cdd-step">
+            <h3>1. Learning Objective</h3>
+            <p>Peserta mampu menjalankan skrip `.py` pertama, menggunakan fungsi `print()`, menulis dokumentasi lewat komentar, dan memahami hukum indentasi di Python.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>3. Introduction</h3>
+            <p>Semua persiapan sudah selesai. Saatnya menulis mantra sihir pertamamu. Secara tradisi global sejak tahun 1970-an, program pertama yang harus ditulis oleh seorang pemrogram adalah memerintahkan komputer untuk menyapa dunia: "Hello, World!".</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>4. Theory & 7. Syntax</h3>
+            <p><strong>print()</strong> adalah fungsi bawaan (<em>built-in function</em>) Python yang digunakan untuk menampilkan data (berupa teks maupun angka) ke layar konsol/terminal. Teks yang dicetak harus diapit oleh tanda kutip ganda <code>"</code> atau kutip tunggal <code>'</code>.</p>
+            <p><strong>Komentar (#)</strong> adalah teks yang sepenuhnya diabaikan oleh mesin. Komentar ditulis khusus untuk dibaca oleh MANUSIA (programmer lain atau diri sendiri di masa depan) agar paham apa tujuan baris kode tersebut.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>8. Code Example & Explanation</h3>
+            <pre class="code-block"><code><span class="cm"># Ini adalah komentar satu baris. Mesin tidak akan membacanya.</span>
+<span class="fn">print</span>(<span class="str">"Hello, Data Sorcerers!"</span>)  <span class="cm"># Mencetak kalimat sapaan</span>
+
+<span class="kw">if True</span>:
+    <span class="cm"># INDENTASI: Perhatikan ada jarak (4 spasi) di sebelah kiri tulisan print ini.</span>
+    <span class="cm"># Di bahasa lain biasanya pakai kurung kurawal {}, tapi Python mewajibkan indentasi spasi.</span>
+    <span class="fn">print</span>(<span class="str">"Saya siap menjadi AI Engineer!"</span>)</code></pre>
+            <p><strong>Code Explanation:</strong> Baris pertama diawali <code>#</code>, sehingga Python melewatinya. Baris kedua memanggil fungsi <code>print</code> untuk memunculkan kalimat di layar. Blok <code>if True:</code> mendemonstrasikan hukum <strong>Indentasi</strong>. Di Python, kode yang menjorok ke dalam (di-<em>tab</em> atau di-spasi) menandakan bahwa kode tersebut adalah 'anak' atau bagian dari blok kode di atasnya.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>10. Common Mistakes</h3>
+            <div style="background: rgba(246,51,146,.05); padding: 16px; border-radius: 12px; border-left: 4px solid #f63392;">
+                <p style="margin-top:0;"><strong>1. Lupa Tanda Kutip (SyntaxError)</strong></p>
+                <p>Salah: <code>print(Halo AI)</code> <br> Benar: <code>print("Halo AI")</code></p>
+                <p style="margin-bottom:0;"><strong>2. Indentasi Berantakan (IndentationError)</strong></p>
+                <p>Jika kamu mencampur spasi dan tombol *Tab* secara tidak konsisten, Python akan langsung <em>crash</em>. VS Code biasanya sudah otomatis menangani ini dengan mengubah 1 Tab menjadi 4 Spasi murni.</p>
+            </div>
+        </div>
+
+        <div class="cdd-step">
+            <h3>11. Interactive Exercise & 13. Challenge</h3>
+            <p>Buka <strong>Tab Latihan</strong> sekarang. Buat sebuah file baru bernama <code>sapaan.py</code> di <em>Playground</em>. Cetak namamu, cita-citamu, dan beri komentar di setiap baris kodenya!</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>14. Summary</h3>
+            <p>Kamu telah resmi menjadi seorang Python Programmer! Kamu belajar bahwa <code>print()</code> adalah pengeras suara untuk komputermu, bahwa komentar <code>#</code> adalah pesan cinta untuk sesama *developer*, dan bahwa indentasi (spasi menjorok) adalah urat nadi berdirinya hierarki kode Python.</p>
+        </div>
+    </section>
+
+    <!-- MINI PROJECT: CLI BIODATA -->
+    <div style="background: linear-gradient(135deg, #171827, #2c2f48); color: white; padding: 32px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+        <h2 style="margin-top:0; color: #f63392; border:none; display: flex; align-items: center; gap: 12px;">
+            <i class="fas fa-terminal"></i> Mini Project: CLI Biodata
+        </h2>
+        <p style="color: #cbd5e1; font-size: 1.05rem;">Project akhir untuk Modul 1. Kamu akan membangun aplikasi <em>Command Line Interface</em> (CLI) sederhana yang mencetak profil profesionalmu ke layar terminal.</p>
+        
+        <h4 style="color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Kebutuhan Proyek (Requirements):</h4>
+        <ul style="color: #cbd5e1;">
+            <li>Gunakan <code>print()</code> untuk mencetak minimal 5 baris (Nama, Umur, Asal, Alasan belajar AI, dan Hobi).</li>
+            <li>Gunakan pembatas karakter dekoratif, misalnya <code>print("==================")</code>.</li>
+            <li>Wajib mencantumkan <strong>Komentar</strong> yang menjelaskan tiap blok kodemu.</li>
+            <li>Buat file bernama <code>biodata_ai.py</code>.</li>
+        </ul>
+
+        <div style="margin-top: 24px;">
+            <a href="#/participant-ai-python-practice" style="display: inline-block; background: #f63392; color: white; padding: 12px 24px; border-radius: 100px; text-decoration: none; font-weight: 600;"><i class="fas fa-play"></i> Buka Playground & Kerjakan Sekarang</a>
+        </div>
+    </div>
+    
+</div>
