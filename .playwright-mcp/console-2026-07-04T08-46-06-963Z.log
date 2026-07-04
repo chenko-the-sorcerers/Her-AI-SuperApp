@@ -18,3 +18,4 @@
 [ 6577794ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
 [ 6852472ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
 [ 8057854ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
+[ 8701077ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
