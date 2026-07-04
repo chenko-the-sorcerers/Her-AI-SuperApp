@@ -1015,8 +1015,8 @@
 .course-lesson-grid article:hover {
     background: linear-gradient(145deg, #fff, #fff0f7);
     border-color: var(--fellow-pink);
-    box-shadow: 0 20px 42px rgba(246, 51, 146, 0.12);
-    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgba(246, 51, 146, 0.18);
+    transform: translateY(-6px);
 }
 
 .course-lesson-grid article > span {

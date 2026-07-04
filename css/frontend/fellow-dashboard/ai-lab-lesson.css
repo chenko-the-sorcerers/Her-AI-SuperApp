@@ -1316,9 +1316,9 @@
   opacity: 1; transform: translateY(-50%) translateX(3px); color: #f63392;
 }
 .ai-topic-item:hover {
-  background: #fff7fb; padding-left: 14px;
-  border-color: rgba(246,51,146,.4);
-  box-shadow: 0 4px 16px rgba(246,51,146,.12);
+  background: #fff0f7; padding-left: 14px;
+  border-color: var(--fellow-pink, #f63392);
+  box-shadow: 0 6px 20px rgba(246,51,146,.18);
   transform: translateX(4px);
 }
 .ai-topic-icon {
