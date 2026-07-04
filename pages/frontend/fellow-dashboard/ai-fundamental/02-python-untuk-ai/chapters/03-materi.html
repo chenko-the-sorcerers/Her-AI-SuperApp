@@ -1,0 +1,81 @@
+<div class="ai-lab-content cdd-chapter">
+    <section class="lesson-sec">
+        <div class="sec-header">
+            <div class="sec-num">M3</div>
+            <div>
+                <h2 class="sec-title" style="color: var(--fellow-pink);"><i class="fas fa-rocket"></i> Module 3: Modularitas & Efisiensi</h2>
+                <p class="sec-sub">Goal: Mampu membungkus kode menjadi blok yang dapat dipakai ulang (*reusable*) agar terhindar dari kode yang berantakan (*spaghetti code*).</p>
+            </div>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Learning Objective</h3>
+            <p>Peserta mampu mendefinisikan fungsi (Function), menggunakan parameter untuk kustomisasi, serta memahami perbedaan fundamental antara mencetak ke layar (<code>print</code>) dan mengembalikan nilai (<code>return</code>).</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Analogy</h3>
+            <p>Bayangkan kamu punya bisnis toko kue. Jika setiap kali ada pesanan kue tart kamu harus membaca buku resep dari awal dan menimbang terigu satu per satu, kamu pasti akan kelelahan. Solusinya, kamu membuat "Resep Standar" di dapurmu.</p>
+            <p><strong>Fungsi (Function)</strong> ibarat Resep Standar tersebut. Kamu cukup membuat resepnya satu kali (<code>def bikin_kue()</code>). Kapanpun ada pesanan, kamu tinggal panggil fungsi itu berulang kali tanpa menulis ulang langkah-langkahnya.</p>
+            <p><strong>Parameter</strong> ibarat <em>custom topping</em> dari pelanggan. Mereka bisa memesan <code>bikin_kue(topping="Keju")</code> atau <code>bikin_kue(topping="Cokelat")</code> menggunakan resep dasar yang sama.</p>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Theory</h3>
+            <p>Di Python, kita mendefinisikan fungsi menggunakan kata kunci <code>def</code>. Sebuah fungsi bisa menerima masukan (parameter) dan menghasilkan keluaran (return).</p>
+            <ul>
+                <li><strong>Mendefinisikan Fungsi:</strong> Selalu gunakan huruf kecil dan garis bawah untuk nama fungsi (contoh: <code>hitung_diskon</code>).</li>
+                <li><strong>Return vs Print:</strong> Ini adalah konsep yang paling sering membingungkan! <code>print</code> ibarat kamu memakan kue itu sendiri di dapur (hanya ditampilkan ke layar). <code>return</code> ibarat kamu membungkus kue yang sudah matang ke dalam kotak, lalu menyerahkannya ke kurir/pelanggan (nilainya bisa disimpan ke variabel lain untuk diproses lebih lanjut).</li>
+            </ul>
+        </div>
+
+        <div class="cdd-step">
+            <h3>Syntax & Code Example</h3>
+            <p>Mari kita lihat bagaimana sebuah fungsi didefinisikan dan dipanggil berulang kali dengan parameter yang berbeda.</p>
+            
+            <div class="playground-wrapper" style="margin-top: 16px;">
+                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>salon_diskon.py</div>
+                    <div class="py-actions" style="display: flex; gap: 8px;">
+                        <button class="py-reset" data-play="func" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
+                        <button class="py-run" id="btn-run-func" data-play="func" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
+                    </div>
+                </div>
+                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
+<textarea class="py-editor" id="play-func" style="width: 100%; min-height: 200px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
+def hitung_harga_salon(layanan, harga, member=False):
+    # Jika dia member, dapat diskon 20%
+    if member == True:
+        harga_akhir = harga - (harga * 0.2)
+    else:
+        harga_akhir = harga
+        
+    # Mengembalikan nilai (Return), bukan nge-print!
+    return harga_akhir
+
+# Memanggil fungsi untuk 2 pelanggan berbeda
+harga_aisyah = hitung_harga_salon("Creambath", 100000, member=True)
+harga_bella = hitung_harga_salon("Hair Spa", 200000, member=False)
+
+print("Tagihan Aisyah: Rp", harga_aisyah)
+print("Tagihan Bella: Rp", harga_bella)
+</textarea>
+                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
+                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
+                        <pre class="py-output" id="out-func" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cdd-step">
+            <h3>Common Mistakes</h3>
+            <p>Kesalahan fatal yang sering dilakukan pemula adalah mengganti <code>return</code> dengan <code>print</code> di dalam sebuah fungsi. Mengapa salah? Karena jika fungsi hanya mencetak ke layar, nilainya kosong (None) dan tidak bisa disimpan ke dalam variabel (misalnya <code>harga_aisyah</code> akan bernilai kosong). Akibatnya, kamu tidak bisa melakukan operasi matematika lebih lanjut dengan hasil tersebut.</p>
+        </div>
+        
+        <div class="cdd-step">
+            <h3>Interactive Exercise & Challenge</h3>
+            <p>Buka <strong>Tab Latihan</strong> sekarang. Coba buat fungsi baru bernama <code>sapa_pelanggan(nama)</code> yang mengembalikan nilai (return) berupa <em>string</em>: "Halo [nama], selamat datang di HerAI!".</p>
+        </div>
+    </section>
+</div>
