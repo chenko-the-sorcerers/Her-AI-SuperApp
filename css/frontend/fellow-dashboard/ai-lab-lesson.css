@@ -344,9 +344,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 28px;
-  padding: 28px 0 24px;
-  margin-top: 8px;
-  border-bottom: 1px solid var(--fellow-line);
+  padding: 32px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--fellow-line);
+  border-radius: 20px;
   overflow: visible;
 }
 .ai-hero-copy {
