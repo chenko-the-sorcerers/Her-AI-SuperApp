@@ -36,6 +36,10 @@ const router = {
         "/participant-ai-components": "/pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/lesson.html",
         "/participant-ai-applications": "/pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/lesson.html",
         "/participant-ai-summary": "/pages/frontend/fellow-dashboard/ai-fundamental/01-pengantar-ai/lesson.html",
+        "/participant-ai-python": "/pages/frontend/fellow-dashboard/ai-fundamental/02-python-untuk-ai/materi.html",
+        "/participant-ai-python-practice": "/pages/frontend/fellow-dashboard/ai-fundamental/02-python-untuk-ai/latihan.html",
+        "/participant-ai-python-quiz": "/pages/frontend/fellow-dashboard/ai-fundamental/02-python-untuk-ai/kuis.html",
+        "/participant-ai-python-discussion": "/pages/frontend/fellow-dashboard/ai-fundamental/02-python-untuk-ai/diskusi.html",
         "/participant-mentor": "/pages/frontend/fellow-dashboard/mentor.html",
         "/participant-tasks": "/pages/frontend/fellow-dashboard/tasks.html",
         "/participant-projects": "/pages/frontend/fellow-dashboard/projects.html",
@@ -282,6 +286,10 @@ const router = {
             "/participant-ai-components",
             "/participant-ai-applications",
             "/participant-ai-summary",
+            "/participant-ai-python",
+            "/participant-ai-python-practice",
+            "/participant-ai-python-quiz",
+            "/participant-ai-python-discussion",
             "/participant-profile",
             "/participant-mentor",
             "/participant-tasks",
@@ -469,6 +477,20 @@ const router = {
                     window.initFellowDashboardPage("modules");
                 } else if ((path === "/participant-ai-intro-practice" || path === "/participant-ai-intro-quiz" || path === "/participant-ai-intro-discussion") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
+                } else if (path.startsWith("/participant-ai-python") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if (path === "/participant-ai-python" && typeof window.initAiPythonMateri === "function") {
+                        window.initAiPythonMateri();
+                    }
+                    if (path === "/participant-ai-python-practice" && typeof window.initAiPythonBasic === "function") {
+                        window.initAiPythonBasic();
+                    }
+                    if (path === "/participant-ai-python-quiz" && typeof window.initAiPythonQuiz === "function") {
+                        window.initAiPythonQuiz();
+                    }
+                    if (path === "/participant-ai-python-discussion" && typeof window.initAiPythonDiscussion === "function") {
+                        window.initAiPythonDiscussion();
+                    }
                 } else if (path.startsWith("/participant-ai-lab-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("ai-lab");
                     if (path === "/participant-ai-lab-tokenization" && typeof window.initAiLabTokenization === "function") {

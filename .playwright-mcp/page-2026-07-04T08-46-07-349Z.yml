@@ -1,0 +1,10 @@
+- generic [active] [ref=f3e1]:
+  - text: 
+  - main [ref=f3e2]:
+    - generic [ref=f3e428]:
+      - heading "404" [level=1] [ref=f3e429]
+      - heading "Halaman Tidak Ditemukan" [level=2] [ref=f3e430]
+      - paragraph [ref=f3e431]: Maaf, sepertinya Anda tersesat atau halaman yang dituju belum tersedia.
+      - link "Kembali ke Beranda" [ref=f3e432] [cursor=pointer]:
+        - /url: "#/home"
+  - text:   

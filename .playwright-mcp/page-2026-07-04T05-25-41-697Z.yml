@@ -1,0 +1,534 @@
+- generic [active] [ref=e1]:
+  - text: 
+  - main [ref=e84]:
+    - generic [ref=e883]:
+      - text: 
+      - complementary "Navigasi peserta" [ref=e884]:
+        - button "Buka sidebar peserta" [ref=e885] [cursor=pointer]:
+          - img "HerAI Fellowship" [ref=e886]
+          - text: 
+        - navigation [ref=e887]:
+          - link "" [ref=e888] [cursor=pointer]:
+            - /url: "#/participant-dashboard"
+            - generic [ref=e889]: 
+          - link "" [ref=e890] [cursor=pointer]:
+            - /url: "#/messaging"
+            - generic [ref=e891]: 
+          - link "" [ref=e892] [cursor=pointer]:
+            - /url: "#/participant-mentor"
+            - generic [ref=e893]: 
+          - link "" [ref=e894] [cursor=pointer]:
+            - /url: "#/participant-modules"
+            - generic [ref=e895]: 
+          - link "" [ref=e896] [cursor=pointer]:
+            - /url: "#/participant-tasks"
+            - generic [ref=e897]: 
+          - link "" [ref=e898] [cursor=pointer]:
+            - /url: "#/participant-projects"
+            - generic [ref=e899]: 
+          - link "" [ref=e900] [cursor=pointer]:
+            - /url: "#/participant-events"
+            - generic [ref=e901]: 
+          - link "" [ref=e902] [cursor=pointer]:
+            - /url: "#/participant-community"
+            - generic [ref=e903]: 
+        - navigation [ref=e904]:
+          - link "" [ref=e905] [cursor=pointer]:
+            - /url: "#/participant-certificates"
+            - generic [ref=e906]: 
+          - link "" [ref=e907] [cursor=pointer]:
+            - /url: "#/participant-leaderboard"
+            - generic [ref=e908]: 
+          - link "" [ref=e909] [cursor=pointer]:
+            - /url: "#/participant-help"
+            - generic [ref=e910]: 
+          - link "" [ref=e911] [cursor=pointer]:
+            - /url: "#/participant-settings"
+            - generic [ref=e912]: 
+      - main [ref=e913]:
+        - generic [ref=e914]:
+          - navigation "Breadcrumb materi" [ref=e915]:
+            - link " Machine Learning" [ref=e916] [cursor=pointer]:
+              - /url: "#/participant-ai-lab-ml"
+              - generic [ref=e917]: 
+              - generic [ref=e918]: Machine Learning
+            - generic [ref=e920]: 
+            - generic [ref=e921]: Pengantar ML
+          - generic [ref=e922]:
+            - generic [ref=e923]:
+              - generic [ref=e924]: 
+              - searchbox "" [ref=e925]
+            - button "Notifikasi" [ref=e926] [cursor=pointer]:
+              - generic [ref=e927]: 
+              - generic [ref=e928]: "5"
+            - generic [ref=e929]:
+              - button "Aisyah Putri Peserta " [ref=e930] [cursor=pointer]:
+                - generic [ref=e932]:
+                  - strong [ref=e933]: Aisyah Putri
+                  - generic [ref=e934]: Peserta
+                - generic [ref=e935]: 
+              - text:  
+        - generic [ref=e937]:
+          - generic [ref=e938]:
+            - generic [ref=e939]:
+              - heading "Pengantar Machine Learning" [level=1] [ref=e940]
+              - paragraph [ref=e941]: Perbedaan fundamental antara pemrograman klasik dan ML — dari aturan eksplisit ke induksi dari data.
+              - generic [ref=e942]:
+                - generic [ref=e943]:
+                  - generic [ref=e944]: 
+                  - text: 40 menit
+                - generic [ref=e945]:
+                  - generic [ref=e946]: 
+                  - text: ML · Pengantar ML
+                - generic [ref=e947]: Fondasi
+            - img "HerAI ML learning" [ref=e948]
+          - generic [ref=e949]:
+            - tablist "Jenis materi" [ref=e950]:
+              - link " Materi" [ref=e951] [cursor=pointer]:
+                - /url: "#/participant-ai-lab-ml-intro"
+                - generic [ref=e952]: 
+                - text: Materi
+              - link " Katalog ML" [ref=e953] [cursor=pointer]:
+                - /url: "#/participant-ai-lab-ml"
+                - generic [ref=e954]: 
+                - text: Katalog ML
+            - article [ref=e955]:
+              - generic [ref=e956]:
+                - generic [ref=e957]:
+                  - generic [ref=e958]: "01"
+                  - generic [ref=e959]:
+                    - heading "Apa itu Machine Learning?" [level=2] [ref=e960]
+                    - paragraph [ref=e961]: Perbedaan fundamental antara pemrograman klasik dan ML
+                - generic [ref=e962]:
+                  - text: "Pemrograman klasik bekerja dengan cara sederhana: programmer menulis"
+                  - strong [ref=e963]: aturan eksplisit
+                  - text: ", komputer mengeksekusinya. Tapi ada kelas masalah — mengenali wajah, memahami kalimat, memprediksi harga saham — di mana tidak ada manusia yang bisa menuliskan aturannya secara eksplisit. Di sinilah"
+                  - strong [ref=e964]: Machine Learning
+                  - text: masuk.
+                - generic [ref=e965]:
+                  - generic [ref=e966]:
+                    - generic [ref=e967]: Pemrograman Klasik
+                    - generic [ref=e968]:
+                      - generic [ref=e969]:
+                        - generic [ref=e970]: 
+                        - text: Data Input
+                      - generic [ref=e971]: +
+                      - generic [ref=e972]:
+                        - generic [ref=e973]: 
+                        - text: Aturan (oleh programmer)
+                      - generic [ref=e974]: ↓
+                      - generic [ref=e975]:
+                        - generic [ref=e976]: 
+                        - text: Output / Jawaban
+                    - generic [ref=e977]:
+                      - generic [ref=e978]: "Contoh:"
+                      - code [ref=e979]: "if suhu > 38: return \"demam\""
+                  - generic [ref=e980]: VS
+                  - generic [ref=e981]:
+                    - generic [ref=e982]: Machine Learning
+                    - generic [ref=e983]:
+                      - generic [ref=e984]:
+                        - generic [ref=e985]: 
+                        - text: Data Input
+                      - generic [ref=e986]: +
+                      - generic [ref=e987]:
+                        - generic [ref=e988]: 
+                        - text: Jawaban (label/output)
+                      - generic [ref=e989]: ↓
+                      - generic [ref=e990]:
+                        - generic [ref=e991]: 
+                        - text: Aturan ditemukan sendiri oleh model
+                    - generic [ref=e992]:
+                      - generic [ref=e993]: "Contoh:"
+                      - code [ref=e994]: model.fit(data_pasien, diagnosa)
+                - generic [ref=e995]:
+                  - generic [ref=e997]: 
+                  - generic [ref=e998]:
+                    - strong [ref=e999]: "Definisi formal (Tom Mitchell, 1997):"
+                    - text: "\"A computer program is said to learn from experience E with respect to some task T and performance measure P, if its performance on T, as measured by P, improves with experience E.\""
+                    - text: "Dengan kata lain: ML adalah program yang"
+                    - strong [ref=e1000]: menjadi lebih baik seiring bertambahnya data
+                    - text: .
+                - generic [ref=e1001]:
+                  - generic [ref=e1002]:
+                    - generic [ref=e1003]: 
+                    - text: Motivasi
+                  - generic [ref=e1004]: Mengapa ML Dibutuhkan?
+                  - generic [ref=e1005]:
+                    - generic [ref=e1006]:
+                      - generic [ref=e1008]: 
+                      - generic [ref=e1009]: Masalah Terlalu Kompleks
+                      - generic [ref=e1010]: Pengenalan wajah, penerjemahan bahasa, diagnosis medis — tidak ada manusia yang bisa menulis aturannya secara eksplisit.
+                    - generic [ref=e1011]:
+                      - generic [ref=e1013]: 
+                      - generic [ref=e1014]: Data Tersedia Masif
+                      - generic [ref=e1015]: Internet menghasilkan miliaran titik data setiap hari. ML bisa memanfaatkan data ini untuk menemukan pola yang tidak terlihat manusia.
+                    - generic [ref=e1016]:
+                      - generic [ref=e1018]: 
+                      - generic [ref=e1019]: Lingkungan Dinamis
+                      - generic [ref=e1020]: Filter spam harus adaptif — spammer terus berubah taktik. Aturan statis tidak bisa mengikuti, tapi model ML bisa belajar terus.
+                    - generic [ref=e1021]:
+                      - generic [ref=e1023]: 
+                      - generic [ref=e1024]: Menemukan Pola Tersembunyi
+                      - generic [ref=e1025]: Pola dalam data genomik, perilaku finansial, atau cuaca — terlalu kompleks dan multidimensional untuk ditemukan secara manual.
+              - generic [ref=e1026]:
+                - generic [ref=e1027]:
+                  - generic [ref=e1028]: "02"
+                  - generic [ref=e1029]:
+                    - heading "Tiga Paradigma Utama ML" [level=2] [ref=e1030]
+                    - paragraph [ref=e1031]: Cara yang berbeda untuk belajar dari data, tergantung informasi apa yang tersedia
+                - generic [ref=e1032]:
+                  - text: ML bukan satu algoritma — melainkan keluarga besar pendekatan. Perbedaan paling mendasar ada di
+                  - strong [ref=e1033]: jenis sinyal pembelajaran
+                  - text: ": apakah kita punya jawaban benar? Apakah data sudah berlabel? Dari sini muncul tiga paradigma utama."
+                - generic [ref=e1034]:
+                  - generic [ref=e1035]:
+                    - generic [ref=e1036]: "01"
+                    - generic [ref=e1038]: 
+                    - generic [ref=e1039]: Supervised Learning
+                    - generic [ref=e1040]: Belajar dari contoh berlabel
+                    - generic [ref=e1041]: Setiap data latih memiliki label yang diketahui. Model belajar memetakan input ke output yang benar.
+                    - generic [ref=e1042]:
+                      - generic [ref=e1043]: "Sinyal:"
+                      - generic [ref=e1044]: Label eksplisit y untuk setiap x
+                    - generic [ref=e1045]:
+                      - generic [ref=e1046]:
+                        - generic [ref=e1047]: Klasifikasi email
+                        - generic [ref=e1048]: spam / bukan spam
+                      - generic [ref=e1049]:
+                        - generic [ref=e1050]: Prediksi harga rumah
+                        - generic [ref=e1051]: nilai numerik Rp
+                      - generic [ref=e1052]:
+                        - generic [ref=e1053]: Deteksi penyakit
+                        - generic [ref=e1054]: positif / negatif
+                  - generic [ref=e1055]:
+                    - generic [ref=e1056]: "02"
+                    - generic [ref=e1058]: 
+                    - generic [ref=e1059]: Unsupervised Learning
+                    - generic [ref=e1060]: Temukan struktur tanpa label
+                    - generic [ref=e1061]: Tidak ada label. Model harus menemukan sendiri pola, kelompok, atau struktur tersembunyi dalam data.
+                    - generic [ref=e1062]:
+                      - generic [ref=e1063]: "Sinyal:"
+                      - generic [ref=e1064]: Hanya data x, tanpa label y
+                    - generic [ref=e1065]:
+                      - generic [ref=e1066]:
+                        - generic [ref=e1067]: Segmentasi pelanggan
+                        - generic [ref=e1068]: cluster otomatis
+                      - generic [ref=e1069]:
+                        - generic [ref=e1070]: Kompresi data
+                        - generic [ref=e1071]: representasi ringkas
+                      - generic [ref=e1072]:
+                        - generic [ref=e1073]: Anomali detection
+                        - generic [ref=e1074]: pola tidak biasa
+                  - generic [ref=e1075]:
+                    - generic [ref=e1076]: "03"
+                    - generic [ref=e1078]: 
+                    - generic [ref=e1079]: Reinforcement Learning
+                    - generic [ref=e1080]: Belajar dari interaksi & reward
+                    - generic [ref=e1081]: Agen belajar dengan mencoba aksi dan menerima sinyal reward/penalti dari lingkungan. Tidak ada dataset statis.
+                    - generic [ref=e1082]:
+                      - generic [ref=e1083]: "Sinyal:"
+                      - generic [ref=e1084]: Reward r setelah aksi a di state s
+                    - generic [ref=e1085]:
+                      - generic [ref=e1086]:
+                        - generic [ref=e1087]: AlphaGo / chess AI
+                        - generic [ref=e1088]: menang / kalah
+                      - generic [ref=e1089]:
+                        - generic [ref=e1090]: Robot navigasi
+                        - generic [ref=e1091]: reach target
+                      - generic [ref=e1092]:
+                        - generic [ref=e1093]: Rekomendasi konten
+                        - generic [ref=e1094]: klik / scroll
+              - generic [ref=e1095]:
+                - generic [ref=e1096]:
+                  - generic [ref=e1097]: "03"
+                  - generic [ref=e1098]:
+                    - heading "Supervised Learning — Lebih Dalam" [level=2] [ref=e1099]
+                    - paragraph [ref=e1100]: Paradigma paling umum — fondasi sebagian besar aplikasi ML di industri
+                - generic [ref=e1101]:
+                  - text: "Supervised learning adalah paradigma paling dominan di industri. Hampir semua model produksi — dari filter konten hingga sistem rekomendasi — dibangun di atasnya. Ada dua sub-tugas utama:"
+                  - strong [ref=e1102]: klasifikasi
+                  - text: dan
+                  - strong [ref=e1103]: regresi
+                  - text: .
+                - generic [ref=e1104]:
+                  - generic [ref=e1105]:
+                    - generic [ref=e1106]:
+                      - generic [ref=e1107]:
+                        - generic [ref=e1108]: 
+                        - text: ️
+                      - generic [ref=e1109]:
+                        - generic [ref=e1110]: Klasifikasi
+                        - generic [ref=e1111]: Output diskrit
+                    - generic [ref=e1112]:
+                      - generic [ref=e1113]: h
+                      - generic [ref=e1114]: ":"
+                      - generic [ref=e1115]: X
+                      - generic [ref=e1116]: →
+                      - generic [ref=e1117]: "{C₁, C₂, …, Cₖ}"
+                    - generic [ref=e1118]: Menetapkan kelas kategorikal ke setiap input. Bisa binary (2 kelas) atau multi-class (k kelas).
+                    - generic [ref=e1119]:
+                      - generic [ref=e1120]: — Email → spam / ham
+                      - generic [ref=e1121]: — Foto → anjing / kucing / burung
+                      - generic [ref=e1122]: — Transaksi → fraud / normal
+                  - generic [ref=e1124]:
+                    - generic [ref=e1125]:
+                      - generic [ref=e1127]: 
+                      - generic [ref=e1128]:
+                        - generic [ref=e1129]: Regresi
+                        - generic [ref=e1130]: Output kontinu
+                    - generic [ref=e1131]:
+                      - generic [ref=e1132]: h
+                      - generic [ref=e1133]: ":"
+                      - generic [ref=e1134]: X
+                      - generic [ref=e1135]: →
+                      - generic [ref=e1136]: ℝ
+                    - generic [ref=e1137]: Memprediksi nilai numerik kontinu. Perbedaannya dengan klasifikasi hanya pada tipe output.
+                    - generic [ref=e1138]:
+                      - generic [ref=e1139]: — Fitur rumah → harga Rp
+                      - generic [ref=e1140]: — Data cuaca → suhu besok °C
+                      - generic [ref=e1141]: — Profil pengguna → revenue prediksi
+                - generic [ref=e1142]:
+                  - generic [ref=e1143]: ⚙️ Bagaimana Supervised Learning Bekerja
+                  - generic [ref=e1144]: Pipeline Lengkap — 4 Langkah
+                  - generic [ref=e1145]:
+                    - generic [ref=e1146]:
+                      - generic [ref=e1147]: "1"
+                      - generic [ref=e1148]:
+                        - generic [ref=e1149]: Kumpulkan Training Data
+                        - generic [ref=e1150]: "Dataset D = {(x⁽¹⁾, y⁽¹⁾), ..., (x⁽ᴺ⁾, y⁽ᴺ⁾)}. Setiap contoh adalah pasangan input-output. Kualitas dan kuantitas data sangat menentukan hasil."
+                    - generic [ref=e1151]: ↓
+                    - generic [ref=e1152]:
+                      - generic [ref=e1153]: "2"
+                      - generic [ref=e1154]:
+                        - generic [ref=e1155]: Pilih Model (Ruang Hipotesis H)
+                        - generic [ref=e1156]:
+                          - text: "Tentukan keluarga fungsi yang akan dicari: linear, polynomial, decision tree, neural network. Pilihan ini disebut"
+                          - emphasis [ref=e1157]: induktif bias
+                          - text: .
+                    - generic [ref=e1158]: ↓
+                    - generic [ref=e1159]:
+                      - generic [ref=e1160]: "3"
+                      - generic [ref=e1161]:
+                        - generic [ref=e1162]: Training — Minimalkan Loss
+                        - generic [ref=e1163]: Cari parameter θ yang meminimalkan fungsi loss L(θ) — ukuran kesalahan prediksi di atas training data. Biasanya via gradient descent.
+                    - generic [ref=e1164]: ↓
+                    - generic [ref=e1165]:
+                      - generic [ref=e1166]: "4"
+                      - generic [ref=e1167]:
+                        - generic [ref=e1168]: Evaluasi Generalisasi
+                        - generic [ref=e1169]: Uji pada test set yang tidak pernah dilihat model. Tujuan bukan menghafal data latih — tapi bisa memprediksi data baru dengan akurat.
+              - generic [ref=e1170]:
+                - generic [ref=e1171]:
+                  - generic [ref=e1172]: "04"
+                  - generic [ref=e1173]:
+                    - heading "Unsupervised Learning" [level=2] [ref=e1174]
+                    - paragraph [ref=e1175]: Menemukan struktur tersembunyi tanpa label
+                - generic [ref=e1176]:
+                  - text: Memberi label data itu mahal dan lambat. Untungnya, banyak hal berguna bisa dipelajari dari data yang
+                  - strong [ref=e1177]: tidak berlabel
+                  - text: — menemukan kelompok alami, memampatkan representasi, atau mendeteksi anomali.
+                - generic [ref=e1178]:
+                  - generic [ref=e1179]:
+                    - generic [ref=e1182]: 
+                    - generic [ref=e1183]: Clustering
+                    - generic [ref=e1184]:
+                      - text: Mengelompokkan data berdasarkan kemiripan tanpa label.
+                      - strong [ref=e1185]: K-Means
+                      - text: mencari K cluster dengan meminimalkan jarak intra-cluster.
+                      - strong [ref=e1186]: DBSCAN
+                      - text: menemukan cluster bentuk arbitrer berdasarkan density.
+                    - generic [ref=e1187]:
+                      - generic [ref=e1188]: K-Means
+                      - generic [ref=e1189]: DBSCAN
+                      - generic [ref=e1190]: Agglomerative
+                      - generic [ref=e1191]: GMM
+                  - generic [ref=e1192]:
+                    - generic [ref=e1195]: Dimensionality Reduction
+                    - generic [ref=e1196]: Meringkas data berdimensi tinggi ke representasi lebih padat tanpa kehilangan informasi penting. Berguna untuk visualisasi, kompresi, dan feature engineering sebelum supervised learning.
+                    - generic [ref=e1197]:
+                      - generic [ref=e1198]: PCA
+                      - generic [ref=e1199]: t-SNE
+                      - generic [ref=e1200]: Autoencoder
+                      - generic [ref=e1201]: UMAP
+                  - generic [ref=e1202]:
+                    - generic [ref=e1205]: 
+                    - generic [ref=e1206]: Anomaly Detection
+                    - generic [ref=e1207]: Mengidentifikasi titik data yang menyimpang jauh dari pola normal. Tidak perlu label "anomali" — cukup pelajari distribusi data normal, lalu flagging yang tidak cocok.
+                    - generic [ref=e1208]:
+                      - generic [ref=e1209]: Isolation Forest
+                      - generic [ref=e1210]: Autoencoder
+                      - generic [ref=e1211]: LOF
+              - generic [ref=e1212]:
+                - generic [ref=e1213]:
+                  - generic [ref=e1214]: "05"
+                  - generic [ref=e1215]:
+                    - heading "Reinforcement Learning" [level=2] [ref=e1216]
+                    - paragraph [ref=e1217]: Belajar dari konsekuensi aksi — seperti cara manusia belajar
+                - generic [ref=e1218]:
+                  - text: "RL paling mirip dengan cara manusia belajar secara alami: mencoba sesuatu, melihat hasilnya, dan menyesuaikan perilaku. Tidak ada dataset statis — agen"
+                  - strong [ref=e1219]: mengumpulkan pengalamannya sendiri
+                  - text: melalui interaksi dengan lingkungan.
+                - generic [ref=e1220]:
+                  - generic [ref=e1221]:
+                    - generic [ref=e1222]:
+                      - generic [ref=e1224]: 
+                      - generic [ref=e1225]: Agent
+                    - generic [ref=e1226]:
+                      - generic [ref=e1228]: 
+                      - generic [ref=e1229]: Environment
+                  - generic:
+                    - generic:
+                      - generic: ▶
+                      - generic: aksi a
+                    - generic:
+                      - generic: ◀
+                      - generic: state s, reward r
+                - generic [ref=e1230]:
+                  - generic [ref=e1231]:
+                    - generic [ref=e1232]:
+                      - text: State
+                      - code [ref=e1233]: s
+                    - generic [ref=e1234]: "Representasi situasi lingkungan saat ini yang dilihat agen. Misalnya: posisi robot, posisi bidak catur, frame video game."
+                  - generic [ref=e1235]:
+                    - generic [ref=e1236]:
+                      - text: Action
+                      - code [ref=e1237]: a
+                    - generic [ref=e1238]: Pilihan yang bisa dilakukan agen di suatu state. Bisa diskrit (maju/mundur/kiri/kanan) atau kontinu (torsi motor 0–100%).
+                  - generic [ref=e1239]:
+                    - generic [ref=e1240]:
+                      - text: Reward
+                      - code [ref=e1241]: r
+                    - generic [ref=e1242]:
+                      - text: Sinyal skalar dari lingkungan setelah agen melakukan aksi. Positif = bagus (menang, skor naik), negatif = buruk (jatuh, kalah). Ini
+                      - emphasis [ref=e1243]: satu-satunya
+                      - text: sinyal pembelajaran.
+                  - generic [ref=e1244]:
+                    - generic [ref=e1245]:
+                      - text: Policy
+                      - code [ref=e1246]: π
+                    - generic [ref=e1247]: "Strategi agen — fungsi yang memetakan state ke aksi: π(s) = a. Tujuan RL adalah menemukan policy optimal yang memaksimalkan cumulative reward."
+                - generic [ref=e1248]:
+                  - generic [ref=e1250]: 
+                  - generic [ref=e1251]:
+                    - strong [ref=e1252]: AlphaGo Zero (DeepMind, 2017)
+                    - text: — belajar bermain Go dari nol hanya dengan RL, tanpa data partai manusia sama sekali. Setelah 3 hari, ia mengalahkan AlphaGo versi sebelumnya (yang sudah mengalahkan juara dunia manusia) dengan skor 100-0.
+              - generic [ref=e1253]:
+                - generic [ref=e1254]:
+                  - generic [ref=e1255]: "06"
+                  - generic [ref=e1256]:
+                    - heading "Kapan Pakai ML — dan Kapan Tidak" [level=2] [ref=e1257]
+                    - paragraph [ref=e1258]: ML bukan solusi untuk semua masalah. Memilih dengan tepat sama pentingnya dengan kemampuan teknis.
+                - generic [ref=e1259]:
+                  - text: Salah satu skill paling berharga seorang ML practitioner adalah tahu kapan
+                  - emphasis [ref=e1260]: tidak
+                  - text: menggunakan ML. ML butuh data, waktu, dan sumber daya — sering ada solusi lebih sederhana yang lebih baik.
+                - generic [ref=e1261]:
+                  - generic [ref=e1262]:
+                    - generic [ref=e1263]:
+                      - generic [ref=e1264]: 
+                      - text: Gunakan ML
+                    - generic [ref=e1265]:
+                      - generic [ref=e1266]:
+                        - generic [ref=e1268]: 
+                        - generic [ref=e1269]:
+                          - generic [ref=e1270]: Aturan tidak bisa ditulis manual
+                          - generic [ref=e1271]: Pengenalan wajah, pemahaman bahasa natural — terlalu kompleks untuk di-hardcode.
+                      - generic [ref=e1272]:
+                        - generic [ref=e1274]: 
+                        - generic [ref=e1275]:
+                          - generic [ref=e1276]: Data latih tersedia banyak
+                          - generic [ref=e1277]: ML butuh data untuk belajar. Semakin banyak data berkualitas, semakin baik hasilnya.
+                      - generic [ref=e1278]:
+                        - generic [ref=e1280]: 
+                        - generic [ref=e1281]:
+                          - generic [ref=e1282]: Performa bisa diukur
+                          - generic [ref=e1283]: Ada metrik jelas (accuracy, F1, RMSE) untuk menentukan apakah model cukup baik.
+                      - generic [ref=e1284]:
+                        - generic [ref=e1286]: 
+                        - generic [ref=e1287]:
+                          - generic [ref=e1288]: Pola bisa berubah seiring waktu
+                          - generic [ref=e1289]: Model bisa di-retrain dengan data baru, sedangkan aturan statis butuh update manual.
+                  - generic [ref=e1290]:
+                    - generic [ref=e1291]:
+                      - generic [ref=e1292]: 
+                      - text: Jangan Pakai ML
+                    - generic [ref=e1293]:
+                      - generic [ref=e1294]:
+                        - generic [ref=e1296]: 
+                        - generic [ref=e1297]:
+                          - generic [ref=e1298]: Aturan sudah jelas dan simpel
+                          - generic [ref=e1299]: if-else yang simpel lebih cepat, lebih mudah di-debug, dan lebih explainable dari model ML manapun.
+                      - generic [ref=e1300]:
+                        - generic [ref=e1301]:
+                          - generic [ref=e1302]: 
+                          - text: ️
+                        - generic [ref=e1303]:
+                          - generic [ref=e1304]: Data sangat sedikit
+                          - generic [ref=e1305]: Model ML butuh data yang cukup untuk generalisasi. Dengan data terlalu sedikit, hasil tidak bisa dipercaya.
+                      - generic [ref=e1306]:
+                        - generic [ref=e1308]: 
+                        - generic [ref=e1309]:
+                          - generic [ref=e1310]: Interpretabilitas kritis
+                          - generic [ref=e1311]: Sistem hukum, medis, keuangan sering butuh penjelasan tiap keputusan — "black box" tidak bisa diterima.
+                      - generic [ref=e1312]:
+                        - generic [ref=e1314]: 
+                        - generic [ref=e1315]:
+                          - generic [ref=e1316]: Biaya lebih besar dari manfaat
+                          - generic [ref=e1317]: Mengumpulkan data, training, deployment, monitoring — semua berbiaya. Pastikan ROI-nya worth it.
+                - generic [ref=e1319]:
+                  - generic [ref=e1320]: Lesson berikutnya
+                  - heading "Hipotesis & Model →" [level=3] [ref=e1321]
+                  - paragraph [ref=e1322]: Sekarang kamu tahu APA itu ML — saatnya pelajari bahasa matematisnya. Apa itu hipotesis, ruang hipotesis H, dan bagaimana model diparameterisasi.
+                  - link "Lanjut ke Hipotesis & Model" [ref=e1323] [cursor=pointer]:
+                    - /url: "#/participant-ai-lab-ml-hypothesis"
+      - generic [ref=e1324]:
+        - link " Kembali ke Katalog" [ref=e1325] [cursor=pointer]:
+          - /url: "#/participant-ai-lab-ml"
+          - generic [ref=e1326]: 
+          - text: Kembali ke Katalog
+        - link "Selanjutnya " [ref=e1327] [cursor=pointer]:
+          - /url: "#/participant-ai-lab-ml-hypothesis"
+          - text: Selanjutnya
+          - generic [ref=e1328]: 
+    - complementary [ref=e1329]:
+      - generic [ref=e1330]:
+        - heading "Progres Materi" [level=2] [ref=e1331]
+        - strong [ref=e1334]: 0%
+        - paragraph [ref=e1335]: Pengantar Machine Learning
+        - link "Kembali ke Katalog" [ref=e1336] [cursor=pointer]:
+          - /url: "#/participant-ai-lab-ml"
+      - generic [ref=e1337]:
+        - heading "Daftar Section" [level=2] [ref=e1338]
+        - list [ref=e1339]:
+          - listitem [ref=e1340]:
+            - generic [ref=e1341]: "1"
+            - link "Apa itu ML?" [ref=e1342] [cursor=pointer]:
+              - /url: "#sec-definisi"
+            - generic [ref=e1343]: 
+          - listitem [ref=e1344]:
+            - generic [ref=e1345]: "2"
+            - link "Tiga Paradigma" [ref=e1346] [cursor=pointer]:
+              - /url: "#sec-paradigma"
+            - generic [ref=e1347]: 
+          - listitem [ref=e1348]:
+            - generic [ref=e1349]: "3"
+            - link "Supervised Learning" [ref=e1350] [cursor=pointer]:
+              - /url: "#sec-supervised"
+            - generic [ref=e1351]: 
+          - listitem [ref=e1352]:
+            - generic [ref=e1353]: "4"
+            - link "Unsupervised Learning" [ref=e1354] [cursor=pointer]:
+              - /url: "#sec-unsupervised"
+            - generic [ref=e1355]: 
+          - listitem [ref=e1356]:
+            - generic [ref=e1357]: "5"
+            - link "Reinforcement Learning" [ref=e1358] [cursor=pointer]:
+              - /url: "#sec-reinforcement"
+            - generic [ref=e1359]: 
+          - listitem [ref=e1360]:
+            - generic [ref=e1361]: "6"
+            - link "Kapan Pakai ML?" [ref=e1362] [cursor=pointer]:
+              - /url: "#sec-kapan"
+            - generic [ref=e1363]: 
+  - text:   

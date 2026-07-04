@@ -1,0 +1,7 @@
+[     256ms] [ERROR] Router Error: Error: 404
+    at Object.handleRouting (http://localhost:3000/js/router.js?v=20260624-events-router:345:34)
+    at http://localhost:3000/js/router.js?v=20260624-events-router:680:16 @ http://localhost:3000/js/router.js?v=20260624-events-router:627
+[   17598ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
+[   86226ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
+[  227924ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0
+[  312947ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8092/api/participant-portal/settings:0

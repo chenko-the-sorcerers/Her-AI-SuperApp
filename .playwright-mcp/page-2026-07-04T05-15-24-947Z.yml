@@ -1,0 +1,491 @@
+- generic [active] [ref=e1]:
+  - text: 
+  - main [ref=e84]:
+    - generic [ref=e326]:
+      - button "Buka navigasi peserta" [ref=e856] [cursor=pointer]:
+        - generic [ref=e857]: 
+      - complementary "Navigasi peserta" [ref=e327]:
+        - button "Buka sidebar peserta" [ref=e328] [cursor=pointer]:
+          - img "HerAI Fellowship" [ref=e329]
+          - text: 
+        - navigation [ref=e330]:
+          - link " Beranda" [ref=e858] [cursor=pointer]:
+            - /url: "#/participant-dashboard"
+            - generic [ref=e332]: 
+            - generic [ref=e859]: Beranda
+          - link " Chatroom" [ref=e860] [cursor=pointer]:
+            - /url: "#/messaging"
+            - generic [ref=e334]: 
+            - generic [ref=e861]: Chatroom
+          - link " Mentor" [ref=e862] [cursor=pointer]:
+            - /url: "#/participant-mentor"
+            - generic [ref=e336]: 
+            - generic [ref=e863]: Mentor
+          - link " Modul" [ref=e864] [cursor=pointer]:
+            - /url: "#/participant-modules"
+            - generic [ref=e338]: 
+            - generic [ref=e865]: Modul
+          - link " Tugas" [ref=e866] [cursor=pointer]:
+            - /url: "#/participant-tasks"
+            - generic [ref=e340]: 
+            - generic [ref=e867]: Tugas
+          - link " Proyek" [ref=e868] [cursor=pointer]:
+            - /url: "#/participant-projects"
+            - generic [ref=e342]: 
+            - generic [ref=e869]: Proyek
+          - link " Events" [ref=e870] [cursor=pointer]:
+            - /url: "#/participant-events"
+            - generic [ref=e344]: 
+            - generic [ref=e871]: Events
+          - link " Komunitas" [ref=e872] [cursor=pointer]:
+            - /url: "#/participant-community"
+            - generic [ref=e346]: 
+            - generic [ref=e873]: Komunitas
+        - navigation [ref=e347]:
+          - link " Sertifikat" [ref=e874] [cursor=pointer]:
+            - /url: "#/participant-certificates"
+            - generic [ref=e349]: 
+            - generic [ref=e875]: Sertifikat
+          - link " Leaderboard" [ref=e876] [cursor=pointer]:
+            - /url: "#/participant-leaderboard"
+            - generic [ref=e351]: 
+            - generic [ref=e877]: Leaderboard
+          - link " FAQ & Bantuan" [ref=e878] [cursor=pointer]:
+            - /url: "#/participant-help"
+            - generic [ref=e353]: 
+            - generic [ref=e879]: FAQ & Bantuan
+          - link " Pengaturan" [ref=e880] [cursor=pointer]:
+            - /url: "#/participant-settings"
+            - generic [ref=e355]: 
+            - generic [ref=e881]: Pengaturan
+      - main [ref=e356]:
+        - generic [ref=e357]:
+          - navigation "Breadcrumb" [ref=e358]:
+            - link " Modul" [ref=e359] [cursor=pointer]:
+              - /url: "#/participant-modules"
+              - generic [ref=e360]: 
+              - generic [ref=e361]: Modul
+            - generic [ref=e363]: 
+            - generic [ref=e364]: Machine Learning
+          - generic [ref=e365]:
+            - generic [ref=e366]:
+              - generic [ref=e367]: 
+              - searchbox "" [ref=e368]
+            - button "Notifikasi" [ref=e369] [cursor=pointer]:
+              - generic [ref=e370]: 
+              - generic [ref=e371]: "5"
+            - generic [ref=e372]:
+              - button [ref=e882] [cursor=pointer]: 
+              - text:  
+        - generic [ref=e380]:
+          - generic [ref=e381]:
+            - heading "Machine Learning" [level=1] [ref=e382]
+            - paragraph [ref=e383]: Dari regresi linear hingga neural network — kurikulum lengkap untuk membangun fondasi ML yang kuat.
+            - generic [ref=e384]:
+              - generic [ref=e385]:
+                - generic [ref=e386]: 
+                - text: 8 Modul
+              - generic [ref=e387]:
+                - generic [ref=e388]: 
+                - text: 50+ Topik
+              - generic [ref=e389]:
+                - generic [ref=e390]: 
+                - text: AI Lab · Marchel Andrian Shevchenko
+          - img "HerAI ML learning" [ref=e391]
+        - generic [ref=e393]:
+          - generic [ref=e394]:
+            - generic [ref=e395]:
+              - generic [ref=e396]: "01"
+              - generic [ref=e397]:
+                - generic [ref=e398]: Foundation
+                - heading "Pengantar Machine Learning" [level=2] [ref=e399]
+                - paragraph [ref=e400]: Sebelum menyentuh algoritma apapun, pahami dulu apa yang sebenarnya dilakukan ML — dan mengapa cara berpikirnya berbeda dari pemrograman biasa.
+            - generic [ref=e401]:
+              - generic [ref=e402]:
+                - generic [ref=e404]: 
+                - generic [ref=e405]:
+                  - heading "Apa itu Machine Learning?" [level=3] [ref=e406]:
+                    - link "Apa itu Machine Learning?" [ref=e407] [cursor=pointer]:
+                      - /url: "#/participant-ai-lab-ml-intro"
+                  - paragraph [ref=e408]: "Perbedaan fundamental antara pemrograman klasik dan ML — dari aturan eksplisit ke induksi dari data. Tiga paradigma utama: supervised, unsupervised, dan reinforcement learning. Kapan ML adalah solusi yang tepat, dan kapan tidak."
+                  - generic [ref=e409]:
+                    - generic [ref=e410]: Supervised
+                    - generic [ref=e411]: Unsupervised
+                    - generic [ref=e412]: Reinforcement
+                    - generic [ref=e413]: Inductive Learning
+              - generic [ref=e414]:
+                - generic [ref=e416]: 
+                - generic [ref=e417]:
+                  - heading "Hipotesis, Model & Ruang Fitur" [level=3] [ref=e418]:
+                    - link "Hipotesis, Model & Ruang Fitur" [ref=e419] [cursor=pointer]:
+                      - /url: "#/participant-ai-lab-ml-hypothesis"
+                  - paragraph [ref=e420]: "Mendefinisikan contoh latih sebagai vektor fitur x ∈ ℝⁿ. Hipotesis h: X → Y sebagai fungsi yang diinduksi dari data. Perbedaan antara model (ruang hipotesis H) dan hipotesis konkret (satu fungsi dengan parameter θ tetap)."
+                  - generic [ref=e421]:
+                    - generic [ref=e422]: Feature Vector
+                    - generic [ref=e423]: Hypothesis
+                    - generic [ref=e424]: Training Set
+                    - generic [ref=e425]: Instance Space
+              - generic [ref=e426]:
+                - generic [ref=e428]: 
+                - generic [ref=e429]:
+                  - heading "VC Dimension & Kapasitas Model" [level=3] [ref=e430]:
+                    - link "VC Dimension & Kapasitas Model" [ref=e431] [cursor=pointer]:
+                      - /url: "#/participant-ai-lab-ml-vc-dim"
+                  - paragraph [ref=e432]: Vapnik-Chervonenkis dimension sebagai ukuran kapasitas model — berapa banyak titik yang bisa di-shatter oleh H. Mengapa model linear di ℝⁿ memiliki VC-dim = n+1. Hubungan antara VC-dim dengan kemampuan generalisasi dan upper bound error.
+                  - generic [ref=e433]:
+                    - generic [ref=e434]: VC-Dimension
+                    - generic [ref=e435]: Shatter
+                    - generic [ref=e436]: Model Capacity
+                    - generic [ref=e437]: Statistical Learning
+              - generic [ref=e438]:
+                - generic [ref=e440]: 
+                - generic [ref=e441]:
+                  - heading "Bias-Variance Tradeoff" [level=3] [ref=e442]:
+                    - link "Bias-Variance Tradeoff" [ref=e443] [cursor=pointer]:
+                      - /url: "#/participant-ai-lab-ml-bias-variance"
+                  - paragraph [ref=e444]: "Overfitting terjadi saat model terlalu kompleks — menghafal noise, generalisasi buruk. Underfitting saat model terlalu sederhana. Induktif bias sebagai asumsi yang memungkinkan generalisasi. The No Free Lunch Theorem: tidak ada algoritma terbaik untuk semua masalah."
+                  - generic [ref=e445]:
+                    - generic [ref=e446]: Overfitting
+                    - generic [ref=e447]: Underfitting
+                    - generic [ref=e448]: Bias
+                    - generic [ref=e449]: Variance
+                    - generic [ref=e450]: No Free Lunch
+          - generic [ref=e451]:
+            - generic [ref=e452]:
+              - generic [ref=e453]: "02"
+              - generic [ref=e454]:
+                - generic [ref=e455]: Core Concept
+                - heading "Supervised Learning" [level=2] [ref=e456]
+                - paragraph [ref=e457]: Kerangka kerja paling umum dalam ML — belajar dari data berlabel untuk memprediksi label baru.
+            - generic [ref=e458]:
+              - generic [ref=e459]:
+                - generic [ref=e461]: 
+                - generic [ref=e462]:
+                  - heading "Komponen Algoritma ML" [level=3] [ref=e463]
+                  - paragraph [ref=e464]: "Tiga komponen yang mendefinisikan setiap algoritma supervised learning: (1) Model H — ruang hipotesis yang dibatasi, (2) Fungsi Loss L — mengukur kesalahan prediksi, (3) Prosedur Optimisasi — mencari parameter θ optimal. Pilihan ketiganya menentukan induktif bias."
+                  - generic [ref=e465]:
+                    - generic [ref=e466]: Model
+                    - generic [ref=e467]: Loss Function
+                    - generic [ref=e468]: Optimization
+                    - generic [ref=e469]: Empirical Risk
+              - generic [ref=e470]:
+                - generic [ref=e472]: 
+                - generic [ref=e473]:
+                  - heading "Model Selection & Cross-Validation" [level=3] [ref=e474]
+                  - paragraph [ref=e475]: Memisahkan data ke training set dan validation set. k-Fold cross-validation untuk estimasi error generalisasi yang lebih robust. Prinsip Structural Risk Minimization (SRM), Akaike Information Criterion (AIC), dan Bayesian Information Criterion (BIC).
+                  - generic [ref=e476]:
+                    - generic [ref=e477]: k-Fold CV
+                    - generic [ref=e478]: Train/Val/Test
+                    - generic [ref=e479]: SRM
+                    - generic [ref=e480]: AIC
+                    - generic [ref=e481]: BIC
+                  - code [ref=e484]: "from sklearn.model_selection import cross_val_score scores = cross_val_score(model, X, y, cv=5) # Rata-rata akurasi 5-fold print(scores.mean(), scores.std())"
+              - generic [ref=e485]:
+                - generic [ref=e487]: 
+                - generic [ref=e488]:
+                  - heading "Generatif vs Diskriminatif" [level=3] [ref=e489]
+                  - paragraph [ref=e490]: Model generatif memodelkan distribusi gabungan P(x, Cⱼ) — bisa generate data baru, interpretable. Model diskriminatif langsung memodelkan P(Cⱼ|x) — akurasi lebih tinggi. Model parametrik vs non-parametrik, dan model linear vs non-linear.
+                  - generic [ref=e491]:
+                    - generic [ref=e492]: Generatif
+                    - generic [ref=e493]: Diskriminatif
+                    - generic [ref=e494]: Parametrik
+                    - generic [ref=e495]: Non-parametrik
+          - generic [ref=e496]:
+            - generic [ref=e497]:
+              - generic [ref=e498]: "03"
+              - generic [ref=e499]:
+                - generic [ref=e500]: Algorithm
+                - heading "Regresi & Klasifikasi Dasar" [level=2] [ref=e501]
+                - paragraph [ref=e502]: Algoritma paling fundamental — yang masih relevan dan dipakai di production hingga hari ini.
+            - generic [ref=e503]:
+              - generic [ref=e504]:
+                - generic [ref=e506]: 
+                - generic [ref=e507]:
+                  - heading "Linear & Polynomial Regression" [level=3] [ref=e508]
+                  - paragraph [ref=e509]: "Memodelkan hubungan antara fitur dan nilai kontinu. Metode Least Squares — meminimalkan jumlah kuadrat residual. Solusi analitik via Moore-Penrose pseudoinverse: w = (XᵀX)⁻¹Xᵀy. Regresi polinomial sebagai perluasan dengan fitur x², x³."
+                  - generic [ref=e510]:
+                    - generic [ref=e511]: Least Squares
+                    - generic [ref=e512]: Pseudoinverse
+                    - generic [ref=e513]: Polynomial
+                    - generic [ref=e514]: Residuals
+                  - code [ref=e517]: "import numpy as np # Solusi analitik least squares w = np.linalg.lstsq(X, y, rcond=None)[0] y_pred = X @ w # prediksi"
+              - generic [ref=e518]:
+                - generic [ref=e520]: 
+                - generic [ref=e521]:
+                  - heading "Decision Trees & Ensembles" [level=3] [ref=e522]
+                  - paragraph [ref=e523]: Pohon keputusan mempartisi ruang fitur secara rekursif menggunakan kriteria Information Gain / Gini Impurity. Random Forest menggabungkan banyak pohon dengan bagging. Gradient Boosting (XGBoost, LightGBM) membangun pohon secara sekuensial — state-of-the-art untuk data tabular.
+                  - generic [ref=e524]:
+                    - generic [ref=e525]: Information Gain
+                    - generic [ref=e526]: Gini
+                    - generic [ref=e527]: Random Forest
+                    - generic [ref=e528]: XGBoost
+                    - generic [ref=e529]: Bagging
+                  - code [ref=e532]: from sklearn.ensemble import RandomForestClassifier rf = RandomForestClassifier(n_estimators=100, max_depth=5) rf.fit(X_train, y_train) importance = rf.feature_importances_
+              - generic [ref=e533]:
+                - generic [ref=e535]: 
+                - generic [ref=e536]:
+                  - heading "k-Nearest Neighbors (k-NN)" [level=3] [ref=e537]
+                  - paragraph [ref=e538]: Algoritma non-parametrik — tidak ada fase training, semua kerja dilakukan saat prediksi. Klasifikasi berdasarkan mayoritas k tetangga terdekat menggunakan jarak Euclidean / Manhattan. Curse of dimensionality dan kompleksitas O(N·n) per prediksi.
+                  - generic [ref=e539]:
+                    - generic [ref=e540]: k-NN
+                    - generic [ref=e541]: Euclidean Distance
+                    - generic [ref=e542]: Lazy Learning
+                    - generic [ref=e543]: Curse of Dim.
+          - generic [ref=e544]:
+            - generic [ref=e545]:
+              - generic [ref=e546]: "04"
+              - generic [ref=e547]:
+                - generic [ref=e548]: Probabilistic
+                - heading "Probabilistic Models" [level=2] [ref=e549]
+                - paragraph [ref=e550]: Menggunakan teori probabilitas untuk membangun model yang bisa mengekspresikan ketidakpastian prediksi.
+            - generic [ref=e551]:
+              - generic [ref=e552]:
+                - generic [ref=e554]: 
+                - generic [ref=e555]:
+                  - heading "Teori Probabilitas untuk ML" [level=3] [ref=e556]
+                  - paragraph [ref=e557]: Ekspektasi, variansi, dan independensi variabel. Distribusi Bernoulli, Multinomial, dan Gaussian sebagai building blocks. Maximum Likelihood Estimation (MLE) untuk mengoptimalkan parameter — "pilih parameter yang paling memungkinkan data yang kita amati terjadi".
+                  - generic [ref=e558]:
+                    - generic [ref=e559]: MLE
+                    - generic [ref=e560]: Gaussian
+                    - generic [ref=e561]: Bernoulli
+                    - generic [ref=e562]: Ekspektasi
+                    - generic [ref=e563]: Variansi
+              - generic [ref=e564]:
+                - generic [ref=e566]: 
+                - generic [ref=e567]:
+                  - heading "Naive Bayes Classifier" [level=3] [ref=e568]
+                  - paragraph [ref=e569]: "Menggunakan Teorema Bayes: P(Cⱼ|x) ∝ P(x|Cⱼ)·P(Cⱼ). Asumsi \"naif\" — semua fitur independen secara kondisional diberikan kelas. Gaussian NB untuk variabel kontinu. Laplace smoothing untuk mengatasi zero probability. Sangat efektif untuk text classification."
+                  - generic [ref=e570]:
+                    - generic [ref=e571]: Bayes Theorem
+                    - generic [ref=e572]: Cond. Independence
+                    - generic [ref=e573]: Gaussian NB
+                    - generic [ref=e574]: Laplace Smoothing
+                  - code [ref=e577]: from sklearn.naive_bayes import GaussianNB clf = GaussianNB() clf.fit(X_train, y_train) proba = clf.predict_proba(X_test)
+              - generic [ref=e578]:
+                - generic [ref=e580]: 
+                - generic [ref=e581]:
+                  - heading "Bayesian Networks" [level=3] [ref=e582]
+                  - paragraph [ref=e583]: Semi-Naive Bayes yang memodelkan dependensi antar fitur menggunakan Directed Acyclic Graph (DAG). Algoritma FSSJ dan TAN (Tree-Augmented Naive Bayes) untuk membangun struktur jaringan secara otomatis dari data menggunakan Mutual Information.
+                  - generic [ref=e584]:
+                    - generic [ref=e585]: DAG
+                    - generic [ref=e586]: TAN
+                    - generic [ref=e587]: FSSJ
+                    - generic [ref=e588]: Markov Blanket
+                    - generic [ref=e589]: Mutual Information
+          - generic [ref=e590]:
+            - generic [ref=e591]:
+              - generic [ref=e592]: "05"
+              - generic [ref=e593]:
+                - generic [ref=e594]:
+                  - generic [ref=e595]: 
+                  - text: Industry Core
+                - heading "Linear Discriminative Models" [level=2] [ref=e596]
+                - paragraph [ref=e597]: Model yang langsung memodelkan batas keputusan — lebih sederhana, sering lebih akurat dari model generatif.
+            - generic [ref=e598]:
+              - generic [ref=e599]:
+                - generic [ref=e601]: 
+                - generic [ref=e602]:
+                  - heading "Generalized Linear Model" [level=3] [ref=e603]
+                  - paragraph [ref=e604]: "Perluasan regresi linear untuk klasifikasi via fungsi aktivasi f: h(x) = f(wᵀx + w₀). Geometri hyperplane pemisah di ruang n-dimensi — w sebagai normal hyperplane. Klasifikasi multi-kelas dengan strategi one-vs-rest dan one-vs-one."
+                  - generic [ref=e605]:
+                    - generic [ref=e606]: Hyperplane
+                    - generic [ref=e607]: Decision Boundary
+                    - generic [ref=e608]: One-vs-Rest
+                    - generic [ref=e609]: Multi-class
+              - generic [ref=e610]:
+                - generic [ref=e612]: 
+                - generic [ref=e613]:
+                  - heading "Logistic Regression" [level=3] [ref=e614]
+                  - paragraph [ref=e615]: Model diskriminatif probabilistik — output adalah P(C₁|x) = σ(wᵀx + w₀). Fungsi sigmoid mengubah output linear ke [0,1]. Cross-entropy loss sebagai fungsi objektif yang konveks. Gradient descent dan SGD untuk optimisasi. Regularisasi L1 (Lasso) dan L2 (Ridge).
+                  - generic [ref=e616]:
+                    - generic [ref=e617]: Sigmoid
+                    - generic [ref=e618]: Cross-Entropy
+                    - generic [ref=e619]: Gradient Descent
+                    - generic [ref=e620]: L1/L2 Reg
+                    - generic [ref=e621]: SGD
+                  - code [ref=e624]: from sklearn.linear_model import LogisticRegression clf = LogisticRegression(C=1.0, penalty='l2') clf.fit(X_train, y_train) y_prob = clf.predict_proba(X_test)[:,1]
+              - generic [ref=e625]:
+                - generic [ref=e627]: 
+                - generic [ref=e628]:
+                  - heading "Evaluasi Model Klasifikasi" [level=3] [ref=e629]
+                  - paragraph [ref=e630]: "Confusion matrix sebagai fondasi: TP, TN, FP, FN. Precision dan Recall — trade-off bergantung pada domain. F1-score sebagai harmonic mean. ROC curve dan AUC untuk evaluasi threshold-independent. Strategi untuk imbalanced dataset: oversampling (SMOTE), undersampling, class weights."
+                  - generic [ref=e631]:
+                    - generic [ref=e632]: Confusion Matrix
+                    - generic [ref=e633]: Precision
+                    - generic [ref=e634]: Recall
+                    - generic [ref=e635]: F1
+                    - generic [ref=e636]: ROC-AUC
+          - generic [ref=e637]:
+            - generic [ref=e638]:
+              - generic [ref=e639]: "06"
+              - generic [ref=e640]:
+                - generic [ref=e641]: Advanced
+                - heading "Support Vector Machine" [level=2] [ref=e642]
+                - paragraph [ref=e643]: Algoritma klasifikasi yang elegan secara matematis — memaksimalkan margin untuk generalisasi terbaik.
+            - generic [ref=e644]:
+              - generic [ref=e645]:
+                - generic [ref=e646]: Hard Margin SVM
+                - generic [ref=e647]: Data harus linearly separable sempurna. Tidak ada toleransi misklasifikasi.
+                - list [ref=e648]:
+                  - listitem [ref=e649]: "▸ Margin maksimum: 2/||w||"
+                  - listitem [ref=e650]: ▸ Kendala ketat per sampel
+                  - listitem [ref=e651]: ▸ Sensitif terhadap outlier
+                - generic [ref=e652]: Teoretis
+              - generic [ref=e653]: VS
+              - generic [ref=e654]:
+                - generic [ref=e655]: Soft Margin SVM
+                - generic [ref=e656]: Toleransi misklasifikasi terkontrol via parameter C.
+                - list [ref=e657]:
+                  - listitem [ref=e658]: ▸ Slack variables ξᵢ ≥ 0
+                  - listitem [ref=e659]: ▸ C besar = margin kecil, fit ketat
+                  - listitem [ref=e660]: ▸ Robust terhadap noise
+                - generic [ref=e661]: Production
+            - generic [ref=e662]:
+              - generic [ref=e663]:
+                - generic [ref=e665]: 
+                - generic [ref=e666]:
+                  - heading "Maximum Margin Hyperplane" [level=3] [ref=e667]
+                  - paragraph [ref=e668]: Formulasi sebagai masalah optimisasi kuadratik — meminimalkan (1/2)||w||² subject to constraint klasifikasi. Metode Lagrange Multipliers mengubahnya ke dual problem. Support vectors sebagai titik kritis — menghapus titik lain tidak mengubah solusi.
+                  - generic [ref=e669]:
+                    - generic [ref=e670]: Quadratic Programming
+                    - generic [ref=e671]: Lagrange
+                    - generic [ref=e672]: Support Vectors
+                    - generic [ref=e673]: Dual Problem
+              - generic [ref=e674]:
+                - generic [ref=e676]: 
+                - generic [ref=e677]:
+                  - heading "Kernel Trick" [level=3] [ref=e678]
+                  - paragraph [ref=e679]: "Untuk data non-linearly separable: peta ke ruang berdimensi tinggi via fungsi kernel K(x,x') = φ(x)ᵀφ(x') tanpa eksplisit menghitung φ(x). Mercer's theorem sebagai kondisi kernel valid. Polynomial K(x,x') = (xᵀx'+c)ᵈ, Gaussian RBF exp(-||x-x'||²/2σ²)."
+                  - generic [ref=e680]:
+                    - generic [ref=e681]: Kernel Trick
+                    - generic [ref=e682]: RBF Kernel
+                    - generic [ref=e683]: Polynomial Kernel
+                    - generic [ref=e684]: Mercer Theorem
+                  - code [ref=e687]: from sklearn.svm import SVC svm = SVC(kernel='rbf', C=1.0, gamma='scale') svm.fit(X_train, y_train) score = svm.decision_function(X_test)
+          - generic [ref=e688]:
+            - generic [ref=e689]:
+              - generic [ref=e690]: "07"
+              - generic [ref=e691]:
+                - generic [ref=e692]:
+                  - generic [ref=e693]: 
+                  - text: Must Know
+                - heading "Neural Networks" [level=2] [ref=e694]
+                - paragraph [ref=e695]: Dari perceptron satu neuron hingga deep network berlapis — fondasi semua arsitektur AI modern.
+            - generic [ref=e696]:
+              - generic [ref=e697]:
+                - generic [ref=e698]: "1958"
+                - generic [ref=e699]: Perceptron
+                - generic [ref=e700]: Frank Rosenblatt
+              - generic [ref=e701]: →
+              - generic [ref=e702]:
+                - generic [ref=e703]: "1986"
+                - generic [ref=e704]: Backprop
+                - generic [ref=e705]: Rumelhart et al.
+              - generic [ref=e706]: →
+              - generic [ref=e707]:
+                - generic [ref=e708]: "1989"
+                - generic [ref=e709]: MLP
+                - generic [ref=e710]: Universal Approx.
+              - generic [ref=e711]: →
+              - generic [ref=e712]:
+                - generic [ref=e713]: "2012"
+                - generic [ref=e714]: Deep Learning
+                - generic [ref=e715]: AlexNet, GPU era
+              - generic [ref=e716]: →
+              - generic [ref=e717]:
+                - generic [ref=e718]: 2017+
+                - generic [ref=e719]: Transformers
+                - generic [ref=e720]: Attention is all
+            - generic [ref=e721]:
+              - generic [ref=e722]:
+                - generic [ref=e724]: 
+                - generic [ref=e725]:
+                  - heading "Single Layer Perceptron" [level=3] [ref=e726]
+                  - paragraph [ref=e727]: "Unit komputasi terinspirasi neuron biologis: net input z = wᵀx + w₀, lalu fungsi aktivasi f(z). Perceptron Learning Rule — update bobot berdasarkan error: w ← w + η·(y - ŷ)·x. Dijamin konvergen jika data linearly separable (Perceptron Convergence Theorem). Keterbatasan: tidak bisa memecahkan XOR."
+                  - generic [ref=e728]:
+                    - generic [ref=e729]: Perceptron Rule
+                    - generic [ref=e730]: Step Function
+                    - generic [ref=e731]: Convergence Theorem
+                    - generic [ref=e732]: Linear Separability
+                  - code [ref=e735]: "# Perceptron learning rule for x, y in training_data: y_hat = step(w @ x + w0) error = y - y_hat w += lr * error * x w0 += lr * error"
+              - generic [ref=e736]:
+                - generic [ref=e738]: 
+                - generic [ref=e739]:
+                  - heading "Multi-Layer Perceptron (MLP)" [level=3] [ref=e740]
+                  - paragraph [ref=e741]: "Menyusun layer perceptron: input → hidden layers → output. Forward pass: z⁽ˡ⁾ = W⁽ˡ⁾a⁽ˡ⁻¹⁾ + b⁽ˡ⁾, a⁽ˡ⁾ = f(z⁽ˡ⁾). Fungsi aktivasi non-linear (ReLU, Sigmoid, Tanh, Softmax) — krusial agar network bukan sekadar regresi linear. Universal Approximation Theorem."
+                  - generic [ref=e742]:
+                    - generic [ref=e743]: Forward Pass
+                    - generic [ref=e744]: ReLU
+                    - generic [ref=e745]: Softmax
+                    - generic [ref=e746]: Hidden Layer
+                    - generic [ref=e747]: Universal Approx.
+              - generic [ref=e748]:
+                - generic [ref=e750]: 
+                - generic [ref=e751]:
+                  - heading "Backpropagation" [level=3] [ref=e752]
+                  - paragraph [ref=e753]: "Algoritma efisien untuk menghitung gradien ∂L/∂W⁽ˡ⁾ menggunakan chain rule mundur dari output ke input. Error term: δ⁽ˡ⁾ = (W⁽ˡ⁺¹⁾)ᵀδ⁽ˡ⁺¹⁾ ⊙ f'(z⁽ˡ⁾). Masalah vanishing/exploding gradient — diatasi dengan ReLU, BatchNorm, dan gradient clipping."
+                  - generic [ref=e754]:
+                    - generic [ref=e755]: Chain Rule
+                    - generic [ref=e756]: Gradient
+                    - generic [ref=e757]: Vanishing Gradient
+                    - generic [ref=e758]: BatchNorm
+              - generic [ref=e759]:
+                - generic [ref=e761]: 
+                - generic [ref=e762]:
+                  - heading "Optimisasi & Regularisasi" [level=3] [ref=e763]
+                  - paragraph [ref=e764]: SGD dengan momentum, RMSprop, dan Adam sebagai optimizer modern. Mini-batch training untuk keseimbangan kecepatan dan stabilitas. Dropout — mematikan neuron secara acak saat training. Batch Normalization, weight decay, dan early stopping.
+                  - generic [ref=e765]:
+                    - generic [ref=e766]: Adam
+                    - generic [ref=e767]: SGD + Momentum
+                    - generic [ref=e768]: Dropout
+                    - generic [ref=e769]: Weight Decay
+                    - generic [ref=e770]: Early Stopping
+                  - code [ref=e773]: import torch.nn as nn, torch.optim as optim model = nn.Sequential( nn.Linear(128, 64), nn.ReLU(), nn.Dropout(0.3), nn.Linear(64, 10) ) optimizer = optim.Adam(model.parameters(), lr=1e-3)
+          - generic [ref=e774]:
+            - generic [ref=e775]:
+              - generic [ref=e776]: "08"
+              - generic [ref=e777]:
+                - generic [ref=e778]: Unsupervised
+                - heading "Unsupervised Learning" [level=2] [ref=e779]
+                - paragraph [ref=e780]: Menemukan struktur tersembunyi dalam data tanpa label — clustering, dimensionality reduction, dan density estimation.
+            - generic [ref=e781]:
+              - generic [ref=e782]:
+                - generic [ref=e784]: 
+                - generic [ref=e785]:
+                  - heading "K-Means Clustering" [level=3] [ref=e786]
+                  - paragraph [ref=e787]: "Mempartisi data ke K cluster dengan meminimalkan intra-cluster variance. Algoritma iteratif: (1) assign tiap titik ke centroid terdekat, (2) update centroid sebagai rata-rata cluster. K-Medoids sebagai varian robust terhadap outlier. Pemilihan K via Elbow method dan Silhouette score."
+                  - generic [ref=e788]:
+                    - generic [ref=e789]: K-Means
+                    - generic [ref=e790]: K-Medoids
+                    - generic [ref=e791]: Elbow Method
+                    - generic [ref=e792]: Silhouette
+                    - generic [ref=e793]: Inertia
+                  - code [ref=e796]: from sklearn.cluster import KMeans km = KMeans(n_clusters=3, random_state=42) labels = km.fit_predict(X) centers = km.cluster_centers_
+              - generic [ref=e797]:
+                - generic [ref=e799]: 
+                - generic [ref=e800]:
+                  - heading "Hierarchical & Density Clustering" [level=3] [ref=e801]
+                  - paragraph [ref=e802]: "Agglomerative clustering membangun dendrogram — tidak perlu menentukan K di awal. Linkage criteria: single, complete, average, Ward. DBSCAN menemukan cluster dengan bentuk arbitrer berdasarkan density — robust terhadap noise, tidak butuh K."
+                  - generic [ref=e803]:
+                    - generic [ref=e804]: Dendrogram
+                    - generic [ref=e805]: Agglomerative
+                    - generic [ref=e806]: DBSCAN
+                    - generic [ref=e807]: Ward Linkage
+              - generic [ref=e808]:
+                - generic [ref=e810]: 
+                - generic [ref=e811]:
+                  - heading "Gaussian Mixture Models & EM" [level=3] [ref=e812]
+                  - paragraph [ref=e813]: "Memodelkan data sebagai campuran K distribusi Gaussian. Algoritma Expectation-Maximization (EM): E-step menghitung probabilitas keanggotaan (soft assignment), M-step mengupdate parameter μ, Σ, π. PCA dan t-SNE untuk visualisasi dan dimensionality reduction."
+                  - generic [ref=e814]:
+                    - generic [ref=e815]: GMM
+                    - generic [ref=e816]: EM Algorithm
+                    - generic [ref=e817]: Soft Clustering
+                    - generic [ref=e818]: PCA
+                    - generic [ref=e819]: t-SNE
+        - generic [ref=e851]:
+          - generic [ref=e852]: Selanjutnya di AI Lab
+          - heading "Computer Vision →" [level=3] [ref=e853]
+          - paragraph [ref=e854]: Ajarkan mesin untuk melihat dan memahami dunia visual — dari piksel mentah hingga deteksi real-time.
+          - link "Lanjutkan →" [ref=e855] [cursor=pointer]:
+            - /url: "#/participant-ai-lab-cv"
+  - text:   

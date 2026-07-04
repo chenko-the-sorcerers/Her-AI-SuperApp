@@ -1,0 +1,59 @@
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+    <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
+    <aside class="fellow-sidebar" aria-label="Navigasi peserta">
+        <a href="#/participant-dashboard" class="fellow-logo" aria-label="Buka sidebar peserta"><img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI Fellowship"></a>
+        <nav class="fellow-menu">
+            <a href="#/participant-dashboard" data-fellow-nav="dashboard"><i class="fas fa-house"></i><span>Beranda</span></a>
+            <a href="#/messaging" data-fellow-nav="chatroom"><i class="far fa-comment-dots"></i><span>Chatroom</span><strong>3</strong></a>
+            <a href="#/participant-mentor" data-fellow-nav="mentor"><i class="fas fa-user-group"></i><span>Mentor</span></a>
+            <a class="active" href="#/participant-modules" data-fellow-nav="modules"><i class="fas fa-book-open"></i><span>Modul</span></a>
+            <a href="#/participant-tasks" data-fellow-nav="tasks"><i class="fas fa-list-check"></i><span>Tugas</span></a>
+            <a href="#/participant-projects" data-fellow-nav="projects"><i class="far fa-folder-open"></i><span>Proyek</span></a>
+            <a href="#/participant-events" data-fellow-nav="events"><i class="far fa-calendar-days"></i><span>Events</span></a>
+            <a href="#/participant-community" data-fellow-nav="community"><i class="fas fa-users"></i><span>Komunitas</span></a>
+        </nav>
+        <nav class="fellow-menu secondary">
+            <a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
+            <a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
+            <a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
+            <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
+        </nav>
+    </aside>
+    <main class="fellow-main">
+        <header class="lesson-topbar"><nav class="lesson-breadcrumb" aria-label="Breadcrumb materi"><a href="#/participant-ai-fundamentals"><i class="fas fa-arrow-left"></i><span>AI Fundamentals</span></a><span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span><span>Kuis Python</span></nav><div class="fellow-actions"><label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label><button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button><a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a></div></header>
+        <div class="lesson-layout">
+            <div class="lesson-main-content">
+                <section class="lesson-hero compact"><div class="lesson-hero-copy"><h1>Kuis Pemrograman Python</h1><p>Kerjakan satu kali untuk mengukur pemahaman. Nilai akan langsung muncul setelah dikirim, tanpa menampilkan jawaban benar.</p><div class="lesson-meta-row"><span><i class="far fa-clock"></i> 10 menit</span><span><i class="far fa-clipboard"></i> 10 soal</span><b>Single Attempt</b></div></div><img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow mengerjakan kuis"></section>
+                <section class="lesson-material-panel">
+                    <div class="lesson-tabs" role="tablist" aria-label="Jenis materi"><a href="#/participant-ai-python"><i class="fas fa-book-open"></i> Materi</a><a href="#/participant-ai-python-practice"><i class="fas fa-pen-to-square"></i> Latihan</a><a href="#/participant-ai-python-quiz" class="active"><i class="far fa-clipboard"></i> Kuis</a><a href="#/participant-ai-python-discussion"><i class="far fa-message"></i> Diskusi</a></div>
+                    <article class="lesson-article">
+                        <form id="aiPythonQuizForm" class="lesson-quiz-section" data-quiz-key="heraiAiPythonQuizDone">
+                            <h2>Kuis Pemrograman Python</h2>
+                            <p>Pilih satu jawaban untuk setiap soal. Setelah submit, sistem hanya menampilkan nilai akhir.</p>
+                            <div class="quiz-list">
+                                <article><span>1</span><h3>Apa tipe data dari nilai 3.14 di Python?</h3><label><input type="radio" name="q1" value="1"> float</label><label><input type="radio" name="q1" value="0"> int</label><label><input type="radio" name="q1" value="0"> str</label></article>
+                                <article><span>2</span><h3>Bagaimana cara membuat list kosong?</h3><label><input type="radio" name="q2" value="1"> []</label><label><input type="radio" name="q2" value="0"> {}</label><label><input type="radio" name="q2" value="0"> ()</label></article>
+                                <article><span>3</span><h3>Apa hasil dari ekspresi "ai" * 3 di Python?</h3><label><input type="radio" name="q3" value="1"> "aiaiai"</label><label><input type="radio" name="q3" value="0"> "ai3"</label><label><input type="radio" name="q3" value="0"> Error</label></article>
+                                <article><span>4</span><h3>Keyword apa yang digunakan untuk membuat function?</h3><label><input type="radio" name="q4" value="1"> def</label><label><input type="radio" name="q4" value="0"> function</label><label><input type="radio" name="q4" value="0"> func</label></article>
+                                <article><span>5</span><h3>Dictionary di Python menyimpan data dalam bentuk apa?</h3><label><input type="radio" name="q5" value="1"> Pasangan key-value</label><label><input type="radio" name="q5" value="0"> Urutan indeks numerik</label><label><input type="radio" name="q5" value="0"> Kumpulan nilai unik saja</label></article>
+                                <article><span>6</span><h3>Apa output dari len([1,2,3])?</h3><label><input type="radio" name="q6" value="1"> 3</label><label><input type="radio" name="q6" value="0"> [1,2,3]</label><label><input type="radio" name="q6" value="0"> 2</label></article>
+                                <article><span>7</span><h3>range(5) menghasilkan deret angka apa?</h3><label><input type="radio" name="q7" value="1"> 0, 1, 2, 3, 4</label><label><input type="radio" name="q7" value="0"> 1, 2, 3, 4, 5</label><label><input type="radio" name="q7" value="0"> 0, 1, 2, 3, 4, 5</label></article>
+                                <article><span>8</span><h3>Manakah tipe data yang bersifat immutable?</h3><label><input type="radio" name="q8" value="1"> tuple</label><label><input type="radio" name="q8" value="0"> list</label><label><input type="radio" name="q8" value="0"> dict</label></article>
+                                <article><span>9</span><h3>Bagaimana syntax yang benar untuk mengimpor library NumPy?</h3><label><input type="radio" name="q9" value="1"> import numpy</label><label><input type="radio" name="q9" value="0"> include numpy</label><label><input type="radio" name="q9" value="0"> using numpy</label></article>
+                                <article><span>10</span><h3>Apa kegunaan utama Pandas dalam data science?</h3><label><input type="radio" name="q10" value="1"> Manipulasi dan analisis data tabular</label><label><input type="radio" name="q10" value="0"> Membuat model machine learning</label><label><input type="radio" name="q10" value="0"> Menampilkan grafik 3D</label></article>
+                            </div>
+                            <div class="quiz-result-card" id="aiPythonQuizResult" hidden></div>
+                            <button type="submit" class="quiz-submit-btn">Submit Kuis</button>
+                        </form>
+                    </article>
+                    <footer class="lesson-nav-footer"><a href="#/participant-ai-python-practice"><i class="fas fa-chevron-left"></i> Sebelumnya</a><a href="#/participant-ai-python-discussion" id="aiPythonQuizNext" class="is-disabled">Selanjutnya <i class="fas fa-arrow-right"></i></a></footer>
+                </section>
+            </div>
+            <aside class="lesson-right-panel">
+                <section class="module-side-card lesson-progress-card"><h2>Progres Modul</h2><div class="lesson-progress-mini"><b style="--value:66%"></b><strong>66%</strong></div><p>Kirim kuis untuk membuka diskusi.</p><a href="#/participant-ai-python-quiz">Kuis Aktif</a></section>
+                <section class="module-side-card lesson-list-card"><h2>Daftar Materi</h2><ol><li class="completed"><span>1</span><a href="#/participant-ai-python">Pemrograman Python untuk AI</a><i class="fas fa-circle-check"></i></li><li class="completed"><span>2</span><a href="#/participant-ai-python-practice">Latihan Python Dasar</a><i class="fas fa-circle-check"></i></li><li class="active"><span>3</span><a href="#/participant-ai-python-quiz">Kuis Python</a><i class="far fa-circle-play"></i></li><li data-locked-after-quiz><span>4</span><a href="#/participant-ai-python-discussion">Diskusi Python</a><i class="far fa-circle"></i></li></ol><p class="lesson-lock-hint">Diskusi terbuka setelah kuis dikirim.</p></section>
+            </aside>
+        </div>
+    </main>
+</section>

@@ -1,0 +1,450 @@
+- generic [active] [ref=f2e1]:
+  - text: 
+  - main [ref=f2e2]:
+    - generic [ref=f2e560]:
+      - text: 
+      - complementary "Navigasi peserta" [ref=f2e561]:
+        - button "HerAI " [ref=f2e562] [cursor=pointer]:
+          - img "HerAI" [ref=f2e563]
+          - text: 
+        - navigation [ref=f2e564]:
+          - link "" [ref=f2e565] [cursor=pointer]:
+            - /url: "#/participant-dashboard"
+            - generic [ref=f2e566]: 
+          - link "" [ref=f2e567] [cursor=pointer]:
+            - /url: "#/messaging"
+            - generic [ref=f2e568]: 
+          - link "" [ref=f2e569] [cursor=pointer]:
+            - /url: "#/participant-mentor"
+            - generic [ref=f2e570]: 
+          - link "" [ref=f2e571] [cursor=pointer]:
+            - /url: "#/participant-modules"
+            - generic [ref=f2e572]: 
+          - link "" [ref=f2e573] [cursor=pointer]:
+            - /url: "#/participant-tasks"
+            - generic [ref=f2e574]: 
+          - link "" [ref=f2e575] [cursor=pointer]:
+            - /url: "#/participant-projects"
+            - generic [ref=f2e576]: 
+          - link "" [ref=f2e577] [cursor=pointer]:
+            - /url: "#/participant-events"
+            - generic [ref=f2e578]: 
+          - link "" [ref=f2e579] [cursor=pointer]:
+            - /url: "#/participant-community"
+            - generic [ref=f2e580]: 
+        - navigation [ref=f2e581]:
+          - link "" [ref=f2e582] [cursor=pointer]:
+            - /url: "#/participant-certificates"
+            - generic [ref=f2e583]: 
+          - link "" [ref=f2e584] [cursor=pointer]:
+            - /url: "#/participant-leaderboard"
+            - generic [ref=f2e585]: 
+          - link "" [ref=f2e586] [cursor=pointer]:
+            - /url: "#/participant-help"
+            - generic [ref=f2e587]: 
+          - link "" [ref=f2e588] [cursor=pointer]:
+            - /url: "#/participant-settings"
+            - generic [ref=f2e589]: 
+      - main [ref=f2e590]:
+        - generic [ref=f2e591]:
+          - navigation [ref=f2e592]:
+            - link " Modul" [ref=f2e593] [cursor=pointer]:
+              - /url: "#/participant-modules"
+              - generic [ref=f2e594]: 
+              - generic [ref=f2e595]: Modul
+            - generic [ref=f2e597]: 
+            - generic [ref=f2e598]: Computer Vision
+          - generic [ref=f2e599]:
+            - generic [ref=f2e600]:
+              - generic [ref=f2e601]: 
+              - searchbox "" [ref=f2e602]
+            - button "Notifikasi" [ref=f2e603] [cursor=pointer]:
+              - generic [ref=f2e604]: 
+              - generic [ref=f2e605]: "5"
+            - generic [ref=f2e606]:
+              - button "Aisyah Putri Peserta " [ref=f2e607] [cursor=pointer]:
+                - generic [ref=f2e609]:
+                  - strong [ref=f2e610]: Aisyah Putri
+                  - generic [ref=f2e611]: Peserta
+                - generic [ref=f2e612]: 
+              - text:  
+        - generic [ref=f2e614]:
+          - generic [ref=f2e615]:
+            - heading "Computer Vision" [level=1] [ref=f2e616]
+            - paragraph [ref=f2e617]: Mengajari mesin untuk melihat — dari piksel mentah ke deteksi objek real-time.
+            - generic [ref=f2e618]:
+              - generic [ref=f2e619]:
+                - generic [ref=f2e620]: 
+                - text: 6 Modul
+              - generic [ref=f2e621]:
+                - generic [ref=f2e622]: 
+                - text: 50+ Topik
+              - generic [ref=f2e623]:
+                - generic [ref=f2e624]: 
+                - text: AI Lab · Marchel Andrian Shevchenko
+          - img "HerAI CV" [ref=f2e626]
+        - generic [ref=f2e627]:
+          - generic [ref=f2e628]:
+            - generic [ref=f2e629]:
+              - generic [ref=f2e630]:
+                - generic [ref=f2e631]: "01"
+                - generic [ref=f2e632]:
+                  - generic [ref=f2e633]: Foundation
+                  - heading "Digital Image Fundamentals" [level=2] [ref=f2e634]
+                  - paragraph [ref=f2e635]: Before touching any model, understand what an image truly is — a matrix of numbers.
+              - generic [ref=f2e636]:
+                - generic [ref=f2e637] [cursor=pointer]:
+                  - generic [ref=f2e639]:
+                    - heading "Pixel Anatomy" [level=3] [ref=f2e640]:
+                      - link "Pixel Anatomy" [ref=f2e641]:
+                        - /url: "#/participant-ai-lab-cv-pixel"
+                    - paragraph [ref=f2e642]: Coordinates, intensity values, and color spaces — RGB, HSV, LAB, and Grayscale. Understanding how the same scene looks different across color models.
+                    - generic [ref=f2e643]:
+                      - generic [ref=f2e644]: RGB
+                      - generic [ref=f2e645]: HSV
+                      - generic [ref=f2e646]: Grayscale
+                      - generic [ref=f2e647]: Color Theory
+                  - text: 
+                - generic [ref=f2e648] [cursor=pointer]:
+                  - generic [ref=f2e649]: ️
+                  - generic [ref=f2e650]:
+                    - heading "Image Processing with OpenCV" [level=3] [ref=f2e651]:
+                      - link "Image Processing with OpenCV" [ref=f2e652]:
+                        - /url: "#/participant-ai-lab-cv-opencv"
+                    - paragraph [ref=f2e653]: Loading, resizing, cropping, flipping, and bitwise operations. The bread-and-butter toolkit for any CV pipeline.
+                    - generic [ref=f2e654]:
+                      - generic [ref=f2e655]: OpenCV
+                      - generic [ref=f2e656]: imread
+                      - generic [ref=f2e657]: resize
+                      - generic [ref=f2e658]: bitwise ops
+                  - code [ref=f2e661]: import cv2 img = cv2.imread("image.jpg") gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) resized = cv2.resize(img, (640, 480))
+                  - text: 
+                - generic [ref=f2e662] [cursor=pointer]:
+                  - generic [ref=f2e664]:
+                    - heading "Filtering & Kernels" [level=3] [ref=f2e665]:
+                      - link "Filtering & Kernels" [ref=f2e666]:
+                        - /url: "#/participant-ai-lab-cv-filtering-kernels"
+                    - paragraph [ref=f2e667]: Spatial convolution in practice. Gaussian blur for noise removal, median filter for salt-and-pepper noise, unsharp masking for sharpening, and Otsu's adaptive binarization.
+                    - generic [ref=f2e668]:
+                      - generic [ref=f2e669]: Gaussian Blur
+                      - generic [ref=f2e670]: Median Filter
+                      - generic [ref=f2e671]: Otsu's
+                      - generic [ref=f2e672]: Kernels
+                  - text: 
+                - generic [ref=f2e673] [cursor=pointer]:
+                  - generic [ref=f2e675]:
+                    - heading "Morphological Transformations" [level=3] [ref=f2e676]:
+                      - link "Morphological Transformations" [ref=f2e677]:
+                        - /url: "#/participant-ai-lab-cv-morph"
+                    - paragraph [ref=f2e678]: Erosion and dilation as fundamental building blocks. Opening (erode → dilate) removes small noise; closing (dilate → erode) fills holes. Essential for clean binary masks in defect detection.
+                    - generic [ref=f2e679]:
+                      - generic [ref=f2e680]: Erosion
+                      - generic [ref=f2e681]: Dilation
+                      - generic [ref=f2e682]: Opening
+                      - generic [ref=f2e683]: Closing
+                  - text: 
+            - generic [ref=f2e684]:
+              - generic [ref=f2e685]:
+                - generic [ref=f2e686]: "02"
+                - generic [ref=f2e687]:
+                  - generic [ref=f2e688]: Classic CV
+                  - heading "Classic Computer Vision & Features" [level=2] [ref=f2e689]
+                  - paragraph [ref=f2e690]: Understand the logic built before deep learning — algorithms still used in production today.
+              - generic [ref=f2e691]:
+                - generic [ref=f2e692] [cursor=pointer]:
+                  - generic [ref=f2e694]:
+                    - heading "Edge & Shape Detection" [level=3] [ref=f2e695]
+                    - paragraph [ref=f2e696]: Canny Edge Detection's multi-stage pipeline (noise reduction → gradient → non-maximum suppression → hysteresis). Sobel operator for directional gradients. Hough Transform for detecting lines and circles in structured environments.
+                    - generic [ref=f2e697]:
+                      - generic [ref=f2e698]: Canny
+                      - generic [ref=f2e699]: Sobel
+                      - generic [ref=f2e700]: Hough Transform
+                      - generic [ref=f2e701]: Gradients
+                  - text: 
+                - generic [ref=f2e702] [cursor=pointer]:
+                  - generic [ref=f2e704]:
+                    - heading "Contour Analysis" [level=3] [ref=f2e705]
+                    - paragraph [ref=f2e706]: Finding and analyzing contours to compute area, perimeter, bounding boxes, and convex hulls. Directly applicable to defect detection in manufacturing and quality inspection pipelines.
+                    - generic [ref=f2e707]:
+                      - generic [ref=f2e708]: findContours
+                      - generic [ref=f2e709]: BoundingBox
+                      - generic [ref=f2e710]: Moments
+                      - generic [ref=f2e711]: Convex Hull
+                  - text: 
+                - generic [ref=f2e712] [cursor=pointer]:
+                  - generic [ref=f2e713]: ️
+                  - generic [ref=f2e714]:
+                    - heading "Feature Extraction" [level=3] [ref=f2e715]
+                    - paragraph [ref=f2e716]: SIFT (Scale-Invariant Feature Transform) for scale & rotation-invariant keypoints. ORB as the fast, patent-free alternative. Used in image stitching, AR markers, and visual SLAM.
+                    - generic [ref=f2e717]:
+                      - generic [ref=f2e718]: SIFT
+                      - generic [ref=f2e719]: SURF
+                      - generic [ref=f2e720]: ORB
+                      - generic [ref=f2e721]: Descriptor Matching
+                  - text: 
+            - generic [ref=f2e722]:
+              - generic [ref=f2e723]:
+                - generic [ref=f2e724]: "03"
+                - generic [ref=f2e725]:
+                  - generic [ref=f2e726]: Deep Learning
+                  - heading "Deep Learning for Vision" [level=2] [ref=f2e727]
+                  - paragraph [ref=f2e728]: The core paradigm shift — letting the network learn its own features from data.
+              - generic [ref=f2e729]:
+                - generic [ref=f2e730]: 1998 LeNet-5 MNIST digits
+                - generic [ref=f2e731]: →
+                - generic [ref=f2e732]: 2012 AlexNet ImageNet revolution
+                - generic [ref=f2e733]: →
+                - generic [ref=f2e734]: 2014 VGG-16 Depth matters
+                - generic [ref=f2e735]: →
+                - generic [ref=f2e736]: 2015 ResNet Skip connections
+                - generic [ref=f2e737]: →
+                - generic [ref=f2e738]: 2021 ViT Transformers arrive
+              - generic [ref=f2e739]:
+                - generic [ref=f2e740] [cursor=pointer]:
+                  - generic [ref=f2e742]:
+                    - heading "Introduction to CNNs" [level=3] [ref=f2e743]:
+                      - link "Introduction to CNNs" [ref=f2e744]:
+                        - /url: "#/participant-ai-lab-cv-cnn-why"
+                    - paragraph [ref=f2e745]: How convolutional layers slide a filter across feature maps. The roles of stride, padding, and pooling (max vs average). Building intuition for what each layer actually learns.
+                    - generic [ref=f2e746]:
+                      - generic [ref=f2e747]: Convolution
+                      - generic [ref=f2e748]: Pooling
+                      - generic [ref=f2e749]: Padding
+                      - generic [ref=f2e750]: Stride
+                      - generic [ref=f2e751]: Feature Maps
+                  - text: 
+                - generic [ref=f2e752] [cursor=pointer]:
+                  - generic [ref=f2e753]: ️
+                  - generic [ref=f2e754]:
+                    - heading "Popular Architectures" [level=3] [ref=f2e755]:
+                      - link "Popular Architectures" [ref=f2e756]:
+                        - /url: "#/participant-ai-lab-cv-cnn-arch"
+                    - paragraph [ref=f2e757]: Deep dive into ResNet's residual connections — why they solve the vanishing gradient problem. EfficientNet's compound scaling. Understanding which backbone to choose for different constraints.
+                    - generic [ref=f2e758]:
+                      - generic [ref=f2e759]: ResNet
+                      - generic [ref=f2e760]: EfficientNet
+                      - generic [ref=f2e761]: MobileNet
+                      - generic [ref=f2e762]: Skip Connections
+                  - text: 
+                - generic [ref=f2e763] [cursor=pointer]:
+                  - generic [ref=f2e765]:
+                    - heading "Transfer Learning" [level=3] [ref=f2e766]
+                    - paragraph [ref=f2e767]: Fine-tuning ImageNet pre-trained weights on your custom dataset. Feature extraction vs full fine-tuning. Layer freezing strategies and why they work so well with limited data.
+                    - generic [ref=f2e768]:
+                      - generic [ref=f2e769]: ImageNet
+                      - generic [ref=f2e770]: Fine-tuning
+                      - generic [ref=f2e771]: Frozen Layers
+                      - generic [ref=f2e772]: Custom Head
+                  - code [ref=f2e775]: "from torchvision.models import resnet50 model = resnet50(pretrained=True) for param in model.parameters(): param.requires_grad = False # freeze backbone model.fc = nn.Linear(2048, num_classes)"
+                  - text: 
+                - generic [ref=f2e776] [cursor=pointer]:
+                  - generic [ref=f2e778]:
+                    - heading "Loss Functions & Optimizers" [level=3] [ref=f2e779]
+                    - paragraph [ref=f2e780]: Cross-entropy loss and its variants (label smoothing, focal loss). SGD with momentum vs Adam. Learning rate schedulers, weight decay, dropout, and batch normalization for regularization.
+                    - generic [ref=f2e781]:
+                      - generic [ref=f2e782]: Cross-Entropy
+                      - generic [ref=f2e783]: Focal Loss
+                      - generic [ref=f2e784]: Adam
+                      - generic [ref=f2e785]: Dropout
+                      - generic [ref=f2e786]: BatchNorm
+                  - text: 
+            - generic [ref=f2e787]:
+              - generic [ref=f2e788]:
+                - generic [ref=f2e789]: "04"
+                - generic [ref=f2e790]:
+                  - generic [ref=f2e791]: Industry Core
+                  - heading "Object Detection" [level=2] [ref=f2e792]
+                  - paragraph [ref=f2e793]: The most deployed CV task in industry — locate and classify multiple objects in a single pass.
+              - generic [ref=f2e794]:
+                - generic [ref=f2e795]:
+                  - heading "Two-Stage Detectors" [level=4] [ref=f2e796]
+                  - paragraph [ref=f2e797]: High accuracy, slower inference. Propose regions first, then classify.
+                  - list [ref=f2e798]:
+                    - listitem [ref=f2e799]: ▸ R-CNN (2013)
+                    - listitem [ref=f2e800]: ▸ Fast R-CNN (2015)
+                    - listitem [ref=f2e801]: ▸ Faster R-CNN (2015)
+                  - generic [ref=f2e802]: High Accuracy
+                - generic [ref=f2e803]: VS
+                - generic [ref=f2e804]:
+                  - heading "One-Stage Detectors" [level=4] [ref=f2e805]
+                  - paragraph [ref=f2e806]: Real-time capable. Predict boxes and classes in a single forward pass.
+                  - list [ref=f2e807]:
+                    - listitem [ref=f2e808]: ▸ YOLO v8 / v10 / v11
+                    - listitem [ref=f2e809]: ▸ SSD
+                    - listitem [ref=f2e810]: ▸ RetinaNet
+                  - generic [ref=f2e811]: Real-Time
+              - generic [ref=f2e812]:
+                - generic [ref=f2e813] [cursor=pointer]:
+                  - generic [ref=f2e815]:
+                    - heading "Region-based Models" [level=3] [ref=f2e816]
+                    - paragraph [ref=f2e817]: The evolution from R-CNN's selective search bottleneck to Faster R-CNN's learnable Region Proposal Network (RPN). Understanding anchor boxes, ROI pooling, and multi-scale features with FPN.
+                    - generic [ref=f2e818]:
+                      - generic [ref=f2e819]: R-CNN
+                      - generic [ref=f2e820]: RPN
+                      - generic [ref=f2e821]: ROI Pool
+                      - generic [ref=f2e822]: FPN
+                      - generic [ref=f2e823]: Anchors
+                  - text: 
+                - generic [ref=f2e824] [cursor=pointer]:
+                  - generic [ref=f2e826]:
+                    - heading "One-Stage Detectors (YOLO)" [level=3] [ref=f2e827]
+                    - paragraph [ref=f2e828]: "YOLO's grid-cell prediction paradigm. YOLOv8 improvements: decoupled head, anchor-free design, and C2f blocks. Training custom datasets with Ultralytics and evaluating inference speed vs accuracy trade-offs."
+                    - generic [ref=f2e829]:
+                      - generic [ref=f2e830]: YOLOv8
+                      - generic [ref=f2e831]: YOLOv11
+                      - generic [ref=f2e832]: Anchor-free
+                      - generic [ref=f2e833]: SSD
+                      - generic [ref=f2e834]: Ultralytics
+                  - code [ref=f2e837]: "from ultralytics import YOLO model = YOLO(\"yolov8n.pt\") model.train(data=\"dataset.yaml\", epochs=100, imgsz=640) results = model.val() # get mAP"
+                  - text: 
+                - generic [ref=f2e838] [cursor=pointer]:
+                  - generic [ref=f2e840]:
+                    - heading "Performance Metrics" [level=3] [ref=f2e841]
+                    - paragraph [ref=f2e842]: IoU (Intersection over Union) as the geometric overlap criterion. Precision-Recall curves and how mAP@0.5 and mAP@0.5:0.95 are computed. Confusion matrices for multi-class detection evaluation.
+                    - generic [ref=f2e843]:
+                      - generic [ref=f2e844]: mAP
+                      - generic [ref=f2e845]: IoU
+                      - generic [ref=f2e846]: Precision
+                      - generic [ref=f2e847]: Recall
+                      - generic [ref=f2e848]: F1
+                  - text: 
+            - generic [ref=f2e849]:
+              - generic [ref=f2e850]:
+                - generic [ref=f2e851]: "05"
+                - generic [ref=f2e852]:
+                  - generic [ref=f2e853]: Advanced
+                  - heading "Advanced Vision Tasks" [level=2] [ref=f2e854]
+                  - paragraph [ref=f2e855]: Go beyond bounding boxes — pixel-perfect understanding and temporal reasoning.
+              - generic [ref=f2e856]:
+                - generic [ref=f2e857] [cursor=pointer]:
+                  - generic [ref=f2e858]: ️
+                  - generic [ref=f2e859]:
+                    - heading "Image Segmentation" [level=3] [ref=f2e860]
+                    - paragraph [ref=f2e861]: Semantic segmentation assigns a class label to every pixel. Instance segmentation goes further — distinguishing individual object instances. U-Net's encoder-decoder for medical imaging. Mask R-CNN for instance masks. SAM (Segment Anything Model) as the new zero-shot foundation model.
+                    - generic [ref=f2e862]:
+                      - generic [ref=f2e863]: U-Net
+                      - generic [ref=f2e864]: Mask R-CNN
+                      - generic [ref=f2e865]: SAM
+                      - generic [ref=f2e866]: Semantic
+                      - generic [ref=f2e867]: Panoptic
+                  - text: 
+                - generic [ref=f2e868] [cursor=pointer]:
+                  - generic [ref=f2e870]:
+                    - heading "Vision Transformers (ViT)" [level=3] [ref=f2e871]
+                    - paragraph [ref=f2e872]: Splitting an image into fixed-size patches and treating them as token sequences for a standard Transformer encoder. Why ViT outperforms CNNs at scale but needs more data. DINOv2 as a powerful self-supervised backbone.
+                    - generic [ref=f2e873]:
+                      - generic [ref=f2e874]: ViT
+                      - generic [ref=f2e875]: Patches
+                      - generic [ref=f2e876]: Self-Attention
+                      - generic [ref=f2e877]: DINOv2
+                      - generic [ref=f2e878]: CLIP
+                  - text: 
+                - generic [ref=f2e879] [cursor=pointer]:
+                  - generic [ref=f2e881]:
+                    - heading "Optical Flow & Tracking" [level=3] [ref=f2e882]
+                    - paragraph [ref=f2e883]: Lucas-Kanade and Farneback for dense/sparse optical flow. DeepSORT combining Kalman filters with deep appearance features. ByteTrack's "every detection counts" philosophy for crowded scenes.
+                    - generic [ref=f2e884]:
+                      - generic [ref=f2e885]: Optical Flow
+                      - generic [ref=f2e886]: DeepSORT
+                      - generic [ref=f2e887]: ByteTrack
+                      - generic [ref=f2e888]: Kalman
+                      - generic [ref=f2e889]: ReID
+                  - text: 
+            - generic [ref=f2e890]:
+              - generic [ref=f2e891]:
+                - generic [ref=f2e892]: "06"
+                - generic [ref=f2e893]:
+                  - generic [ref=f2e894]: Pro Level
+                  - heading "Deployment & Edge AI" [level=2] [ref=f2e895]
+                  - paragraph [ref=f2e896]: Models that only work in notebooks don't ship. Learn to take vision AI into production.
+              - generic [ref=f2e897]:
+                - generic [ref=f2e900]: Train (.pt)
+                - generic [ref=f2e901]: →
+                - generic [ref=f2e902]:
+                  - generic [ref=f2e904]: 
+                  - generic [ref=f2e905]: Optimize
+                - generic [ref=f2e906]: →
+                - generic [ref=f2e909]: Export (ONNX)
+                - generic [ref=f2e910]: →
+                - generic [ref=f2e913]: Deploy
+                - generic [ref=f2e914]: →
+                - generic [ref=f2e917]: Monitor
+              - generic [ref=f2e918]:
+                - generic [ref=f2e919] [cursor=pointer]:
+                  - generic [ref=f2e921]:
+                    - heading "Model Optimization" [level=3] [ref=f2e922]
+                    - paragraph [ref=f2e923]: Post-training quantization (INT8, FP16) to cut model size and latency. Structured pruning to remove redundant channels. Exporting to ONNX for framework-agnostic deployment, then TensorRT for NVIDIA GPU inference at maximum throughput.
+                    - generic [ref=f2e924]:
+                      - generic [ref=f2e925]: Quantization
+                      - generic [ref=f2e926]: Pruning
+                      - generic [ref=f2e927]: ONNX
+                      - generic [ref=f2e928]: TensorRT
+                      - generic [ref=f2e929]: INT8
+                  - text: 
+                - generic [ref=f2e930] [cursor=pointer]:
+                  - generic [ref=f2e932]:
+                    - heading "Edge Deployment" [level=3] [ref=f2e933]
+                    - paragraph [ref=f2e934]: Running YOLO on Raspberry Pi 5 with NCNN. Jetson Nano / Orin for TensorRT-accelerated inference. Building REST APIs with FastAPI for network-accessible inference servers. Dockerizing the full pipeline for reproducible deployment.
+                    - generic [ref=f2e935]:
+                      - generic [ref=f2e936]: Jetson
+                      - generic [ref=f2e937]: Raspberry Pi
+                      - generic [ref=f2e938]: NCNN
+                      - generic [ref=f2e939]: FastAPI
+                      - generic [ref=f2e940]: Docker
+                  - code [ref=f2e943]: "from fastapi import FastAPI, UploadFile app = FastAPI() model = YOLO(\"best.onnx\") @app.post(\"/detect\") async def detect(file: UploadFile): img = read_image(await file.read()) return model.predict(img)[0].tojson()"
+                  - text: 
+                - generic [ref=f2e944] [cursor=pointer]:
+                  - generic [ref=f2e945]: ⏱️
+                  - generic [ref=f2e946]:
+                    - heading "Real-time Inference" [level=3] [ref=f2e947]
+                    - paragraph [ref=f2e948]: Frame-skipping strategies for video streams. Multi-threading the capture/inference/render pipeline. Profiling with NVTX and optimizing memory layout. Achieving sub-30ms end-to-end latency for live camera feeds.
+                    - generic [ref=f2e949]:
+                      - generic [ref=f2e950]: VideoStream
+                      - generic [ref=f2e951]: Threading
+                      - generic [ref=f2e952]: Profiling
+                      - generic [ref=f2e953]: Latency
+                      - generic [ref=f2e954]: FPS
+                  - text: 
+          - complementary [ref=f2e955]:
+            - paragraph [ref=f2e956]: Isi Materi
+            - list [ref=f2e957]:
+              - listitem [ref=f2e958]:
+                - link "01 Digital Image Fundamentals" [ref=f2e959] [cursor=pointer]:
+                  - /url: "#m1"
+                  - generic [ref=f2e960]: "01"
+                  - text: Digital Image Fundamentals
+              - listitem [ref=f2e961]:
+                - link "02 Classic CV Features" [ref=f2e962] [cursor=pointer]:
+                  - /url: "#m2"
+                  - generic [ref=f2e963]: "02"
+                  - text: Classic CV Features
+              - listitem [ref=f2e964]:
+                - link "03 Deep Learning for Vision" [ref=f2e965] [cursor=pointer]:
+                  - /url: "#m3"
+                  - generic [ref=f2e966]: "03"
+                  - text: Deep Learning for Vision
+              - listitem [ref=f2e967]:
+                - link "04 Object Detection" [ref=f2e968] [cursor=pointer]:
+                  - /url: "#m4"
+                  - generic [ref=f2e969]: "04"
+                  - text: Object Detection
+              - listitem [ref=f2e970]:
+                - link "05 Segmentation" [ref=f2e971] [cursor=pointer]:
+                  - /url: "#m5"
+                  - generic [ref=f2e972]: "05"
+                  - text: Segmentation
+              - listitem [ref=f2e973]:
+                - link "06 Deployment at the Edge" [ref=f2e974] [cursor=pointer]:
+                  - /url: "#m6"
+                  - generic [ref=f2e975]: "06"
+                  - text: Deployment at the Edge
+            - generic [ref=f2e976]:
+              - text: Progress
+              - generic [ref=f2e977]: 0%
+        - generic [ref=f2e980]:
+          - generic [ref=f2e981]: Up next in AI Lab
+          - heading "Natural Language Processing →" [level=3] [ref=f2e982]
+          - paragraph [ref=f2e983]: Transformers, tokenization, RAG, and the full pipeline from text to meaning.
+          - link "Continue Learning" [ref=f2e984] [cursor=pointer]:
+            - /url: "#/participant-ai-lab-nlp"
+  - text:   

@@ -1,0 +1,273 @@
+- generic [active] [ref=e1]:
+  - text: 
+  - main [ref=e84]:
+    - generic [ref=e85]:
+      - text: 
+      - complementary "Navigasi peserta" [ref=e86]:
+        - button "Buka sidebar peserta" [ref=e87] [cursor=pointer]:
+          - img "HerAI Fellowship" [ref=e88]
+          - text: 
+        - navigation [ref=e89]:
+          - link "" [ref=e90] [cursor=pointer]:
+            - /url: "#/participant-dashboard"
+            - generic [ref=e91]: 
+          - link "" [ref=e92] [cursor=pointer]:
+            - /url: "#/messaging"
+            - generic [ref=e93]: 
+          - link "" [ref=e94] [cursor=pointer]:
+            - /url: "#/participant-mentor"
+            - generic [ref=e95]: 
+          - link "" [ref=e96] [cursor=pointer]:
+            - /url: "#/participant-modules"
+            - generic [ref=e97]: 
+          - link "" [ref=e98] [cursor=pointer]:
+            - /url: "#/participant-tasks"
+            - generic [ref=e99]: 
+          - link "" [ref=e100] [cursor=pointer]:
+            - /url: "#/participant-projects"
+            - generic [ref=e101]: 
+          - link "" [ref=e102] [cursor=pointer]:
+            - /url: "#/participant-events"
+            - generic [ref=e103]: 
+          - link "" [ref=e104] [cursor=pointer]:
+            - /url: "#/participant-community"
+            - generic [ref=e105]: 
+        - navigation [ref=e106]:
+          - link "" [ref=e107] [cursor=pointer]:
+            - /url: "#/participant-certificates"
+            - generic [ref=e108]: 
+          - link "" [ref=e109] [cursor=pointer]:
+            - /url: "#/participant-leaderboard"
+            - generic [ref=e110]: 
+          - link "" [ref=e111] [cursor=pointer]:
+            - /url: "#/participant-help"
+            - generic [ref=e112]: 
+          - link "" [ref=e113] [cursor=pointer]:
+            - /url: "#/participant-settings"
+            - generic [ref=e114]: 
+      - main [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - heading "Halo, Aisyah Putri!" [level=1] [ref=e118]
+            - paragraph [ref=e119]: Semangat belajar hari ini. Setiap langkah kecil membawamu lebih dekat ke masa depan yang kamu impikan.
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - generic [ref=e122]: 
+              - searchbox "" [ref=e123]
+            - button "Notifikasi" [ref=e124] [cursor=pointer]:
+              - generic [ref=e125]: 
+              - generic [ref=e126]: "5"
+            - generic [ref=e127]:
+              - button "Aisyah Putri Fellow " [ref=e128] [cursor=pointer]:
+                - generic [ref=e130]:
+                  - strong [ref=e131]: Aisyah Putri
+                  - generic [ref=e132]: Fellow
+                - generic [ref=e133]: 
+              - text:  
+        - generic [ref=e134]:
+          - generic [ref=e135]:
+            - generic [ref=e136]:
+              - generic [ref=e137]:
+                - heading "Perempuan bisa memimpin inovasi AI." [level=2] [ref=e138]
+                - paragraph [ref=e139]: Belajar, berkolaborasi, dan berdampak bersama komunitas HerAI Fellowship.
+                - link "Lihat Perjalananmu " [ref=e140] [cursor=pointer]:
+                  - /url: "#/curriculum"
+                  - text: Lihat Perjalananmu
+                  - generic [ref=e141]: 
+              - img "HerAI fellow belajar dengan laptop" [ref=e142]
+            - generic [ref=e143]:
+              - generic [ref=e144]:
+                - heading "Lanjutkan Belajarmu" [level=2] [ref=e145]
+                - link "Lihat Semua " [ref=e146] [cursor=pointer]:
+                  - /url: "#/participant-modules"
+                  - text: Lihat Semua
+                  - generic [ref=e147]: 
+              - generic [ref=e148]:
+                - link " 0% AI Fundamentals & Advanced Pengantar AI dan konsep modern" [ref=e149] [cursor=pointer]:
+                  - /url: "#/participant-ai-fundamentals"
+                  - generic [ref=e151]: 
+                  - generic [ref=e152]: 0%
+                  - heading "AI Fundamentals & Advanced" [level=3] [ref=e153]
+                  - paragraph [ref=e154]: Pengantar AI dan konsep modern
+                - link " 0% Math for AI Aljabar, kalkulus, probabilitas" [ref=e155] [cursor=pointer]:
+                  - /url: "#/participant-modules"
+                  - generic [ref=e157]: 
+                  - generic [ref=e158]: 0%
+                  - heading "Math for AI" [level=3] [ref=e159]
+                  - paragraph [ref=e160]: Aljabar, kalkulus, probabilitas
+                - link " 0% Machine Learning Model, evaluasi, dan pipeline" [ref=e161] [cursor=pointer]:
+                  - /url: "#/participant-modules"
+                  - generic [ref=e163]: 
+                  - generic [ref=e164]: 0%
+                  - heading "Machine Learning" [level=3] [ref=e165]
+                  - paragraph [ref=e166]: Model, evaluasi, dan pipeline
+                - link "+ Pilih Modul Lainnya Jelajahi semua modul" [ref=e167] [cursor=pointer]:
+                  - /url: "#/participant-modules"
+                  - generic [ref=e169]: +
+                  - heading "Pilih Modul Lainnya" [level=3] [ref=e170]
+                  - paragraph [ref=e171]: Jelajahi semua modul
+            - generic [ref=e172]:
+              - generic [ref=e173]:
+                - generic [ref=e174]:
+                  - heading "Aktivitas Komunitas" [level=2] [ref=e175]
+                  - link "Lihat Semua " [ref=e176] [cursor=pointer]:
+                    - /url: "#/messaging"
+                    - text: Lihat Semua
+                    - generic [ref=e177]: 
+                - list [ref=e178]:
+                  - listitem [ref=e179]:
+                    - paragraph [ref=e181]:
+                      - strong [ref=e182]: Mentor Rani
+                      - text: "membalas diskusi di diskusi #Pengantar AI"
+                      - generic [ref=e183]: 2 jam yang lalu
+                  - listitem [ref=e185]:
+                    - paragraph [ref=e187]:
+                      - strong [ref=e188]: Aisyah Putri
+                      - text: "menulis pertanyaan di diskusi #Reasoning"
+                      - generic [ref=e189]: 3 jam yang lalu
+                  - listitem [ref=e191]:
+                    - paragraph [ref=e193]:
+                      - strong [ref=e194]: Panitia
+                      - text: "menandai referensi baru di diskusi #Evaluation"
+                      - generic [ref=e195]: 5 jam yang lalu
+              - generic [ref=e197]:
+                - generic [ref=e198]:
+                  - heading "Weekly Challenge sudah tersedia!" [level=2] [ref=e199]
+                  - paragraph [ref=e200]: Selesaikan tantangan mingguan dan dapatkan poin serta badge menarik.
+                  - link "Ikuti Sekarang" [ref=e201] [cursor=pointer]:
+                    - /url: "#/participant-dashboard"
+                - generic [ref=e202]: 
+            - generic [ref=e203]:
+              - generic [ref=e204]:
+                - heading "Jelajahi Specialization Track" [level=2] [ref=e205]
+                - link "Lihat Semua Track " [ref=e206] [cursor=pointer]:
+                  - /url: "#/curriculum"
+                  - text: Lihat Semua Track
+                  - generic [ref=e207]: 
+              - generic [ref=e208]:
+                - article [ref=e209]:
+                  - generic [ref=e210]: 
+                  - strong [ref=e211]: Vision
+                  - generic [ref=e212]: Computer Vision, Image Processing, Object Detection
+                - article [ref=e213]:
+                  - generic [ref=e214]: 
+                  - strong [ref=e215]: Speech
+                  - generic [ref=e216]: ASR, TTS, Whisper, Audio ML
+                - article [ref=e217]:
+                  - generic [ref=e218]: 
+                  - strong [ref=e219]: Language Model
+                  - generic [ref=e220]: NLP, LLM, RAG, fine-tuning
+                - article [ref=e221]:
+                  - generic [ref=e222]: 
+                  - strong [ref=e223]: Infrastructure
+                  - generic [ref=e224]: MLOps, cloud, deployment, scalability
+                - article [ref=e225]:
+                  - generic [ref=e226]: 
+                  - strong [ref=e227]: Multimodal Interaction
+                  - generic [ref=e228]: VLM, multimodal LLM, cross-modal learning
+                - article [ref=e229]:
+                  - generic [ref=e230]: 
+                  - strong [ref=e231]: Bioinformatics
+                  - generic [ref=e232]: Genomics, protein analysis, medical AI
+          - complementary [ref=e233]:
+            - generic [ref=e234]:
+              - generic [ref=e235]:
+                - heading "Perjalanan Fellowship" [level=2] [ref=e236]
+                - link "Lihat Detail " [ref=e237] [cursor=pointer]:
+                  - /url: "#/curriculum"
+                  - text: Lihat Detail
+                  - generic [ref=e238]: 
+              - generic [ref=e239]:
+                - article [ref=e240]:
+                  - generic [ref=e241]: 
+                  - generic [ref=e242]:
+                    - strong [ref=e243]: Foundation Phase
+                    - generic [ref=e244]: Pemahaman dasar AI
+                  - emphasis [ref=e246]: 0%
+                - article [ref=e247]:
+                  - generic [ref=e248]: 
+                  - generic [ref=e249]:
+                    - strong [ref=e250]: Specialization
+                    - generic [ref=e251]: Pilih dan dalami track AI
+                  - emphasis [ref=e253]: 0%
+                - article [ref=e254]:
+                  - generic [ref=e255]: 
+                  - generic [ref=e256]:
+                    - strong [ref=e257]: Project Building
+                    - generic [ref=e258]: Bangun proyek nyata
+                  - emphasis [ref=e260]: 0%
+                - article [ref=e261]:
+                  - generic [ref=e262]: 
+                  - generic [ref=e263]:
+                    - strong [ref=e264]: Graduation
+                    - generic [ref=e265]: Persiapan karier dan sertifikasi
+                  - emphasis [ref=e267]: 0%
+            - generic [ref=e268]:
+              - generic [ref=e269]:
+                - heading "Upcoming Events" [level=2] [ref=e270]
+                - link "Lihat Semua " [ref=e271] [cursor=pointer]:
+                  - /url: "#/meeting"
+                  - text: Lihat Semua
+                  - generic [ref=e272]: 
+              - generic [ref=e273]:
+                - article [ref=e274]:
+                  - time [ref=e275]:
+                    - strong [ref=e276]: "22"
+                    - text: MEI
+                  - generic [ref=e277]:
+                    - 'heading "Live Session: Build RAG Chatbot" [level=3] [ref=e278]'
+                    - paragraph [ref=e279]: 10.00 - 12.00 WIB
+                  - link "Gabung" [ref=e280] [cursor=pointer]:
+                    - /url: "#/participant-events"
+                - article [ref=e281]:
+                  - time [ref=e282]:
+                    - strong [ref=e283]: "25"
+                    - text: MEI
+                  - generic [ref=e284]:
+                    - 'heading "Mentor Clinic: Career in AI" [level=3] [ref=e285]'
+                    - paragraph [ref=e286]: 19.00 - 20.30 WIB
+                  - link "Gabung" [ref=e287] [cursor=pointer]:
+                    - /url: "#/participant-events"
+                - article [ref=e288]:
+                  - time [ref=e289]:
+                    - strong [ref=e290]: "30"
+                    - text: MEI
+                  - generic [ref=e291]:
+                    - 'heading "Workshop: Data Visualization" [level=3] [ref=e292]'
+                    - paragraph [ref=e293]: 13.00 - 15.00 WIB
+                  - link "Gabung" [ref=e294] [cursor=pointer]:
+                    - /url: "#/participant-events"
+            - generic [ref=e295]:
+              - generic [ref=e296]:
+                - heading "Leaderboard" [level=2] [ref=e297]
+                - link "Lihat Semua " [ref=e298] [cursor=pointer]:
+                  - /url: "#/leaderboard"
+                  - text: Lihat Semua
+                  - generic [ref=e299]: 
+              - list [ref=e300]:
+                - listitem [ref=e301]:
+                  - generic [ref=e302]: "1"
+                  - generic [ref=e303]: "****"
+                  - strong [ref=e304]: "*********"
+                  - emphasis [ref=e305]: 2.450 Poin
+                  - generic [ref=e306]: 
+                - listitem [ref=e307]:
+                  - generic [ref=e308]: "2"
+                  - strong [ref=e310]: Aisyah Putri (Kamu)
+                  - emphasis [ref=e311]: 2.120 Poin
+                  - generic [ref=e312]: 
+                - listitem [ref=e313]:
+                  - generic [ref=e314]: "3"
+                  - generic [ref=e315]: "****"
+                  - strong [ref=e316]: "*********"
+                  - emphasis [ref=e317]: 1.890 Poin
+                  - generic [ref=e318]: 
+            - generic [ref=e319]:
+              - generic [ref=e320]: 
+              - generic [ref=e321]:
+                - strong [ref=e322]: Butuh bantuan?
+                - paragraph [ref=e323]: Tanya apapun ke HerAI Assistant di chatroom atau klik di sini.
+              - link "" [ref=e324] [cursor=pointer]:
+                - /url: "#/messaging"
+                - generic [ref=e325]: 
+  - text:   
