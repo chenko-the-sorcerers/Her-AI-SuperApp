@@ -275,17 +275,57 @@
             duration: '35 menit',
             tag: 'Konteks',
             content: `
-                <h2>2. Sejarah Singkat Artificial Intelligence</h2>
-                <p>AI bukan teknologi yang muncul tiba-tiba. Laporan WTTC menjelaskan bahwa gagasan tentang mesin berpikir sudah dibahas sejak era komputer modern setelah Perang Dunia II. Salah satu titik pentingnya adalah Dartmouth Conference pada 1956, yang mempertemukan peneliti dari berbagai bidang untuk mengeksplorasi konsep "thinking machines" dan memperkenalkan istilah Artificial Intelligence sebagai bidang studi tersendiri.</p>
-                <div class="lesson-insight-grid">
-                    <article><span>1950</span><h3>Alan Turing</h3><p>Turing mengajukan pertanyaan penting: apakah mesin dapat berpikir? Gagasannya menjadi dasar diskusi tentang kecerdasan mesin.</p></article>
-                    <article><span>1956</span><h3>Dartmouth Conference</h3><p>Konferensi ini sering dianggap sebagai kelahiran AI sebagai bidang ilmu formal.</p></article>
-                    <article><span>1997</span><h3>IBM Deep Blue</h3><p>Komputer IBM mengalahkan Gary Kasparov dalam catur dan menunjukkan kemampuan AI pada tugas kompleks.</p></article>
+                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-hourglass-half"></i> Topik 2: Sejarah Singkat Artificial Intelligence</h2>
+                
+                <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div>
+                        <h4 style="color: var(--fellow-pink); margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 700;">Waktunya Time Travel! ⏳</h4>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--fellow-text);">Tahu nggak sih? Konsep AI itu udah ada jauh sebelum HP layar sentuh apalagi TikTok diciptakan lho! Perjalanan AI itu panjang banget, ada masa jayanya, ada juga masa "musim dingin" (AI Winter) di mana orang-orang sempet nyerah. Yuk kita intip gimana mesin bisa perlahan-lahan jadi sepintar sekarang!</p>
+                    </div>
                 </div>
-                <h2>AI Menjadi Arus Utama</h2>
-                <p>WTTC menyoroti beberapa momen yang membuat publik semakin memahami kemampuan AI: IBM Watson memenangkan Jeopardy pada 2011, AlphaFold membantu memprediksi struktur protein, dan ChatGPT pada 2022 memperkenalkan chatbot AI kepada lebih dari 100 juta pengguna dalam waktu singkat.</p>
-                <p>Pelajaran pentingnya: AI berkembang secara bertahap melalui riset panjang, lalu terlihat "mendadak besar" ketika data, algoritma, dan komputasi mencapai titik yang cukup matang.</p>
-                <aside class="lesson-reference">Referensi: WTTC, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 4-7.</aside>
+
+                <h3>Dari Imajinasi Menjadi Realitas 🌌</h3>
+                <p>Jauh sebelum komputer modern lahir, manusia udah ngebayangin benda mati yang bisa hidup dan berpikir. Dari mitologi Yunani tentang robot perunggu <i>Talos</i>, sampai kisah Frankenstein. Tapi, AI sebagai ilmu pengetahuan yang nyata baru beneran dimulai setelah Perang Dunia II.</p>
+
+                <div style="position: relative; margin: 40px 0; padding-left: 20px; border-left: 4px solid rgba(246,51,146,0.2);">
+                    <article style="position: relative; margin-bottom: 32px;">
+                        <div style="position: absolute; left: -30px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--fellow-pink); border: 4px solid white; box-shadow: 0 0 0 2px rgba(246,51,146,0.2);"></div>
+                        <h3 style="margin: 0 0 8px 0; color: var(--fellow-pink);">1950: Tes Turing</h3>
+                        <p style="margin: 0; font-size: 0.95rem;">Alan Turing, seorang jenius matematika, nulis paper legendaris: <i>"Can machines think?"</i> Dia bikin <b>Turing Test</b>—kalau mesin bisa ngobrol sama manusia lewat teks dan manusianya nggak nyadar kalau dia lagi ngobrol sama mesin, berarti mesin itu "cerdas"!</p>
+                    </article>
+                    
+                    <article style="position: relative; margin-bottom: 32px;">
+                        <div style="position: absolute; left: -30px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--fellow-pink); border: 4px solid white; box-shadow: 0 0 0 2px rgba(246,51,146,0.2);"></div>
+                        <h3 style="margin: 0 0 8px 0; color: var(--fellow-pink);">1956: Kelahiran AI Sesungguhnya</h3>
+                        <p style="margin: 0; font-size: 0.95rem;">Istilah <b>"Artificial Intelligence"</b> pertama kali diresmikan di <i>Dartmouth Conference</i>. Para ilmuwan super pintar ngumpul dan optimis banget bisa bikin mesin cerdas dalam beberapa tahun (spoiler: ternyata jauh lebih susah dari perkiraan mereka! 🤭).</p>
+                    </article>
+
+                    <article style="position: relative; margin-bottom: 32px;">
+                        <div style="position: absolute; left: -30px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--fellow-pink); border: 4px solid white; box-shadow: 0 0 0 2px rgba(246,51,146,0.2);"></div>
+                        <h3 style="margin: 0 0 8px 0; color: var(--fellow-pink);">1970an - 1980an: AI Winter ❄️</h3>
+                        <p style="margin: 0; font-size: 0.95rem;">Fase sedih buat AI. Riset mandek karena ekspektasi ketinggian tapi komputernya masih lemot dan datanya dikit. Dana riset disetop, dan banyak yang pesimis AI bakal terwujud.</p>
+                    </article>
+
+                    <article style="position: relative; margin-bottom: 32px;">
+                        <div style="position: absolute; left: -30px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--fellow-pink); border: 4px solid white; box-shadow: 0 0 0 2px rgba(246,51,146,0.2);"></div>
+                        <h3 style="margin: 0 0 8px 0; color: var(--fellow-pink);">1997: Manusia vs Mesin (Deep Blue)</h3>
+                        <p style="margin: 0; font-size: 0.95rem;">Titik balik! Superkomputer IBM <b>Deep Blue</b> berhasil ngalahin juara dunia catur, Garry Kasparov. Ini ngebuktiin kalau mesin bisa menangani problem-solving yang sangat rumit.</p>
+                    </article>
+
+                    <article style="position: relative;">
+                        <div style="position: absolute; left: -30px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--fellow-pink); border: 4px solid white; box-shadow: 0 0 0 2px rgba(246,51,146,0.2);"></div>
+                        <h3 style="margin: 0 0 8px 0; color: var(--fellow-pink);">2010an - Sekarang: Era Deep Learning 🚀</h3>
+                        <p style="margin: 0; font-size: 0.95rem;">Berkat internet (data melimpah) dan GPU buat gaming (komputasi ngebut), <i>Deep Learning</i> meledak! AI mulai bisa mengenali gambar, nerjemahin bahasa, sampai akhirnya ChatGPT rilis di 2022 dan ngerubah dunia.</p>
+                    </article>
+                </div>
+
+                <div style="background: rgba(246,51,146,0.05); border-left: 4px solid var(--fellow-pink); padding: 16px 20px; border-radius: 0 16px 16px 0; margin: 32px 0;">
+                    <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-seedling"></i> Pelajaran Penting</h4>
+                    <p style="margin: 0; font-size: 0.95rem;">AI nggak meledak dalam semalam lho! Dia berevolusi puluhan tahun, jatuh bangun, sampai akhirnya tiga hal ngumpul di waktu yang pas: <b>Data yang super banyak, Algoritma yang makin pintar, dan Komputer yang makin kencang.</b></p>
+                </div>
+
+                <aside class="lesson-reference">Referensi: World Travel & Tourism Council, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 4-7.</aside>
             `
         },
         '/participant-ai-types': {
@@ -294,21 +334,72 @@
             duration: '40 menit',
             tag: 'Klasifikasi',
             content: `
-                <h2>3. Jenis-Jenis Artificial Intelligence</h2>
-                <p>Menurut WTTC, AI dapat diklasifikasikan dengan beberapa cara: berdasarkan cara sistem belajar, berdasarkan kapabilitas, dan berdasarkan fungsionalitas. Klasifikasi ini membantu kita tidak menyamaratakan semua sistem AI.</p>
-                <div class="ai-capability-grid">
-                    <article><i class="fas fa-bullseye"></i><h3>ANI</h3><p>Artificial Narrow Intelligence dirancang untuk tugas spesifik seperti pengenal wajah, filter spam, atau rekomendasi produk.</p></article>
-                    <article><i class="fas fa-brain"></i><h3>AGI</h3><p>Artificial General Intelligence adalah level hipotesis ketika mesin memiliki kemampuan kognitif lintas domain setara manusia.</p></article>
-                    <article><i class="fas fa-star"></i><h3>ASI</h3><p>Artificial Superintelligence adalah level hipotetis ketika kecerdasan mesin melampaui kapasitas intelektual manusia terbaik.</p></article>
+                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-layer-group"></i> Topik 3: Jenis-Jenis Artificial Intelligence</h2>
+                
+                <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div>
+                        <h4 style="color: var(--fellow-pink); margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 700;">Nggak Semua AI Diciptakan Sama! 🎨</h4>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--fellow-text);">Sering denger ChatGPT disamain sama bot customer service bank? Padahal beda banget lho "otak"-nya! AI itu banyak jenisnya, tergantung buat apa dia diciptakan dan gimana cara kerjanya. Yuk kita kelompokin biar kamu nggak salah sebut lagi!</p>
+                    </div>
                 </div>
-                <h2>Berdasarkan Fungsionalitas</h2>
-                <p>WTTC juga membahas expert system, predictive AI, dan generative AI. Expert system meniru keahlian manusia pada domain tertentu, predictive AI memperkirakan kemungkinan masa depan berdasarkan data historis, sedangkan generative AI menghasilkan konten baru seperti teks, gambar, video, atau kode.</p>
-                <ol class="lesson-numbered-list">
-                    <li><strong>Expert System:</strong> sistem berbasis pengetahuan dan aturan untuk memberi saran atau rekomendasi.</li>
-                    <li><strong>Predictive AI:</strong> sistem yang memakai data historis untuk memperkirakan pola atau risiko masa depan.</li>
-                    <li><strong>Generative AI:</strong> sistem yang menciptakan output baru berdasarkan pola dari data pelatihan.</li>
-                </ol>
-                <aside class="lesson-reference">Referensi: WTTC, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 21-24 dan Annex pp. 35-39.</aside>
+
+                <h3>Berdasarkan Fungsionalitas (Apa yang mereka kerjakan) 🛠️</h3>
+                <p>Kalau kita lihat dari kegunaannya di dunia nyata, AI bisa dibagi jadi beberapa tipe jagoan:</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 32px 0;">
+                    <article style="background: white; padding: 24px; border-radius: 16px; border: 1px solid #eee; box-shadow: 0 4px 16px rgba(0,0,0,0.04); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--fellow-pink);"></div>
+                        <i class="fas fa-gavel" style="font-size: 2rem; color: var(--fellow-pink); margin-bottom: 16px; display: block;"></i>
+                        <h3 style="margin: 0 0 12px 0; font-size: 1.1rem; color: #171827;">1. Expert Systems</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted); line-height: 1.5;">Sistem senior yang kerjanya ngasih rekomendasi berdasarkan <i>rules</i> (aturan) yang kaku. Contoh: Sistem diagnosa penyakit di aplikasi halo-halo dokter versi lama yang nanya gejalamu satu-satu.</p>
+                    </article>
+
+                    <article style="background: white; padding: 24px; border-radius: 16px; border: 1px solid #eee; box-shadow: 0 4px 16px rgba(0,0,0,0.04); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--fellow-pink);"></div>
+                        <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--fellow-pink); margin-bottom: 16px; display: block;"></i>
+                        <h3 style="margin: 0 0 12px 0; font-size: 1.1rem; color: #171827;">2. Predictive AI</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted); line-height: 1.5;">Sang peramal masa depan! Dia makan banyak banget data masa lalu buat nebak apa yang bakal terjadi. Contoh: AI BMKG buat nebak cuaca, atau rekomendasi saham.</p>
+                    </article>
+
+                    <article style="background: white; padding: 24px; border-radius: 16px; border: 1px solid #eee; box-shadow: 0 4px 16px rgba(0,0,0,0.04); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--fellow-pink);"></div>
+                        <i class="fas fa-wand-magic-sparkles" style="font-size: 2rem; color: var(--fellow-pink); margin-bottom: 16px; display: block;"></i>
+                        <h3 style="margin: 0 0 12px 0; font-size: 1.1rem; color: #171827;">3. Generative AI</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted); line-height: 1.5;">Si seniman kreatif! Nggak cuma nebak, dia bisa nyiptain hal BARU. Bikin puisi, gambar kucing naik naga, sampai nulis kode program. Contoh: ChatGPT, Midjourney, Canva Magic.</p>
+                    </article>
+                </div>
+
+                <h3>Berdasarkan Cara Belajar (Gaya Belajar AI) 🎓</h3>
+                <p>Sama kayak manusia, AI juga punya gaya belajar yang beda-beda waktu di sekolah alias waktu di-<i>training</i> sama programmernya:</p>
+
+                <div style="background: #fafafa; border-radius: 20px; padding: 24px; margin: 32px 0;">
+                    <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                        <div style="width: 40px; height: 40px; background: rgba(246,51,146,0.1); color: var(--fellow-pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div>
+                            <h4 style="margin: 0 0 8px 0; font-size: 1.05rem;">Supervised Learning (Belajar Pake Kunci Jawaban)</h4>
+                            <p style="margin: 0; font-size: 0.9rem; line-height: 1.5; color: var(--fellow-muted);">AI dikasih ribuan soal lengkap sama kunci jawabannya. Misalnya, dikasih 1000 gambar kucing yang udah di-label "Ini Kucing". Nanti dia bakal hafal pola kucing itu kayak apa.</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                        <div style="width: 40px; height: 40px; background: rgba(246,51,146,0.1); color: var(--fellow-pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-puzzle-piece"></i></div>
+                        <div>
+                            <h4 style="margin: 0 0 8px 0; font-size: 1.05rem;">Unsupervised Learning (Belajar Ngelompokin Sendiri)</h4>
+                            <p style="margin: 0; font-size: 0.9rem; line-height: 1.5; color: var(--fellow-muted);">AI dikasih banyak data tapi <b>tanpa kunci jawaban</b>. Tugas dia adalah nyari pola sendiri. Cocok banget buat nyari kelompok pembeli di mall yang sifat belanjanya mirip-mirip.</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 16px;">
+                        <div style="width: 40px; height: 40px; background: rgba(246,51,146,0.1); color: var(--fellow-pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-gamepad"></i></div>
+                        <div>
+                            <h4 style="margin: 0 0 8px 0; font-size: 1.05rem;">Reinforcement Learning (Belajar dari Hukuman & Hadiah)</h4>
+                            <p style="margin: 0; font-size: 0.9rem; line-height: 1.5; color: var(--fellow-muted);">Persis kayak ngelatih anjing peliharaan! AI disuruh nyoba main game, kalau mati dia dikasih "penalti", kalau menang dikasih "poin". Lama-lama dia bakal jago banget nyari cara buat menang (kayak AI yang ngalahin juara catur tadi).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="lesson-reference">Referensi: World Travel & Tourism Council, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 21-24.</aside>
             `
         },
         '/participant-ai-components': {
@@ -317,18 +408,52 @@
             duration: '45 menit',
             tag: 'Fondasi',
             content: `
-                <h2>4. Komponen Utama AI</h2>
-                <p>WTTC merangkum AI modern sebagai gabungan dari tiga hal besar: algoritma, data, dan computing power. Algoritma memberi instruksi dan pola belajar, data menjadi bahan bakar pembelajaran, sedangkan computing power memungkinkan model memproses data dalam skala besar.</p>
-                <div class="practice-card-grid">
-                    <article><span>1</span><h3>Algorithms</h3><p>Algoritma adalah "otak" AI. Dalam AI modern, algoritma tidak hanya mengikuti aturan IF-THEN-ELSE, tetapi belajar pola dari data.</p></article>
-                    <article><span>2</span><h3>Data</h3><p>Data adalah bahan bakar AI. Semakin relevan, beragam, dan berkualitas datanya, semakin baik peluang model belajar pola yang berguna.</p></article>
-                    <article><span>3</span><h3>Computing Power</h3><p>GPU, TPU, cloud, dan supercomputer memungkinkan pelatihan model besar yang mustahil dilakukan dengan komputer biasa.</p></article>
+            content: `
+                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-cubes"></i> Topik 4: Komponen Utama AI (Trinitas AI Modern)</h2>
+                
+                <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div>
+                        <h4 style="color: var(--fellow-pink); margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 700;">Resep Rahasia AI Super Pintar! 🍳</h4>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--fellow-text);">Pernah mikir nggak sih, buat bikin AI kayak ChatGPT itu butuh apa aja? Nah, di dunia AI modern, ada tiga bahan baku utama yang nggak boleh kurang satupun. Kalau kurang satu aja, AI-nya bakal gagal total! Ketiga bahan ini sering disebut sebagai <i>Trinitas AI Modern</i>. Mari kita bedah resepnya!</p>
+                    </div>
                 </div>
-                <h2>Mengapa Data Sangat Penting?</h2>
-                <p>Laporan WTTC menjelaskan bahwa volume data dunia meningkat sangat cepat melalui smartphone, perangkat internet, dokumen, media sosial, sensor, kendaraan, dan infrastruktur digital. Data besar mendukung training data, feature extraction, performa model, dan kemampuan sistem AI menangani skenario kompleks.</p>
-                <h2>Mengapa Komputasi Menentukan?</h2>
-                <p>Model AI besar dilatih pada kumpulan data yang sangat masif. Untuk memprosesnya, sistem membutuhkan chip khusus dan infrastruktur cloud. Karena itu, AI modern sangat terkait dengan GPU, TPU, data center, dan ekosistem semikonduktor global.</p>
-                <aside class="lesson-reference">Referensi: WTTC, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 8-20.</aside>
+
+                <h3>Tiga Pilar Utama (The Big Three) 🏛️</h3>
+                <p>Menurut riset dan pakar industri, ledakan AI dekade ini terjadi karena tiga hal ini akhirnya "matang" secara bersamaan:</p>
+
+                <div class="practice-card-grid" style="margin: 32px 0;">
+                    <article style="background: white; border-radius: 16px; border: 1px solid #e1e4e8; padding: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                        <div style="width: 60px; height: 60px; margin: 0 auto 16px auto; background: rgba(246,51,146,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--fellow-pink); font-size: 1.5rem;"><i class="fas fa-code"></i></div>
+                        <h3 style="margin: 0 0 12px 0; font-size: 1.1rem;">1. Algoritma (Sang Koki)</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Algoritma adalah otak matematis atau instruksi kerjanya. Bukannya dikasih aturan mutlak <i>"if x do y"</i>, algoritma ML modern itu kayak ngajarin koki cara masak. Mereka dibikin supaya bisa belajar dan beradaptasi dari pengalaman.</p>
+                    </article>
+
+                    <article style="background: white; border-radius: 16px; border: 1px solid #e1e4e8; padding: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                        <div style="width: 60px; height: 60px; margin: 0 auto 16px auto; background: rgba(246,51,146,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--fellow-pink); font-size: 1.5rem;"><i class="fas fa-database"></i></div>
+                        <h3 style="margin: 0 0 12px 0; font-size: 1.1rem;">2. Data (Bahan Bakunya)</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Koki jago tetep butuh bahan masakan! Data adalah bahan bakar utama AI. Semakin banyak dan bersih datanya (teks, gambar, video dari internet), semakin pinter AI-nya. Makanya sekarang data dibilang <i>"The New Oil"</i>.</p>
+                    </article>
+
+                    <article style="background: white; border-radius: 16px; border: 1px solid #e1e4e8; padding: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                        <div style="width: 60px; height: 60px; margin: 0 auto 16px auto; background: rgba(246,51,146,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--fellow-pink); font-size: 1.5rem;"><i class="fas fa-microchip"></i></div>
+                        <h3 style="margin: 0 0 12px 0; font-size: 1.1rem;">3. Komputasi (Dapurnya)</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Koki jago + bahan banyak, tapi kalau dapurnya kecil ya lama masaknya! Buat memproses miliaran data, butuh superkomputer dan chip khusus (kayak GPU Nvidia/TPU Google) yang sangaaaat ngebut!</p>
+                    </article>
+                </div>
+
+                <h3>Kenapa Data Sekarang Tiba-Tiba Penting Banget? 📈</h3>
+                <p>Coba deh kamu ingat-ingat, berapa banyak foto yang kamu upload ke sosmed? Berapa banyak chat yang kamu kirim? Atau berapa kali kamu Googling sehari? Berkat internet dan smartphone, volume data dunia tuh numpuk super duper cepat! Nah, lautan data inilah yang dipake buat ngelatih AI masa kini biar mereka bisa paham pola bahasa, gambar, dan kebiasaan manusia yang <i>complex</i> banget.</p>
+
+                <h3>Kenapa Chip (Komputasi) Bikin AI Makin Pintar? 💻</h3>
+                <p>Bayangin kalau kamu disuruh baca jutaan buku dalam 1 detik. Mustahil kan? Sama! Komputer zaman dulu juga nggak kuat. Tapi semenjak perusahaan bikin <b>GPU (Graphics Processing Unit)</b>—yang awalnya buat anak gaming main game 3D—ternyata chip ini jago banget disuruh ngerjain kalkulasi AI secara bersamaan (parallel). Akhirnya, model AI raksasa bisa dilatih dalam hitungan minggu, bukan lagi puluhan tahun!</p>
+
+                <div style="background: rgba(246,51,146,0.05); border-left: 4px solid var(--fellow-pink); padding: 16px 20px; border-radius: 0 16px 16px 0; margin: 32px 0;">
+                    <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-exclamation-circle"></i> Ringkasan Simpelnya:</h4>
+                    <p style="margin: 0; font-size: 0.95rem;"><b>AI Pintar = Algoritma Cerdas + Big Data + GPU Super Ngebut.</b> Kalau salah satu nggak ada, maka AI bakal balik lagi ke "zaman es" (AI Winter) kayak tahun 80an!</p>
+                </div>
+
+                <aside class="lesson-reference">Referensi: World Travel & Tourism Council, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 8-20.</aside>
             `
         },
         '/participant-ai-applications': {
@@ -337,18 +462,74 @@
             duration: '40 menit',
             tag: 'Aplikasi',
             content: `
-                <h2>5. Penerapan AI di Berbagai Bidang</h2>
-                <p>AI adalah teknologi multi-use, mirip listrik: dapat diterapkan pada banyak sektor dan skenario. WTTC menekankan bahwa AI dapat membantu menganalisis data besar, memecahkan masalah kompleks, membuat keputusan, dan menjalankan tugas kreatif.</p>
-                <div class="lesson-insight-grid">
-                    <article><span>Travel</span><h3>Personalized Recommendation</h3><p>AI dapat membantu rekomendasi destinasi, itinerary, layanan pelanggan, dan prediksi gangguan operasional.</p></article>
-                    <article><span>Health</span><h3>Medical AI</h3><p>AlphaFold dan AI imaging menunjukkan potensi AI untuk riset obat, diagnosis, dan analisis medis berskala besar.</p></article>
-                    <article><span>Creative</span><h3>Generative Content</h3><p>Generative AI dapat membuat teks, gambar, kode, dan konten kreatif lain, tetapi tetap membutuhkan verifikasi manusia.</p></article>
+                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-globe"></i> Topik 5: Penerapan AI di Kehidupan Nyata</h2>
+                
+                <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div>
+                        <h4 style="color: var(--fellow-pink); margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 700;">AI Itu Ada di Mana-Mana! 🌍</h4>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--fellow-text);">Sadar atau nggak, dari bangun tidur sampai tidur lagi, kamu udah dibantuin sama AI lho! AI bukan lagi sekadar robot di film sci-fi, tapi udah masuk ke semua aspek kehidupan kita. Mulai dari hiburan, kesehatan, sampai nulis email buat kerjaan. Yuk kita lihat seberapa jauh AI udah bantu (dan ngubah) dunia kita!</p>
+                    </div>
                 </div>
-                <h2>Risiko dan Guardrails</h2>
-                <p>AI juga membawa risiko, termasuk disinformasi, deepfake, bias, privasi, dan ketergantungan pada output yang mungkin salah. WTTC menekankan perlunya guardrails, regulasi, kode etik, dan praktik penggunaan bertanggung jawab.</p>
-                <h2>Generative AI dan Hallucination</h2>
-                <p>Generative AI dapat menghasilkan jawaban yang terlihat meyakinkan tetapi keliru. Fenomena ini disebut hallucination. Karena itu, output AI untuk keputusan bisnis, keselamatan, atau operasional harus diverifikasi.</p>
-                <aside class="lesson-reference">Referensi: WTTC, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 22-31.</aside>
+
+                <h3>AI di Berbagai Industri 🏢</h3>
+                <p>Layaknya listrik di abad ke-20, AI adalah "general-purpose technology" yang bisa dipakai di industri manapun. Coba cek beberapa contoh keren ini:</p>
+
+                <div class="lesson-insight-grid" style="margin: 32px 0;">
+                    <article style="border: 2px solid #eee; transition: all 0.3s; border-radius: 16px; position: relative;">
+                        <div style="position: absolute; top: -15px; left: 20px; background: var(--fellow-pink); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;"><i class="fas fa-plane"></i> Pariwisata</div>
+                        <h3 style="margin-top: 16px;">Jalan-Jalan Pintar</h3>
+                        <p>Tiket pesawat murah yang tiba-tiba muncul? Rekomendasi hotel yang cocok banget sama selera kamu? Atau koper yang rutenya di-track otomatis di bandara? Itu semua berkat AI yang nganalisa jutaan data traveler setiap detik!</p>
+                    </article>
+                    
+                    <article style="border: 2px solid #eee; transition: all 0.3s; border-radius: 16px; position: relative;">
+                        <div style="position: absolute; top: -15px; left: 20px; background: var(--fellow-pink); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;"><i class="fas fa-heartbeat"></i> Kesehatan</div>
+                        <h3 style="margin-top: 16px;">Asisten Dokter Super</h3>
+                        <p>AlphaFold buatan Google DeepMind berhasil memprediksi bentuk ratusan juta protein (ini penting banget buat bikin obat baru!). AI juga jago ngebaca hasil rontgen buat deteksi tumor lebih cepet dari mata manusia.</p>
+                    </article>
+
+                    <article style="border: 2px solid #eee; transition: all 0.3s; border-radius: 16px; position: relative;">
+                        <div style="position: absolute; top: -15px; left: 20px; background: var(--fellow-pink); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;"><i class="fas fa-palette"></i> Kreatif & Seni</div>
+                        <h3 style="margin-top: 16px;">Generator Konten</h3>
+                        <p>Buntu nulis caption? Minta ChatGPT! Butuh ilustrasi kucing main gitar? Pake Midjourney! AI Generatif udah ngubah cara kreator kerja. Bukan buat gantiin seniman, tapi buat <i>brainstorming</i> kilat.</p>
+                    </article>
+                </div>
+
+                <h3>Tapi Hati-Hati, AI Juga Punya Sisi Gelap ⚠️</h3>
+                <p>Walaupun canggih, AI tetep buatan manusia yang nggak sempurna. Ada beberapa risiko yang wajib kita waspadai kalau pakai AI:</p>
+
+                <div style="display: grid; gap: 16px; margin: 32px 0;">
+                    <div style="display: flex; gap: 16px; padding: 16px; border-radius: 12px; background: #fff; border: 1px solid #fee2e2;">
+                        <div style="color: #ef4444; font-size: 1.5rem;"><i class="fas fa-mask"></i></div>
+                        <div>
+                            <h4 style="margin: 0 0 4px 0; color: #b91c1c;">Deepfake & Disinformasi</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: #4b5563;">AI bisa dipake buat bikin video palsu orang penting ngomong hal yang nggak pernah dia bilang. Hati-hati ya sama hoax canggih!</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; padding: 16px; border-radius: 12px; background: #fff; border: 1px solid #fef3c7;">
+                        <div style="color: #f59e0b; font-size: 1.5rem;"><i class="fas fa-balance-scale-right"></i></div>
+                        <div>
+                            <h4 style="margin: 0 0 4px 0; color: #b45309;">Bias & Diskriminasi</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: #4b5563;">Karena AI belajar dari data manusia, dan manusia itu nggak sempurna, AI bisa ikutan rasis atau seksis kalau data pelatihannya kotor lho!</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; padding: 16px; border-radius: 12px; background: #fff; border: 1px solid #e0e7ff;">
+                        <div style="color: #6366f1; font-size: 1.5rem;"><i class="fas fa-ghost"></i></div>
+                        <div>
+                            <h4 style="margin: 0 0 4px 0; color: #4338ca;">Hallucination (Halusinasi)</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: #4b5563;">Pernah dikasih jawaban yang kelihatan "sangat meyakinkan" sama ChatGPT, padahal faktanya ngawur 100%? Nah itu namanya halusinasi. Makanya <b>wajib cek fakta!</b></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(246,51,146,0.05); border-left: 4px solid var(--fellow-pink); padding: 16px 20px; border-radius: 0 16px 16px 0; margin: 32px 0;">
+                    <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-shield-alt"></i> Butuh "Guardrails"</h4>
+                    <p style="margin: 0; font-size: 0.95rem;">Sama kayak jalan tol tol butuh pagar pembatas, pengembangan AI juga butuh regulasi, kode etik, dan kebijakan (guardrails) biar nggak membahayakan manusia.</p>
+                </div>
+
+                <aside class="lesson-reference">Referensi: World Travel & Tourism Council, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 22-31.</aside>
             `
         },
         '/participant-ai-summary': {
@@ -357,16 +538,59 @@
             duration: '25 menit',
             tag: 'Review',
             content: `
-                <h2>6. Ringkasan</h2>
-                <p>AI adalah cabang teknologi yang membuat komputer atau mesin dapat menunjukkan perilaku cerdas: belajar, menganalisis data, mengenali pola, mengambil keputusan, dan membuat konten. AI modern berkembang karena kemajuan algoritma, ledakan data, dan computing power.</p>
-                <ol class="lesson-numbered-list">
-                    <li>AI memiliki sejarah panjang, tetapi menjadi arus utama setelah teknologi, data, dan akses publik semakin matang.</li>
-                    <li>AI, Machine Learning, dan Deep Learning saling terkait secara hierarkis.</li>
-                    <li>AI dapat diklasifikasikan berdasarkan cara belajar, kapabilitas, dan fungsionalitas.</li>
-                    <li>Generative AI membuka peluang besar, tetapi juga membawa risiko seperti hallucination dan disinformasi.</li>
-                    <li>Kesenjangan skill AI menjadi tantangan penting. Belajar AI bukan hanya soal memakai tools, tetapi memahami cara berpikir, batasan, dan tanggung jawabnya.</li>
-                </ol>
-                <div class="daily-ai-box"><h3>Checklist Pemahaman</h3><div><span><i class="fas fa-brain"></i><small>Definisi AI</small></span><span><i class="fas fa-code-branch"></i><small>ML dan DL</small></span><span><i class="fas fa-database"></i><small>Data</small></span><span><i class="fas fa-microchip"></i><small>Komputasi</small></span><span><i class="fas fa-shield-halved"></i><small>Risiko</small></span></div></div>
+            content: `
+                <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-clipboard-check"></i> Topik 6: Ringkasan Pengantar AI</h2>
+                
+                <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div>
+                        <h4 style="color: var(--fellow-pink); margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 700;">Yeay! Kamu Berhasil! 🎉</h4>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--fellow-text);">Selamat, Tech Bestie! Kamu udah nyelesain Modul 1 dan resmi jadi orang yang "melek AI". Sebelum lanjut latihan dan ngerjain kuis, yuk kita ingat-ingat lagi apa aja poin penting yang udah kita pelajarin bareng. <i>Let's wrap this up!</i></p>
+                    </div>
+                </div>
+
+                <h3>Ceklis Pengetahuan Baru Kamu:</h3>
+                <p>Kalau kamu udah paham kelima poin di bawah ini, berarti kamu udah siap banget ngobrolin AI di tongkrongan! 😎</p>
+
+                <div style="display: flex; flex-direction: column; gap: 16px; margin: 32px 0;">
+                    <div style="display: flex; gap: 16px; align-items: center; padding: 16px; background: white; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                        <div style="width: 32px; height: 32px; background: var(--fellow-pink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
+                        <p style="margin: 0; font-size: 0.95rem;"><b>AI Bukan Cuma Robot.</b> AI adalah payung besar (termasuk ML dan DL) buat bikin sistem yang bisa belajar dan mikir mirip manusia.</p>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; align-items: center; padding: 16px; background: white; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                        <div style="width: 32px; height: 32px; background: var(--fellow-pink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
+                        <p style="margin: 0; font-size: 0.95rem;"><b>AI Nggak Terjadi Semalam.</b> Ada sejarah panjang dari tahun 1950 (Turing Test) sampai sempat ngerasain AI Winter sebelum sukses sekarang.</p>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; align-items: center; padding: 16px; background: white; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                        <div style="width: 32px; height: 32px; background: var(--fellow-pink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</div>
+                        <p style="margin: 0; font-size: 0.95rem;"><b>Semua AI Punya Tipe.</b> Ada yang jago 1 hal doang (ANI), dan ada juga Generative AI yang bisa nyiptain lagu atau gambar dari nol.</p>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; align-items: center; padding: 16px; background: white; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                        <div style="width: 32px; height: 32px; background: var(--fellow-pink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">4</div>
+                        <p style="margin: 0; font-size: 0.95rem;"><b>Trinitas AI Modern.</b> AI bisa sepintar ini gara-gara 3 faktor yang akhirnya terkumpul: Algoritma cerdas + Big Data + GPU (Komputasi).</p>
+                    </div>
+
+                    <div style="display: flex; gap: 16px; align-items: center; padding: 16px; background: white; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+                        <div style="width: 32px; height: 32px; background: var(--fellow-pink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">5</div>
+                        <p style="margin: 0; font-size: 0.95rem;"><b>Tetap Kritis.</b> Walau canggih ngebantu kerjaan, AI bisa halusinasi, bias, atau dipakai nyebar hoax. Selalu cross-check ya!</p>
+                    </div>
+                </div>
+
+                <div class="daily-ai-box" style="margin-top: 40px;">
+                    <h3>Lencana Konsep Dasar <i class="fas fa-medal" style="color: #f59e0b;"></i></h3>
+                    <p style="font-size: 0.9rem; color: #51596d; margin-bottom: 16px;">Kamu udah buka semua pilar pengetahuan dasar ini:</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+                        <span style="background: rgba(246,51,146,0.1); color: var(--fellow-pink); padding: 8px 16px; border-radius: 100px; font-weight: 500; font-size: 0.9rem;"><i class="fas fa-brain"></i> Definisi AI</span>
+                        <span style="background: rgba(246,51,146,0.1); color: var(--fellow-pink); padding: 8px 16px; border-radius: 100px; font-weight: 500; font-size: 0.9rem;"><i class="fas fa-code-branch"></i> ML dan DL</span>
+                        <span style="background: rgba(246,51,146,0.1); color: var(--fellow-pink); padding: 8px 16px; border-radius: 100px; font-weight: 500; font-size: 0.9rem;"><i class="fas fa-database"></i> Data</span>
+                        <span style="background: rgba(246,51,146,0.1); color: var(--fellow-pink); padding: 8px 16px; border-radius: 100px; font-weight: 500; font-size: 0.9rem;"><i class="fas fa-microchip"></i> Komputasi</span>
+                        <span style="background: rgba(246,51,146,0.1); color: var(--fellow-pink); padding: 8px 16px; border-radius: 100px; font-weight: 500; font-size: 0.9rem;"><i class="fas fa-shield-halved"></i> Risiko</span>
+                    </div>
+                </div>
+
                 <aside class="lesson-reference">Referensi: WTTC, <em>Introduction to Artificial Intelligence (AI) Technology</em>, 2024, pp. 31-35.</aside>
             `
         }

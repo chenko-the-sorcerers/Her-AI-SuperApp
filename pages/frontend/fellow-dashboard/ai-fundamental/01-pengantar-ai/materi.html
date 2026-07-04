@@ -80,31 +80,70 @@
                     </div>
 
                     <article class="lesson-article" id="materi-ai">
-                        <h2>1. Pengantar AI (Introduction to AI)</h2>
-                        <p><strong>Kecerdasan Buatan</strong> atau <strong>Artificial Intelligence (AI)</strong> adalah cabang ilmu komputer yang berfokus pada pengembangan sistem yang mampu melakukan tugas-tugas yang biasanya memerlukan kecerdasan manusia. Tugas-tugas ini meliputi pengenalan visual, pemahaman bahasa alami, pengambilan keputusan, dan pembelajaran adaptif.</p>
-
-                        <h2>1.1 Klasifikasi AI Berdasarkan Kapabilitas</h2>
-                        <p>Secara teoritis dan praktis, AI dibagi menjadi tiga tingkatan utama berdasarkan kemampuannya:</p>
-                        <div class="ai-capability-grid">
-                            <article><i class="fas fa-bullseye"></i><h3>Artificial Narrow Intelligence (ANI)</h3><p>Dikenal juga sebagai Weak AI. Sistem ini dirancang dan dilatih untuk satu tugas spesifik, seperti mengenali wajah, bermain catur, atau menyaring spam. Seluruh sistem AI yang ada di dunia saat ini berada pada kategori ANI.</p></article>
-                            <article><i class="fas fa-brain"></i><h3>Artificial General Intelligence (AGI)</h3><p>Dikenal sebagai Strong AI. Ini adalah level hipotesis di mana mesin memiliki kemampuan kognitif yang setara dengan manusia dan dapat memahami, mempelajari, serta menerapkan pengetahuan di berbagai domain secara mandiri.</p></article>
-                            <article><i class="fas fa-star"></i><h3>Artificial Superintelligence (ASI)</h3><p>Level di mana kecerdasan mesin melampaui seluruh kapasitas intelektual manusia terbaik dalam segala bidang, termasuk kreativitas ilmiah, kebijaksanaan umum, dan keterampilan sosial.</p></article>
+                        <h2 style="color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-sparkles"></i> Topik 1: Pengantar AI (Introduction to AI)</h2>
+                        
+                        <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
+                            <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div>
+                                <h4 style="color: var(--fellow-pink); margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 700;">Halo, Tech Bestie! 💖</h4>
+                                <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--fellow-text);">Pernah nggak sih kamu ngerasa aneh waktu Netflix tiba-tiba ngerekomendasiin film yang <i>relate</i> banget sama mood kamu? Atau gimana TikTok bisa ngasih FYP yang bikin scroll terus? Nah, itu semua bukan kebetulan lho! Itu adalah keajaiban dari yang namanya <b>Artificial Intelligence (AI)</b>! Yuk, kita bedah pelan-pelan dari awal biar kamu makin paham teknologi canggih ini! ✨</p>
+                            </div>
                         </div>
 
-                        <h2>1.2 Hubungan Antara AI, Machine Learning, dan Deep Learning</h2>
-                        <p>Seringkali terjadi tumpang tindih istilah antara AI, Machine Learning (ML), dan Deep Learning (DL). Hubungan ketiganya merupakan struktur hierarkis atau subset.</p>
-                        <ol class="lesson-numbered-list">
-                            <li><strong>AI</strong> adalah payung besar dari seluruh teknologi cerdas.</li>
-                            <li><strong>Machine Learning</strong> adalah sub-bidang AI yang fokus pada pengembangan algoritma yang memungkinkan komputer belajar dari data tanpa diprogram secara eksplisit. Hubungan matematis sederhananya dapat digambarkan sebagai pencarian fungsi optimal <strong>f</strong> pada persamaan <strong>y = f(x) + ε</strong>.</li>
-                            <li><strong>Deep Learning</strong> adalah sub-bidang ML yang menggunakan Artificial Neural Networks atau Jaringan Saraf Tiruan multi-layer untuk memproses data tak terstruktur dalam skala besar.</li>
-                        </ol>
+                        <h3>Apa Sih Sebenarnya AI Itu? 🤔</h3>
+                        <p>Secara sederhana, <strong>Kecerdasan Buatan (Artificial Intelligence)</strong> adalah cabang ilmu komputer yang berusaha bikin mesin atau komputer bisa mikir dan kerja kayak manusia. Kalau komputer biasa cuma bisa ngejalanin perintah yang udah ditulis mutlak (<i>if A then B</i>), AI bisa belajar, menganalisis, dan ambil keputusan sendiri berdasarkan data yang dikasih ke dia!</p>
+                        <p>Bayangin AI itu kayak anak kecil yang baru belajar. Awalnya dia nggak tahu apa-apa, tapi kalau kamu terus-terusan kasih lihat gambar kucing 🐈, lama-lama dia bakal bisa bedain mana kucing, mana anjing! Hebat kan?</p>
 
-                        <div class="ai-hierarchy-diagram" aria-label="Diagram Hubungan AI Machine Learning dan Deep Learning">
-                            <div class="ai-layer ai-layer-ai"><span>Artificial Intelligence (AI)</span><div class="ai-layer ai-layer-ml"><span>Machine Learning (ML)</span><div class="ai-layer ai-layer-dl"><span>Deep Learning (DL)</span></div></div></div>
-                            <p>Figure 1: Diagram Hubungan AI, Machine Learning, dan Deep Learning</p>
+                        <h3>1.1 Klasifikasi AI Berdasarkan Kapabilitas 📊</h3>
+                        <p>Sebenernya, se-canggih apa sih AI sekarang? Secara ilmu komputer, AI itu dibagi jadi tiga tingkatan, bestie. Yuk lihat bedanya:</p>
+                        
+                        <div class="ai-capability-grid" style="margin-top: 16px;">
+                            <article style="border-radius: 16px; border: 1px solid rgba(246,51,146,0.15); box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s;">
+                                <i class="fas fa-bullseye" style="color: var(--fellow-pink); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
+                                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">ANI (Weak AI)</h3>
+                                <p style="font-size: 0.9rem;"><i>Artificial Narrow Intelligence</i> ini spesialis! Dia jago banget di SATU tugas aja. Kayak Siri, filter spam email, atau lawan main catur di HP kamu. <b>Fakta unik:</b> Semua AI yang ada di dunia saat ini, se-canggih apapun itu (termasuk ChatGPT!), masuknya ke kategori ini lho!</p>
+                            </article>
+                            <article style="border-radius: 16px; border: 1px solid rgba(246,51,146,0.15); box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s;">
+                                <i class="fas fa-brain" style="color: var(--fellow-pink); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
+                                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">AGI (Strong AI)</h3>
+                                <p style="font-size: 0.9rem;"><i>Artificial General Intelligence</i> ini impian para ilmuwan! Mesin di level ini bakal secerdas manusia di segala bidang. Bisa mikir abstrak, ngerasa empati, dan beradaptasi. Saat ini AGI masih sebatas teori dan belum ada yang berhasil bikin.</p>
+                            </article>
+                            <article style="border-radius: 16px; border: 1px solid rgba(246,51,146,0.15); box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.2s;">
+                                <i class="fas fa-star" style="color: var(--fellow-pink); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
+                                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">ASI (Superintelligence)</h3>
+                                <p style="font-size: 0.9rem;"><i>Artificial Superintelligence</i> ini level dewa! Kecerdasannya jauh melampaui otak manusia paling pintar sekalipun. Sering banget dijadiin tema film sci-fi (kayak Ultron atau Skynet). Menarik atau malah serem nih menurut kamu? 🫣</p>
+                            </article>
                         </div>
 
-                        <aside class="lesson-reference">Referensi: World Travel & Tourism Council, <em>Introduction to Artificial Intelligence (AI) Technology</em>, January 2024, pp. 7-12 dan Annex pp. 35-39.</aside>
+                        <div style="background: rgba(246,51,146,0.05); border-left: 4px solid var(--fellow-pink); padding: 16px 20px; border-radius: 0 16px 16px 0; margin: 32px 0;">
+                            <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink); display: flex; align-items: center; gap: 8px;"><i class="fas fa-lightbulb"></i> Fun Fact!</h4>
+                            <p style="margin: 0; font-size: 0.95rem;">Meskipun ChatGPT bisa nulis puisi, coding, dan jawab soal matematika (kelihatan pintar banget ya!), secara teknis ChatGPT tetep digolongkan sebagai <b>ANI (Narrow AI)</b> lho! Soalnya, dia cuma dilatih untuk satu tugas spesifik: "Menebak kata berikutnya berdasarkan teks sebelumnya".</p>
+                        </div>
+
+                        <h3>1.2 Keluarga Besar AI: AI vs ML vs DL 👨‍👩‍👧‍👦</h3>
+                        <p>Pernah dengar istilah Machine Learning (ML) atau Deep Learning (DL) dan bingung bedanya sama AI? Wajar banget! Anggap aja mereka itu kayak keluarga besar yang saling berhubungan (konsep hierarki/subset). Yuk lihat penjelasannya!</p>
+                        
+                        <div class="ai-hierarchy-diagram" aria-label="Diagram Hubungan AI Machine Learning dan Deep Learning" style="margin: 24px 0; padding: 20px; background: #fafafa; border-radius: 20px; text-align: center;">
+                            <div class="ai-layer ai-layer-ai" style="padding: 24px; border-radius: 16px; background: rgba(246,51,146,0.1); border: 2px dashed rgba(246,51,146,0.4);">
+                                <span style="font-weight: bold; color: var(--fellow-text); font-size: 1.1rem; margin-bottom: 16px; display: block;">🤖 Artificial Intelligence (AI)</span>
+                                <p style="font-size: 0.85rem; margin-bottom: 16px; color: var(--fellow-muted);">Payung besar dari semua teknologi cerdas. Tujuan utamanya: meniru kecerdasan manusia.</p>
+                                
+                                <div class="ai-layer ai-layer-ml" style="padding: 24px; border-radius: 12px; background: rgba(246,51,146,0.2); border: 2px dashed rgba(246,51,146,0.5);">
+                                    <span style="font-weight: bold; color: var(--fellow-text); font-size: 1rem; margin-bottom: 12px; display: block;">📈 Machine Learning (ML)</span>
+                                    <p style="font-size: 0.85rem; margin-bottom: 16px; color: var(--fellow-muted);">Sub-bidang AI. Algoritma belajar pola dari data (pengalaman) tanpa diprogram secara kaku (hardcoded).</p>
+                                    
+                                    <div class="ai-layer ai-layer-dl" style="padding: 24px; border-radius: 8px; background: rgba(246,51,146,0.3); border: 2px solid var(--fellow-pink);">
+                                        <span style="font-weight: bold; color: var(--fellow-text); margin-bottom: 8px; display: block;">🧠 Deep Learning (DL)</span>
+                                        <p style="font-size: 0.85rem; margin: 0; color: #171827;">Sub-bidang ML paling canggih. Pakai Neural Networks (Jaringan Saraf Tiruan) berlapis-lapis untuk data kompleks seperti gambar & suara.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 16px; font-size: 0.85rem; color: var(--fellow-muted);"><i>Figure 1: Analogi Matryoshka Doll untuk AI, ML, dan DL.</i></p>
+                        </div>
+
+                        <p>Sekarang kebayang kan? <b>Semua Deep Learning pasti Machine Learning, dan semua Machine Learning pasti AI. Tapi nggak semua AI itu pake Deep Learning!</b> 🤯</p>
+
+                        <aside class="lesson-reference" style="margin-top: 32px; border-radius: 12px;">Referensi: World Travel & Tourism Council, <em>Introduction to Artificial Intelligence (AI) Technology</em>, January 2024, pp. 7-12.</aside>
 
                     </article>
 
