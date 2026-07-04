@@ -1,0 +1,181 @@
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+    <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
+    <aside class="fellow-sidebar" aria-label="Navigasi peserta">
+        <a href="#/participant-dashboard" class="fellow-logo" aria-label="Buka sidebar peserta">
+            <img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI Fellowship">
+        </a>
+        <nav class="fellow-menu">
+            <a href="#/participant-dashboard" data-fellow-nav="dashboard"><i class="fas fa-house"></i><span>Beranda</span></a>
+            <a href="#/messaging" data-fellow-nav="chatroom"><i class="far fa-comment-dots"></i><span>Chatroom</span><strong>3</strong></a>
+            <a href="#/participant-mentor" data-fellow-nav="mentor"><i class="fas fa-user-group"></i><span>Mentor</span></a>
+            <a class="active" href="#/participant-modules" data-fellow-nav="modules"><i class="fas fa-book-open"></i><span>Modul</span></a>
+            <a href="#/participant-tasks" data-fellow-nav="tasks"><i class="fas fa-list-check"></i><span>Tugas</span></a>
+            <a href="#/participant-projects" data-fellow-nav="projects"><i class="far fa-folder-open"></i><span>Proyek</span></a>
+            <a href="#/participant-events" data-fellow-nav="events"><i class="far fa-calendar-days"></i><span>Events</span></a>
+            <a href="#/participant-community" data-fellow-nav="community"><i class="fas fa-users"></i><span>Komunitas</span></a>
+        </nav>
+        <nav class="fellow-menu secondary">
+            <a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
+            <a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
+            <a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
+            <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
+        </nav>
+        <div class="invite-card course-help-mini">
+            <div>
+                <strong>Butuh bantuan?</strong>
+                <p>Tanya HerAI Assistant tentang modul dan pembelajaran.</p>
+            </div>
+            <button type="button">Chat Sekarang</button>
+        </div>
+    </aside>
+
+    <main class="fellow-main">
+        <header class="lesson-topbar">
+            <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
+                <a href="#/participant-ai-fundamentals"><i class="fas fa-arrow-left"></i><span>AI Fundamentals</span></a>
+                <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
+                <span>Konsep AI Modern</span>
+            </nav>
+            <div class="fellow-actions">
+                <label class="fellow-search">
+                    <i class="fas fa-magnifying-glass"></i>
+                    <input type="search" placeholder="Cari modul, topik, atau materi...">
+                </label>
+                <button type="button" class="fellow-icon-button" aria-label="Notifikasi">
+                    <i class="far fa-bell"></i>
+                    <span>5</span>
+                </button>
+                <a href="#/participant-profile" class="fellow-user-button">
+                    <span class="avatar-img"></span>
+                    <span><strong>Aisyah Putri</strong><small>Peserta</small></span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+        </header>
+
+        <div class="lesson-layout">
+            <div class="lesson-main-content">
+                <section class="lesson-hero">
+                    <div class="lesson-hero-copy">
+                        <h1>Konsep AI Modern</h1>
+                        <p>Model foundation, transformer, agent, dan arsitektur sistem AI masa kini.</p>
+                        <div class="lesson-meta-row">
+                            <span><i class="far fa-clock"></i> 60 menit</span>
+                            <span><i class="fas fa-book-open"></i> Modul 3 dari 6</span>
+                            <b>Menengah</b>
+                        </div>
+                    </div>
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow belajar Python">
+                </section>
+
+                <section class="lesson-material-panel">
+                    <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
+                        <a href="#/participant-ai-modern" class="active"><i class="fas fa-book-open"></i> Materi</a>
+                        <a href="#/participant-ai-modern-practice"><i class="fas fa-pen-to-square"></i> Latihan</a>
+                        <a href="#/participant-ai-modern-quiz"><i class="far fa-clipboard"></i> Kuis</a>
+                        <a href="#/participant-ai-modern-discussion"><i class="far fa-message"></i> Diskusi</a>
+                    </div>
+
+                    <article class="lesson-article" id="materi-ai-modern">
+                        <div class="chapter-content">
+                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 1: Mesin Paham Konteks (Transformer)</h2>
+                            <p>Pernahkah kamu menyadari bagaimana AI zaman sekarang seperti ChatGPT bisa memahami kalimat yang sangat panjang tanpa kehilangan konteks? Rahasianya ada pada sebuah arsitektur bernama <strong>Transformer</strong> dan mekanismenya yang disebut <strong>Self-Attention</strong>.</p>
+                            
+                            <div class="analogy-card" style="background: #fff7fb; border-left: 4px solid var(--fellow-pink); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0;">
+                                <h4 style="margin-top: 0; color: #171827;"><i class="fas fa-lightbulb" style="color: var(--fellow-pink); margin-right: 8px;"></i> Analogi HerAI</h4>
+                                <p style="margin-bottom: 0;">Bayangkan kamu sedang membaca <strong>grup chat gosip</strong> yang sangat panjang. AI zaman dulu (sebelum Transformer) membaca chat itu kata per kata, dan sering lupa siapa yang sedang digosipkan begitu sampai di akhir halaman.</p>
+                                <p style="margin-bottom: 0; margin-top: 12px;">Sebaliknya, otak kita (dan Transformer) punya mekanisme <strong>Attention</strong>. Saat membaca pesan, mata kita otomatis meloncat dan <strong>langsung fokus ke nama orang yang diomongin dan inti dramanya</strong> secara bersamaan. Kita mengabaikan kata-kata pengisi yang tidak penting. Itulah yang membuat Transformer sangat cepat dan cerdas!</p>
+                            </div>
+
+                            <p>Arsitektur ini pertama kali diperkenalkan oleh Google dalam jurnal riset legendaris berjudul <em>"Attention Is All You Need"</em> pada tahun 2017. Sejak saat itu, hampir seluruh model AI modern dibangun di atas fondasi Transformer.</p>
+                        </div>
+
+                        <div class="chapter-content" style="margin-top: 60px; border-top: 1px solid var(--fellow-line); padding-top: 40px;">
+                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 2: Lahirnya Raksasa (Foundation Models)</h2>
+                            <p>Berkat kecepatan Transformer, para ilmuwan mulai melatih AI dengan data berskala super masif (hampir seluruh teks di internet). Hasilnya adalah <strong>Foundation Models</strong> atau <strong>LLM (Large Language Model)</strong>.</p>
+                            
+                            <ul style="margin-bottom: 24px; color: var(--fellow-text);">
+                                <li><strong>Pre-training:</strong> Proses melatih AI dengan triliunan teks agar ia paham bahasa manusia, logika, dan pengetahuan umum.</li>
+                                <li><strong>Fine-tuning:</strong> Proses melatih ulang AI agar menjadi spesialis di bidang tertentu (misalnya asisten medis, atau ahli coding).</li>
+                            </ul>
+
+                            <div class="analogy-card" style="background: #fff7fb; border-left: 4px solid var(--fellow-pink); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0;">
+                                <h4 style="margin-top: 0; color: #171827;"><i class="fas fa-lightbulb" style="color: var(--fellow-pink); margin-right: 8px;"></i> Analogi HerAI</h4>
+                                <p style="margin-bottom: 0;"><strong>Pre-training</strong> itu ibarat pabrik membuat lembaran kain sutra mentah kualitas super yang panjangnya ber-kilo-kilometer. Kain ini serba guna tapi belum punya bentuk.</p>
+                                <p style="margin-bottom: 0; margin-top: 12px;">Nah, <strong>Fine-tuning</strong> adalah proses di mana seorang desainer (AI Engineer) memotong dan menjahit kain sutra tersebut menjadi gaun pengantin mewah sesuai dengan pesanan spesifik klien.</p>
+                            </div>
+                        </div>
+
+                        <div class="chapter-content" style="margin-top: 60px; border-top: 1px solid var(--fellow-line); padding-top: 40px;">
+                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 3: AI Sebagai Pekerja (AI Agents)</h2>
+                            <p>Jika LLM (seperti ChatGPT) adalah "ensiklopedia pintar", maka <strong>AI Agent</strong> adalah "asisten yang bisa bertindak". AI masa kini mulai dibekali kemampuan <em>Tool Use</em> (memanggil fungsi eksternal).</p>
+                            
+                            <div class="analogy-card" style="background: #fff7fb; border-left: 4px solid var(--fellow-pink); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0;">
+                                <h4 style="margin-top: 0; color: #171827;"><i class="fas fa-lightbulb" style="color: var(--fellow-pink); margin-right: 8px;"></i> Analogi HerAI</h4>
+                                <p style="margin-bottom: 0;">Chatbot biasa = Kamu nanya resep kue, dia kasih tau bahannya.</p>
+                                <p style="margin-bottom: 0; margin-top: 12px;">AI Agent = Kamu nanya resep kue, dia mikir <em>"Oh, aku butuh browser"</em>, lalu dia buka internet, cari harga bahan kue termurah, buka aplikasi GoMart kamu, masukin ke keranjang, lalu bilang: <em>"Resep udah dapet, bahan udah aku masukin ke keranjang belanjamu, tinggal bayar ya!"</em></p>
+                            </div>
+                            <p>Sistem <strong>HerAI</strong> ini sendiri nantinya akan dirancang menjadi sebuah AI Agent cerdas yang mendampingi belajarmu secara aktif!</p>
+                        </div>
+
+                        <div class="chapter-content" style="margin-top: 60px; border-top: 1px solid var(--fellow-line); padding-top: 40px;">
+                            <h2 style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 24px;">Sub-Modul 4: Solusi AI Halu (RAG)</h2>
+                            <p>Kelemahan terbesar AI saat ini adalah <strong>Halusinasi</strong> (mengarang bebas dengan penuh percaya diri). Untuk mengatasi ini, industri menggunakan metode <strong>RAG (Retrieval-Augmented Generation)</strong>.</p>
+                            
+                            <div class="analogy-card" style="background: #fff7fb; border-left: 4px solid var(--fellow-pink); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0;">
+                                <h4 style="margin-top: 0; color: #171827;"><i class="fas fa-lightbulb" style="color: var(--fellow-pink); margin-right: 8px;"></i> Analogi HerAI</h4>
+                                <p style="margin-bottom: 0;">AI halu itu ibarat anak sekolah yang kepedean jawab ujian pakai logika kosong padahal dia nggak belajar sama sekali.</p>
+                                <p style="margin-bottom: 0; margin-top: 12px;">RAG itu ibarat sistem ujian <em>open-book</em>. Sebelum si anak (AI) ngejawab soal, kita kasih dia buku pedoman rahasia perusahaan, dan kita suruh dia merangkum jawaban <strong>hanya</strong> berdasarkan buku itu. Alhasil, jawabannya 100% akurat tanpa ngarang.</p>
+                            </div>
+                        </div>
+
+                        <!-- Lanjut ke Latihan -->
+                        <div style="margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--fellow-line); text-align: right;">
+                            <a href="#/participant-ai-modern-practice" class="btn btn-primary" style="display: inline-block; background: var(--fellow-pink); color: white; border: none; border-radius: 100px; padding: 12px 32px; font-weight: 600; box-shadow: 0 4px 12px rgba(246,51,146,.3); text-decoration: none;">
+                                Lanjut ke Simulasi Agent (Latihan) <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <footer class="lesson-nav-footer">
+                        <a href="#/participant-ai-fundamentals"><i class="fas fa-chevron-left"></i> Kembali ke Modul</a>
+                        <a href="#/participant-ai-modern-practice">Latihan <i class="fas fa-arrow-right"></i></a>
+                    </footer>
+                </section>
+            </div>
+
+            <aside class="lesson-right-panel">
+                <section class="module-side-card lesson-progress-card">
+                    <h2>Progres Modul</h2>
+                    <div class="lesson-progress-mini"><b style="--value:16%"></b><strong>16%</strong></div>
+                    <p>1 dari 6 materi selesai</p>
+                    <a href="#/participant-ai-python">Mulai Belajar</a>
+                </section>
+
+                <section class="module-side-card lesson-list-card">
+                    <h2>Daftar Materi</h2>
+                    <ol>
+                        <li class="active"><span>1</span><a href="#/participant-ai-intro">Pengantar AI</a><i class="fas fa-circle-check"></i></li>
+                        <li class="active"><span>2</span><a href="#/participant-ai-python">Python untuk AI</a><i class="fas fa-circle-check"></i></li>
+                        <li class="active"><span>3</span><a href="#/participant-ai-modern">Konsep AI Modern</a><i class="far fa-circle-play"></i></li>
+                        <li class="locked"><span>4</span><span>Reasoning</span><i class="fas fa-lock"></i></li>
+                        <li class="locked"><span>5</span><span>Evaluation</span><i class="fas fa-lock"></i></li>
+                        <li class="locked"><span>6</span><span>Evolution of AI</span><i class="fas fa-lock"></i></li>
+                    </ol>
+                    <p class="lesson-lock-hint">Selesaikan kuis untuk membuka modul berikutnya.</p>
+                </section>
+
+                <section class="module-side-card lesson-note-card lesson-compact-note">
+                    <div class="module-side-head">
+                        <h2>Catatan</h2>
+                        <button type="button">+ Tambah</button>
+                    </div>
+                    <p>Catat poin penting materi ini agar mudah diingat.</p>
+                </section>
+            </aside>
+        </div>
+    </main>
+</section>
