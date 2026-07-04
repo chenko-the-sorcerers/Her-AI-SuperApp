@@ -11,7 +11,7 @@ window.initAiModernMateri = function() {
     var btnFinish = document.getElementById('btn-finish-materi');
 
     function loadChapter(chapterNumber) {
-        container.innerHTML = '<div style="text-align: center; padding: 60px; color: var(--fellow-muted);"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--fellow-pink); margin-bottom: 16px;"></i><p>Memuat Modul ' + chapterNumber + '...</p></div>';
+        container.innerHTML = '<div style="text-align: center; padding: 60px; color: var(--fellow-muted);"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--fellow-pink); margin-bottom: 16px;"></i><p>Memuat Topik ' + chapterNumber + '...</p></div>';
         
         var formattedNumber = chapterNumber < 10 ? '0' + chapterNumber : chapterNumber;
         var path = formattedNumber + '-materi.html';

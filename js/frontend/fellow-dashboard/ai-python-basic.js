@@ -303,7 +303,7 @@
         var btnFinish = document.getElementById('btn-finish-materi');
 
         function loadChapter(chapterNumber) {
-            container.innerHTML = '<div style="text-align: center; padding: 60px; color: var(--fellow-muted);"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--fellow-pink); margin-bottom: 16px;"></i><p>Memuat Modul ' + chapterNumber + '...</p></div>';
+            container.innerHTML = '<div style="text-align: center; padding: 60px; color: var(--fellow-muted);"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--fellow-pink); margin-bottom: 16px;"></i><p>Memuat Topik ' + chapterNumber + '...</p></div>';
             
             var formattedNumber = chapterNumber < 10 ? '0' + chapterNumber : chapterNumber;
             var path = '';
@@ -359,7 +359,7 @@
                 })
                 .catch(function(err) {
                     console.error("Modul load error:", err);
-                    container.innerHTML = '<div style="padding: 40px; text-align:center; color: #f63392;"><h3>Modul Belum Tersedia</h3><p>Modul ' + chapterNumber + ' masih dalam tahap penulisan oleh AI Curriculum Engineer.</p></div>';
+                    container.innerHTML = '<div style="padding: 40px; text-align:center; color: #f63392;"><h3>Topik Belum Tersedia</h3><p>Topik ' + chapterNumber + ' masih dalam tahap penulisan oleh AI Curriculum Engineer.</p></div>';
                 });
 
             if (btnPrev) btnPrev.style.display = chapterNumber > 1 ? 'block' : 'none';
