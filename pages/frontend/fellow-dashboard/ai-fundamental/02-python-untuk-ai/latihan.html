@@ -1,0 +1,198 @@
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+    <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
+    <aside class="fellow-sidebar" aria-label="Navigasi peserta">
+        <a href="#/participant-dashboard" class="fellow-logo" aria-label="Buka sidebar peserta"><img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI Fellowship"></a>
+        <nav class="fellow-menu">
+            <a href="#/participant-dashboard" data-fellow-nav="dashboard"><i class="fas fa-house"></i><span>Beranda</span></a>
+            <a href="#/messaging" data-fellow-nav="chatroom"><i class="far fa-comment-dots"></i><span>Chatroom</span><strong>3</strong></a>
+            <a href="#/participant-mentor" data-fellow-nav="mentor"><i class="fas fa-user-group"></i><span>Mentor</span></a>
+            <a class="active" href="#/participant-modules" data-fellow-nav="modules"><i class="fas fa-book-open"></i><span>Modul</span></a>
+            <a href="#/participant-tasks" data-fellow-nav="tasks"><i class="fas fa-list-check"></i><span>Tugas</span></a>
+            <a href="#/participant-projects" data-fellow-nav="projects"><i class="far fa-folder-open"></i><span>Proyek</span></a>
+            <a href="#/participant-events" data-fellow-nav="events"><i class="far fa-calendar-days"></i><span>Events</span></a>
+            <a href="#/participant-community" data-fellow-nav="community"><i class="fas fa-users"></i><span>Komunitas</span></a>
+        </nav>
+        <nav class="fellow-menu secondary">
+            <a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
+            <a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
+            <a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
+            <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
+        </nav>
+    </aside>
+    <main class="fellow-main">
+        <header class="lesson-topbar">
+            <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi"><a href="#/participant-ai-fundamentals"><i class="fas fa-arrow-left"></i><span>AI Fundamentals</span></a><span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span><span>Latihan Python</span></nav>
+            <div class="fellow-actions">
+                <label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label>
+                <button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
+                <a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </header>
+        <div class="lesson-layout">
+            <div class="lesson-main-content">
+                <section class="lesson-hero compact">
+                    <div class="lesson-hero-copy">
+                        <h1>Latihan Pemrograman Python</h1>
+                        <p>Jawab soal reflektif, lalu praktikkan langsung dengan menjalankan kode Python asli di browser.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 30 menit</span><span><i class="fas fa-pen-to-square"></i> Latihan</span><b>Interaktif</b></div>
+                    </div>
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow latihan Python">
+                </section>
+                <section class="lesson-material-panel">
+                    <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
+                        <a href="#/participant-ai-python"><i class="fas fa-book-open"></i> Materi</a>
+                        <a href="#/participant-ai-python-practice" class="active"><i class="fas fa-pen-to-square"></i> Latihan</a>
+                        <a href="#/participant-ai-python-quiz"><i class="far fa-clipboard"></i> Kuis</a>
+                        <a href="#/participant-ai-python-discussion"><i class="far fa-message"></i> Diskusi</a>
+                    </nav>
+                    <article class="lesson-article">
+                        <div class="pyodide-status" id="pyodideStatus">
+                            <div class="pyodide-loading-bar"><b></b></div>
+                            <span>Memuat Python runtime...</span>
+                        </div>
+
+                        <h2>Latihan Pemahaman & Praktik Python</h2>
+                        <p>Di bawah ini kamu bisa menjawab soal reflektif DAN langsung menjalankan kode Python asli. Coba ubah kode di editor, lalu klik <strong>Run</strong> untuk melihat hasilnya.</p>
+
+                        <form class="practice-response-form" id="pythonPracticeForm">
+                            <label><span>1. Tipe Data & Variabel</span><textarea name="datatypes" rows="4" placeholder="Tulis 4 variabel berbeda dengan tipe data berbeda (str, int, float, bool). Jelaskan kegunaan masing-masing tipe data dalam konteks data AI."></textarea></label>
+                            <div class="py-playground" id="play-1">
+                                <div class="py-editor-wrap"><textarea class="py-editor" spellcheck="false">nama = "HerAI"
+umur = 25
+pi = 3.14
+aktif = True
+
+print(type(nama), "|", nama)
+print(type(umur), "|", umur)
+print(type(pi), "|", pi)
+print(type(aktif), "|", aktif)</textarea></div>
+                                <div class="py-actions">
+                                    <button type="button" class="py-run" data-play="1"><i class="fas fa-play"></i> Run</button>
+                                    <button type="button" class="py-reset" data-play="1"><i class="fas fa-rotate-left"></i> Reset</button>
+                                </div>
+                                <pre class="py-output" id="out-1"></pre>
+                            </div>
+
+                            <label><span>2. List & Dictionary</span><textarea name="datastructures" rows="4" placeholder="Buat contoh list dan dictionary. Kapan kamu pilih list vs dict saat memproses data AI?"></textarea></label>
+                            <div class="py-playground" id="play-2">
+                                <div class="py-editor-wrap"><textarea class="py-editor" spellcheck="false"># List: data berurutan (bisa berubah)
+nilai = [78, 92, 65, 88, 71]
+print("List:", nilai)
+print("Nilai tertinggi:", max(nilai))
+print("Rata-rata:", sum(nilai) / len(nilai))
+
+# Dictionary: pasangan key-value
+profil = {"nama": "Aisyah", "umur": 22, "skill": "Python"}
+print("\nProfil:", profil)
+print("Skill:", profil["skill"])</textarea></div>
+                                <div class="py-actions">
+                                    <button type="button" class="py-run" data-play="2"><i class="fas fa-play"></i> Run</button>
+                                    <button type="button" class="py-reset" data-play="2"><i class="fas fa-rotate-left"></i> Reset</button>
+                                </div>
+                                <pre class="py-output" id="out-2"></pre>
+                            </div>
+
+                            <label><span>3. Control Flow</span><textarea name="controlflow" rows="4" placeholder="Gunakan loop untuk mencetak status 'Lulus' atau 'Remedial'. Jelaskan logic-nya."></textarea></label>
+                            <div class="py-playground" id="play-3">
+                                <div class="py-editor-wrap"><textarea class="py-editor" spellcheck="false">nilai_ujian = [78, 92, 65, 88, 71]
+
+for n in nilai_ujian:
+    if n >= 75:
+        print(n, "-> Lulus")
+    else:
+        print(n, "-> Remedial")</textarea></div>
+                                <div class="py-actions">
+                                    <button type="button" class="py-run" data-play="3"><i class="fas fa-play"></i> Run</button>
+                                    <button type="button" class="py-reset" data-play="3"><i class="fas fa-rotate-left"></i> Reset</button>
+                                </div>
+                                <pre class="py-output" id="out-3"></pre>
+                            </div>
+
+                            <label><span>4. Functions</span><textarea name="functions" rows="4" placeholder="Tulis function 'kategori_skor' yang mengembalikan kategori berdasarkan skor. Kenapa function penting?"></textarea></label>
+                            <div class="py-playground" id="play-4">
+                                <div class="py-editor-wrap"><textarea class="py-editor" spellcheck="false">def kategori_skor(skor):
+    if skor >= 80:
+        return "Tinggi"
+    elif skor >= 50:
+        return "Sedang"
+    else:
+        return "Rendah"
+
+# Coba berbagai input
+print("Skor 92 ->", kategori_skor(92))
+print("Skor 65 ->", kategori_skor(65))
+print("Skor 30 ->", kategori_skor(30))</textarea></div>
+                                <div class="py-actions">
+                                    <button type="button" class="py-run" data-play="4"><i class="fas fa-play"></i> Run</button>
+                                    <button type="button" class="py-reset" data-play="4"><i class="fas fa-rotate-left"></i> Reset</button>
+                                </div>
+                                <pre class="py-output" id="out-4"></pre>
+                            </div>
+
+                            <label><span>5. Libraries AI</span><textarea name="libraries" rows="4" placeholder="Jelaskan kegunaan NumPy dan Pandas dalam workflow AI. Tulis contoh kode sederhana."></textarea></label>
+                            <div class="py-playground" id="play-5">
+                                <div class="py-editor-wrap"><textarea class="py-editor" spellcheck="false"># NumPy: operasi array & matriks
+import numpy as np
+
+data = np.array([78, 92, 65, 88, 71])
+print("Data:", data)
+print("Rata-rata:", data.mean())
+print("Std dev:", data.std())
+print("Reshape:", data.reshape(1, 5))
+print("Tertinggi:", data.max())</textarea></div>
+                                <div class="py-actions">
+                                    <button type="button" class="py-run" data-play="5"><i class="fas fa-play"></i> Run</button>
+                                    <button type="button" class="py-reset" data-play="5"><i class="fas fa-rotate-left"></i> Reset</button>
+                                </div>
+                                <pre class="py-output" id="out-5"></pre>
+                            </div>
+
+                            <label><span>6. OOP &amp; Error Handling</span><textarea name="oop" rows="4" placeholder="Buatlah Class 'Dataset' sederhana yang memiliki error handling jika data kosong."></textarea></label>
+                            <div class="py-playground" id="play-6">
+                                <div class="py-editor-wrap"><textarea class="py-editor" spellcheck="false">class Dataset:
+    def __init__(self, data):
+        self.data = data
+        
+    def get_batch(self, size):
+        try:
+            if not self.data:
+                raise ValueError("Dataset kosong!")
+            return self.data[:size]
+        except Exception as e:
+            return f"Error terjadi: {e}"
+
+# Uji coba
+ds = Dataset([10, 20, 30, 40])
+print("Batch 2:", ds.get_batch(2))
+
+ds_kosong = Dataset([])
+print("Batch 2 kosong:", ds_kosong.get_batch(2))</textarea></div>
+                                <div class="py-actions">
+                                    <button type="button" class="py-run" data-play="6"><i class="fas fa-play"></i> Run</button>
+                                    <button type="button" class="py-reset" data-play="6"><i class="fas fa-rotate-left"></i> Reset</button>
+                                </div>
+                                <pre class="py-output" id="out-6"></pre>
+                            </div>
+
+                            <div class="practice-action-row">
+                                <button type="button" data-practice-save>Simpan Jawaban</button>
+                                <button type="button" data-practice-edit>Edit</button>
+                                <button type="button" data-practice-delete>Hapus</button>
+                            </div>
+                            <p class="practice-status" id="pythonPracticeStatus">Jawaban latihan hanya tersimpan untuk akun/perangkatmu.</p>
+                        </form>
+                    </article>
+                    <footer class="lesson-nav-footer">
+                        <a href="#/participant-ai-python"><i class="fas fa-chevron-left"></i> Sebelumnya</a>
+                        <a href="#/participant-ai-python-quiz">Selanjutnya <i class="fas fa-arrow-right"></i></a>
+                    </footer>
+                </section>
+            </div>
+            <aside class="lesson-right-panel">
+                <section class="module-side-card lesson-progress-card"><h2>Progres Modul</h2><div class="lesson-progress-mini"><b style="--value:33%"></b><strong>33%</strong></div><p>Latihan membantu mengunci pemahaman sebelum kuis.</p><a href="#/participant-ai-python-quiz">Ke Kuis</a></section>
+                <section class="module-side-card lesson-list-card"><h2>Daftar Materi</h2><ol><li class="completed"><span>1</span><a href="#/participant-ai-python">Pemrograman Python untuk AI</a><i class="fas fa-circle-check"></i></li><li class="active"><span>2</span><a href="#/participant-ai-python-practice">Latihan Python Dasar</a><i class="far fa-circle-play"></i></li><li data-locked-after-quiz><span>3</span><a href="#/participant-ai-python-quiz">Kuis Python</a><i class="far fa-circle"></i></li></ol><p class="lesson-lock-hint">Kuis terbuka setelah kamu menyimpan jawaban latihan.</p></section>
+            </aside>
+        </div>
+    </main>
+</section>
