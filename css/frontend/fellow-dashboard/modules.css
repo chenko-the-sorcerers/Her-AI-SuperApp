@@ -2511,3 +2511,57 @@
     .pyodide-loading-bar { max-width: 100%; width: 100%; }
     .py-actions { flex-wrap: wrap; }
 }
+
+/* --- CDD Structure Styles --- */
+.cdd-chapter {
+    background: #fff;
+    border: 1px solid var(--fellow-line);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 24px rgba(170, 52, 104, 0.04);
+}
+
+.cdd-chapter h2 {
+    color: var(--fellow-text);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 24px 0;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--fellow-line);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cdd-step {
+    border-left: 3px solid var(--fellow-line);
+    padding: 4px 0 4px 20px;
+    margin-bottom: 24px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.cdd-step:hover {
+    border-left-color: var(--fellow-pink);
+}
+
+.cdd-step h3 {
+    color: var(--fellow-pink);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cdd-step p {
+    color: var(--fellow-text);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0 0 12px 0;
+}
+
+.cdd-step p:last-child {
+    margin-bottom: 0;
+}
