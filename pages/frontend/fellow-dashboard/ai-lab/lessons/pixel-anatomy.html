@@ -824,7 +824,6 @@ function switchPixelTab(tabId) {
     }
 }
 </script>
-
 <article class="lesson-article ai-lab-content" id="pixel-content"><div class="pixel-tab-content" id="tab-materi">
 <!-- ─── SEC 1 ─── -->
 <section class="lesson-sec" id="sec-what">
@@ -861,7 +860,6 @@ print(img.shape)   <span class="cm"># (480, 640, 3)</span>
 print(img.dtype)   <span class="cm"># uint8</span>
 pixel = img[<span class="num">80</span>, <span class="num">120</span>]  <span class="cm"># [B, G, R]</span></code></pre>
 </div>
-
 </section>
 <!-- ─── SEC 2 ─── -->
 <section class="lesson-sec" id="sec-coords">
@@ -887,7 +885,6 @@ br = img[h<span class="op">-</span><span class="num">1</span>, w<span class="op"
 roi = img[<span class="num">50</span>:<span class="num">150</span>, <span class="num">100</span>:<span class="num">200</span>]</code></pre></div>
 <div class="info-card"><div class="ic-title">Memory layout</div><p>Images are stored in <strong>row-major order</strong>. Iterating rows is cache-friendly; columns is not.</p></div>
 </div>
-
 </section>
 <!-- ─── SEC 3 ─── -->
 <section class="lesson-sec" id="sec-rgb">
@@ -906,7 +903,6 @@ roi = img[<span class="num">50</span>:<span class="num">150</span>, <span class=
 <pre><code>r_channel = img[:, :, <span class="num">2</span>]  <span class="cm"># BGR: index 2 = Red</span>
 g_channel = img[:, :, <span class="num">1</span>]
 b_channel = img[:, :, <span class="num">0</span>]</code></pre></div>
-
 </section>
 <!-- ─── SEC 4 ─── -->
 <section class="lesson-sec" id="sec-colorspaces">
@@ -921,7 +917,6 @@ b_channel = img[:, :, <span class="num">0</span>]</code></pre></div>
 <div class="cs-card" style="--cs-accent:#8b5cf6"><div class="cs-card-top"><span class="cs-name">LAB</span><span class="cs-use">Color diff</span></div><div class="cs-channels"><div class="cs-ch"><span>L</span><span>0–100</span></div><div class="cs-ch"><span>a</span><span>±128</span></div><div class="cs-ch"><span>b</span><span>±128</span></div></div><div class="cs-desc">Perceptually uniform.</div><code class="cs-code">cv2.COLOR_BGR2LAB</code></div>
 <div class="cs-card" style="--cs-accent:#6b7280"><div class="cs-card-top"><span class="cs-name">Grayscale</span><span class="cs-use">Classical CV</span></div><div class="cs-channels"><div class="cs-ch"><span>L</span><span>0–255</span></div></div><div class="cs-desc">Single channel. Reduces data 3×.</div><code class="cs-code">cv2.COLOR_BGR2GRAY</code></div>
 </div>
-
 </section>
 <!-- ─── SEC 5 ─── -->
 <section class="lesson-sec" id="sec-math">
@@ -943,12 +938,20 @@ b_channel = img[:, :, <span class="num">0</span>]</code></pre></div>
 <div class="widget-label">Step-by-step: grayscale conversion</div>
 <div class="code-block" style="margin:0"><pre><code id="mathSteps">—</code></pre></div>
 </div>
-
 </section>
 <!-- ─── SEC 6: PLAYGROUND ─── -->
-
 <!-- ─── SEC 7: QUIZ ─── -->
 
+<footer class="lesson-nav-footer">
+<a class="lnf-prev" href="#/participant-ai-lab-cv-opencv">
+<span class="lnf-label">Lesson sebelumnya</span>
+<span class="lnf-title">Image Processing with OpenCV <i class="fas fa-arrow-left"></i></span>
+</a>
+<a class="lnf-next" href="javascript:void(0)" onclick="switchPixelTab('tab-latihan')">
+<span class="lnf-label">Selanjutnya</span>
+<span class="lnf-title">Lanjut ke Latihan <i class="fas fa-arrow-right"></i></span>
+</a>
+</footer>
 </div><div class="pixel-tab-content" id="tab-latihan" style="display:none;"><div style="margin-bottom:24px"><h2 class="sec-title" style="font-size:24px;margin-bottom:8px">Latihan Pixel Anatomy</h2><p class="sec-sub">Uji pemahamanmu dengan berbagai coding challenge interaktif.</p></div><div style="margin-bottom:24px"><h3 style="font-size:16px; margin-bottom:12px; color:var(--px-text-2); display:flex; align-items:center; gap:8px">Konteks: What is a pixel?</h3><div class="challenge-card" id="ch-1">
 <div class="challenge-header"><span class="challenge-badge"><i class="fas fa-snake"></i> Mini Challenge</span><span class="challenge-title">Create an image array and inspect it</span></div>
 <div class="challenge-desc">Complete the blanks to create a 100×200 image with 3 channels and print its shape, dtype, and total pixels.</div>
@@ -1155,7 +1158,18 @@ print(f"\nChannel means — R:{r_mean:.1f} G:{g_mean:.1f} B:{b_mean:.1f}")</text
 </div>
 <div class="output-wrap" id="pg-output" style="display:none"><div class="output-label">Output</div><pre class="output-pre" id="pg-output-pre"></pre></div>
 </div>
-</section></div><div class="pixel-tab-content" id="tab-kuis" style="display:none;"><section class="lesson-sec" id="sec-quiz">
+</section>
+<footer class="lesson-nav-footer">
+<a class="lnf-prev" href="javascript:void(0)" onclick="switchPixelTab('tab-materi')">
+<span class="lnf-label">Kembali</span>
+<span class="lnf-title"><i class="fas fa-arrow-left"></i> Materi Pixel Anatomy</span>
+</a>
+<a class="lnf-next" href="javascript:void(0)" onclick="switchPixelTab('tab-kuis')">
+<span class="lnf-label">Selanjutnya</span>
+<span class="lnf-title">Lanjut ke Kuis <i class="fas fa-arrow-right"></i></span>
+</a>
+</footer>
+</div><div class="pixel-tab-content" id="tab-kuis" style="display:none;"><section class="lesson-sec" id="sec-quiz">
 <div class="sec-header">
 <span class="sec-num">07</span>
 <div><h2 class="sec-title">Quiz + Coding Challenge</h2><p class="sec-sub">Teori + praktik — selesaikan keduanya untuk lulus</p></div>
@@ -1266,17 +1280,19 @@ print(gray)</textarea></div>
 <a class="nlc-btn" href="#">Continue</a>
 </div>
 </div>
-</section></div></article>
+</section>
 <footer class="lesson-nav-footer">
-<a class="lnf-prev" href="#/participant-ai-lab-cv-opencv">
-<span class="lnf-label">Lesson sebelumnya</span>
-<span class="lnf-title">Image Processing with OpenCV <i class="fas fa-arrow-left"></i></span>
+<a class="lnf-prev" href="javascript:void(0)" onclick="switchPixelTab('tab-latihan')">
+<span class="lnf-label">Kembali</span>
+<span class="lnf-title"><i class="fas fa-arrow-left"></i> Latihan Pixel Anatomy</span>
 </a>
 <a class="lnf-next" href="#/participant-ai-lab-cv">
-<span class="lnf-label">Kembali ke</span>
+<span class="lnf-label">Selesai</span>
 <span class="lnf-title">Katalog Computer Vision <i class="fas fa-arrow-right"></i></span>
 </a>
 </footer>
+</div></article>
+
 </section>
 </div>
 <aside class="lesson-right-panel">

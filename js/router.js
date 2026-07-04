@@ -66,7 +66,10 @@ const router = {
         "/participant-ai-lab-tfidf": "/pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html",
         "/participant-ai-lab-nlp": "/pages/frontend/fellow-dashboard/ai-lab/nlp.html",
         "/participant-ai-lab-machine-learning": "/pages/frontend/fellow-dashboard/ai-lab/machine-learning.html",
-        "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/ai-lab/machine-learning.html",
+        "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-practice": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/latihan.html",
+        "/participant-ai-lab-ml-quiz": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/kuis.html",
+        "/participant-ai-lab-ml-discussion": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/diskusi.html",
         "/participant-ai-lab-cv": "/pages/frontend/fellow-dashboard/ai-lab/computer-vision.html",
         "/participant-ai-lab-gen": "/pages/frontend/fellow-dashboard/ai-lab/generative-ai.html",
         "/participant-ai-lab-math": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/overview.html",
@@ -91,10 +94,10 @@ const router = {
         "/participant-ai-lab-cv-opencv": "/pages/frontend/fellow-dashboard/ai-lab/lessons/image-processing-opencv.html",
         "/participant-ai-lab-cv-pixel": "/pages/frontend/fellow-dashboard/ai-lab/lessons/pixel-anatomy.html",
         "/participant-ai-lab-cv-cnn-arch-builder": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-arch-builder.html",
-        "/participant-ai-lab-ml-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-intro.html",
-        "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-hypothesis.html",
-        "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-vc-dim.html",
-        "/participant-ai-lab-ml-bias-variance": "/pages/frontend/fellow-dashboard/ai-lab/lessons/ml-bias-variance.html",
+        "/participant-ai-lab-ml-intro": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-bias-variance": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
         "/meeting": "/pages/frontend/meeting.html",
         "/messaging": "/pages/frontend/fellow-dashboard/chatroom.html",
         "/messaging-alt": "/pages/frontend/messaging.html",
@@ -369,7 +372,10 @@ const router = {
             "/participant-ai-lab-ml-intro",
             "/participant-ai-lab-ml-hypothesis",
             "/participant-ai-lab-ml-vc-dim",
-            "/participant-ai-lab-ml-bias-variance"
+            "/participant-ai-lab-ml-bias-variance",
+            "/participant-ai-lab-ml-practice",
+            "/participant-ai-lab-ml-quiz",
+            "/participant-ai-lab-ml-discussion"
         ];
         const isParticipantDashboardPage = participantDashboardPages.includes(path);
         const adminPages = [
@@ -601,21 +607,23 @@ const router = {
                     if (path === "/participant-ai-lab-cv" && typeof window.initCvOverview === "function") {
                         window.initCvOverview();
                     }
-                    if ((path === "/participant-ai-lab-ml" || path === "/participant-ai-lab-machine-learning") && typeof window.initMlOverview === "function") {
+                    if (path === "/participant-ai-lab-machine-learning" && typeof window.initMlOverview === "function") {
                         window.initMlOverview();
                     }
-                    if (path === "/participant-ai-lab-ml-intro" && typeof window.initAiLabMlIntro === "function") {
-                        window.initAiLabMlIntro();
+                    
+                    if (["/participant-ai-lab-ml", "/participant-ai-lab-ml-intro", "/participant-ai-lab-ml-hypothesis", "/participant-ai-lab-ml-vc-dim", "/participant-ai-lab-ml-bias-variance"].includes(path) && typeof window.initAiMlMateri === "function") {
+                        window.initAiMlMateri();
                     }
-                    if (path === "/participant-ai-lab-ml-hypothesis" && typeof window.initAiLabMlHypothesis === "function") {
-                        window.initAiLabMlHypothesis();
+                    if (path === "/participant-ai-lab-ml-practice" && typeof window.initAiMlBasic === "function") {
+                        window.initAiMlBasic();
                     }
-                    if (path === "/participant-ai-lab-ml-vc-dim" && typeof window.initAiLabMlVcDim === "function") {
-                        window.initAiLabMlVcDim();
+                    if (path === "/participant-ai-lab-ml-quiz" && typeof window.initAiMlQuiz === "function") {
+                        window.initAiMlQuiz();
                     }
-                    if (path === "/participant-ai-lab-ml-bias-variance" && typeof window.initAiLabMlBiasVariance === "function") {
-                        window.initAiLabMlBiasVariance();
+                    if (path === "/participant-ai-lab-ml-discussion" && typeof window.initAiMlDiscussion === "function") {
+                        window.initAiMlDiscussion();
                     }
+
                 } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
                 } else if (path === "/participant-profile" && typeof window.initFellowDashboardPage === "function") {
