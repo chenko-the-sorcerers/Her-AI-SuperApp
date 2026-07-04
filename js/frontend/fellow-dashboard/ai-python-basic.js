@@ -5,41 +5,63 @@
 
     var pyodideInstance = null;
     var pyodideReady = false;
+    var pyodideLoading = false;
 
     function startPyodide() {
+        if (pyodideReady) {
+            enableAllPlaygrounds();
+            return;
+        }
+        
         var status = document.getElementById('pyodideStatus');
-        if (!status) return;
 
         if (typeof loadPyodide === 'undefined') {
             if (status) { status.querySelector('span').textContent = 'Python runtime tidak tersedia di perangkat ini.'; }
             return;
         }
 
+        if (pyodideLoading) return;
+        pyodideLoading = true;
+        
+        // Disable all runs and show loading
+        var runs = document.querySelectorAll('.py-run');
+        runs.forEach(function(btn) { 
+            btn.disabled = true; 
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        });
+
         var bars = 0;
         var dots = '';
         var interval = setInterval(function() {
             bars = (bars + 1) % 4;
             dots = '.'.repeat(bars);
-            var s = status.querySelector('span');
-            if (s && !pyodideReady) s.textContent = 'Memuat Python runtime' + dots;
+            if (status) {
+                var s = status.querySelector('span');
+                if (s && !pyodideReady) s.textContent = 'Memuat Python runtime' + dots;
+            }
         }, 400);
 
         loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/' }).then(function(pyodide) {
             pyodideInstance = pyodide;
             pyodideReady = true;
             clearInterval(interval);
-            status.classList.add('ready');
-            status.querySelector('span').textContent = 'Python runtime siap. Kamu bisa menjalankan kode di bawah.';
+            if (status) {
+                status.classList.add('ready');
+                status.querySelector('span').textContent = 'Python runtime siap. Kamu bisa menjalankan kode di bawah.';
+            }
             enableAllPlaygrounds();
         }).catch(function(err) {
             clearInterval(interval);
-            status.querySelector('span').textContent = 'Gagal memuat Python: ' + (err.message || 'unknown error');
+            if (status) status.querySelector('span').textContent = 'Gagal memuat Python: ' + (err.message || 'unknown error');
         });
     }
 
     function enableAllPlaygrounds() {
         var runs = document.querySelectorAll('.py-run');
-        for (var i = 0; i < runs.length; i++) { runs[i].disabled = false; }
+        for (var i = 0; i < runs.length; i++) { 
+            runs[i].disabled = false; 
+            runs[i].innerHTML = '<i class="fas fa-play"></i> Run Code';
+        }
     }
 
     function runCode(playId) {
