@@ -30,13 +30,30 @@ window.initAiModernMateri = function() {
                 btnFinish.style.display = chapterNumber === totalChapters ? 'inline-block' : 'none';
                 
                 // Update sidebar list styling
-                document.querySelectorAll('.lesson-list-card li.active').forEach(function(li) {
-                    var liNum = parseInt(li.querySelector('span').innerText, 10);
-                    var link = li.querySelector('a');
-                    if (liNum === 3) {
-                        // Keep modern AI active, we don't have separate sidebar links for sub-chapters yet, just main modules
+                var listItems = document.querySelectorAll('#modern-sidebar-list li');
+                listItems.forEach(function(li) {
+                    var chapter = parseInt(li.getAttribute('data-chapter') || '0', 10);
+                    var icon = li.querySelector('i');
+                    if (chapter === chapterNumber) {
+                        li.classList.add('active');
+                        icon.className = 'far fa-circle-play';
+                    } else if (chapter < chapterNumber) {
+                        li.classList.add('active'); // It is completed/active
+                        icon.className = 'fas fa-circle-check';
+                    } else {
+                        li.classList.remove('active');
+                        icon.className = 'far fa-circle';
                     }
                 });
+                
+                // Update progress percentage
+                var progressValue = Math.round(((chapterNumber - 1) / totalChapters) * 100);
+                var progressB = document.querySelector('.lesson-progress-mini b');
+                var progressStrong = document.querySelector('.lesson-progress-mini strong');
+                var progressText = document.querySelector('.lesson-progress-card p');
+                if (progressB) progressB.style.setProperty('--value', progressValue + '%');
+                if (progressStrong) progressStrong.textContent = progressValue + '%';
+                if (progressText) progressText.textContent = (chapterNumber - 1) + ' dari ' + totalChapters + ' materi selesai';
             })
             .catch(function(err) {
                 container.innerHTML = '<div style="text-align: center; padding: 60px; color: #d81b60;"><i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 16px;"></i><p>Gagal memuat materi. Silakan coba lagi.</p></div>';
@@ -59,6 +76,14 @@ window.initAiModernMateri = function() {
             loadChapter(currentChapter);
         }
     });
+
+    window.loadModernChapter = function(chapterNum) {
+        if (chapterNum >= 1 && chapterNum <= totalChapters) {
+            currentChapter = chapterNum;
+            localStorage.setItem(STORAGE_KEY_CHAPTER, currentChapter.toString());
+            loadChapter(currentChapter);
+        }
+    };
 
     // Load initial chapter
     loadChapter(currentChapter);
