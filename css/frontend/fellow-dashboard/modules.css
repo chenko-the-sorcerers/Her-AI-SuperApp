@@ -1459,6 +1459,340 @@
     color: var(--fellow-pink);
 }
 
+.math-ai-course-page .math-ai-hero {
+    background: linear-gradient(110deg, #fff 0%, #fff6fb 48%, #eafff4 100%);
+}
+
+.math-ai-course-page .math-ai-eyebrow {
+    align-items: center;
+    color: var(--fellow-pink);
+    display: inline-flex;
+    font-size: 0.78rem;
+    font-weight: 900;
+    gap: 8px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.math-ai-course-page .math-ai-content {
+    display: grid;
+    gap: 18px;
+}
+
+.math-ai-course-page .math-ai-card,
+.math-ai-course-page .math-ai-simulation,
+.math-ai-course-page .math-ai-task,
+.math-ai-course-page .math-ai-question,
+.math-ai-course-page .math-ai-result,
+.math-ai-course-page .math-ai-summary,
+.math-ai-course-page .math-ai-formula {
+    background: #fff;
+    border: 1px solid var(--fellow-line);
+    border-radius: 18px;
+    box-shadow: 0 18px 44px rgba(170, 52, 104, 0.05);
+    padding: 22px;
+}
+
+.math-ai-course-page .math-ai-card > span:not(.math-ai-eyebrow) {
+    align-items: center;
+    background: #fff0f7;
+    border-radius: 999px;
+    color: var(--fellow-pink);
+    display: inline-flex;
+    font-size: 0.82rem;
+    font-weight: 900;
+    height: 32px;
+    justify-content: center;
+    margin-bottom: 12px;
+    width: 32px;
+}
+
+.math-ai-course-page .math-ai-card h1,
+.math-ai-course-page .math-ai-card h2,
+.math-ai-course-page .math-ai-card h3 {
+    color: var(--fellow-text);
+    letter-spacing: 0;
+    margin: 0 0 10px;
+}
+
+.math-ai-course-page .math-ai-card p,
+.math-ai-course-page .math-ai-task p,
+.math-ai-course-page .math-ai-question label span,
+.math-ai-course-page .math-ai-summary {
+    color: #565d70;
+    font-weight: 650;
+    line-height: 1.7;
+}
+
+.math-ai-course-page .math-ai-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.math-ai-course-page .math-ai-grid.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.math-ai-course-page .math-ai-lesson-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.math-ai-course-page .math-ai-lesson-card {
+    background: #fff;
+    border: 1px solid var(--fellow-line);
+    border-radius: 18px;
+    color: inherit;
+    display: grid;
+    gap: 10px;
+    min-height: 220px;
+    padding: 20px;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.math-ai-course-page .math-ai-lesson-card:hover {
+    border-color: rgba(246, 51, 146, 0.45);
+    transform: translateY(-2px);
+}
+
+.math-ai-course-page .math-ai-lesson-card > i {
+    align-items: center;
+    background: #eafff4;
+    border-radius: 16px;
+    color: #28bd77;
+    display: inline-flex;
+    font-size: 1.4rem;
+    height: 54px;
+    justify-content: center;
+    width: 54px;
+}
+
+.math-ai-course-page .math-ai-lesson-card.is-done > i {
+    background: #fff0f7;
+    color: var(--fellow-pink);
+}
+
+.math-ai-course-page .math-ai-lesson-card span {
+    color: var(--fellow-pink);
+    font-size: 0.75rem;
+    font-weight: 900;
+}
+
+.math-ai-course-page .math-ai-lesson-card h3,
+.math-ai-course-page .math-ai-lesson-card p,
+.math-ai-course-page .math-ai-lesson-card small {
+    margin: 0;
+}
+
+.math-ai-course-page .math-ai-lesson-card h3 {
+    color: var(--fellow-text);
+    font-size: 1.05rem;
+}
+
+.math-ai-course-page .math-ai-lesson-card p,
+.math-ai-course-page .math-ai-lesson-card small {
+    color: #697083;
+    font-size: 0.84rem;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.math-ai-course-page .math-ai-simulation {
+    display: grid;
+    gap: 16px;
+}
+
+.math-ai-course-page .math-ai-simulation label {
+    align-items: center;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 92px 28px minmax(0, 1fr);
+}
+
+.math-ai-course-page .math-ai-simulation label span,
+.math-ai-course-page .math-ai-simulation label b {
+    color: var(--fellow-text);
+    font-weight: 900;
+}
+
+.math-ai-course-page .math-ai-simulation input[type="range"] {
+    accent-color: var(--fellow-pink);
+    width: 100%;
+}
+
+.math-ai-course-page .math-ai-sim-result,
+.math-ai-course-page .math-ai-formula {
+    align-items: center;
+    background: #fff7fb;
+    display: flex;
+    gap: 14px;
+}
+
+.math-ai-course-page .math-ai-sim-result strong,
+.math-ai-course-page .math-ai-formula i {
+    color: var(--fellow-pink);
+    font-weight: 900;
+}
+
+.math-ai-course-page .math-ai-sim-result span,
+.math-ai-course-page .math-ai-formula span {
+    color: #565d70;
+    font-weight: 750;
+    line-height: 1.6;
+}
+
+.math-ai-course-page .math-ai-form {
+    display: grid;
+    gap: 16px;
+}
+
+.math-ai-course-page .math-ai-task {
+    display: grid;
+    gap: 12px;
+}
+
+.math-ai-course-page .math-ai-task > span,
+.math-ai-course-page .math-ai-question legend {
+    color: var(--fellow-text);
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.math-ai-course-page .math-ai-task textarea,
+.math-ai-course-page .math-ai-task input {
+    border: 1px solid var(--fellow-line);
+    border-radius: 14px;
+    color: var(--fellow-text);
+    font: 700 0.92rem 'Plus Jakarta Sans', sans-serif;
+    outline: 0;
+    padding: 14px 16px;
+    width: 100%;
+}
+
+.math-ai-course-page .math-ai-task textarea:focus,
+.math-ai-course-page .math-ai-task input:focus {
+    border-color: rgba(246, 51, 146, 0.5);
+    box-shadow: 0 0 0 4px rgba(246, 51, 146, 0.08);
+}
+
+.math-ai-course-page .math-ai-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.math-ai-course-page .math-ai-actions button,
+.math-ai-course-page .math-ai-done-btn,
+.math-ai-course-page .math-ai-submit {
+    align-items: center;
+    background: var(--fellow-pink);
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font: 900 0.86rem 'Plus Jakarta Sans', sans-serif;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+}
+
+.math-ai-course-page .math-ai-actions button:last-child {
+    background: #fff0f7;
+    color: var(--fellow-pink);
+}
+
+.math-ai-course-page .math-ai-done-btn:disabled,
+.math-ai-course-page .math-ai-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.math-ai-course-page .math-ai-status {
+    color: var(--fellow-pink);
+    font-weight: 850;
+    margin: 0;
+}
+
+.math-ai-course-page .math-ai-quiz {
+    display: grid;
+    gap: 16px;
+}
+
+.math-ai-course-page .math-ai-question {
+    display: grid;
+    gap: 12px;
+}
+
+.math-ai-course-page .math-ai-question label {
+    align-items: flex-start;
+    border: 1px solid rgba(244, 143, 188, 0.2);
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px;
+}
+
+.math-ai-course-page .math-ai-question input {
+    accent-color: var(--fellow-pink);
+    margin-top: 4px;
+}
+
+.math-ai-course-page .math-ai-explanation {
+    background: #fff7fb;
+    border-radius: 14px;
+    color: #565d70;
+    font-size: 0.88rem;
+    margin: 0;
+    padding: 12px 14px;
+}
+
+.math-ai-course-page .math-ai-result {
+    display: grid;
+    gap: 8px;
+}
+
+.math-ai-course-page .math-ai-result strong {
+    color: var(--fellow-text);
+    font-size: 1.35rem;
+}
+
+.math-ai-course-page .math-ai-result span {
+    color: #565d70;
+    font-weight: 800;
+}
+
+.math-ai-course-page .math-ai-result a {
+    color: var(--fellow-pink);
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.math-ai-course-page .math-ai-discussion-list {
+    display: grid;
+    gap: 14px;
+}
+
+@media (max-width: 860px) {
+    .math-ai-course-page .math-ai-grid,
+    .math-ai-course-page .math-ai-grid.two,
+    .math-ai-course-page .math-ai-lesson-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .math-ai-course-page .math-ai-simulation label {
+        grid-template-columns: 1fr 36px;
+    }
+
+    .math-ai-course-page .math-ai-simulation input[type="range"] {
+        grid-column: 1 / -1;
+    }
+}
+
 .lesson-article {
     padding: 28px 32px 34px;
 }

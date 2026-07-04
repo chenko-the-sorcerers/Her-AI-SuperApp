@@ -59,6 +59,17 @@ const router = {
         "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/ai-lab/machine-learning.html",
         "/participant-ai-lab-cv": "/pages/frontend/fellow-dashboard/ai-lab/computer-vision.html",
         "/participant-ai-lab-gen": "/pages/frontend/fellow-dashboard/ai-lab/generative-ai.html",
+        "/participant-ai-lab-math": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/overview.html",
+        "/participant-ai-lab-math-intro": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-linear-algebra": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-statistics": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-probability": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-calculus": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-optimization": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-case-study": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-practice": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/practice.html",
+        "/participant-ai-lab-math-quiz": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/quiz.html",
+        "/participant-ai-lab-math-discussion": "/pages/frontend/fellow-dashboard/ai-lab/math-for-ai/discussion.html",
         "/participant-ai-lab-cv-cnn-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-intro.html",
         "/participant-ai-lab-cv-cnn-why": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-why.html",
         "/participant-ai-lab-cv-cnn-relu": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-relu.html",
@@ -309,6 +320,17 @@ const router = {
             "/participant-ai-lab-machine-learning",
             "/participant-ai-lab-ml",
             "/participant-ai-lab-cv",
+            "/participant-ai-lab-math",
+            "/participant-ai-lab-math-intro",
+            "/participant-ai-lab-math-linear-algebra",
+            "/participant-ai-lab-math-statistics",
+            "/participant-ai-lab-math-probability",
+            "/participant-ai-lab-math-calculus",
+            "/participant-ai-lab-math-optimization",
+            "/participant-ai-lab-math-case-study",
+            "/participant-ai-lab-math-practice",
+            "/participant-ai-lab-math-quiz",
+            "/participant-ai-lab-math-discussion",
             "/participant-ai-lab-cv-cnn-intro",
             "/participant-ai-lab-cv-cnn-why",
             "/participant-ai-lab-cv-cnn-relu",
@@ -490,6 +512,20 @@ const router = {
                     }
                     if (path === "/participant-ai-python-discussion" && typeof window.initAiPythonDiscussion === "function") {
                         window.initAiPythonDiscussion();
+                    }
+                } else if (path === "/participant-ai-lab-math" && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if (typeof window.initAiLabMathOverview === "function") window.initAiLabMathOverview();
+                } else if (path.startsWith("/participant-ai-lab-math-") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if (path === "/participant-ai-lab-math-practice" && typeof window.initAiLabMathPractice === "function") {
+                        window.initAiLabMathPractice();
+                    } else if (path === "/participant-ai-lab-math-quiz" && typeof window.initAiLabMathQuiz === "function") {
+                        window.initAiLabMathQuiz();
+                    } else if (path === "/participant-ai-lab-math-discussion" && typeof window.initAiLabMathDiscussion === "function") {
+                        window.initAiLabMathDiscussion();
+                    } else if (typeof window.initAiLabMathLesson === "function") {
+                        window.initAiLabMathLesson();
                     }
                 } else if (path.startsWith("/participant-ai-lab-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("ai-lab");
