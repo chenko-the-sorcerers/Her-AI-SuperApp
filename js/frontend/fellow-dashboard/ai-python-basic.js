@@ -192,13 +192,25 @@
         var showResult = function(score, total) {
             if (!resultBox) return;
             resultBox.hidden = false;
-            resultBox.innerHTML = '<strong>Nilai kamu: ' + score + '/' + total + '</strong><span>Skor tersimpan. Jawaban benar tidak ditampilkan agar evaluasi tetap fair.</span>';
+            resultBox.innerHTML = '<strong>Nilai kamu: ' + score + '/' + total + '</strong><span>Skor tersimpan. Jawaban yang benar ditandai dengan warna hijau.</span>';
         };
 
         if (isQuizDone) {
             var savedScore = Number(localStorage.getItem(quizScoreKey) || 0);
             showResult(savedScore, groups.length);
-            quizForm.querySelectorAll('input').forEach(function(i) { i.disabled = true; });
+            quizForm.querySelectorAll('label').forEach(function(lbl) {
+                var inp = lbl.querySelector('input');
+                if (inp) {
+                    inp.disabled = true;
+                    if (inp.value === '1') {
+                        lbl.style.background = 'rgba(46, 160, 67, 0.1)';
+                        lbl.style.borderColor = '#2ea043';
+                    } else if (inp.checked) {
+                        lbl.style.background = 'rgba(231, 76, 60, 0.1)';
+                        lbl.style.borderColor = '#e74c3c';
+                    }
+                }
+            });
             if (submitButton) { submitButton.disabled = true; submitButton.textContent = 'Kuis Sudah Dikirim'; }
             if (nextLink) nextLink.classList.remove('is-disabled');
             document.querySelectorAll('[data-locked-after-quiz]').forEach(function(i) { i.hidden = false; });
@@ -216,7 +228,19 @@
             localStorage.setItem(quizDoneKey, 'true');
             localStorage.setItem(quizScoreKey, String(score));
             showResult(score, groups.length);
-            quizForm.querySelectorAll('input').forEach(function(i) { i.disabled = true; });
+            quizForm.querySelectorAll('label').forEach(function(lbl) {
+                var inp = lbl.querySelector('input');
+                if (inp) {
+                    inp.disabled = true;
+                    if (inp.value === '1') {
+                        lbl.style.background = 'rgba(46, 160, 67, 0.1)';
+                        lbl.style.borderColor = '#2ea043';
+                    } else if (inp.checked) {
+                        lbl.style.background = 'rgba(231, 76, 60, 0.1)';
+                        lbl.style.borderColor = '#e74c3c';
+                    }
+                }
+            });
             if (submitButton) { submitButton.disabled = true; submitButton.textContent = 'Kuis Sudah Dikirim'; }
             document.querySelectorAll('[data-locked-after-quiz]').forEach(function(i) { i.hidden = false; });
             document.querySelectorAll('.lesson-lock-hint').forEach(function(i) { i.hidden = true; });
