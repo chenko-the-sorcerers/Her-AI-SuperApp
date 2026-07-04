@@ -252,14 +252,15 @@
                     var runs = container.querySelectorAll('.py-run');
                     runs.forEach(function(btn) {
                         btn.addEventListener('click', function() {
-                            var idMatch = this.getAttribute('onclick')?.match(/'([^']+)'/);
+                            var idMatch = this.getAttribute('onclick') ? this.getAttribute('onclick').match(/'([^']+)'/) : null;
                             var id = idMatch ? idMatch[1] : this.id.replace('btn-run-', '');
                             runCode(id);
                         });
-                        this.removeAttribute('onclick');
+                        btn.removeAttribute('onclick');
                     });
                 })
                 .catch(function(err) {
+                    console.error("Modul load error:", err);
                     container.innerHTML = '<div style="padding: 40px; text-align:center; color: #f63392;"><h3>Modul Belum Tersedia</h3><p>Modul ' + chapterNumber + ' masih dalam tahap penulisan oleh AI Curriculum Engineer.</p></div>';
                 });
 
