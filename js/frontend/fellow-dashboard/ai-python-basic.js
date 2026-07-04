@@ -115,18 +115,41 @@
 
         saveButton?.addEventListener('click', function() {
             var payload = {};
-            fields.forEach(function(f) { payload[f.name] = f.value.trim(); });
+            var hasAnswer = false;
+            fields.forEach(function(f) { 
+                var val = f.value.trim();
+                payload[f.name] = val; 
+                if (val.length > 0) hasAnswer = true;
+            });
+
+            if (!hasAnswer) {
+                if (status) {
+                    status.style.color = '#e74c3c';
+                    status.textContent = 'Oops, jawaban tidak boleh kosong! Silakan kerjakan minimal satu soal reflektif.';
+                }
+                return;
+            }
+
             localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-            if (status) status.textContent = 'Jawaban berhasil disimpan. Kamu bisa edit atau hapus kapan saja.';
+            if (status) {
+                status.style.color = 'var(--fellow-muted)';
+                status.textContent = 'Jawaban berhasil disimpan. Kamu bisa edit atau hapus kapan saja.';
+            }
         });
         editButton?.addEventListener('click', function() {
             fields[0]?.focus();
-            if (status) status.textContent = 'Mode edit aktif.';
+            if (status) {
+                status.style.color = 'var(--fellow-muted)';
+                status.textContent = 'Mode edit aktif.';
+            }
         });
         deleteButton?.addEventListener('click', function() {
             localStorage.removeItem(STORAGE_KEY);
             fields.forEach(function(f) { f.value = ''; });
-            if (status) status.textContent = 'Jawaban latihan dihapus.';
+            if (status) {
+                status.style.color = 'var(--fellow-muted)';
+                status.textContent = 'Jawaban latihan dihapus.';
+            }
         });
 
         // Bind Pyodide run/reset
