@@ -245,7 +245,8 @@
         var container = document.getElementById('python-chapter-container');
         if (!container) return;
 
-        var currentChapter = 1;
+        var STORAGE_KEY_CHAPTER = 'heraiAiPythonCurrentChapter';
+        var currentChapter = parseInt(localStorage.getItem(STORAGE_KEY_CHAPTER) || '1', 10);
         var totalChapters = 4; // Currently Module 1 to 4 are ready
 
         var btnPrev = document.getElementById('btn-prev-chapter');
@@ -295,6 +296,7 @@
             btnPrev.addEventListener('click', function() {
                 if (currentChapter > 1) {
                     currentChapter--;
+                    localStorage.setItem(STORAGE_KEY_CHAPTER, currentChapter.toString());
                     loadChapter(currentChapter);
                 }
             });
@@ -304,6 +306,7 @@
             btnNext.addEventListener('click', function() {
                 if (currentChapter < totalChapters) {
                     currentChapter++;
+                    localStorage.setItem(STORAGE_KEY_CHAPTER, currentChapter.toString());
                     loadChapter(currentChapter);
                 }
             });
