@@ -326,7 +326,7 @@
   margin: 0 auto;
 }
 .ai-lab-overview .lesson-topbar {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
   padding: 20px 0 16px; gap: 16px;
   border-bottom: 1px solid var(--fellow-line);
   background: transparent; position: relative;
@@ -1317,8 +1317,8 @@
 }
 .ai-topic-item:hover {
   background: #fff7fb; padding-left: 14px;
-  border-color: rgba(246,51,146,.14);
-  box-shadow: 0 4px 16px rgba(246,51,146,.06);
+  border-color: rgba(246,51,146,.4);
+  box-shadow: 0 4px 16px rgba(246,51,146,.12);
   transform: translateX(4px);
 }
 .ai-topic-icon {
@@ -1329,6 +1329,12 @@
 }
 .ai-topic-body h3 { font-size: .95rem; font-weight: 700; margin: 0 0 4px; }
 .ai-topic-body h3 a { color: #171827; text-decoration: none; }
+.ai-topic-body h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
 .ai-topic-body h3 a:hover { color: #f63392; }
 .ai-topic-body p { font-size: .8rem; color: #6f7282; line-height: 1.65; margin: 0 0 8px; }
 .ai-topic-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -5326,26 +5332,15 @@
   isolation: isolate;
   overflow: hidden;
   align-items: center;
-  min-height: 300px;
+  min-height: 240px;
   padding: 34px 30px 0;
   border: 1px solid rgba(246,51,146,.16);
-  border-radius: 22px 22px 0 0;
+  border-radius: 20px;
   background:
     linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255,255,255,.08) 1px, transparent 1px),
     linear-gradient(135deg, #181720 0%, #271924 54%, #fff2f8 100%);
   background-size: 36px 36px, 36px 36px, auto;
-}
-.ml-lesson-page .lesson-hero::after {
-  content: "";
-  align-self: end;
-  justify-self: end;
-  width: min(330px, 100%);
-  aspect-ratio: 1 / 1;
-  background: url("/assets/messaging/herai-chat-persona.png") bottom right / contain no-repeat;
-  filter: drop-shadow(0 24px 34px rgba(246,51,146,.24));
-  opacity: .96;
-  pointer-events: none;
 }
 .ml-lesson-page .lesson-hero-copy {
   max-width: 760px;
@@ -6004,14 +5999,12 @@
   opacity: .9;
 }
 
+
 @media (max-width: 1024px) {
   .ml-lesson-page .lesson-hero {
     grid-template-columns: 1fr;
     min-height: 0;
     padding: 28px;
-  }
-  .ml-lesson-page .lesson-hero::after {
-    display: none;
   }
   .ml-lesson-content .fv-split,
   .ml-lesson-content .hypo-demo,
@@ -6027,7 +6020,7 @@
 
 @media (max-width: 640px) {
   .ml-lesson-page .lesson-hero {
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px;
     padding: 22px;
   }
   .ml-lesson-page .lesson-hero h1 {
@@ -6066,17 +6059,11 @@
   --ml-pink: var(--fellow-pink, #f63392);
 }
 .ml-lesson-page .lesson-hero {
-  min-height: 270px;
+  min-height: 220px;
   padding: 26px 26px 0 16px;
   border: 1px solid var(--fellow-line);
-  border-radius: 18px 18px 0 0;
+  border-radius: 20px;
   background: linear-gradient(100deg, #fff 0%, #fff 42%, #ffe7f2 100%);
-}
-.ml-lesson-page .lesson-hero::after {
-  width: min(280px, 38%);
-  background-image: url("/assets/messaging/herai-chat-persona.png");
-  filter: drop-shadow(0 24px 38px rgba(170,52,104,.14));
-  opacity: 1;
 }
 .ml-lesson-page .lesson-hero-copy {
   padding-bottom: 28px;
@@ -6405,6 +6392,7 @@
   height: auto;
   min-height: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 16px;

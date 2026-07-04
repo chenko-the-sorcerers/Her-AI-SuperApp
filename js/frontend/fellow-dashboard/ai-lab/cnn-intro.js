@@ -742,6 +742,9 @@ window.selectStage = function(stage) {
 };
 
 function updateStageDetail(stage) {
+  const sdTitle = document.getElementById('sdTitle');
+  if (!sdTitle) return;
+
   const info = {
     input: { title:'Input Image', sub:'Raw pixel values, 224×224×3 (RGB channel pertama=R, kedua=G, ketiga=B)' },
     conv1: { title:'Conv1 + ReLU', sub:'32 filter 3×3, stride=1, padding=1 → 224×224×32 feature maps. Layer ini belajar tepi dan gradien.' },
@@ -751,7 +754,7 @@ function updateStageDetail(stage) {
     fc:    { title:'Fully Connected + Softmax', sub:'Feature vector di-flatten lalu diklasifikasi. Output = probabilitas untuk setiap kelas landmark.' },
   };
   const i=info[stage]||info.input;
-  document.getElementById('sdTitle').textContent=i.title;
+  sdTitle.textContent=i.title;
   document.getElementById('sdSub').textContent=i.sub;
 }
 

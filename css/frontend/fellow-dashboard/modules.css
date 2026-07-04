@@ -394,6 +394,13 @@
     text-decoration: none;
 }
 
+.course-card a::after {
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 1;
+}
+
 .specialization-panel {
     background: linear-gradient(145deg, #fff, #fff6fb);
 }
@@ -1002,6 +1009,14 @@
     min-height: 230px;
     padding: 20px;
     position: relative;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.course-lesson-grid article:hover {
+    background: linear-gradient(145deg, #fff, #fff0f7);
+    border-color: var(--fellow-pink);
+    box-shadow: 0 20px 42px rgba(246, 51, 146, 0.12);
+    transform: translateY(-4px);
 }
 
 .course-lesson-grid article > span {
@@ -1089,6 +1104,14 @@
     padding: 0 14px;
     text-decoration: none;
     width: max-content;
+}
+
+.course-lesson-grid button::after,
+.course-lesson-grid .lesson-action::after {
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 1;
 }
 
 .course-lesson-grid article.done button,
@@ -1242,6 +1265,7 @@
 .lesson-topbar {
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
     gap: 18px;
     justify-content: space-between;
     margin: 0 0 24px;
@@ -1307,6 +1331,13 @@
     padding: 26px 26px 0 16px;
 }
 
+.lesson-detail-page .lesson-hero {
+    border: 1px solid var(--fellow-line);
+    border-radius: 20px;
+    margin-bottom: 24px;
+    min-height: 220px;
+}
+
 .lesson-hero-copy {
     align-self: center;
     display: grid;
@@ -1344,7 +1375,7 @@
 .lesson-hero.compact {
     align-items: end;
     grid-template-columns: minmax(0, 1fr) minmax(260px, 520px);
-    min-height: 270px;
+    min-height: 220px;
     padding: 26px 26px 0 16px;
 }
 
