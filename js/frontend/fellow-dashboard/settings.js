@@ -379,8 +379,7 @@
     function renderLessonList(activePath) {
         return introLessonRoutes.map((lesson, index) => {
             const active = lesson.path === activePath ? ' class="active"' : '';
-            const locked = index > 0 ? ' data-locked-after-quiz' : '';
-            return `<li${active}${locked}><span>${index + 1}</span><a href="#${lesson.path}">${lesson.title}</a><i class="${active ? 'far fa-circle-play' : 'far fa-circle'}"></i></li>`;
+            return `<li${active}><span>${index + 1}</span><a href="#${lesson.path}">${lesson.title}</a><i class="${active ? 'far fa-circle-play' : 'far fa-circle'}"></i></li>`;
         }).join('');
     }
 
@@ -399,7 +398,7 @@
         page.querySelector('[data-lesson-title]').textContent = lesson.title;
         page.querySelector('[data-lesson-description]').textContent = lesson.description;
         page.querySelector('[data-lesson-duration]').textContent = lesson.duration;
-        page.querySelector('[data-lesson-position]').textContent = `Modul ${index + 1} dari ${introLessonRoutes.length}`;
+        page.querySelector('[data-lesson-position]').textContent = `Topik ${index + 1} dari ${introLessonRoutes.length}`;
         page.querySelector('[data-lesson-tag]').textContent = lesson.tag;
         page.querySelector('[data-lesson-content]').innerHTML = lesson.content;
         page.querySelector('[data-lesson-list]').innerHTML = renderLessonList(path);
@@ -409,13 +408,13 @@
         const prevLink = page.querySelector('[data-lesson-prev]');
         const nextLink = page.querySelector('[data-lesson-next]');
         prevLink.href = `#${prev.path}`;
-        prevLink.innerHTML = `<i class="fas fa-chevron-left"></i> ${prev.short}`;
+        prevLink.innerHTML = `<i class="fas fa-chevron-left"></i> Topik Sebelumnya`;
         if (next) {
             nextLink.href = `#${next.path}`;
-            nextLink.innerHTML = `${next.short} <i class="fas fa-arrow-right"></i>`;
+            nextLink.innerHTML = `Topik Selanjutnya <i class="fas fa-arrow-right"></i>`;
         } else {
-            nextLink.href = '#/participant-ai-fundamentals';
-            nextLink.innerHTML = 'Kembali ke Modul <i class="fas fa-arrow-right"></i>';
+            nextLink.href = '#/participant-ai-intro-practice';
+            nextLink.innerHTML = 'Lanjut ke Latihan <i class="fas fa-arrow-right"></i>';
         }
     }
 
