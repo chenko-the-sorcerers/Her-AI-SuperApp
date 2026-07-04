@@ -40,6 +40,11 @@ const router = {
         "/participant-ai-python-practice": "/pages/frontend/fellow-dashboard/ai-fundamental/02-python-untuk-ai/latihan.html",
         "/participant-ai-python-quiz": "/pages/frontend/fellow-dashboard/ai-fundamental/02-python-untuk-ai/kuis.html",
         "/participant-ai-python-discussion": "/pages/frontend/fellow-dashboard/ai-fundamental/02-python-untuk-ai/diskusi.html",
+        
+        "/participant-ai-modern": "/pages/frontend/fellow-dashboard/ai-fundamental/03-konsep-ai-modern/materi.html",
+        "/participant-ai-modern-practice": "/pages/frontend/fellow-dashboard/ai-fundamental/03-konsep-ai-modern/latihan.html",
+        "/participant-ai-modern-quiz": "/pages/frontend/fellow-dashboard/ai-fundamental/03-konsep-ai-modern/kuis.html",
+        "/participant-ai-modern-discussion": "/pages/frontend/fellow-dashboard/ai-fundamental/03-konsep-ai-modern/diskusi.html",
         "/participant-mentor": "/pages/frontend/fellow-dashboard/mentor.html",
         "/participant-tasks": "/pages/frontend/fellow-dashboard/tasks.html",
         "/participant-projects": "/pages/frontend/fellow-dashboard/projects.html",
@@ -301,6 +306,10 @@ const router = {
             "/participant-ai-python-practice",
             "/participant-ai-python-quiz",
             "/participant-ai-python-discussion",
+            "/participant-ai-modern",
+            "/participant-ai-modern-practice",
+            "/participant-ai-modern-quiz",
+            "/participant-ai-modern-discussion",
             "/participant-profile",
             "/participant-mentor",
             "/participant-tasks",
@@ -513,19 +522,10 @@ const router = {
                     if (path === "/participant-ai-python-discussion" && typeof window.initAiPythonDiscussion === "function") {
                         window.initAiPythonDiscussion();
                     }
-                } else if (path === "/participant-ai-lab-math" && typeof window.initFellowDashboardPage === "function") {
-                    window.initFellowDashboardPage("modules");
-                    if (typeof window.initAiLabMathOverview === "function") window.initAiLabMathOverview();
-                } else if (path.startsWith("/participant-ai-lab-math-") && typeof window.initFellowDashboardPage === "function") {
-                    window.initFellowDashboardPage("modules");
-                    if (path === "/participant-ai-lab-math-practice" && typeof window.initAiLabMathPractice === "function") {
-                        window.initAiLabMathPractice();
-                    } else if (path === "/participant-ai-lab-math-quiz" && typeof window.initAiLabMathQuiz === "function") {
-                        window.initAiLabMathQuiz();
-                    } else if (path === "/participant-ai-lab-math-discussion" && typeof window.initAiLabMathDiscussion === "function") {
-                        window.initAiLabMathDiscussion();
-                    } else if (typeof window.initAiLabMathLesson === "function") {
-                        window.initAiLabMathLesson();
+                } else if (path.startsWith("/participant-ai-modern") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage();
+                    if (path === "/participant-ai-modern" && typeof window.initAiModernMateri === "function") {
+                        window.initAiModernMateri();
                     }
                 } else if (path.startsWith("/participant-ai-lab-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("ai-lab");

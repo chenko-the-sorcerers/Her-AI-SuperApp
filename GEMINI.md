@@ -174,3 +174,9 @@ Setiap perubahan bisa berdampak pada:
 
 
 ATURAN TAK TERTULIS SELALU COMMIT PERUBAHAN DISAAT NGERJAIN FITUR TAPI JANGAN DIPUSH 
+## FRONTEND BUG LOG & LESSONS LEARNED
+Untuk mencegah error frontend berulang (terutama saat ngerombak UI), perhatikan catatan berikut:
+1. **Unclosed HTML Tags:** Kesalahan menutup `</div>` menjadi `</nav>` atau lupa menutup tag dapat membuat layout berantakan (misal konten melebar/menyempit tumpang tindih). Selalu pastikan tag penutup valid!
+2. **Global CSS Class Clash:** Hati-hati menamai class CSS baru. Contoh: class `challenge-card` ternyata sudah dipakai di `dashboard.css` sebagai grid yang sangat sempit, sehingga merusak form latihan Pyodide. Gunakan nama yang spesifik, misal: `practice-card`, `python-ide-container`.
+3. **Empty State Validation:** Selalu tambahkan validasi frontend (JS) di form-form latihan/kuis. Jangan biarkan user submit jawaban kosong tanpa peringatan error berwarna merah.
+4. **CSS Overrides:** Jika sebuah komponen butuh keluar dari aturan parent container-nya (misal text-editor Pyodide di dalam `<form>`), pastikan menambahkan inline style atau CSS spesifik (seperti `border-radius: 0; width: 100%`) agar tidak mewarisi style form yang membulat (pill-shape).
