@@ -8,11 +8,12 @@
 ## 🚀 Progres Saat Ini (What's Done)
 
 ### 1. Modul 1: Pengantar AI (AI Fundamentals) - SELESAI
-- **Materi & Persona**: Topik 1 hingga 6 telah dirombak total menggunakan bahasa "HerAI Buddy" (santai, suportif, "tech bestie"). 
+- **Materi & Persona**: Topik 1 hingga 11 telah direstrukturisasi secara lengkap dan komprehensif. Mulai dari Sejarah AI, Jenis-jenis AI, AI Pipeline, hingga Etika AI telah ditulis dengan bahasa "HerAI Buddy" (santai, suportif, "tech bestie"). 
 - **Visualisasi**: 
   - Penambahan visual block gradient pink (Box Header Modul).
   - Grid card interaktif untuk jenis-jenis AI (ANI, AGI, ASI) dan Komponen Utama (Data, Algoritma, Komputasi).
-  - Badge penghargaan di akhir materi.
+  - Penambahan timeline visual untuk Sejarah AI.
+  - Badge penghargaan di akhir materi (Topik 11).
 - **Tracking & Meta**:
   - Mengubah meta tracking hero section menjadi `Modul 1 dari 6` (awalnya menggunakan penamaan "Topik").
   - Menyesuaikan *progress list* sidebar menjadi "1 dari 6 materi selesai".
@@ -21,9 +22,9 @@
   - Memperbaiki bug syntax error (`content: \`` duplikat) di `js/frontend/fellow-dashboard/settings.js` yang menyebabkan halaman Modul 1 kosong/blank.
   - Memperbaiki isu *double button pagination* dan breadcrumb panah kecil yang tidak konsisten ukurannya.
 
-### 2. Modul 3: Konsep AI Modern - PENDING
-- Halaman belum selesai (konten belum ada).
-- Telah diatur *safe routing* via `js/router.js` agar halaman `#/participant-ai-modern`, kuis, latihan, dan diskusi diarahkan secara paksa ke halaman `under-development.html` (mencegah blank/error 404).
+### 2. Modul 3 & Modul Machine Learning - PENDING (UNDER DEVELOPMENT)
+- Halaman konten belum sepenuhnya selesai atau masih berantakan.
+- Telah diatur *safe routing* via `js/router.js` agar halaman `#/participant-ai-modern`, dan seluruh rute `#/participant-ai-lab-ml-*` dialihkan (redirect) secara paksa ke halaman `under-development.html` (mencegah blank/error UI).
 
 ---
 
