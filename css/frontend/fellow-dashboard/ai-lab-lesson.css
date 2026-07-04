@@ -1105,7 +1105,8 @@
 /* ── Lesson Hero (overview pages) ───────────────── */
 .ai-lab-overview .lesson-hero {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 24px; padding: 32px 0 24px; border-bottom: 1px solid var(--fellow-line);
+  gap: 24px; padding: 32px; border: 1px solid var(--fellow-line);
+  border-radius: 20px; margin-bottom: 24px;
 }
 .ai-lab-overview .lesson-hero-copy { flex: 1; min-width: 0; }
 .ai-lab-overview .lesson-hero h1 {
@@ -6625,6 +6626,12 @@
   .ai-lab-overview .fellow-user-button,
   .ai-lab-overview .lesson-topbar .fellow-user-button {
     min-width: 0;
+  }
+  
+  .ai-lab-overview .lesson-hero {
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
