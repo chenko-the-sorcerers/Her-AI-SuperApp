@@ -47,7 +47,7 @@ const router = {
         "/participant-ai-python-discussion": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/diskusi.html",
         
         "/participant-under-development": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-modern": "/pages/frontend/fellow-dashboard/under-development.html",
+        "/participant-ai-modern": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/materi.html",
         "/participant-ai-modern-practice": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-modern-quiz": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-modern-discussion": "/pages/frontend/fellow-dashboard/under-development.html",

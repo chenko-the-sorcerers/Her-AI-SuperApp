@@ -145,7 +145,7 @@ pages/frontend/fellow-dashboard/
 |---|---|---|---|---|---|---|
 | 01 - Pengantar AI | Aktif | Template/basic | Basic | Basic | `settings.js` | Route sub-topik memakai `lesson.html` |
 | 02 - Python untuk AI | Aktif | Aktif, Pyodide | Aktif | Basic | `ai-python-basic.js` | Modul paling interaktif |
-| 03a - Konsep AI Modern | Materi ada | Belum aktif | Belum aktif | Belum aktif | `ai-modern.js` | Route masih under-development |
+| 03a - Konsep AI Modern | Aktif | Belum aktif | Belum aktif | Belum aktif | `ai-modern.js` | Route materi aktif; activity lain masih under-development |
 | 04 - Reasoning | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
 | 05 - Evaluation | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
 | 06 - Evolution of AI | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
@@ -255,7 +255,6 @@ Route yang masih diarahkan ke `under-development.html`:
 | Route | Keterangan |
 |---|---|
 | `/participant-under-development` | Fallback global |
-| `/participant-ai-modern` | Konsep AI Modern |
 | `/participant-ai-modern-practice` | Konsep AI Modern practice |
 | `/participant-ai-modern-quiz` | Konsep AI Modern quiz |
 | `/participant-ai-modern-discussion` | Konsep AI Modern discussion |
