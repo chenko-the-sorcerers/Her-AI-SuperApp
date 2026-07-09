@@ -263,11 +263,27 @@
         `).join("");
     }
 
+    function updateActivityTabs(basePath) {
+        const tabHrefs = {
+            materi: basePath,
+            latihan: "/participant-under-development",
+            kuis: "/participant-under-development",
+            diskusi: "/participant-under-development"
+        };
+
+        Object.entries(tabHrefs).forEach(([key, path]) => {
+            document.querySelectorAll(`[data-course-scaffold-tab="${key}"]`).forEach(node => {
+                node.setAttribute("href", `#${path}`);
+            });
+        });
+    }
+
     window.initCoursePlaceholder = function () {
         const page = document.querySelector(".course-scaffold-page");
         if (!page) return;
+        const currentPath = getPath();
 
-        const data = COURSE_SCAFFOLDS[getPath()] || {
+        const data = COURSE_SCAFFOLDS[currentPath] || {
             title: "Course Scaffold",
             category: "Course Catalog",
             icon: "fas fa-layer-group",
@@ -285,5 +301,6 @@
         setIcon("[data-course-scaffold-icon]", data.icon);
         setIcon("[data-course-scaffold-visual-icon]", data.icon);
         renderModules(data.modules || DEFAULT_MODULES);
+        updateActivityTabs(currentPath);
     };
 })();
