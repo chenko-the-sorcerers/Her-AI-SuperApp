@@ -312,3 +312,129 @@ Commit fitur relevan sebelum commit dokumentasi ini:
 4d7d69a feat: activate machine learning module flow
 b4b1135 feat: merge Math for AI + ML from Nazril, restore CV routes, NLP single page, all under-dev
 ```
+
+---
+
+## Arsip Checkpoint 5 Juli 2026
+
+Bagian ini adalah riwayat historis sebelum ML diaktifkan dan dimigrasikan ke konten 8 chapter. Jangan pakai bagian ini sebagai status terkini. Status terkini ada di bagian atas dokumen ini dan di `MODULE_STATUS_MAP.md`.
+
+### Merge Math for AI dari Nazril
+
+Pada checkpoint 5 Juli 2026, Math for AI dari Nazril sudah masuk ke repo sebagai file referensi/implementasi awal, tetapi seluruh route Math masih diarahkan ke `under-development.html`.
+
+File yang tercatat masuk dari Nazril:
+
+- `js/frontend/fellow-dashboard/ai-math-for-ai.js`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/overview.html`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/practice.html`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/quiz.html`
+- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/discussion.html`
+- `docs-nazril/` sebagai referensi lokal yang tidak untuk dipush
+
+Route Math pada checkpoint itu:
+
+- `/participant-ai-lab-math`
+- `/participant-ai-lab-math-intro`
+- `/participant-ai-lab-math-linear-algebra`
+- `/participant-ai-lab-math-statistics`
+- `/participant-ai-lab-math-probability`
+- `/participant-ai-lab-math-calculus`
+- `/participant-ai-lab-math-optimization`
+- `/participant-ai-lab-math-case-study`
+- `/participant-ai-lab-math-practice`
+- `/participant-ai-lab-math-quiz`
+- `/participant-ai-lab-math-discussion`
+
+Status historis: under-development. Status ini masih benar untuk Math saat dokumen 9 Juli dibuat, kecuali ada commit baru setelahnya yang mengaktifkan Math.
+
+### Machine Learning sebelum aktivasi
+
+Pada checkpoint 5 Juli 2026, Machine Learning masih diarahkan ke `under-development.html`. File ML sudah ada sebagai draft awal, tetapi belum aktif sebagai flow peserta.
+
+Route ML yang saat itu masih under-development:
+
+- `/participant-ai-lab-machine-learning`
+- `/participant-ai-lab-ml`
+- `/participant-ai-lab-ml-intro`
+- `/participant-ai-lab-ml-hypothesis`
+- `/participant-ai-lab-ml-vc-dim`
+- `/participant-ai-lab-ml-bias-variance`
+- `/participant-ai-lab-ml-practice`
+- `/participant-ai-lab-ml-quiz`
+- `/participant-ai-lab-ml-discussion`
+
+Status historis ini sudah superseded oleh:
+
+- `4d7d69a feat: activate machine learning module flow`
+- `5103d4e feat: migrate full chen machine learning content`
+
+Status terkini: ML aktif dengan 8 chapter, 10 latihan, 24 soal kuis, dan 8 prompt diskusi.
+
+### Generative AI
+
+Pada checkpoint 5 Juli 2026, Generative AI masih under-development:
+
+- `/participant-ai-lab-gen` -> `under-development.html`
+
+Status ini masih perlu dicek pada commit terbaru sebelum melanjutkan GenAI.
+
+### Computer Vision route restore
+
+Pada checkpoint 5 Juli 2026, 12 route Computer Vision yang sempat terhapus sudah direstore di `js/router.js`.
+
+Route yang direstore:
+
+| Route | File |
+|---|---|
+| `/participant-ai-lab-cv` | `ai-lab/computer-vision.html` |
+| `/participant-ai-lab-cv-cnn-intro` | `lessons/cnn-intro.html` |
+| `/participant-ai-lab-cv-cnn-why` | `lessons/cnn-why.html` |
+| `/participant-ai-lab-cv-cnn-relu` | `lessons/cnn-relu.html` |
+| `/participant-ai-lab-cv-filtering-kernels` | `lessons/filtering-kernels.html` |
+| `/participant-ai-lab-cv-cnn-fc` | `lessons/cnn-fc.html` |
+| `/participant-ai-lab-cv-cnn-hands` | `lessons/cnn-hands.html` |
+| `/participant-ai-lab-cv-cnn-arch` | `lessons/cnn-arch.html` |
+| `/participant-ai-lab-cv-morph` | `lessons/morphological-transforms.html` |
+| `/participant-ai-lab-cv-opencv` | `lessons/image-processing-opencv.html` |
+| `/participant-ai-lab-cv-pixel` | `lessons/pixel-anatomy.html` |
+| `/participant-ai-lab-cv-cnn-arch-builder` | `lessons/cnn-arch-builder.html` |
+
+### NLP single-page cleanup
+
+Pada checkpoint 5 Juli 2026, 5 NLP lesson file dibuat single-page materi saja karena route latihan, kuis, dan diskusi belum tersedia untuk sub-lesson tersebut.
+
+File yang dicatat:
+
+- `pages/frontend/fellow-dashboard/ai-lab/lessons/tokenization.html`
+- `pages/frontend/fellow-dashboard/ai-lab/lessons/preprocessing.html`
+- `pages/frontend/fellow-dashboard/ai-lab/lessons/pos-ner.html`
+- `pages/frontend/fellow-dashboard/ai-lab/lessons/bow.html`
+- `pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html`
+
+### File yang disentuh pada checkpoint 5 Juli
+
+Daftar historis dari checkpoint lama:
+
+| File | Perubahan historis |
+|---|---|
+| `js/router.js` | Tambah route Math, restore route CV, arahkan ML/Math ke under-development pada saat itu |
+| `index.html` | Tambah script `ai-math-for-ai.js` |
+| `pages/frontend/fellow-dashboard/modules.html` | Card Math diarahkan ke under-development |
+| `pages/frontend/fellow-dashboard/ai-fundamentals.html` | Dikembalikan ke versi tim sebelum merge |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/tokenization.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/preprocessing.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/pos-ner.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/bow.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `js/frontend/fellow-dashboard/ai-math-for-ai.js` | File baru dari Nazril |
+| `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/*` | File baru dari Nazril |
+| `docs-nazril/` | Referensi lokal, tidak untuk dipush |
+
+### Catatan historis penting
+
+- `docs-faiz/` dan `docs-nazril/` diperlakukan sebagai referensi lokal.
+- Jangan menghapus konten mentor; tambahkan jika perlu.
+- Jangan memakai emoji di UI; gunakan FontAwesome icons.
+- Semua perubahan sebaiknya dicommit lokal dulu dan tidak dipush tanpa izin.
