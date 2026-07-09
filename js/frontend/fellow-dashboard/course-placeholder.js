@@ -6,6 +6,33 @@
         "Mini project atau studi kasus"
     ];
 
+    const ACTIVITY_CONTENT = {
+        materi: {
+            title: "Materi scaffold siap diisi tim konten",
+            copy: "Tab Materi menampilkan outline module/chapter awal. Saat course siap, ganti scaffold ini ke file course final atau lanjutkan dari struktur ini.",
+            label: "Draft module/chapter",
+            heading: "Outline materi awal"
+        },
+        latihan: {
+            title: "Latihan belum final, tapi slot activity sudah disiapkan",
+            copy: "Gunakan tab ini sebagai placeholder latihan agar struktur course konsisten tanpa mengirim peserta ke halaman under-development.",
+            label: "Draft latihan",
+            heading: "Rencana latihan"
+        },
+        kuis: {
+            title: "Kuis belum final, tapi slot evaluasi sudah disiapkan",
+            copy: "Tab ini menandai tempat kuis nanti dipasang. Route tetap berada di course scaffold supaya peserta tidak kehilangan konteks.",
+            label: "Draft evaluasi",
+            heading: "Rencana kuis"
+        },
+        diskusi: {
+            title: "Diskusi belum final, tapi ruang activity sudah disiapkan",
+            copy: "Tab ini menjaga pola Materi, Latihan, Kuis, Diskusi tetap lengkap sambil menunggu forum course final.",
+            label: "Draft diskusi",
+            heading: "Rencana diskusi"
+        }
+    };
+
     const COURSE_SCAFFOLDS = {
         "/participant-ai-lab-math": {
             title: "Math for AI",
@@ -237,6 +264,13 @@
         return (window.location.hash || "").replace("#", "").split("?")[0] || "/participant-modules";
     }
 
+    function getActivity() {
+        const query = (window.location.hash || "").split("?")[1] || "";
+        const params = new URLSearchParams(query);
+        const activity = params.get("activity") || "materi";
+        return Object.prototype.hasOwnProperty.call(ACTIVITY_CONTENT, activity) ? activity : "materi";
+    }
+
     function setText(selector, value) {
         document.querySelectorAll(selector).forEach(node => {
             node.textContent = value;
@@ -263,25 +297,28 @@
         `).join("");
     }
 
-    function updateActivityTabs(basePath) {
-        const tabHrefs = {
-            materi: basePath,
-            latihan: "/participant-under-development",
-            kuis: "/participant-under-development",
-            diskusi: "/participant-under-development"
-        };
-
-        Object.entries(tabHrefs).forEach(([key, path]) => {
+    function updateActivityTabs(basePath, activeActivity) {
+        Object.keys(ACTIVITY_CONTENT).forEach(key => {
             document.querySelectorAll(`[data-course-scaffold-tab="${key}"]`).forEach(node => {
-                node.setAttribute("href", `#${path}`);
+                node.setAttribute("href", key === "materi" ? `#${basePath}` : `#${basePath}?activity=${key}`);
+                node.classList.toggle("active", key === activeActivity);
             });
         });
+    }
+
+    function renderActivityContent(activity) {
+        const content = ACTIVITY_CONTENT[activity] || ACTIVITY_CONTENT.materi;
+        setText("[data-course-scaffold-activity-title]", content.title);
+        setText("[data-course-scaffold-activity-copy]", content.copy);
+        setText("[data-course-scaffold-section-label]", content.label);
+        setText("[data-course-scaffold-section-title]", content.heading);
     }
 
     window.initCoursePlaceholder = function () {
         const page = document.querySelector(".course-scaffold-page");
         if (!page) return;
         const currentPath = getPath();
+        const currentActivity = getActivity();
 
         const data = COURSE_SCAFFOLDS[currentPath] || {
             title: "Course Scaffold",
@@ -301,6 +338,7 @@
         setIcon("[data-course-scaffold-icon]", data.icon);
         setIcon("[data-course-scaffold-visual-icon]", data.icon);
         renderModules(data.modules || DEFAULT_MODULES);
-        updateActivityTabs(currentPath);
+        renderActivityContent(currentActivity);
+        updateActivityTabs(currentPath, currentActivity);
     };
 })();
