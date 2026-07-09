@@ -61,6 +61,7 @@ Catatan penting:
 - Machine Learning adalah course mandiri, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 - Folder Machine Learning masih berada di pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/ sebagai legacy path implementasi.
 - Jangan menafsirkan lokasi folder ML sebagai hierarki produk.
+- Course/track placeholder sudah punya route eksplisit ke under-development agar tim tinggal mengganti mapping route saat konten siap.
 
 ---
 

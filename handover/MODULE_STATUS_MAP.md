@@ -115,16 +115,18 @@ pages/frontend/fellow-dashboard/ai-lab/
 | NLP | `#/participant-ai-lab-nlp` | Aktif | 5 sub-lesson single page |
 | Math for AI | `#/participant-ai-lab-math` | Under-development | File ada dari Nazril, route diarahkan ke under-development |
 | Generative AI | `#/participant-ai-lab-gen` | Under-development | Route diarahkan ke under-development |
-| Deep Learning | - | Placeholder | Belum ada route |
-| Reinforcement Learning | - | Placeholder | Belum ada route |
-| LLM | - | Placeholder | Belum ada route |
-| VLM | - | Placeholder | Belum ada route |
-| Multimodal LLM | - | Placeholder | Belum ada route |
-| Agentic AI | - | Placeholder | Belum ada route |
-| Bioinformatics | - | Placeholder | Belum ada route |
-| Data Eng. & Data Sci. | - | Placeholder | Belum ada route |
-| Ops & Infra | - | Placeholder | Belum ada route |
-| Product | - | Placeholder | Belum ada route |
+| Deep Learning | `#/participant-ai-lab-deep-learning` | Placeholder route | Route diarahkan ke under-development |
+| Reinforcement Learning | `#/participant-ai-lab-reinforcement-learning` | Placeholder route | Route diarahkan ke under-development |
+| LLM | `#/participant-ai-lab-llm` | Placeholder route | Route diarahkan ke under-development |
+| VLM | `#/participant-ai-lab-vlm` | Placeholder route | Route diarahkan ke under-development |
+| Multimodal LLM | `#/participant-ai-lab-multimodal-llm` | Placeholder route | Route diarahkan ke under-development |
+| Agentic AI | `#/participant-ai-lab-agentic-ai` | Placeholder route | Route diarahkan ke under-development |
+| Bioinformatics | `#/participant-ai-lab-bioinformatics` | Placeholder route | Route diarahkan ke under-development |
+| Data Engineering | `#/participant-ai-lab-data-engineering` | Placeholder route | Route diarahkan ke under-development |
+| Data Science | `#/participant-ai-lab-data-science` | Placeholder route | Route diarahkan ke under-development |
+| Ops & Infra | `#/participant-ai-lab-infrastructure`, `#/participant-ai-lab-deployment` | Placeholder route | Route diarahkan ke under-development |
+| Product | `#/participant-ai-lab-front-end`, `#/participant-ai-lab-back-end` | Placeholder route | Route diarahkan ke under-development |
+| Business & Industry | `#/participant-ai-lab-business-insight` dan route industry lain | Placeholder route | Route diarahkan ke under-development |
 
 ---
 
@@ -204,6 +206,32 @@ Route yang masih diarahkan ke `under-development.html`:
 | `/participant-ai-modern-quiz` | Konsep AI Modern quiz |
 | `/participant-ai-modern-discussion` | Konsep AI Modern discussion |
 | `/participant-ai-lab-gen` | Generative AI |
+| `/participant-ai-lab-deep-learning` | Deep Learning |
+| `/participant-ai-lab-reinforcement-learning` | Reinforcement Learning |
+| `/participant-ai-lab-llm` | LLM |
+| `/participant-ai-lab-vlm` | VLM |
+| `/participant-ai-lab-multimodal-llm` | Multimodal LLM |
+| `/participant-ai-lab-agentic-ai` | Agentic AI |
+| `/participant-ai-lab-bioinformatics` | Bioinformatics |
+| `/participant-ai-lab-data-engineering` | Data Engineering |
+| `/participant-ai-lab-data-science` | Data Science |
+| `/participant-ai-lab-infrastructure` | Infrastructure |
+| `/participant-ai-lab-deployment` | Deployment |
+| `/participant-ai-lab-front-end` | Front-end |
+| `/participant-ai-lab-back-end` | Back-end |
+| `/participant-ai-lab-business-insight` | Business Insight |
+| `/participant-ai-lab-people-business-mgt` | People & Business Management |
+| `/participant-ai-lab-ai-culture` | AI for Culture |
+| `/participant-ai-lab-healthcare` | AI for Healthcare |
+| `/participant-ai-lab-ui-ux` | UI/UX Design Thinking |
+| `/participant-ai-lab-manufacturing` | AI for Manufacturing |
+| `/participant-ai-lab-geospatial` | AI for Geospatial |
+| `/participant-specialization-computer-vision` | Computer Vision specialization track |
+| `/participant-specialization-speech-recognition` | Speech Recognition specialization track |
+| `/participant-specialization-nlp-llm` | NLP & LLM specialization track |
+| `/participant-specialization-mlops-deployment` | MLOps & Deployment specialization track |
+| `/participant-specialization-multimodal-llm` | Multimodal LLM specialization track |
+| `/participant-specialization-medical-biology-ai` | Medical & Biology AI specialization track |
 | `/participant-ai-lab-math` | Math for AI |
 | `/participant-ai-lab-math-intro` | Math for AI |
 | `/participant-ai-lab-math-linear-algebra` | Math for AI |

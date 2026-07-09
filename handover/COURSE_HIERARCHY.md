@@ -54,8 +54,8 @@ Source UI utama: `pages/frontend/fellow-dashboard/modules.html`.
 | AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif | `pages/frontend/fellow-dashboard/ai-fundamentals.html` |
 | Math for AI | Foundation | `#/participant-ai-lab-math` | Under-development | File draft ada di `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/`, route masih ke `under-development.html` |
 | Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | Legacy path: `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` |
-| Deep Learning | Core | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Reinforcement Learning | Advanced | `#/participant-modules` | Placeholder | Belum ada route course aktif |
+| Deep Learning | Core | `#/participant-ai-lab-deep-learning` | Placeholder route | Route scaffold ke `under-development.html` |
+| Reinforcement Learning | Advanced | `#/participant-ai-lab-reinforcement-learning` | Placeholder route | Route scaffold ke `under-development.html` |
 
 AI Fundamentals & Advanced berisi module berikut:
 
@@ -85,11 +85,11 @@ Machine Learning berisi chapter berikut:
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| Generative AI | GenAI | `#/participant-modules` | Under-development / placeholder in UI | File overview ada di `pages/frontend/fellow-dashboard/ai-lab/generative-ai.html`, router `#/participant-ai-lab-gen` masih ke `under-development.html` |
-| LLM | Language | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| VLM | Vision | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Multimodal LLM | Multimodal | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Agentic AI | Agent | `#/participant-modules` | Placeholder | Belum ada route course aktif |
+| Generative AI | GenAI | `#/participant-ai-lab-gen` | Under-development | File overview ada di `pages/frontend/fellow-dashboard/ai-lab/generative-ai.html`, route scaffold masih ke `under-development.html` |
+| LLM | Language | `#/participant-ai-lab-llm` | Placeholder route | Route scaffold ke `under-development.html` |
+| VLM | Vision | `#/participant-ai-lab-vlm` | Placeholder route | Route scaffold ke `under-development.html` |
+| Multimodal LLM | Multimodal | `#/participant-ai-lab-multimodal-llm` | Placeholder route | Route scaffold ke `under-development.html` |
+| Agentic AI | Agent | `#/participant-ai-lab-agentic-ai` | Placeholder route | Route scaffold ke `under-development.html` |
 
 ### Data & Engineering Domains
 
@@ -97,25 +97,25 @@ Machine Learning berisi chapter berikut:
 |---|---|---|---|---|
 | Computer Vision | Vision | `#/participant-ai-lab-cv` | Aktif | Overview `pages/frontend/fellow-dashboard/ai-lab/computer-vision.html`, lessons di `ai-lab/lessons/` |
 | NLP | Language | `#/participant-ai-lab-nlp` | Aktif | `pages/frontend/fellow-dashboard/ai-lab/nlp.html` plus NLP lessons |
-| Bioinformatics | Science | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Data Engineering | Data | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Data Science | Data | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Infrastructure | Infra | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Deployment | Ops | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Front-end | Product | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| Back-end | Product | `#/participant-modules` | Placeholder | Belum ada route course aktif |
+| Bioinformatics | Science | `#/participant-ai-lab-bioinformatics` | Placeholder route | Route scaffold ke `under-development.html` |
+| Data Engineering | Data | `#/participant-ai-lab-data-engineering` | Placeholder route | Route scaffold ke `under-development.html` |
+| Data Science | Data | `#/participant-ai-lab-data-science` | Placeholder route | Route scaffold ke `under-development.html` |
+| Infrastructure | Infra | `#/participant-ai-lab-infrastructure` | Placeholder route | Route scaffold ke `under-development.html` |
+| Deployment | Ops | `#/participant-ai-lab-deployment` | Placeholder route | Route scaffold ke `under-development.html` |
+| Front-end | Product | `#/participant-ai-lab-front-end` | Placeholder route | Route scaffold ke `under-development.html` |
+| Back-end | Product | `#/participant-ai-lab-back-end` | Placeholder route | Route scaffold ke `under-development.html` |
 
 ### Business & Industry Applications
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| Business Insight | Business | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| People & Business Mgt | Management | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| AI for Culture | Culture | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| AI for Healthcare | Health | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| UI/UX Design Thinking | Design | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| AI for Manufacturing | Industry | `#/participant-modules` | Placeholder | Belum ada route course aktif |
-| AI for Geospatial | Geospatial | `#/participant-modules` | Placeholder | Belum ada route course aktif |
+| Business Insight | Business | `#/participant-ai-lab-business-insight` | Placeholder route | Route scaffold ke `under-development.html` |
+| People & Business Mgt | Management | `#/participant-ai-lab-people-business-mgt` | Placeholder route | Route scaffold ke `under-development.html` |
+| AI for Culture | Culture | `#/participant-ai-lab-ai-culture` | Placeholder route | Route scaffold ke `under-development.html` |
+| AI for Healthcare | Health | `#/participant-ai-lab-healthcare` | Placeholder route | Route scaffold ke `under-development.html` |
+| UI/UX Design Thinking | Design | `#/participant-ai-lab-ui-ux` | Placeholder route | Route scaffold ke `under-development.html` |
+| AI for Manufacturing | Industry | `#/participant-ai-lab-manufacturing` | Placeholder route | Route scaffold ke `under-development.html` |
+| AI for Geospatial | Geospatial | `#/participant-ai-lab-geospatial` | Placeholder route | Route scaffold ke `under-development.html` |
 
 ---
 
@@ -125,12 +125,12 @@ Specialization track adalah jalur spesialisasi, bukan course tunggal. Track dapa
 
 | Track | Fokus | Route UI | Status |
 |---|---|---|---|
-| Computer Vision | Image Processing, Object Detection & Recognition | `#/participant-modules` | Placeholder track; course CV aktif terpisah |
-| Speech Recognition | Voice Processing, Audio Analysis, ASR, TTS | `#/participant-modules` | Placeholder |
-| NLP & LLM | Text Generation, Semantic Understanding, RAG | `#/participant-modules` | Placeholder track; course NLP aktif terpisah |
-| MLOps & Deployment | Cloud Computing, Model Deployment, Scalability | `#/participant-modules` | Placeholder |
-| Multimodal LLM | VLM, Cross-modal Learning, World Models | `#/participant-modules` | Placeholder |
-| Medical & Biology AI | Genomics, Protein Analysis, Computational Biology | `#/participant-modules` | Placeholder |
+| Computer Vision | Image Processing, Object Detection & Recognition | `#/participant-specialization-computer-vision` | Placeholder route; course CV aktif terpisah |
+| Speech Recognition | Voice Processing, Audio Analysis, ASR, TTS | `#/participant-specialization-speech-recognition` | Placeholder route |
+| NLP & LLM | Text Generation, Semantic Understanding, RAG | `#/participant-specialization-nlp-llm` | Placeholder route; course NLP aktif terpisah |
+| MLOps & Deployment | Cloud Computing, Model Deployment, Scalability | `#/participant-specialization-mlops-deployment` | Placeholder route |
+| Multimodal LLM | VLM, Cross-modal Learning, World Models | `#/participant-specialization-multimodal-llm` | Placeholder route |
+| Medical & Biology AI | Genomics, Protein Analysis, Computational Biology | `#/participant-specialization-medical-biology-ai` | Placeholder route |
 
 ---
 
@@ -142,6 +142,7 @@ Specialization track adalah jalur spesialisasi, bukan course tunggal. Track dapa
 | Sebagian aktif | Sebagian module/activity aktif, sebagian masih under-development |
 | Under-development | File/draft bisa ada, tetapi route peserta belum diarahkan ke konten aktif |
 | Placeholder | Card UI ada, tetapi belum ada route/konten course aktif |
+| Placeholder route | Route peserta sudah disiapkan, tetapi masih diarahkan ke `under-development.html` |
 
 ---
 
