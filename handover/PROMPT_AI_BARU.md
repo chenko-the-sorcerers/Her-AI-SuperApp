@@ -19,6 +19,7 @@ SEBELUM mengerjakan apa pun, BACA file-file berikut secara berurutan:
 2. AGENTS.md          -> Design rules (border-radius, warna, icon)
 3. handover/HANDOVER_UPDATE.md    -> Changelog sesi terakhir
 4. handover/MODULE_STATUS_MAP.md  -> Peta status semua modul + route mapping
+5. handover/COURSE_HIERARCHY.md   -> Source of truth category, course, module/chapter, activity, track
 
 ---
 
@@ -41,7 +42,7 @@ Course Catalog
     └── Module / Chapter
         └── Materi -> Latihan -> Kuis -> Diskusi
 
-Course utama saat ini:
+Course utama saat ini (detail lengkap ada di handover/COURSE_HIERARCHY.md):
 ├── AI Fundamentals & Advanced   -> SEBAGIAN AKTIF
 │   ├── Pengantar AI             -> AKTIF
 │   ├── Python untuk AI          -> AKTIF
@@ -132,6 +133,7 @@ Jangan langsung ngerjain tanpa konfirmasi scope dan file yang akan disentuh.
 | Design rules (warna, radius, icon) | `AGENTS.md` | Lengkap |
 | Changelog perubahan sesi terakhir | `handover/HANDOVER_UPDATE.md` | Lengkap |
 | Peta status semua modul + route | `handover/MODULE_STATUS_MAP.md` | Lengkap |
+| Source of truth hierarki course | `handover/COURSE_HIERARCHY.md` | Lengkap |
 | Prompt onboarding AI baru | `handover/PROMPT_AI_BARU.md` | File ini |
 | Bug log & lessons learned | `GEMINI.md` (bagian bawah) | Lengkap |
 | Zona bahaya file | `GEMINI.md` (bagian tengah) | Lengkap |

@@ -8,6 +8,12 @@
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
 
+Source of truth hierarki course terbaru:
+
+```text
+handover/COURSE_HIERARCHY.md
+```
+
 ---
 
 ## Klarifikasi Hierarki Course
@@ -274,6 +280,7 @@ Catatan: `js/router.js` memang disentuh, tetapi hanya untuk mapping route ML dan
 Perubahan susulan dilakukan untuk mengurangi ambiguitas setelah ML aktif sebagai course mandiri:
 
 - Dokumentasi handover menegaskan bahwa AI Fundamentals & Advanced, Math for AI, dan Machine Learning adalah course sejajar.
+- `handover/COURSE_HIERARCHY.md` ditambahkan sebagai source of truth category, course, module/chapter, activity, dan specialization track.
 - Machine Learning tetap memakai route `#/participant-ai-lab-ml`.
 - Folder ML belum dipindah; path `ai-fundamental/03-machine-learning/` diperlakukan sebagai legacy implementation path.
 - Copy UI ML diperbarui agar breadcrumb dan label halaman tidak lagi menyiratkan ML sebagai bagian dari AI Fundamentals.

@@ -6,11 +6,17 @@
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
+Source of truth hierarki katalog course ada di:
+
+```text
+handover/COURSE_HIERARCHY.md
+```
+
 ---
 
-## Hierarki Kurikulum Resmi
+## Ringkasan Hierarki Kurikulum
 
-Gunakan istilah berikut agar tidak rancu:
+Ringkasan istilah resmi:
 
 ```text
 Course Catalog
@@ -18,6 +24,8 @@ Course Catalog
     Module / Chapter
       Materi -> Latihan -> Kuis -> Diskusi
 ```
+
+Detail lengkap category, course, module/chapter, activity, dan specialization track ada di `handover/COURSE_HIERARCHY.md`.
 
 Course utama yang terlihat di katalog peserta:
 
