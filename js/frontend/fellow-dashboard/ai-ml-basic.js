@@ -13,26 +13,52 @@
         {
             number: 1,
             route: "/participant-ai-lab-ml-intro",
-            title: "Foundations of Machine Learning",
-            shortTitle: "Foundations"
+            title: "Pengantar Machine Learning",
+            shortTitle: "Pengantar"
         },
         {
             number: 2,
-            route: "/participant-ai-lab-ml-hypothesis",
-            title: "Supervised Learning & Model Hypothesis",
-            shortTitle: "Hypothesis"
+            route: "/participant-ai-lab-ml-supervised",
+            aliases: ["/participant-ai-lab-ml-hypothesis"],
+            title: "Supervised Learning",
+            shortTitle: "Supervised"
         },
         {
             number: 3,
-            route: "/participant-ai-lab-ml-vc-dim",
-            title: "Model Capacity, Generalization & Evaluation",
-            shortTitle: "Generalization"
+            route: "/participant-ai-lab-ml-regression-classification",
+            aliases: ["/participant-ai-lab-ml-vc-dim", "/participant-ai-lab-ml-bias-variance"],
+            title: "Regresi & Klasifikasi Dasar",
+            shortTitle: "Regresi & Klasifikasi"
         },
         {
             number: 4,
-            route: "/participant-ai-lab-ml-bias-variance",
-            title: "Core Algorithms & Learning Paradigms",
-            shortTitle: "Algorithm Map"
+            route: "/participant-ai-lab-ml-probabilistic",
+            title: "Probabilistic Models",
+            shortTitle: "Probabilistic"
+        },
+        {
+            number: 5,
+            route: "/participant-ai-lab-ml-linear-discriminative",
+            title: "Linear Discriminative Models",
+            shortTitle: "Linear Models"
+        },
+        {
+            number: 6,
+            route: "/participant-ai-lab-ml-svm",
+            title: "Support Vector Machine",
+            shortTitle: "SVM"
+        },
+        {
+            number: 7,
+            route: "/participant-ai-lab-ml-neural-networks",
+            title: "Neural Networks",
+            shortTitle: "Neural Networks"
+        },
+        {
+            number: 8,
+            route: "/participant-ai-lab-ml-unsupervised",
+            title: "Unsupervised Learning",
+            shortTitle: "Unsupervised"
         }
     ];
 
@@ -48,7 +74,7 @@
     };
 
     const findChapterByRoute = (path) => {
-        const match = CHAPTERS.find(chapter => chapter.route === path);
+        const match = CHAPTERS.find(chapter => chapter.route === path || (chapter.aliases || []).includes(path));
         if (match) return match.number;
         return null;
     };
@@ -409,6 +435,14 @@
         const isDone = localStorage.getItem(STORAGE.quizDone) === "true";
         if (isDone) {
             const answers = safeJsonParse(localStorage.getItem(STORAGE.quizAnswers), {});
+            if (Object.keys(answers).length !== groups.length) {
+                localStorage.removeItem(STORAGE.quizDone);
+                localStorage.removeItem(STORAGE.quizScore);
+                localStorage.removeItem(STORAGE.quizAnswers);
+                window.initAiMlQuiz();
+                return;
+            }
+
             const score = Number(localStorage.getItem(STORAGE.quizScore)) || 0;
             renderQuizResult(form, score, groups.length, "Kuis ini single attempt. Jawaban dan pembahasan sudah dikunci.");
             lockQuiz(form, answers);
@@ -444,14 +478,35 @@
     };
 
     const DISCUSSION_PROMPTS = [
-        "Ceritakan satu kasus di sekitarmu yang cocok diselesaikan dengan ML.",
-        "Mana yang lebih penting: akurasi tinggi atau model yang mudah dijelaskan?",
-        "Bagaimana cara mencegah model ML menjadi bias?"
+        "Ceritakan satu kasus di sekitarmu yang cocok diselesaikan dengan ML, bukan rule-based biasa.",
+        "Bagaimana kamu menentukan fitur, label, loss, dan metrik untuk masalah supervised learning?",
+        "Kapan kamu memilih regresi, klasifikasi, decision tree, random forest, atau k-NN?",
+        "Apa risiko asumsi independen pada Naive Bayes, dan kapan asumsi itu masih berguna?",
+        "Mana yang lebih penting untuk kasus sensitif: akurasi tinggi, recall tinggi, atau model yang mudah dijelaskan?",
+        "Bagaimana margin, support vector, dan kernel membantu SVM memisahkan data non-linear?",
+        "Apa tantangan utama melatih neural network agar tidak overfit atau gagal belajar?",
+        "Kapan clustering atau reduksi dimensi lebih tepat dibanding supervised learning?"
     ];
 
     function getDiscussionPosts() {
         const saved = safeJsonParse(localStorage.getItem(STORAGE.discussion), null);
-        if (Array.isArray(saved)) return saved;
+        if (Array.isArray(saved)) {
+            const missingPrompts = DISCUSSION_PROMPTS.filter(prompt => !saved.some(post => post.prompt === prompt));
+            if (!missingPrompts.length) return saved;
+
+            const migrated = [
+                ...missingPrompts.map((prompt, index) => ({
+                    id: `seed-new-${index + 1}`,
+                    prompt,
+                    text: "Gunakan prompt ini sebagai titik mulai diskusi.",
+                    createdAt: new Date().toISOString(),
+                    replies: []
+                })),
+                ...saved
+            ];
+            saveDiscussionPosts(migrated);
+            return migrated;
+        }
 
         return DISCUSSION_PROMPTS.map((prompt, index) => ({
             id: `seed-${index + 1}`,

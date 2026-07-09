@@ -3833,6 +3833,138 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.ai-ml-learning-card,
+.ai-ml-checkpoint,
+.ai-ml-mistakes,
+.ai-ml-summary {
+    background: #fff;
+    border: 1px solid var(--fellow-line);
+    border-radius: 18px;
+    box-shadow: 0 16px 36px rgba(170, 52, 104, 0.05);
+    display: grid;
+    gap: 16px;
+    padding: 22px;
+}
+
+.ai-ml-learning-card {
+    background: linear-gradient(135deg, #fff7fb, #fff);
+    border-color: #ffd2e5;
+}
+
+.ai-ml-objectives {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ai-ml-objectives li {
+    align-items: flex-start;
+    color: #4d5469;
+    display: flex;
+    font-size: 0.92rem;
+    font-weight: 700;
+    gap: 10px;
+    line-height: 1.6;
+}
+
+.ai-ml-objectives i {
+    color: #28bd77;
+    margin-top: 4px;
+}
+
+.ai-ml-formula-list {
+    display: grid;
+    gap: 14px;
+}
+
+.ai-ml-formula-list article {
+    background: #fff;
+    border: 1px solid var(--fellow-line);
+    border-radius: 18px;
+    box-shadow: 0 14px 30px rgba(170, 52, 104, 0.04);
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+}
+
+.ai-ml-formula-list code {
+    background: #fff0f7;
+    border: 1px solid #ffd2e5;
+    border-radius: 14px;
+    color: #9d3668;
+    display: inline-flex;
+    font-size: 0.88rem;
+    font-weight: 900;
+    line-height: 1.5;
+    padding: 8px 12px;
+    width: fit-content;
+}
+
+.ai-ml-formula-list p,
+.ai-ml-checkpoint p,
+.ai-ml-mistakes li,
+.ai-ml-summary p {
+    color: #4d5469;
+    font-weight: 650;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.ai-ml-checkpoint {
+    background: #f8fffb;
+    border-color: rgba(40, 189, 119, 0.22);
+}
+
+.ai-ml-checkpoint span,
+.ai-ml-summary span {
+    color: var(--fellow-pink);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.ai-ml-checkpoint h3,
+.ai-ml-summary h3 {
+    color: #171827;
+    letter-spacing: 0;
+    margin: 0 0 6px;
+}
+
+.ai-ml-mistakes {
+    background: #fffaf4;
+    border-color: rgba(255, 139, 31, 0.22);
+}
+
+.ai-ml-mistakes .ml-check-list {
+    margin-top: 0;
+}
+
+.ai-ml-mistakes .ml-check-list i {
+    color: #ff8b1f;
+}
+
+.ai-ml-summary {
+    align-items: center;
+    background: linear-gradient(135deg, #fff7fb, #fff);
+    border-color: #ffd2e5;
+    grid-template-columns: minmax(0, 1fr) max-content;
+}
+
+.ai-ml-network {
+    align-items: center;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: max-content 28px max-content 28px max-content;
+    justify-content: center;
+}
+
+.ai-ml-network > i {
+    color: var(--fellow-pink);
+}
+
 @media (max-width: 1240px) {
     .ml-course-page .lesson-right-panel {
         position: static;
@@ -3852,7 +3984,8 @@
     .ml-data-split,
     .ml-fit-grid,
     .ml-algorithm-map,
-    .ml-discussion-prompts {
+    .ml-discussion-prompts,
+    .ai-ml-summary {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
@@ -3864,7 +3997,8 @@
     .ml-metric-layout,
     .ml-boundary-demo,
     .ml-network-demo,
-    .ml-choice-guide {
+    .ml-choice-guide,
+    .ai-ml-summary {
         grid-template-columns: 1fr;
     }
 
@@ -3893,7 +4027,8 @@
     .ml-data-split,
     .ml-fit-grid,
     .ml-algorithm-map,
-    .ml-discussion-prompts {
+    .ml-discussion-prompts,
+    .ai-ml-network {
         grid-template-columns: 1fr;
     }
 
@@ -3909,6 +4044,10 @@
     .ml-nav-btn {
         justify-self: stretch;
         width: 100%;
+    }
+
+    .ai-ml-network > i {
+        transform: rotate(90deg);
     }
 
     .ml-capacity-meter {
@@ -3930,7 +4069,12 @@
     .ml-data-split article,
     .ml-fit-grid article,
     .ml-algorithm-map article,
-    .ml-choice-guide article {
+    .ml-choice-guide article,
+    .ai-ml-learning-card,
+    .ai-ml-checkpoint,
+    .ai-ml-mistakes,
+    .ai-ml-summary,
+    .ai-ml-formula-list article {
         padding: 16px;
     }
 

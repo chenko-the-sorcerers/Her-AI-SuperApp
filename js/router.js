@@ -75,6 +75,13 @@ const router = {
         "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
         "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
         "/participant-ai-lab-ml-bias-variance": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-supervised": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-regression-classification": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-probabilistic": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-linear-discriminative": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-svm": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-neural-networks": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-unsupervised": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
         "/participant-ai-lab-math": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-lab-math-intro": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-lab-math-linear-algebra": "/pages/frontend/fellow-dashboard/under-development.html",
@@ -374,6 +381,13 @@ const router = {
             "/participant-ai-lab-ml-hypothesis",
             "/participant-ai-lab-ml-vc-dim",
             "/participant-ai-lab-ml-bias-variance",
+            "/participant-ai-lab-ml-supervised",
+            "/participant-ai-lab-ml-regression-classification",
+            "/participant-ai-lab-ml-probabilistic",
+            "/participant-ai-lab-ml-linear-discriminative",
+            "/participant-ai-lab-ml-svm",
+            "/participant-ai-lab-ml-neural-networks",
+            "/participant-ai-lab-ml-unsupervised",
             "/participant-ai-lab-ml-practice",
             "/participant-ai-lab-ml-quiz",
             "/participant-ai-lab-ml-discussion"
@@ -551,7 +565,7 @@ const router = {
                     }
                 } else if ((path === "/participant-ai-lab-machine-learning" || path.startsWith("/participant-ai-lab-ml")) && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
-                    if ((path === "/participant-ai-lab-machine-learning" || path === "/participant-ai-lab-ml" || path === "/participant-ai-lab-ml-intro" || path === "/participant-ai-lab-ml-hypothesis" || path === "/participant-ai-lab-ml-vc-dim" || path === "/participant-ai-lab-ml-bias-variance") && typeof window.initAiMlMateri === "function") {
+                    if ((path === "/participant-ai-lab-machine-learning" || (path.startsWith("/participant-ai-lab-ml") && path !== "/participant-ai-lab-ml-practice" && path !== "/participant-ai-lab-ml-quiz" && path !== "/participant-ai-lab-ml-discussion")) && typeof window.initAiMlMateri === "function") {
                         window.initAiMlMateri();
                     }
                     if (path === "/participant-ai-lab-ml-practice" && typeof window.initAiMlBasic === "function") {

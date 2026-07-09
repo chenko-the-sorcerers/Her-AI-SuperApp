@@ -41,8 +41,8 @@
                     <div class="lesson-hero-copy">
                         <span class="ml-eyebrow"><i class="fas fa-pen-to-square"></i> Latihan Reflektif</span>
                         <h1>Latihan Machine Learning</h1>
-                        <p>Uji pemahamanmu lewat skenario keputusan, pemetaan fitur-label, diagnosis model, pemilihan algoritma, dan interpretasi confusion matrix.</p>
-                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 30 menit</span><span><i class="fas fa-list-check"></i> 5 latihan</span><b>Tanpa Runtime</b></div>
+                        <p>Uji pemahamanmu lewat skenario keputusan, pemetaan data, pemilihan algoritma, metrik, margin, kernel, dan eksplorasi tanpa label.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 45 menit</span><span><i class="fas fa-list-check"></i> 10 latihan</span><b>Tanpa Runtime</b></div>
                     </div>
                     <div class="ml-hero-visual is-compact" aria-hidden="true">
                         <div class="ml-mini-matrix">
@@ -63,7 +63,7 @@
                         <div class="ml-section-head">
                             <span>Practice Lab</span>
                             <h2>Analisis Kasus Machine Learning</h2>
-                            <p>Jawab dengan bahasamu sendiri. Sistem menyimpan jawaban di browser melalui localStorage, jadi kamu bisa lanjut kuis tanpa kehilangan progres.</p>
+                            <p>Jawab dengan bahasamu sendiri. Sistem menyimpan jawaban di browser melalui localStorage dengan key <code>heraiAiMlPractice</code>.</p>
                         </div>
 
                         <form id="aiMlPracticeForm" class="practice-response-form ml-practice-form" data-storage-key="heraiAiMlPractice">
@@ -71,13 +71,13 @@
                                 <div class="ml-card-top">
                                     <span>1</span>
                                     <div>
-                                        <h3>Perlu ML atau cukup rule-based?</h3>
-                                        <p>Sebuah platform ingin menandai transaksi mencurigakan. Untuk nominal di atas Rp10.000.000, transaksi selalu ditinjau manual. Untuk kasus lain, pola fraud sering berubah.</p>
+                                        <h3>Rule-based vs Machine Learning</h3>
+                                        <p>Sebuah platform selalu meninjau transaksi di atas Rp10.000.000. Namun pola fraud kecil sering berubah mengikuti promo dan jam tertentu.</p>
                                     </div>
                                 </div>
                                 <label>
                                     <span>Keputusanmu</span>
-                                    <select name="needMlDecision">
+                                    <select name="ruleVsMlDecision">
                                         <option value="">Pilih pendekatan</option>
                                         <option value="rule">Cukup rule-based</option>
                                         <option value="ml">Gunakan ML</option>
@@ -86,63 +86,93 @@
                                 </label>
                                 <label>
                                     <span>Jelaskan alasanmu</span>
-                                    <textarea name="needMlReason" rows="4" placeholder="Contoh: aturan nominal bisa dipakai sebagai baseline, tetapi pola fraud berubah sehingga ML membantu membaca kombinasi sinyal transaksi..."></textarea>
+                                    <textarea name="ruleVsMlReason" rows="4" placeholder="Bedakan aturan yang stabil dan pola yang perlu dipelajari dari data."></textarea>
                                 </label>
-                                <p class="ml-feedback" data-feedback-for="needMlReason" data-feedback="Bagus. Jawaban ideal membedakan aturan stabil dan pola yang berubah seiring data." hidden></p>
+                                <p class="ml-feedback" data-feedback-for="ruleVsMlReason" data-feedback="Jawaban kuat biasanya memakai hybrid: aturan stabil untuk batas jelas, ML untuk pola yang berubah." hidden></p>
                             </article>
 
                             <article class="practice-card ml-practice-card">
                                 <div class="ml-card-top">
                                     <span>2</span>
                                     <div>
-                                        <h3>Tentukan fitur, label, dan target</h3>
+                                        <h3>Fitur, label, dan target</h3>
                                         <p>Kamu membangun model untuk memprediksi apakah peserta fellowship akan menyelesaikan modul tepat waktu.</p>
                                     </div>
                                 </div>
                                 <label>
                                     <span>Fitur yang relevan</span>
-                                    <textarea name="featuresLabels" rows="4" placeholder="Contoh fitur: jumlah login mingguan, progres materi, jumlah latihan dikirim, waktu belajar, interaksi diskusi..."></textarea>
+                                    <textarea name="featuresLabels" rows="4" placeholder="Contoh: jumlah login mingguan, progres materi, latihan terkirim, waktu belajar, aktivitas diskusi."></textarea>
                                 </label>
                                 <label>
                                     <span>Label atau target</span>
-                                    <textarea name="targetLabel" rows="3" placeholder="Contoh target: selesai tepat waktu = 1, tidak selesai tepat waktu = 0. Jelaskan juga sumber datanya."></textarea>
+                                    <textarea name="targetLabel" rows="3" placeholder="Contoh: selesai tepat waktu = 1, tidak selesai tepat waktu = 0. Jelaskan sumber labelnya."></textarea>
                                 </label>
-                                <p class="ml-feedback" data-feedback-for="targetLabel" data-feedback="Mantap. Target yang jelas membuat supervised learning bisa dilatih dan dievaluasi." hidden></p>
+                                <p class="ml-feedback" data-feedback-for="targetLabel" data-feedback="Target yang jelas membuat supervised learning bisa dilatih dan dievaluasi." hidden></p>
                             </article>
 
                             <article class="practice-card ml-practice-card">
                                 <div class="ml-card-top">
                                     <span>3</span>
                                     <div>
-                                        <h3>Diagnosa overfitting atau underfitting</h3>
-                                        <p>Model A punya akurasi train 54% dan test 52%. Model B punya akurasi train 98% dan test 64%.</p>
+                                        <h3>Supervised, unsupervised, atau reinforcement?</h3>
+                                        <p>Tentukan paradigma untuk tiga kasus: prediksi kelulusan berlabel, segmentasi peserta tanpa label, dan agen yang belajar memilih jalur belajar dari reward.</p>
                                     </div>
                                 </div>
                                 <label>
-                                    <span>Diagnosismu</span>
-                                    <textarea name="fitDiagnosis" rows="5" placeholder="Jelaskan mana yang underfit, mana yang overfit, dan tindakan perbaikannya."></textarea>
+                                    <span>Pemetaan paradigma</span>
+                                    <textarea name="learningParadigms" rows="5" placeholder="Tuliskan kasus -> paradigma -> alasan singkat."></textarea>
                                 </label>
-                                <p class="ml-feedback" data-feedback-for="fitDiagnosis" data-feedback="Diagnosis kuat biasanya menyebut gap train-test dan kapasitas model." hidden></p>
+                                <p class="ml-feedback" data-feedback-for="learningParadigms" data-feedback="Cek apakah label tersedia. Itu pembeda utama supervised dan unsupervised." hidden></p>
                             </article>
 
                             <article class="practice-card ml-practice-card">
                                 <div class="ml-card-top">
                                     <span>4</span>
                                     <div>
-                                        <h3>Pilih algoritma untuk 4 kasus</h3>
-                                        <p>Pilih algoritma yang masuk akal untuk prediksi harga rumah, filter spam, segmentasi pelanggan, dan deteksi anomali transaksi.</p>
+                                        <h3>Pilih algoritma regresi</h3>
+                                        <p>Produk ingin memprediksi harga kos dari luas kamar, lokasi, fasilitas, jarak kampus, dan rating pemilik.</p>
                                     </div>
                                 </div>
                                 <label>
-                                    <span>Pemetaan algoritma</span>
-                                    <textarea name="algorithmChoice" rows="6" placeholder="Contoh: harga rumah -> linear regression / tree-based regression karena target numerik; spam -> logistic regression atau Naive Bayes karena klasifikasi teks..."></textarea>
+                                    <span>Algoritma regresi pilihanmu</span>
+                                    <textarea name="regressionAlgorithm" rows="5" placeholder="Bandingkan linear regression, polynomial regression, decision tree regression, atau random forest regression."></textarea>
                                 </label>
-                                <p class="ml-feedback" data-feedback-for="algorithmChoice" data-feedback="Bagus. Kaitkan tipe output, data yang tersedia, dan kebutuhan interpretabilitas." hidden></p>
+                                <p class="ml-feedback" data-feedback-for="regressionAlgorithm" data-feedback="Target numerik berarti regresi. Jelaskan kebutuhan interpretasi dan kemungkinan non-linearitas." hidden></p>
                             </article>
 
                             <article class="practice-card ml-practice-card">
                                 <div class="ml-card-top">
                                     <span>5</span>
+                                    <div>
+                                        <h3>Pilih algoritma klasifikasi</h3>
+                                        <p>Tim ingin mengklasifikasikan komentar forum menjadi positif, netral, atau perlu perhatian mentor.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Algoritma klasifikasi pilihanmu</span>
+                                    <textarea name="classificationAlgorithm" rows="5" placeholder="Pertimbangkan logistic regression, Naive Bayes, SVM, atau tree-based model."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="classificationAlgorithm" data-feedback="Untuk teks, baseline seperti Naive Bayes, logistic regression, atau SVM linear sering masuk akal." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>6</span>
+                                    <div>
+                                        <h3>Probabilistic model dan Naive Bayes</h3>
+                                        <p>Email mengandung kata "hadiah", "klik", dan "sekarang". Kamu ingin memberi skor kemungkinan spam.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Bagaimana Naive Bayes membaca kasus ini?</span>
+                                    <textarea name="probabilisticModel" rows="5" placeholder="Jelaskan prior, likelihood, posterior, asumsi independen, dan Laplace smoothing."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="probabilisticModel" data-feedback="Bayes menggabungkan prior dan bukti. Smoothing penting agar peluang tidak nol." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>7</span>
                                     <div>
                                         <h3>Interpretasi confusion matrix</h3>
                                         <p>Kasus deteksi penyakit: TP=45, FP=10, FN=5, TN=140. Hitung insight utama dan metrik mana yang paling penting.</p>
@@ -155,9 +185,54 @@
                                 </div>
                                 <label>
                                     <span>Interpretasi dan metrik prioritas</span>
-                                    <textarea name="confusionMatrix" rows="5" placeholder="Hitung recall, precision, atau akurasi jika perlu. Jelaskan kenapa FN bisa sangat mahal di kasus medis."></textarea>
+                                    <textarea name="confusionMatrix" rows="5" placeholder="Hitung recall, precision, atau akurasi jika perlu. Jelaskan kenapa FN mahal di kasus medis."></textarea>
                                 </label>
-                                <p class="ml-feedback" data-feedback-for="confusionMatrix" data-feedback="Tepat. Pada kasus medis, recall sering lebih kritis karena false negative berisiko tinggi." hidden></p>
+                                <p class="ml-feedback" data-feedback-for="confusionMatrix" data-feedback="Pada kasus medis, recall sering kritis karena false negative berisiko tinggi." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>8</span>
+                                    <div>
+                                        <h3>Metrik untuk data imbalanced</h3>
+                                        <p>Model fraud punya accuracy 99%, tetapi fraud hanya 1% dari data dan banyak fraud tidak terdeteksi.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Metrik dan strategi perbaikan</span>
+                                    <textarea name="imbalancedMetric" rows="5" placeholder="Sebutkan precision, recall, F1, ROC-AUC/PR-AUC, class weight, oversampling, undersampling, atau SMOTE."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="imbalancedMetric" data-feedback="Accuracy bisa menipu pada imbalance. Prioritaskan metrik sesuai biaya FP/FN." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>9</span>
+                                    <div>
+                                        <h3>SVM margin dan kernel</h3>
+                                        <p>Data dua kelas tidak bisa dipisahkan garis lurus, tetapi terlihat bisa dipisahkan jika fiturnya diproyeksikan ke ruang yang lebih tinggi.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Jelaskan solusi SVM</span>
+                                    <textarea name="svmMarginKernel" rows="5" placeholder="Bahas margin, support vector, soft margin, C, dan kernel seperti polynomial atau RBF."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="svmMarginKernel" data-feedback="Kernel trick membantu SVM membuat batas non-linear tanpa eksplisit membangun semua dimensi." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>10</span>
+                                    <div>
+                                        <h3>Clustering dan dimensionality reduction</h3>
+                                        <p>Kamu punya data aktivitas peserta tanpa label kemampuan. Tujuannya membuat kelompok belajar dan visualisasi pola.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Rancangan unsupervised learning</span>
+                                    <textarea name="unsupervisedPlan" rows="5" placeholder="Pilih K-Means, hierarchical, DBSCAN, GMM, PCA, atau t-SNE. Jelaskan fitur, validasi, dan interpretasi cluster."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="unsupervisedPlan" data-feedback="Cluster perlu divalidasi dengan domain, bukan dianggap otomatis sebagai kategori final." hidden></p>
                             </article>
 
                             <div class="ml-save-panel">

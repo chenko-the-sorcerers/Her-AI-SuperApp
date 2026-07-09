@@ -1,153 +1,159 @@
-<section class="ml-chapter" data-chapter="2">
+<article class="ml-chapter ai-ml-chapter">
     <header class="ml-chapter-header">
-        <span>Chapter 02</span>
-        <h2>Supervised Learning & Model Hypothesis</h2>
-        <p>Supervised learning bekerja dengan pasangan input dan label. Tujuannya mencari fungsi prediksi yang cukup akurat untuk data baru.</p>
+        <span>Chapter 2</span>
+        <h2>Supervised Learning</h2>
+        <p>Supervised learning melatih model dari pasangan input dan label. Model belajar hubungan antara fitur dan jawaban benar, lalu memprediksi label untuk data baru.</p>
     </header>
+
+    <section class="ai-ml-learning-card">
+        <div class="ml-section-head">
+            <span>Learning objectives</span>
+            <h3>Setelah materi ini, kamu mampu</h3>
+        </div>
+        <ul class="ai-ml-objectives">
+            <li><i class="fas fa-circle-check"></i><span>Menyusun komponen supervised learning: data, model, loss, dan optimisasi.</span></li>
+            <li><i class="fas fa-circle-check"></i><span>Menjelaskan empirical risk dan kenapa model perlu validation set.</span></li>
+            <li><i class="fas fa-circle-check"></i><span>Membedakan model generative, discriminative, parametric, non-parametric, linear, dan non-linear.</span></li>
+        </ul>
+    </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Notation</span>
-            <h3>Dari data ke hipotesis h(x)</h3>
-            <p>Notasi ini membantu kita membaca hampir semua algoritma supervised learning.</p>
+            <span>Why it matters</span>
+            <h3>Kenapa supervised learning jadi fondasi?</h3>
+            <p>Banyak masalah AI dimulai dari contoh berlabel: prediksi kelulusan, klasifikasi spam, estimasi harga, deteksi penyakit, atau prediksi churn. Jika labelnya jelas, supervised learning memberi cara terukur untuk belajar dari histori.</p>
         </div>
-        <div class="ml-equation-grid">
+        <div class="ml-flow">
+            <div class="ml-flow-step">
+                <strong>Model H</strong>
+                <span>Kumpulan fungsi kandidat, misalnya semua garis linear atau semua pohon keputusan.</span>
+            </div>
+            <i class="fas fa-arrow-right"></i>
+            <div class="ml-flow-step">
+                <strong>Loss function</strong>
+                <span>Mengukur selisih prediksi dengan label benar.</span>
+            </div>
+            <i class="fas fa-arrow-right"></i>
+            <div class="ml-flow-step">
+                <strong>Optimization</strong>
+                <span>Mencari parameter yang membuat loss sekecil mungkin.</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>Core idea</span>
+            <h3>Dari data ke hipotesis</h3>
+        </div>
+        <div class="ai-ml-formula-list">
             <article>
-                <span>x</span>
-                <strong>Feature vector</strong>
-                <p>Daftar nilai fitur untuk satu contoh, misalnya [durasi belajar, nilai latihan, jumlah login].</p>
+                <code>D = {(x_i, y_i)} from i=1..N</code>
+                <p><b>Dataset berlabel.</b> Setiap contoh memiliki input x dan label y. Untuk prediksi harga, x adalah fitur rumah dan y adalah harga aktual.</p>
             </article>
             <article>
-                <span>y</span>
-                <strong>Label</strong>
-                <p>Jawaban benar pada data latih, misalnya lulus tepat waktu atau tidak.</p>
+                <code>h_theta(x) = y_hat</code>
+                <p><b>Model berparameter.</b> Theta adalah nilai yang dipelajari, misalnya bobot dalam regresi linear atau neural network.</p>
             </article>
             <article>
-                <span>h(x)</span>
-                <strong>Hypothesis</strong>
-                <p>Fungsi prediksi yang dipilih model setelah training.</p>
+                <code>empirical risk = (1/N) sum L(h(x_i), y_i)</code>
+                <p><b>Risk pada data train.</b> Ini rata-rata loss pada contoh training. Nilai rendah penting, tetapi belum cukup untuk memastikan generalisasi.</p>
             </article>
         </div>
     </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Model Components</span>
-            <h3>Model, parameter, loss, dan optimisasi</h3>
-            <p>Setiap algoritma supervised learning punya empat bagian yang saling terhubung.</p>
+            <span>Analogy</span>
+            <h3>Analogi guru dan latihan soal</h3>
+            <p>Supervised learning seperti belajar dari buku soal yang punya kunci jawaban. Kamu mengerjakan soal, membandingkan dengan kunci, memperbaiki strategi, lalu diuji pada soal baru. Jika hanya menghafal soal latihan, kamu gagal saat variasi soal berubah.</p>
+        </div>
+        <div class="ml-data-split">
+            <article>
+                <strong>Train</strong>
+                <span>Dipakai untuk belajar parameter model.</span>
+            </article>
+            <article>
+                <strong>Validation</strong>
+                <span>Dipakai untuk memilih model dan hyperparameter.</span>
+            </article>
+            <article>
+                <strong>Test</strong>
+                <span>Dipakai sekali untuk estimasi performa final.</span>
+            </article>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>Model selection</span>
+            <h3>Memilih model tanpa menipu diri sendiri</h3>
+            <p>Jika kamu mencoba banyak model dan memilih yang paling bagus di test set, test set berubah menjadi validation set tersembunyi. Karena itu, pisahkan data untuk training, validation, dan test. Pada data kecil, gunakan cross validation.</p>
+        </div>
+        <div class="ml-folds" aria-label="Ilustrasi cross validation">
+            <span class="is-val">Fold 1 validasi</span>
+            <span>Fold 2 train</span>
+            <span>Fold 3 train</span>
+            <span>Fold 4 train</span>
+            <span>Fold 5 train</span>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>Model families</span>
+            <h3>Cara membaca keluarga model</h3>
         </div>
         <div class="ml-card-grid two">
             <article class="ml-info-card">
-                <i class="fas fa-shapes"></i>
-                <h4>Model dan hypothesis space</h4>
-                <p>Model menentukan keluarga fungsi yang boleh dicari. Hypothesis space adalah semua kandidat fungsi dalam keluarga tersebut.</p>
+                <i class="fas fa-diagram-project"></i>
+                <h4>Generative vs discriminative</h4>
+                <p>Generative mencoba memahami cara data tiap kelas terbentuk, seperti Naive Bayes. Discriminative langsung belajar batas keputusan atau probabilitas kelas, seperti logistic regression.</p>
             </article>
             <article class="ml-info-card">
                 <i class="fas fa-sliders"></i>
-                <h4>Parameter</h4>
-                <p>Nilai internal yang diubah saat training, misalnya bobot w dan bias b pada model linear.</p>
+                <h4>Parametric vs non-parametric</h4>
+                <p>Parametric punya jumlah parameter tetap, misalnya linear regression. Non-parametric lebih fleksibel terhadap data, misalnya k-NN atau decision tree.</p>
             </article>
             <article class="ml-info-card">
                 <i class="fas fa-chart-line"></i>
-                <h4>Loss</h4>
-                <p>Ukuran kesalahan prediksi. Training berusaha membuat loss sekecil mungkin pada data latih.</p>
+                <h4>Linear vs non-linear</h4>
+                <p>Linear memakai batas sederhana seperti garis atau hyperplane. Non-linear bisa menangkap pola melengkung dan interaksi fitur yang kompleks.</p>
             </article>
             <article class="ml-info-card">
-                <i class="fas fa-gears"></i>
-                <h4>Optimisasi</h4>
-                <p>Proses mencari parameter yang menurunkan loss, misalnya gradient descent.</p>
+                <i class="fas fa-layer-group"></i>
+                <h4>Bias, variance, dan no free lunch</h4>
+                <p>Tidak ada model yang selalu menang. Model sederhana bisa underfit; model kompleks bisa overfit. Pilihan terbaik bergantung data, target, dan constraint produk.</p>
             </article>
         </div>
     </section>
 
-    <section class="ml-topic-block">
-        <div class="ml-section-head">
-            <span>Algorithms</span>
-            <h3>Regresi, klasifikasi, k-NN, dan decision tree</h3>
-        </div>
-        <div class="ml-algorithm-strip">
-            <article>
-                <i class="fas fa-chart-simple"></i>
-                <h4>Linear Regression</h4>
-                <p>Memprediksi nilai numerik. Contoh: harga rumah, estimasi durasi belajar, skor ujian.</p>
-                <code>y hat = w*x + b</code>
-            </article>
-            <article>
-                <i class="fas fa-tags"></i>
-                <h4>Classification</h4>
-                <p>Memprediksi kelas. Contoh: spam atau bukan spam, lulus atau belum lulus.</p>
-                <code>P(class | x)</code>
-            </article>
-            <article>
-                <i class="fas fa-location-dot"></i>
-                <h4>k-NN</h4>
-                <p>Melihat tetangga terdekat. Intuisinya: data yang mirip cenderung punya label mirip.</p>
-                <code>vote(k nearest)</code>
-            </article>
-            <article>
-                <i class="fas fa-code-branch"></i>
-                <h4>Decision Tree</h4>
-                <p>Membuat keputusan bertahap berdasarkan split fitur. Mudah dijelaskan, tetapi bisa overfit.</p>
-                <code>if feature &gt; threshold</code>
-            </article>
-        </div>
-    </section>
-
-    <section class="ml-topic-block">
-        <div class="ml-section-head">
-            <span>Visual Mental Model</span>
-            <h3>Training mencari garis, batas, atau aturan terbaik</h3>
-        </div>
-        <div class="ml-boundary-demo" aria-label="Visual batas keputusan">
-            <div class="ml-axis">
-                <span class="dot pink"></span>
-                <span class="dot pink d2"></span>
-                <span class="dot pink d3"></span>
-                <span class="dot green"></span>
-                <span class="dot green d2"></span>
-                <span class="dot green d3"></span>
-                <b></b>
-            </div>
-            <div>
-                <h4>Batas keputusan</h4>
-                <p>Untuk klasifikasi, model mencari batas yang memisahkan kelas. Untuk regresi, model mencari garis atau kurva yang mendekati nilai target.</p>
-                <ul class="ml-check-list">
-                    <li><i class="fas fa-circle-check"></i> Model terlalu sederhana dapat underfit.</li>
-                    <li><i class="fas fa-circle-check"></i> Model terlalu fleksibel dapat overfit.</li>
-                    <li><i class="fas fa-circle-check"></i> Data baru adalah ujian sebenarnya.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="ml-topic-block">
-        <div class="ml-section-head">
-            <span>Model Families</span>
-            <h3>Generative vs discriminative</h3>
-        </div>
-        <div class="ml-split-grid">
-            <article class="ml-concept-card">
-                <i class="fas fa-cubes"></i>
-                <h3>Generative</h3>
-                <p>Mencoba memahami bagaimana data dan kelas terbentuk. Bisa memodelkan distribusi data.</p>
-                <small>Contoh ringan: Naive Bayes.</small>
-            </article>
-            <article class="ml-concept-card is-accent">
-                <i class="fas fa-bullseye"></i>
-                <h3>Discriminative</h3>
-                <p>Fokus langsung pada batas prediksi atau peluang kelas berdasarkan input.</p>
-                <small>Contoh ringan: Logistic regression, SVM.</small>
-            </article>
-        </div>
-    </section>
-
-    <section class="ml-callout">
-        <i class="fas fa-lightbulb"></i>
+    <section class="ai-ml-checkpoint">
         <div>
-            <h3>Inti chapter ini</h3>
-            <p>Algoritma ML bukan sihir. Ia memilih satu fungsi dari ruang kemungkinan, mengukur error dengan loss, lalu mengubah parameter sampai prediksi membaik.</p>
+            <span>Mini checkpoint</span>
+            <h3>Jawab sebentar</h3>
+            <p>Kamu punya dataset 1.000 peserta dengan label "selesai tepat waktu" atau "tidak". Sebutkan 3 fitur, 1 loss yang mungkin, dan 1 metrik evaluasi yang masuk akal.</p>
         </div>
     </section>
 
-    <a href="#/participant-ai-lab-ml-vc-dim" class="ml-inline-next" data-ml-next="3">Lanjut ke generalization <i class="fas fa-arrow-right"></i></a>
-</section>
+    <section class="ai-ml-mistakes">
+        <div class="ml-section-head">
+            <span>Common mistakes</span>
+            <h3>Kesalahan yang sering terjadi</h3>
+        </div>
+        <ul class="ml-check-list">
+            <li><i class="fas fa-triangle-exclamation"></i><span>Melakukan tuning berulang di test set.</span></li>
+            <li><i class="fas fa-triangle-exclamation"></i><span>Menggunakan fitur yang bocor dari masa depan, misalnya status kelulusan sebagai input prediksi kelulusan.</span></li>
+            <li><i class="fas fa-triangle-exclamation"></i><span>Memilih model hanya dari akurasi tanpa melihat biaya salah prediksi.</span></li>
+        </ul>
+    </section>
+
+    <section class="ai-ml-summary">
+        <div>
+            <span>Summary</span>
+            <h3>Ringkasan</h3>
+            <p>Supervised learning membutuhkan input, label, model, loss, dan proses optimisasi. Validasi yang benar menjaga model tetap jujur pada data baru. Berikutnya, kamu akan membedah regresi dan klasifikasi dasar.</p>
+        </div>
+        <a href="#/participant-ai-lab-ml-regression-classification" class="ml-inline-next" data-ml-next="3">Lanjut ke Regresi &amp; Klasifikasi <i class="fas fa-arrow-right"></i></a>
+    </section>
+</article>

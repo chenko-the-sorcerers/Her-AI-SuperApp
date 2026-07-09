@@ -1,157 +1,175 @@
-<section class="ml-chapter" data-chapter="4">
+<article class="ml-chapter ai-ml-chapter">
     <header class="ml-chapter-header">
-        <span>Chapter 04</span>
-        <h2>Core Algorithms & Learning Paradigms</h2>
-        <p>Setelah tahu cara belajar dan mengevaluasi, kita perlu peta algoritma agar bisa memilih pendekatan yang masuk akal.</p>
+        <span>Chapter 4</span>
+        <h2>Probabilistic Models</h2>
+        <p>Probabilistic models melihat prediksi sebagai ketidakpastian yang bisa dihitung. Alih-alih hanya memberi kelas, model dapat berkata "kemungkinan kelas A lebih besar daripada kelas B".</p>
     </header>
 
+    <section class="ai-ml-learning-card">
+        <div class="ml-section-head">
+            <span>Learning objectives</span>
+            <h3>Setelah materi ini, kamu mampu</h3>
+        </div>
+        <ul class="ai-ml-objectives">
+            <li><i class="fas fa-circle-check"></i><span>Membaca konsep probability, expectation, variance, dan independence dalam konteks ML.</span></li>
+            <li><i class="fas fa-circle-check"></i><span>Menjelaskan Bayes theorem, MLE, Naive Bayes, dan Laplace smoothing.</span></li>
+            <li><i class="fas fa-circle-check"></i><span>Memahami kapan Bayesian Network berguna untuk relasi antar variabel.</span></li>
+        </ul>
+    </section>
+
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Algorithm Map</span>
-            <h3>Peta cepat algoritma ML</h3>
-            <p>Mulai dari bentuk data, target, dan kebutuhan interpretasi. Baru pilih algoritma.</p>
+            <span>Why it matters</span>
+            <h3>Kenapa probabilitas penting?</h3>
+            <p>Data dunia nyata penuh ketidakpastian. Email dengan kata "gratis" belum tentu spam. Gejala tertentu belum tentu penyakit tertentu. Probabilistic models membantu model menyatakan tingkat keyakinan dan menggabungkan bukti.</p>
         </div>
-        <div class="ml-algorithm-map">
-            <article>
-                <span>Supervised</span>
-                <h4>Label tersedia</h4>
-                <p>Regression, classification, ranking.</p>
+        <div class="ml-card-grid three">
+            <article class="ml-concept-card">
+                <i class="fas fa-percent"></i>
+                <h3>Probability</h3>
+                <p>Ukuran peluang sebuah kejadian terjadi, dari 0 sampai 1.</p>
             </article>
-            <article>
-                <span>Unsupervised</span>
-                <h4>Label tidak tersedia</h4>
-                <p>Clustering, dimensionality reduction, anomaly detection.</p>
+            <article class="ml-concept-card">
+                <i class="fas fa-wave-square"></i>
+                <h3>Expectation &amp; variance</h3>
+                <p>Expectation membaca nilai rata-rata jangka panjang; variance membaca sebaran atau ketidakstabilan.</p>
             </article>
-            <article>
-                <span>Reinforcement</span>
-                <h4>Belajar dari reward</h4>
-                <p>Agent, policy, environment, reward.</p>
+            <article class="ml-concept-card">
+                <i class="fas fa-link"></i>
+                <h3>Independence</h3>
+                <p>Dua variabel independen jika mengetahui satu variabel tidak mengubah peluang variabel lain.</p>
             </article>
         </div>
     </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Supervised Core</span>
-            <h3>Algoritma inti yang sering menjadi baseline</h3>
+            <span>Formula</span>
+            <h3>Bayes theorem dan Naive Bayes</h3>
         </div>
-        <div class="ml-card-grid two">
-            <article class="ml-info-card">
-                <i class="fas fa-envelope-open-text"></i>
-                <h4>Naive Bayes</h4>
-                <p>Model probabilistik generatif dengan asumsi fitur saling independen. Ringan dan kuat untuk baseline teks.</p>
-                <small>Cocok: spam, sentiment sederhana, klasifikasi dokumen.</small>
+        <div class="ai-ml-formula-list">
+            <article>
+                <code>P(A|B) = P(B|A) P(A) / P(B)</code>
+                <p><b>Bayes theorem.</b> Mengubah prior belief P(A) menjadi posterior P(A|B) setelah melihat bukti B.</p>
             </article>
-            <article class="ml-info-card">
-                <i class="fas fa-toggle-on"></i>
-                <h4>Logistic Regression</h4>
-                <p>Model linear untuk klasifikasi yang menghasilkan probabilitas kelas. Sederhana dan mudah dijelaskan.</p>
-                <small>Cocok: risiko churn, kelulusan, fraud baseline.</small>
+            <article>
+                <code>argmax_c P(c) product_j P(x_j|c)</code>
+                <p><b>Naive Bayes.</b> Pilih kelas c yang paling mungkin berdasarkan prior kelas dan peluang tiap fitur pada kelas tersebut.</p>
             </article>
-            <article class="ml-info-card">
-                <i class="fas fa-arrows-left-right-to-line"></i>
-                <h4>Support Vector Machine</h4>
-                <p>Mencari hyperplane dengan margin besar. Kernel membantu menangani pola non-linear.</p>
-                <small>Cocok: dataset sedang, fitur jelas, batas kelas kuat.</small>
-            </article>
-            <article class="ml-info-card">
-                <i class="fas fa-network-wired"></i>
-                <h4>Neural Network</h4>
-                <p>Terdiri dari perceptron, hidden layer, aktivasi, dan training lewat backpropagation tingkat tinggi.</p>
-                <small>Cocok: data besar, gambar, teks, pola kompleks.</small>
+            <article>
+                <code>P(word|class) = (count + alpha) / (total + alpha V)</code>
+                <p><b>Laplace smoothing.</b> Mencegah peluang menjadi nol saat kata tertentu belum pernah muncul pada kelas tertentu.</p>
             </article>
         </div>
     </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Neural Network</span>
-            <h3>Intuisi perceptron sampai backpropagation</h3>
+            <span>Analogy</span>
+            <h3>Analogi detektif</h3>
+            <p>Seorang detektif tidak langsung menyimpulkan. Ia mulai dari dugaan awal, lalu memperbarui keyakinan setelah melihat bukti. Naive Bayes melakukan hal serupa: prior kelas diperbarui oleh bukti fitur, meski dengan asumsi fitur saling independen dalam kelas.</p>
         </div>
-        <div class="ml-network-demo" aria-label="Ilustrasi neural network">
-            <div class="ml-neuron-column">
-                <span>x1</span><span>x2</span><span>x3</span>
+        <div class="ml-table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Konsep</th>
+                        <th>Makna manusiawi</th>
+                        <th>Contoh spam filter</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Prior</td>
+                        <td>Keyakinan sebelum melihat isi email.</td>
+                        <td>30% email historis adalah spam.</td>
+                    </tr>
+                    <tr>
+                        <td>Likelihood</td>
+                        <td>Seberapa cocok bukti dengan kelas tertentu.</td>
+                        <td>Kata "hadiah" sering muncul di email spam.</td>
+                    </tr>
+                    <tr>
+                        <td>Posterior</td>
+                        <td>Keyakinan setelah bukti digabungkan.</td>
+                        <td>Email ini 86% mungkin spam.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>Real examples</span>
+            <h3>Contoh penggunaan nyata</h3>
+        </div>
+        <div class="ml-case-grid">
+            <article>
+                <b>Text classification</b>
+                <p>Naive Bayes sering menjadi baseline kuat untuk spam detection dan klasifikasi dokumen.</p>
+            </article>
+            <article>
+                <b>Medical triage</b>
+                <p>Probabilitas membantu membaca risiko berdasarkan gejala, usia, dan histori.</p>
+            </article>
+            <article>
+                <b>Risk scoring</b>
+                <p>Model probabilistik dapat memberi skor risiko alih-alih keputusan hitam-putih.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>Bayesian Network</span>
+            <h3>Relasi antar variabel</h3>
+            <p>Bayesian Network memakai Directed Acyclic Graph (DAG) untuk memodelkan ketergantungan antar variabel. Ini berguna saat kamu ingin menyatakan struktur sebab-akibat atau dependensi yang lebih eksplisit daripada asumsi Naive Bayes.</p>
+        </div>
+        <div class="ml-flow">
+            <div class="ml-flow-step">
+                <strong>Cause</strong>
+                <span>Contoh: kondisi cuaca.</span>
             </div>
             <i class="fas fa-arrow-right"></i>
-            <div class="ml-neuron-column hidden-layer">
-                <span>h1</span><span>h2</span>
+            <div class="ml-flow-step">
+                <strong>Evidence</strong>
+                <span>Contoh: jalan basah, keterlambatan.</span>
             </div>
             <i class="fas fa-arrow-right"></i>
-            <div class="ml-neuron-column output-layer">
-                <span>y</span>
-            </div>
-            <div class="ml-network-copy">
-                <h4>Bagaimana model belajar?</h4>
-                <p>Forward pass menghasilkan prediksi. Loss mengukur kesalahan. Backpropagation menyebarkan sinyal error ke bobot sebelumnya agar update berikutnya lebih baik.</p>
+            <div class="ml-flow-step">
+                <strong>Belief update</strong>
+                <span>Model memperbarui probabilitas kejadian terkait.</span>
             </div>
         </div>
     </section>
 
-    <section class="ml-topic-block">
-        <div class="ml-section-head">
-            <span>Unsupervised Core</span>
-            <h3>Clustering dan reduksi dimensi</h3>
-        </div>
-        <div class="ml-algorithm-strip">
-            <article>
-                <i class="fas fa-bullseye"></i>
-                <h4>K-Means</h4>
-                <p>Membagi data menjadi k cluster berdasarkan jarak ke centroid.</p>
-                <code>k harus dipilih</code>
-            </article>
-            <article>
-                <i class="fas fa-dot-circle"></i>
-                <h4>DBSCAN</h4>
-                <p>Membentuk cluster berdasarkan kepadatan titik dan bisa menemukan noise.</p>
-                <code>bagus untuk bentuk tidak bulat</code>
-            </article>
-            <article>
-                <i class="fas fa-compress-arrows-alt"></i>
-                <h4>PCA</h4>
-                <p>Mereduksi dimensi sambil menjaga variasi utama data.</p>
-                <code>visualisasi dan kompresi</code>
-            </article>
-            <article>
-                <i class="fas fa-magnifying-glass-chart"></i>
-                <h4>Anomaly Detection</h4>
-                <p>Mencari pola yang jarang atau menyimpang dari mayoritas data.</p>
-                <code>fraud, error sensor</code>
-            </article>
-        </div>
-    </section>
-
-    <section class="ml-topic-block">
-        <div class="ml-section-head">
-            <span>How To Choose</span>
-            <h3>Pilih algoritma dengan pertanyaan yang tepat</h3>
-        </div>
-        <div class="ml-choice-guide">
-            <article>
-                <b>Apakah ada label?</b>
-                <p>Jika ada, mulai dari supervised. Jika tidak, pertimbangkan clustering atau reduksi dimensi.</p>
-            </article>
-            <article>
-                <b>Target numerik atau kelas?</b>
-                <p>Numerik mengarah ke regresi. Kelas mengarah ke klasifikasi.</p>
-            </article>
-            <article>
-                <b>Butuh interpretabilitas?</b>
-                <p>Pilih logistic regression, tree sederhana, atau model yang bisa dijelaskan sebelum model besar.</p>
-            </article>
-            <article>
-                <b>Data besar dan kompleks?</b>
-                <p>Neural network bisa relevan, tetapi butuh data, komputasi, dan evaluasi lebih matang.</p>
-            </article>
-        </div>
-    </section>
-
-    <section class="ml-callout">
-        <i class="fas fa-lightbulb"></i>
+    <section class="ai-ml-checkpoint">
         <div>
-            <h3>Inti chapter ini</h3>
-            <p>Tidak ada algoritma terbaik untuk semua masalah. Pilihan yang baik selalu mempertimbangkan tipe data, label, risiko error, kebutuhan interpretasi, dan biaya maintenance.</p>
+            <span>Mini checkpoint</span>
+            <h3>Jawab sebentar</h3>
+            <p>Naive Bayes mengasumsikan fitur independen dalam kelas. Menurutmu, kenapa asumsi yang tidak selalu realistis ini masih bisa bekerja baik untuk klasifikasi teks?</p>
         </div>
     </section>
 
-    <a href="#/participant-ai-lab-ml-practice" class="ml-inline-next">Selesai materi, buka latihan <i class="fas fa-arrow-right"></i></a>
-</section>
+    <section class="ai-ml-mistakes">
+        <div class="ml-section-head">
+            <span>Common mistakes</span>
+            <h3>Kesalahan yang sering terjadi</h3>
+        </div>
+        <ul class="ml-check-list">
+            <li><i class="fas fa-triangle-exclamation"></i><span>Membaca probabilitas model sebagai kepastian mutlak.</span></li>
+            <li><i class="fas fa-triangle-exclamation"></i><span>Lupa smoothing sehingga satu kata yang tidak pernah muncul membuat peluang kelas menjadi nol.</span></li>
+            <li><i class="fas fa-triangle-exclamation"></i><span>Mengabaikan calibration saat probabilitas dipakai untuk keputusan berisiko tinggi.</span></li>
+        </ul>
+    </section>
+
+    <section class="ai-ml-summary">
+        <div>
+            <span>Summary</span>
+            <h3>Ringkasan</h3>
+            <p>Probabilistic models membantu AI bekerja dengan ketidakpastian. Bayes theorem menggabungkan prior dan bukti, Naive Bayes memberi baseline cepat, dan Bayesian Network memperkaya relasi antar variabel.</p>
+        </div>
+        <a href="#/participant-ai-lab-ml-linear-discriminative" class="ml-inline-next" data-ml-next="5">Lanjut ke Linear Discriminative Models <i class="fas fa-arrow-right"></i></a>
+    </section>
+</article>

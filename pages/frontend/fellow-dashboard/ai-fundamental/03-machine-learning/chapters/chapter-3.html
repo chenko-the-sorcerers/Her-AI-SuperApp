@@ -1,169 +1,168 @@
-<section class="ml-chapter" data-chapter="3">
+<article class="ml-chapter ai-ml-chapter">
     <header class="ml-chapter-header">
-        <span>Chapter 03</span>
-        <h2>Model Capacity, Generalization & Evaluation</h2>
-        <p>Model yang bagus bukan hanya bagus di data latih. Ia harus tetap masuk akal saat bertemu data baru.</p>
+        <span>Chapter 3</span>
+        <h2>Regresi &amp; Klasifikasi Dasar</h2>
+        <p>Regresi memprediksi angka kontinu, sedangkan klasifikasi memprediksi kategori. Dua bentuk ini menjadi pintu masuk untuk membaca banyak algoritma ML klasik.</p>
     </header>
 
-    <section class="ml-topic-block">
+    <section class="ai-ml-learning-card">
         <div class="ml-section-head">
-            <span>Generalization</span>
-            <h3>Tujuan utama: performa pada data baru</h3>
-            <p>Generalisasi adalah kemampuan model mempertahankan performa ketika data berbeda dari contoh training, tetapi masih berasal dari masalah yang sama.</p>
+            <span>Learning objectives</span>
+            <h3>Setelah materi ini, kamu mampu</h3>
         </div>
-        <div class="ml-data-split">
-            <article>
-                <strong>Train</strong>
-                <span>Belajar parameter</span>
-            </article>
-            <article>
-                <strong>Validation</strong>
-                <span>Memilih model dan hyperparameter</span>
-            </article>
-            <article>
-                <strong>Test</strong>
-                <span>Evaluasi final yang tidak sering disentuh</span>
-            </article>
-        </div>
-        <p class="ml-note">Jika test set terlalu sering dipakai untuk mengambil keputusan, ia berubah menjadi validation set dan estimasi performa bisa terlalu optimistis.</p>
+        <ul class="ai-ml-objectives">
+            <li><i class="fas fa-circle-check"></i><span>Membedakan regresi dan klasifikasi dari tipe targetnya.</span></li>
+            <li><i class="fas fa-circle-check"></i><span>Menjelaskan intuisi linear regression, decision tree, random forest, boosting, dan k-NN.</span></li>
+            <li><i class="fas fa-circle-check"></i><span>Membaca overfitting, underfitting, dan pilihan metrik evaluasi dasar.</span></li>
+        </ul>
     </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Cross-Validation</span>
-            <h3>Mengurangi ketergantungan pada satu split</h3>
-            <p>k-fold cross-validation membagi data menjadi k bagian. Model dilatih k kali, setiap bagian bergantian menjadi validation set.</p>
+            <span>Why it matters</span>
+            <h3>Kenapa chapter ini penting?</h3>
+            <p>Sebelum masuk model probabilistik, SVM, dan neural network, kamu perlu kuat di dua pertanyaan praktis: output yang diprediksi angka atau kelas? Lalu algoritma apa yang paling masuk akal untuk data dan kebutuhan interpretasi?</p>
         </div>
-        <div class="ml-folds">
-            <span class="is-val">Fold 1</span>
-            <span>Fold 2</span>
-            <span>Fold 3</span>
-            <span>Fold 4</span>
-            <span>Fold 5</span>
+        <div class="ml-card-grid two">
+            <article class="ml-concept-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Regresi</h3>
+                <p>Target berupa angka kontinu: harga rumah, suhu besok, estimasi durasi pengerjaan, atau nilai penjualan.</p>
+                <code>y_hat = angka</code>
+            </article>
+            <article class="ml-concept-card">
+                <i class="fas fa-tags"></i>
+                <h3>Klasifikasi</h3>
+                <p>Target berupa kelas: spam/non-spam, lulus/tidak, fraud/aman, atau kategori sentimen.</p>
+                <code>y_hat = kelas</code>
+            </article>
         </div>
-        <div class="ml-folds">
-            <span>Fold 1</span>
-            <span class="is-val">Fold 2</span>
-            <span>Fold 3</span>
-            <span>Fold 4</span>
-            <span>Fold 5</span>
-        </div>
-        <p class="ml-note">Cross-validation membantu saat data tidak terlalu besar dan kamu ingin estimasi performa yang lebih stabil.</p>
     </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Capacity</span>
-            <h3>Underfitting, overfitting, dan bias-variance</h3>
-            <p>Kapasitas model adalah seberapa fleksibel model membentuk pola. Kapasitas harus cukup, tetapi tidak berlebihan.</p>
+            <span>Formula</span>
+            <h3>Regresi linear dan least squares</h3>
+        </div>
+        <div class="ai-ml-formula-list">
+            <article>
+                <code>y_hat = w^T x + w0</code>
+                <p><b>Prediksi linear.</b> Model menjumlahkan fitur yang diberi bobot. Bobot positif menaikkan prediksi, bobot negatif menurunkan prediksi.</p>
+            </article>
+            <article>
+                <code>residual = y - y_hat</code>
+                <p><b>Residual.</b> Selisih antara nilai aktual dan prediksi. Residual besar berarti model masih jauh dari jawaban benar.</p>
+            </article>
+            <article>
+                <code>min sum (y_i - y_hat_i)^2</code>
+                <p><b>Least squares.</b> Training mencari bobot yang membuat total error kuadrat sekecil mungkin. Error kuadrat memberi penalti besar untuk prediksi yang sangat meleset.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>Analogy</span>
+            <h3>Analogi garis dan aturan bertanya</h3>
+            <p>Linear regression seperti menarik garis terbaik di tengah titik data. Decision tree seperti permainan dua puluh pertanyaan: apakah usia akun lebih dari 30 hari? apakah progres modul di bawah 50%? Jawaban dari pertanyaan bertingkat menentukan prediksi.</p>
+        </div>
+        <div class="ml-algorithm-map">
+            <article>
+                <h4>Decision Tree</h4>
+                <p>Membagi data berdasarkan pertanyaan fitur. Split dipilih dengan ukuran seperti Information Gain atau Gini.</p>
+            </article>
+            <article>
+                <h4>Random Forest</h4>
+                <p>Menggabungkan banyak tree dari sampel dan fitur berbeda. Bagging membantu menurunkan variance.</p>
+            </article>
+            <article>
+                <h4>Boosting</h4>
+                <p>Membangun model bertahap untuk memperbaiki error model sebelumnya. Contoh populer: XGBoost dan LightGBM.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>k-NN</span>
+            <h3>Belajar dari tetangga terdekat</h3>
+            <p>k-Nearest Neighbors menyimpan data training dan memprediksi data baru dari k tetangga terdekat. Ia disebut lazy learning karena tidak banyak membangun model saat training.</p>
+        </div>
+        <div class="ml-card-grid two">
+            <article class="ml-info-card">
+                <i class="fas fa-ruler-combined"></i>
+                <h4>Jarak</h4>
+                <p>Euclidean cocok untuk jarak lurus di ruang fitur. Manhattan cocok saat jarak dihitung per langkah fitur. Skala fitur harus dinormalisasi agar satu fitur tidak mendominasi.</p>
+            </article>
+            <article class="ml-info-card">
+                <i class="fas fa-triangle-exclamation"></i>
+                <h4>Curse of dimensionality</h4>
+                <p>Saat jumlah fitur terlalu banyak, konsep "dekat" menjadi kurang bermakna. k-NN bisa lambat karena prediksi perlu membandingkan data baru dengan banyak contoh.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>Evaluation</span>
+            <h3>Overfitting, underfitting, dan metrik</h3>
         </div>
         <div class="ml-fit-grid">
             <article>
-                <i class="fas fa-compress"></i>
                 <h4>Underfitting</h4>
-                <p>Model terlalu sederhana. Train error tinggi dan test error juga tinggi.</p>
-                <small>Bias tinggi, variance rendah.</small>
+                <small>Train rendah, test rendah</small>
+                <p>Model terlalu sederhana atau fitur kurang informatif.</p>
+            </article>
+            <article>
+                <h4>Overfitting</h4>
+                <small>Train tinggi, test rendah</small>
+                <p>Model menghafal noise dan gagal generalisasi.</p>
             </article>
             <article class="is-balanced">
-                <i class="fas fa-circle-check"></i>
-                <h4>Fit seimbang</h4>
-                <p>Model menangkap pola utama dan tetap stabil pada data baru.</p>
-                <small>Bias dan variance cukup terkendali.</small>
+                <h4>Good fit</h4>
+                <small>Train dan test stabil</small>
+                <p>Model cukup belajar pola tanpa terlalu menghafal.</p>
             </article>
-            <article>
-                <i class="fas fa-expand"></i>
-                <h4>Overfitting</h4>
-                <p>Model menghafal noise. Train error rendah, test error jauh lebih buruk.</p>
-                <small>Bias rendah, variance tinggi.</small>
-            </article>
+        </div>
+        <div class="ml-matrix-card" aria-label="Confusion matrix contoh">
+            <span></span><b>Pred Positif</b><b>Pred Negatif</b>
+            <b>Aktual Positif</b><strong>TP</strong><strong>FN</strong>
+            <b>Aktual Negatif</b><strong>FP</strong><strong>TN</strong>
+        </div>
+        <div class="ml-metric-list">
+            <article><strong>Accuracy</strong><span>Proporsi prediksi benar. Bisa menipu pada data imbalanced.</span></article>
+            <article><strong>Precision</strong><span>Dari yang diprediksi positif, berapa yang benar positif.</span></article>
+            <article><strong>Recall</strong><span>Dari semua aktual positif, berapa yang berhasil ditemukan.</span></article>
+            <article><strong>F1-score</strong><span>Rata-rata harmonik precision dan recall.</span></article>
         </div>
     </section>
 
-    <section class="ml-topic-block">
-        <div class="ml-section-head">
-            <span>VC Dimension</span>
-            <h3>Intuisi kapasitas model</h3>
-            <p>VC dimension mengukur seberapa banyak pola label yang bisa diwakili oleh kelas model. Semakin tinggi, semakin fleksibel, tetapi butuh data lebih banyak agar generalisasi tetap aman.</p>
-        </div>
-        <div class="ml-capacity-meter">
-            <span>Linear sederhana</span>
-            <b></b>
-            <span>Model sangat fleksibel</span>
-        </div>
-        <div class="ml-callout is-soft">
-            <i class="fas fa-gauge-high"></i>
-            <div>
-                <h3>Aturan praktis</h3>
-                <p>Model berkapasitas tinggi tidak otomatis buruk. Ia hanya membutuhkan data, regularisasi, dan validasi yang lebih disiplin.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="ml-topic-block">
-        <div class="ml-section-head">
-            <span>Metrics</span>
-            <h3>Confusion matrix dan metrik evaluasi</h3>
-            <p>Untuk klasifikasi, akurasi saja sering tidak cukup. Kita perlu melihat jenis kesalahan.</p>
-        </div>
-        <div class="ml-metric-layout">
-            <div class="ml-matrix-card">
-                <span></span><b>Pred Positif</b><b>Pred Negatif</b>
-                <b>Aktual Positif</b><strong>TP</strong><strong>FN</strong>
-                <b>Aktual Negatif</b><strong>FP</strong><strong>TN</strong>
-            </div>
-            <div class="ml-metric-list">
-                <article>
-                    <strong>Accuracy</strong>
-                    <span>Proporsi prediksi benar dari semua data.</span>
-                </article>
-                <article>
-                    <strong>Precision</strong>
-                    <span>Dari prediksi positif, berapa yang benar.</span>
-                </article>
-                <article>
-                    <strong>Recall</strong>
-                    <span>Dari aktual positif, berapa yang berhasil ditemukan.</span>
-                </article>
-                <article>
-                    <strong>F1 Score</strong>
-                    <span>Ringkasan precision dan recall saat keduanya penting.</span>
-                </article>
-                <article>
-                    <strong>ROC-AUC</strong>
-                    <span>Kesadaran threshold: melihat kemampuan ranking model di berbagai batas keputusan.</span>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="ml-topic-block">
-        <div class="ml-section-head">
-            <span>Domain Choice</span>
-            <h3>Metrik tergantung risiko domain</h3>
-        </div>
-        <div class="ml-case-grid">
-            <article>
-                <b>Diagnosis medis</b>
-                <p>False negative mahal. Recall sering lebih penting agar kasus positif tidak terlewat.</p>
-            </article>
-            <article>
-                <b>Seleksi kandidat</b>
-                <p>Butuh fairness dan interpretabilitas. Jangan hanya mengejar akurasi agregat.</p>
-            </article>
-            <article>
-                <b>Fraud detection</b>
-                <p>Data sering imbalance. Precision dan recall perlu ditimbang bersama biaya investigasi.</p>
-            </article>
-        </div>
-    </section>
-
-    <section class="ml-callout">
-        <i class="fas fa-lightbulb"></i>
+    <section class="ai-ml-checkpoint">
         <div>
-            <h3>Inti chapter ini</h3>
-            <p>Evaluasi bukan sekadar angka tinggi. Kita perlu tahu data mana yang dipakai, jenis error apa yang terjadi, dan konsekuensi bisnis atau sosial dari error itu.</p>
+            <span>Mini checkpoint</span>
+            <h3>Jawab sebentar</h3>
+            <p>Untuk prediksi harga kos, apakah targetnya regresi atau klasifikasi? Untuk deteksi spam, metrik mana yang akan kamu cek selain accuracy?</p>
         </div>
     </section>
 
-    <a href="#/participant-ai-lab-ml-bias-variance" class="ml-inline-next" data-ml-next="4">Lanjut ke algorithm map <i class="fas fa-arrow-right"></i></a>
-</section>
+    <section class="ai-ml-mistakes">
+        <div class="ml-section-head">
+            <span>Common mistakes</span>
+            <h3>Kesalahan yang sering terjadi</h3>
+        </div>
+        <ul class="ml-check-list">
+            <li><i class="fas fa-triangle-exclamation"></i><span>Memakai accuracy pada data sangat tidak seimbang tanpa melihat precision, recall, atau F1.</span></li>
+            <li><i class="fas fa-triangle-exclamation"></i><span>Memakai k-NN tanpa scaling fitur.</span></li>
+            <li><i class="fas fa-triangle-exclamation"></i><span>Menganggap model kompleks selalu lebih baik dari baseline linear atau tree sederhana.</span></li>
+        </ul>
+    </section>
+
+    <section class="ai-ml-summary">
+        <div>
+            <span>Summary</span>
+            <h3>Ringkasan</h3>
+            <p>Regresi memprediksi angka, klasifikasi memprediksi kelas. Linear model, tree-based model, boosting, dan k-NN punya kekuatan dan risiko masing-masing. Evaluasi perlu membaca gap train-test dan metrik yang sesuai masalah.</p>
+        </div>
+        <a href="#/participant-ai-lab-ml-probabilistic" class="ml-inline-next" data-ml-next="4">Lanjut ke Probabilistic Models <i class="fas fa-arrow-right"></i></a>
+    </section>
+</article>

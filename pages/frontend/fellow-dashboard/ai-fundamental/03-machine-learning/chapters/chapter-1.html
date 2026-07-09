@@ -1,89 +1,73 @@
-<section class="ml-chapter" data-chapter="1">
+<article class="ml-chapter ai-ml-chapter">
     <header class="ml-chapter-header">
-        <span>Chapter 01</span>
-        <h2>Foundations of Machine Learning</h2>
-        <p>Machine Learning adalah cara membuat sistem yang belajar dari contoh data, bukan hanya menjalankan aturan yang ditulis manual.</p>
+        <span>Chapter 1</span>
+        <h2>Pengantar Machine Learning</h2>
+        <p>Machine Learning adalah cara membuat sistem yang belajar pola dari data, lalu memakai pola itu untuk memprediksi, mengelompokkan, atau mengambil keputusan pada data baru.</p>
     </header>
 
-    <div class="ml-split-grid">
-        <article class="ml-concept-card">
-            <i class="fas fa-list-check"></i>
-            <h3>Rule-based</h3>
-            <p>Programmer menulis aturan eksplisit. Cocok jika aturan stabil, sedikit, dan mudah diuji.</p>
-            <code>if nilai &gt;= 75: lulus</code>
-        </article>
-        <article class="ml-concept-card is-accent">
-            <i class="fas fa-diagram-project"></i>
-            <h3>Machine Learning</h3>
-            <p>Model menemukan pola dari contoh. Cocok saat aturan sulit ditulis, pola berubah, dan data tersedia.</p>
-            <code>model.fit(data, label)</code>
-        </article>
-    </div>
+    <section class="ai-ml-learning-card">
+        <div class="ml-section-head">
+            <span>Learning objectives</span>
+            <h3>Setelah materi ini, kamu mampu</h3>
+        </div>
+        <ul class="ai-ml-objectives">
+            <li><i class="fas fa-circle-check"></i><span>Membedakan pemrograman rule-based dan Machine Learning.</span></li>
+            <li><i class="fas fa-circle-check"></i><span>Menjelaskan supervised, unsupervised, dan reinforcement learning.</span></li>
+            <li><i class="fas fa-circle-check"></i><span>Membaca istilah dasar seperti fitur, label, model, hipotesis, dan generalisasi.</span></li>
+        </ul>
+    </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Core Idea</span>
-            <h3>Belajar dari data</h3>
-            <p>Dalam ML, kita menyediakan pengalaman berupa data. Model mencari pola, lalu memakai pola itu untuk memprediksi data baru.</p>
+            <span>Why it matters</span>
+            <h3>Kenapa ML penting di AI?</h3>
+            <p>AI modern jarang hanya berisi aturan manual. Sistem rekomendasi, filter spam, deteksi fraud, computer vision, dan NLP membutuhkan model yang bisa menemukan pola dari contoh. ML menjadi jembatan antara data mentah dan keputusan yang adaptif.</p>
         </div>
         <div class="ml-flow">
             <div class="ml-flow-step">
                 <strong>Data</strong>
-                <span>Contoh historis yang berisi fitur dan, jika supervised, label.</span>
+                <span>Contoh historis: input, label, perilaku, teks, gambar, transaksi.</span>
             </div>
             <i class="fas fa-arrow-right"></i>
             <div class="ml-flow-step">
-                <strong>Training</strong>
-                <span>Model menyesuaikan parameter agar error prediksi turun.</span>
+                <strong>Learning</strong>
+                <span>Algoritma mencari pola yang menurunkan error pada contoh data.</span>
             </div>
             <i class="fas fa-arrow-right"></i>
             <div class="ml-flow-step">
-                <strong>Inference</strong>
-                <span>Model terlatih memberi prediksi untuk contoh baru.</span>
+                <strong>Prediction</strong>
+                <span>Model memberi output untuk data baru yang belum pernah dilihat.</span>
             </div>
         </div>
     </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Vocabulary</span>
-            <h3>Dataset, fitur, label, dan target</h3>
-            <p>Istilah ini akan muncul terus di supervised learning, evaluasi, dan latihan.</p>
+            <span>Core idea</span>
+            <h3>Rule-based vs Machine Learning</h3>
         </div>
         <div class="ml-table-card">
             <table>
                 <thead>
                     <tr>
-                        <th>Istilah</th>
-                        <th>Makna</th>
-                        <th>Contoh kelulusan peserta</th>
+                        <th>Pendekatan</th>
+                        <th>Cara kerja</th>
+                        <th>Cocok saat</th>
+                        <th>Risiko</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Dataset</td>
-                        <td>Kumpulan baris data yang dipakai untuk belajar.</td>
-                        <td>Riwayat progres peserta fellowship.</td>
+                        <td>Rule-based</td>
+                        <td>Developer menulis aturan eksplisit, misalnya if nominal &gt; 10 juta maka review manual.</td>
+                        <td>Aturannya stabil, jelas, dan mudah diaudit.</td>
+                        <td>Rapuh saat pola berubah atau kombinasinya terlalu banyak.</td>
                     </tr>
                     <tr>
-                        <td>Fitur</td>
-                        <td>Sinyal input yang menjelaskan tiap contoh.</td>
-                        <td>Jumlah login, nilai latihan, waktu belajar.</td>
-                    </tr>
-                    <tr>
-                        <td>Label</td>
-                        <td>Jawaban benar pada data latih.</td>
-                        <td>Lulus tepat waktu atau tidak.</td>
-                    </tr>
-                    <tr>
-                        <td>Target</td>
-                        <td>Nilai yang ingin diprediksi.</td>
-                        <td>Status kelulusan peserta baru.</td>
-                    </tr>
-                    <tr>
-                        <td>Train/Test</td>
-                        <td>Pemisahan data untuk belajar dan mengecek generalisasi.</td>
-                        <td>Data cohort lama untuk train, cohort baru untuk test.</td>
+                        <td>Machine Learning</td>
+                        <td>Model belajar dari contoh data untuk menemukan pola yang tidak mudah ditulis manual.</td>
+                        <td>Ada data historis dan pola bisa berubah.</td>
+                        <td>Butuh evaluasi, data bersih, dan kontrol bias.</td>
                     </tr>
                 </tbody>
             </table>
@@ -92,60 +76,100 @@
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Paradigms</span>
-            <h3>Tiga cara utama model belajar</h3>
-            <p>Perbedaannya ada pada sinyal belajar yang tersedia.</p>
+            <span>Analogy</span>
+            <h3>Analogi belajar dari contoh</h3>
+            <p>Bayangkan kamu mengajari teman membedakan email spam. Cara rule-based adalah memberi daftar aturan tetap. Cara ML adalah memberi banyak contoh email spam dan non-spam, lalu temanmu belajar pola seperti kata tertentu, link mencurigakan, atau pengirim tidak dikenal.</p>
         </div>
         <div class="ml-card-grid three">
-            <article class="ml-info-card">
-                <i class="fas fa-bullseye"></i>
-                <h4>Supervised Learning</h4>
-                <p>Data memiliki label. Model belajar memetakan x ke y.</p>
-                <small>Spam detection, prediksi kelulusan, harga rumah.</small>
+            <article class="ml-concept-card">
+                <i class="fas fa-tags"></i>
+                <h3>Supervised</h3>
+                <p>Belajar dari data berlabel. Contoh: email ini spam atau bukan spam.</p>
+                <code>input x -> label y</code>
             </article>
-            <article class="ml-info-card">
-                <i class="fas fa-magnifying-glass-chart"></i>
-                <h4>Unsupervised Learning</h4>
-                <p>Tidak ada label. Model mencari struktur, cluster, atau representasi.</p>
-                <small>Segmentasi pengguna, clustering transaksi, PCA.</small>
+            <article class="ml-concept-card">
+                <i class="fas fa-object-group"></i>
+                <h3>Unsupervised</h3>
+                <p>Mencari struktur tanpa label. Contoh: segmentasi pelanggan dari pola belanja.</p>
+                <code>input x -> struktur</code>
             </article>
-            <article class="ml-info-card">
+            <article class="ml-concept-card">
                 <i class="fas fa-route"></i>
-                <h4>Reinforcement Learning</h4>
-                <p>Agen belajar dari aksi, state, reward, dan penalti.</p>
-                <small>Game AI, robot navigasi, strategi rekomendasi.</small>
+                <h3>Reinforcement</h3>
+                <p>Agen belajar dari reward dan konsekuensi aksi. Contoh: strategi game atau robot navigasi.</p>
+                <code>aksi -> reward</code>
             </article>
         </div>
     </section>
 
     <section class="ml-topic-block">
         <div class="ml-section-head">
-            <span>Examples</span>
-            <h3>Kasus nyata yang mudah dibayangkan</h3>
+            <span>Formula</span>
+            <h3>Bahasa dasar model</h3>
+        </div>
+        <div class="ai-ml-formula-list">
+            <article>
+                <code>x in R^n</code>
+                <p><b>Feature vector.</b> Satu data direpresentasikan sebagai kumpulan angka. Jika n = 5, berarti ada 5 fitur, misalnya umur akun, jumlah klik, durasi belajar, nilai latihan, dan jumlah diskusi.</p>
+            </article>
+            <article>
+                <code>h: X -> Y</code>
+                <p><b>Hypothesis.</b> Model belajar fungsi yang memetakan input X menjadi output Y. Pada klasifikasi, Y bisa berupa kelas; pada regresi, Y berupa angka.</p>
+            </article>
+            <article>
+                <code>generalization = performa pada data baru</code>
+                <p><b>Generalisasi.</b> Tujuan ML bukan menghafal data train, tetapi membuat prediksi yang tetap bagus pada data yang belum pernah dilihat.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="ml-topic-block">
+        <div class="ml-section-head">
+            <span>Real examples</span>
+            <h3>Contoh penggunaan nyata</h3>
         </div>
         <div class="ml-case-grid">
             <article>
-                <b>Kelulusan</b>
-                <p>Prediksi peserta yang butuh bantuan lebih awal berdasarkan progres, latihan, dan aktivitas diskusi.</p>
+                <b>Rekomendasi belajar</b>
+                <p>Model mempelajari minat, progres, dan performa peserta untuk menyarankan materi berikutnya.</p>
             </article>
             <article>
-                <b>Spam</b>
-                <p>Model membaca pola kata, link, pengirim, dan perilaku email yang berubah dari waktu ke waktu.</p>
+                <b>Deteksi fraud</b>
+                <p>Model melihat kombinasi nominal, lokasi, jam, dan riwayat transaksi untuk menandai risiko.</p>
             </article>
             <article>
-                <b>Rekomendasi</b>
-                <p>Sistem menyarankan konten berdasarkan histori, kemiripan pengguna, dan konteks saat ini.</p>
+                <b>Computer vision</b>
+                <p>Model mengenali pola piksel untuk klasifikasi gambar, deteksi objek, atau inspeksi kualitas.</p>
             </article>
         </div>
     </section>
 
-    <section class="ml-callout">
-        <i class="fas fa-circle-question"></i>
+    <section class="ai-ml-checkpoint">
         <div>
-            <h3>Kapan ML tidak perlu digunakan?</h3>
-            <p>Jika aturan bisnis sudah jelas, data terlalu sedikit, biaya salah prediksi terlalu tinggi tanpa pengawasan manusia, atau solusi sederhana lebih transparan dan mudah dirawat, gunakan rule-based atau analisis manual dulu.</p>
+            <span>Mini checkpoint</span>
+            <h3>Jawab sebentar</h3>
+            <p>Jika aturan bisnisnya stabil dan bisa ditulis jelas, apakah kamu tetap perlu ML? Jelaskan satu alasan pro dan satu alasan kontra.</p>
         </div>
     </section>
 
-    <a href="#/participant-ai-lab-ml-hypothesis" class="ml-inline-next" data-ml-next="2">Lanjut ke model hypothesis <i class="fas fa-arrow-right"></i></a>
-</section>
+    <section class="ai-ml-mistakes">
+        <div class="ml-section-head">
+            <span>Common mistakes</span>
+            <h3>Kesalahan yang sering terjadi</h3>
+        </div>
+        <ul class="ml-check-list">
+            <li><i class="fas fa-triangle-exclamation"></i><span>Menganggap ML selalu lebih baik dari aturan sederhana.</span></li>
+            <li><i class="fas fa-triangle-exclamation"></i><span>Melatih model tanpa mendefinisikan target dan metrik sukses.</span></li>
+            <li><i class="fas fa-triangle-exclamation"></i><span>Mengira akurasi train tinggi otomatis berarti model siap dipakai.</span></li>
+        </ul>
+    </section>
+
+    <section class="ai-ml-summary">
+        <div>
+            <span>Summary</span>
+            <h3>Ringkasan</h3>
+            <p>Machine Learning dipakai saat sistem perlu belajar pola dari data. Fondasinya adalah fitur, label, hipotesis, model, dan generalisasi. Di chapter berikutnya, kamu akan masuk ke supervised learning secara lebih sistematis.</p>
+        </div>
+        <a href="#/participant-ai-lab-ml-supervised" class="ml-inline-next" data-ml-next="2">Lanjut ke Supervised Learning <i class="fas fa-arrow-right"></i></a>
+    </section>
+</article>
