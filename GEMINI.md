@@ -185,3 +185,47 @@ Untuk mencegah error frontend berulang (terutama saat ngerombak UI), perhatikan 
 7. **Redundant Pagination Buttons:** Saat mengimplementasi navigasi JS dinamis (`#btn-next-chapter` dan `#btn-prev-chapter` di dalam container), **HAPUS** `footer.lesson-nav-footer` bawaan di bawah container agar tidak terjadi penumpukan navigasi ("double buttons") yang membingungkan user.
 8. **Breadcrumb Icon Visibility:** Hati-hati memberi warna dan ukuran pada icon separator breadcrumb (`<i class="fas fa-arrow-right"></i>`). Jangan terlalu kecil (contoh: `0.62rem`) atau terlalu pudar (contoh: `#c7cbd4`), gunakan ukuran proporsional (contoh: `0.75rem`) dan warna yang jelas (minimal `#8e91a0` atau `#6f7282`).
 9. **Terminologi Hierarki UI:** Hindari menggunakan istilah "Modul" (Module) untuk menamai sub-bagian (chapter) di dalam halaman materi. Gunakan istilah "Topik" (contoh: "Topik Selanjutnya" bukan "Modul Selanjutnya", "T1" bukan "M1") agar user tidak bingung dengan level hierarki course (Course -> Modul -> Topik).
+
+## LATEST COURSE CATALOG CHECKPOINT - 10 JULI 2026
+
+Source of truth detail tetap ada di folder `handover/`. Baca minimal:
+
+- `handover/HANDOVER_UPDATE.md`
+- `handover/MODULE_STATUS_MAP.md`
+- `handover/COURSE_HIERARCHY.md`
+- `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md`
+- `handover/PROMPT_AI_BARU.md`
+
+Checkpoint lokal terbaru yang relevan:
+
+```text
+a56f051 refactor: standardize scaffold activity tabs
+ebe0256 fix: keep scaffold activity tabs on course page
+a93e917 fix: activate ai modern materi route
+e750127 fix: link ai modern card to materi
+086d511 docs: update handover activity tabs checkpoint
+```
+
+Status terbaru course/module:
+
+- `#/participant-ai-modern` sudah aktif ke materi Konsep AI Modern:
+  `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/materi.html`.
+- Card `Konsep AI Modern` di overview AI Fundamentals sudah mengarah ke `#/participant-ai-modern`, bukan `#/participant-under-development`.
+- Route activity Konsep AI Modern berikut masih under-development sampai file final dibuat:
+  - `#/participant-ai-modern-practice`
+  - `#/participant-ai-modern-quiz`
+  - `#/participant-ai-modern-discussion`
+- `course-placeholder.html` sudah memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`.
+- Activity scaffold yang belum final memakai query hash di route yang sama, contoh:
+  - `#/participant-ai-lab-gen?activity=latihan`
+  - `#/participant-ai-lab-gen?activity=kuis`
+  - `#/participant-ai-lab-gen?activity=diskusi`
+- Jangan arahkan tab scaffold non-final ke `#/participant-under-development` kecuali memang diminta user sebagai fallback global.
+
+Next step prioritas:
+
+1. Buat activity final untuk Konsep AI Modern: `latihan.html`, `kuis.html`, `diskusi.html`.
+2. Tambahkan init function activity di `js/frontend/fellow-dashboard/ai-modern.js`.
+3. Update `js/router.js` untuk route `participant-ai-modern-practice/quiz/discussion` dari `under-development.html` ke file final.
+4. Jalankan `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/ai-modern.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs`.
+5. Commit lokal setelah checkpoint penting, jangan push tanpa izin user.
