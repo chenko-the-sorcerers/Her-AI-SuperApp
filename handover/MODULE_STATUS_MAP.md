@@ -113,20 +113,20 @@ pages/frontend/fellow-dashboard/ai-lab/
 | Machine Learning | `#/participant-ai-lab-ml` | Aktif | Course mandiri; file masih di legacy path `ai-fundamental/03-machine-learning/` |
 | Computer Vision | `#/participant-ai-lab-cv` | Aktif | 12 sub-lesson |
 | NLP | `#/participant-ai-lab-nlp` | Aktif | 5 sub-lesson single page |
-| Math for AI | `#/participant-ai-lab-math` | Under-development | File ada dari Nazril, route diarahkan ke under-development |
-| Generative AI | `#/participant-ai-lab-gen` | Under-development | Route diarahkan ke under-development |
-| Deep Learning | `#/participant-ai-lab-deep-learning` | Placeholder route | Route diarahkan ke under-development |
-| Reinforcement Learning | `#/participant-ai-lab-reinforcement-learning` | Placeholder route | Route diarahkan ke under-development |
-| LLM | `#/participant-ai-lab-llm` | Placeholder route | Route diarahkan ke under-development |
-| VLM | `#/participant-ai-lab-vlm` | Placeholder route | Route diarahkan ke under-development |
-| Multimodal LLM | `#/participant-ai-lab-multimodal-llm` | Placeholder route | Route diarahkan ke under-development |
-| Agentic AI | `#/participant-ai-lab-agentic-ai` | Placeholder route | Route diarahkan ke under-development |
-| Bioinformatics | `#/participant-ai-lab-bioinformatics` | Placeholder route | Route diarahkan ke under-development |
-| Data Engineering | `#/participant-ai-lab-data-engineering` | Placeholder route | Route diarahkan ke under-development |
-| Data Science | `#/participant-ai-lab-data-science` | Placeholder route | Route diarahkan ke under-development |
-| Ops & Infra | `#/participant-ai-lab-infrastructure`, `#/participant-ai-lab-deployment` | Placeholder route | Route diarahkan ke under-development |
-| Product | `#/participant-ai-lab-front-end`, `#/participant-ai-lab-back-end` | Placeholder route | Route diarahkan ke under-development |
-| Business & Industry | `#/participant-ai-lab-business-insight` dan route industry lain | Placeholder route | Route diarahkan ke under-development |
+| Math for AI | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada dari Nazril; route utama memakai `course-placeholder.html` |
+| Generative AI | `#/participant-ai-lab-gen` | Scaffold aktif | File overview ada; route utama memakai `course-placeholder.html` |
+| Deep Learning | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Reinforcement Learning | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| LLM | `#/participant-ai-lab-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| VLM | `#/participant-ai-lab-vlm` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Multimodal LLM | `#/participant-ai-lab-multimodal-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Agentic AI | `#/participant-ai-lab-agentic-ai` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Bioinformatics | `#/participant-ai-lab-bioinformatics` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data Engineering | `#/participant-ai-lab-data-engineering` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data Science | `#/participant-ai-lab-data-science` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Ops & Infra | `#/participant-ai-lab-infrastructure`, `#/participant-ai-lab-deployment` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Product | `#/participant-ai-lab-front-end`, `#/participant-ai-lab-back-end` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Business & Industry | `#/participant-ai-lab-business-insight` dan route industry lain | Scaffold aktif | Route memakai `course-placeholder.html` |
 
 ---
 
@@ -205,6 +205,36 @@ Route yang masih diarahkan ke `under-development.html`:
 | `/participant-ai-modern-practice` | Konsep AI Modern practice |
 | `/participant-ai-modern-quiz` | Konsep AI Modern quiz |
 | `/participant-ai-modern-discussion` | Konsep AI Modern discussion |
+| `/participant-ai-lab-math-intro` | Math for AI |
+| `/participant-ai-lab-math-linear-algebra` | Math for AI |
+| `/participant-ai-lab-math-statistics` | Math for AI |
+| `/participant-ai-lab-math-probability` | Math for AI |
+| `/participant-ai-lab-math-calculus` | Math for AI |
+| `/participant-ai-lab-math-optimization` | Math for AI |
+| `/participant-ai-lab-math-case-study` | Math for AI |
+| `/participant-ai-lab-math-practice` | Math for AI |
+| `/participant-ai-lab-math-quiz` | Math for AI |
+| `/participant-ai-lab-math-discussion` | Math for AI |
+
+---
+
+## Course Scaffold Saat Ini
+
+Route berikut sudah diarahkan ke reusable scaffold:
+
+```text
+pages/frontend/fellow-dashboard/course-placeholder.html
+```
+
+Konten dinamisnya di:
+
+```text
+js/frontend/fellow-dashboard/course-placeholder.js
+```
+
+| Route | Course/Track |
+|---|---|
+| `/participant-ai-lab-math` | Math for AI |
 | `/participant-ai-lab-gen` | Generative AI |
 | `/participant-ai-lab-deep-learning` | Deep Learning |
 | `/participant-ai-lab-reinforcement-learning` | Reinforcement Learning |
@@ -232,17 +262,6 @@ Route yang masih diarahkan ke `under-development.html`:
 | `/participant-specialization-mlops-deployment` | MLOps & Deployment specialization track |
 | `/participant-specialization-multimodal-llm` | Multimodal LLM specialization track |
 | `/participant-specialization-medical-biology-ai` | Medical & Biology AI specialization track |
-| `/participant-ai-lab-math` | Math for AI |
-| `/participant-ai-lab-math-intro` | Math for AI |
-| `/participant-ai-lab-math-linear-algebra` | Math for AI |
-| `/participant-ai-lab-math-statistics` | Math for AI |
-| `/participant-ai-lab-math-probability` | Math for AI |
-| `/participant-ai-lab-math-calculus` | Math for AI |
-| `/participant-ai-lab-math-optimization` | Math for AI |
-| `/participant-ai-lab-math-case-study` | Math for AI |
-| `/participant-ai-lab-math-practice` | Math for AI |
-| `/participant-ai-lab-math-quiz` | Math for AI |
-| `/participant-ai-lab-math-discussion` | Math for AI |
 
 ---
 

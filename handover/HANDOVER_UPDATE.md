@@ -286,9 +286,9 @@ Perubahan susulan dilakukan untuk mengurangi ambiguitas setelah ML aktif sebagai
 - Copy UI ML diperbarui agar breadcrumb dan label halaman tidak lagi menyiratkan ML sebagai bagian dari AI Fundamentals.
 - Setiap perubahan hierarki harus ikut di-commit dan dokumen handover wajib diupdate.
 
-### Scaffold route katalog course
+### Scaffold halaman katalog course
 
-Course dan specialization track yang belum aktif sekarang punya route eksplisit ke `under-development.html`, sehingga card katalog tidak lagi loop ke `#/participant-modules`.
+Course dan specialization track yang belum aktif sekarang punya route eksplisit ke halaman scaffold reusable, sehingga card katalog tidak lagi loop ke `#/participant-modules` dan tidak lagi jatuh ke halaman under-development generik.
 
 Contoh:
 
@@ -298,12 +298,21 @@ Contoh:
 - `#/participant-ai-lab-business-insight`
 - `#/participant-specialization-nlp-llm`
 
-Tujuannya agar tim berikutnya tinggal mengganti mapping route dari `under-development.html` ke file course aktif saat konten siap.
+File scaffold:
+
+```text
+pages/frontend/fellow-dashboard/course-placeholder.html
+js/frontend/fellow-dashboard/course-placeholder.js
+```
+
+Tujuannya agar tim berikutnya sudah punya halaman awal berisi title, category, status, dan outline module/chapter. Saat course siap, tim bisa mengisi data scaffold atau mengganti mapping route ke file course final.
 
 Cache buster `router.js` ikut dibump ke:
 
 ```text
-router.js?v=20260709-course-scaffold
+modules.css?v=20260709-course-scaffold
+course-placeholder.js?v=20260709-course-scaffold
+router.js?v=20260709-course-page-scaffold
 ```
 
 ---

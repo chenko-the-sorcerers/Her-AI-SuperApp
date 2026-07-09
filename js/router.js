@@ -82,7 +82,7 @@ const router = {
         "/participant-ai-lab-ml-svm": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
         "/participant-ai-lab-ml-neural-networks": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
         "/participant-ai-lab-ml-unsupervised": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
-        "/participant-ai-lab-math": "/pages/frontend/fellow-dashboard/under-development.html",
+        "/participant-ai-lab-math": "/pages/frontend/fellow-dashboard/course-placeholder.html",
         "/participant-ai-lab-math-intro": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-lab-math-linear-algebra": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-lab-math-statistics": "/pages/frontend/fellow-dashboard/under-development.html",
@@ -94,33 +94,33 @@ const router = {
         "/participant-ai-lab-math-quiz": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-lab-math-discussion": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-lab-cv": "/pages/frontend/fellow-dashboard/ai-lab/computer-vision.html",
-        "/participant-ai-lab-gen": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-deep-learning": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-reinforcement-learning": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-llm": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-vlm": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-multimodal-llm": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-agentic-ai": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-bioinformatics": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-data-engineering": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-data-science": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-infrastructure": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-deployment": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-front-end": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-back-end": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-business-insight": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-people-business-mgt": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ai-culture": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-healthcare": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ui-ux": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-manufacturing": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-geospatial": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-specialization-computer-vision": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-specialization-speech-recognition": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-specialization-nlp-llm": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-specialization-mlops-deployment": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-specialization-multimodal-llm": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-specialization-medical-biology-ai": "/pages/frontend/fellow-dashboard/under-development.html",
+        "/participant-ai-lab-gen": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-deep-learning": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-reinforcement-learning": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-llm": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-vlm": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-multimodal-llm": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-agentic-ai": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-bioinformatics": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-data-engineering": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-data-science": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-infrastructure": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-deployment": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-front-end": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-back-end": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-business-insight": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-people-business-mgt": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-ai-culture": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-healthcare": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-ui-ux": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-manufacturing": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-lab-geospatial": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-specialization-computer-vision": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-specialization-speech-recognition": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-specialization-nlp-llm": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-specialization-mlops-deployment": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-specialization-multimodal-llm": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-specialization-medical-biology-ai": "/pages/frontend/fellow-dashboard/course-placeholder.html",
         "/participant-ai-lab-cv-cnn-intro": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-intro.html",
         "/participant-ai-lab-cv-cnn-why": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-why.html",
         "/participant-ai-lab-cv-cnn-relu": "/pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-relu.html",
@@ -632,6 +632,9 @@ const router = {
                     }
                 } else if (path.startsWith("/participant-ai-lab-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("ai-lab");
+                    if (typeof window.initCoursePlaceholder === "function") {
+                        window.initCoursePlaceholder();
+                    }
                     if (path === "/participant-ai-lab-tokenization" && typeof window.initAiLabTokenization === "function") {
                         window.initAiLabTokenization();
                     }
@@ -691,6 +694,11 @@ const router = {
 
                 } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
+                } else if (path.startsWith("/participant-specialization-") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if (typeof window.initCoursePlaceholder === "function") {
+                        window.initCoursePlaceholder();
+                    }
                 } else if (path === "/participant-profile" && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("profile");
                     if (typeof window.initParticipantProfileDashboard === "function") window.initParticipantProfileDashboard();

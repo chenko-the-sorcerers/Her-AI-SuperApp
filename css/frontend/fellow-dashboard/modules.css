@@ -1387,6 +1387,168 @@
     max-height: 270px;
 }
 
+.course-scaffold-page .lesson-layout {
+    align-items: flex-start;
+}
+
+.course-scaffold-hero {
+    background: linear-gradient(135deg, #fff7fb 0%, #ffffff 58%, #f8fbff 100%);
+    border: 1px solid rgba(246,51,146,.16);
+}
+
+.course-scaffold-eyebrow {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border: 1px solid rgba(246,51,146,.22);
+    border-radius: 100px;
+    color: var(--fellow-pink, #f63392);
+    display: inline-flex;
+    font-size: .78rem;
+    font-weight: 850;
+    gap: 8px;
+    padding: 8px 14px;
+}
+
+.course-scaffold-visual {
+    align-items: center;
+    aspect-ratio: 1;
+    background: #fff;
+    border: 1px solid rgba(246,51,146,.18);
+    border-radius: 20px;
+    box-shadow: 0 18px 48px rgba(246,51,146,.12);
+    display: flex;
+    flex: 0 0 180px;
+    justify-content: center;
+}
+
+.course-scaffold-visual i {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border-radius: 50%;
+    color: var(--fellow-pink, #f63392);
+    display: inline-flex;
+    font-size: 3.2rem;
+    height: 96px;
+    justify-content: center;
+    width: 96px;
+}
+
+.course-scaffold-note {
+    align-items: flex-start;
+    background: #fffcfd;
+    border: 1px solid rgba(246,51,146,.16);
+    border-radius: 18px;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding: 18px;
+}
+
+.course-scaffold-note > i {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border-radius: 50%;
+    color: var(--fellow-pink, #f63392);
+    display: inline-flex;
+    flex: 0 0 42px;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+}
+
+.course-scaffold-note strong,
+.course-scaffold-grid strong,
+.course-scaffold-section h2 {
+    color: var(--fellow-text, #171827);
+}
+
+.course-scaffold-note p,
+.course-scaffold-grid p,
+.course-scaffold-section li p {
+    color: var(--fellow-muted, #6f7282);
+    line-height: 1.65;
+    margin: 6px 0 0;
+}
+
+.course-scaffold-section {
+    margin-bottom: 24px;
+}
+
+.course-scaffold-section > div:first-child span {
+    color: var(--fellow-pink, #f63392);
+    font-size: .78rem;
+    font-weight: 850;
+    text-transform: uppercase;
+}
+
+.course-scaffold-section h2 {
+    font-size: 1.35rem;
+    margin: 6px 0 16px;
+}
+
+.course-scaffold-section ol {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.course-scaffold-section li {
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid rgba(244,143,188,.24);
+    border-radius: 18px;
+    display: flex;
+    gap: 14px;
+    padding: 16px;
+}
+
+.course-scaffold-section li > span {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border-radius: 50%;
+    color: var(--fellow-pink, #f63392);
+    display: inline-flex;
+    flex: 0 0 34px;
+    font-weight: 850;
+    height: 34px;
+    justify-content: center;
+    width: 34px;
+}
+
+.course-scaffold-section li strong {
+    color: var(--fellow-text, #171827);
+    display: block;
+    font-size: .98rem;
+}
+
+.course-scaffold-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 24px 0;
+}
+
+.course-scaffold-grid article {
+    background: #fff;
+    border: 1px solid rgba(244,143,188,.24);
+    border-radius: 18px;
+    padding: 18px;
+}
+
+.course-scaffold-grid i {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border-radius: 50%;
+    color: var(--fellow-pink, #f63392);
+    display: inline-flex;
+    height: 38px;
+    justify-content: center;
+    margin-bottom: 12px;
+    width: 38px;
+}
+
 .lesson-meta-row {
     align-items: center;
     display: flex;
@@ -3966,6 +4128,10 @@
 }
 
 @media (max-width: 1240px) {
+    .course-scaffold-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .ml-course-page .lesson-right-panel {
         position: static;
     }
@@ -3991,6 +4157,19 @@
 }
 
 @media (max-width: 860px) {
+    .course-scaffold-hero {
+        grid-template-columns: 1fr;
+        padding: 24px;
+    }
+
+    .course-scaffold-visual {
+        display: none;
+    }
+
+    .course-scaffold-grid {
+        grid-template-columns: 1fr;
+    }
+
     .ml-course-page .lesson-layout,
     .ml-split-grid,
     .ml-card-grid.two,
@@ -4056,6 +4235,11 @@
 }
 
 @media (max-width: 560px) {
+    .course-scaffold-note,
+    .course-scaffold-section li {
+        flex-direction: column;
+    }
+
     .ml-course-page .lesson-article {
         padding: 22px 18px 28px;
     }

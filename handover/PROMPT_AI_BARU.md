@@ -61,7 +61,7 @@ Catatan penting:
 - Machine Learning adalah course mandiri, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 - Folder Machine Learning masih berada di pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/ sebagai legacy path implementasi.
 - Jangan menafsirkan lokasi folder ML sebagai hierarki produk.
-- Course/track placeholder sudah punya route eksplisit ke under-development agar tim tinggal mengganti mapping route saat konten siap.
+- Course/track placeholder sudah punya route eksplisit ke `course-placeholder.html` agar tim tinggal mengisi outline atau mengganti mapping route saat konten final siap.
 
 ---
 
@@ -112,8 +112,8 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 
 1. Folder 03-machine-learning/ masih berada di ai-fundamental sebagai legacy path, padahal produk ML adalah course mandiri.
 2. Modul 3a (Konsep AI Modern) baru materi; latihan/kuis/diskusi masih diarahkan ke under-development.
-3. Math for AI punya file JS/konten draft, tetapi semua route Math masih diarahkan ke under-development.
-4. Generative AI punya file overview, tetapi route #/participant-ai-lab-gen masih diarahkan ke under-development.
+3. Math for AI punya file JS/konten draft; route utama sudah memakai scaffold, subroute materi/practice/quiz/diskusi masih under-development.
+4. Generative AI punya file overview; route utama sudah memakai scaffold sampai konten final diaktifkan.
 5. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
 6. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
 7. Setiap perubahan hierarki course/module harus ikut update dokumen handover dan dibuat commit lokal.
@@ -162,8 +162,8 @@ File penting yang harus kamu baca sekarang:
 ```
 Prioritas kerja:
 1. Modul 3a Konsep AI Modern - buat latihan.html, kuis.html, diskusi.html
-2. Bersihkan/putuskan nasib konten draft Math for AI: aktifkan route atau tetap dokumentasikan sebagai under-development
-3. Sinkronkan card/link Generative AI dengan status router under-development
+2. Bersihkan/putuskan nasib konten draft Math for AI: lanjutkan dari scaffold atau aktifkan file final
+3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
 4. Tentukan apakah legacy path 03-machine-learning perlu dipindah ke struktur course yang lebih eksplisit
 5. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
 ```
