@@ -1,4 +1,4 @@
-<section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page ml-course-page ml-quiz-page" data-fellow-page="modules">
     <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
     <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
     <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -20,34 +20,179 @@
             <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
         </nav>
     </aside>
+
     <main class="fellow-main">
-        <header class="lesson-topbar"><nav class="lesson-breadcrumb" aria-label="Breadcrumb materi"><a href="#/participant-modules"><i class="fas fa-arrow-left"></i><span>Modul</span></a><span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span><span>Kuis Machine Learning</span></nav><div class="fellow-actions"><label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label><button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button><a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a></div></header>
+        <header class="lesson-topbar">
+            <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
+                <a href="#/participant-ai-lab-ml-practice"><i class="fas fa-arrow-left"></i><span>Latihan ML</span></a>
+                <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
+                <span>Kuis</span>
+            </nav>
+            <div class="fellow-actions">
+                <label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label>
+                <button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
+                <a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </header>
+
         <div class="lesson-layout">
             <div class="lesson-main-content">
-                <section class="lesson-hero compact"><div class="lesson-hero-copy"><h1>Kuis Machine Learning</h1><p>Kerjakan satu kali untuk mengukur pemahaman. Nilai akan langsung muncul setelah dikirim, tanpa menampilkan jawaban benar.</p><div class="lesson-meta-row"><span><i class="far fa-clock"></i> 10 menit</span><span><i class="far fa-clipboard"></i> 5 soal</span><b>Single Attempt</b></div></div><img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow mengerjakan kuis"></section>
+                <section class="lesson-hero compact ml-lesson-hero">
+                    <div class="lesson-hero-copy">
+                        <span class="ml-eyebrow"><i class="far fa-clipboard"></i> Single Attempt</span>
+                        <h1>Kuis Machine Learning</h1>
+                        <p>Kerjakan 12 soal lintas empat materi. Setelah submit, skor, highlight jawaban, dan pembahasan akan terbuka.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 12 menit</span><span><i class="far fa-clipboard"></i> 12 soal</span><b>Terkunci Setelah Submit</b></div>
+                    </div>
+                    <div class="ml-hero-visual is-compact" aria-hidden="true">
+                        <div class="ml-score-orbit">
+                            <span>Loss</span>
+                            <strong>Eval</strong>
+                            <span>Score</span>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="lesson-material-panel">
-                    <div class="lesson-tabs" role="tablist" aria-label="Jenis materi"><a href="#/participant-ai-lab-ml"><i class="fas fa-book-open"></i> Materi</a><a href="#/participant-ai-lab-ml-practice"><i class="fas fa-pen-to-square"></i> Latihan</a><a href="#/participant-ai-lab-ml-quiz" class="active"><i class="far fa-clipboard"></i> Kuis</a><a href="#/participant-ai-lab-ml-discussion"><i class="far fa-message"></i> Diskusi</a></div>
+                    <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
+                        <a href="#/participant-ai-lab-ml"><i class="fas fa-book-open"></i> Materi</a>
+                        <a href="#/participant-ai-lab-ml-practice"><i class="fas fa-pen-to-square"></i> Latihan</a>
+                        <a href="#/participant-ai-lab-ml-quiz" class="active"><i class="far fa-clipboard"></i> Kuis</a>
+                        <a href="#/participant-ai-lab-ml-discussion"><i class="far fa-message"></i> Diskusi</a>
+                    </div>
                     <article class="lesson-article">
                         <form id="aiMlQuizForm" class="lesson-quiz-section" data-quiz-key="heraiAiMlQuizDone">
-                            <h2>Kuis Konsep Machine Learning</h2>
-                            <p>Pilih satu jawaban untuk setiap soal. Setelah submit, sistem hanya menampilkan nilai akhir.</p>
-                            <div class="quiz-list">
-                                <article><span>1</span><h3>Apa definisi yang paling tepat tentang Machine Learning menurut Arthur Samuel?</h3><label><input type="radio" name="q1" value="1"> Bidang studi yang memberi komputer kemampuan untuk belajar tanpa diprogram secara eksplisit.</label><label><input type="radio" name="q1" value="0"> Membuat robot bergerak seperti manusia.</label><label><input type="radio" name="q1" value="0"> Program komputer yang memiliki kesadaran buatan.</label></article>
-                                <article><span>2</span><h3>Tugas mana yang termasuk ke dalam Unsupervised Learning?</h3><label><input type="radio" name="q2" value="0"> Memprediksi harga rumah.</label><label><input type="radio" name="q2" value="1"> Mengelompokkan nasabah berdasarkan perilaku tanpa label.</label><label><input type="radio" name="q2" value="0"> Bermain catur melawan komputer.</label></article>
-                                <article><span>3</span><h3>Apa arti dari sebuah model yang Overfitting?</h3><label><input type="radio" name="q3" value="0"> Model terlalu sederhana dan tidak bisa menangkap pola data latih.</label><label><input type="radio" name="q3" value="1"> Model menghafal data latih dan gagal berkinerja baik pada data baru (tes).</label><label><input type="radio" name="q3" value="0"> Model yang ideal dengan bias rendah dan variance rendah.</label></article>
-                                <article><span>4</span><h3>Apa yang dimaksud dengan VC Dimension (Vapnik-Chervonenkis Dimension)?</h3><label><input type="radio" name="q4" value="0"> Dimensi dari gambar yang digunakan untuk melatih CNN.</label><label><input type="radio" name="q4" value="0"> Jumlah neuron dalam hidden layer jaringan saraf tiruan.</label><label><input type="radio" name="q4" value="1"> Ukuran kapasitas (kompleksitas) suatu kelas hipotesis yang bisa 'shatter' titik data terbanyak.</label></article>
-                                <article><span>5</span><h3>Bagaimana cara terbaik untuk mengurangi Variance (Overfitting) dalam Bias-Variance Tradeoff?</h3><label><input type="radio" name="q5" value="1"> Menambahkan lebih banyak data pelatihan dan melakukan regularisasi.</label><label><input type="radio" name="q5" value="0"> Mengurangi jumlah data pelatihan.</label><label><input type="radio" name="q5" value="0"> Menggunakan model yang jauh lebih kompleks dan besar.</label></article>
+                            <div class="ml-section-head">
+                                <span>Knowledge Check</span>
+                                <h2>Kuis Konsep Machine Learning</h2>
+                                <p>Pilih satu jawaban paling tepat. Kuis ini disimpan dengan key <code>heraiAiMlQuizDone</code> dan <code>heraiAiMlQuizScore</code>.</p>
                             </div>
+
+                            <div class="quiz-list">
+                                <article data-explanation="Machine Learning dipakai saat pola sulit ditulis sebagai aturan eksplisit dan bisa dipelajari dari contoh data.">
+                                    <span>1</span>
+                                    <h3>Kapan ML paling masuk akal digunakan?</h3>
+                                    <label><input type="radio" name="q1" value="0"> Saat aturan bisnis sederhana dan stabil.</label>
+                                    <label><input type="radio" name="q1" value="1"> Saat pola kompleks berubah dan tersedia data contoh.</label>
+                                    <label><input type="radio" name="q1" value="0"> Saat tidak ada data sama sekali.</label>
+                                </article>
+
+                                <article data-explanation="Fitur adalah sinyal input, sedangkan label adalah jawaban benar yang dipelajari pada supervised learning.">
+                                    <span>2</span>
+                                    <h3>Dalam dataset prediksi kelulusan, mana pasangan fitur dan label yang benar?</h3>
+                                    <label><input type="radio" name="q2" value="1"> Fitur: jumlah login, nilai latihan; label: lulus atau tidak.</label>
+                                    <label><input type="radio" name="q2" value="0"> Fitur: lulus atau tidak; label: nama peserta.</label>
+                                    <label><input type="radio" name="q2" value="0"> Fitur: warna dashboard; label: tombol navigasi.</label>
+                                </article>
+
+                                <article data-explanation="Unsupervised learning mencari struktur tanpa label, misalnya clustering pelanggan.">
+                                    <span>3</span>
+                                    <h3>Contoh tugas unsupervised learning adalah...</h3>
+                                    <label><input type="radio" name="q3" value="0"> Memprediksi apakah email spam berdasarkan label lama.</label>
+                                    <label><input type="radio" name="q3" value="1"> Mengelompokkan pelanggan tanpa kategori awal.</label>
+                                    <label><input type="radio" name="q3" value="0"> Menghitung pajak dengan rumus tetap.</label>
+                                </article>
+
+                                <article data-explanation="h(x) adalah fungsi atau hipotesis terlatih yang menerima input x dan menghasilkan prediksi.">
+                                    <span>4</span>
+                                    <h3>Apa makna h(x) dalam supervised learning?</h3>
+                                    <label><input type="radio" name="q4" value="0"> Ukuran file dataset.</label>
+                                    <label><input type="radio" name="q4" value="1"> Fungsi model yang memetakan input ke prediksi.</label>
+                                    <label><input type="radio" name="q4" value="0"> Nama algoritma clustering.</label>
+                                </article>
+
+                                <article data-explanation="Loss mengukur seberapa jauh prediksi dari label benar, lalu optimisasi mencari parameter yang menurunkan loss.">
+                                    <span>5</span>
+                                    <h3>Hubungan loss dan optimisasi yang benar adalah...</h3>
+                                    <label><input type="radio" name="q5" value="1"> Loss mengukur error, optimisasi mencari parameter dengan loss lebih rendah.</label>
+                                    <label><input type="radio" name="q5" value="0"> Loss adalah jumlah fitur, optimisasi adalah penghapusan data.</label>
+                                    <label><input type="radio" name="q5" value="0"> Loss hanya dipakai pada unsupervised learning.</label>
+                                </article>
+
+                                <article data-explanation="k-NN adalah pendekatan non-parametrik yang memprediksi dari tetangga terdekat di ruang fitur.">
+                                    <span>6</span>
+                                    <h3>Intuisi utama k-Nearest Neighbors adalah...</h3>
+                                    <label><input type="radio" name="q6" value="0"> Menggunakan satu persamaan linear saja.</label>
+                                    <label><input type="radio" name="q6" value="1"> Data yang mirip cenderung punya label yang mirip.</label>
+                                    <label><input type="radio" name="q6" value="0"> Selalu menghasilkan cluster tanpa label.</label>
+                                </article>
+
+                                <article data-explanation="Overfitting terlihat dari performa train sangat tinggi tetapi test jauh lebih rendah.">
+                                    <span>7</span>
+                                    <h3>Model train 99% tetapi test 62% kemungkinan mengalami...</h3>
+                                    <label><input type="radio" name="q7" value="1"> Overfitting.</label>
+                                    <label><input type="radio" name="q7" value="0"> Underfitting.</label>
+                                    <label><input type="radio" name="q7" value="0"> Data leakage yang pasti.</label>
+                                </article>
+
+                                <article data-explanation="Validation set dipakai untuk memilih model atau hyperparameter tanpa menyentuh test set final.">
+                                    <span>8</span>
+                                    <h3>Fungsi validation set adalah...</h3>
+                                    <label><input type="radio" name="q8" value="0"> Menggantikan semua data train.</label>
+                                    <label><input type="radio" name="q8" value="1"> Membantu memilih model sebelum evaluasi test final.</label>
+                                    <label><input type="radio" name="q8" value="0"> Menyembunyikan label dari semua data.</label>
+                                </article>
+
+                                <article data-explanation="Recall fokus pada proporsi aktual positif yang berhasil ditemukan, penting ketika false negative mahal.">
+                                    <span>9</span>
+                                    <h3>Untuk deteksi penyakit, metrik yang sering sangat penting karena FN mahal adalah...</h3>
+                                    <label><input type="radio" name="q9" value="0"> Jumlah parameter.</label>
+                                    <label><input type="radio" name="q9" value="1"> Recall.</label>
+                                    <label><input type="radio" name="q9" value="0"> Ukuran file model.</label>
+                                </article>
+
+                                <article data-explanation="VC dimension adalah cara intuitif mengukur kapasitas kelas hipotesis, bukan metrik akurasi harian.">
+                                    <span>10</span>
+                                    <h3>VC dimension paling dekat dengan konsep...</h3>
+                                    <label><input type="radio" name="q10" value="1"> Kapasitas model untuk membentuk banyak pola label.</label>
+                                    <label><input type="radio" name="q10" value="0"> Jumlah epoch training.</label>
+                                    <label><input type="radio" name="q10" value="0"> Banyaknya baris kosong dalam dataset.</label>
+                                </article>
+
+                                <article data-explanation="SVM mencari margin pemisah yang lebar; kernel membantu membentuk batas non-linear melalui ruang fitur.">
+                                    <span>11</span>
+                                    <h3>Intuisi Support Vector Machine adalah...</h3>
+                                    <label><input type="radio" name="q11" value="0"> Menghafal semua titik tanpa batas keputusan.</label>
+                                    <label><input type="radio" name="q11" value="1"> Mencari pemisah dengan margin yang baik.</label>
+                                    <label><input type="radio" name="q11" value="0"> Menghapus semua support vector.</label>
+                                </article>
+
+                                <article data-explanation="PCA mereduksi dimensi sambil menjaga variasi data sebanyak mungkin di komponen utama.">
+                                    <span>12</span>
+                                    <h3>PCA umumnya digunakan untuk...</h3>
+                                    <label><input type="radio" name="q12" value="0"> Menambah label manual ke dataset.</label>
+                                    <label><input type="radio" name="q12" value="0"> Menghitung confusion matrix.</label>
+                                    <label><input type="radio" name="q12" value="1"> Mereduksi dimensi data.</label>
+                                </article>
+                            </div>
+
                             <div class="quiz-result-card" id="aiMlQuizResult" hidden></div>
-                            <button type="submit" class="quiz-submit-btn">Submit Kuis</button>
+                            <button type="submit" class="quiz-submit-btn"><i class="fas fa-paper-plane"></i> Submit Kuis</button>
                         </form>
                     </article>
-                    <footer class="lesson-nav-footer"><a href="#/participant-ai-lab-ml-practice"><i class="fas fa-chevron-left"></i> Sebelumnya</a><a href="#/participant-ai-lab-ml-discussion" id="aiMlQuizNext" class="is-disabled">Selanjutnya <i class="fas fa-arrow-right"></i></a></footer>
+                    <footer class="lesson-nav-footer">
+                        <a href="#/participant-ai-lab-ml-practice"><i class="fas fa-chevron-left"></i> Sebelumnya</a>
+                        <a href="#/participant-ai-lab-ml-discussion" id="aiMlQuizNext" class="is-disabled">Selanjutnya <i class="fas fa-arrow-right"></i></a>
+                    </footer>
                 </section>
             </div>
             <aside class="lesson-right-panel">
-                <section class="module-side-card lesson-progress-card"><h2>Progres Modul</h2><div class="lesson-progress-mini"><b style="--value:66%"></b><strong>66%</strong></div><p>Kirim kuis untuk membuka diskusi.</p><a href="#/participant-ai-lab-ml-quiz">Kuis Aktif</a></section>
-                <section class="module-side-card lesson-list-card"><h2>Daftar Materi</h2><ol><li class="completed"><span>1</span><a href="#/participant-ai-lab-ml">Pemrograman Machine Learning untuk AI</a><i class="fas fa-circle-check"></i></li><li class="completed"><span>2</span><a href="#/participant-ai-lab-ml-practice">Latihan Machine Learning Dasar</a><i class="fas fa-circle-check"></i></li><li class="active"><span>3</span><a href="#/participant-ai-lab-ml-quiz">Kuis Machine Learning</a><i class="far fa-circle-play"></i></li><li data-locked-after-quiz><span>4</span><a href="#/participant-ai-lab-ml-discussion">Diskusi Machine Learning</a><i class="far fa-circle"></i></li></ol><p class="lesson-lock-hint">Diskusi terbuka setelah kuis dikirim.</p></section>
+                <section class="module-side-card lesson-progress-card">
+                    <h2>Progres Modul</h2>
+                    <div class="lesson-progress-mini"><b style="--value:75%"></b><strong>75%</strong></div>
+                    <p>Kirim kuis untuk membuka diskusi.</p>
+                    <a href="#/participant-ai-lab-ml-quiz">Kuis Aktif</a>
+                </section>
+                <section class="module-side-card lesson-list-card">
+                    <h2>Flow Belajar</h2>
+                    <ol>
+                        <li class="completed"><span>1</span><a href="#/participant-ai-lab-ml">Materi</a><i class="fas fa-circle-check"></i></li>
+                        <li class="completed"><span>2</span><a href="#/participant-ai-lab-ml-practice">Latihan</a><i class="fas fa-circle-check"></i></li>
+                        <li class="active"><span>3</span><a href="#/participant-ai-lab-ml-quiz">Kuis</a><i class="far fa-circle-play"></i></li>
+                        <li data-locked-after-quiz><span>4</span><a href="#/participant-ai-lab-ml-discussion">Diskusi</a><i class="far fa-circle"></i></li>
+                    </ol>
+                    <p class="lesson-lock-hint">Diskusi terbuka setelah kuis dikirim.</p>
+                </section>
             </aside>
         </div>
     </main>

@@ -66,15 +66,15 @@ const router = {
         "/participant-ai-lab-bow": "/pages/frontend/fellow-dashboard/ai-lab/lessons/bow.html",
         "/participant-ai-lab-tfidf": "/pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html",
         "/participant-ai-lab-nlp": "/pages/frontend/fellow-dashboard/ai-lab/nlp.html",
-        "/participant-ai-lab-machine-learning": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ml-practice": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ml-quiz": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ml-discussion": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ml-intro": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-ml-bias-variance": "/pages/frontend/fellow-dashboard/under-development.html",
+        "/participant-ai-lab-machine-learning": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-practice": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/latihan.html",
+        "/participant-ai-lab-ml-quiz": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/kuis.html",
+        "/participant-ai-lab-ml-discussion": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/diskusi.html",
+        "/participant-ai-lab-ml-intro": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-hypothesis": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-vc-dim": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
+        "/participant-ai-lab-ml-bias-variance": "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html",
         "/participant-ai-lab-math": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-lab-math-intro": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-lab-math-linear-algebra": "/pages/frontend/fellow-dashboard/under-development.html",
@@ -548,6 +548,20 @@ const router = {
                     window.initFellowDashboardPage();
                     if (path === "/participant-ai-modern" && typeof window.initAiModernMateri === "function") {
                         window.initAiModernMateri();
+                    }
+                } else if ((path === "/participant-ai-lab-machine-learning" || path.startsWith("/participant-ai-lab-ml")) && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if ((path === "/participant-ai-lab-machine-learning" || path === "/participant-ai-lab-ml" || path === "/participant-ai-lab-ml-intro" || path === "/participant-ai-lab-ml-hypothesis" || path === "/participant-ai-lab-ml-vc-dim" || path === "/participant-ai-lab-ml-bias-variance") && typeof window.initAiMlMateri === "function") {
+                        window.initAiMlMateri();
+                    }
+                    if (path === "/participant-ai-lab-ml-practice" && typeof window.initAiMlBasic === "function") {
+                        window.initAiMlBasic();
+                    }
+                    if (path === "/participant-ai-lab-ml-quiz" && typeof window.initAiMlQuiz === "function") {
+                        window.initAiMlQuiz();
+                    }
+                    if (path === "/participant-ai-lab-ml-discussion" && typeof window.initAiMlDiscussion === "function") {
+                        window.initAiMlDiscussion();
                     }
                 } else if (path.startsWith("/participant-ai-lab-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("ai-lab");

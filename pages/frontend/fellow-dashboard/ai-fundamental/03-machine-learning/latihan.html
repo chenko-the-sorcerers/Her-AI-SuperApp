@@ -1,4 +1,4 @@
-<section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page ml-course-page ml-practice-page" data-fellow-page="modules">
     <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
     <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
     <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -24,80 +24,151 @@
     <main class="fellow-main">
         <header class="lesson-topbar">
             <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
-                <a href="#/participant-modules"><i class="fas fa-arrow-left"></i><span>Modul</span></a>
+                <a href="#/participant-ai-lab-ml"><i class="fas fa-arrow-left"></i><span>Machine Learning</span></a>
                 <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
-                <span>Machine Learning</span>
+                <span>Latihan</span>
             </nav>
             <div class="fellow-actions">
-                <label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul..."></label>
+                <label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label>
+                <button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
                 <a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a>
             </div>
         </header>
 
         <div class="lesson-layout">
             <div class="lesson-main-content">
-                <section class="lesson-hero">
+                <section class="lesson-hero compact ml-lesson-hero">
                     <div class="lesson-hero-copy">
-                        <h1>Machine Learning</h1>
-                        <p>Latihan kasus untuk menguji pemahaman logikamu tentang Machine Learning.</p>
-                        <div class="lesson-meta-row">
-                            <span><i class="far fa-clock"></i> 20 menit</span>
-                            <span><i class="fas fa-book-open"></i> Modul 3 dari 6</span>
-                            <b>Latihan Kasus</b>
+                        <span class="ml-eyebrow"><i class="fas fa-pen-to-square"></i> Latihan Reflektif</span>
+                        <h1>Latihan Machine Learning</h1>
+                        <p>Uji pemahamanmu lewat skenario keputusan, pemetaan fitur-label, diagnosis model, pemilihan algoritma, dan interpretasi confusion matrix.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 30 menit</span><span><i class="fas fa-list-check"></i> 5 latihan</span><b>Tanpa Runtime</b></div>
+                    </div>
+                    <div class="ml-hero-visual is-compact" aria-hidden="true">
+                        <div class="ml-mini-matrix">
+                            <span>TP</span><span>FP</span><span>FN</span><span>TN</span>
                         </div>
                     </div>
-                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow latihan ML">
                 </section>
 
                 <section class="lesson-material-panel">
-                    <div class="lesson-tabs" role="tablist">
+                    <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
                         <a href="#/participant-ai-lab-ml"><i class="fas fa-book-open"></i> Materi</a>
                         <a href="#/participant-ai-lab-ml-practice" class="active"><i class="fas fa-pen-to-square"></i> Latihan</a>
                         <a href="#/participant-ai-lab-ml-quiz"><i class="far fa-clipboard"></i> Kuis</a>
                         <a href="#/participant-ai-lab-ml-discussion"><i class="far fa-message"></i> Diskusi</a>
                     </div>
 
-                    <article class="lesson-article" style="padding: 40px;">
-                        <h2 style="color: var(--fellow-pink); margin-bottom: 24px;"><i class="fas fa-flask"></i> Analisis Kasus Machine Learning</h2>
-                        
-                        <form id="aiMlPracticeForm">
-                            <div class="practice-card" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 30px;">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">1</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">Kasus Bias dan Variance</h3>
-                                </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Studi Kasus:</strong> Kamu diminta membangun model deteksi penyakit dari data medis. Model pertamamu (Decision Tree yang sangat dalam) memberikan akurasi 99% di data latih, tapi hanya 60% di data tes.<br><br>
-                                        Apakah modelmu mengalami Overfitting atau Underfitting? Jelaskan dalam konteks Bias-Variance Tradeoff dan berikan satu cara mengatasinya.
-                                    </p>
-                                    <textarea name="ml-case-1" rows="5" placeholder="Tulis analisis logismu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 12px; padding: 16px; font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="practice-card" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 30px;">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">2</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">Paradigma Machine Learning</h3>
-                                </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Studi Kasus:</strong> Sebuah bank ingin mengelompokkan nasabah berdasarkan pola transaksi mereka (tanpa label kategori sebelumnya), lalu mereka ingin memprediksi nasabah mana yang berpotensi gagal bayar kredit (dengan histori data lunas/gagal).<br><br>
-                                        Paradigma apa (Supervised/Unsupervised/Reinforcement) yang cocok untuk setiap tahapan? Jelaskan.
-                                    </p>
-                                    <textarea name="ml-case-2" rows="5" placeholder="Tulis jawabanmu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 12px; padding: 16px; font-family: inherit; font-size: 0.95rem; resize: vertical; outline: none;"></textarea>
-                                </div>
-                            </div>
+                    <article class="lesson-article">
+                        <div class="ml-section-head">
+                            <span>Practice Lab</span>
+                            <h2>Analisis Kasus Machine Learning</h2>
+                            <p>Jawab dengan bahasamu sendiri. Sistem menyimpan jawaban di browser melalui localStorage, jadi kamu bisa lanjut kuis tanpa kehilangan progres.</p>
+                        </div>
 
-                            <div style="background: #fffcfd; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;">
-                                <div style="flex: 1; min-width: 250px;">
-                                    <h3 style="margin: 0 0 8px; font-size: 1.05rem; color: #171827;">Simpan Latihan</h3>
-                                    <p style="margin: 0; color: var(--fellow-muted); font-size: 0.9rem;" id="aiMlPracticeStatus">Jawaban akan tersimpan di browsermu.</p>
+                        <form id="aiMlPracticeForm" class="practice-response-form ml-practice-form" data-storage-key="heraiAiMlPractice">
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>1</span>
+                                    <div>
+                                        <h3>Perlu ML atau cukup rule-based?</h3>
+                                        <p>Sebuah platform ingin menandai transaksi mencurigakan. Untuk nominal di atas Rp10.000.000, transaksi selalu ditinjau manual. Untuk kasus lain, pola fraud sering berubah.</p>
+                                    </div>
                                 </div>
-                                <div style="display: flex; gap: 12px;">
-                                    <button type="button" data-practice-delete style="background: white; border: 1px solid #e2e8f0; color: #64748b; padding: 12px 20px; border-radius: 100px; font-weight: 600; cursor: pointer;">Hapus</button>
-                                    <button type="button" data-practice-edit style="background: white; border: 1px solid var(--fellow-pink); color: var(--fellow-pink); padding: 12px 20px; border-radius: 100px; font-weight: 600; cursor: pointer;">Edit</button>
-                                    <button type="button" data-practice-save style="background: var(--fellow-pink); border: none; color: white; padding: 12px 24px; border-radius: 100px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(246,51,146,.3);">Simpan Jawaban</button>
+                                <label>
+                                    <span>Keputusanmu</span>
+                                    <select name="needMlDecision">
+                                        <option value="">Pilih pendekatan</option>
+                                        <option value="rule">Cukup rule-based</option>
+                                        <option value="ml">Gunakan ML</option>
+                                        <option value="hybrid">Gabungkan rule-based dan ML</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Jelaskan alasanmu</span>
+                                    <textarea name="needMlReason" rows="4" placeholder="Contoh: aturan nominal bisa dipakai sebagai baseline, tetapi pola fraud berubah sehingga ML membantu membaca kombinasi sinyal transaksi..."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="needMlReason" data-feedback="Bagus. Jawaban ideal membedakan aturan stabil dan pola yang berubah seiring data." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>2</span>
+                                    <div>
+                                        <h3>Tentukan fitur, label, dan target</h3>
+                                        <p>Kamu membangun model untuk memprediksi apakah peserta fellowship akan menyelesaikan modul tepat waktu.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Fitur yang relevan</span>
+                                    <textarea name="featuresLabels" rows="4" placeholder="Contoh fitur: jumlah login mingguan, progres materi, jumlah latihan dikirim, waktu belajar, interaksi diskusi..."></textarea>
+                                </label>
+                                <label>
+                                    <span>Label atau target</span>
+                                    <textarea name="targetLabel" rows="3" placeholder="Contoh target: selesai tepat waktu = 1, tidak selesai tepat waktu = 0. Jelaskan juga sumber datanya."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="targetLabel" data-feedback="Mantap. Target yang jelas membuat supervised learning bisa dilatih dan dievaluasi." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>3</span>
+                                    <div>
+                                        <h3>Diagnosa overfitting atau underfitting</h3>
+                                        <p>Model A punya akurasi train 54% dan test 52%. Model B punya akurasi train 98% dan test 64%.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Diagnosismu</span>
+                                    <textarea name="fitDiagnosis" rows="5" placeholder="Jelaskan mana yang underfit, mana yang overfit, dan tindakan perbaikannya."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="fitDiagnosis" data-feedback="Diagnosis kuat biasanya menyebut gap train-test dan kapasitas model." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>4</span>
+                                    <div>
+                                        <h3>Pilih algoritma untuk 4 kasus</h3>
+                                        <p>Pilih algoritma yang masuk akal untuk prediksi harga rumah, filter spam, segmentasi pelanggan, dan deteksi anomali transaksi.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Pemetaan algoritma</span>
+                                    <textarea name="algorithmChoice" rows="6" placeholder="Contoh: harga rumah -> linear regression / tree-based regression karena target numerik; spam -> logistic regression atau Naive Bayes karena klasifikasi teks..."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="algorithmChoice" data-feedback="Bagus. Kaitkan tipe output, data yang tersedia, dan kebutuhan interpretabilitas." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>5</span>
+                                    <div>
+                                        <h3>Interpretasi confusion matrix</h3>
+                                        <p>Kasus deteksi penyakit: TP=45, FP=10, FN=5, TN=140. Hitung insight utama dan metrik mana yang paling penting.</p>
+                                    </div>
+                                </div>
+                                <div class="ml-matrix-card" aria-label="Confusion matrix latihan">
+                                    <span></span><b>Pred Positif</b><b>Pred Negatif</b>
+                                    <b>Aktual Positif</b><strong>45 TP</strong><strong>5 FN</strong>
+                                    <b>Aktual Negatif</b><strong>10 FP</strong><strong>140 TN</strong>
+                                </div>
+                                <label>
+                                    <span>Interpretasi dan metrik prioritas</span>
+                                    <textarea name="confusionMatrix" rows="5" placeholder="Hitung recall, precision, atau akurasi jika perlu. Jelaskan kenapa FN bisa sangat mahal di kasus medis."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="confusionMatrix" data-feedback="Tepat. Pada kasus medis, recall sering lebih kritis karena false negative berisiko tinggi." hidden></p>
+                            </article>
+
+                            <div class="ml-save-panel">
+                                <div>
+                                    <h3>Simpan Latihan</h3>
+                                    <p id="aiMlPracticeStatus" class="practice-status">Jawaban akan tersimpan di browsermu.</p>
+                                </div>
+                                <div class="practice-action-row">
+                                    <button type="button" data-practice-save><i class="fas fa-floppy-disk"></i> Simpan Jawaban</button>
+                                    <button type="button" data-practice-edit><i class="fas fa-pen"></i> Edit</button>
+                                    <button type="button" data-practice-delete><i class="far fa-trash-can"></i> Hapus</button>
                                 </div>
                             </div>
                         </form>
@@ -108,6 +179,24 @@
                     </footer>
                 </section>
             </div>
+
+            <aside class="lesson-right-panel">
+                <section class="module-side-card lesson-progress-card">
+                    <h2>Progres Modul</h2>
+                    <div class="lesson-progress-mini"><b style="--value:50%"></b><strong>50%</strong></div>
+                    <p>Latihan menguatkan materi sebelum kuis single attempt.</p>
+                    <a href="#/participant-ai-lab-ml-quiz">Buka Kuis</a>
+                </section>
+                <section class="module-side-card lesson-list-card">
+                    <h2>Flow Belajar</h2>
+                    <ol>
+                        <li class="completed"><span>1</span><a href="#/participant-ai-lab-ml">Materi</a><i class="fas fa-circle-check"></i></li>
+                        <li class="active"><span>2</span><a href="#/participant-ai-lab-ml-practice">Latihan</a><i class="far fa-circle-play"></i></li>
+                        <li><span>3</span><a href="#/participant-ai-lab-ml-quiz">Kuis</a><i class="far fa-circle"></i></li>
+                        <li><span>4</span><a href="#/participant-ai-lab-ml-discussion">Diskusi</a><i class="far fa-circle"></i></li>
+                    </ol>
+                </section>
+            </aside>
         </div>
     </main>
 </section>

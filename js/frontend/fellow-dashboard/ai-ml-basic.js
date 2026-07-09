@@ -1,402 +1,565 @@
-(function() {
-    'use strict';
+(function () {
+    const ML_BASE = "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning";
+    const STORAGE = {
+        chapter: "heraiAiMlCurrentChapter",
+        practice: "heraiAiMlPractice",
+        quizDone: "heraiAiMlQuizDone",
+        quizScore: "heraiAiMlQuizScore",
+        quizAnswers: "heraiAiMlQuizAnswers",
+        discussion: "heraiAiMlDiscussion"
+    };
 
-    /* ── HerAI Modul 02 — Ml untuk AI ─── */
+    const CHAPTERS = [
+        {
+            number: 1,
+            route: "/participant-ai-lab-ml-intro",
+            title: "Foundations of Machine Learning",
+            shortTitle: "Foundations"
+        },
+        {
+            number: 2,
+            route: "/participant-ai-lab-ml-hypothesis",
+            title: "Supervised Learning & Model Hypothesis",
+            shortTitle: "Hypothesis"
+        },
+        {
+            number: 3,
+            route: "/participant-ai-lab-ml-vc-dim",
+            title: "Model Capacity, Generalization & Evaluation",
+            shortTitle: "Generalization"
+        },
+        {
+            number: 4,
+            route: "/participant-ai-lab-ml-bias-variance",
+            title: "Core Algorithms & Learning Paradigms",
+            shortTitle: "Algorithm Map"
+        }
+    ];
 
-    var pyodideInstance = null;
-    var pyodideReady = false;
-    var pyodideLoading = false;
+    const getPath = () => {
+        const raw = (window.location.hash || "#/participant-ai-lab-ml").replace("#", "");
+        const queryIndex = raw.indexOf("?");
+        return queryIndex >= 0 ? raw.slice(0, queryIndex) : raw;
+    };
 
-    function startPyodide() {
-        if (pyodideReady) {
-            enableAllPlaygrounds();
+    const getSavedChapter = () => {
+        const saved = Number(localStorage.getItem(STORAGE.chapter));
+        return Number.isInteger(saved) && saved >= 1 && saved <= CHAPTERS.length ? saved : 1;
+    };
+
+    const findChapterByRoute = (path) => {
+        const match = CHAPTERS.find(chapter => chapter.route === path);
+        if (match) return match.number;
+        return null;
+    };
+
+    const safeJsonParse = (value, fallback) => {
+        if (!value) return fallback;
+        try {
+            return JSON.parse(value);
+        } catch (error) {
+            return fallback;
+        }
+    };
+
+    const escapeSelector = (value) => {
+        if (window.CSS && typeof window.CSS.escape === "function") {
+            return window.CSS.escape(value);
+        }
+        return String(value).replace(/["\\]/g, "\\$&");
+    };
+
+    const escapeHtml = (value) => String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    const setStatus = (selector, message, tone) => {
+        const status = document.querySelector(selector);
+        if (!status) return;
+        status.textContent = message;
+        status.dataset.tone = tone || "neutral";
+    };
+
+    function updateChapterUi(chapterNumber) {
+        const percentage = Math.round((chapterNumber / CHAPTERS.length) * 100);
+        const currentChapter = CHAPTERS[chapterNumber - 1];
+
+        document.querySelectorAll("#ml-sidebar-list li").forEach(item => {
+            const isActive = Number(item.dataset.chapter) === chapterNumber;
+            item.classList.toggle("active", isActive);
+            item.classList.toggle("completed", Number(item.dataset.chapter) < chapterNumber);
+
+            const icon = item.querySelector("i");
+            if (icon) {
+                icon.className = Number(item.dataset.chapter) < chapterNumber
+                    ? "fas fa-circle-check"
+                    : (isActive ? "far fa-circle-play" : "far fa-circle");
+            }
+        });
+
+        document.querySelectorAll("[data-ml-progress-fill]").forEach(fill => {
+            fill.style.setProperty("--value", `${percentage}%`);
+        });
+
+        document.querySelectorAll("[data-ml-progress-value]").forEach(node => {
+            node.textContent = `${percentage}%`;
+        });
+
+        document.querySelectorAll("[data-ml-progress-text]").forEach(node => {
+            node.textContent = `${chapterNumber} dari ${CHAPTERS.length} materi selesai`;
+        });
+
+        document.querySelectorAll("[data-ml-current-title]").forEach(node => {
+            node.textContent = currentChapter.title;
+        });
+
+        const prevButton = document.getElementById("btn-prev-chapter");
+        const nextButton = document.getElementById("btn-next-chapter");
+        const finishButton = document.getElementById("btn-finish-materi");
+
+        if (prevButton) {
+            prevButton.hidden = chapterNumber === 1;
+            prevButton.dataset.targetChapter = String(chapterNumber - 1);
+        }
+
+        if (nextButton) {
+            nextButton.hidden = chapterNumber === CHAPTERS.length;
+            nextButton.dataset.targetChapter = String(chapterNumber + 1);
+        }
+
+        if (finishButton) {
+            finishButton.hidden = chapterNumber !== CHAPTERS.length;
+        }
+    }
+
+    function navigateToChapter(chapterNumber) {
+        const target = CHAPTERS[chapterNumber - 1];
+        if (!target) return;
+
+        const nextHash = `#${target.route}`;
+        if (window.location.hash !== nextHash) {
+            window.location.hash = nextHash;
             return;
         }
-        
-        var status = document.getElementById('pyodideStatus');
 
-        if (typeof loadPyodide === 'undefined') {
-            if (status) { status.querySelector('span').textContent = 'Ml runtime tidak tersedia di perangkat ini.'; }
+        loadMlChapter(chapterNumber, { syncHash: false });
+    }
+
+    async function loadMlChapter(chapterNumber, options = {}) {
+        const container = document.getElementById("ml-chapter-container");
+        if (!container) return;
+
+        const target = Math.min(Math.max(Number(chapterNumber) || 1, 1), CHAPTERS.length);
+        if (options.syncHash) {
+            navigateToChapter(target);
             return;
         }
 
-        if (pyodideLoading) return;
-        pyodideLoading = true;
-        
-        // Disable all runs and show loading
-        var runs = document.querySelectorAll('.py-run');
-        runs.forEach(function(btn) { 
-            btn.disabled = true; 
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-        });
+        localStorage.setItem(STORAGE.chapter, String(target));
+        updateChapterUi(target);
 
-        var bars = 0;
-        var dots = '';
-        var interval = setInterval(function() {
-            bars = (bars + 1) % 4;
-            dots = '.'.repeat(bars);
-            if (status) {
-                var s = status.querySelector('span');
-                if (s && !pyodideReady) s.textContent = 'Memuat Ml runtime' + dots;
-            }
-        }, 400);
+        container.innerHTML = `
+            <div class="ml-loading-state">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Memuat materi Machine Learning...</p>
+            </div>
+        `;
 
-        loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/' }).then(function(pyodide) {
-            pyodideInstance = pyodide;
-            pyodideReady = true;
-            clearInterval(interval);
-            if (status) {
-                status.classList.add('ready');
-                status.querySelector('span').textContent = 'Ml runtime siap. Kamu bisa menjalankan kode di bawah.';
-            }
-            enableAllPlaygrounds();
-        }).catch(function(err) {
-            clearInterval(interval);
-            if (status) status.querySelector('span').textContent = 'Gagal memuat Ml: ' + (err.message || 'unknown error');
-        });
-    }
-
-    function enableAllPlaygrounds() {
-        var runs = document.querySelectorAll('.py-run');
-        for (var i = 0; i < runs.length; i++) { 
-            runs[i].disabled = false; 
-            runs[i].innerHTML = '<i class="fas fa-play"></i> Run Code';
+        try {
+            const response = await fetch(`${ML_BASE}/chapters/chapter-${target}.html`);
+            if (!response.ok) throw new Error("Chapter tidak ditemukan");
+            container.innerHTML = await response.text();
+            updateChapterUi(target);
+            container.querySelectorAll("[data-ml-next]").forEach(link => {
+                const next = Number(link.dataset.mlNext);
+                link.addEventListener("click", event => {
+                    event.preventDefault();
+                    navigateToChapter(next);
+                });
+            });
+        } catch (error) {
+            container.innerHTML = `
+                <div class="ml-error-state">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <h2>Materi belum bisa dimuat</h2>
+                    <p>Silakan refresh halaman atau buka daftar materi dari sidebar.</p>
+                </div>
+            `;
+            console.error("Gagal memuat chapter ML:", error);
         }
     }
 
-    function runCode(playId) {
-        if (!pyodideReady || !pyodideInstance) return;
-        var editor = document.querySelector('#play-' + playId + ' .py-editor');
-        var output = document.getElementById('out-' + playId);
-        if (!editor || !output) return;
-        var code = editor.value;
+    window.loadMlChapter = function (chapterNumber) {
+        navigateToChapter(Number(chapterNumber));
+    };
 
-        output.className = 'py-output visible';
-        output.textContent = 'Running...';
+    window.initAiMlMateri = function () {
+        const path = getPath();
+        const routeChapter = findChapterByRoute(path);
+        const initialChapter = routeChapter || getSavedChapter();
 
-        var captured = '';
-        pyodideInstance.setStdout({ batched: function(text) { captured += text + '\n'; } });
-        pyodideInstance.setStderr({ batched: function(text) { captured += text + '\n'; } });
+        document.querySelectorAll("[data-ml-chapter]").forEach(link => {
+            link.addEventListener("click", event => {
+                const chapterNumber = Number(link.dataset.mlChapter);
+                if (!chapterNumber) return;
+                event.preventDefault();
+                navigateToChapter(chapterNumber);
+            });
+        });
 
-        pyodideInstance.loadPackagesFromImports(code).then(function() {
-            return pyodideInstance.runMlAsync(code);
-        }).then(function(result) {
-            var resultText = result !== undefined ? String(result) : '';
-            var final = captured ? captured.trimEnd() : '';
-            if (resultText && final) final += '\n' + resultText;
-            else if (resultText) final = resultText;
-            output.textContent = final || '(kode berjalan, tidak ada output)';
-            output.classList.remove('error');
-        }).catch(function(err) {
-            var final = captured ? captured.trimEnd() + '\n' : '';
-            final += 'Error: ' + (err.message || err);
-            output.textContent = final;
-            output.classList.add('error');
+        const prevButton = document.getElementById("btn-prev-chapter");
+        const nextButton = document.getElementById("btn-next-chapter");
+
+        if (prevButton) {
+            prevButton.addEventListener("click", () => {
+                navigateToChapter(Number(prevButton.dataset.targetChapter));
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener("click", () => {
+                navigateToChapter(Number(nextButton.dataset.targetChapter));
+            });
+        }
+
+        loadMlChapter(initialChapter, { syncHash: false });
+    };
+
+    function getPracticePayload(form) {
+        const answers = {};
+        form.querySelectorAll("textarea, select").forEach(field => {
+            if (!field.name) return;
+            answers[field.name] = field.value.trim();
+        });
+
+        return {
+            updatedAt: new Date().toISOString(),
+            answers
+        };
+    }
+
+    function restorePractice(form) {
+        const saved = safeJsonParse(localStorage.getItem(STORAGE.practice), null);
+        if (!saved || !saved.answers) return false;
+
+        Object.entries(saved.answers).forEach(([name, value]) => {
+            const field = form.querySelector(`[name="${escapeSelector(name)}"]`);
+            if (field) field.value = value;
+        });
+
+        return true;
+    }
+
+    function updatePracticeFeedback(form) {
+        form.querySelectorAll("[data-feedback-for]").forEach(box => {
+            const target = form.querySelector(`[name="${escapeSelector(box.dataset.feedbackFor)}"]`);
+            const value = target ? target.value.trim() : "";
+            box.hidden = !value;
+            if (value) {
+                box.innerHTML = `<i class="fas fa-circle-check"></i><span>${box.dataset.feedback || "Jawaban tersimpan. Pastikan alasanmu spesifik dan berbasis data."}</span>`;
+            }
         });
     }
 
-    window.initAiMlBasic = function() {
-        var form = document.getElementById('mlPracticeForm');
-        if (!form || form.dataset.practiceReady) return;
-        form.dataset.practiceReady = 'true';
-        var STORAGE_KEY = 'heraiAiMlPractice';
-        var status = document.getElementById('mlPracticeStatus');
-        var fields = Array.from(form.querySelectorAll('textarea[name]'));
+    function setPracticeReadonly(form, readonly) {
+        form.querySelectorAll("textarea, select").forEach(field => {
+            field.disabled = readonly;
+        });
+        form.classList.toggle("is-saved", readonly);
+    }
 
-        var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-        fields.forEach(function(f) { if (saved[f.name]) f.value = saved[f.name]; });
-        if (Object.keys(saved).length && status) {
-            status.textContent = 'Jawaban latihan tersimpan di perangkatmu.';
+    window.initAiMlBasic = function () {
+        const form = document.getElementById("aiMlPracticeForm");
+        if (!form) return;
+
+        const restored = restorePractice(form);
+        updatePracticeFeedback(form);
+        setStatus("#aiMlPracticeStatus", restored ? "Jawaban terakhir berhasil dipulihkan dari browsermu." : "Jawaban akan tersimpan di browsermu.", restored ? "success" : "neutral");
+
+        form.querySelectorAll("textarea, select").forEach(field => {
+            field.addEventListener("input", () => updatePracticeFeedback(form));
+            field.addEventListener("change", () => updatePracticeFeedback(form));
+        });
+
+        const saveButton = form.querySelector("[data-practice-save]");
+        const editButton = form.querySelector("[data-practice-edit]");
+        const deleteButton = form.querySelector("[data-practice-delete]");
+
+        if (saveButton) {
+            saveButton.addEventListener("click", () => {
+                localStorage.setItem(STORAGE.practice, JSON.stringify(getPracticePayload(form)));
+                updatePracticeFeedback(form);
+                setPracticeReadonly(form, true);
+                setStatus("#aiMlPracticeStatus", "Latihan ML tersimpan. Kamu bisa lanjut ke kuis atau edit lagi bila perlu.", "success");
+            });
         }
 
-        var saveButton = form.querySelector('[data-practice-save]');
-        var editButton = form.querySelector('[data-practice-edit]');
-        var deleteButton = form.querySelector('[data-practice-delete]');
+        if (editButton) {
+            editButton.addEventListener("click", () => {
+                setPracticeReadonly(form, false);
+                setStatus("#aiMlPracticeStatus", "Mode edit aktif. Jangan lupa simpan ulang setelah mengubah jawaban.", "neutral");
+            });
+        }
 
-        saveButton?.addEventListener('click', function() {
-            var payload = {};
-            var hasAnswer = false;
-            fields.forEach(function(f) { 
-                var val = f.value.trim();
-                payload[f.name] = val; 
-                if (val.length > 0) hasAnswer = true;
+        if (deleteButton) {
+            deleteButton.addEventListener("click", () => {
+                localStorage.removeItem(STORAGE.practice);
+                form.reset();
+                setPracticeReadonly(form, false);
+                updatePracticeFeedback(form);
+                setStatus("#aiMlPracticeStatus", "Jawaban latihan dihapus dari browser ini.", "neutral");
+            });
+        }
+    };
+
+    function getQuizGroups(form) {
+        const names = Array.from(new Set(
+            Array.from(form.querySelectorAll('input[type="radio"]')).map(input => input.name)
+        ));
+        return names;
+    }
+
+    function getQuizAnswers(form) {
+        return getQuizGroups(form).reduce((acc, name) => {
+            const checked = form.querySelector(`input[name="${escapeSelector(name)}"]:checked`);
+            acc[name] = checked ? checked.value : "";
+            return acc;
+        }, {});
+    }
+
+    function renderQuizResult(form, score, total, message) {
+        const result = document.getElementById("aiMlQuizResult");
+        if (!result) return;
+        const percent = Math.round((score / total) * 100);
+        result.hidden = false;
+        result.innerHTML = `
+            <strong>Skor kamu: ${score}/${total} (${percent}%)</strong>
+            <span>${message || "Review pembahasan di tiap soal untuk memperkuat konsep."}</span>
+        `;
+
+        const quizDone = localStorage.getItem(STORAGE.quizDone) === "true";
+        if (quizDone && (location.hostname === "localhost" || location.hostname === "127.0.0.1") && !result.querySelector("[data-quiz-reset]")) {
+            const resetButton = document.createElement("button");
+            resetButton.type = "button";
+            resetButton.className = "ml-dev-reset";
+            resetButton.dataset.quizReset = "true";
+            resetButton.textContent = "Reset Dev";
+            resetButton.addEventListener("click", () => {
+                localStorage.removeItem(STORAGE.quizDone);
+                localStorage.removeItem(STORAGE.quizScore);
+                localStorage.removeItem(STORAGE.quizAnswers);
+                window.initAiMlQuiz();
+            });
+            result.appendChild(resetButton);
+        }
+    }
+
+    function lockQuiz(form, answers) {
+        form.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.disabled = true;
+            if (answers && answers[input.name] === input.value) input.checked = true;
+        });
+
+        form.querySelectorAll(".quiz-list article").forEach(article => {
+            const selected = article.querySelector('input[type="radio"]:checked');
+            const explanation = article.dataset.explanation || "Pembahasan belum tersedia.";
+
+            article.querySelectorAll("label").forEach(label => {
+                const input = label.querySelector("input");
+                const isCorrect = input && input.value === "1";
+                const isSelected = input && selected && input === selected;
+                label.classList.toggle("is-correct", Boolean(isCorrect));
+                label.classList.toggle("is-wrong", Boolean(isSelected && !isCorrect));
             });
 
-            if (!hasAnswer) {
-                if (status) {
-                    status.style.color = '#e74c3c';
-                    status.textContent = 'Oops, jawaban tidak boleh kosong! Silakan kerjakan minimal satu soal reflektif.';
-                }
+            let explanationBox = article.querySelector(".quiz-explanation");
+            if (!explanationBox) {
+                explanationBox = document.createElement("p");
+                explanationBox.className = "quiz-explanation";
+                article.appendChild(explanationBox);
+            }
+            explanationBox.innerHTML = `<i class="fas fa-lightbulb"></i> ${escapeHtml(explanation)}`;
+        });
+
+        const submitButton = form.querySelector(".quiz-submit-btn");
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Kuis Sudah Dikirim";
+        }
+
+        const next = document.getElementById("aiMlQuizNext");
+        if (next) next.classList.remove("is-disabled");
+    }
+
+    window.initAiMlQuiz = function () {
+        const form = document.getElementById("aiMlQuizForm");
+        if (!form) return;
+
+        form.querySelectorAll(".quiz-explanation").forEach(node => node.remove());
+        form.querySelectorAll("label").forEach(label => label.classList.remove("is-correct", "is-wrong"));
+        form.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.disabled = false;
+            input.checked = false;
+        });
+
+        const groups = getQuizGroups(form);
+        const isDone = localStorage.getItem(STORAGE.quizDone) === "true";
+        if (isDone) {
+            const answers = safeJsonParse(localStorage.getItem(STORAGE.quizAnswers), {});
+            const score = Number(localStorage.getItem(STORAGE.quizScore)) || 0;
+            renderQuizResult(form, score, groups.length, "Kuis ini single attempt. Jawaban dan pembahasan sudah dikunci.");
+            lockQuiz(form, answers);
+            return;
+        }
+
+        const result = document.getElementById("aiMlQuizResult");
+        if (result) {
+            result.hidden = true;
+            result.innerHTML = "";
+        }
+
+        const next = document.getElementById("aiMlQuizNext");
+        if (next) next.classList.add("is-disabled");
+
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+            const answers = getQuizAnswers(form);
+            const unanswered = groups.filter(name => !answers[name]);
+            if (unanswered.length) {
+                renderQuizResult(form, 0, groups.length, `Masih ada ${unanswered.length} soal yang belum dijawab.`);
                 return;
             }
 
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-            if (status) {
-                status.style.color = 'var(--fellow-muted)';
-                status.textContent = 'Jawaban berhasil disimpan. Kamu bisa edit atau hapus kapan saja.';
-            }
-        });
-        editButton?.addEventListener('click', function() {
-            fields[0]?.focus();
-            if (status) {
-                status.style.color = 'var(--fellow-muted)';
-                status.textContent = 'Mode edit aktif.';
-            }
-        });
-        deleteButton?.addEventListener('click', function() {
-            localStorage.removeItem(STORAGE_KEY);
-            fields.forEach(function(f) { f.value = ''; });
-            if (status) {
-                status.style.color = 'var(--fellow-muted)';
-                status.textContent = 'Jawaban latihan dihapus.';
-            }
-        });
+            const score = groups.reduce((total, name) => total + (answers[name] === "1" ? 1 : 0), 0);
+            localStorage.setItem(STORAGE.quizDone, "true");
+            localStorage.setItem(STORAGE.quizScore, String(score));
+            localStorage.setItem(STORAGE.quizAnswers, JSON.stringify(answers));
 
-        // Bind Pyodide run/reset
-        document.querySelectorAll('.py-run').forEach(function(btn) {
-            var pid = btn.getAttribute('data-play');
-            btn.disabled = true;
-            btn.addEventListener('click', function() { runCode(pid); });
+            renderQuizResult(form, score, groups.length, "Pembahasan sudah dibuka. Gunakan ini untuk membaca ulang materi yang belum kuat.");
+            lockQuiz(form, answers);
         });
-        document.querySelectorAll('.py-reset').forEach(function(btn) {
-            var pid = btn.getAttribute('data-play');
-            btn.addEventListener('click', function() {
-                var editor = document.querySelector('#play-' + pid + ' .py-editor');
-                if (!editor) return;
-                editor.value = editor.defaultValue || editor.getAttribute('data-original') || '';
-                var out = document.getElementById('out-' + pid);
-                if (out) { out.className = 'py-output'; out.textContent = ''; }
-            });
-        });
-
-        // Store original code for reset
-        document.querySelectorAll('.py-editor').forEach(function(ed) {
-            ed.setAttribute('data-original', ed.value);
-        });
-
-        startPyodide();
     };
 
-    window.initAiMlQuiz = function() {
-        var quizForm = document.getElementById('aiMlQuizForm');
-        if (!quizForm || quizForm.dataset.quizReady) return;
-        quizForm.dataset.quizReady = 'true';
-        var quizDoneKey = 'heraiAiMlQuizDone';
-        var quizScoreKey = 'heraiAiMlQuizScore';
-        var groups = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
-        var resultBox = document.getElementById('aiMlQuizResult');
-        var nextLink = document.getElementById('aiMlQuizNext');
-        var submitButton = quizForm.querySelector('.quiz-submit-btn');
-        var isQuizDone = localStorage.getItem(quizDoneKey) === 'true';
+    const DISCUSSION_PROMPTS = [
+        "Ceritakan satu kasus di sekitarmu yang cocok diselesaikan dengan ML.",
+        "Mana yang lebih penting: akurasi tinggi atau model yang mudah dijelaskan?",
+        "Bagaimana cara mencegah model ML menjadi bias?"
+    ];
 
-        var showResult = function(score, total) {
-            if (!resultBox) return;
-            resultBox.hidden = false;
-            resultBox.innerHTML = '<strong>Nilai kamu: ' + score + '/' + total + '</strong><span>Skor tersimpan. Jawaban yang benar ditandai dengan warna hijau.</span>';
-        };
+    function getDiscussionPosts() {
+        const saved = safeJsonParse(localStorage.getItem(STORAGE.discussion), null);
+        if (Array.isArray(saved)) return saved;
 
-        if (isQuizDone) {
-            var savedScore = Number(localStorage.getItem(quizScoreKey) || 0);
-            showResult(savedScore, groups.length);
-            quizForm.querySelectorAll('label').forEach(function(lbl) {
-                var inp = lbl.querySelector('input');
-                if (inp) {
-                    inp.disabled = true;
-                    if (inp.value === '1') {
-                        lbl.style.background = 'rgba(46, 160, 67, 0.1)';
-                        lbl.style.borderColor = '#2ea043';
-                    } else if (inp.checked) {
-                        lbl.style.background = 'rgba(231, 76, 60, 0.1)';
-                        lbl.style.borderColor = '#e74c3c';
-                    }
-                }
-            });
-            if (submitButton) { submitButton.disabled = true; submitButton.textContent = 'Kuis Sudah Dikirim'; }
-            if (nextLink) nextLink.classList.remove('is-disabled');
-            document.querySelectorAll('[data-locked-after-quiz]').forEach(function(i) { i.hidden = false; });
-            document.querySelectorAll('.lesson-lock-hint').forEach(function(i) { i.hidden = true; });
+        return DISCUSSION_PROMPTS.map((prompt, index) => ({
+            id: `seed-${index + 1}`,
+            prompt,
+            text: "Gunakan prompt ini sebagai titik mulai diskusi.",
+            createdAt: new Date().toISOString(),
+            replies: []
+        }));
+    }
+
+    function saveDiscussionPosts(posts) {
+        localStorage.setItem(STORAGE.discussion, JSON.stringify(posts));
+    }
+
+    function renderDiscussion(posts) {
+        const list = document.getElementById("aiMlDiscussionList");
+        if (!list) return;
+
+        if (!posts.length) {
+            list.innerHTML = `<div class="ml-empty-state">Belum ada diskusi. Jadilah yang pertama membuka percakapan.</div>`;
             return;
         }
 
-        quizForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var score = 0;
-            for (var i = 0; i < groups.length; i++) {
-                var s = quizForm.querySelector('input[name="' + groups[i] + '"]:checked');
-                if (s && s.value === '1') score += 1;
-            }
-            localStorage.setItem(quizDoneKey, 'true');
-            localStorage.setItem(quizScoreKey, String(score));
-            showResult(score, groups.length);
-            quizForm.querySelectorAll('label').forEach(function(lbl) {
-                var inp = lbl.querySelector('input');
-                if (inp) {
-                    inp.disabled = true;
-                    if (inp.value === '1') {
-                        lbl.style.background = 'rgba(46, 160, 67, 0.1)';
-                        lbl.style.borderColor = '#2ea043';
-                    } else if (inp.checked) {
-                        lbl.style.background = 'rgba(231, 76, 60, 0.1)';
-                        lbl.style.borderColor = '#e74c3c';
-                    }
+        list.innerHTML = posts.map((post, index) => {
+            const initials = post.id && post.id.startsWith("seed") ? "H" : "A";
+            const replies = Array.isArray(post.replies) ? post.replies : [];
+            return `
+                <article class="discussion-bubble" data-discussion-id="${escapeHtml(post.id)}">
+                    <div>
+                        <span>${initials}</span>
+                        <strong>${post.id && post.id.startsWith("seed") ? "HerAI Prompt" : "Aisyah Putri"}</strong>
+                        <small>${new Date(post.createdAt).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })}</small>
+                    </div>
+                    <p><b>${escapeHtml(post.prompt)}</b></p>
+                    <p>${escapeHtml(post.text)}</p>
+                    <button type="button" data-reply="${escapeHtml(post.id)}"><i class="far fa-message"></i> Balas</button>
+                    <div class="discussion-replies">
+                        ${replies.map(reply => `
+                            <article>
+                                <strong>Aisyah Putri</strong>
+                                <small>${new Date(reply.createdAt).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })}</small>
+                                <p>${escapeHtml(reply.text)}</p>
+                            </article>
+                        `).join("")}
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+        list.querySelectorAll("[data-reply]").forEach(button => {
+            button.addEventListener("click", () => {
+                const text = window.prompt("Tulis balasan singkat untuk thread ini:");
+                if (!text || !text.trim()) return;
+
+                const nextPosts = getDiscussionPosts();
+                const target = nextPosts.find(post => post.id === button.dataset.reply);
+                if (!target) return;
+                target.replies = Array.isArray(target.replies) ? target.replies : [];
+                target.replies.push({
+                    text: text.trim(),
+                    createdAt: new Date().toISOString()
+                });
+                saveDiscussionPosts(nextPosts);
+                renderDiscussion(nextPosts);
+            });
+        });
+    }
+
+    window.initAiMlDiscussion = function () {
+        const form = document.getElementById("aiMlDiscussionForm");
+        const textarea = form ? form.querySelector("textarea") : null;
+        const select = form ? form.querySelector("select") : null;
+        let posts = getDiscussionPosts();
+
+        renderDiscussion(posts);
+
+        document.querySelectorAll("[data-discussion-prompt]").forEach(button => {
+            button.addEventListener("click", () => {
+                if (select) select.value = button.dataset.discussionPrompt;
+                if (textarea && !textarea.value.trim()) {
+                    textarea.value = `${button.dataset.discussionPrompt}\n\n`;
+                    textarea.focus();
                 }
             });
-            if (submitButton) { submitButton.disabled = true; submitButton.textContent = 'Kuis Sudah Dikirim'; }
-            document.querySelectorAll('[data-locked-after-quiz]').forEach(function(i) { i.hidden = false; });
-            document.querySelectorAll('.lesson-lock-hint').forEach(function(i) { i.hidden = true; });
-            if (nextLink) nextLink.classList.remove('is-disabled');
+        });
+
+        if (!form || !textarea || !select) return;
+
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+            const text = textarea.value.trim();
+            if (!text) {
+                setStatus("#aiMlDiscussionStatus", "Tulis isi diskusi terlebih dahulu.", "warning");
+                return;
+            }
+
+            posts = getDiscussionPosts();
+            posts.unshift({
+                id: `post-${Date.now()}`,
+                prompt: select.value,
+                text,
+                createdAt: new Date().toISOString(),
+                replies: []
+            });
+            saveDiscussionPosts(posts);
+            form.reset();
+            setStatus("#aiMlDiscussionStatus", "Diskusi berhasil diposting dan tersimpan di browser ini.", "success");
+            renderDiscussion(posts);
         });
     };
-
-    window.initAiMlDiscussion = function() {
-        var form = document.getElementById('aiMlDiscussionForm');
-        var list = document.getElementById('aiMlDiscussionList');
-        if (!form || !list || form.dataset.discussionReady) return;
-        form.dataset.discussionReady = 'true';
-        var STORAGE_KEY = 'heraiAiMlDiscussion';
-        var fallback = [
-            { id: 'seed-1', name: 'Aisyah Putri', time: 'Hari ini, 10.30', text: 'Ada yang bisa jelasin beda list dan tuple dengan contoh simpel? Aku masih suka bingung kapan pakai yang mana.', replies: [{ name: 'Mentor Rani', time: 'Hari ini, 10.42', text: 'List untuk data yang bisa berubah (seperti daftar peserta), tuple untuk data yang tetap (seperti koordinat lokasi). Tuple lebih cepat dan hemat memori.' }] }
-        ];
-
-        var esc = function(v) { return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); };
-        var load = function() { return JSON.parse(localStorage.getItem(STORAGE_KEY) || JSON.stringify(fallback)); };
-        var save = function(items) { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); };
-        var ts = function() { return new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date()); };
-        var render = function() {
-            var items = load();
-            list.innerHTML = items.map(function(item) {
-                return '<article class="discussion-bubble"><div><span>' + esc(item.name.charAt(0)) + '</span><strong>' + esc(item.name) + '</strong><small>' + esc(item.time) + '</small></div><p>' + esc(item.text) + '</p><button type="button" data-reply="' + item.id + '">Reply</button><div class="discussion-replies">' + (item.replies || []).map(function(r) { return '<article><strong>' + esc(r.name) + '</strong><small>' + esc(r.time) + '</small><p>' + esc(r.text) + '</p></article>'; }).join('') + '</div></article>';
-            }).join('');
-            list.querySelectorAll('[data-reply]').forEach(function(b) {
-                b.addEventListener('click', function() {
-                    var txt = prompt('Tulis balasan diskusi:');
-                    if (!txt || !txt.trim()) return;
-                    var u = load();
-                    var t = u.find(function(x) { return x.id === b.dataset.reply; });
-                    if (t) { t.replies = t.replies || []; t.replies.push({ name: 'Aisyah Putri', time: ts(), text: txt.trim() }); save(u); render(); }
-                });
-            });
-        };
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var ta = form.querySelector('textarea');
-            var txt = ta?.value.trim();
-            if (!txt) return;
-            var u = load();
-            u.unshift({ id: 'post-' + Date.now(), name: 'Aisyah Putri', time: ts(), text: txt, replies: [] });
-            save(u); ta.value = ''; render();
-        });
-        render();
-        render();
-    };
-
-    window.initAiMlMateri = function() {
-        var container = document.getElementById('ml-chapter-container');
-        if (!container) return;
-
-        var STORAGE_KEY_CHAPTER = 'heraiAiMlCurrentChapter';
-        var currentChapter = parseInt(localStorage.getItem(STORAGE_KEY_CHAPTER) || '1', 10);
-        var totalChapters = 4; // All 5 modules are complete
-
-        var btnPrev = document.getElementById('btn-prev-chapter');
-        var btnNext = document.getElementById('btn-next-chapter');
-        var btnFinish = document.getElementById('btn-finish-materi');
-
-        function loadChapter(chapterNumber) {
-            container.innerHTML = '<div style="text-align: center; padding: 60px; color: var(--fellow-muted);"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--fellow-pink); margin-bottom: 16px;"></i><p>Memuat Topik ' + chapterNumber + '...</p></div>';
-            
-            var formattedNumber = chapterNumber < 10 ? '0' + chapterNumber : chapterNumber;
-            var path = '';
-            if (chapterNumber === 1) path = '01-memulai-ml.html';
-            else path = formattedNumber + '-materi.html'; // Future fallback
-
-            fetch('/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/chapters/' + path)
-                .then(function(res) { 
-                    if (!res.ok) throw new Error('Not found'); 
-                    return res.text(); 
-                })
-                .then(function(html) {
-                    container.innerHTML = html;
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    
-                    // Activate Inline Playgrounds
-                    startPyodide();
-                    var runs = container.querySelectorAll('.py-run');
-                    runs.forEach(function(btn) {
-                        btn.addEventListener('click', function() {
-                            var idMatch = this.getAttribute('onclick') ? this.getAttribute('onclick').match(/'([^']+)'/) : null;
-                            var id = idMatch ? idMatch[1] : this.id.replace('btn-run-', '');
-                            runCode(id);
-                        });
-                        btn.removeAttribute('onclick');
-                    });
-                    
-                    // Update sidebar list styling
-                    var listItems = document.querySelectorAll('#ml-sidebar-list li');
-                    listItems.forEach(function(li) {
-                        var chapter = parseInt(li.getAttribute('data-chapter') || '0', 10);
-                        var icon = li.querySelector('i');
-                        if (chapter === chapterNumber) {
-                            li.classList.add('active');
-                            icon.className = 'far fa-circle-play';
-                        } else if (chapter < chapterNumber) {
-                            li.classList.add('active');
-                            icon.className = 'fas fa-circle-check';
-                        } else {
-                            li.classList.remove('active');
-                            icon.className = 'far fa-circle';
-                        }
-                    });
-                    
-                    // Update progress percentage
-                    var progressValue = Math.round(((chapterNumber - 1) / totalChapters) * 100);
-                    var progressB = document.querySelector('.lesson-progress-mini b');
-                    var progressStrong = document.querySelector('.lesson-progress-mini strong');
-                    var progressText = document.querySelector('.lesson-progress-card p');
-                    if (progressB) progressB.style.setProperty('--value', progressValue + '%');
-                    if (progressStrong) progressStrong.textContent = progressValue + '%';
-                    if (progressText) progressText.textContent = (chapterNumber - 1) + ' dari ' + totalChapters + ' materi selesai';
-                })
-                .catch(function(err) {
-                    console.error("Modul load error:", err);
-                    container.innerHTML = '<div style="padding: 40px; text-align:center; color: #f63392;"><h3>Topik Belum Tersedia</h3><p>Topik ' + chapterNumber + ' masih dalam tahap penulisan oleh AI Curriculum Engineer.</p></div>';
-                });
-
-            if (btnPrev) btnPrev.style.display = chapterNumber > 1 ? 'block' : 'none';
-            if (btnNext) btnNext.style.display = chapterNumber < totalChapters ? 'block' : 'none';
-            if (btnFinish) btnFinish.style.display = chapterNumber === totalChapters ? 'block' : 'none';
-        }
-
-        if (btnPrev) {
-            btnPrev.addEventListener('click', function() {
-                if (currentChapter > 1) {
-                    currentChapter--;
-                    localStorage.setItem(STORAGE_KEY_CHAPTER, currentChapter.toString());
-                    loadChapter(currentChapter);
-                }
-            });
-        }
-
-        if (btnNext) {
-            btnNext.addEventListener('click', function() {
-                if (currentChapter < totalChapters) {
-                    currentChapter++;
-                    localStorage.setItem(STORAGE_KEY_CHAPTER, currentChapter.toString());
-                    loadChapter(currentChapter);
-                }
-            });
-        }
-
-        window.loadMlChapter = function(chapterNum) {
-            if (chapterNum >= 1 && chapterNum <= totalChapters) {
-                currentChapter = chapterNum;
-                localStorage.setItem(STORAGE_KEY_CHAPTER, currentChapter.toString());
-                loadChapter(currentChapter);
-            }
-        };
-
-        // Load immediately
-        loadChapter(currentChapter);
-    };
-
 })();
