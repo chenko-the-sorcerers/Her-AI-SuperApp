@@ -87,16 +87,16 @@ Business & Industry Applications
 
 Catatan penting:
 - Machine Learning adalah course di category Foundation & Core AI, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
-- Folder Machine Learning masih berada di pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/ sebagai legacy path implementasi.
-- Jangan menafsirkan lokasi folder ML sebagai hierarki produk.
+- Folder aktif Machine Learning ada di pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/.
+- Folder course catalog canonical ada di pages/frontend/fellow-dashboard/course-catalog/.
 - Course/track placeholder sudah punya route eksplisit ke `course-placeholder.html` agar tim tinggal mengisi outline atau mengganti mapping route saat konten final siap.
 
 ---
 
 POLA PEMBUATAN COURSE/MODUL BARU:
 
-Setiap modul punya 4 file + folder chapters:
-  pages/frontend/fellow-dashboard/ai-fundamental/XX-nama-modul/
+Setiap course baru sebaiknya dibuat di hierarchy canonical:
+  pages/frontend/fellow-dashboard/course-catalog/CATEGORY-SLUG/COURSE-SLUG/
   ├── materi.html      -> Container dinamis, sidebar chapter, tab navigasi
   ├── latihan.html     -> Form/interaktif
   ├── kuis.html        -> Pilihan ganda, single attempt
@@ -107,7 +107,7 @@ Controller JS di: js/frontend/fellow-dashboard/ai-NAMA-basic.js
   -> Export fungsi: initAiNamaMateri(), initAiNamaBasic(), initAiNamaQuiz(), initAiNamaDiscussion()
 
 Langkah wajib saat bikin modul baru:
-  1. Buat folder + file HTML di pages/frontend/fellow-dashboard/ai-fundamental/
+  1. Buat folder + file HTML di pages/frontend/fellow-dashboard/course-catalog/CATEGORY-SLUG/COURSE-SLUG/
   2. Buat controller JS
   3. Daftarkan <script> di index.html
   4. Daftarkan route di js/router.js (object routes + array participantDashboardPages)
@@ -138,7 +138,7 @@ UI RULES KETAT:
 
 CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 
-1. Folder 03-machine-learning/ masih berada di ai-fundamental sebagai legacy path, padahal produk ML adalah course di category Foundation & Core AI, bukan module internal AI Fundamentals & Advanced.
+1. Folder course catalog canonical sudah ada, tetapi sebagian course aktif lama seperti AI Fundamentals, CV, dan NLP masih memakai path implementasi lama sampai dipindahkan bertahap.
 2. Modul 3a (Konsep AI Modern) baru materi; latihan/kuis/diskusi masih diarahkan ke under-development.
 3. Math for AI punya file JS/konten draft; route utama sudah memakai scaffold, subroute materi/practice/quiz/diskusi masih under-development.
 4. Generative AI punya file overview; route utama sudah memakai scaffold sampai konten final diaktifkan.
@@ -192,7 +192,7 @@ Prioritas kerja:
 1. Modul 3a Konsep AI Modern - buat latihan.html, kuis.html, diskusi.html
 2. Bersihkan/putuskan nasib konten draft Math for AI: lanjutkan dari scaffold atau aktifkan file final
 3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
-4. Tentukan apakah legacy path 03-machine-learning perlu dipindah ke struktur course yang lebih eksplisit
+4. Pindahkan course aktif lama lain ke `course-catalog/` secara bertahap jika sudah siap update route dan controller
 5. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
 ```
 

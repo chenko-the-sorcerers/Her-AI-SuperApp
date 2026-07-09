@@ -1,5 +1,5 @@
 (function () {
-    const ML_BASE = "/pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning";
+    const ML_BASE = "/pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning";
     const STORAGE = {
         chapter: "heraiAiMlCurrentChapter",
         practice: "heraiAiMlPractice",

@@ -16,6 +16,28 @@ handover/COURSE_HIERARCHY.md
 
 ---
 
+## Update Susulan - Implementasi Folder Course Catalog
+
+Hierarchy produk sekarang diterapkan di filesystem:
+
+```text
+pages/frontend/fellow-dashboard/course-catalog/
+  foundation-core-ai/
+  generative-multimodal-ai/
+  data-engineering-domains/
+  business-industry-applications/
+```
+
+Perubahan utama:
+
+- Semua course dari UI catalog sekarang punya folder scaffold di bawah `course-catalog/{category}/{course}/`.
+- Machine Learning aktif dipindahkan dari `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` ke `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/`.
+- Hash route peserta tetap sama, termasuk `#/participant-ai-lab-ml` dan alias legacy ML.
+- `js/router.js` dan `js/frontend/fellow-dashboard/ai-ml-basic.js` sudah diarahkan ke path canonical baru.
+- `pages/frontend/fellow-dashboard/ai-fundamental/` sekarang hanya untuk module internal AI Fundamentals & Advanced.
+
+---
+
 ## Update Susulan - Canonical Course Catalog Tree
 
 Dokumentasi hierarchy diperjelas agar mengikuti UI `pages/frontend/fellow-dashboard/modules.html`:
@@ -33,8 +55,7 @@ Perubahan penting:
 - `handover/COURSE_HIERARCHY.md` sekarang punya `Canonical Product Tree` lengkap untuk semua category/domain, semua course, dan outline module/chapter awal di dalamnya.
 - `handover/MODULE_STATUS_MAP.md` sekarang menampilkan course dengan kolom `Category / Domain`, bukan daftar course datar.
 - `handover/PROMPT_AI_BARU.md` sekarang memberi onboarding hierarchy sesuai UI: `Foundation & Core AI`, `Generative & Multimodal AI`, `Data & Engineering Domains`, dan `Business & Industry Applications`.
-- Machine Learning ditegaskan sebagai course di bawah category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI. Folder fisiknya tetap legacy path implementasi.
-- Tidak ada perubahan code, route, CSS, atau konten halaman peserta pada update ini.
+- Machine Learning ditegaskan sebagai course di bawah category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 
 ---
 
@@ -50,19 +71,19 @@ Course Catalog
         Materi -> Latihan -> Kuis -> Diskusi
 ```
 
-Machine Learning diperlakukan sebagai course di bawah category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI. Folder ML saat ini masih berada di:
+Machine Learning diperlakukan sebagai course di bawah category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI. Folder ML aktif sekarang berada di:
 
 ```text
-pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/
+pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/
 ```
 
-Lokasi tersebut adalah legacy path implementasi, bukan keputusan hierarki produk. Jangan menganggap Machine Learning sebagai Modul 3b di dalam AI Fundamentals & Advanced, dan jangan menganggap ML berada di luar category Foundation & Core AI hanya karena foldernya legacy. Jika folder ini dipindah nanti, update sekaligus `js/router.js`, `ML_BASE` di `ai-ml-basic.js`, cache buster `index.html`, route checker, dan semua dokumen handover.
+Jangan menganggap Machine Learning sebagai Modul 3b di dalam AI Fundamentals & Advanced.
 
 ---
 
 ## Update Sesi Ini - Machine Learning
 
-Machine Learning di legacy path `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` sudah dimigrasikan menjadi course aktif 8 chapter berdasarkan referensi Website Portofolio Chen, dengan gaya bahasa Indonesia HerAI.
+Machine Learning sekarang berada di `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/` dan sudah menjadi course aktif 8 chapter berdasarkan referensi Website Portofolio Chen, dengan gaya bahasa Indonesia HerAI.
 
 Flow tetap dipertahankan:
 
@@ -81,7 +102,7 @@ Tidak ada dependency baru, tidak memakai Pyodide, dan tidak mengubah flow fitur 
 Lokasi:
 
 ```text
-pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/chapters/
+pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/chapters/
 ```
 
 Daftar chapter aktif:
@@ -156,7 +177,7 @@ Catatan penting:
 File:
 
 ```text
-pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/latihan.html
+pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/latihan.html
 ```
 
 Skenario latihan:
@@ -183,7 +204,7 @@ heraiAiMlPractice
 File:
 
 ```text
-pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/kuis.html
+pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/kuis.html
 ```
 
 Detail:
@@ -208,7 +229,7 @@ heraiAiMlQuizAnswers
 File:
 
 ```text
-pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/diskusi.html
+pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/diskusi.html
 ```
 
 Detail:
@@ -274,11 +295,11 @@ router.js?v=20260709-ml-full
 | `js/frontend/fellow-dashboard/ai-ml-basic.js` | Chapter map 8 item, legacy alias, reset kuis lama, prompt diskusi 8 item |
 | `index.html` | Cache buster ML |
 | `css/frontend/fellow-dashboard/modules.css` | Style scoped `ai-ml-*` |
-| `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/materi.html` | Sidebar/progress 8 chapter |
-| `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/latihan.html` | 10 latihan |
-| `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/kuis.html` | 24 soal |
-| `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/diskusi.html` | 8 prompt |
-| `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/chapters/chapter-1.html` sampai `chapter-8.html` | Konten materi lengkap |
+| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/materi.html` | Sidebar/progress 8 chapter |
+| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/latihan.html` | 10 latihan |
+| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/kuis.html` | 24 soal |
+| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/diskusi.html` | 8 prompt |
+| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/chapters/chapter-1.html` sampai `chapter-8.html` | Konten materi lengkap |
 
 ---
 
@@ -305,7 +326,7 @@ Perubahan susulan dilakukan untuk mengurangi ambiguitas setelah ML aktif sebagai
 - Dokumentasi handover menegaskan bahwa AI Fundamentals & Advanced, Math for AI, dan Machine Learning adalah course sejajar.
 - `handover/COURSE_HIERARCHY.md` ditambahkan sebagai source of truth category, course, module/chapter, activity, dan specialization track.
 - Machine Learning tetap memakai route `#/participant-ai-lab-ml`.
-- Folder ML belum dipindah; path `ai-fundamental/03-machine-learning/` diperlakukan sebagai legacy implementation path.
+- Status lama saat itu: folder ML belum dipindah dan path `ai-fundamental/03-machine-learning/` diperlakukan sebagai legacy implementation path. Status terbaru: ML sudah pindah ke `course-catalog/foundation-core-ai/machine-learning/`.
 - Copy UI ML diperbarui agar breadcrumb dan label halaman tidak lagi menyiratkan ML sebagai bagian dari AI Fundamentals.
 - Setiap perubahan hierarki harus ikut di-commit dan dokumen handover wajib diupdate.
 

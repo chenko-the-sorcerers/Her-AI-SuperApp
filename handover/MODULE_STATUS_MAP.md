@@ -62,8 +62,9 @@ Course utama yang terlihat di katalog peserta, dikelompokkan sesuai category/dom
 Catatan penting:
 
 - Machine Learning adalah course di category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
-- Folder ML saat ini masih berada di `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` karena alasan legacy implementasi. Jangan menafsirkan lokasi folder ini sebagai hierarki produk.
-- Refactor folder ML ke lokasi course yang lebih tepat boleh direncanakan nanti, tetapi jangan dilakukan tanpa update route, controller `ML_BASE`, cache buster, route checker, dan dokumen handover.
+- Folder aktif ML sudah dipindah ke `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/`.
+- Folder `course-catalog/` sudah dibuat mengikuti category/domain UI untuk semua course agar hierarchy produk terlihat di codebase.
+- Folder `ai-fundamental/` sekarang hanya menyimpan module internal AI Fundamentals & Advanced yang sudah ada.
 
 ---
 
@@ -93,20 +94,53 @@ pages/frontend/fellow-dashboard/ai-fundamental/
   05-evaluation/             (belum ada)
   06-evolution-of-ai/        (belum ada)
 
-  03-machine-learning/        (legacy path; produk = Course Machine Learning)
-    chapters/
-      chapter-1.html
-      chapter-2.html
-      chapter-3.html
-      chapter-4.html
-      chapter-5.html
-      chapter-6.html
-      chapter-7.html
-      chapter-8.html
-    materi.html
-    latihan.html
-    kuis.html
-    diskusi.html
+pages/frontend/fellow-dashboard/course-catalog/
+  foundation-core-ai/
+    ai-fundamentals-advanced/     (scaffold folder; active overview masih ai-fundamentals.html)
+    math-for-ai/                  (scaffold folder; draft lama masih di ai-lab/math-for-ai/)
+    machine-learning/             (aktif)
+      chapters/
+        chapter-1.html
+        chapter-2.html
+        chapter-3.html
+        chapter-4.html
+        chapter-5.html
+        chapter-6.html
+        chapter-7.html
+        chapter-8.html
+      materi.html
+      latihan.html
+      kuis.html
+      diskusi.html
+    deep-learning/
+    reinforcement-learning/
+
+  generative-multimodal-ai/
+    generative-ai/
+    llm/
+    vlm/
+    multimodal-llm/
+    agentic-ai/
+
+  data-engineering-domains/
+    computer-vision/
+    nlp/
+    bioinformatics/
+    data-engineering/
+    data-science/
+    infrastructure/
+    deployment/
+    front-end/
+    back-end/
+
+  business-industry-applications/
+    business-insight/
+    people-business-mgt/
+    ai-for-culture/
+    ai-for-healthcare/
+    ui-ux-design-thinking/
+    ai-for-manufacturing/
+    ai-for-geospatial/
 
 pages/frontend/fellow-dashboard/ai-lab/
   math-for-ai/                (draft, route masih under-development)
@@ -132,7 +166,7 @@ pages/frontend/fellow-dashboard/ai-lab/
 
 | Category / Domain | Course | Route | Status Konten | Catatan |
 |---|---|---|---|---|
-| Foundation & Core AI | Machine Learning | `#/participant-ai-lab-ml` | Aktif | File masih di legacy path `ai-fundamental/03-machine-learning/` |
+| Foundation & Core AI | Machine Learning | `#/participant-ai-lab-ml` | Aktif | File aktif di `course-catalog/foundation-core-ai/machine-learning/` |
 | Foundation & Core AI | Math for AI | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada dari Nazril; route utama memakai `course-placeholder.html` |
 | Foundation & Core AI | Deep Learning | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Foundation & Core AI | Reinforcement Learning | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
@@ -168,27 +202,27 @@ Machine Learning adalah course di category `Foundation & Core AI`, bukan module 
 
 | Route | File HTML | Chapter aktif |
 |---|---|---|
-| `/participant-ai-lab-machine-learning` | `03-machine-learning/materi.html` | Saved chapter atau 1 |
-| `/participant-ai-lab-ml` | `03-machine-learning/materi.html` | Saved chapter atau 1 |
-| `/participant-ai-lab-ml-intro` | `03-machine-learning/materi.html` | 1 |
-| `/participant-ai-lab-ml-hypothesis` | `03-machine-learning/materi.html` | 2, legacy alias |
-| `/participant-ai-lab-ml-vc-dim` | `03-machine-learning/materi.html` | 3, legacy alias |
-| `/participant-ai-lab-ml-bias-variance` | `03-machine-learning/materi.html` | 3, legacy alias |
-| `/participant-ai-lab-ml-supervised` | `03-machine-learning/materi.html` | 2 |
-| `/participant-ai-lab-ml-regression-classification` | `03-machine-learning/materi.html` | 3 |
-| `/participant-ai-lab-ml-probabilistic` | `03-machine-learning/materi.html` | 4 |
-| `/participant-ai-lab-ml-linear-discriminative` | `03-machine-learning/materi.html` | 5 |
-| `/participant-ai-lab-ml-svm` | `03-machine-learning/materi.html` | 6 |
-| `/participant-ai-lab-ml-neural-networks` | `03-machine-learning/materi.html` | 7 |
-| `/participant-ai-lab-ml-unsupervised` | `03-machine-learning/materi.html` | 8 |
+| `/participant-ai-lab-machine-learning` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | Saved chapter atau 1 |
+| `/participant-ai-lab-ml` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | Saved chapter atau 1 |
+| `/participant-ai-lab-ml-intro` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 1 |
+| `/participant-ai-lab-ml-hypothesis` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 2, legacy alias |
+| `/participant-ai-lab-ml-vc-dim` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 3, legacy alias |
+| `/participant-ai-lab-ml-bias-variance` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 3, legacy alias |
+| `/participant-ai-lab-ml-supervised` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 2 |
+| `/participant-ai-lab-ml-regression-classification` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 3 |
+| `/participant-ai-lab-ml-probabilistic` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 4 |
+| `/participant-ai-lab-ml-linear-discriminative` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 5 |
+| `/participant-ai-lab-ml-svm` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 6 |
+| `/participant-ai-lab-ml-neural-networks` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 7 |
+| `/participant-ai-lab-ml-unsupervised` | `course-catalog/foundation-core-ai/machine-learning/materi.html` | 8 |
 
 ### Flow Pendukung
 
 | Route | File HTML | Init function |
 |---|---|---|
-| `/participant-ai-lab-ml-practice` | `03-machine-learning/latihan.html` | `initAiMlBasic()` |
-| `/participant-ai-lab-ml-quiz` | `03-machine-learning/kuis.html` | `initAiMlQuiz()` |
-| `/participant-ai-lab-ml-discussion` | `03-machine-learning/diskusi.html` | `initAiMlDiscussion()` |
+| `/participant-ai-lab-ml-practice` | `course-catalog/foundation-core-ai/machine-learning/latihan.html` | `initAiMlBasic()` |
+| `/participant-ai-lab-ml-quiz` | `course-catalog/foundation-core-ai/machine-learning/kuis.html` | `initAiMlQuiz()` |
+| `/participant-ai-lab-ml-discussion` | `course-catalog/foundation-core-ai/machine-learning/diskusi.html` | `initAiMlDiscussion()` |
 
 ---
 

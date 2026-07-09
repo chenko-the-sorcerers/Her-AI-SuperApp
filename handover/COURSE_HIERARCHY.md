@@ -273,7 +273,7 @@ Source UI utama: `pages/frontend/fellow-dashboard/modules.html`.
 |---|---|---|---|---|
 | AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif | `pages/frontend/fellow-dashboard/ai-fundamentals.html` |
 | Math for AI | Foundation | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada di `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/`; route utama memakai `course-placeholder.html` |
-| Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | Legacy path: `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` |
+| Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/` |
 | Deep Learning | Core | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Reinforcement Learning | Advanced | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 
@@ -366,21 +366,29 @@ Specialization track adalah jalur spesialisasi, bukan course tunggal. Track dapa
 
 ---
 
-## Legacy Path Notes
+## Implementation Path Notes
 
-Machine Learning adalah course di bawah category `Foundation & Core AI`, tetapi file aktif masih berada di:
+Folder canonical untuk course catalog sekarang ada di:
 
 ```text
-pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/
+pages/frontend/fellow-dashboard/course-catalog/
 ```
 
-Ini legacy implementation path, bukan hierarchy produk. ML bukan module internal AI Fundamentals & Advanced, dan bukan course di luar Foundation & Core AI. Jika nanti dipindah ke struktur yang lebih eksplisit, update minimal:
+Machine Learning adalah course aktif di bawah category `Foundation & Core AI` dan file aktifnya berada di:
+
+```text
+pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/
+```
+
+Folder `ai-fundamental/` sekarang hanya dipakai untuk module internal AI Fundamentals & Advanced yang sudah ada. ML bukan module internal AI Fundamentals & Advanced.
+
+Jika nanti course aktif lain dipindahkan ke struktur canonical, update minimal:
 
 - `js/router.js`
-- `js/frontend/fellow-dashboard/ai-ml-basic.js` (`ML_BASE`)
+- controller JS terkait, misalnya `js/frontend/fellow-dashboard/ai-ml-basic.js` (`ML_BASE`)
 - `index.html` cache buster jika path/script berubah
 - `scripts/check-participant-routes.mjs` bila route checker memakai path statis
-- semua link internal HTML ML bila ada path langsung
+- semua link internal HTML bila ada path langsung
 - `handover/COURSE_HIERARCHY.md`
 - `handover/MODULE_STATUS_MAP.md`
 - `handover/HANDOVER_UPDATE.md`
