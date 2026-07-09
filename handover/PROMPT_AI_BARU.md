@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 9 Juli 2026 (Update setelah migrasi Machine Learning full content)
+**Tanggal:** 10 Juli 2026 (Update setelah refactor filesystem course catalog)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -20,6 +20,7 @@ SEBELUM mengerjakan apa pun, BACA file-file berikut secara berurutan:
 3. handover/HANDOVER_UPDATE.md    -> Changelog sesi terakhir
 4. handover/MODULE_STATUS_MAP.md  -> Peta status semua modul + route mapping
 5. handover/COURSE_HIERARCHY.md   -> Source of truth category, course, module/chapter, activity, track
+6. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md -> Checkpoint final folder, rename, dan routing course catalog
 
 ---
 
@@ -90,6 +91,7 @@ Catatan penting:
 - Folder aktif Machine Learning ada di pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/.
 - Folder category/domain canonical ada langsung di pages/frontend/fellow-dashboard/.
 - Course/track placeholder sudah punya route eksplisit ke `course-placeholder.html` agar tim tinggal mengisi outline atau mengganti mapping route saat konten final siap.
+- Jangan buat folder `course-catalog/`, `ai-fundamental/`, atau `ai-lab/` lagi sebagai path aktif. Itu folder lama/superseded. Category/domain canonical langsung di bawah `pages/frontend/fellow-dashboard/`.
 
 ---
 
@@ -138,17 +140,19 @@ UI RULES KETAT:
 
 CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 
-1. Folder category/domain canonical sudah ada, tetapi sebagian course aktif lama seperti AI Fundamentals, CV, dan NLP masih memakai path implementasi lama sampai dipindahkan bertahap.
-2. Modul 3a (Konsep AI Modern) baru materi; latihan/kuis/diskusi masih diarahkan ke under-development.
-3. Math for AI punya file JS/konten draft; route utama sudah memakai scaffold, subroute materi/practice/quiz/diskusi masih under-development.
-4. Generative AI punya file overview; route utama sudah memakai scaffold sampai konten final diaktifkan.
-5. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
-6. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
-7. Setiap perubahan hierarki course/module harus ikut update dokumen handover dan dibuat commit lokal.
+1. Filesystem course catalog sudah final memakai category/domain langsung di bawah `pages/frontend/fellow-dashboard/`.
+2. Folder `course-catalog/` sempat dibuat di checkpoint lama, tetapi sudah superseded. Jangan dipakai lagi.
+3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
+4. Modul 3a (Konsep AI Modern) baru materi; latihan/kuis/diskusi masih diarahkan ke under-development.
+5. Math for AI punya file JS/konten draft; route utama masih scaffold/placeholder sampai konten final diaktifkan.
+6. Generative AI punya file overview; route utama masih scaffold/placeholder sampai konten final diaktifkan.
+7. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
+8. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
+9. Setiap perubahan hierarki course/module harus ikut update dokumen handover dan dibuat commit lokal.
 
 ---
 
-SEKARANG: Baca keempat file di atas, lalu tanya ke user mau ngapain.
+SEKARANG: Baca semua file onboarding di atas, lalu tanya ke user mau ngapain.
 Jangan langsung ngerjain tanpa konfirmasi scope dan file yang akan disentuh.
 ```
 
@@ -164,6 +168,7 @@ Jangan langsung ngerjain tanpa konfirmasi scope dan file yang akan disentuh.
 | Peta status semua modul + route | `handover/MODULE_STATUS_MAP.md` | Lengkap |
 | Source of truth hierarki course | `handover/COURSE_HIERARCHY.md` | Lengkap |
 | Prompt onboarding AI baru | `handover/PROMPT_AI_BARU.md` | File ini |
+| Checkpoint rename/folder/routing course catalog | `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` | Lengkap |
 | Bug log & lessons learned | `GEMINI.md` (bagian bawah) | Lengkap |
 | Zona bahaya file | `GEMINI.md` (bagian tengah) | Lengkap |
 | Konvensi penamaan | File ini (bagian prompt) | Lengkap |
@@ -192,14 +197,15 @@ Prioritas kerja:
 1. Modul 3a Konsep AI Modern - buat latihan.html, kuis.html, diskusi.html
 2. Bersihkan/putuskan nasib konten draft Math for AI: lanjutkan dari scaffold atau aktifkan file final
 3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
-4. Pindahkan course aktif lama lain ke folder category/domain langsung di `fellow-dashboard/` secara bertahap jika sudah siap update route dan controller
+4. Buat atau aktifkan course baru langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
 5. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
 ```
 
-### Kalau Mau Bikin Track Spesialisasi Baru di AI Lab
+### Kalau Mau Bikin Course/Track Baru
 ```
 Contoh yang sudah jadi: Computer Vision (#/participant-ai-lab-cv)
 File referensi: pages/frontend/fellow-dashboard/data-engineering-domains/computer-vision.html (overview)
 Sub-lessons: pages/frontend/fellow-dashboard/data-engineering-domains/computer-vision/lessons/cnn-intro.html, dll.
 Route pattern: /participant-ai-lab-TRACK-SUBTOPIC
+Folder target: pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/
 ```

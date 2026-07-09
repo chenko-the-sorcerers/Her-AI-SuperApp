@@ -1,9 +1,9 @@
 # HerAI Development Handover & Checkpoint
 
-**Tanggal:** 9 Juli 2026
+**Tanggal:** 10 Juli 2026
 **Branch:** `design`
 **Status:** sudah commit lokal, belum push
-**Commit fitur terakhir:** `5103d4e feat: migrate full chen machine learning content`
+**Commit fitur terakhir:** `3f238a7 refactor: move fellowship courses into dashboard hierarchy`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
@@ -12,6 +12,54 @@ Source of truth hierarki course terbaru:
 
 ```text
 handover/COURSE_HIERARCHY.md
+handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+```
+
+---
+
+## Update 10 Juli 2026 - Finalisasi Folder, Rename, dan Routing Course Catalog
+
+Checkpoint final:
+
+```text
+3f238a7 refactor: move fellowship courses into dashboard hierarchy
+```
+
+Yang sudah dilakukan:
+
+- Struktur course catalog dirapikan agar category/domain langsung berada di bawah `pages/frontend/fellow-dashboard/`.
+- Folder percobaan `pages/frontend/fellow-dashboard/course-catalog/` sudah tidak dipakai dan jangan dibuat ulang.
+- Folder lama `pages/frontend/fellow-dashboard/ai-fundamental/` dan `pages/frontend/fellow-dashboard/ai-lab/` sudah dibersihkan dari path aktif peserta.
+- Konten AI Fundamentals, Python untuk AI, Konsep AI Modern, Math draft, Machine Learning, Generative overview, Computer Vision, dan NLP sudah dipindah ke category/domain canonical.
+- `js/router.js` sudah diarahkan ke path baru tanpa mengubah hash route publik peserta.
+- Controller yang fetch file HTML internal sudah ikut diarahkan:
+  - `js/frontend/fellow-dashboard/ai-ml-basic.js`
+  - `js/frontend/fellow-dashboard/ai-python-basic.js`
+  - `js/frontend/fellow-dashboard/ai-modern.js`
+- `index.html` cache buster router sudah diperbarui ke `router.js?v=20260710-dashboard-course-hierarchy`.
+- `pages/frontend/fellow-dashboard/README.md` sudah ditambahkan sebagai peta cepat filesystem course.
+
+Catatan supaya tidak salah baca sejarah:
+
+- Commit `fb8be7d refactor: align course catalog filesystem hierarchy` sempat membuat folder `course-catalog/`.
+- Commit itu sudah dikoreksi/superseded oleh `3f238a7`.
+- Source of truth detail rename dan routing ada di `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md`.
+
+Verifikasi terakhir:
+
+```text
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/ai-ml-basic.js
+node --check js/frontend/fellow-dashboard/ai-python-basic.js
+node --check js/frontend/fellow-dashboard/ai-modern.js
+node scripts/check-participant-routes.mjs
+git diff --check
+```
+
+Hasil route checker:
+
+```text
+Total: 107 | 107 passed | 0 failed
 ```
 
 ---
@@ -499,22 +547,22 @@ Status ini masih perlu dicek pada commit terbaru sebelum melanjutkan GenAI.
 
 Pada checkpoint 5 Juli 2026, 12 route Computer Vision yang sempat terhapus sudah direstore di `js/router.js`.
 
-Route yang direstore:
+Route yang direstore saat itu sekarang sudah ikut dipindah ke path final `data-engineering-domains/` pada checkpoint 10 Juli 2026:
 
 | Route | File |
 |---|---|
-| `/participant-ai-lab-cv` | `ai-lab/computer-vision.html` |
-| `/participant-ai-lab-cv-cnn-intro` | `lessons/cnn-intro.html` |
-| `/participant-ai-lab-cv-cnn-why` | `lessons/cnn-why.html` |
-| `/participant-ai-lab-cv-cnn-relu` | `lessons/cnn-relu.html` |
-| `/participant-ai-lab-cv-filtering-kernels` | `lessons/filtering-kernels.html` |
-| `/participant-ai-lab-cv-cnn-fc` | `lessons/cnn-fc.html` |
-| `/participant-ai-lab-cv-cnn-hands` | `lessons/cnn-hands.html` |
-| `/participant-ai-lab-cv-cnn-arch` | `lessons/cnn-arch.html` |
-| `/participant-ai-lab-cv-morph` | `lessons/morphological-transforms.html` |
-| `/participant-ai-lab-cv-opencv` | `lessons/image-processing-opencv.html` |
-| `/participant-ai-lab-cv-pixel` | `lessons/pixel-anatomy.html` |
-| `/participant-ai-lab-cv-cnn-arch-builder` | `lessons/cnn-arch-builder.html` |
+| `/participant-ai-lab-cv` | `data-engineering-domains/computer-vision.html` |
+| `/participant-ai-lab-cv-cnn-intro` | `data-engineering-domains/computer-vision/lessons/cnn-intro.html` |
+| `/participant-ai-lab-cv-cnn-why` | `data-engineering-domains/computer-vision/lessons/cnn-why.html` |
+| `/participant-ai-lab-cv-cnn-relu` | `data-engineering-domains/computer-vision/lessons/cnn-relu.html` |
+| `/participant-ai-lab-cv-filtering-kernels` | `data-engineering-domains/computer-vision/lessons/filtering-kernels.html` |
+| `/participant-ai-lab-cv-cnn-fc` | `data-engineering-domains/computer-vision/lessons/cnn-fc.html` |
+| `/participant-ai-lab-cv-cnn-hands` | `data-engineering-domains/computer-vision/lessons/cnn-hands.html` |
+| `/participant-ai-lab-cv-cnn-arch` | `data-engineering-domains/computer-vision/lessons/cnn-arch.html` |
+| `/participant-ai-lab-cv-morph` | `data-engineering-domains/computer-vision/lessons/morphological-transforms.html` |
+| `/participant-ai-lab-cv-opencv` | `data-engineering-domains/computer-vision/lessons/image-processing-opencv.html` |
+| `/participant-ai-lab-cv-pixel` | `data-engineering-domains/computer-vision/lessons/pixel-anatomy.html` |
+| `/participant-ai-lab-cv-cnn-arch-builder` | `data-engineering-domains/computer-vision/lessons/cnn-arch-builder.html` |
 
 ### NLP single-page cleanup
 

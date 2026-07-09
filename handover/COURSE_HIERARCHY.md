@@ -1,8 +1,8 @@
 # HerAI Course Hierarchy
 
-**Tanggal:** 9 Juli 2026
+**Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta
+**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
 
@@ -40,7 +40,15 @@ Aturan penting:
 - Course bukan selalu folder fisik; folder fisik hanya detail implementasi.
 - Track bukan course tunggal; track adalah jalur spesialisasi lintas course.
 - Lokasi folder legacy tidak boleh dijadikan sumber kebenaran hierarchy produk.
+- Folder implementation canonical langsung di bawah `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`.
+- Jangan buat ulang folder `course-catalog/`, `ai-fundamental/`, atau `ai-lab/` sebagai path aktif.
 - Setiap perubahan hierarchy harus update dokumen ini, `MODULE_STATUS_MAP.md`, `HANDOVER_UPDATE.md`, dan commit lokal.
+
+Checkpoint detail rename/folder/routing ada di:
+
+```text
+handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+```
 
 ---
 
@@ -380,9 +388,9 @@ Machine Learning adalah course aktif di bawah category `Foundation & Core AI` da
 pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/
 ```
 
-Folder lama `ai-fundamental/`, `ai-lab/` tidak lagi dipakai sebagai path aktif peserta. Konten aktif sudah ditempatkan langsung di folder category/domain.
+Folder lama `course-catalog/`, `ai-fundamental/`, dan `ai-lab/` tidak lagi dipakai sebagai path aktif peserta. Konten aktif sudah ditempatkan langsung di folder category/domain.
 
-Jika nanti course aktif lain dipindahkan ke struktur canonical, update minimal:
+Jika nanti course aktif lain dibuat atau dipindahkan di struktur canonical, update minimal:
 
 - `js/router.js`
 - controller JS terkait, misalnya `js/frontend/fellow-dashboard/ai-ml-basic.js` (`ML_BASE`)
@@ -393,5 +401,6 @@ Jika nanti course aktif lain dipindahkan ke struktur canonical, update minimal:
 - `handover/MODULE_STATUS_MAP.md`
 - `handover/HANDOVER_UPDATE.md`
 - `handover/PROMPT_AI_BARU.md`
+- `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` jika rename/folder/routing ikut berubah
 
 Jangan rename folder course besar tanpa commit terpisah dan verifikasi route.

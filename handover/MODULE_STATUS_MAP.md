@@ -1,8 +1,8 @@
 # Peta Status Kurikulum HerAI
 
-**Tanggal:** 9 Juli 2026
+**Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah migrasi Machine Learning full content dan klarifikasi hierarki course
+**Status dokumen:** update setelah migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -10,6 +10,7 @@ Source of truth hierarki katalog course ada di:
 
 ```text
 handover/COURSE_HIERARCHY.md
+handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 ```
 
 ---
@@ -64,7 +65,7 @@ Catatan penting:
 - Machine Learning adalah course di category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 - Folder aktif ML sudah dipindah ke `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/`.
 - Folder category/domain langsung di bawah `pages/frontend/fellow-dashboard/` mengikuti UI catalog.
-- Folder lama `ai-fundamental/`, `ai-lab/` sudah dibersihkan dari path aktif peserta.
+- Folder lama `course-catalog/`, `ai-fundamental/`, dan `ai-lab/` bukan path aktif peserta dan jangan dibuat ulang.
 
 ---
 
