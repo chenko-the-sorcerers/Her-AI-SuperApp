@@ -20,26 +20,48 @@ Ringkasan istilah resmi:
 
 ```text
 Course Catalog
-  Course
-    Module / Chapter
-      Materi -> Latihan -> Kuis -> Diskusi
+  Category / Domain
+    Course
+      Module / Chapter
+        Materi -> Latihan -> Kuis -> Diskusi
 ```
 
 Detail lengkap category, course, module/chapter, activity, dan specialization track ada di `handover/COURSE_HIERARCHY.md`.
 
-Course utama yang terlihat di katalog peserta:
+Course utama yang terlihat di katalog peserta, dikelompokkan sesuai category/domain UI:
 
-| Course | Status | Isi utama |
-|---|---|---|
-| AI Fundamentals & Advanced | Sebagian aktif | Pengantar AI, Python untuk AI, Konsep AI Modern, Reasoning, Evaluation, Evolution of AI |
-| Math for AI | Under-development | Linear Algebra, Statistics, Probability, Calculus, Optimization, Case Study |
-| Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
-| Computer Vision | Aktif | 12 sub-lesson |
-| NLP | Aktif | 5 sub-lesson single page |
+| Category / Domain | Course | Status | Isi utama |
+|---|---|---|---|
+| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif | Pengantar AI, Python untuk AI, Konsep AI Modern, Reasoning, Evaluation, Evolution of AI |
+| Foundation & Core AI | Math for AI | Scaffold aktif | Linear Algebra, Statistics, Probability, Calculus, Optimization, Case Study |
+| Foundation & Core AI | Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
+| Foundation & Core AI | Deep Learning | Scaffold aktif | Neural Network Basics, Training & Backpropagation, CNN/RNN Overview, Transformer Basics, Regularization |
+| Foundation & Core AI | Reinforcement Learning | Scaffold aktif | Agent & Environment, Reward and Policy, Value Function, Exploration vs Exploitation, Case Study |
+| Generative & Multimodal AI | Generative AI | Scaffold aktif | Generative AI Overview, Prompting Workflow, Diffusion & GAN Basics, Output Evaluation, Creative Workflow |
+| Generative & Multimodal AI | LLM | Scaffold aktif | Transformer Recap, Prompting & Instruction, RAG Basics, Fine-tuning Overview, Deployment Notes |
+| Generative & Multimodal AI | VLM | Scaffold aktif | Image-Text Alignment, Captioning, Visual Question Answering, Evaluation, Use Cases |
+| Generative & Multimodal AI | Multimodal LLM | Scaffold aktif | Multimodal Inputs, Cross-modal Learning, Fusion Strategies, Evaluation, Product Patterns |
+| Generative & Multimodal AI | Agentic AI | Scaffold aktif | Agent Loop, Tool Use, Planning, Memory, Agent Evaluation |
+| Data & Engineering Domains | Computer Vision | Aktif | Overview + 11 lesson route |
+| Data & Engineering Domains | NLP | Aktif | 5 sub-lesson single page |
+| Data & Engineering Domains | Bioinformatics | Scaffold aktif | Bio Data Basics, Genomics Overview, Protein Analysis, Medical AI Risks, Case Study |
+| Data & Engineering Domains | Data Engineering | Scaffold aktif | Data Pipeline, ETL/ELT, Warehouse & Lakehouse, Orchestration, Data Quality |
+| Data & Engineering Domains | Data Science | Scaffold aktif | Exploratory Analysis, Experimentation, Visualization, Modeling, Insight Storytelling |
+| Data & Engineering Domains | Infrastructure | Scaffold aktif | Compute Basics, GPU Environment, Serving Stack, Observability, Scaling |
+| Data & Engineering Domains | Deployment | Scaffold aktif | Packaging, API Serving, Release Strategy, Monitoring, Rollback |
+| Data & Engineering Domains | Front-end | Scaffold aktif | AI Interface Patterns, Dashboard Basics, Visualization, Accessibility, Frontend Integration |
+| Data & Engineering Domains | Back-end | Scaffold aktif | API Design, Database & Auth, Queues, Integrations, Service Scaling |
+| Business & Industry Applications | Business Insight | Scaffold aktif | Business Question, Metric Design, Insight Pipeline, Decision Support, Executive Storytelling |
+| Business & Industry Applications | People & Business Mgt | Scaffold aktif | AI Adoption, Team Workflow, Change Management, Governance, Operational Strategy |
+| Business & Industry Applications | AI for Culture | Scaffold aktif | Cultural Data, Language Preservation, Creative Workflow, Ethics, Case Study |
+| Business & Industry Applications | AI for Healthcare | Scaffold aktif | Healthcare Data, Clinical Decision Support, Medical Imaging, Patient Analytics, Safety & Ethics |
+| Business & Industry Applications | UI/UX Design Thinking | Scaffold aktif | User Research, AI Journey Mapping, Prototyping, Usability Test, Design Evaluation |
+| Business & Industry Applications | AI for Manufacturing | Scaffold aktif | Manufacturing Data, Predictive Maintenance, Quality Inspection, Robotics, Process Optimization |
+| Business & Industry Applications | AI for Geospatial | Scaffold aktif | Geospatial Data, Remote Sensing, GIS Intelligence, Spatial Modeling, Location Analytics |
 
 Catatan penting:
 
-- Machine Learning adalah course mandiri di katalog, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
+- Machine Learning adalah course di category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 - Folder ML saat ini masih berada di `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` karena alasan legacy implementasi. Jangan menafsirkan lokasi folder ini sebagai hierarki produk.
 - Refactor folder ML ke lokasi course yang lebih tepat boleh direncanakan nanti, tetapi jangan dilakukan tanpa update route, controller `ML_BASE`, cache buster, route checker, dan dokumen handover.
 
@@ -106,33 +128,41 @@ pages/frontend/fellow-dashboard/ai-lab/
 
 ---
 
-## Status AI Lab / Advanced Tracks
+## Status AI Lab / Course Catalog
 
-| Track | Route | Status Konten | Catatan |
-|---|---|---|---|
-| Machine Learning | `#/participant-ai-lab-ml` | Aktif | Course mandiri; file masih di legacy path `ai-fundamental/03-machine-learning/` |
-| Computer Vision | `#/participant-ai-lab-cv` | Aktif | 12 sub-lesson |
-| NLP | `#/participant-ai-lab-nlp` | Aktif | 5 sub-lesson single page |
-| Math for AI | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada dari Nazril; route utama memakai `course-placeholder.html` |
-| Generative AI | `#/participant-ai-lab-gen` | Scaffold aktif | File overview ada; route utama memakai `course-placeholder.html` |
-| Deep Learning | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Reinforcement Learning | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| LLM | `#/participant-ai-lab-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| VLM | `#/participant-ai-lab-vlm` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Multimodal LLM | `#/participant-ai-lab-multimodal-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Agentic AI | `#/participant-ai-lab-agentic-ai` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Bioinformatics | `#/participant-ai-lab-bioinformatics` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Data Engineering | `#/participant-ai-lab-data-engineering` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Data Science | `#/participant-ai-lab-data-science` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Ops & Infra | `#/participant-ai-lab-infrastructure`, `#/participant-ai-lab-deployment` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Product | `#/participant-ai-lab-front-end`, `#/participant-ai-lab-back-end` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Business & Industry | `#/participant-ai-lab-business-insight` dan route industry lain | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Category / Domain | Course | Route | Status Konten | Catatan |
+|---|---|---|---|---|
+| Foundation & Core AI | Machine Learning | `#/participant-ai-lab-ml` | Aktif | File masih di legacy path `ai-fundamental/03-machine-learning/` |
+| Foundation & Core AI | Math for AI | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada dari Nazril; route utama memakai `course-placeholder.html` |
+| Foundation & Core AI | Deep Learning | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Foundation & Core AI | Reinforcement Learning | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Generative & Multimodal AI | Generative AI | `#/participant-ai-lab-gen` | Scaffold aktif | File overview ada; route utama memakai `course-placeholder.html` |
+| Generative & Multimodal AI | LLM | `#/participant-ai-lab-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Generative & Multimodal AI | VLM | `#/participant-ai-lab-vlm` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Generative & Multimodal AI | Multimodal LLM | `#/participant-ai-lab-multimodal-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Generative & Multimodal AI | Agentic AI | `#/participant-ai-lab-agentic-ai` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data & Engineering Domains | Computer Vision | `#/participant-ai-lab-cv` | Aktif | Overview + 11 lesson route |
+| Data & Engineering Domains | NLP | `#/participant-ai-lab-nlp` | Aktif | 5 sub-lesson single page |
+| Data & Engineering Domains | Bioinformatics | `#/participant-ai-lab-bioinformatics` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data & Engineering Domains | Data Engineering | `#/participant-ai-lab-data-engineering` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data & Engineering Domains | Data Science | `#/participant-ai-lab-data-science` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data & Engineering Domains | Infrastructure | `#/participant-ai-lab-infrastructure` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data & Engineering Domains | Deployment | `#/participant-ai-lab-deployment` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data & Engineering Domains | Front-end | `#/participant-ai-lab-front-end` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Data & Engineering Domains | Back-end | `#/participant-ai-lab-back-end` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Business & Industry Applications | Business Insight | `#/participant-ai-lab-business-insight` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Business & Industry Applications | People & Business Mgt | `#/participant-ai-lab-people-business-mgt` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Business & Industry Applications | AI for Culture | `#/participant-ai-lab-ai-culture` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Business & Industry Applications | AI for Healthcare | `#/participant-ai-lab-healthcare` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Business & Industry Applications | UI/UX Design Thinking | `#/participant-ai-lab-ui-ux` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Business & Industry Applications | AI for Manufacturing | `#/participant-ai-lab-manufacturing` | Scaffold aktif | Route memakai `course-placeholder.html` |
+| Business & Industry Applications | AI for Geospatial | `#/participant-ai-lab-geospatial` | Scaffold aktif | Route memakai `course-placeholder.html` |
 
 ---
 
 ## Machine Learning Route Map
 
-Machine Learning adalah course mandiri. Semua route berikut sudah aktif dan masuk `participantDashboardPages`.
+Machine Learning adalah course di category `Foundation & Core AI`, bukan module internal AI Fundamentals & Advanced. Semua route berikut sudah aktif dan masuk `participantDashboardPages`.
 
 ### Materi
 

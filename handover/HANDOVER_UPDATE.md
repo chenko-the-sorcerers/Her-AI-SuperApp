@@ -16,24 +16,47 @@ handover/COURSE_HIERARCHY.md
 
 ---
 
+## Update Susulan - Canonical Course Catalog Tree
+
+Dokumentasi hierarchy diperjelas agar mengikuti UI `pages/frontend/fellow-dashboard/modules.html`:
+
+```text
+Course Catalog
+  Category / Domain
+    Course
+      Module / Chapter
+        Materi -> Latihan -> Kuis -> Diskusi
+```
+
+Perubahan penting:
+
+- `handover/COURSE_HIERARCHY.md` sekarang punya `Canonical Product Tree` lengkap untuk semua category/domain, semua course, dan outline module/chapter awal di dalamnya.
+- `handover/MODULE_STATUS_MAP.md` sekarang menampilkan course dengan kolom `Category / Domain`, bukan daftar course datar.
+- `handover/PROMPT_AI_BARU.md` sekarang memberi onboarding hierarchy sesuai UI: `Foundation & Core AI`, `Generative & Multimodal AI`, `Data & Engineering Domains`, dan `Business & Industry Applications`.
+- Machine Learning ditegaskan sebagai course di bawah category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI. Folder fisiknya tetap legacy path implementasi.
+- Tidak ada perubahan code, route, CSS, atau konten halaman peserta pada update ini.
+
+---
+
 ## Klarifikasi Hierarki Course
 
 Hierarki produk yang dipakai ke depan:
 
 ```text
 Course Catalog
-  Course
-    Module / Chapter
-      Materi -> Latihan -> Kuis -> Diskusi
+  Category / Domain
+    Course
+      Module / Chapter
+        Materi -> Latihan -> Kuis -> Diskusi
 ```
 
-Machine Learning diperlakukan sebagai course mandiri di katalog peserta, sejajar dengan AI Fundamentals & Advanced dan Math for AI. Folder ML saat ini masih berada di:
+Machine Learning diperlakukan sebagai course di bawah category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI. Folder ML saat ini masih berada di:
 
 ```text
 pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/
 ```
 
-Lokasi tersebut adalah legacy path implementasi, bukan keputusan hierarki produk. Jangan menganggap Machine Learning sebagai Modul 3b di dalam AI Fundamentals & Advanced. Jika folder ini dipindah nanti, update sekaligus `js/router.js`, `ML_BASE` di `ai-ml-basic.js`, cache buster `index.html`, route checker, dan semua dokumen handover.
+Lokasi tersebut adalah legacy path implementasi, bukan keputusan hierarki produk. Jangan menganggap Machine Learning sebagai Modul 3b di dalam AI Fundamentals & Advanced, dan jangan menganggap ML berada di luar category Foundation & Core AI hanya karena foldernya legacy. Jika folder ini dipindah nanti, update sekaligus `js/router.js`, `ML_BASE` di `ai-ml-basic.js`, cache buster `index.html`, route checker, dan semua dokumen handover.
 
 ---
 
@@ -277,7 +300,7 @@ Catatan: `js/router.js` memang disentuh, tetapi hanya untuk mapping route ML dan
 
 ## Update Susulan - Semantic Refactor Hierarki
 
-Perubahan susulan dilakukan untuk mengurangi ambiguitas setelah ML aktif sebagai course mandiri:
+Perubahan susulan dilakukan untuk mengurangi ambiguitas setelah ML aktif sebagai course di category `Foundation & Core AI`:
 
 - Dokumentasi handover menegaskan bahwa AI Fundamentals & Advanced, Math for AI, dan Machine Learning adalah course sejajar.
 - `handover/COURSE_HIERARCHY.md` ditambahkan sebagai source of truth category, course, module/chapter, activity, dan specialization track.

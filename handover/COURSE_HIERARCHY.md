@@ -36,10 +36,230 @@ Definisi:
 Aturan penting:
 
 - Category bukan course.
-- Course bukan selalu folder fisik.
+- Course berada di dalam category/domain catalog. Contoh: Machine Learning adalah course di bawah `Foundation & Core AI`.
+- Course bukan selalu folder fisik; folder fisik hanya detail implementasi.
 - Track bukan course tunggal; track adalah jalur spesialisasi lintas course.
 - Lokasi folder legacy tidak boleh dijadikan sumber kebenaran hierarchy produk.
 - Setiap perubahan hierarchy harus update dokumen ini, `MODULE_STATUS_MAP.md`, `HANDOVER_UPDATE.md`, dan commit lokal.
+
+---
+
+## Canonical Product Tree
+
+Struktur di bawah ini mengikuti UI `pages/frontend/fellow-dashboard/modules.html` dan menjadi acuan hierarchy produk. Category/domain adalah parent visual di catalog; course adalah card yang dipilih peserta; module/chapter adalah isi di dalam course.
+
+```text
+Course Catalog
+  Foundation & Core AI
+    AI Fundamentals & Advanced
+      Pengantar AI
+      Python untuk AI
+      Konsep AI Modern
+      Reasoning
+      Evaluation
+      Evolution of AI
+
+    Math for AI
+      Linear Algebra
+      Statistics
+      Probability
+      Calculus
+      Optimization
+      Case Study
+
+    Machine Learning
+      Pengantar Machine Learning
+      Supervised Learning
+      Regresi & Klasifikasi Dasar
+      Probabilistic Models
+      Linear Discriminative Models
+      Support Vector Machine
+      Neural Networks
+      Unsupervised Learning
+
+    Deep Learning
+      Neural Network Basics
+      Training & Backpropagation
+      CNN/RNN Overview
+      Transformer Basics
+      Regularization
+
+    Reinforcement Learning
+      Agent & Environment
+      Reward and Policy
+      Value Function
+      Exploration vs Exploitation
+      Case Study
+
+  Generative & Multimodal AI
+    Generative AI
+      Generative AI Overview
+      Prompting Workflow
+      Diffusion & GAN Basics
+      Output Evaluation
+      Creative Workflow
+
+    LLM
+      Transformer Recap
+      Prompting & Instruction
+      RAG Basics
+      Fine-tuning Overview
+      Deployment Notes
+
+    VLM
+      Image-Text Alignment
+      Captioning
+      Visual Question Answering
+      Evaluation
+      Use Cases
+
+    Multimodal LLM
+      Multimodal Inputs
+      Cross-modal Learning
+      Fusion Strategies
+      Evaluation
+      Product Patterns
+
+    Agentic AI
+      Agent Loop
+      Tool Use
+      Planning
+      Memory
+      Agent Evaluation
+
+  Data & Engineering Domains
+    Computer Vision
+      Computer Vision Overview
+      CNN Introduction
+      Why CNN Works
+      ReLU and Activation
+      Filtering Kernels
+      Fully Connected Layer
+      CNN Hands-on
+      CNN Architecture
+      Morphological Transforms
+      Image Processing with OpenCV
+      Pixel Anatomy
+      CNN Architecture Builder
+
+    NLP
+      Tokenization
+      Preprocessing
+      POS & NER
+      Bag of Words
+      TF-IDF
+
+    Bioinformatics
+      Bio Data Basics
+      Genomics Overview
+      Protein Analysis
+      Medical AI Risks
+      Case Study
+
+    Data Engineering
+      Data Pipeline
+      ETL/ELT
+      Warehouse & Lakehouse
+      Orchestration
+      Data Quality
+
+    Data Science
+      Exploratory Analysis
+      Experimentation
+      Visualization
+      Modeling
+      Insight Storytelling
+
+    Infrastructure
+      Compute Basics
+      GPU Environment
+      Serving Stack
+      Observability
+      Scaling
+
+    Deployment
+      Packaging
+      API Serving
+      Release Strategy
+      Monitoring
+      Rollback
+
+    Front-end
+      AI Interface Patterns
+      Dashboard Basics
+      Visualization
+      Accessibility
+      Frontend Integration
+
+    Back-end
+      API Design
+      Database & Auth
+      Queues
+      Integrations
+      Service Scaling
+
+  Business & Industry Applications
+    Business Insight
+      Business Question
+      Metric Design
+      Insight Pipeline
+      Decision Support
+      Executive Storytelling
+
+    People & Business Mgt
+      AI Adoption
+      Team Workflow
+      Change Management
+      Governance
+      Operational Strategy
+
+    AI for Culture
+      Cultural Data
+      Language Preservation
+      Creative Workflow
+      Ethics
+      Case Study
+
+    AI for Healthcare
+      Healthcare Data
+      Clinical Decision Support
+      Medical Imaging
+      Patient Analytics
+      Safety & Ethics
+
+    UI/UX Design Thinking
+      User Research
+      AI Journey Mapping
+      Prototyping
+      Usability Test
+      Design Evaluation
+
+    AI for Manufacturing
+      Manufacturing Data
+      Predictive Maintenance
+      Quality Inspection
+      Robotics
+      Process Optimization
+
+    AI for Geospatial
+      Geospatial Data
+      Remote Sensing
+      GIS Intelligence
+      Spatial Modeling
+      Location Analytics
+```
+
+Activity default di dalam course/module adalah:
+
+```text
+Materi -> Latihan -> Kuis -> Diskusi
+```
+
+Catatan implementasi saat ini:
+
+- Course aktif seperti Machine Learning dapat memakai satu activity gabungan per course. Contoh ML: materi berisi 8 chapter, latihan berisi 10 skenario, kuis berisi 24 soal, diskusi berisi 8 prompt.
+- Course scaffold memakai outline module/chapter awal dari `js/frontend/fellow-dashboard/course-placeholder.js`.
+- Jika nanti activity dibuat per chapter, hierarchy produk tetap sama; yang berubah hanya kedalaman implementasi activity.
 
 ---
 
@@ -148,13 +368,13 @@ Specialization track adalah jalur spesialisasi, bukan course tunggal. Track dapa
 
 ## Legacy Path Notes
 
-Machine Learning sekarang course mandiri di katalog, tetapi file aktif masih berada di:
+Machine Learning adalah course di bawah category `Foundation & Core AI`, tetapi file aktif masih berada di:
 
 ```text
 pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/
 ```
 
-Ini legacy implementation path. Jika nanti dipindah ke struktur yang lebih eksplisit, update minimal:
+Ini legacy implementation path, bukan hierarchy produk. ML bukan module internal AI Fundamentals & Advanced, dan bukan course di luar Foundation & Core AI. Jika nanti dipindah ke struktur yang lebih eksplisit, update minimal:
 
 - `js/router.js`
 - `js/frontend/fellow-dashboard/ai-ml-basic.js` (`ML_BASE`)

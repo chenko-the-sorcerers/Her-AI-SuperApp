@@ -38,11 +38,14 @@ KONTEKS ARSITEKTUR CEPAT:
 HIERARKI KURIKULUM RESMI:
 
 Course Catalog
-└── Course
-    └── Module / Chapter
-        └── Materi -> Latihan -> Kuis -> Diskusi
+└── Category / Domain
+    └── Course
+        └── Module / Chapter
+            └── Materi -> Latihan -> Kuis -> Diskusi
 
-Course utama saat ini (detail lengkap ada di handover/COURSE_HIERARCHY.md):
+Course catalog mengikuti grouping UI di pages/frontend/fellow-dashboard/modules.html:
+
+Foundation & Core AI
 ├── AI Fundamentals & Advanced   -> SEBAGIAN AKTIF
 │   ├── Pengantar AI             -> AKTIF
 │   ├── Python untuk AI          -> AKTIF
@@ -50,15 +53,40 @@ Course utama saat ini (detail lengkap ada di handover/COURSE_HIERARCHY.md):
 │   ├── Reasoning                -> BELUM ADA
 │   ├── Evaluation               -> BELUM ADA
 │   └── Evolution of AI          -> BELUM ADA
-├── Math for AI                  -> UNDER-DEVELOPMENT di router, walau file JS/konten draft ada
+├── Math for AI                  -> SCAFFOLD AKTIF, file JS/konten draft ada
 ├── Machine Learning             -> AKTIF FULL (8 chapter, 10 latihan, 24 soal kuis, 8 prompt diskusi)
-├── Computer Vision              -> AKTIF, 12 sub-lesson
+├── Deep Learning                -> SCAFFOLD AKTIF
+└── Reinforcement Learning       -> SCAFFOLD AKTIF
+
+Generative & Multimodal AI
+├── Generative AI                -> SCAFFOLD AKTIF, file overview ada
+├── LLM                          -> SCAFFOLD AKTIF
+├── VLM                          -> SCAFFOLD AKTIF
+├── Multimodal LLM               -> SCAFFOLD AKTIF
+└── Agentic AI                   -> SCAFFOLD AKTIF
+
+Data & Engineering Domains
+├── Computer Vision              -> AKTIF, overview + 11 lesson route
 ├── NLP                          -> AKTIF, 5 sub-lesson single page
-├── Generative AI                -> UNDER-DEVELOPMENT di router, walau file overview ada
-└── Track lain                   -> Placeholder/belum ada route aktif
+├── Bioinformatics               -> SCAFFOLD AKTIF
+├── Data Engineering             -> SCAFFOLD AKTIF
+├── Data Science                 -> SCAFFOLD AKTIF
+├── Infrastructure               -> SCAFFOLD AKTIF
+├── Deployment                   -> SCAFFOLD AKTIF
+├── Front-end                    -> SCAFFOLD AKTIF
+└── Back-end                     -> SCAFFOLD AKTIF
+
+Business & Industry Applications
+├── Business Insight             -> SCAFFOLD AKTIF
+├── People & Business Mgt        -> SCAFFOLD AKTIF
+├── AI for Culture               -> SCAFFOLD AKTIF
+├── AI for Healthcare            -> SCAFFOLD AKTIF
+├── UI/UX Design Thinking        -> SCAFFOLD AKTIF
+├── AI for Manufacturing         -> SCAFFOLD AKTIF
+└── AI for Geospatial            -> SCAFFOLD AKTIF
 
 Catatan penting:
-- Machine Learning adalah course mandiri, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
+- Machine Learning adalah course di category Foundation & Core AI, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 - Folder Machine Learning masih berada di pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/ sebagai legacy path implementasi.
 - Jangan menafsirkan lokasi folder ML sebagai hierarki produk.
 - Course/track placeholder sudah punya route eksplisit ke `course-placeholder.html` agar tim tinggal mengisi outline atau mengganti mapping route saat konten final siap.
@@ -110,7 +138,7 @@ UI RULES KETAT:
 
 CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 
-1. Folder 03-machine-learning/ masih berada di ai-fundamental sebagai legacy path, padahal produk ML adalah course mandiri.
+1. Folder 03-machine-learning/ masih berada di ai-fundamental sebagai legacy path, padahal produk ML adalah course di category Foundation & Core AI, bukan module internal AI Fundamentals & Advanced.
 2. Modul 3a (Konsep AI Modern) baru materi; latihan/kuis/diskusi masih diarahkan ke under-development.
 3. Math for AI punya file JS/konten draft; route utama sudah memakai scaffold, subroute materi/practice/quiz/diskusi masih under-development.
 4. Generative AI punya file overview; route utama sudah memakai scaffold sampai konten final diaktifkan.
