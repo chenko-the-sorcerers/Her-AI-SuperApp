@@ -2,13 +2,42 @@
 
 **Tanggal:** 9 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah migrasi Machine Learning full content
+**Status dokumen:** update setelah migrasi Machine Learning full content dan klarifikasi hierarki course
 
-Dokumen ini memetakan status modul AI Fundamentals dan AI Lab agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
+Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
 ---
 
-## Struktur Direktori AI Fundamentals
+## Hierarki Kurikulum Resmi
+
+Gunakan istilah berikut agar tidak rancu:
+
+```text
+Course Catalog
+  Course
+    Module / Chapter
+      Materi -> Latihan -> Kuis -> Diskusi
+```
+
+Course utama yang terlihat di katalog peserta:
+
+| Course | Status | Isi utama |
+|---|---|---|
+| AI Fundamentals & Advanced | Sebagian aktif | Pengantar AI, Python untuk AI, Konsep AI Modern, Reasoning, Evaluation, Evolution of AI |
+| Math for AI | Under-development | Linear Algebra, Statistics, Probability, Calculus, Optimization, Case Study |
+| Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
+| Computer Vision | Aktif | 12 sub-lesson |
+| NLP | Aktif | 5 sub-lesson single page |
+
+Catatan penting:
+
+- Machine Learning adalah course mandiri di katalog, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
+- Folder ML saat ini masih berada di `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` karena alasan legacy implementasi. Jangan menafsirkan lokasi folder ini sebagai hierarki produk.
+- Refactor folder ML ke lokasi course yang lebih tepat boleh direncanakan nanti, tetapi jangan dilakukan tanpa update route, controller `ML_BASE`, cache buster, route checker, dan dokumen handover.
+
+---
+
+## Struktur Direktori Kurikulum Saat Ini
 
 ```text
 pages/frontend/fellow-dashboard/ai-fundamental/
@@ -30,7 +59,11 @@ pages/frontend/fellow-dashboard/ai-fundamental/
     chapters/
     materi.html
 
-  03-machine-learning/
+  04-reasoning/              (belum ada)
+  05-evaluation/             (belum ada)
+  06-evolution-of-ai/        (belum ada)
+
+  03-machine-learning/        (legacy path; produk = Course Machine Learning)
     chapters/
       chapter-1.html
       chapter-2.html
@@ -45,9 +78,9 @@ pages/frontend/fellow-dashboard/ai-fundamental/
     kuis.html
     diskusi.html
 
-  04-reasoning/              (belum ada)
-  05-evaluation/             (belum ada)
-  06-evolution-of-ai/        (belum ada)
+pages/frontend/fellow-dashboard/ai-lab/
+  math-for-ai/                (draft, route masih under-development)
+  lessons/                    (CV/NLP/legacy ML lesson files)
 ```
 
 ---
@@ -59,7 +92,6 @@ pages/frontend/fellow-dashboard/ai-fundamental/
 | 01 - Pengantar AI | Aktif | Template/basic | Basic | Basic | `settings.js` | Route sub-topik memakai `lesson.html` |
 | 02 - Python untuk AI | Aktif | Aktif, Pyodide | Aktif | Basic | `ai-python-basic.js` | Modul paling interaktif |
 | 03a - Konsep AI Modern | Materi ada | Belum aktif | Belum aktif | Belum aktif | `ai-modern.js` | Route masih under-development |
-| 03b - Machine Learning | Aktif, 8 chapter | Aktif, 10 latihan | Aktif, 24 soal | Aktif, 8 prompt | `ai-ml-basic.js` | Migrasi full Chen selesai |
 | 04 - Reasoning | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
 | 05 - Evaluation | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
 | 06 - Evolution of AI | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
@@ -70,7 +102,7 @@ pages/frontend/fellow-dashboard/ai-fundamental/
 
 | Track | Route | Status Konten | Catatan |
 |---|---|---|---|
-| Machine Learning | `#/participant-ai-lab-ml` | Aktif | Mengarah ke AI Fundamentals ML 8 chapter |
+| Machine Learning | `#/participant-ai-lab-ml` | Aktif | Course mandiri; file masih di legacy path `ai-fundamental/03-machine-learning/` |
 | Computer Vision | `#/participant-ai-lab-cv` | Aktif | 12 sub-lesson |
 | NLP | `#/participant-ai-lab-nlp` | Aktif | 5 sub-lesson single page |
 | Math for AI | `#/participant-ai-lab-math` | Under-development | File ada dari Nazril, route diarahkan ke under-development |
@@ -90,7 +122,7 @@ pages/frontend/fellow-dashboard/ai-fundamental/
 
 ## Machine Learning Route Map
 
-Semua route berikut sudah aktif dan masuk `participantDashboardPages`.
+Machine Learning adalah course mandiri. Semua route berikut sudah aktif dan masuk `participantDashboardPages`.
 
 ### Materi
 

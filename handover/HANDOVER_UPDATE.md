@@ -6,13 +6,34 @@
 **Commit fitur terakhir:** `5103d4e feat: migrate full chen machine learning content`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
-Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk modul ML.
+Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
+
+---
+
+## Klarifikasi Hierarki Course
+
+Hierarki produk yang dipakai ke depan:
+
+```text
+Course Catalog
+  Course
+    Module / Chapter
+      Materi -> Latihan -> Kuis -> Diskusi
+```
+
+Machine Learning diperlakukan sebagai course mandiri di katalog peserta, sejajar dengan AI Fundamentals & Advanced dan Math for AI. Folder ML saat ini masih berada di:
+
+```text
+pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/
+```
+
+Lokasi tersebut adalah legacy path implementasi, bukan keputusan hierarki produk. Jangan menganggap Machine Learning sebagai Modul 3b di dalam AI Fundamentals & Advanced. Jika folder ini dipindah nanti, update sekaligus `js/router.js`, `ML_BASE` di `ai-ml-basic.js`, cache buster `index.html`, route checker, dan semua dokumen handover.
 
 ---
 
 ## Update Sesi Ini - Machine Learning
 
-Machine Learning di `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` sudah dimigrasikan menjadi modul aktif 8 chapter berdasarkan referensi Website Portofolio Chen, dengan gaya bahasa Indonesia HerAI.
+Machine Learning di legacy path `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` sudah dimigrasikan menjadi course aktif 8 chapter berdasarkan referensi Website Portofolio Chen, dengan gaya bahasa Indonesia HerAI.
 
 Flow tetap dipertahankan:
 
@@ -245,6 +266,18 @@ Tidak ada perubahan fitur pada:
 - Admin dashboard
 
 Catatan: `js/router.js` memang disentuh, tetapi hanya untuk mapping route ML dan participant dashboard route list ML.
+
+---
+
+## Update Susulan - Semantic Refactor Hierarki
+
+Perubahan susulan dilakukan untuk mengurangi ambiguitas setelah ML aktif sebagai course mandiri:
+
+- Dokumentasi handover menegaskan bahwa AI Fundamentals & Advanced, Math for AI, dan Machine Learning adalah course sejajar.
+- Machine Learning tetap memakai route `#/participant-ai-lab-ml`.
+- Folder ML belum dipindah; path `ai-fundamental/03-machine-learning/` diperlakukan sebagai legacy implementation path.
+- Copy UI ML diperbarui agar breadcrumb dan label halaman tidak lagi menyiratkan ML sebagai bagian dari AI Fundamentals.
+- Setiap perubahan hierarki harus ikut di-commit dan dokumen handover wajib diupdate.
 
 ---
 
