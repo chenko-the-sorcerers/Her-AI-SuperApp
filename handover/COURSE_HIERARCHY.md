@@ -267,6 +267,7 @@ Catatan implementasi saat ini:
 
 - Course aktif seperti Machine Learning dapat memakai satu activity gabungan per course. Contoh ML: materi berisi 8 chapter, latihan berisi 10 skenario, kuis berisi 24 soal, diskusi berisi 8 prompt.
 - Course scaffold memakai outline module/chapter awal dari `js/frontend/fellow-dashboard/course-placeholder.js`.
+- Course scaffold tetap menampilkan tab standar `Materi -> Latihan -> Kuis -> Diskusi`; activity yang belum final memakai query hash pada route scaffold, misalnya `#/participant-ai-lab-gen?activity=latihan`, agar peserta tidak dilempar ke `under-development.html`.
 - Jika nanti activity dibuat per chapter, hierarchy produk tetap sama; yang berubah hanya kedalaman implementasi activity.
 
 ---
@@ -291,7 +292,7 @@ AI Fundamentals & Advanced berisi module berikut:
 |---|---|---|
 | Pengantar AI | Aktif | `#/participant-ai-intro` |
 | Python untuk AI | Aktif | `#/participant-ai-python` |
-| Konsep AI Modern | Materi ada, activity belum aktif | `#/participant-ai-modern` |
+| Konsep AI Modern | Materi aktif, activity belum aktif | `#/participant-ai-modern` |
 | Reasoning | Belum ada | - |
 | Evaluation | Belum ada | - |
 | Evolution of AI | Belum ada | - |

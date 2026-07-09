@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 10 Juli 2026 (Update setelah refactor filesystem course catalog)
+**Tanggal:** 10 Juli 2026 (Update activity tabs scaffold + aktivasi materi Konsep AI Modern)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -50,7 +50,7 @@ Foundation & Core AI
 ├── AI Fundamentals & Advanced   -> SEBAGIAN AKTIF
 │   ├── Pengantar AI             -> AKTIF
 │   ├── Python untuk AI          -> AKTIF
-│   ├── Konsep AI Modern         -> MATERI ADA, latihan/kuis/diskusi BELUM AKTIF
+│   ├── Konsep AI Modern         -> MATERI AKTIF, latihan/kuis/diskusi BELUM AKTIF
 │   ├── Reasoning                -> BELUM ADA
 │   ├── Evaluation               -> BELUM ADA
 │   └── Evolution of AI          -> BELUM ADA
@@ -91,6 +91,7 @@ Catatan penting:
 - Folder aktif Machine Learning ada di pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/.
 - Folder category/domain canonical ada langsung di pages/frontend/fellow-dashboard/.
 - Course/track placeholder sudah punya route eksplisit ke `course-placeholder.html` agar tim tinggal mengisi outline atau mengganti mapping route saat konten final siap.
+- Course/track placeholder memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`; tab activity non-materi memakai query hash seperti `#/participant-ai-lab-gen?activity=latihan`, bukan `#/participant-under-development`.
 - Jangan buat folder `course-catalog/`, `ai-fundamental/`, atau `ai-lab/` lagi sebagai path aktif. Itu folder lama/superseded. Category/domain canonical langsung di bawah `pages/frontend/fellow-dashboard/`.
 
 ---
@@ -143,7 +144,7 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 1. Filesystem course catalog sudah final memakai category/domain langsung di bawah `pages/frontend/fellow-dashboard/`.
 2. Folder `course-catalog/` sempat dibuat di checkpoint lama, tetapi sudah superseded. Jangan dipakai lagi.
 3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
-4. Modul 3a (Konsep AI Modern) baru materi; latihan/kuis/diskusi masih diarahkan ke under-development.
+4. Modul 3a (Konsep AI Modern) materi sudah aktif di `#/participant-ai-modern`; latihan/kuis/diskusi masih diarahkan ke under-development.
 5. Math for AI punya file JS/konten draft; route utama masih scaffold/placeholder sampai konten final diaktifkan.
 6. Generative AI punya file overview; route utama masih scaffold/placeholder sampai konten final diaktifkan.
 7. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
@@ -194,7 +195,7 @@ File penting yang harus kamu baca sekarang:
 ### Kalau Mau Lanjutkan Modul yang Belum Selesai
 ```
 Prioritas kerja:
-1. Modul 3a Konsep AI Modern - buat latihan.html, kuis.html, diskusi.html
+1. Modul 3a Konsep AI Modern - buat latihan.html, kuis.html, diskusi.html, lalu update route activity dari under-development ke file final
 2. Bersihkan/putuskan nasib konten draft Math for AI: lanjutkan dari scaffold atau aktifkan file final
 3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
 4. Buat atau aktifkan course baru langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`

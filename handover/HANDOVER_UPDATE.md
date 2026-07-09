@@ -3,7 +3,7 @@
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
 **Status:** sudah commit lokal, belum push
-**Commit fitur terakhir:** `3f238a7 refactor: move fellowship courses into dashboard hierarchy`
+**Commit fitur terakhir:** `e750127 fix: link ai modern card to materi`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
@@ -14,6 +14,83 @@ Source of truth hierarki course terbaru:
 handover/COURSE_HIERARCHY.md
 handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 ```
+
+---
+
+## Update 10 Juli 2026 - Activity Tabs Scaffold dan Aktivasi Materi Konsep AI Modern
+
+Checkpoint lokal terbaru, sudah commit dan belum push:
+
+```text
+a56f051 refactor: standardize scaffold activity tabs
+ebe0256 fix: keep scaffold activity tabs on course page
+a93e917 fix: activate ai modern materi route
+e750127 fix: link ai modern card to materi
+```
+
+Yang sudah dilakukan:
+
+- Menjadikan pola tab course mengikuti standar halaman Python:
+  `Materi -> Latihan -> Kuis -> Diskusi`.
+- `pages/frontend/fellow-dashboard/course-placeholder.html` sekarang menampilkan empat tab activity standar, termasuk `Diskusi`.
+- `js/frontend/fellow-dashboard/course-placeholder.js` sekarang mendukung state activity scaffold via query hash:
+  - `#/participant-ai-lab-gen`
+  - `#/participant-ai-lab-gen?activity=latihan`
+  - `#/participant-ai-lab-gen?activity=kuis`
+  - `#/participant-ai-lab-gen?activity=diskusi`
+- Tab scaffold tidak lagi melempar peserta ke `#/participant-under-development`; peserta tetap berada di halaman course scaffold yang sama sambil melihat placeholder activity yang sesuai.
+- `index.html` cache buster `course-placeholder.js` diperbarui ke `20260710-scaffold-tabs-query`.
+- Route materi `#/participant-ai-modern` di `js/router.js` sudah diaktifkan ke file canonical:
+  `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/materi.html`.
+- Link card `Konsep AI Modern` di `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html` sudah diperbaiki dari `#/participant-under-development` menjadi `#/participant-ai-modern`.
+- Emoji sparkle di heading overview AI Fundamentals dihapus agar patuh AGENTS.md.
+- `handover/MODULE_STATUS_MAP.md` sudah diperbarui: materi Konsep AI Modern aktif, sedangkan latihan/kuis/diskusi masih under-development.
+
+Status penting setelah update:
+
+- `#/participant-ai-modern` aktif dan menampilkan materi 4 topik via `ai-modern.js`.
+- `#/participant-ai-modern-practice`, `#/participant-ai-modern-quiz`, dan `#/participant-ai-modern-discussion` masih diarahkan ke `under-development.html` karena file activity final belum dibuat.
+- `#/participant-under-development` tetap ada sebagai fallback global; jangan dipakai sebagai target card yang sebenarnya sudah punya route materi aktif.
+- Scaffold course/track memakai `course-placeholder.html`; tab activity scaffold memakai query `?activity=...` agar layout konsisten tanpa menambah route baru.
+
+Verifikasi sesi ini:
+
+```text
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+node --check js/frontend/fellow-dashboard/ai-modern.js
+node --check js/router.js
+node scripts/check-participant-routes.mjs
+git diff --check
+```
+
+Hasil route checker:
+
+```text
+Total: 107 | 107 passed | 0 failed
+```
+
+Live check yang dilakukan:
+
+- `http://localhost:3000/#/participant-ai-lab-gen?activity=latihan` tetap render course scaffold, bukan under-development.
+- `http://localhost:3000/#/participant-ai-modern` render halaman `Konsep AI Modern`.
+- `http://localhost:3000/#/participant-ai-fundamentals` card `Konsep AI Modern` sekarang memiliki href `#/participant-ai-modern`.
+
+Catatan console saat live check:
+
+- Ada error lokal `127.0.0.1:8092/api/participant-portal/settings` connection refused dan sesekali `__gas` 502. Ini terkait service lokal/backend proxy, bukan perubahan route/tab.
+
+Next step yang disarankan:
+
+1. Buat activity final untuk Konsep AI Modern:
+   - `latihan.html`
+   - `kuis.html`
+   - `diskusi.html`
+   - init function terkait di `ai-modern.js`
+   - update route practice/quiz/discussion dari under-development ke file final.
+2. Jadikan pola Python sebagai standar markup course aktif berikutnya, tapi lakukan bertahap per course agar layout tidak rusak.
+3. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
+4. Audit kecil UI course yang disentuh: no emoji, FontAwesome only, pink accent konsisten, text contrast aman, border-radius tidak 0.
+5. Setelah setiap perubahan routing, jalankan `node scripts/check-participant-routes.mjs`.
 
 ---
 

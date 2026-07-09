@@ -4,6 +4,7 @@
 **Branch:** `design`  
 **Status:** sudah commit lokal, belum push  
 **Checkpoint aktif:** `3f238a7 refactor: move fellowship courses into dashboard hierarchy`
+**Checkpoint routing/UI terbaru:** `e750127 fix: link ai modern card to materi`
 
 Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar AI agent, developer, dan mentor berikutnya tidak bingung antara hierarchy produk, folder lama, dan route peserta yang tetap stabil.
 
@@ -198,6 +199,17 @@ Hash route peserta tetap dijaga stabil. Yang berubah adalah file target internal
 
 Route placeholder tetap sengaja ada agar card catalog tidak 404 walaupun konten final belum aktif.
 
+Update setelah checkpoint routing/UI terbaru:
+
+- `#/participant-ai-modern` sekarang aktif ke materi Konsep AI Modern di folder canonical.
+- Card `Konsep AI Modern` di `foundation-core-ai/ai-fundamentals-advanced/overview.html` sudah mengarah ke `#/participant-ai-modern`, bukan `#/participant-under-development`.
+- `course-placeholder.html` sudah memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`.
+- Tab activity scaffold non-final memakai query hash pada route yang sama, misalnya:
+  - `#/participant-ai-lab-gen?activity=latihan`
+  - `#/participant-ai-lab-gen?activity=kuis`
+  - `#/participant-ai-lab-gen?activity=diskusi`
+- Query hash ini tidak menambah route baru di `js/router.js`; router sudah membuang query sebelum lookup route.
+
 ---
 
 ## Controller dan Cache Buster yang Diubah
@@ -208,7 +220,7 @@ Route placeholder tetap sengaja ada agar card catalog tidak 404 walaupun konten 
 | `js/frontend/fellow-dashboard/ai-ml-basic.js` | `ML_BASE` menjadi `/pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning` |
 | `js/frontend/fellow-dashboard/ai-python-basic.js` | Fetch chapter Python diarahkan ke folder `foundation-core-ai/ai-fundamentals-advanced/...` |
 | `js/frontend/fellow-dashboard/ai-modern.js` | Fetch chapter Konsep AI Modern diarahkan ke folder `foundation-core-ai/ai-fundamentals-advanced/...` |
-| `index.html` | Cache buster router menjadi `router.js?v=20260710-dashboard-course-hierarchy` |
+| `index.html` | Cache buster router menjadi `router.js?v=20260710-ai-modern-materi`; cache buster `course-placeholder.js` menjadi `20260710-scaffold-tabs-query` |
 
 ---
 

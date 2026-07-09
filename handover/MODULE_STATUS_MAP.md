@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
+**Status dokumen:** update setelah scaffold activity tabs, aktivasi materi Konsep AI Modern, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -239,6 +239,7 @@ Machine Learning adalah course di category `Foundation & Core AI`, bukan module 
 | `heraiAiPythonQuizDone` | Python | Flag kuis sudah dikerjakan |
 | `heraiAiPythonQuizScore` | Python | Skor kuis |
 | `heraiAiPythonDiscussion` | Python | Thread diskusi |
+| `heraiAiModernCurrentChapter` | Konsep AI Modern | Chapter terakhir dibaca |
 | `heraiAiMlCurrentChapter` | ML | Chapter terakhir dibaca |
 | `heraiAiMlPractice` | ML | Jawaban latihan tersimpan |
 | `heraiAiMlQuizDone` | ML | Flag kuis sudah dikerjakan |
@@ -285,6 +286,16 @@ Konten dinamisnya di:
 js/frontend/fellow-dashboard/course-placeholder.js
 ```
 
+Catatan activity scaffold:
+
+- `course-placeholder.html` memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`.
+- Tab `Materi` memakai route utama course/track, misalnya `#/participant-ai-lab-gen`.
+- Tab activity yang belum final tetap berada di halaman scaffold yang sama memakai query hash:
+  - `#/participant-ai-lab-gen?activity=latihan`
+  - `#/participant-ai-lab-gen?activity=kuis`
+  - `#/participant-ai-lab-gen?activity=diskusi`
+- Jangan arahkan tab scaffold non-final ke `#/participant-under-development` kecuali memang user meminta fallback global.
+
 | Route | Course/Track |
 |---|---|
 | `/participant-ai-lab-math` | Math for AI |
@@ -324,6 +335,8 @@ js/frontend/fellow-dashboard/course-placeholder.js
 - Jika menambah CSS untuk Machine Learning, gunakan scope `.ai-ml-*` atau class `.ml-*` yang sudah scoped di halaman ML.
 - Jangan mengarahkan ulang route ML ke under-development lagi kecuali memang diminta.
 - Jangan mengubah route CV/NLP/Python/Math/GenAI saat mengerjakan ML.
+- Untuk Konsep AI Modern, route materi `#/participant-ai-modern` sudah aktif. Route practice/quiz/discussion masih under-development sampai file activity final dibuat.
+- Jika membuat file activity final untuk scaffold course, ganti query scaffold menjadi route/file final secara eksplisit dan update dokumen ini.
 - Jalankan minimal:
 
 ```bash
