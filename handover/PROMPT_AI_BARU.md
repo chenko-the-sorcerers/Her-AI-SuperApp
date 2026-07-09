@@ -87,8 +87,8 @@ Business & Industry Applications
 
 Catatan penting:
 - Machine Learning adalah course di category Foundation & Core AI, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
-- Folder aktif Machine Learning ada di pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/.
-- Folder course catalog canonical ada di pages/frontend/fellow-dashboard/course-catalog/.
+- Folder aktif Machine Learning ada di pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/.
+- Folder category/domain canonical ada langsung di pages/frontend/fellow-dashboard/.
 - Course/track placeholder sudah punya route eksplisit ke `course-placeholder.html` agar tim tinggal mengisi outline atau mengganti mapping route saat konten final siap.
 
 ---
@@ -96,7 +96,7 @@ Catatan penting:
 POLA PEMBUATAN COURSE/MODUL BARU:
 
 Setiap course baru sebaiknya dibuat di hierarchy canonical:
-  pages/frontend/fellow-dashboard/course-catalog/CATEGORY-SLUG/COURSE-SLUG/
+  pages/frontend/fellow-dashboard/CATEGORY-SLUG/COURSE-SLUG/
   ├── materi.html      -> Container dinamis, sidebar chapter, tab navigasi
   ├── latihan.html     -> Form/interaktif
   ├── kuis.html        -> Pilihan ganda, single attempt
@@ -107,7 +107,7 @@ Controller JS di: js/frontend/fellow-dashboard/ai-NAMA-basic.js
   -> Export fungsi: initAiNamaMateri(), initAiNamaBasic(), initAiNamaQuiz(), initAiNamaDiscussion()
 
 Langkah wajib saat bikin modul baru:
-  1. Buat folder + file HTML di pages/frontend/fellow-dashboard/course-catalog/CATEGORY-SLUG/COURSE-SLUG/
+  1. Buat folder + file HTML di pages/frontend/fellow-dashboard/CATEGORY-SLUG/COURSE-SLUG/
   2. Buat controller JS
   3. Daftarkan <script> di index.html
   4. Daftarkan route di js/router.js (object routes + array participantDashboardPages)
@@ -138,7 +138,7 @@ UI RULES KETAT:
 
 CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 
-1. Folder course catalog canonical sudah ada, tetapi sebagian course aktif lama seperti AI Fundamentals, CV, dan NLP masih memakai path implementasi lama sampai dipindahkan bertahap.
+1. Folder category/domain canonical sudah ada, tetapi sebagian course aktif lama seperti AI Fundamentals, CV, dan NLP masih memakai path implementasi lama sampai dipindahkan bertahap.
 2. Modul 3a (Konsep AI Modern) baru materi; latihan/kuis/diskusi masih diarahkan ke under-development.
 3. Math for AI punya file JS/konten draft; route utama sudah memakai scaffold, subroute materi/practice/quiz/diskusi masih under-development.
 4. Generative AI punya file overview; route utama sudah memakai scaffold sampai konten final diaktifkan.
@@ -192,14 +192,14 @@ Prioritas kerja:
 1. Modul 3a Konsep AI Modern - buat latihan.html, kuis.html, diskusi.html
 2. Bersihkan/putuskan nasib konten draft Math for AI: lanjutkan dari scaffold atau aktifkan file final
 3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
-4. Pindahkan course aktif lama lain ke `course-catalog/` secara bertahap jika sudah siap update route dan controller
+4. Pindahkan course aktif lama lain ke folder category/domain langsung di `fellow-dashboard/` secara bertahap jika sudah siap update route dan controller
 5. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
 ```
 
 ### Kalau Mau Bikin Track Spesialisasi Baru di AI Lab
 ```
 Contoh yang sudah jadi: Computer Vision (#/participant-ai-lab-cv)
-File referensi: pages/frontend/fellow-dashboard/ai-lab/computer-vision.html (overview)
-Sub-lessons: pages/frontend/fellow-dashboard/ai-lab/lessons/cnn-intro.html, dll.
+File referensi: pages/frontend/fellow-dashboard/data-engineering-domains/computer-vision.html (overview)
+Sub-lessons: pages/frontend/fellow-dashboard/data-engineering-domains/computer-vision/lessons/cnn-intro.html, dll.
 Route pattern: /participant-ai-lab-TRACK-SUBTOPIC
 ```

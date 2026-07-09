@@ -16,7 +16,7 @@ window.initAiModernMateri = function() {
         var formattedNumber = chapterNumber < 10 ? '0' + chapterNumber : chapterNumber;
         var path = formattedNumber + '-materi.html';
 
-        fetch('/pages/frontend/fellow-dashboard/ai-fundamental/03-konsep-ai-modern/chapters/' + path)
+        fetch('/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/chapters/' + path)
             .then(function(res) { 
                 if (!res.ok) throw new Error('Not found'); 
                 return res.text(); 

@@ -310,7 +310,7 @@
             if (chapterNumber === 1) path = '01-memulai-python.html';
             else path = formattedNumber + '-materi.html'; // Future fallback
 
-            fetch('/pages/frontend/fellow-dashboard/ai-fundamental/02-python-untuk-ai/chapters/' + path)
+            fetch('/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/' + path)
                 .then(function(res) { 
                     if (!res.ok) throw new Error('Not found'); 
                     return res.text(); 

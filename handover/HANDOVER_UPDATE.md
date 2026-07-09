@@ -16,25 +16,27 @@ handover/COURSE_HIERARCHY.md
 
 ---
 
-## Update Susulan - Implementasi Folder Course Catalog
+## Update Susulan - Implementasi Folder Category/Domain
 
-Hierarchy produk sekarang diterapkan di filesystem:
+Hierarchy produk sekarang diterapkan langsung di filesystem `fellow-dashboard/`:
 
 ```text
-pages/frontend/fellow-dashboard/course-catalog/
+pages/frontend/fellow-dashboard/
   foundation-core-ai/
   generative-multimodal-ai/
   data-engineering-domains/
   business-industry-applications/
+  specialization-tracks/
 ```
 
 Perubahan utama:
 
-- Semua course dari UI catalog sekarang punya folder scaffold di bawah `course-catalog/{category}/{course}/`.
-- Machine Learning aktif dipindahkan dari `pages/frontend/fellow-dashboard/ai-fundamental/03-machine-learning/` ke `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/`.
+- Semua course dari UI catalog sekarang punya folder scaffold langsung di bawah `{category}/{course}/`.
+- Machine Learning aktif dipindahkan ke `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/`.
+- AI Fundamentals, Math draft, CV/NLP lessons, dan Generative overview dipindahkan dari folder lama ke category/domain masing-masing.
 - Hash route peserta tetap sama, termasuk `#/participant-ai-lab-ml` dan alias legacy ML.
 - `js/router.js` dan `js/frontend/fellow-dashboard/ai-ml-basic.js` sudah diarahkan ke path canonical baru.
-- `pages/frontend/fellow-dashboard/ai-fundamental/` sekarang hanya untuk module internal AI Fundamentals & Advanced.
+- Folder lama `ai-fundamental/`, `ai-lab/` sudah dibersihkan dari path aktif peserta.
 
 ---
 
@@ -74,7 +76,7 @@ Course Catalog
 Machine Learning diperlakukan sebagai course di bawah category `Foundation & Core AI`, sejajar dengan AI Fundamentals & Advanced dan Math for AI. Folder ML aktif sekarang berada di:
 
 ```text
-pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/
+pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/
 ```
 
 Jangan menganggap Machine Learning sebagai Modul 3b di dalam AI Fundamentals & Advanced.
@@ -83,7 +85,7 @@ Jangan menganggap Machine Learning sebagai Modul 3b di dalam AI Fundamentals & A
 
 ## Update Sesi Ini - Machine Learning
 
-Machine Learning sekarang berada di `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/` dan sudah menjadi course aktif 8 chapter berdasarkan referensi Website Portofolio Chen, dengan gaya bahasa Indonesia HerAI.
+Machine Learning sekarang berada di `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/` dan sudah menjadi course aktif 8 chapter berdasarkan referensi Website Portofolio Chen, dengan gaya bahasa Indonesia HerAI.
 
 Flow tetap dipertahankan:
 
@@ -102,7 +104,7 @@ Tidak ada dependency baru, tidak memakai Pyodide, dan tidak mengubah flow fitur 
 Lokasi:
 
 ```text
-pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/chapters/
+pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/chapters/
 ```
 
 Daftar chapter aktif:
@@ -177,7 +179,7 @@ Catatan penting:
 File:
 
 ```text
-pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/latihan.html
+pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/latihan.html
 ```
 
 Skenario latihan:
@@ -204,7 +206,7 @@ heraiAiMlPractice
 File:
 
 ```text
-pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/kuis.html
+pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/kuis.html
 ```
 
 Detail:
@@ -229,7 +231,7 @@ heraiAiMlQuizAnswers
 File:
 
 ```text
-pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/diskusi.html
+pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/diskusi.html
 ```
 
 Detail:
@@ -295,11 +297,11 @@ router.js?v=20260709-ml-full
 | `js/frontend/fellow-dashboard/ai-ml-basic.js` | Chapter map 8 item, legacy alias, reset kuis lama, prompt diskusi 8 item |
 | `index.html` | Cache buster ML |
 | `css/frontend/fellow-dashboard/modules.css` | Style scoped `ai-ml-*` |
-| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/materi.html` | Sidebar/progress 8 chapter |
-| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/latihan.html` | 10 latihan |
-| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/kuis.html` | 24 soal |
-| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/diskusi.html` | 8 prompt |
-| `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/chapters/chapter-1.html` sampai `chapter-8.html` | Konten materi lengkap |
+| `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/materi.html` | Sidebar/progress 8 chapter |
+| `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/latihan.html` | 10 latihan |
+| `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/kuis.html` | 24 soal |
+| `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/diskusi.html` | 8 prompt |
+| `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/chapters/chapter-1.html` sampai `chapter-8.html` | Konten materi lengkap |
 
 ---
 
@@ -326,7 +328,7 @@ Perubahan susulan dilakukan untuk mengurangi ambiguitas setelah ML aktif sebagai
 - Dokumentasi handover menegaskan bahwa AI Fundamentals & Advanced, Math for AI, dan Machine Learning adalah course sejajar.
 - `handover/COURSE_HIERARCHY.md` ditambahkan sebagai source of truth category, course, module/chapter, activity, dan specialization track.
 - Machine Learning tetap memakai route `#/participant-ai-lab-ml`.
-- Status lama saat itu: folder ML belum dipindah dan path `ai-fundamental/03-machine-learning/` diperlakukan sebagai legacy implementation path. Status terbaru: ML sudah pindah ke `course-catalog/foundation-core-ai/machine-learning/`.
+- Status lama saat itu: folder ML belum dipindah dan path `ai-fundamental/03-machine-learning/` diperlakukan sebagai legacy implementation path. Status terbaru: ML sudah pindah ke `foundation-core-ai/machine-learning/`.
 - Copy UI ML diperbarui agar breadcrumb dan label halaman tidak lagi menyiratkan ML sebagai bagian dari AI Fundamentals.
 - Setiap perubahan hierarki harus ikut di-commit dan dokumen handover wajib diupdate.
 
@@ -439,11 +441,11 @@ Pada checkpoint 5 Juli 2026, Math for AI dari Nazril sudah masuk ke repo sebagai
 File yang tercatat masuk dari Nazril:
 
 - `js/frontend/fellow-dashboard/ai-math-for-ai.js`
-- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/overview.html`
-- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/lesson.html`
-- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/practice.html`
-- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/quiz.html`
-- `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/discussion.html`
+- `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/overview.html`
+- `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/lesson.html`
+- `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/practice.html`
+- `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/quiz.html`
+- `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/discussion.html`
 - `docs-nazril/` sebagai referensi lokal yang tidak untuk dipush
 
 Route Math pada checkpoint itu:
@@ -520,11 +522,11 @@ Pada checkpoint 5 Juli 2026, 5 NLP lesson file dibuat single-page materi saja ka
 
 File yang dicatat:
 
-- `pages/frontend/fellow-dashboard/ai-lab/lessons/tokenization.html`
-- `pages/frontend/fellow-dashboard/ai-lab/lessons/preprocessing.html`
-- `pages/frontend/fellow-dashboard/ai-lab/lessons/pos-ner.html`
-- `pages/frontend/fellow-dashboard/ai-lab/lessons/bow.html`
-- `pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html`
+- `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/tokenization.html`
+- `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/preprocessing.html`
+- `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/pos-ner.html`
+- `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/bow.html`
+- `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/tfidf.html`
 
 ### File yang disentuh pada checkpoint 5 Juli
 
@@ -535,14 +537,14 @@ Daftar historis dari checkpoint lama:
 | `js/router.js` | Tambah route Math, restore route CV, arahkan ML/Math ke under-development pada saat itu |
 | `index.html` | Tambah script `ai-math-for-ai.js` |
 | `pages/frontend/fellow-dashboard/modules.html` | Card Math diarahkan ke under-development |
-| `pages/frontend/fellow-dashboard/ai-fundamentals.html` | Dikembalikan ke versi tim sebelum merge |
-| `pages/frontend/fellow-dashboard/ai-lab/lessons/tokenization.html` | Hapus tab Latihan/Kuis/Diskusi |
-| `pages/frontend/fellow-dashboard/ai-lab/lessons/preprocessing.html` | Hapus tab Latihan/Kuis/Diskusi |
-| `pages/frontend/fellow-dashboard/ai-lab/lessons/pos-ner.html` | Hapus tab Latihan/Kuis/Diskusi |
-| `pages/frontend/fellow-dashboard/ai-lab/lessons/bow.html` | Hapus tab Latihan/Kuis/Diskusi |
-| `pages/frontend/fellow-dashboard/ai-lab/lessons/tfidf.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html` | Dikembalikan ke versi tim sebelum merge |
+| `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/tokenization.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/preprocessing.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/pos-ner.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/bow.html` | Hapus tab Latihan/Kuis/Diskusi |
+| `pages/frontend/fellow-dashboard/data-engineering-domains/nlp/lessons/tfidf.html` | Hapus tab Latihan/Kuis/Diskusi |
 | `js/frontend/fellow-dashboard/ai-math-for-ai.js` | File baru dari Nazril |
-| `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/*` | File baru dari Nazril |
+| `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/*` | File baru dari Nazril |
 | `docs-nazril/` | Referensi lokal, tidak untuk dipush |
 
 ### Catatan historis penting

@@ -271,9 +271,9 @@ Source UI utama: `pages/frontend/fellow-dashboard/modules.html`.
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif | `pages/frontend/fellow-dashboard/ai-fundamentals.html` |
-| Math for AI | Foundation | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada di `pages/frontend/fellow-dashboard/ai-lab/math-for-ai/`; route utama memakai `course-placeholder.html` |
-| Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | `pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/` |
+| AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html` |
+| Math for AI | Foundation | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada di `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/`; route utama memakai `course-placeholder.html` |
+| Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/` |
 | Deep Learning | Core | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Reinforcement Learning | Advanced | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 
@@ -305,7 +305,7 @@ Machine Learning berisi chapter berikut:
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| Generative AI | GenAI | `#/participant-ai-lab-gen` | Scaffold aktif | File overview ada di `pages/frontend/fellow-dashboard/ai-lab/generative-ai.html`; route utama memakai `course-placeholder.html` |
+| Generative AI | GenAI | `#/participant-ai-lab-gen` | Scaffold aktif | File overview ada di `pages/frontend/fellow-dashboard/generative-multimodal-ai/generative-ai.html`; route utama memakai `course-placeholder.html` |
 | LLM | Language | `#/participant-ai-lab-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | VLM | Vision | `#/participant-ai-lab-vlm` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Multimodal LLM | Multimodal | `#/participant-ai-lab-multimodal-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
@@ -315,8 +315,8 @@ Machine Learning berisi chapter berikut:
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| Computer Vision | Vision | `#/participant-ai-lab-cv` | Aktif | Overview `pages/frontend/fellow-dashboard/ai-lab/computer-vision.html`, lessons di `ai-lab/lessons/` |
-| NLP | Language | `#/participant-ai-lab-nlp` | Aktif | `pages/frontend/fellow-dashboard/ai-lab/nlp.html` plus NLP lessons |
+| Computer Vision | Vision | `#/participant-ai-lab-cv` | Aktif | Overview `pages/frontend/fellow-dashboard/data-engineering-domains/computer-vision.html`, lessons di `data-engineering-domains/computer-vision/lessons/` |
+| NLP | Language | `#/participant-ai-lab-nlp` | Aktif | `pages/frontend/fellow-dashboard/data-engineering-domains/nlp.html` plus NLP lessons |
 | Bioinformatics | Science | `#/participant-ai-lab-bioinformatics` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Data Engineering | Data | `#/participant-ai-lab-data-engineering` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Data Science | Data | `#/participant-ai-lab-data-science` | Scaffold aktif | Route memakai `course-placeholder.html` |
@@ -371,16 +371,16 @@ Specialization track adalah jalur spesialisasi, bukan course tunggal. Track dapa
 Folder canonical untuk course catalog sekarang ada di:
 
 ```text
-pages/frontend/fellow-dashboard/course-catalog/
+pages/frontend/fellow-dashboard/
 ```
 
 Machine Learning adalah course aktif di bawah category `Foundation & Core AI` dan file aktifnya berada di:
 
 ```text
-pages/frontend/fellow-dashboard/course-catalog/foundation-core-ai/machine-learning/
+pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/
 ```
 
-Folder `ai-fundamental/` sekarang hanya dipakai untuk module internal AI Fundamentals & Advanced yang sudah ada. ML bukan module internal AI Fundamentals & Advanced.
+Folder lama `ai-fundamental/`, `ai-lab/` tidak lagi dipakai sebagai path aktif peserta. Konten aktif sudah ditempatkan langsung di folder category/domain.
 
 Jika nanti course aktif lain dipindahkan ke struktur canonical, update minimal:
 
