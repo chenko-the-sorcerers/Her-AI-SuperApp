@@ -2,7 +2,8 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status:** merge Reasoning sedang diselesaikan, belum push
+**Status:** merge Reasoning selesai di branch lokal, belum push
+**Commit merge Reasoning lokal:** `b0c6829 merge: integrate reasoning scaffold updates`
 **Commit fitur terakhir sebelum merge:** `c1870d4 feat: finalize python ai module and merge handover`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
@@ -33,7 +34,7 @@ Status terbaru 10 Juli 2026 setelah follow-up user:
   - code block materi wajib pink-light, bukan terminal hitam;
   - tema HerAI pink harus konsisten di materi, latihan, kuis, diskusi, callout, quick check, selected state, active border, icon, dan code block.
 - Route `js/router.js` tidak diubah selama pekerjaan Python/Pengantar AI.
-- Pekerjaan Reasoning dari `origin/design` sudah di-merge ke working tree:
+- Pekerjaan Reasoning dari `origin/design` sudah di-merge ke branch lokal:
   - route tetap `#/participant-ai-reasoning`;
   - target tetap `pages/frontend/fellow-dashboard/course-placeholder.html`;
   - konten lengkap berada di `COURSE_SCAFFOLDS`;
@@ -64,6 +65,7 @@ Verifikasi terakhir yang sudah lulus setelah patch quiz/UI:
 node --check js/router.js -> passed
 node --check js/frontend/fellow-dashboard/settings.js -> passed
 node --check js/frontend/fellow-dashboard/ai-python-basic.js -> passed
+node --check js/frontend/fellow-dashboard/course-placeholder.js -> passed
 git diff --check -> passed
 node scripts/check-participant-routes.mjs -> Total: 110 | 110 passed | 0 failed
 ```

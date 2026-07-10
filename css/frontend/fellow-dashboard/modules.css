@@ -1283,7 +1283,7 @@
 
 .lesson-breadcrumb-separator {
     align-items: center;
-    color: #8e91a0;
+    color: #6f7282;
     display: inline-flex;
     font-size: 0.75rem;
     font-weight: 600;
@@ -3668,7 +3668,7 @@
 .py-output {
     background: #fffcfd;
     border: 1px solid rgba(246,51,146,.15);
-    border-radius: 0 0 14px 14px;
+    border-radius: 14px;
     color: #171827;
     display: none;
     font-family: 'SF Mono','Space Mono',monospace;

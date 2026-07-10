@@ -374,16 +374,11 @@ print("Batch 2 kosong:", ds_kosong.get_batch(2))
 import pandas as pd
 
 with open("ulasan_mentah.txt", "w", encoding="utf-8") as f:
-    f.write("Akurasi model ini SANGAT hebat!;Positif
-")
-    f.write(";
-")
-    f.write("Pelatihan berjalan sangat LAMBAT;Negatif
-")
-    f.write("Suka sekali belajar di HerAI Fellowship;Positif
-")
-    f.write("Dokumentasi program kurang LENGKAP;Negatif
-")
+    f.write("Akurasi model ini SANGAT hebat!;Positif\n")
+    f.write(";\n")
+    f.write("Pelatihan berjalan sangat LAMBAT;Negatif\n")
+    f.write("Suka sekali belajar di HerAI Fellowship;Positif\n")
+    f.write("Dokumentasi program kurang LENGKAP;Negatif\n")
 
 class DokumenUlasan:
     def __init__(self, teks_asli, kategori):
@@ -419,8 +414,7 @@ df = pd.DataFrame({
 
 print("DataFrame Hasil Pemrosesan:")
 print(df)
-print("
-Ringkasan:")
+print("\nRingkasan:")
 print(df["Kategori"].value_counts())
 </textarea>
                                             <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 16px; border-top: none;">
