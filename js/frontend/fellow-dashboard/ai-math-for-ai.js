@@ -360,7 +360,7 @@
                 <h2>Progress Math for AI</h2>
                 <div class="lesson-progress-mini"><b style="--value:${state.percent}%"></b><strong>${state.percent}%</strong></div>
                 <p>${state.done} dari ${state.total} lesson selesai.</p>
-                <a href="#/participant-ai-lab-math-practice">Buka Practice</a>
+                <a href="#/participant-ai-lab-math-practice">Buka Latihan</a>
             </section>
             <section class="module-side-card lesson-list-card">
                 <h2>Daftar Lesson</h2>
@@ -375,8 +375,8 @@
             </section>
             <section class="module-side-card lesson-note-card lesson-compact-note">
                 <div class="module-side-head"><h2>Next Step</h2></div>
-                <p>Setelah selesai semua lesson, kerjakan practice, submit quiz, lalu lanjut diskusi.</p>
-                <a href="#/participant-ai-lab-math-quiz">Ke Quiz</a>
+                <p>Setelah selesai semua lesson, kerjakan latihan, submit kuis, lalu lanjut diskusi.</p>
+                <a href="#/participant-ai-lab-math-quiz">Ke Kuis</a>
             </section>
         `;
     }
@@ -385,9 +385,9 @@
         const items = [
             ['overview', '#/participant-ai-lab-math', 'fas fa-layer-group', 'Overview'],
             ['lesson', '#/participant-ai-lab-math-intro', 'fas fa-book-open', 'Materi'],
-            ['practice', '#/participant-ai-lab-math-practice', 'fas fa-pen-to-square', 'Practice'],
-            ['quiz', '#/participant-ai-lab-math-quiz', 'far fa-clipboard', 'Quiz'],
-            ['discussion', '#/participant-ai-lab-math-discussion', 'far fa-message', 'Discussion']
+            ['practice', '#/participant-ai-lab-math-practice', 'fas fa-pen-to-square', 'Latihan'],
+            ['quiz', '#/participant-ai-lab-math-quiz', 'far fa-clipboard', 'Kuis'],
+            ['discussion', '#/participant-ai-lab-math-discussion', 'far fa-message', 'Diskusi']
         ];
         return `<div class="lesson-tabs" role="tablist" aria-label="Navigasi Math for AI">${items.map(item => `<a href="${item[1]}" class="${item[0] === active ? 'active' : ''}"><i class="${item[2]}"></i> ${item[3]}</a>`).join('')}</div>`;
     }
@@ -521,7 +521,7 @@
                     <footer class="lesson-nav-footer">
                         ${prev ? `<a href="${prev.route}"><i class="fas fa-chevron-left"></i> Sebelumnya</a>` : '<a href="#/participant-ai-lab-math"><i class="fas fa-chevron-left"></i> Overview</a>'}
                         <button type="button" class="math-ai-done-btn" data-mark-lesson="${lesson.id}"><i class="fas fa-circle-check"></i> Tandai Selesai</button>
-                        ${next ? `<a href="${next.route}">Selanjutnya <i class="fas fa-arrow-right"></i></a>` : '<a href="#/participant-ai-lab-math-practice">Practice <i class="fas fa-arrow-right"></i></a>'}
+                        ${next ? `<a href="${next.route}">Selanjutnya <i class="fas fa-arrow-right"></i></a>` : '<a href="#/participant-ai-lab-math-practice">Latihan <i class="fas fa-arrow-right"></i></a>'}
                     </footer>
                 </article>
             </section>
@@ -545,7 +545,7 @@
                 ${renderMathAiTabs('practice')}
                 <article class="lesson-article math-ai-content">
                     <div class="math-ai-card">
-                        <span class="math-ai-eyebrow"><i class="fas fa-pen-to-square"></i> Practice</span>
+                        <span class="math-ai-eyebrow"><i class="fas fa-pen-to-square"></i> Latihan</span>
                         <h1>Latihan Reflektif Math for AI</h1>
                         <p>Gunakan bahasa sederhana. Fokusnya bukan jawaban sempurna, tetapi kemampuan menghubungkan konsep angka dengan cara AI bekerja.</p>
                     </div>
@@ -565,7 +565,7 @@
                     </form>
                     <footer class="lesson-nav-footer">
                         <a href="#/participant-ai-lab-math-case-study"><i class="fas fa-chevron-left"></i> Kembali ke Lesson</a>
-                        <a href="#/participant-ai-lab-math-quiz">Lanjut Quiz <i class="fas fa-arrow-right"></i></a>
+                        <a href="#/participant-ai-lab-math-quiz">Lanjut Kuis <i class="fas fa-arrow-right"></i></a>
                     </footer>
                 </article>
             </section>
@@ -607,8 +607,8 @@
                 ${renderMathAiTabs('quiz')}
                 <article class="lesson-article math-ai-content">
                     <div class="math-ai-card">
-                        <span class="math-ai-eyebrow"><i class="far fa-clipboard"></i> Quiz</span>
-                        <h1>Quiz Math for AI</h1>
+                        <span class="math-ai-eyebrow"><i class="far fa-clipboard"></i> Kuis</span>
+                        <h1>Kuis Math for AI</h1>
                         <p>Jawab semua pertanyaan. Skor minimal lulus adalah ${mathForAiCourse.passingGrade}%.</p>
                     </div>
                     <form id="mathAiQuizForm" class="math-ai-quiz">
@@ -625,11 +625,11 @@
                             </fieldset>
                         `).join('')}
                         <div id="mathAiQuizResult">${isDone ? renderResult(savedScore) : ''}</div>
-                        <button type="submit" class="quiz-submit-btn math-ai-submit" ${isDone ? 'disabled' : 'disabled'}><i class="fas fa-paper-plane"></i> Submit Quiz</button>
+                        <button type="submit" class="quiz-submit-btn math-ai-submit" ${isDone ? 'disabled' : 'disabled'}><i class="fas fa-paper-plane"></i> Submit Kuis</button>
                     </form>
                     <footer class="lesson-nav-footer">
-                        <a href="#/participant-ai-lab-math-practice"><i class="fas fa-chevron-left"></i> Kembali Practice</a>
-                        <a href="#/participant-ai-lab-math-discussion">Discussion <i class="fas fa-arrow-right"></i></a>
+                        <a href="#/participant-ai-lab-math-practice"><i class="fas fa-chevron-left"></i> Kembali Latihan</a>
+                        <a href="#/participant-ai-lab-math-discussion">Diskusi <i class="fas fa-arrow-right"></i></a>
                     </footer>
                 </article>
             </section>
@@ -691,7 +691,7 @@
                 ${renderMathAiTabs('discussion')}
                 <article class="lesson-article math-ai-content">
                     <div class="math-ai-card">
-                        <span class="math-ai-eyebrow"><i class="far fa-message"></i> Discussion</span>
+                        <span class="math-ai-eyebrow"><i class="far fa-message"></i> Diskusi</span>
                         <h1>Diskusi Math for AI</h1>
                         <p>Gunakan ruang ini untuk menulis bagian yang masih membingungkan atau ide fitur HerAI yang memakai konsep Math for AI.</p>
                     </div>
@@ -708,7 +708,7 @@
                     </form>
                     <div id="mathAiDiscussionList" class="math-ai-discussion-list"></div>
                     <footer class="lesson-nav-footer">
-                        <a href="#/participant-ai-lab-math-quiz"><i class="fas fa-chevron-left"></i> Kembali Quiz</a>
+                        <a href="#/participant-ai-lab-math-quiz"><i class="fas fa-chevron-left"></i> Kembali Kuis</a>
                         <a href="#/participant-ai-lab-math">Kembali Overview <i class="fas fa-arrow-right"></i></a>
                     </footer>
                 </article>

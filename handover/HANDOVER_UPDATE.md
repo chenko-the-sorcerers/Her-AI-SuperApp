@@ -21,6 +21,20 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Update lanjutan sesi ini:
 
+- Math for AI sudah diaktifkan dari draft Nazril menjadi route final di folder canonical:
+  - `#/participant-ai-lab-math` -> `foundation-core-ai/math-for-ai/overview.html`
+  - `#/participant-ai-lab-math-intro` sampai `#/participant-ai-lab-math-case-study` -> `foundation-core-ai/math-for-ai/lesson.html`
+  - `#/participant-ai-lab-math-practice` -> `foundation-core-ai/math-for-ai/practice.html`
+  - `#/participant-ai-lab-math-quiz` -> `foundation-core-ai/math-for-ai/quiz.html`
+  - `#/participant-ai-lab-math-discussion` -> `foundation-core-ai/math-for-ai/discussion.html`
+- `js/router.js` sekarang memanggil init Math for AI:
+  - `initAiLabMathOverview()`
+  - `initAiLabMathLesson()`
+  - `initAiLabMathPractice()`
+  - `initAiLabMathQuiz()`
+  - `initAiLabMathDiscussion()`
+- Aksen hijau di kartu lesson Math dirapikan menjadi pink agar sesuai AGENTS.md.
+
 - Activity final Konsep AI Modern sudah dibuat di folder canonical:
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/latihan.html`
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/kuis.html`
@@ -103,10 +117,9 @@ Catatan console saat live check:
 Next step yang disarankan:
 
 1. Jadikan pola Python/AI Modern sebagai standar markup course aktif berikutnya, tapi lakukan bertahap per course agar layout tidak rusak.
-2. Bersihkan atau putuskan nasib konten draft Math for AI: lanjutkan dari scaffold atau aktifkan file final.
-3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final.
-4. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
-5. Setelah setiap perubahan routing, jalankan `node scripts/check-participant-routes.mjs`.
+2. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final.
+3. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
+4. Setelah setiap perubahan routing, jalankan `node scripts/check-participant-routes.mjs`.
 
 ---
 

@@ -1622,7 +1622,7 @@
 }
 
 .math-ai-course-page .math-ai-hero {
-    background: linear-gradient(110deg, #fff 0%, #fff6fb 48%, #eafff4 100%);
+    background: linear-gradient(110deg, #fff 0%, #fff6fb 52%, #fff0f7 100%);
 }
 
 .math-ai-course-page .math-ai-eyebrow {
@@ -1722,9 +1722,9 @@
 
 .math-ai-course-page .math-ai-lesson-card > i {
     align-items: center;
-    background: #eafff4;
+    background: #fff0f7;
     border-radius: 16px;
-    color: #28bd77;
+    color: var(--fellow-pink);
     display: inline-flex;
     font-size: 1.4rem;
     height: 54px;

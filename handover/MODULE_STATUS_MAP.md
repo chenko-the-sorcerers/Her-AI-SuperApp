@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah aktivasi activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
+**Status dokumen:** update setelah aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -34,7 +34,7 @@ Course utama yang terlihat di katalog peserta, dikelompokkan sesuai category/dom
 | Category / Domain | Course | Status | Isi utama |
 |---|---|---|---|
 | Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif | Pengantar AI, Python untuk AI, Konsep AI Modern, Reasoning, Evaluation, Evolution of AI |
-| Foundation & Core AI | Math for AI | Scaffold aktif | Linear Algebra, Statistics, Probability, Calculus, Optimization, Case Study |
+| Foundation & Core AI | Math for AI | Aktif | Overview, 7 lesson, latihan, kuis, diskusi |
 | Foundation & Core AI | Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
 | Foundation & Core AI | Deep Learning | Scaffold aktif | Neural Network Basics, Training & Backpropagation, CNN/RNN Overview, Transformer Basics, Regularization |
 | Foundation & Core AI | Reinforcement Learning | Scaffold aktif | Agent & Environment, Reward and Policy, Value Function, Exploration vs Exploitation, Case Study |
@@ -81,7 +81,7 @@ pages/frontend/fellow-dashboard/
         02-python-untuk-ai/
         03-konsep-ai-modern/
       ai-advanced/                (scaffold)
-    math-for-ai/                  (draft dari Nazril)
+    math-for-ai/                  (aktif)
     machine-learning/             (aktif)
       chapters/
         chapter-1.html
@@ -157,7 +157,7 @@ pages/frontend/fellow-dashboard/
 | Category / Domain | Course | Route | Status Konten | Catatan |
 |---|---|---|---|---|
 | Foundation & Core AI | Machine Learning | `#/participant-ai-lab-ml` | Aktif | File aktif di `foundation-core-ai/machine-learning/` |
-| Foundation & Core AI | Math for AI | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada dari Nazril; route utama memakai `course-placeholder.html` |
+| Foundation & Core AI | Math for AI | `#/participant-ai-lab-math` | Aktif | File aktif di `foundation-core-ai/math-for-ai/` |
 | Foundation & Core AI | Deep Learning | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Foundation & Core AI | Reinforcement Learning | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Generative & Multimodal AI | Generative AI | `#/participant-ai-lab-gen` | Scaffold aktif | File overview ada; route utama memakai `course-placeholder.html` |
@@ -245,6 +245,12 @@ Machine Learning adalah course di category `Foundation & Core AI`, bukan module 
 | `heraiAiModernQuizScore` | Konsep AI Modern | Skor kuis |
 | `heraiAiModernQuizAnswers` | Konsep AI Modern | Jawaban kuis tersimpan untuk lock single attempt |
 | `heraiAiModernDiscussion` | Konsep AI Modern | Thread diskusi |
+| `heraiAiMathProgress` | Math for AI | Progress lesson selesai |
+| `heraiAiMathCurrentLesson` | Math for AI | Lesson terakhir dibuka |
+| `heraiAiMathPractice` | Math for AI | Jawaban latihan tersimpan |
+| `heraiAiMathQuizDone` | Math for AI | Flag kuis sudah dikerjakan |
+| `heraiAiMathQuizScore` | Math for AI | Skor kuis |
+| `heraiAiMathDiscussion` | Math for AI | Thread diskusi |
 | `heraiAiMlCurrentChapter` | ML | Chapter terakhir dibaca |
 | `heraiAiMlPractice` | ML | Jawaban latihan tersimpan |
 | `heraiAiMlQuizDone` | ML | Flag kuis sudah dikerjakan |
@@ -261,16 +267,6 @@ Route yang masih diarahkan ke `under-development.html`:
 | Route | Keterangan |
 |---|---|
 | `/participant-under-development` | Fallback global |
-| `/participant-ai-lab-math-intro` | Math for AI |
-| `/participant-ai-lab-math-linear-algebra` | Math for AI |
-| `/participant-ai-lab-math-statistics` | Math for AI |
-| `/participant-ai-lab-math-probability` | Math for AI |
-| `/participant-ai-lab-math-calculus` | Math for AI |
-| `/participant-ai-lab-math-optimization` | Math for AI |
-| `/participant-ai-lab-math-case-study` | Math for AI |
-| `/participant-ai-lab-math-practice` | Math for AI |
-| `/participant-ai-lab-math-quiz` | Math for AI |
-| `/participant-ai-lab-math-discussion` | Math for AI |
 
 ---
 
@@ -300,7 +296,6 @@ Catatan activity scaffold:
 
 | Route | Course/Track |
 |---|---|
-| `/participant-ai-lab-math` | Math for AI |
 | `/participant-ai-lab-gen` | Generative AI |
 | `/participant-ai-lab-deep-learning` | Deep Learning |
 | `/participant-ai-lab-reinforcement-learning` | Reinforcement Learning |

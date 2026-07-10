@@ -281,7 +281,7 @@ Source UI utama: `pages/frontend/fellow-dashboard/modules.html`.
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
 | AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html` |
-| Math for AI | Foundation | `#/participant-ai-lab-math` | Scaffold aktif | File draft ada di `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/`; route utama memakai `course-placeholder.html` |
+| Math for AI | Foundation | `#/participant-ai-lab-math` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/` |
 | Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/` |
 | Deep Learning | Core | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Reinforcement Learning | Advanced | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |

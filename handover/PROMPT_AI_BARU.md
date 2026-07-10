@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 10 Juli 2026 (Aktivasi activity final Konsep AI Modern)
+**Tanggal:** 10 Juli 2026 (Aktivasi Math for AI + activity final Konsep AI Modern)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -54,7 +54,7 @@ Foundation & Core AI
 │   ├── Reasoning                -> BELUM ADA
 │   ├── Evaluation               -> BELUM ADA
 │   └── Evolution of AI          -> BELUM ADA
-├── Math for AI                  -> SCAFFOLD AKTIF, file JS/konten draft ada
+├── Math for AI                  -> AKTIF
 ├── Machine Learning             -> AKTIF FULL (8 chapter, 10 latihan, 24 soal kuis, 8 prompt diskusi)
 ├── Deep Learning                -> SCAFFOLD AKTIF
 └── Reinforcement Learning       -> SCAFFOLD AKTIF
@@ -145,7 +145,7 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 2. Folder `course-catalog/` sempat dibuat di checkpoint lama, tetapi sudah superseded. Jangan dipakai lagi.
 3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
 4. Modul 3a (Konsep AI Modern) sudah aktif untuk materi, latihan, kuis, dan diskusi.
-5. Math for AI punya file JS/konten draft; route utama masih scaffold/placeholder sampai konten final diaktifkan.
+5. Math for AI sudah aktif dari draft Nazril dengan overview, lesson, latihan, kuis, dan diskusi.
 6. Generative AI punya file overview; route utama masih scaffold/placeholder sampai konten final diaktifkan.
 7. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
 8. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
@@ -195,10 +195,9 @@ File penting yang harus kamu baca sekarang:
 ### Kalau Mau Lanjutkan Modul yang Belum Selesai
 ```
 Prioritas kerja:
-1. Bersihkan/putuskan nasib konten draft Math for AI: lanjutkan dari scaffold atau aktifkan file final
-2. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
-3. Buat atau aktifkan course baru langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
-4. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
+1. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
+2. Buat atau aktifkan course baru langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
+3. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
 ```
 
 ### Kalau Mau Bikin Course/Track Baru

@@ -82,17 +82,17 @@ const router = {
         "/participant-ai-lab-ml-svm": "/pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/materi.html",
         "/participant-ai-lab-ml-neural-networks": "/pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/materi.html",
         "/participant-ai-lab-ml-unsupervised": "/pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/materi.html",
-        "/participant-ai-lab-math": "/pages/frontend/fellow-dashboard/course-placeholder.html",
-        "/participant-ai-lab-math-intro": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-linear-algebra": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-statistics": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-probability": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-calculus": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-optimization": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-case-study": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-practice": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-quiz": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-lab-math-discussion": "/pages/frontend/fellow-dashboard/under-development.html",
+        "/participant-ai-lab-math": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/overview.html",
+        "/participant-ai-lab-math-intro": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-linear-algebra": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-statistics": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-probability": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-calculus": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-optimization": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-case-study": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/lesson.html",
+        "/participant-ai-lab-math-practice": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/practice.html",
+        "/participant-ai-lab-math-quiz": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/quiz.html",
+        "/participant-ai-lab-math-discussion": "/pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/discussion.html",
         "/participant-ai-lab-cv": "/pages/frontend/fellow-dashboard/data-engineering-domains/computer-vision.html",
         "/participant-ai-lab-gen": "/pages/frontend/fellow-dashboard/course-placeholder.html",
         "/participant-ai-lab-deep-learning": "/pages/frontend/fellow-dashboard/course-placeholder.html",
@@ -638,6 +638,23 @@ const router = {
                     }
                     if (path === "/participant-ai-lab-ml-discussion" && typeof window.initAiMlDiscussion === "function") {
                         window.initAiMlDiscussion();
+                    }
+                } else if (path.startsWith("/participant-ai-lab-math") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if (path === "/participant-ai-lab-math" && typeof window.initAiLabMathOverview === "function") {
+                        window.initAiLabMathOverview();
+                    }
+                    if ((path === "/participant-ai-lab-math-intro" || path === "/participant-ai-lab-math-linear-algebra" || path === "/participant-ai-lab-math-statistics" || path === "/participant-ai-lab-math-probability" || path === "/participant-ai-lab-math-calculus" || path === "/participant-ai-lab-math-optimization" || path === "/participant-ai-lab-math-case-study") && typeof window.initAiLabMathLesson === "function") {
+                        window.initAiLabMathLesson();
+                    }
+                    if (path === "/participant-ai-lab-math-practice" && typeof window.initAiLabMathPractice === "function") {
+                        window.initAiLabMathPractice();
+                    }
+                    if (path === "/participant-ai-lab-math-quiz" && typeof window.initAiLabMathQuiz === "function") {
+                        window.initAiLabMathQuiz();
+                    }
+                    if (path === "/participant-ai-lab-math-discussion" && typeof window.initAiLabMathDiscussion === "function") {
+                        window.initAiLabMathDiscussion();
                     }
                 } else if (path.startsWith("/participant-ai-lab-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("ai-lab");
