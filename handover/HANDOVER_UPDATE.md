@@ -3,7 +3,7 @@
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
 **Status:** sudah commit lokal, belum push
-**Commit fitur terakhir:** `b33c1b4 feat: enrich ai reasoning scaffold`
+**Commit fitur terakhir:** `e11e0a3 feat: expand ai reasoning learning module`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
@@ -14,6 +14,51 @@ Source of truth hierarki course terbaru:
 handover/COURSE_HIERARCHY.md
 handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 ```
+
+---
+
+## Update 10 Juli 2026 - Modul Pembelajaran Reasoning Lengkap di Scaffold
+
+Commit lokal:
+`e11e0a3 feat: expand ai reasoning learning module`
+
+Yang dilakukan:
+- Mempertahankan `#/participant-ai-reasoning` pada `course-placeholder.html`; tidak ada perubahan route atau folder canonical.
+- Melengkapi empat submateri `how-ai-reasons`, `planning-and-decomposition`, `chain-of-thought`, dan `tool-use` dengan materi 907-952 kata ekuivalen per submateri.
+- Menambahkan 17 latihan dengan pembahasan yang dapat dibuka, 25 soal kuis radio interaktif dengan feedback, dan empat diskusi terstruktur dengan 5-6 panduan per diskusi.
+- Menambahkan 12 tujuan overview, metadata tujuan belajar per submateri, studi kasus terintegrasi, checklist akhir, dan enam referensi arXiv unik.
+- Menambahkan renderer interaksi Reasoning yang tetap opsional dan backward-compatible untuk scaffold lama.
+- Menambahkan styling responsif yang tetap terisolasi pada class Reasoning, termasuk ruang breadcrumb mobile agar tidak tertutup tombol menu.
+- Memperbarui cache buster hanya untuk asset `modules.css` dan `course-placeholder.js` yang berubah.
+
+File penting:
+- `js/frontend/fellow-dashboard/course-placeholder.js`
+- `pages/frontend/fellow-dashboard/course-placeholder.html`
+- `css/frontend/fellow-dashboard/modules.css`
+- `index.html`
+- `handover/HANDOVER_UPDATE.md`
+- `handover/MODULE_STATUS_MAP.md`
+- `handover/COURSE_HIERARCHY.md`
+- `handover/PROMPT_AI_BARU.md`
+
+Verifikasi:
+- `node --check js/router.js`
+- `node --check js/frontend/fellow-dashboard/course-placeholder.js`
+- `node scripts/check-participant-routes.mjs` -> Total: 110 | 110 passed | 0 failed
+- `git diff --check`
+- Browser matrix 4 submateri x 4 activity: tab, jumlah konten, query, fallback invalid, history back/forward, dan overflow lulus.
+- Browser desktop 1440x1000 dan mobile 390x844: layout terbaca, breadcrumb mobile tidak tertutup, document overflow `false`.
+- Regression smoke test Evaluation, Evolution, AI Modern, Math for AI, Machine Learning, dan Python tetap render dan bukan 404.
+
+Catatan risiko:
+- Reasoning tetap berstatus **scaffold aktif dengan konten pembelajaran lengkap**, belum final/canonical sampai review mentor/tim kurikulum selesai.
+- Jawaban kuis dan status latihan hanya hidup pada sesi halaman; belum disimpan ke backend atau assessment engine.
+- Renderer rich berisi HTML statis tepercaya dari manifest; input pengguna harus disanitasi jika nanti dimasukkan ke renderer ini.
+
+Next step:
+- Review akurasi dan kedalaman konten Reasoning bersama mentor/tim kurikulum.
+- Setelah disetujui final, pindahkan activity ke folder canonical dalam checkpoint terpisah; sebelum itu route harus tetap memakai scaffold.
+- Lanjutkan Evaluation, Evolution of AI, atau Generative AI melalui `COURSE_SCAFFOLDS` tanpa menyentuh course final existing.
 
 ---
 
@@ -63,7 +108,7 @@ Next step:
 
 ## Current Snapshot - 10 Juli 2026
 
-State terbaru setelah checkpoint fitur `b33c1b4`:
+State terbaru setelah checkpoint fitur `e11e0a3`:
 
 - Working tree terakhir bersih setelah commit.
 - Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
@@ -79,7 +124,7 @@ State terbaru setelah checkpoint fitur `b33c1b4`:
   - Manifest: `js/frontend/fellow-dashboard/course-placeholder.js`
   - Source of truth data: `COURSE_SCAFFOLDS`
 - Route scaffold AI Fundamentals:
-  - `#/participant-ai-reasoning` sudah diperkaya dengan empat submateri dan seluruh activity
+  - `#/participant-ai-reasoning` berisi konten pembelajaran lengkap untuk empat submateri dan seluruh activity, tetapi tetap scaffold
   - `#/participant-ai-evaluation`
   - `#/participant-ai-evolution`
 - Query scaffold standar:
@@ -237,10 +282,10 @@ Wajib baca dulu:
 7. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Konteks terbaru:
-- Commit checkpoint fitur terakhir: b33c1b4 feat: enrich ai reasoning scaffold.
+- Commit checkpoint fitur terakhir: e11e0a3 feat: expand ai reasoning learning module.
 - Route checker terakhir: Total 110, 0 failed.
 - Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
-- Reasoning tetap scaffold aktif dengan konten diperkaya; Evaluation dan Evolution of AI tetap scaffold dasar.
+- Reasoning tetap scaffold aktif dengan konten pembelajaran lengkap; Evaluation dan Evolution of AI tetap scaffold dasar.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
