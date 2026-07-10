@@ -37,6 +37,7 @@ Aturan penting:
 - Course/module belum final jangan dibuatkan file `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`.
 - Isi manifest scaffold dulu; file final baru dibuat kalau konten siap dan route akan dipindahkan ke folder canonical.
 - Keputusan folder canonical tetap sama: category/domain langsung di bawah `pages/frontend/fellow-dashboard/`.
+- Kalau tim penerus mengubah folder, rename file, memindahkan route dari scaffold ke final, atau menambah route final, wajib update folder `handover/` sebelum commit.
 
 ---
 
@@ -297,5 +298,7 @@ Total: 110 | 110 passed | 0 failed
    - `handover/MODULE_STATUS_MAP.md`
    - `handover/HANDOVER_UPDATE.md`
    - `handover/PROMPT_AI_BARU.md`
-5. Jalankan `node scripts/check-participant-routes.mjs` setelah perubahan routing.
-6. Commit lokal setiap checkpoint fitur/refactor, tapi jangan push tanpa izin user.
+5. Jika hanya memperkaya scaffold tanpa file final, cukup update `COURSE_SCAFFOLDS`, route bila perlu, dan semua dokumen handover terkait status.
+6. Next step aman: lanjutkan Generative AI melalui scaffold dulu; aktifkan route final hanya jika konten activity sudah lengkap.
+7. Jalankan `node scripts/check-participant-routes.mjs` setelah perubahan routing.
+8. Commit lokal setiap checkpoint fitur/refactor, tapi jangan push tanpa izin user.

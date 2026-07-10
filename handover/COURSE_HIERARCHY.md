@@ -78,9 +78,18 @@ Aturan scaffold resmi:
 - Course/module belum final tidak boleh membuat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`.
 - Isi dulu manifest `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js`.
 - File final baru dibuat saat konten benar-benar siap dan route dipindahkan dari scaffold ke folder canonical.
+- Setelah menambah/mengubah route, course, module, activity, manifest scaffold, atau folder canonical, wajib update folder `handover/` sebelum commit.
 - Query activity dan module scaffold:
   - `#/participant-ai-lab-gen?activity=latihan`
   - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
+
+Next step untuk tim penerus:
+
+1. Prioritaskan Generative AI karena route masih scaffold dan file overview draft sudah ada.
+2. Jika konten belum final, update manifest scaffold saja.
+3. Jika konten sudah final, buat file activity lengkap di folder canonical dan update route.
+4. Jangan mengubah route final existing tanpa task spesifik.
+5. Setelah selesai, update `HANDOVER_UPDATE.md`, `MODULE_STATUS_MAP.md`, `COURSE_HIERARCHY.md`, `PROMPT_AI_BARU.md`, dan dokumen filesystem bila folder/routing berubah.
 
 ---
 

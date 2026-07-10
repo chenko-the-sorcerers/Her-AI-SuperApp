@@ -7,6 +7,55 @@
 
 ---
 
+## PROMPT CEPAT UNTUK TIM PENERUS
+
+Gunakan prompt ini kalau butuh versi pendek tetapi tetap aman:
+
+```text
+Kamu melanjutkan proyek HerAI Fellowship SuperApp di branch design.
+
+Wajib baca dulu:
+1. GEMINI.md
+2. AGENTS.md
+3. handover/HANDOVER_UPDATE.md
+4. handover/MODULE_STATUS_MAP.md
+5. handover/COURSE_HIERARCHY.md
+6. handover/PROMPT_AI_BARU.md
+7. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+
+Konteks terbaru:
+- Commit checkpoint terakhir: 280c087 refactor: standardize curriculum placeholders.
+- Route checker terakhir: Total 110, 0 failed.
+- Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
+- Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.
+- Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
+- Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
+- Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
+
+Sebelum edit, jalankan:
+git status --short
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+node scripts/check-participant-routes.mjs
+git diff --check
+
+Tugas utama berikutnya:
+1. Lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
+2. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
+3. Setelah perubahan, wajib update folder handover:
+   - HANDOVER_UPDATE.md
+   - MODULE_STATUS_MAP.md
+   - COURSE_HIERARCHY.md
+   - PROMPT_AI_BARU.md
+   - HANDOVER_COURSE_FILESYSTEM_REFACTOR.md kalau routing/folder berubah
+4. Jalankan verifikasi ulang.
+5. Commit lokal. Jangan push tanpa izin.
+
+Mulai dengan membaca file handover, lalu buat rencana singkat berdasarkan task yang diberikan user.
+```
+
+---
+
 ## PROMPT MULAI
 
 ```
@@ -174,6 +223,45 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 8. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
 9. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
 10. Setiap perubahan hierarki course/module harus ikut update dokumen handover dan dibuat commit lokal.
+11. Setelah update route, scaffold, course final, copy, UI, atau struktur folder, wajib update folder `handover/` sebelum commit.
+
+---
+
+NEXT STEP YANG DISARANKAN:
+
+1. Mulai dari Generative AI karena route masih scaffold dan file overview draft sudah ada.
+2. Jika konten belum final, perbaiki data di `COURSE_SCAFFOLDS` saja.
+3. Jika konten sudah final, buat folder canonical dan file activity lengkap baru pindahkan route.
+4. Jangan menyentuh route final AI Modern, Math for AI, Machine Learning, Python, Pengantar AI, CV, dan NLP tanpa task spesifik.
+5. Setelah perubahan apa pun, update folder `handover/`:
+   - `HANDOVER_UPDATE.md`
+   - `MODULE_STATUS_MAP.md`
+   - `COURSE_HIERARCHY.md`
+   - `PROMPT_AI_BARU.md`
+   - `HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` kalau routing/folder berubah
+6. Jalankan verifikasi dan commit lokal.
+
+FORMAT UPDATE HANDOVER WAJIB:
+
+Commit lokal:
+<hash> <message>
+
+Yang dilakukan:
+- ...
+
+File penting:
+- ...
+
+Verifikasi:
+- node --check ...
+- node scripts/check-participant-routes.mjs -> Total: ... | 0 failed
+- git diff --check
+
+Catatan risiko:
+- ...
+
+Next step:
+- ...
 
 ---
 
@@ -224,6 +312,7 @@ Prioritas kerja:
 2. Untuk course/module belum final, update `COURSE_SCAFFOLDS` dulu dan jangan buat file activity final
 3. Buat atau aktifkan course final langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
 4. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
+5. Setelah update apa pun, update folder `handover/` dan tulis hasil verifikasi terakhir
 ```
 
 ### Kalau Mau Bikin Course/Track Baru

@@ -78,6 +78,153 @@ Smoke test browser terakhir:
 
 ---
 
+## Next Execution Plan untuk Tim Penerus
+
+Tujuan utama berikutnya adalah melanjutkan kurikulum tanpa merusak route final yang sudah aktif. Kerjakan bertahap, commit lokal setiap checkpoint, dan jangan push tanpa izin.
+
+### 1. Baseline sebelum menyentuh kode
+
+Jalankan dulu:
+
+```bash
+git status --short
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+node scripts/check-participant-routes.mjs
+git diff --check
+```
+
+Kalau `git status` tidak bersih, baca diff dulu. Jangan revert perubahan orang lain tanpa instruksi eksplisit.
+
+### 2. Prioritas kerja yang paling aman
+
+Urutan prioritas yang direkomendasikan:
+
+1. Sinkronkan Generative AI.
+   - Saat ini `#/participant-ai-lab-gen` memakai scaffold.
+   - Ada file overview draft di `pages/frontend/fellow-dashboard/generative-multimodal-ai/generative-ai.html`.
+   - Pilihan aman: tetap pakai scaffold dan perbaiki manifest `COURSE_SCAFFOLDS`.
+   - Pilihan final: aktifkan route final hanya kalau materi, latihan, kuis, dan diskusi sudah siap.
+
+2. Perkaya scaffold course/module yang belum final.
+   - Update hanya `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js`.
+   - Jangan membuat file `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html` untuk konten yang belum final.
+   - Pastikan tiap module punya `slug`, `title`, `summary`, `materi`, `latihan`, `kuis`, dan `diskusi`.
+
+3. Kalau ada course yang benar-benar siap final, baru pindahkan dari scaffold ke folder canonical.
+   - Folder target: `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`.
+   - File minimal: `materi.html`, `latihan.html`, `kuis.html`, `diskusi.html`.
+   - Controller JS harus punya init function jelas.
+   - Update `js/router.js`, `participantDashboardPages`, init hook, dan `index.html` cache buster bila perlu.
+
+4. Jaga route final existing.
+   - Jangan ubah target route AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, dan NLP kecuali memang task-nya spesifik untuk route tersebut.
+   - Jangan arahkan route final balik ke `under-development.html`.
+
+### 3. Checklist saat menambah atau mengubah route
+
+- Tambahkan route di object `routes` pada `js/router.js`.
+- Tambahkan route ke array `participantDashboardPages`.
+- Pastikan init function terpanggil di `handleRouting()`.
+- Kalau route scaffold, target file harus `pages/frontend/fellow-dashboard/course-placeholder.html`.
+- Kalau route final, target file harus berada di folder canonical category/domain.
+- Jalankan `node scripts/check-participant-routes.mjs` sampai `0 failed`.
+
+### 4. Checklist UI dan design
+
+- Ikuti `AGENTS.md`.
+- Semua visible element harus punya `border-radius > 0`.
+- Button harus pill shape.
+- Text utama `#171827`, secondary minimal `#6f7282`.
+- Pink `#f63392` hanya untuk aksen.
+- Jangan pakai emoji di UI; gunakan FontAwesome.
+- Jangan ubah layout besar tanpa smoke test desktop dan mobile.
+
+### 5. Wajib update folder handover setelah perubahan
+
+Setiap agent/developer yang menambah route, mengubah status course, mengaktifkan file final, mengubah manifest scaffold, atau mengganti struktur folder wajib update folder `handover/` sebelum commit.
+
+Minimal update:
+
+- `handover/HANDOVER_UPDATE.md`: tulis apa yang dilakukan, file penting, hasil test, commit checkpoint.
+- `handover/MODULE_STATUS_MAP.md`: update status course/module/route.
+- `handover/COURSE_HIERARCHY.md`: update hierarchy bila category/course/module/activity berubah.
+- `handover/PROMPT_AI_BARU.md`: update prompt onboarding kalau konteks kerja berubah.
+- `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md`: update hanya kalau folder canonical, rename, atau routing filesystem berubah.
+
+Format checkpoint yang harus ditulis:
+
+```text
+Commit lokal:
+<hash> <message>
+
+Yang dilakukan:
+- ...
+
+File penting:
+- ...
+
+Verifikasi:
+- node --check ...
+- node scripts/check-participant-routes.mjs -> Total: ... | 0 failed
+- git diff --check
+
+Catatan risiko:
+- ...
+
+Next step:
+- ...
+```
+
+### 6. Prompt siap pakai untuk AI penerus
+
+Copy-paste prompt ini ke AI agent yang akan melanjutkan:
+
+```text
+Kamu melanjutkan proyek HerAI Fellowship SuperApp di branch design.
+
+Wajib baca dulu:
+1. GEMINI.md
+2. AGENTS.md
+3. handover/HANDOVER_UPDATE.md
+4. handover/MODULE_STATUS_MAP.md
+5. handover/COURSE_HIERARCHY.md
+6. handover/PROMPT_AI_BARU.md
+7. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+
+Konteks terbaru:
+- Commit checkpoint terakhir: 280c087 refactor: standardize curriculum placeholders.
+- Route checker terakhir: Total 110, 0 failed.
+- Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
+- Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.
+- Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
+- Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
+- Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
+
+Sebelum edit, jalankan:
+git status --short
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+node scripts/check-participant-routes.mjs
+git diff --check
+
+Tugas utama berikutnya:
+1. Lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
+2. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
+3. Setelah perubahan, wajib update folder handover:
+   - HANDOVER_UPDATE.md
+   - MODULE_STATUS_MAP.md
+   - COURSE_HIERARCHY.md
+   - PROMPT_AI_BARU.md
+   - HANDOVER_COURSE_FILESYSTEM_REFACTOR.md kalau routing/folder berubah
+4. Jalankan verifikasi ulang.
+5. Commit lokal. Jangan push tanpa izin.
+
+Mulai dengan membaca file handover, lalu buat rencana singkat berdasarkan task yang diberikan user.
+```
+
+---
+
 ## Update 10 Juli 2026 - Full Curriculum Placeholder Scaffold
 
 Update lanjutan sesi ini:

@@ -377,6 +377,17 @@ Catatan activity scaffold:
 - Jika membuat file activity final untuk scaffold course, ganti query scaffold menjadi route/file final secara eksplisit dan update dokumen ini.
 - Jika course/module belum final, jangan membuat file `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`; isi `COURSE_SCAFFOLDS` dulu.
 - Setelah mengubah route scaffold, pastikan route masuk `routes`, `participantDashboardPages`, dan init placeholder tetap terpanggil.
+- Setelah menambah/mengubah route, status course, manifest scaffold, konten final, atau struktur folder, wajib update folder `handover/` sebelum commit.
+- Minimal dokumen yang diupdate:
+  - `handover/HANDOVER_UPDATE.md`
+  - `handover/MODULE_STATUS_MAP.md`
+  - `handover/COURSE_HIERARCHY.md`
+  - `handover/PROMPT_AI_BARU.md`
+  - `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` jika folder/routing filesystem berubah
+- Next step prioritas untuk tim penerus:
+  1. Lanjutkan Generative AI lewat `COURSE_SCAFFOLDS` bila konten belum final.
+  2. Aktifkan route final hanya kalau `materi`, `latihan`, `kuis`, dan `diskusi` sudah siap.
+  3. Jaga route final AI Modern, Math for AI, ML, Python, Pengantar AI, CV, dan NLP.
 - Jalankan minimal:
 
 ```bash
