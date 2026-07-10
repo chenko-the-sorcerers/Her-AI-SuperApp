@@ -292,7 +292,7 @@ AI Fundamentals & Advanced berisi module berikut:
 |---|---|---|
 | Pengantar AI | Aktif | `#/participant-ai-intro` |
 | Python untuk AI | Aktif | `#/participant-ai-python` |
-| Konsep AI Modern | Materi aktif, activity belum aktif | `#/participant-ai-modern` |
+| Konsep AI Modern | Aktif | `#/participant-ai-modern` |
 | Reasoning | Belum ada | - |
 | Evaluation | Belum ada | - |
 | Evolution of AI | Belum ada | - |

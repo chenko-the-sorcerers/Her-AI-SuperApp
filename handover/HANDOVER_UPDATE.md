@@ -19,6 +19,27 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ## Update 10 Juli 2026 - Activity Tabs Scaffold dan Aktivasi Materi Konsep AI Modern
 
+Update lanjutan sesi ini:
+
+- Activity final Konsep AI Modern sudah dibuat di folder canonical:
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/latihan.html`
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/kuis.html`
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/diskusi.html`
+- `js/frontend/fellow-dashboard/ai-modern.js` sekarang punya init activity:
+  - `initAiModernBasic()`
+  - `initAiModernQuiz()`
+  - `initAiModernDiscussion()`
+- Route berikut sudah aktif ke file final, bukan `under-development.html`:
+  - `#/participant-ai-modern-practice`
+  - `#/participant-ai-modern-quiz`
+  - `#/participant-ai-modern-discussion`
+- LocalStorage baru:
+  - `heraiAiModernPractice`
+  - `heraiAiModernQuizDone`
+  - `heraiAiModernQuizScore`
+  - `heraiAiModernQuizAnswers`
+  - `heraiAiModernDiscussion`
+
 Checkpoint lokal terbaru, sudah commit dan belum push:
 
 ```text
@@ -44,12 +65,12 @@ Yang sudah dilakukan:
   `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/materi.html`.
 - Link card `Konsep AI Modern` di `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html` sudah diperbaiki dari `#/participant-under-development` menjadi `#/participant-ai-modern`.
 - Emoji sparkle di heading overview AI Fundamentals dihapus agar patuh AGENTS.md.
-- `handover/MODULE_STATUS_MAP.md` sudah diperbarui: materi Konsep AI Modern aktif, sedangkan latihan/kuis/diskusi masih under-development.
+- `handover/MODULE_STATUS_MAP.md` sudah diperbarui: Konsep AI Modern aktif untuk materi, latihan, kuis, dan diskusi.
 
 Status penting setelah update:
 
 - `#/participant-ai-modern` aktif dan menampilkan materi 4 topik via `ai-modern.js`.
-- `#/participant-ai-modern-practice`, `#/participant-ai-modern-quiz`, dan `#/participant-ai-modern-discussion` masih diarahkan ke `under-development.html` karena file activity final belum dibuat.
+- `#/participant-ai-modern-practice`, `#/participant-ai-modern-quiz`, dan `#/participant-ai-modern-discussion` sudah diarahkan ke file activity final.
 - `#/participant-under-development` tetap ada sebagai fallback global; jangan dipakai sebagai target card yang sebenarnya sudah punya route materi aktif.
 - Scaffold course/track memakai `course-placeholder.html`; tab activity scaffold memakai query `?activity=...` agar layout konsisten tanpa menambah route baru.
 
@@ -81,15 +102,10 @@ Catatan console saat live check:
 
 Next step yang disarankan:
 
-1. Buat activity final untuk Konsep AI Modern:
-   - `latihan.html`
-   - `kuis.html`
-   - `diskusi.html`
-   - init function terkait di `ai-modern.js`
-   - update route practice/quiz/discussion dari under-development ke file final.
-2. Jadikan pola Python sebagai standar markup course aktif berikutnya, tapi lakukan bertahap per course agar layout tidak rusak.
-3. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
-4. Audit kecil UI course yang disentuh: no emoji, FontAwesome only, pink accent konsisten, text contrast aman, border-radius tidak 0.
+1. Jadikan pola Python/AI Modern sebagai standar markup course aktif berikutnya, tapi lakukan bertahap per course agar layout tidak rusak.
+2. Bersihkan atau putuskan nasib konten draft Math for AI: lanjutkan dari scaffold atau aktifkan file final.
+3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final.
+4. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
 5. Setelah setiap perubahan routing, jalankan `node scripts/check-participant-routes.mjs`.
 
 ---

@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah scaffold activity tabs, aktivasi materi Konsep AI Modern, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
+**Status dokumen:** update setelah aktivasi activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -145,7 +145,7 @@ pages/frontend/fellow-dashboard/
 |---|---|---|---|---|---|---|
 | 01 - Pengantar AI | Aktif | Template/basic | Basic | Basic | `settings.js` | Route sub-topik memakai `lesson.html` |
 | 02 - Python untuk AI | Aktif | Aktif, Pyodide | Aktif | Basic | `ai-python-basic.js` | Modul paling interaktif |
-| 03a - Konsep AI Modern | Aktif | Belum aktif | Belum aktif | Belum aktif | `ai-modern.js` | Route materi aktif; activity lain masih under-development |
+| 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
 | 04 - Reasoning | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
 | 05 - Evaluation | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
 | 06 - Evolution of AI | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
@@ -240,6 +240,11 @@ Machine Learning adalah course di category `Foundation & Core AI`, bukan module 
 | `heraiAiPythonQuizScore` | Python | Skor kuis |
 | `heraiAiPythonDiscussion` | Python | Thread diskusi |
 | `heraiAiModernCurrentChapter` | Konsep AI Modern | Chapter terakhir dibaca |
+| `heraiAiModernPractice` | Konsep AI Modern | Jawaban latihan tersimpan |
+| `heraiAiModernQuizDone` | Konsep AI Modern | Flag kuis sudah dikerjakan |
+| `heraiAiModernQuizScore` | Konsep AI Modern | Skor kuis |
+| `heraiAiModernQuizAnswers` | Konsep AI Modern | Jawaban kuis tersimpan untuk lock single attempt |
+| `heraiAiModernDiscussion` | Konsep AI Modern | Thread diskusi |
 | `heraiAiMlCurrentChapter` | ML | Chapter terakhir dibaca |
 | `heraiAiMlPractice` | ML | Jawaban latihan tersimpan |
 | `heraiAiMlQuizDone` | ML | Flag kuis sudah dikerjakan |
@@ -256,9 +261,6 @@ Route yang masih diarahkan ke `under-development.html`:
 | Route | Keterangan |
 |---|---|
 | `/participant-under-development` | Fallback global |
-| `/participant-ai-modern-practice` | Konsep AI Modern practice |
-| `/participant-ai-modern-quiz` | Konsep AI Modern quiz |
-| `/participant-ai-modern-discussion` | Konsep AI Modern discussion |
 | `/participant-ai-lab-math-intro` | Math for AI |
 | `/participant-ai-lab-math-linear-algebra` | Math for AI |
 | `/participant-ai-lab-math-statistics` | Math for AI |
@@ -335,7 +337,7 @@ Catatan activity scaffold:
 - Jika menambah CSS untuk Machine Learning, gunakan scope `.ai-ml-*` atau class `.ml-*` yang sudah scoped di halaman ML.
 - Jangan mengarahkan ulang route ML ke under-development lagi kecuali memang diminta.
 - Jangan mengubah route CV/NLP/Python/Math/GenAI saat mengerjakan ML.
-- Untuk Konsep AI Modern, route materi `#/participant-ai-modern` sudah aktif. Route practice/quiz/discussion masih under-development sampai file activity final dibuat.
+- Untuk Konsep AI Modern, route materi, latihan, kuis, dan diskusi sudah aktif di folder canonical `03-konsep-ai-modern/`.
 - Jika membuat file activity final untuk scaffold course, ganti query scaffold menjadi route/file final secara eksplisit dan update dokumen ini.
 - Jalankan minimal:
 

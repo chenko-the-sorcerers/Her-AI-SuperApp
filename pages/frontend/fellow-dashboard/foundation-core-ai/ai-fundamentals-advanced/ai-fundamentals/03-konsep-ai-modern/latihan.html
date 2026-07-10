@@ -1,0 +1,189 @@
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page ai-modern-page ai-modern-practice-page" data-fellow-page="modules">
+    <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
+    <aside class="fellow-sidebar" aria-label="Navigasi peserta">
+        <a href="#/participant-dashboard" class="fellow-logo" aria-label="Buka sidebar peserta"><img src="/assets/branding/logo-her-ai-transparent.png" alt="HerAI Fellowship"></a>
+        <nav class="fellow-menu">
+            <a href="#/participant-dashboard" data-fellow-nav="dashboard"><i class="fas fa-house"></i><span>Beranda</span></a>
+            <a href="#/messaging" data-fellow-nav="chatroom"><i class="far fa-comment-dots"></i><span>Chatroom</span><strong>3</strong></a>
+            <a href="#/participant-mentor" data-fellow-nav="mentor"><i class="fas fa-user-group"></i><span>Mentor</span></a>
+            <a class="active" href="#/participant-modules" data-fellow-nav="modules"><i class="fas fa-book-open"></i><span>Modul</span></a>
+            <a href="#/participant-tasks" data-fellow-nav="tasks"><i class="fas fa-list-check"></i><span>Tugas</span></a>
+            <a href="#/participant-projects" data-fellow-nav="projects"><i class="far fa-folder-open"></i><span>Proyek</span></a>
+            <a href="#/participant-events" data-fellow-nav="events"><i class="far fa-calendar-days"></i><span>Events</span></a>
+            <a href="#/participant-community" data-fellow-nav="community"><i class="fas fa-users"></i><span>Komunitas</span></a>
+        </nav>
+        <nav class="fellow-menu secondary">
+            <a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
+            <a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
+            <a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
+            <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
+        </nav>
+    </aside>
+
+    <main class="fellow-main">
+        <header class="lesson-topbar">
+            <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
+                <a href="#/participant-ai-modern"><i class="fas fa-arrow-left"></i><span>Konsep AI Modern</span></a>
+                <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
+                <span>Latihan</span>
+            </nav>
+            <div class="fellow-actions">
+                <label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label>
+                <button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
+                <a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </header>
+
+        <div class="lesson-layout">
+            <div class="lesson-main-content">
+                <section class="lesson-hero compact">
+                    <div class="lesson-hero-copy">
+                        <h1>Latihan Konsep AI Modern</h1>
+                        <p>Rancang sistem AI modern dengan transformer, foundation model, agent loop, dan RAG yang tetap bisa dipercaya.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 35 menit</span><span><i class="fas fa-list-check"></i> 5 skenario</span><b>Studi Kasus</b></div>
+                    </div>
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow latihan Konsep AI Modern">
+                </section>
+
+                <section class="lesson-material-panel">
+                    <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
+                        <a href="#/participant-ai-modern"><i class="fas fa-book-open"></i> Materi</a>
+                        <a href="#/participant-ai-modern-practice" class="active"><i class="fas fa-pen-to-square"></i> Latihan</a>
+                        <a href="#/participant-ai-modern-quiz"><i class="far fa-clipboard"></i> Kuis</a>
+                        <a href="#/participant-ai-modern-discussion"><i class="far fa-message"></i> Diskusi</a>
+                    </div>
+
+                    <article class="lesson-article">
+                        <div class="ml-section-head">
+                            <span>Practice Lab</span>
+                            <h2>Desain Sistem AI Modern</h2>
+                            <p>Jawab dengan alasan singkat dan konkret. Jawaban tersimpan di browser dengan key <code>heraiAiModernPractice</code>.</p>
+                        </div>
+
+                        <form id="aiModernPracticeForm" class="practice-response-form ml-practice-form">
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>1</span>
+                                    <div>
+                                        <h3>Transformer untuk konteks panjang</h3>
+                                        <p>Tim ingin membuat assistant yang membaca riwayat chat peserta dan merangkum kebutuhan belajar tanpa kehilangan konteks penting.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Komponen yang kamu pilih</span>
+                                    <select name="contextArchitecture">
+                                        <option value="">Pilih pendekatan</option>
+                                        <option value="transformer">Transformer dengan context window cukup panjang</option>
+                                        <option value="retrieval">Transformer plus retrieval dokumen relevan</option>
+                                        <option value="summary">Ringkasan bertahap plus retrieval</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Alasan desainmu</span>
+                                    <textarea name="contextReason" rows="4" placeholder="Jelaskan peran attention, batas context window, dan kapan perlu retrieval atau ringkasan."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="contextReason" data-feedback="Jawaban kuat membedakan kemampuan transformer membaca konteks dan batas praktis context window." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>2</span>
+                                    <div>
+                                        <h3>Foundation model vs model khusus</h3>
+                                        <p>HerAI butuh fitur tanya jawab umum, tetapi juga harus paham kurikulum internal fellowship.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Strategi adaptasi model</span>
+                                    <textarea name="foundationStrategy" rows="5" placeholder="Bandingkan prompt engineering, RAG, fine-tuning ringan, dan model khusus dari nol."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="foundationStrategy" data-feedback="Untuk pengetahuan internal yang sering berubah, RAG biasanya lebih realistis daripada melatih ulang model dari nol." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>3</span>
+                                    <div>
+                                        <h3>Agent loop dengan guardrail</h3>
+                                        <p>Sebuah agent boleh membuka kalender, membuat draft pesan mentor, dan menyarankan tugas belajar.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Rancang loop agent</span>
+                                    <textarea name="agentLoop" rows="5" placeholder="Tuliskan observe, plan, act, check, dan human approval untuk aksi berisiko."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="agentLoop" data-feedback="Agent modern perlu pembatas: izin tool, validasi hasil, logging, dan approval untuk tindakan sensitif." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>4</span>
+                                    <div>
+                                        <h3>Mengurangi halusinasi dengan RAG</h3>
+                                        <p>Assistant sering memberi jawaban yakin, padahal dokumen kebijakan fellowship sudah berubah.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Pipeline RAG yang kamu usulkan</span>
+                                    <textarea name="ragPipeline" rows="5" placeholder="Jelaskan chunking, embedding, retrieval, reranking, citation, dan fallback ketika sumber tidak ditemukan."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="ragPipeline" data-feedback="RAG yang baik bukan hanya mengambil dokumen, tetapi juga memaksa jawaban berbasis sumber dan punya fallback." hidden></p>
+                            </article>
+
+                            <article class="practice-card ml-practice-card">
+                                <div class="ml-card-top">
+                                    <span>5</span>
+                                    <div>
+                                        <h3>Evaluasi sistem AI modern</h3>
+                                        <p>Produk sudah terlihat lancar di demo, tetapi belum terbukti aman untuk dipakai banyak peserta.</p>
+                                    </div>
+                                </div>
+                                <label>
+                                    <span>Metrik dan uji yang diperlukan</span>
+                                    <textarea name="evaluationPlan" rows="5" placeholder="Sebutkan factuality, groundedness, latency, cost, safety, human review, dan regression test prompt."></textarea>
+                                </label>
+                                <p class="ml-feedback" data-feedback-for="evaluationPlan" data-feedback="Evaluasi perlu mencakup kualitas jawaban, grounding sumber, biaya, latency, dan risiko safety." hidden></p>
+                            </article>
+
+                            <div class="ml-save-panel">
+                                <div>
+                                    <h3>Simpan Latihan</h3>
+                                    <p id="aiModernPracticeStatus" class="practice-status">Jawaban akan tersimpan di browsermu.</p>
+                                </div>
+                                <div class="practice-action-row">
+                                    <button type="button" data-practice-save><i class="fas fa-floppy-disk"></i> Simpan Jawaban</button>
+                                    <button type="button" data-practice-edit><i class="fas fa-pen"></i> Edit</button>
+                                    <button type="button" data-practice-delete><i class="far fa-trash-can"></i> Hapus</button>
+                                </div>
+                            </div>
+                        </form>
+                    </article>
+
+                    <footer class="lesson-nav-footer">
+                        <a href="#/participant-ai-modern"><i class="fas fa-chevron-left"></i> Kembali ke Materi</a>
+                        <a href="#/participant-ai-modern-quiz">Lanjut Kuis <i class="fas fa-arrow-right"></i></a>
+                    </footer>
+                </section>
+            </div>
+
+            <aside class="lesson-right-panel">
+                <section class="module-side-card lesson-progress-card">
+                    <h2>Progres Modul</h2>
+                    <div class="lesson-progress-mini"><b style="--value:50%"></b><strong>50%</strong></div>
+                    <p>Latihan mengubah konsep AI modern menjadi rancangan sistem nyata.</p>
+                    <a href="#/participant-ai-modern-quiz">Buka Kuis</a>
+                </section>
+                <section class="module-side-card lesson-list-card">
+                    <h2>Flow Belajar</h2>
+                    <ol>
+                        <li class="completed"><span>1</span><a href="#/participant-ai-modern">Materi</a><i class="fas fa-circle-check"></i></li>
+                        <li class="active"><span>2</span><a href="#/participant-ai-modern-practice">Latihan</a><i class="far fa-circle-play"></i></li>
+                        <li><span>3</span><a href="#/participant-ai-modern-quiz">Kuis</a><i class="far fa-circle"></i></li>
+                        <li><span>4</span><a href="#/participant-ai-modern-discussion">Diskusi</a><i class="far fa-circle"></i></li>
+                    </ol>
+                </section>
+            </aside>
+        </div>
+    </main>
+</section>

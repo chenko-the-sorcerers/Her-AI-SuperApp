@@ -48,9 +48,9 @@ const router = {
         
         "/participant-under-development": "/pages/frontend/fellow-dashboard/under-development.html",
         "/participant-ai-modern": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/materi.html",
-        "/participant-ai-modern-practice": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-modern-quiz": "/pages/frontend/fellow-dashboard/under-development.html",
-        "/participant-ai-modern-discussion": "/pages/frontend/fellow-dashboard/under-development.html",
+        "/participant-ai-modern-practice": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/latihan.html",
+        "/participant-ai-modern-quiz": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/kuis.html",
+        "/participant-ai-modern-discussion": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/diskusi.html",
         "/participant-mentor": "/pages/frontend/fellow-dashboard/mentor.html",
         "/participant-tasks": "/pages/frontend/fellow-dashboard/tasks.html",
         "/participant-projects": "/pages/frontend/fellow-dashboard/projects.html",
@@ -612,9 +612,18 @@ const router = {
                         window.initAiPythonDiscussion();
                     }
                 } else if (path.startsWith("/participant-ai-modern") && typeof window.initFellowDashboardPage === "function") {
-                    window.initFellowDashboardPage();
+                    window.initFellowDashboardPage("modules");
                     if (path === "/participant-ai-modern" && typeof window.initAiModernMateri === "function") {
                         window.initAiModernMateri();
+                    }
+                    if (path === "/participant-ai-modern-practice" && typeof window.initAiModernBasic === "function") {
+                        window.initAiModernBasic();
+                    }
+                    if (path === "/participant-ai-modern-quiz" && typeof window.initAiModernQuiz === "function") {
+                        window.initAiModernQuiz();
+                    }
+                    if (path === "/participant-ai-modern-discussion" && typeof window.initAiModernDiscussion === "function") {
+                        window.initAiModernDiscussion();
                     }
                 } else if ((path === "/participant-ai-lab-machine-learning" || path.startsWith("/participant-ai-lab-ml")) && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
