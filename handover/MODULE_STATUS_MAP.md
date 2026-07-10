@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
+**Status dokumen:** update setelah scaffold Reasoning diperkaya, full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, migrasi Machine Learning full content, dan refactor filesystem/routing final
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -20,10 +20,15 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 Commit lokal terbaru:
 
 ```text
-280c087 refactor: standardize curriculum placeholders
+b33c1b4 feat: enrich ai reasoning scaffold
 ```
 
 Yang sudah dibuat pada checkpoint terbaru:
+
+- Reasoning tetap memakai `course-placeholder.html`, tetapi kontennya diperkaya melalui `COURSE_SCAFFOLDS`.
+- Empat submateri Reasoning aktif pada scaffold: `how-ai-reasons`, `planning-and-decomposition`, `chain-of-thought`, dan `tool-use`.
+- Setiap submateri memiliki Materi, Latihan, Kuis, dan Diskusi; overview memuat tujuan belajar, alur terintegrasi, studi kasus, checklist, dan empat referensi arXiv.
+- Renderer rich bersifat opsional; scaffold lain yang hanya memakai schema string lama tetap dirender dengan fallback sebelumnya.
 
 - `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js` menjadi manifest tunggal untuk semua course/track/module yang belum final.
 - Math for AI dihapus dari manifest scaffold karena sudah aktif final di folder canonical.
@@ -66,7 +71,7 @@ Course utama yang terlihat di katalog peserta, dikelompokkan sesuai category/dom
 
 | Category / Domain | Course | Status | Isi utama |
 |---|---|---|---|
-| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif + scaffold | Pengantar AI, Python untuk AI, Konsep AI Modern aktif; Reasoning, Evaluation, Evolution of AI scaffold |
+| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif + scaffold | Pengantar AI, Python untuk AI, Konsep AI Modern aktif; Reasoning scaffold diperkaya; Evaluation dan Evolution of AI scaffold dasar |
 | Foundation & Core AI | Math for AI | Aktif | Overview, 7 lesson, latihan, kuis, diskusi |
 | Foundation & Core AI | Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
 | Foundation & Core AI | Deep Learning | Scaffold aktif | Neural Network Basics, Training & Backpropagation, CNN/RNN Overview, Transformer Basics, Regularization |
@@ -179,7 +184,7 @@ pages/frontend/fellow-dashboard/
 | 01 - Pengantar AI | Aktif | Template/basic | Basic | Basic | `settings.js` | Route sub-topik memakai `lesson.html` |
 | 02 - Python untuk AI | Aktif | Aktif, Pyodide | Aktif | Basic | `ai-python-basic.js` | Modul paling interaktif |
 | 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
-| 04 - Reasoning | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-reasoning`, belum punya file final |
+| 04 - Reasoning | Scaffold diperkaya | Scaffold diperkaya | Scaffold diperkaya | Scaffold diperkaya | `course-placeholder.js` | Empat submateri lengkap di manifest; route tetap `#/participant-ai-reasoning`, belum punya file final |
 | 05 - Evaluation | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evaluation`, belum punya file final |
 | 06 - Evolution of AI | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evolution`, belum punya file final |
 
@@ -334,7 +339,7 @@ Catatan activity scaffold:
 
 | Route | Course/Track |
 |---|---|
-| `/participant-ai-reasoning` | Reasoning module scaffold |
+| `/participant-ai-reasoning` | Reasoning scaffold aktif dengan konten diperkaya |
 | `/participant-ai-evaluation` | Evaluation module scaffold |
 | `/participant-ai-evolution` | Evolution of AI module scaffold |
 | `/participant-ai-lab-gen` | Generative AI |

@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 10 Juli 2026 (Full Curriculum Placeholder Scaffold + Aktivasi Math for AI + activity final Konsep AI Modern)
+**Tanggal:** 10 Juli 2026 (Scaffold Reasoning Diperkaya + Full Curriculum Placeholder Scaffold)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -24,10 +24,11 @@ Wajib baca dulu:
 7. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Konteks terbaru:
-- Commit checkpoint terakhir: 280c087 refactor: standardize curriculum placeholders.
+- Commit checkpoint fitur terakhir: b33c1b4 feat: enrich ai reasoning scaffold.
 - Route checker terakhir: Total 110, 0 failed.
 - Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
-- Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.
+- Route Reasoning tetap scaffold tetapi kontennya sudah diperkaya dengan empat submateri dan seluruh activity.
+- Evaluation dan Evolution of AI masih memakai scaffold dasar.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
@@ -40,7 +41,7 @@ node scripts/check-participant-routes.mjs
 git diff --check
 
 Tugas utama berikutnya:
-1. Lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
+1. Review Reasoning bersama tim kurikulum atau lanjutkan Evaluation, Evolution, dan Generative AI dengan aman lewat COURSE_SCAFFOLDS.
 2. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
 3. Setelah perubahan, wajib update folder handover:
    - HANDOVER_UPDATE.md
@@ -100,7 +101,7 @@ Foundation & Core AI
 │   ├── Pengantar AI             -> AKTIF
 │   ├── Python untuk AI          -> AKTIF
 │   ├── Konsep AI Modern         -> AKTIF
-│   ├── Reasoning                -> SCAFFOLD AKTIF
+│   ├── Reasoning                -> SCAFFOLD AKTIF DIPERKAYA (4 submateri)
 │   ├── Evaluation               -> SCAFFOLD AKTIF
 │   └── Evolution of AI          -> SCAFFOLD AKTIF
 ├── Math for AI                  -> AKTIF
@@ -218,7 +219,7 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
 4. Modul 3a (Konsep AI Modern) sudah aktif untuk materi, latihan, kuis, dan diskusi.
 5. Math for AI sudah aktif dari draft Nazril dengan overview, lesson, latihan, kuis, dan diskusi.
-6. Reasoning, Evaluation, dan Evolution of AI sudah punya route scaffold; jangan balikkan ke button non-route atau under-development.
+6. Reasoning sudah menjadi scaffold aktif diperkaya dengan empat submateri; Evaluation dan Evolution of AI tetap scaffold dasar. Jangan balikkan route tersebut ke button non-route atau under-development.
 7. Generative AI punya file overview; route utama masih scaffold/placeholder sampai konten final diaktifkan.
 8. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
 9. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
