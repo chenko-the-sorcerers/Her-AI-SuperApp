@@ -1,9 +1,9 @@
 # Merge Guide - Reasoning Team
 
-**Tanggal:** 10 Juli 2026
-**Tujuan:** panduan merge pekerjaan tim yang mengerjakan `Reasoning` dengan branch yang sudah berisi rombak final Pengantar AI dan Python untuk AI.
+**Tanggal:** 11 Juli 2026
+**Tujuan:** panduan merge atau finalisasi lanjutan pekerjaan `Reasoning` dengan branch yang sudah berisi rombak final Pengantar AI, Python untuk AI, merge Reasoning scaffold, dan audit final.
 
-Dokumen ini dibuat karena pekerjaan lokal terbaru menyentuh banyak area AI Fundamentals. Tim Reasoning boleh merge, tetapi harus menjaga perubahan final yang sudah masuk.
+Dokumen ini dibuat karena pekerjaan lokal terbaru menyentuh banyak area AI Fundamentals. Reasoning scaffold dari `origin/design` sudah di-merge, tetapi tim Reasoning masih bisa melanjutkan finalisasi. Semua lanjutan wajib menjaga perubahan final yang sudah masuk.
 
 ---
 
@@ -11,6 +11,10 @@ Dokumen ini dibuat karena pekerjaan lokal terbaru menyentuh banyak area AI Funda
 
 Checkpoint lokal terbaru:
 
+- Baseline lokal terbaru:
+  - `c93a5fb fix: audit python module polish`
+  - `b0c6829 merge: integrate reasoning scaffold updates`
+  - `c1870d4 feat: finalize python ai module and merge handover`
 - `01 - Pengantar AI` sudah final runtime.
   - 5 chapter padat.
   - Latihan audit sosio-teknis.
@@ -26,12 +30,28 @@ Checkpoint lokal terbaru:
   - Diskusi Python untuk AI.
   - Code block materi memakai background HerAI pink-light, bukan terminal hitam.
 - `AGENTS.md` sudah diperbarui dengan aturan UI baru.
-- `04 - Reasoning` di repo ini masih scaffold aktif lewat route `#/participant-ai-reasoning`.
+- `04 - Reasoning` di repo ini sudah scaffold lengkap lewat route `#/participant-ai-reasoning`.
+  - 4 submateri: `how-ai-reasons`, `planning-and-decomposition`, `chain-of-thought`, `tool-use`.
+  - 17 latihan.
+  - 25 soal.
+  - 4 diskusi.
+  - Belum canonical final/folder `04-reasoning`.
+- Audit final sudah mengetes route Reasoning overview dan activity query `materi`, `latihan`, `kuis`, `diskusi` tanpa horizontal overflow.
 
 Route checker terakhir:
 
 ```text
 Total: 110 | 110 passed | 0 failed
+```
+
+Verifikasi audit terakhir juga lulus:
+
+```text
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/settings.js
+node --check js/frontend/fellow-dashboard/ai-python-basic.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+git diff --check
 ```
 
 ---

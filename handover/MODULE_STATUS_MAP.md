@@ -1,8 +1,8 @@
 # Peta Status Kurikulum HerAI
 
-**Tanggal:** 10 Juli 2026
+**Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, rombak final Pengantar AI, rombak final Python untuk AI, dan polish UI kuis/code block.
+**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -17,18 +17,22 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ## Checkpoint Terbaru
 
-Checkpoint final terbaru 10 Juli 2026:
+Checkpoint final terbaru 11 Juli 2026:
 
 - `01 - Pengantar AI` aktif final terbaru. Kuisnya sekarang full-card clickable, single attempt, dan locked state jelas. Jawaban benar tetap tidak ditampilkan setelah submit.
-- `02 - Python untuk AI` aktif final terbaru dengan 13 chapter runtime, panel `Belajar Aktif` per chapter, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal full-card clickable, dan diskusi final.
+- `02 - Python untuk AI` aktif final terbaru dengan 13 chapter runtime, panel `Belajar Aktif` per chapter, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal full-card clickable, dan diskusi final. Audit terbaru memperbaiki string newline pada mini project latihan nomor 7 agar Run Code Pyodide berhasil.
 - `AGENTS.md` sudah memuat aturan baru: course tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink harus konsisten.
 - `04 - Reasoning` sudah masuk dari `origin/design` sebagai scaffold lengkap: 4 submateri, 17 latihan, 25 soal, dan 4 diskusi. Route tetap `#/participant-ai-reasoning`; belum canonical final.
-- Verifikasi terakhir lulus: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `node --check js/frontend/fellow-dashboard/ai-python-basic.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` dengan `Total: 110 | 110 passed | 0 failed`.
+- Merge Reasoning sudah committed di `b0c6829`; audit/fix terbaru sudah committed di `c93a5fb`.
+- Browser smoke test sudah mencakup materi Python, practice Pyodide, kuis Python, kuis Pengantar AI, diskusi Python, dan Reasoning scaffold/activity query. Tidak ada horizontal overflow pada desktop/mobile route yang diuji.
+- Verifikasi terakhir lulus: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `node --check js/frontend/fellow-dashboard/ai-python-basic.js`, `node --check js/frontend/fellow-dashboard/course-placeholder.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` dengan `Total: 110 | 110 passed | 0 failed`.
 
 Commit lokal terbaru:
 
 ```text
-6eb03f8 feat: expand ai introduction lesson content
+c93a5fb fix: audit python module polish
+b0c6829 merge: integrate reasoning scaffold updates
+c1870d4 feat: finalize python ai module and merge handover
 ```
 
 Checkpoint final sesi Pengantar AI:

@@ -1,8 +1,9 @@
 # HerAI Development Handover & Checkpoint
 
-**Tanggal:** 10 Juli 2026
+**Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** merge Reasoning selesai di branch lokal, belum push
+**Status:** merge Reasoning selesai, audit menyeluruh selesai, belum push
+**Commit audit terbaru:** `c93a5fb fix: audit python module polish`
 **Commit merge Reasoning lokal:** `b0c6829 merge: integrate reasoning scaffold updates`
 **Commit fitur terakhir sebelum merge:** `c1870d4 feat: finalize python ai module and merge handover`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
@@ -18,9 +19,52 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ---
 
-## Checkpoint Final Terbaru - Python, Quiz UI, Design Rules, dan Merge Reasoning
+## Checkpoint Final Terbaru - Audit Setelah Merge
 
-Status terbaru 10 Juli 2026 setelah follow-up user:
+Status terbaru 11 Juli 2026 setelah audit menyeluruh:
+
+- Branch lokal `design` sudah berisi merge Reasoning dari `origin/design` dan patch audit. Status terakhir sebelum push: lokal `design` ahead dari `origin/design`.
+- Commit terbaru yang harus dianggap baseline lokal:
+  - `c93a5fb fix: audit python module polish`
+  - `b0c6829 merge: integrate reasoning scaffold updates`
+  - `c1870d4 feat: finalize python ai module and merge handover`
+- Konflik merge sebelumnya hanya terjadi di dokumen handover dan sudah diselesaikan. Scan conflict marker `<<<<<<<|>>>>>>>` sudah bersih.
+- Audit menemukan dan memperbaiki:
+  - contoh kode mini project Python latihan nomor 7 yang sebelumnya pecah karena newline literal di dalam string Python;
+  - warna breadcrumb separator `#8e91a0` menjadi `#6f7282` sesuai AGENTS;
+  - `border-radius: 0 0 14px 14px` pada `.py-output` menjadi `border-radius: 14px`;
+  - status handover lama yang belum mencerminkan merge Reasoning selesai.
+- Browser smoke test sudah dilakukan pada:
+  - `#/participant-ai-python`;
+  - `#/participant-ai-python-practice`;
+  - `#/participant-ai-python-quiz`;
+  - `#/participant-ai-intro-quiz`;
+  - `#/participant-ai-python-discussion`;
+  - `#/participant-ai-reasoning`;
+  - query Reasoning `module=...&activity=materi|latihan|kuis|diskusi`.
+- Pyodide berhasil load, Run Code latihan pertama berhasil, Run Code mini project preprocessing teks berhasil, output terminal muncul, dan save latihan masuk `heraiAiPythonPractice`.
+- Kuis Pengantar AI dan Python submit berhasil, skor tersimpan, dan single attempt locked state aktif.
+- Diskusi Python berhasil posting dan tersimpan di `heraiAiPythonDiscussion`.
+- Reasoning scaffold lengkap berhasil render: 4 submateri, 17 latihan, 25 soal kuis, 4 diskusi; reveal latihan dan check quiz berjalan.
+- Mobile overflow smoke test pada route utama Python, Pengantar AI quiz, dan Reasoning tidak menemukan horizontal overflow.
+- Console browser hanya menampilkan `ERR_CONNECTION_REFUSED` ke `127.0.0.1:8092/api/participant-portal/settings` karena API settings lokal tidak berjalan saat smoke test; tidak ditemukan error runtime modul Python/quiz/Reasoning.
+
+Verifikasi audit terakhir:
+
+```text
+node --check js/router.js -> passed
+node --check js/frontend/fellow-dashboard/settings.js -> passed
+node --check js/frontend/fellow-dashboard/ai-python-basic.js -> passed
+node --check js/frontend/fellow-dashboard/course-placeholder.js -> passed
+git diff --check -> passed
+node scripts/check-participant-routes.mjs -> Total: 110 | 110 passed | 0 failed
+rg -n '<<<<<<<|>>>>>>>' . -> no matches
+scan scoped design rule -> no matches for border-radius: 0, #8e91a0, #7c3aed, forbidden UI emoji
+```
+
+## Checkpoint Sebelumnya - Python, Quiz UI, Design Rules, dan Merge Reasoning
+
+Status 10 Juli 2026 setelah follow-up user:
 
 - Modul `02 - Python untuk AI` sudah final runtime dengan 13 chapter dari `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md`.
 - Materi Python tidak lagi hanya teks panjang: setiap chapter mendapat panel `Belajar Aktif` melalui `js/frontend/fellow-dashboard/ai-python-basic.js`, berisi quick check, feedback langsung, mini challenge, dan tombol `Buka Playground`.
@@ -653,9 +697,14 @@ Wajib baca dulu:
 7. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Konteks terbaru:
-- Commit checkpoint terakhir: 6eb03f8 feat: expand ai introduction lesson content.
-- Ada perubahan lokal setelah commit: Pengantar AI dikonsolidasikan menjadi 5 chapter padat, penomoran Chapter 3-5 diperbaiki, `materi/pengantar-ai.md` menjadi snapshot terbaru, dan dokumen handover sudah diperbarui.
-- Route checker terakhir setelah rombak Pengantar AI: Total 110, 0 failed.
+- Commit checkpoint lokal terbaru: c93a5fb fix: audit python module polish.
+- Commit merge Reasoning: b0c6829 merge: integrate reasoning scaffold updates.
+- Commit final Python/Pengantar AI sebelum merge: c1870d4 feat: finalize python ai module and merge handover.
+- Pengantar AI dikonsolidasikan menjadi 5 chapter padat, penomoran Chapter 3-5 diperbaiki, `materi/pengantar-ai.md` menjadi snapshot terbaru, dan dokumen handover sudah diperbarui.
+- Python untuk AI sudah final 13 chapter, panel Belajar Aktif, Pyodide practice, quiz 15 soal, dan diskusi final.
+- Reasoning sudah masuk sebagai scaffold lengkap: 4 submateri, 17 latihan, 25 soal, 4 diskusi.
+- Audit final memperbaiki mini project Python latihan nomor 7 dan polish CSS sesuai AGENTS.
+- Route checker terakhir setelah audit final: Total 110, 0 failed.
 - Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
 - Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.

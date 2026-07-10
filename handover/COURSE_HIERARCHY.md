@@ -1,8 +1,8 @@
 # HerAI Course Hierarchy
 
-**Tanggal:** 10 Juli 2026
+**Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, dan polish UI kuis/code block.
+**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
 
@@ -62,11 +62,15 @@ Checkpoint final terbaru:
 - `04 - Reasoning` sudah masuk dari `origin/design` sebagai scaffold lengkap. Route tetap `#/participant-ai-reasoning`; belum dipindah ke folder canonical final.
 - Dokumen merge khusus Reasoning tetap dipertahankan sebagai referensi: `handover/MERGE_GUIDE_REASONING_TEAM.md`.
 - Tidak ada perubahan folder canonical untuk Python atau Pengantar AI.
+- Audit final setelah merge tidak mengubah taxonomy, route, folder canonical, atau hierarchy produk. Perbaikan hanya pada polish CSS, contoh kode latihan Python, dan status handover.
+- Baseline lokal terbaru sebelum push: `c93a5fb fix: audit python module polish`.
 
 Commit lokal terbaru:
 
 ```text
-6eb03f8 feat: expand ai introduction lesson content
+c93a5fb fix: audit python module polish
+b0c6829 merge: integrate reasoning scaffold updates
+c1870d4 feat: finalize python ai module and merge handover
 ```
 
 Checkpoint final sesi Pengantar AI:

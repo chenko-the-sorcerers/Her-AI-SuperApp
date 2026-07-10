@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 10 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning)
+**Tanggal:** 11 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning, Audit Final)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -25,8 +25,13 @@ Wajib baca dulu:
 8. handover/MERGE_GUIDE_REASONING_TEAM.md
 
 Konteks terbaru:
-- Commit checkpoint terakhir: 6eb03f8 feat: expand ai introduction lesson content.
-- Ada perubahan lokal setelah commit: materi final Pengantar AI sudah masuk runtime dan `materi/pengantar-ai.md` sudah menjadi snapshot terbaru.
+- Commit checkpoint lokal terbaru: c93a5fb fix: audit python module polish.
+- Commit merge Reasoning: b0c6829 merge: integrate reasoning scaffold updates.
+- Commit final Python/Pengantar AI sebelum merge: c1870d4 feat: finalize python ai module and merge handover.
+- Branch lokal `design` sudah berisi merge Reasoning dan audit final; belum push kecuali user mengatakan sudah push.
+- Konflik merge sebelumnya hanya terjadi di dokumen handover dan sudah diselesaikan. Conflict marker sudah discan bersih.
+- Audit final memperbaiki mini project Python latihan nomor 7, polish CSS sesuai AGENTS, dan status handover.
+- Materi final Pengantar AI sudah masuk runtime dan `materi/pengantar-ai.md` sudah menjadi snapshot terbaru.
 - Checkpoint final sesi terbaru: Pengantar AI sempat diperluas menjadi 10 topik, lalu dikonsolidasikan menjadi 5 chapter padat karena user lebih memilih chapter sedikit dengan isi panjang.
 - Update setelah commit 6eb03f8: penomoran runtime sudah diperbaiki. Chapter 3 sekarang 3.1-3.12, Chapter 4 sekarang 4.1-4.12, Chapter 5 sekarang 5.1-5.13.
 - Chapter 3-5 diperdalam lagi dengan studi kasus, rubrik risiko, template audit, contoh audit, dan matriks penerapan.
@@ -70,6 +75,14 @@ Konteks terbaru:
   - Code block materi Python memakai background HerAI pink-light, bukan terminal hitam.
   - AGENTS.md diperbarui agar aturan ini wajib dipakai agent berikutnya.
 - Course Reasoning dari `origin/design` sudah masuk sebagai scaffold lengkap. Route tetap `#/participant-ai-reasoning`; belum canonical final.
+- Reasoning scaffold sudah dites via browser: 4 submateri, 17 latihan, 25 soal, 4 diskusi; activity materi/latihan/kuis/diskusi render, reveal latihan dan check quiz berjalan.
+- Smoke test browser terakhir:
+  - Python materi: 13 chapter, sidebar, progress, tombol Playground, panel Belajar Aktif.
+  - Python practice: Pyodide siap, Run Code berhasil, mini project nomor 7 berhasil, save latihan masuk localStorage.
+  - Python quiz: 15 soal submit, skor tersimpan, single attempt lock.
+  - Pengantar AI quiz: 10 soal submit, skor tersimpan, single attempt lock.
+  - Python discussion: posting tersimpan di `heraiAiPythonDiscussion`.
+  - Reasoning: overview dan semua activity query render tanpa overflow.
 - File runtime Python yang sudah menjadi target utama:
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/materi.html`
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/latihan.html`
@@ -108,6 +121,7 @@ Tugas utama berikutnya:
    - HANDOVER_COURSE_FILESYSTEM_REFACTOR.md kalau routing/folder berubah
 11. Jalankan verifikasi ulang.
 12. Commit lokal. Jangan push tanpa izin.
+13. Jika kondisi branch belum berubah, baseline lokal aman terakhir adalah `c93a5fb`.
 
 Mulai dengan membaca file handover, lalu buat rencana singkat berdasarkan task yang diberikan user.
 ```
@@ -256,8 +270,11 @@ Business & Industry Applications
 └── AI for Geospatial            -> SCAFFOLD AKTIF
 
 Catatan penting:
-- Checkpoint lokal terbaru: `6eb03f8 feat: expand ai introduction lesson content`.
-- Ada perubahan lokal setelah commit `6eb03f8`: Pengantar AI dikonsolidasikan menjadi 5 chapter padat, penomoran Chapter 3-5 diperbaiki, dan `materi/pengantar-ai.md` adalah snapshot terbaru.
+- Checkpoint lokal terbaru: `c93a5fb fix: audit python module polish`.
+- Merge Reasoning sudah masuk di `b0c6829 merge: integrate reasoning scaffold updates`; final Python/Pengantar AI sebelum merge ada di `c1870d4 feat: finalize python ai module and merge handover`.
+- Pengantar AI dikonsolidasikan menjadi 5 chapter padat, penomoran Chapter 3-5 diperbaiki, dan `materi/pengantar-ai.md` adalah snapshot terbaru.
+- Python untuk AI sudah final 13 chapter, panel Belajar Aktif, Pyodide practice, quiz 15 soal, dan diskusi final.
+- Audit final memperbaiki mini project Python latihan nomor 7 dan polish CSS sesuai AGENTS.
 - Folder `materi/` bukan folder runtime, bukan folder canonical course, dan bukan route peserta.
 - Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
 - Machine Learning adalah course di category Foundation & Core AI, sejajar dengan AI Fundamentals & Advanced dan Math for AI.

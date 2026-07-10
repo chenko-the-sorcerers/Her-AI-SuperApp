@@ -1,8 +1,10 @@
 # Checkpoint Refactor Filesystem Course Catalog
 
-**Tanggal:** 10 Juli 2026  
-**Branch:** `design`  
-**Status:** ada perubahan lokal belum commit, belum push
+**Tanggal:** 11 Juli 2026
+**Branch:** `design`
+**Status:** merge Reasoning selesai, audit final selesai, belum push
+**Checkpoint audit terbaru:** `c93a5fb fix: audit python module polish`
+**Checkpoint merge Reasoning:** `b0c6829 merge: integrate reasoning scaffold updates`
 **Checkpoint aktif:** `3f238a7 refactor: move fellowship courses into dashboard hierarchy`
 **Checkpoint routing/UI terbaru:** `280c087 refactor: standardize curriculum placeholders`
 
@@ -12,7 +14,25 @@ Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar
 
 ## Update Terbaru Setelah Refactor Filesystem
 
-Update lokal terbaru setelah checkpoint `6eb03f8`:
+Update lokal terbaru setelah checkpoint `c93a5fb`:
+
+- Merge Reasoning dari `origin/design` sudah selesai dan committed.
+- Audit menyeluruh setelah merge sudah selesai dan committed.
+- Tidak ada perubahan folder canonical, route utama, taxonomy course, atau struktur catalog dari audit ini.
+- Fix audit yang masuk:
+  - contoh kode mini project Python latihan nomor 7 diperbaiki agar valid saat dijalankan Pyodide;
+  - `.py-output` tidak lagi memakai `border-radius: 0`;
+  - breadcrumb separator tidak lagi memakai warna muted terlalu terang `#8e91a0`;
+  - status handover disinkronkan dengan kondisi merge selesai.
+- Verifikasi terakhir:
+  - `node --check js/router.js`;
+  - `node --check js/frontend/fellow-dashboard/settings.js`;
+  - `node --check js/frontend/fellow-dashboard/ai-python-basic.js`;
+  - `node --check js/frontend/fellow-dashboard/course-placeholder.js`;
+  - `git diff --check`;
+  - `node scripts/check-participant-routes.mjs` -> `Total: 110 | 110 passed | 0 failed`.
+
+Update lokal sebelumnya setelah checkpoint `6eb03f8`:
 
 - Follow-up terbaru setelah rombak Python:
   - `AGENTS.md` diperbarui dengan aturan UI course: materi tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink wajib konsisten.
@@ -31,7 +51,7 @@ Update lokal terbaru setelah checkpoint `6eb03f8`:
 - Request terbaru `02 - Python untuk AI` sudah dikerjakan di folder canonical `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/`.
 - Struktur Python runtime sekarang 13 chapter final, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal, dan diskusi final. Tidak ada route atau folder canonical baru.
 - Snapshot konten Python terbaru ada di `materi/python-untuk-ai.md`.
-- Route Reasoning masih scaffold aktif di repo ini. Karena tim lain sedang mengerjakan Reasoning, merge harus menjaga folder canonical dan route final yang sudah ada. Lihat `handover/MERGE_GUIDE_REASONING_TEAM.md`.
+- Route Reasoning sekarang scaffold lengkap dari hasil merge `origin/design`. Jika tim lain melanjutkan Reasoning menjadi final/canonical, merge harus menjaga perubahan final Pengantar AI/Python dan mengikuti `handover/MERGE_GUIDE_REASONING_TEAM.md`.
 
 Checkpoint detail sesi rombak Pengantar AI:
 
