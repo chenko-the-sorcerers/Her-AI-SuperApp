@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
+**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, dan rombak final materi Pengantar AI
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -22,6 +22,55 @@ Commit lokal terbaru:
 ```text
 280c087 refactor: standardize curriculum placeholders
 ```
+
+Checkpoint final sesi Pengantar AI:
+
+- User meminta materi Pengantar AI tidak dikompres dan ingin semua bagian dibuat lebih rinci.
+- Daftar materi runtime Pengantar AI sudah diperluas dari 4 item menjadi 10 topik.
+- Semua topik Pengantar AI sekarang aktif melalui route yang sudah ada di `js/router.js`; tidak ada route baru.
+- `settings.js` memuat `introLessonRoutes` dan `generatedLessonContent` untuk seluruh topik.
+- `materi.html`, `latihan.html`, `kuis.html`, dan `diskusi.html` sudah disesuaikan dengan struktur 10 topik.
+- Snapshot terbaru ada di `materi/pengantar-ai.md`.
+- Verifikasi terakhir lulus:
+  - `node --check js/router.js`
+  - `node --check js/frontend/fellow-dashboard/settings.js`
+  - `git diff --check`
+  - `node scripts/check-participant-routes.mjs` -> `Total: 110 | 110 passed | 0 failed`
+- Next request user: lanjut ke materi `Pemrograman Python untuk AI`.
+
+Ringkasan checkpoint kerja sesi ini:
+
+- Scope utama: rombak final konten `01 - Pengantar AI`.
+- Materi sumber final: `materi/baru/pengantar-ai-baru.md`.
+- Baseline lama yang dibaca: `materi/lama/pengantar-ai.md`.
+- Snapshot terbaru yang dibuat/sinkron: `materi/pengantar-ai.md`.
+- Route dan folder canonical tidak berubah.
+- `js/router.js` tidak diubah.
+- Design system dan layout besar dipertahankan.
+- Pengantar AI sekarang berstatus `Aktif final terbaru`.
+
+Update lokal terbaru setelah commit tersebut:
+
+- Folder `materi/` dibuat sebagai area handoff konten non-runtime.
+- File `materi/pengantar-ai.md` disinkronkan sebagai snapshot terbaru materi `Pengantar AI`.
+- Materi final dari `materi/baru/pengantar-ai-baru.md` sudah masuk ke runtime Pengantar AI.
+- Runtime yang berubah: `materi.html`, `settings.js` bagian Pengantar AI, `latihan.html`, `kuis.html`, dan `diskusi.html`.
+- Tidak ada perubahan route, folder canonical, sidebar, topbar, breadcrumb, lesson tabs, right panel, atau footer nav.
+- Pengantar AI tetap berstatus aktif dan folder canonical tetap di `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/`.
+- Struktur topik Pengantar AI terbaru terdiri dari 10 topik: AI di Sekitar Kita; Definisi Modern AI; Software Biasa vs Sistem AI; Model Mental Cara Kerja AI; Training, Inferensi, dan Human Check; Peta Istilah AI, ML, DL, dan ANI; Penerapan AI dalam Kehidupan; Manfaat dan Keterbatasan AI; Bias, Halusinasi, Privasi, dan Black Box; Audit Sistem Sosio-Teknis.
+- Kuis Pengantar AI sekarang 10 soal single attempt; latihan menjadi proyek mini audit sistem sosio-teknis; diskusi memakai skenario bias rekrutmen, halusinasi hukum, dan optimasi navigasi.
+- Verifikasi setelah rombak Pengantar AI: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` lulus. Route checker: `Total: 110 | 110 passed | 0 failed`.
+
+Rincian perubahan Pengantar AI:
+
+| Area | Sebelum | Sekarang |
+|---|---|---|
+| Materi utama | Definisi umum, sejarah, contoh harian, AI/ML/DL | AI sebagai sistem prediktif, software biasa vs AI, contoh harian, kebiasaan berpikir kritis |
+| Topik lanjutan | Jenis & komponen AI, penerapan & masa depan, ringkasan | 9 topik lanjutan detail via `lesson.html`: definisi modern, software vs AI, model mental, training/inferensi, AI/ML/DL/ANI, penerapan, manfaat/batasan, risiko etis, audit |
+| Latihan | Refleksi ANI/AGI/hierarki | Audit sistem sosio-teknis harian |
+| Kuis | 5 soal | 10 soal single attempt |
+| Diskusi | Pertanyaan umum | Skenario bias rekrutmen, halusinasi hukum, dan optimasi navigasi |
+| Snapshot | `materi/lama/pengantar-ai.md` sebagai baseline lama | `materi/pengantar-ai.md` sebagai snapshot terbaru |
 
 Yang sudah dibuat pada checkpoint terbaru:
 
@@ -176,8 +225,8 @@ pages/frontend/fellow-dashboard/
 
 | Modul | Materi | Latihan | Kuis | Diskusi | Controller JS | Catatan |
 |---|---|---|---|---|---|---|
-| 01 - Pengantar AI | Aktif | Template/basic | Basic | Basic | `settings.js` | Route sub-topik memakai `lesson.html` |
-| 02 - Python untuk AI | Aktif | Aktif, Pyodide | Aktif | Basic | `ai-python-basic.js` | Modul paling interaktif |
+| 01 - Pengantar AI | Aktif final terbaru | Aktif, audit sosio-teknis | Aktif, 10 soal | Aktif, skenario etika | `settings.js` | Route sub-topik tetap memakai `lesson.html`; konten final sudah sinkron dengan `materi/pengantar-ai.md`; route/layout besar tidak berubah |
+| 02 - Python untuk AI | Aktif, next target review/rombak | Aktif, Pyodide | Aktif | Basic | `ai-python-basic.js` | Modul paling interaktif; next work user adalah lanjut memperbarui materi ini. Target awal: `02-python-untuk-ai/` dan `js/frontend/fellow-dashboard/ai-python-basic.js` |
 | 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
 | 04 - Reasoning | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-reasoning`, belum punya file final |
 | 05 - Evaluation | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evaluation`, belum punya file final |
@@ -370,6 +419,12 @@ Catatan activity scaffold:
 ## Developer Notes
 
 - Jika membuat modul baru, update `js/router.js` di tiga area: `routes`, `participantDashboardPages`, dan init hook di `handleRouting()`.
+- Jika merevisi materi Pengantar AI, jangan ubah route. Edit target utama:
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/materi.html`
+  - `js/frontend/fellow-dashboard/settings.js` bagian `generatedLessonContent`
+  - `latihan.html`, `kuis.html`, dan `diskusi.html` hanya jika activity ikut berubah
+- Gunakan `materi/pengantar-ai.md` sebagai baseline konten terbaru sebelum memasukkan revisi lanjutan.
+- Setelah revisi Pengantar AI, update ulang `materi/pengantar-ai.md` agar snapshot tetap sinkron dengan HTML/JS runtime.
 - Jika menambah CSS untuk Machine Learning, gunakan scope `.ai-ml-*` atau class `.ml-*` yang sudah scoped di halaman ML.
 - Jangan mengarahkan ulang route ML ke under-development lagi kecuali memang diminta.
 - Jangan mengubah route CV/NLP/Python/Math/GenAI saat mengerjakan ML.
@@ -385,9 +440,11 @@ Catatan activity scaffold:
   - `handover/PROMPT_AI_BARU.md`
   - `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` jika folder/routing filesystem berubah
 - Next step prioritas untuk tim penerus:
-  1. Lanjutkan Generative AI lewat `COURSE_SCAFFOLDS` bila konten belum final.
-  2. Aktifkan route final hanya kalau `materi`, `latihan`, `kuis`, dan `diskusi` sudah siap.
-  3. Jaga route final AI Modern, Math for AI, ML, Python, Pengantar AI, CV, dan NLP.
+  1. Jika user meminta revisi Pengantar AI, kerjakan secara scoped dengan baseline `materi/pengantar-ai.md`.
+  2. Jika user melanjutkan request terbaru, kerjakan `Python untuk AI` di `02-python-untuk-ai/` dan `js/frontend/fellow-dashboard/ai-python-basic.js`.
+  3. Jika task bukan Python untuk AI atau Pengantar AI, lanjutkan Generative AI lewat `COURSE_SCAFFOLDS` bila konten belum final.
+  4. Aktifkan route final hanya kalau `materi`, `latihan`, `kuis`, dan `diskusi` sudah siap.
+  5. Jaga route final AI Modern, Math for AI, ML, Python, Pengantar AI, CV, dan NLP.
 - Jalankan minimal:
 
 ```bash

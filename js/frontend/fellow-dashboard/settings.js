@@ -260,256 +260,627 @@
     }
 
     const introLessonRoutes = [
-        { path: '/participant-ai-intro', title: 'Pengantar & Sejarah AI', short: 'Intro & Sejarah' },
-        { path: '/participant-ai-types', title: 'Jenis & Komponen AI', short: 'Konsep AI' },
-        { path: '/participant-ai-applications', title: 'Penerapan & Masa Depan AI', short: 'Penerapan AI' },
-        { path: '/participant-ai-summary', title: 'Ringkasan Modul 1', short: 'Ringkasan' }
+        { path: '/participant-ai-intro', title: 'AI di Sekitar Kita', short: 'AI Sekitar Kita' },
+        { path: '/participant-ai-history', title: 'Definisi Modern AI', short: 'Definisi AI' },
+        { path: '/participant-ai-components', title: 'Software Biasa vs Sistem AI', short: 'Software vs AI' },
+        { path: '/participant-ai-types', title: 'Model Mental Cara Kerja AI', short: 'Cara Kerja AI' },
+        { path: '/participant-ai-pipeline', title: 'Training, Inferensi, dan Human Check', short: 'Training & Inferensi' },
+        { path: '/participant-ai-ml-dl', title: 'Peta Istilah AI, ML, DL, dan ANI', short: 'Peta Istilah' },
+        { path: '/participant-ai-applications', title: 'Penerapan AI dalam Kehidupan', short: 'Penerapan AI' },
+        { path: '/participant-ai-pros-cons', title: 'Manfaat dan Keterbatasan AI', short: 'Batasan AI' },
+        { path: '/participant-ai-ethics', title: 'Bias, Halusinasi, Privasi, dan Black Box', short: 'Risiko Etis' },
+        { path: '/participant-ai-summary', title: 'Audit Sistem Sosio-Teknis', short: 'Audit AI' }
     ];
 
     const generatedLessonContent = {
-        '/participant-ai-types': {
-            title: 'Jenis & Komponen AI',
-            description: 'Memahami tingkatan AI dan 3 fondasi utama pembentuk AI modern: data, algoritma, dan komputasi.',
-            duration: '45 menit',
+        '/participant-ai-history': {
+            title: 'Definisi Modern AI',
+            description: 'Meluruskan definisi AI agar tidak terjebak pada gambaran robot sadar diri atau fiksi ilmiah.',
+            duration: '35 menit',
+            tag: 'Fondasi',
+            content: `
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-compass"></i> Topik 2: Definisi Modern AI
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Menjelaskan AI secara akurat sebagai sistem berbasis mesin yang menghasilkan output dari input.
+                    </p>
+                </div>
+
+                <h3>2.1 Kenapa Definisi AI Perlu Diluruskan</h3>
+                <p>Banyak orang pertama kali mengenal AI dari film, novel, atau berita sensasional. Akibatnya, AI sering dibayangkan sebagai robot fisik yang punya emosi, kesadaran diri, atau niat tersembunyi. Gambaran itu menarik, tetapi kurang membantu untuk belajar AI yang dipakai hari ini.</p>
+                <p>Dalam praktik modern, AI jauh lebih sering berbentuk sistem prediktif yang bekerja di balik aplikasi. Ia menerima input, mencari pola, lalu menghasilkan output. Output itu bisa berupa rekomendasi video, label spam, terjemahan kalimat, ringkasan teks, skor risiko, atau saran rute.</p>
+
+                <div style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px; margin: 24px 0;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--fellow-text);"><i class="fas fa-quote-left" style="color: var(--fellow-pink);"></i> Definisi kerja yang dipakai modul ini</h4>
+                    <p style="margin: 0; color: var(--fellow-text);">AI adalah sistem berbasis mesin yang, untuk tujuan tertentu, menggunakan input untuk menyimpulkan cara menghasilkan output seperti prediksi, rekomendasi, konten, atau keputusan yang dapat memengaruhi lingkungan digital maupun fisik.</p>
+                </div>
+
+                <h3>2.2 Apa yang AI Lakukan dengan Baik</h3>
+                <p>Kekuatan utama AI bukan karena ia memahami dunia seperti manusia. Kekuatan utamanya ada pada kemampuan membaca pola dari data dalam skala besar. AI dapat menemukan keteraturan yang terlalu banyak, terlalu cepat, atau terlalu rumit untuk dicek manual.</p>
+                <ul style="line-height: 1.8; color: var(--fellow-text);">
+                    <li><strong>Mengenali pola:</strong> menemukan kemiripan dalam teks, gambar, suara, perilaku klik, atau transaksi.</li>
+                    <li><strong>Memprediksi kemungkinan:</strong> memperkirakan kata berikutnya, rute tercepat, risiko spam, atau minat pengguna.</li>
+                    <li><strong>Mengurutkan pilihan:</strong> memilih kandidat, video, produk, atau jawaban yang dianggap paling relevan.</li>
+                    <li><strong>Membantu keputusan:</strong> memberi sinyal awal yang masih perlu diperiksa manusia.</li>
+                </ul>
+
+                <h3>2.3 Apa yang AI Tidak Lakukan</h3>
+                <p>AI tidak otomatis memahami makna, nilai moral, konteks sosial, atau dampak keputusan seperti manusia. Ketika chatbot menulis jawaban rapi, itu bukan bukti bahwa ia benar. Ketika sistem memberi skor kandidat, itu bukan bukti bahwa penilaiannya adil. Ketika aplikasi peta memberi rute tercepat, itu bukan bukti bahwa rute tersebut paling aman untuk warga sekitar.</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-circle-check" style="color: var(--fellow-pink);"></i> Definisi yang membantu</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">AI sebagai sistem yang mengolah input, membaca pola, dan menghasilkan output untuk tujuan tertentu.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-circle-xmark" style="color: var(--fellow-pink);"></i> Definisi yang menyesatkan</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">AI sebagai mesin yang berpikir, merasa, dan memahami dunia persis seperti manusia.</p>
+                    </article>
+                </div>
+
+                <h3>2.4 Prinsip Awal untuk Peserta</h3>
+                <p>Dalam modul ini, setiap sistem AI akan dibaca dengan pertanyaan praktis: sistem ini dibuat untuk tujuan apa, input apa yang dipakai, pola apa yang dipelajari, output apa yang muncul, dan siapa yang memeriksa dampaknya.</p>
+            `
+        },
+        '/participant-ai-components': {
+            title: 'Software Biasa vs Sistem AI',
+            description: 'Membedakan program deterministik dari sistem yang belajar dari data dan pola historis.',
+            duration: '40 menit',
             tag: 'Konsep Inti',
             content: `
                 <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
                     <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-layer-group"></i> Topik 2: Jenis & Komponen AI
+                        <i class="fas fa-code-branch"></i> Topik 3: Software Biasa vs Sistem AI
                     </h3>
                     <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-                        Goal: Mengetahui tingkatan AI, batasannya, serta rahasia di balik kecerdasan AI modern.
+                        Goal: Mengetahui kapan sebuah aplikasi hanya software biasa dan kapan ia layak disebut sistem AI.
                     </p>
                 </div>
 
-                <h3>2.1 Jenis AI Berdasarkan Kemampuan 📊</h3>
-                <p>Se-canggih apa sih AI sekarang? Secara teori, kecerdasan AI dibagi jadi tiga tingkatan:</p>
-                <div class="ai-capability-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 16px;">
-                    <article style="padding: 20px; border-radius: 16px; border: 1px solid rgba(246,51,146,0.15); box-shadow: 0 4px 12px rgba(0,0,0,0.03); background: #fff;">
-                        <i class="fas fa-bullseye" style="color: var(--fellow-pink); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
-                        <h3 style="font-size: 1.1rem; margin-bottom: 8px;">ANI (Narrow AI)</h3>
-                        <p style="font-size: 0.85rem; color: var(--fellow-muted);">AI spesialis! Cuma jago di SATU tugas aja. <b>Semua AI yang ada di dunia saat ini (termasuk ChatGPT) masuk kategori ini.</b></p>
+                <h3>3.1 Software Biasa: Aturan Ditulis Manual</h3>
+                <p>Software biasa bekerja dengan aturan yang jelas, eksplisit, dan sudah ditulis oleh pemrogram. Jika kondisi A terjadi, sistem melakukan B. Jika kondisi tidak terpenuhi, sistem melakukan C. Polanya deterministik: input yang sama akan menghasilkan output yang sama selama aturan tidak diubah.</p>
+                <p>Contoh sederhana adalah kalkulator. Ketika pengguna menulis 2 + 2, kalkulator tidak belajar dari jutaan operasi matematika. Ia menjalankan aturan aritmatika yang pasti. Contoh lain adalah formulir pendaftaran yang menolak email jika tidak ada simbol @. Validasi seperti itu berguna, tetapi bukan AI.</p>
+
+                <h3>3.2 Sistem AI: Pola Dipelajari dari Data</h3>
+                <p>Sistem AI tidak selalu diberi aturan satu per satu. Ia diberi banyak contoh, lalu mencari pola yang sering muncul. Dari pola itu, sistem membuat prediksi ketika menghadapi data baru.</p>
+                <p>Filter spam tidak perlu diberi aturan kaku bahwa setiap kata tertentu pasti penipuan. Ia membaca banyak email yang pernah ditandai spam atau bukan spam, lalu menemukan kombinasi pola: subjek, kata, tautan, pengirim, waktu kirim, format, dan riwayat laporan pengguna.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 10px 0; color: var(--fellow-text);"><i class="fas fa-calculator" style="color: var(--fellow-pink);"></i> Software biasa</h4>
+                        <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--fellow-text);">
+                            <li>Aturan ditulis manual.</li>
+                            <li>Tidak belajar dari contoh baru.</li>
+                            <li>Output mengikuti logika yang sudah ditentukan.</li>
+                            <li>Cocok untuk proses yang pasti dan stabil.</li>
+                        </ul>
                     </article>
-                    <article style="padding: 20px; border-radius: 16px; border: 1px solid rgba(246,51,146,0.15); box-shadow: 0 4px 12px rgba(0,0,0,0.03); background: #fff;">
-                        <i class="fas fa-brain" style="color: var(--fellow-pink); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
-                        <h3 style="font-size: 1.1rem; margin-bottom: 8px;">AGI (General AI)</h3>
-                        <p style="font-size: 0.85rem; color: var(--fellow-muted);">AI level manusia! Bisa mikir, paham konteks, dan multitasking kayak otak manusia. Saat ini masih sebatas teori riset.</p>
-                    </article>
-                    <article style="padding: 20px; border-radius: 16px; border: 1px solid rgba(246,51,146,0.15); box-shadow: 0 4px 12px rgba(0,0,0,0.03); background: #fff;">
-                        <i class="fas fa-star" style="color: var(--fellow-pink); font-size: 2rem; margin-bottom: 12px; display: block;"></i>
-                        <h3 style="font-size: 1.1rem; margin-bottom: 8px;">ASI (Super AI)</h3>
-                        <p style="font-size: 0.85rem; color: var(--fellow-muted);">Level Dewa! Jauh lebih cerdas dari manusia paling pintar di bumi. Sering jadi inspirasi film sci-fi (kayak Ultron).</p>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 10px 0; color: var(--fellow-text);"><i class="fas fa-chart-line" style="color: var(--fellow-pink);"></i> Sistem AI</h4>
+                        <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--fellow-text);">
+                            <li>Belajar dari banyak contoh.</li>
+                            <li>Mencari korelasi dan pola statistik.</li>
+                            <li>Output berupa prediksi atau rekomendasi.</li>
+                            <li>Cocok untuk data besar dan pola kompleks.</li>
+                        </ul>
                     </article>
                 </div>
 
-                <h3 style="margin-top: 32px;">2.2 Jenis AI Berdasarkan Fungsi ⚙️</h3>
+                <h3>3.3 Analogi Buku Resep dan Pekerja Magang</h3>
+                <p>Software biasa seperti buku resep. Semua langkah harus ditulis jelas: bahan, takaran, suhu, dan waktu. Jika ada langkah yang tidak ditulis, sistem tidak tahu apa yang harus dilakukan.</p>
+                <p>AI lebih mirip pekerja magang yang diberi ribuan contoh pekerjaan lama. Ia mengamati contoh yang dianggap benar, melihat pola yang sering muncul, lalu mencoba membantu pada kasus baru. Analogi ini membuat AI lebih mudah dipahami: ia tidak menunggu aturan lengkap, tetapi belajar dari contoh.</p>
+                <p>Namun analogi ini juga menunjukkan risiko. Jika contoh lama tidak adil, pekerja magang akan mempelajari kebiasaan yang tidak adil. Jika arsip rekrutmen lama lebih sering memilih kandidat dari kelompok tertentu, sistem bisa menganggap kelompok itulah pola sukses.</p>
+
+                <h3>3.4 Cara Mengecek Apakah Sesuatu AI</h3>
+                <ol style="line-height: 1.8; color: var(--fellow-text);">
+                    <li>Apakah sistem hanya menjalankan aturan tetap?</li>
+                    <li>Apakah sistem memakai data historis untuk mencari pola?</li>
+                    <li>Apakah output-nya berupa prediksi, rekomendasi, label, skor, atau konten?</li>
+                    <li>Apakah sistem bisa salah karena data latihnya tidak lengkap atau bias?</li>
+                    <li>Apakah manusia perlu memeriksa hasilnya sebelum keputusan penting dibuat?</li>
+                </ol>
+            `
+        },
+        '/participant-ai-types': {
+            title: 'Model Mental Cara Kerja AI',
+            description: 'Membangun model mental sederhana: tujuan, input, pola, model, output, dan pemeriksaan manusia.',
+            duration: '55 menit',
+            tag: 'Model Mental',
+            content: `
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-route"></i> Topik 4: Model Mental Cara Kerja AI
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Memahami alur kerja AI tanpa masuk ke kode, rumus, atau arsitektur teknis.
+                    </p>
+                </div>
+
+                <h3>2.1 Model Mental Enam Langkah</h3>
+                <p>Setiap sistem AI bisa dibaca melalui alur sederhana: <strong>Tujuan, Input, Pola, Model, Output, dan Pemeriksaan Manusia</strong>. Alur ini membantu kita membedah AI tanpa perlu melihat kode di balik layar.</p>
+                <p>Model mental ini sengaja dibuat sederhana agar peserta bisa menggunakannya pada banyak situasi: email, rekomendasi video, chatbot, peta digital, sistem pinjaman, sampai alat rekrutmen. Tujuannya bukan menghafal istilah teknis, tetapi membiasakan diri melihat AI sebagai rangkaian keputusan yang bisa ditanya dan diaudit.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0;">
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-bullseye" style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Tujuan</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Apa yang ingin dibantu sistem: menyaring spam, memberi rekomendasi, menerjemahkan teks, atau memprediksi rute.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-database" style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Input</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Data yang masuk, seperti teks email, riwayat klik, lokasi, waktu, gambar, atau laporan pengguna.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-wave-square" style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Pola</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Keteraturan statistik yang ditemukan mesin dari banyak contoh masa lalu.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-cubes" style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Model</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Pola yang sudah dipadatkan menjadi sistem prediktif yang siap digunakan.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-arrow-up-right-from-square" style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Output</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Prediksi, label, rekomendasi, konten, atau keputusan yang muncul ke pengguna.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-user-check" style="color: var(--fellow-pink); font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Pemeriksaan Manusia</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Manusia memeriksa apakah output masuk akal, aman, adil, dan perlu dikoreksi.</p>
+                    </article>
+                </div>
+
+                <h3 style="margin-top: 32px;">2.2 Contoh: Penyaring Email Spam</h3>
+                <p>Bayangkan kotak masuk email yang otomatis memisahkan pesan penting dari spam. Sistemnya tidak sekadar diberi aturan kaku seperti &quot;jika ada kata hadiah, pasti spam&quot;. Sistem belajar dari banyak contoh email masa lalu dan mencari pola yang sering muncul pada pesan penipuan.</p>
+                <p>Di balik fitur sederhana ini ada keputusan yang berlapis. Email dari pengirim baru bisa terlihat mencurigakan karena kombinasi subjek, isi pesan, tautan, waktu kirim, alamat domain, dan riwayat laporan pengguna lain. Sistem tidak tahu makna penipuan seperti manusia, tetapi ia bisa membaca korelasi yang sering muncul pada email berbahaya.</p>
                 <div style="display: flex; flex-direction: column; gap: 16px; margin: 24px 0;">
-                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; display: flex; gap: 16px;">
-                        <div style="font-size: 1.5rem; color: var(--fellow-pink);"><i class="fas fa-calculator"></i></div>
+                    <div style="background: white; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 16px; display: flex; gap: 16px;">
+                        <div style="font-size: 1.5rem; color: var(--fellow-pink);"><i class="fas fa-flag"></i></div>
                         <div>
-                            <h4 style="margin: 0 0 4px 0;">1. Reactive Machine</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Bereaksi sama input saat itu juga tanpa memori masa lalu. (Contoh: Deep Blue IBM).</p>
+                            <h4 style="margin: 0 0 4px 0;">Tujuan</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Memprediksi apakah email baru adalah spam atau bukan spam.</p>
                         </div>
                     </div>
-                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; display: flex; gap: 16px;">
-                        <div style="font-size: 1.5rem; color: var(--fellow-pink);"><i class="fas fa-memory"></i></div>
+                    <div style="background: white; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 16px; display: flex; gap: 16px;">
+                        <div style="font-size: 1.5rem; color: var(--fellow-pink);"><i class="fas fa-inbox"></i></div>
                         <div>
-                            <h4 style="margin: 0 0 4px 0;">2. Limited Memory</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Bisa belajar dari data historis terbatas. Hampir semua AI modern kayak Self-Driving Car dan ChatGPT ada di level ini!</p>
+                            <h4 style="margin: 0 0 4px 0;">Input dan Pola</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Sistem membaca contoh email lama, subjek, isi pesan, asal pengirim, waktu kirim, dan label spam dari pengguna.</p>
                         </div>
                     </div>
-                    <div style="background: white; border: 1px dashed #cbd5e1; border-radius: 12px; padding: 16px; display: flex; gap: 16px;">
-                        <div style="font-size: 1.5rem; color: #94a3b8;"><i class="fas fa-people-arrows"></i></div>
+                    <div style="background: white; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 16px; display: flex; gap: 16px;">
+                        <div style="font-size: 1.5rem; color: var(--fellow-pink);"><i class="fas fa-tags"></i></div>
                         <div>
-                            <h4 style="margin: 0 0 4px 0; color: #64748b;">3. Theory of Mind (Masa Depan)</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">AI bisa paham bahwa manusia punya emosi dan pikiran, lalu berinteraksi secara sosial (emosional).</p>
+                            <h4 style="margin: 0 0 4px 0;">Model dan Output</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Model memberi label pada email baru. Output-nya bisa berupa &quot;spam&quot;, &quot;bukan spam&quot;, atau skor risiko.</p>
                         </div>
                     </div>
-                    <div style="background: white; border: 1px dashed #cbd5e1; border-radius: 12px; padding: 16px; display: flex; gap: 16px;">
-                        <div style="font-size: 1.5rem; color: #94a3b8;"><i class="fas fa-user-astronaut"></i></div>
+                    <div style="background: white; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 16px; display: flex; gap: 16px;">
+                        <div style="font-size: 1.5rem; color: var(--fellow-pink);"><i class="fas fa-rotate"></i></div>
                         <div>
-                            <h4 style="margin: 0 0 4px 0; color: #64748b;">4. Self-Awareness (Masa Depan)</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">AI punya kesadaran dan perasaannya sendiri. Kalau udah nyampe level ini, kita butuh hukum khusus buat robot!</p>
+                            <h4 style="margin: 0 0 4px 0;">Pemeriksaan Manusia</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--fellow-muted);">Jika email wawancara kerja masuk folder spam, pengguna perlu memulihkan dan memberi koreksi.</p>
                         </div>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 32px;">2.3 Komponen Utama AI (Trinitas AI) 💡</h3>
-                <p>Kenapa AI sempat "mati suri" (AI Winter) dan tiba-tiba sekarang bangkit dan pintar banget? Karena 3 komponen utama ini akhirnya berkumpul!</p>
-                
-                <div style="display: grid; gap: 24px; margin: 32px 0;">
-                    <div style="border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; background: #fff;">
-                        <div style="background: #f8fafc; padding: 16px 20px; border-bottom: 1px solid #e2e8f0;">
-                            <h4 style="margin: 0; color: #0f172a; display: flex; align-items: center; gap: 8px;"><i class="fas fa-database" style="color: #3b82f6;"></i> 1. Data (Bahan Bakar)</h4>
-                        </div>
-                        <div style="padding: 20px;">
-                            <p style="margin-top: 0; font-size: 0.95rem;">AI itu bodoh kalau nggak ada data. Sama kayak anak kecil yang harus diajarin. Ada dua jenis data:</p>
-                            <ul style="margin-bottom: 0; font-size: 0.95rem;">
-                                <li><b>Structured Data:</b> Rapi di tabel Excel.</li>
-                                <li><b>Unstructured Data:</b> Teks, foto, suara. (AI modern jagonya disini).</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; background: #fff;">
-                        <div style="background: #f8fafc; padding: 16px 20px; border-bottom: 1px solid #e2e8f0;">
-                            <h4 style="margin: 0; color: #0f172a; display: flex; align-items: center; gap: 8px;"><i class="fas fa-code-branch" style="color: #10b981;"></i> 2. Algoritma (Otak)</h4>
-                        </div>
-                        <div style="padding: 20px;">
-                            <p style="margin-top: 0; font-size: 0.95rem;">Aturan matematis biar mesin nyari pola sendiri. Yang paling hits sekarang adalah <b>Deep Learning (Neural Networks)</b>.</p>
-                        </div>
-                    </div>
-                    <div style="border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; background: #fff;">
-                        <div style="background: #f8fafc; padding: 16px 20px; border-bottom: 1px solid #e2e8f0;">
-                            <h4 style="margin: 0; color: #0f172a; display: flex; align-items: center; gap: 8px;"><i class="fas fa-microchip" style="color: #8b5cf6;"></i> 3. Computing Power (Otot)</h4>
-                        </div>
-                        <div style="padding: 20px;">
-                            <p style="margin-top: 0; font-size: 0.95rem;">Butuh hardware dewa! <b>GPU</b> (Graphic Card gamer) jadi andalan buat hitung jutaan matriks secara paralel, dibanding CPU biasa.</p>
-                        </div>
-                    </div>
+                <h3 style="margin-top: 32px;">2.3 Pelatihan dan Inferensi</h3>
+                <p>Proses AI biasanya terbagi menjadi dua fase. <strong>Pelatihan</strong> adalah saat sistem belajar dari banyak contoh dan membentuk model. <strong>Inferensi</strong> adalah saat model yang sudah jadi digunakan untuk memproses input baru dan menghasilkan output.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-graduation-cap" style="color: var(--fellow-pink);"></i> Training</h4>
+                        <p style="margin: 0 0 10px 0; color: var(--fellow-muted);">Fase belajar dari data historis. Biasanya lebih berat, memakan waktu, dan membutuhkan komputasi besar.</p>
+                        <ul style="margin: 0; padding-left: 18px; color: var(--fellow-text); font-size: .9rem; line-height: 1.7;">
+                            <li>Data contoh dikumpulkan dan diberi label.</li>
+                            <li>Sistem mencari pola yang berulang.</li>
+                            <li>Pola disimpan menjadi model prediktif.</li>
+                        </ul>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-bolt" style="color: var(--fellow-pink);"></i> Inferensi</h4>
+                        <p style="margin: 0 0 10px 0; color: var(--fellow-muted);">Fase penggunaan harian. Model yang sudah jadi menerima input baru dan menghasilkan output cepat.</p>
+                        <ul style="margin: 0; padding-left: 18px; color: var(--fellow-text); font-size: .9rem; line-height: 1.7;">
+                            <li>Email baru dilabeli spam atau bukan.</li>
+                            <li>Kalimat baru diterjemahkan.</li>
+                            <li>Rute baru direkomendasikan.</li>
+                        </ul>
+                    </article>
                 </div>
 
-                <h3>Konsep Tambahan: Model & Evaluation 🎯</h3>
-                <p>Setelah 3 trinitas di atas digabung, prosesnya menghasilkan sebuah <b>Model</b> (hasil akhir AI). Prosesnya meliputi:</p>
-                <ul style="line-height: 1.8;">
-                    <li><b>Training:</b> Fase AI belajar dari ribuan data. Butuh waktu lama.</li>
-                    <li><b>Inference:</b> Fase AI dipakai ngejawab pertanyaan user. Ini instan!</li>
-                    <li><b>Evaluation:</b> Mengetes akurasi si AI pakai matriks evaluasi (Accuracy, Precision, Recall).</li>
-                </ul>
-
-                
-                <div style="background: #fff; border: 1px solid rgba(246,51,146,0.2); border-left: 4px solid var(--fellow-pink); border-radius: 12px; padding: 16px; margin-top: 32px; display: flex; align-items: flex-start; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
-                    <i class="fas fa-book-open" style="color: var(--fellow-pink); font-size: 1.1rem; margin-top: 2px;"></i>
+                <div style="background: rgba(246,51,146,.08); border: 1px solid rgba(246,51,146,.18); border-radius: 16px; padding: 18px 20px; margin: 28px 0; display: flex; align-items: flex-start; gap: 12px;">
+                    <i class="fas fa-cloud-sun-rain" style="color: var(--fellow-pink); font-size: 1.1rem; margin-top: 2px;"></i>
                     <div>
-                        <h4 style="margin: 0 0 4px 0; color: #334155; font-size: 0.95rem;">Referensi Belajar</h4>
-                        <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Stanford CS221 & Deep Learning by Ian Goodfellow.</p>
+                        <h4 style="margin: 0 0 6px 0; color: var(--fellow-text); font-size: 1rem;">Analogi prediksi cuaca</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .95rem;">AI bekerja seperti orang yang menebak hujan dari pola awan, kelembapan, dan angin masa lalu. Prediksinya bisa sangat membantu, tetapi tetap probabilistik dan bisa keliru.</p>
                     </div>
+                </div>
+
+                <h3>2.4 Cara Pandang Sosio-Teknis</h3>
+                <p>Kualitas AI tidak hanya ditentukan oleh kode. Sistem juga dipengaruhi oleh siapa yang membiayai, data siapa yang dominan, kelompok mana yang terwakili, dan siapa yang menanggung dampak saat sistem salah. Karena itu, setiap output AI perlu dilihat sebagai hasil interaksi antara teknologi dan masyarakat.</p>
+                <p>Contohnya, sistem rekrutmen yang dilatih dari arsip karyawan sukses selama sepuluh tahun bisa tampak objektif, padahal arsip lama mungkin mencerminkan budaya kerja yang tidak adil. Jika masa lalu lebih sering memberi kesempatan kepada kelompok tertentu, model dapat belajar bahwa kelompok itulah pola kandidat ideal.</p>
+                <p>Karena itu, pertanyaan pentingnya bukan hanya &quot;apakah modelnya pintar?&quot;, tetapi juga: data siapa yang dipakai, siapa yang tidak terlihat dalam data, siapa yang diuntungkan, siapa yang berisiko dirugikan, dan apakah ada jalur banding ketika sistem mengambil keputusan yang salah.</p>
+
+                <div style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px; margin-top: 24px;">
+                    <h4 style="margin: 0 0 12px 0; color: var(--fellow-text);"><i class="fas fa-clipboard-question" style="color: var(--fellow-pink);"></i> Checklist saat melihat sistem AI</h4>
+                    <ol style="margin: 0; padding-left: 20px; color: var(--fellow-text); line-height: 1.8;">
+                        <li>Apa tujuan bisnis atau tujuan sosial dari sistem ini?</li>
+                        <li>Input apa yang terlihat dan input apa yang mungkin tersembunyi?</li>
+                        <li>Pola apa yang mungkin dipelajari dari data masa lalu?</li>
+                        <li>Output apa yang memengaruhi pengguna?</li>
+                        <li>Siapa yang memeriksa dan bertanggung jawab jika output keliru?</li>
+                    </ol>
+                </div>
+            `
+        },
+        '/participant-ai-pipeline': {
+            title: 'Training, Inferensi, dan Human Check',
+            description: 'Memahami dua fase utama sistem AI dan kenapa pemeriksaan manusia harus menjadi bagian dari alur.',
+            duration: '45 menit',
+            tag: 'Alur Kerja',
+            content: `
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-arrows-spin"></i> Topik 5: Training, Inferensi, dan Human Check
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Memahami bahwa AI tidak hanya soal model, tetapi juga proses belajar, penggunaan, dan koreksi.
+                    </p>
+                </div>
+
+                <h3>5.1 Dua Fase Utama AI</h3>
+                <p>AI modern biasanya memiliki dua fase besar: <strong>training</strong> dan <strong>inferensi</strong>. Training adalah masa belajar. Inferensi adalah masa pemakaian. Perbedaan ini penting karena banyak orang hanya melihat output AI di layar, padahal kualitas output sangat ditentukan oleh proses belajar sebelumnya.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-graduation-cap" style="color: var(--fellow-pink);"></i> Training</h4>
+                        <p style="margin: 0 0 10px 0; color: var(--fellow-muted);">Sistem diberi banyak contoh untuk mencari pola. Fase ini dapat membutuhkan data besar, waktu lama, dan komputasi kuat.</p>
+                        <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--fellow-text);">
+                            <li>Data dikumpulkan.</li>
+                            <li>Contoh diberi label atau struktur.</li>
+                            <li>Sistem mencari pola.</li>
+                            <li>Pola disimpan menjadi model.</li>
+                        </ul>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-bolt" style="color: var(--fellow-pink);"></i> Inferensi</h4>
+                        <p style="margin: 0 0 10px 0; color: var(--fellow-muted);">Model yang sudah jadi menerima input baru dan memberi output. Fase ini biasanya terasa cepat bagi pengguna.</p>
+                        <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--fellow-text);">
+                            <li>Email baru dilabeli spam atau bukan.</li>
+                            <li>Kalimat baru diterjemahkan.</li>
+                            <li>Rute baru direkomendasikan.</li>
+                            <li>Chatbot menyusun jawaban baru.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <h3>5.2 Contoh Lengkap: Email Spam</h3>
+                <p>Pada fase training, sistem membaca banyak email lama. Sebagian sudah ditandai spam, sebagian bukan. Sistem mencari pola: kata tertentu, format tautan, reputasi pengirim, waktu pengiriman, gaya bahasa, dan laporan pengguna.</p>
+                <p>Pada fase inferensi, email baru masuk. Sistem membandingkan email itu dengan pola yang sudah dipelajari, lalu memberi label. Jika labelnya salah, manusia harus bisa memperbaiki. Koreksi itu penting karena tanpa feedback, sistem bisa terus mengulang kesalahan.</p>
+
+                <h3>5.3 Human Check Bukan Formalitas</h3>
+                <p>Pemeriksaan manusia adalah tahap keselamatan. AI bekerja dengan probabilitas, bukan kepastian moral. Dalam kasus sepele seperti rekomendasi lagu, kesalahan mungkin hanya mengganggu. Dalam rekrutmen, kredit, kesehatan, hukum, atau keamanan, kesalahan bisa merugikan hidup seseorang.</p>
+                <div style="background: rgba(246,51,146,.08); border: 1px solid rgba(246,51,146,.18); border-radius: 16px; padding: 20px; margin: 24px 0;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--fellow-text);"><i class="fas fa-user-check" style="color: var(--fellow-pink);"></i> Bentuk human check</h4>
+                    <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--fellow-text);">
+                        <li>Memeriksa sumber dan fakta sebelum memakai jawaban chatbot.</li>
+                        <li>Memberi tombol koreksi ketika rekomendasi tidak relevan.</li>
+                        <li>Menyediakan proses banding untuk keputusan kredit atau rekrutmen.</li>
+                        <li>Melakukan audit berkala terhadap dampak pada kelompok rentan.</li>
+                    </ul>
+                </div>
+
+                <h3>5.4 Cara Pandang Sosio-Teknis</h3>
+                <p>Training dan inferensi tidak terjadi di ruang netral. Data dikumpulkan oleh manusia, label dibuat oleh manusia, tujuan sistem ditentukan organisasi, dan dampaknya dirasakan masyarakat. Karena itu, AI harus dipahami sebagai sistem sosio-teknis: gabungan teknologi, data, institusi, budaya, dan keputusan manusia.</p>
+            `
+        },
+        '/participant-ai-ml-dl': {
+            title: 'Peta Istilah AI, ML, DL, dan ANI',
+            description: 'Memisahkan istilah dasar agar peserta siap masuk ke modul lanjutan tanpa tertukar konsep.',
+            duration: '45 menit',
+            tag: 'Literasi AI',
+            content: `
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-layer-group"></i> Topik 6: Peta Istilah AI, ML, DL, dan ANI
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Memahami hubungan payung antara AI, Machine Learning, Deep Learning, dan Narrow AI.
+                    </p>
+                </div>
+
+                <h3>3.1 Hubungan AI, Machine Learning, dan Deep Learning</h3>
+                <p>AI adalah payung besar. Di dalamnya ada Machine Learning, yaitu pendekatan yang membuat komputer belajar dari data. Di dalam Machine Learning ada Deep Learning, pendekatan berlapis yang kuat untuk gambar, suara, teks, dan data tak terstruktur berskala besar.</p>
+                <p>Pemisahan istilah ini penting karena media sering memakai semua istilah secara bergantian. Tidak semua AI adalah Deep Learning, dan tidak semua sistem otomatis adalah Machine Learning. Dengan memahami payungnya, peserta tidak mudah tertukar ketika nanti masuk ke modul Python, Matematika, Machine Learning, NLP, dan Computer Vision.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0;">
+                    <div style="padding: 20px; border-radius: 16px; background: white; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-umbrella" style="color: var(--fellow-pink); font-size: 1.6rem; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Artificial Intelligence</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Semesta luas sistem yang menjalankan tugas yang biasanya butuh kecerdasan manusia.</p>
+                    </div>
+                    <div style="padding: 20px; border-radius: 16px; background: white; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-chart-line" style="color: var(--fellow-pink); font-size: 1.6rem; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Machine Learning</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Bagian dari AI yang menemukan pola dari data tanpa aturan langkah demi langkah yang ditulis manual.</p>
+                    </div>
+                    <div style="padding: 20px; border-radius: 16px; background: white; border: 1px solid var(--fellow-line);">
+                        <i class="fas fa-network-wired" style="color: var(--fellow-pink); font-size: 1.6rem; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0 0 8px 0;">Deep Learning</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Bagian dari ML yang memakai jaringan berlapis untuk mengenali pola kompleks.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 32px;">3.2 Fokus Praktis: ANI, Bukan Fiksi AGI</h3>
+                <p>Teknologi yang kita gunakan hari ini adalah <strong>Artificial Narrow Intelligence</strong>: sistem spesialis yang sangat mahir pada tugas sempit. Sistem pendeteksi kanker tidak otomatis bisa bermain catur, dan sistem rekomendasi musik tidak otomatis memahami hukum. AGI dan ASI cukup dikenali sebagai konsep spekulatif, bukan fokus utama modul dasar.</p>
+                <p>Artificial General Intelligence atau AGI biasanya dibayangkan sebagai mesin yang fleksibel seperti manusia di semua bidang. Artificial Superintelligence atau ASI lebih spekulatif lagi, yaitu skenario ketika kemampuan mesin melampaui manusia secara luas. Modul dasar ini tidak menolak diskusi tersebut, tetapi menaruhnya di pinggir agar fokus belajar tetap pada sistem nyata yang sudah memengaruhi hidup peserta hari ini.</p>
+
+                <div style="background: rgba(246,51,146,.08); border: 1px solid rgba(246,51,146,.2); border-radius: 16px; padding: 18px 20px; margin: 24px 0;">
+                    <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-bullseye" style="color: var(--fellow-pink);"></i> Prinsip praktis</h4>
+                    <p style="margin: 0; color: var(--fellow-muted);">Jangan menghabiskan energi belajar pada robot fiksi yang sadar diri. Fokuslah pada sistem sempit yang sudah memengaruhi email, pinjaman, rekrutmen, navigasi, pembelajaran, dan rekomendasi konten.</p>
+                </div>
+
+                <h3 style="margin-top: 32px;">3.3 AI dalam Kehidupan Sehari-hari</h3>
+                <p>AI sering hadir sebagai mesin pembantu keputusan. Ia menyaring banyak kemungkinan menjadi rekomendasi kecil yang terlihat sederhana di layar.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-music"></i> Media dan hiburan</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Input: riwayat tontonan, lagu yang dilewati, durasi menonton. Output: rekomendasi video atau playlist personal.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-map-location-dot"></i> Mobilitas kota</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Input: lokasi perangkat, laporan kecelakaan, pola macet historis. Output: ETA dan rute alternatif.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-language"></i> Komunikasi bahasa</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Input: teks, suara, dan contoh terjemahan. Output: kalimat terjemahan yang diprediksi paling alami.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-briefcase"></i> Produktivitas kerja</h4>
+                        <p style="margin: 0; color: var(--fellow-muted); font-size: .9rem;">Input: FAQ, arsip tiket, CV, atau riwayat pelanggan. Output: balasan chatbot, ringkasan, atau shortlist kandidat.</p>
+                    </article>
+                </div>
+
+                <p>Setelah memahami pola ini, rekomendasi belanja atau rute peta tidak lagi terlihat seperti tebakan gaib. Sistem sedang menghitung kemiripan perilaku, probabilitas, dan pola dari banyak pengguna lain.</p>
+
+                <h3 style="margin-top: 32px;">3.4 Membaca Penerapan dengan Alur Tujuan ke Output</h3>
+                <div style="display: grid; gap: 16px; margin: 20px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-play"></i> Layanan streaming</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Tujuannya sering kali membuat pengguna bertahan lebih lama. Input-nya riwayat tontonan, durasi menonton, jeda, klik, dan konten yang dilewati. Output-nya daftar rekomendasi yang terasa personal.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-route"></i> Navigasi lalu lintas</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Tujuannya mencari rute efisien. Input-nya lokasi perangkat, kecepatan kendaraan, laporan kecelakaan, dan pola historis. Output-nya ETA dan rute alternatif yang terus berubah.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-file-lines"></i> Screening resume</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Tujuannya mempercepat seleksi. Input-nya CV, riwayat kandidat sukses, kata kunci, institusi, dan pengalaman. Output-nya skor atau shortlist. Risiko muncul jika data lama sudah bias terhadap kelompok tertentu.</p>
+                    </article>
                 </div>
             `
         },
         '/participant-ai-applications': {
-            title: 'Penerapan & Masa Depan AI',
-            description: 'Mengeksplorasi penggunaan AI di industri, pipeline pengembangan, dan tantangan etika masa depan.',
-            duration: '40 menit',
+            title: 'Penerapan AI dalam Kehidupan',
+            description: 'Membedah penerapan AI sehari-hari menggunakan alur tujuan, input, pola, dan output.',
+            duration: '45 menit',
             tag: 'Penerapan',
             content: `
                 <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
                     <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-globe"></i> Topik 3: Penerapan & Masa Depan AI
+                        <i class="fas fa-globe"></i> Topik 7: Penerapan AI dalam Kehidupan
                     </h3>
                     <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-                        Goal: Melihat bagaimana AI mengubah wajah industri dan tantangan apa yang menanti kita.
+                        Goal: Membaca AI di kehidupan sehari-hari sebagai sistem yang punya tujuan, input, dan dampak.
                     </p>
                 </div>
 
-                <h3>3.1 AI di Berbagai Industri 🌍</h3>
-                <p>AI bukan cuma buat IT doang! Hampir semua sektor udah "dijajah" AI. Cek industri favoritmu:</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 24px 0;">
-                    <div style="padding: 20px; border-radius: 12px; background: white; border: 1px solid #e2e8f0;">
-                        <h4 style="margin-top: 0; color: var(--fellow-pink);"><i class="fas fa-heartbeat"></i> Healthcare</h4>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem;">
-                            <li>Deteksi kanker dari X-ray lebih akurat.</li>
-                            <li><i>Drug Discovery</i> penemuan obat baru super cepat.</li>
-                        </ul>
-                    </div>
-                    <div style="padding: 20px; border-radius: 12px; background: white; border: 1px solid #e2e8f0;">
-                        <h4 style="margin-top: 0; color: var(--fellow-pink);"><i class="fas fa-graduation-cap"></i> Education</h4>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem;">
-                            <li>AI Tutor untuk belajar privat 24/7.</li>
-                            <li>Auto-grading untuk koreksi otomatis.</li>
-                        </ul>
-                    </div>
-                    <div style="padding: 20px; border-radius: 12px; background: white; border: 1px solid #e2e8f0;">
-                        <h4 style="margin-top: 0; color: var(--fellow-pink);"><i class="fas fa-money-bill-wave"></i> Finance</h4>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem;">
-                            <li>Deteksi penipuan kartu kredit (Fraud Detection).</li>
-                            <li>Analisis skor kredit pinjaman otomatis.</li>
-                        </ul>
-                    </div>
-                    <div style="padding: 20px; border-radius: 12px; background: white; border: 1px solid #e2e8f0;">
-                        <h4 style="margin-top: 0; color: var(--fellow-pink);"><i class="fas fa-car"></i> Transportation</h4>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem;">
-                            <li>Mobil otonom (Self-Driving Car).</li>
-                            <li>Prediksi kemacetan rute.</li>
-                        </ul>
-                    </div>
+                <h3>7.1 Kenapa Penerapan Harian Penting</h3>
+                <p>Literasi AI tidak dimulai dari laboratorium. Ia dimulai dari kebiasaan membaca aplikasi yang dipakai setiap hari. Rekomendasi video, peta digital, filter email, chatbot layanan pelanggan, penerjemah teks, dan sistem harga transportasi daring semuanya bisa dibaca dengan model yang sama.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-music"></i> Media dan hiburan</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Tujuan: membuat pengguna menemukan konten yang terasa relevan dan sering kali bertahan lebih lama. Input: riwayat tontonan, durasi menonton, klik, like, skip, dan pola pengguna mirip. Output: rekomendasi video, lagu, atau playlist.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-map-location-dot"></i> Mobilitas kota</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Tujuan: memperkirakan rute efisien dan waktu tiba. Input: lokasi perangkat, kecepatan kendaraan, laporan kecelakaan, dan pola kemacetan historis. Output: ETA dan rute alternatif.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-language"></i> Komunikasi bahasa</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Tujuan: membantu pengguna memahami bahasa lain. Input: teks, suara, konteks kalimat, dan contoh terjemahan. Output: susunan kalimat yang diprediksi paling alami.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-briefcase"></i> Ruang kerja</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Tujuan: mempercepat pekerjaan repetitif. Input: FAQ, arsip tiket, dokumen, CV, atau riwayat pelanggan. Output: balasan chatbot, ringkasan, draft email, atau shortlist kandidat.</p>
+                    </article>
                 </div>
 
-                <h3 style="margin-top: 40px;">3.2 AI Development Pipeline ⚙️</h3>
-                <p>Mau bikin AI? Kamu nggak bisa langsung ngetik <i>codingan</i>. Ada alur kerja wajibnya:</p>
-                <div style="background: white; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 24px; margin: 24px 0;">
-                    <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
-                        <li><b>Define Problem:</b> Tentukan tujuan. Mau bikin prediksi apa?</li>
-                        <li><b>Collect Data:</b> Scraping web, pakai sensor IoT, atau database internal.</li>
-                        <li><b>Prepare Data:</b> Bersihkan data yang kosong/salah (Cleaning).</li>
-                        <li><b>Train Model:</b> Algoritma mulai "belajar" nyari pola di data.</li>
-                        <li><b>Evaluate Model:</b> Diuji ke data baru. Seberapa akurat?</li>
-                        <li><b>Deploy & Monitor:</b> Di-launching ke server biar bisa dipakai user, lalu dipantau kinerjanya.</li>
-                    </ol>
-                </div>
+                <h3>7.2 Membaca Rekomendasi Bukan Sebagai Kebetulan</h3>
+                <p>Ketika aplikasi belanja menampilkan produk yang terasa cocok, itu bukan tebakan gaib. Sistem membandingkan pola belanja, kata kunci, durasi melihat barang, harga yang sering diklik, dan perilaku pengguna lain yang mirip. Dari situ, sistem mengurutkan pilihan yang dianggap paling mungkin menarik perhatian.</p>
 
-                <h3 style="margin-top: 40px;">3.3 Etika & Keterbatasan AI ⚖️</h3>
-                <p>Di balik kecanggihannya, AI juga punya "sisi gelap" yang wajib kamu waspadai:</p>
-                <ul style="line-height: 1.8;">
-                    <li><b>Bias & Diskriminasi:</b> AI bisa jadi rasis/seksis kalau dilatih pakai data yang emang bias.</li>
-                    <li><b>Halusinasi:</b> Generative AI (kayak ChatGPT) sering ngarang fakta seolah-olah itu benar.</li>
-                    <li><b>Black Box Problem:</b> Terkadang peneliti AI sendiri nggak ngerti gimana AI-nya bisa ambil keputusan rumit.</li>
-                    <li><b>Data Privacy:</b> AI butuh data kita. Sejauh mana perusahaan boleh "mengintip" data pribadi kita?</li>
-                    <li><b>Deepfakes:</b> Penyalahgunaan AI untuk bikin video palsu buat fitnah atau penipuan.</li>
-                </ul>
-
-                <div style="background: rgba(246,51,146,0.05); border-left: 4px solid var(--fellow-pink); padding: 16px 20px; border-radius: 0 16px 16px 0; margin: 32px 0;">
-                    <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);">Masa Depan AI: Multi-Agent & Edge AI</h4>
-                    <p style="margin: 0; font-size: 0.95rem;">Masa depan AI bukan cuma satu chatbot, tapi <b>Multi-Agent</b> (beberapa agen AI berkolaborasi nyelesain project rumit) dan <b>Edge AI</b> (AI canggih yang jalan langsung di HP/laptopmu tanpa butuh koneksi internet!).</p>
-                </div>
-
-                
-                <div style="background: #fff; border: 1px solid rgba(246,51,146,0.2); border-left: 4px solid var(--fellow-pink); border-radius: 12px; padding: 16px; margin-top: 32px; display: flex; align-items: flex-start; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
-                    <i class="fas fa-book-open" style="color: var(--fellow-pink); font-size: 1.1rem; margin-top: 2px;"></i>
-                    <div>
-                        <h4 style="margin: 0 0 4px 0; color: #334155; font-size: 0.95rem;">Referensi Belajar</h4>
-                        <p style="margin: 0; font-size: 0.85rem; color: #64748b;">World Economic Forum: The Future of AI Ethics, 2024.</p>
-                    </div>
-                </div>
+                <h3>7.3 Pertanyaan Analitis untuk Setiap Aplikasi</h3>
+                <ol style="line-height: 1.8; color: var(--fellow-text);">
+                    <li>Apa tujuan utama aplikasi dari sisi pengguna dan dari sisi perusahaan?</li>
+                    <li>Data apa yang terlihat dikumpulkan?</li>
+                    <li>Data apa yang mungkin dikumpulkan diam-diam, seperti lokasi, waktu, atau durasi interaksi?</li>
+                    <li>Output apa yang memengaruhi keputusan pengguna?</li>
+                    <li>Apa risiko jika output tersebut salah atau terlalu manipulatif?</li>
+                </ol>
             `
         },
-        '/participant-ai-summary': {
-            title: 'Ringkasan Modul 1',
-            description: 'Kesimpulan akhir dan Mini Project dari modul Pengantar AI.',
-            duration: '15 menit',
-            tag: 'Review',
+        '/participant-ai-pros-cons': {
+            title: 'Manfaat dan Keterbatasan AI',
+            description: 'Memahami manfaat praktis AI sekaligus batas bawaan yang tidak boleh diabaikan.',
+            duration: '40 menit',
+            tag: 'Evaluasi',
             content: `
                 <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
                     <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-clipboard-check"></i> Topik 4: Ringkasan & Kesimpulan
+                        <i class="fas fa-scale-balanced"></i> Topik 8: Manfaat dan Keterbatasan AI
                     </h3>
                     <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-                        Goal: Mengunci pemahaman inti sebelum kamu mulai latihan Mini Project.
+                        Goal: Mengapresiasi manfaat AI tanpa kehilangan sikap kritis terhadap batas dan risikonya.
                     </p>
                 </div>
 
-                <div style="background: #fff0f7; border: 1px solid rgba(246,51,146,0.3); border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; margin: 24px 0; box-shadow: 0 4px 12px rgba(246,51,146,0.05);">
-                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI Buddy" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                    <div>
-                        <h4 style="color: var(--fellow-pink); margin: 0 0 8px 0; font-size: 1.1rem; font-weight: 700;">Yeay! Kamu Berhasil! 🎉</h4>
-                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--fellow-text);">Selamat, Tech Bestie! Kamu udah merampungkan konsep dasar AI dengan luar biasa. Kalau kamu udah paham poin-poin di bawah ini, berarti kamu udah siap banget ngobrolin AI di tongkrongan! 😎</p>
-                    </div>
+                <h3>8.1 Manfaat Praktis AI</h3>
+                <p>AI bermanfaat ketika dipakai untuk mempercepat analisis, menyaring informasi, menemukan pola, dan membantu manusia melihat pilihan yang terlalu banyak untuk diproses manual. Dalam konteks belajar dan kerja, AI dapat menjadi alat bantu yang kuat selama pengguna tetap memahami batasnya.</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-filter"></i> Menyaring informasi</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">AI dapat membantu memilih informasi paling relevan dari ribuan dokumen, email, tiket layanan, atau konten.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-clock"></i> Menghemat waktu</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">AI dapat membuat draft, ringkasan, klasifikasi awal, atau rekomendasi sehingga manusia bisa fokus pada keputusan akhir.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-eye"></i> Mengenali pola tersembunyi</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">AI dapat membaca pola yang sulit terlihat oleh manusia, misalnya pola transaksi mencurigakan atau pola lalu lintas.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-universal-access"></i> Membantu akses</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Penerjemah, transkripsi, caption, dan asisten belajar dapat membantu lebih banyak orang mengakses informasi.</p>
+                    </article>
                 </div>
 
-                <h3>Ceklis Pengetahuan Baru Kamu:</h3>
-                <ul class="summary-check-list" style="list-style: none; padding-left: 0;">
-                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 4px;"></i> <span><b>AI itu mesin cerdas</b> yang bisa belajar dari data, nggak cuma nunggu dikasih rumus kaku.</span></li>
-                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 4px;"></i> <span><b>Sejarah AI penuh lika-liku</b>, sempet masuk fase mati suri (AI Winter) sebelum akhirnya sukses berkat Deep Learning dan Generative AI.</span></li>
-                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 4px;"></i> <span><b>Trinitas penyokong AI</b> adalah: Data (bensin), Algoritma (otak), dan Computing Power (otot/GPU).</span></li>
-                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 4px;"></i> <span><b>Penerapan AI ada dimana-mana</b>, mulai dari ngecek kesehatan, nentuin pinjaman bank, sampai rekomendasi TikTok.</span></li>
-                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 4px;"></i> <span><b>AI masih punya bias dan halusinasi</b>, makanya kita nggak boleh asal percaya 100% tanpa verifikasi manusia.</span></li>
+                <h3>8.2 Keterbatasan Bawaan AI</h3>
+                <p>AI bukan sumber kebenaran absolut. AI bekerja dari data dan pola. Jika data tidak lengkap, konteks berubah, atau tujuan sistem terlalu sempit, output bisa tidak akurat atau tidak adil.</p>
+                <ul style="line-height: 1.8; color: var(--fellow-text);">
+                    <li><strong>Bergantung pada data:</strong> data buruk menghasilkan pola buruk.</li>
+                    <li><strong>Tidak memahami konteks penuh:</strong> sistem bisa melewatkan norma sosial, empati, atau dampak manusia.</li>
+                    <li><strong>Bisa terdengar meyakinkan saat salah:</strong> terutama pada model bahasa.</li>
+                    <li><strong>Tujuan sistem bisa sempit:</strong> mengoptimalkan klik, waktu tempuh, atau efisiensi tanpa melihat dampak sosial.</li>
+                    <li><strong>Sulit dijelaskan:</strong> model kompleks dapat menghasilkan keputusan yang tidak mudah dilacak alasannya.</li>
                 </ul>
 
-                <div class="daily-ai-box" style="margin-top: 40px; background: white; border: 2px dashed var(--fellow-pink); border-radius: 16px; padding: 24px; text-align: center;">
-                    <h3 style="margin-top: 0; color: var(--fellow-pink);">Mini Project: AI Around Me <i class="fas fa-search" style="color: #f59e0b;"></i></h3>
-                    <p style="font-size: 0.95rem; color: var(--fellow-muted); margin-bottom: 16px;">Sekarang saatnya unjuk gigi! Kerjakan tugas mandiri ini di tab Latihan.</p>
-                    <p style="background: rgba(246,51,146,0.05); padding: 12px; border-radius: 8px; font-weight: 500; display: inline-block; margin: 0;">Identifikasi 10 aplikasi AI yang kamu pakai hari ini. Analisis jenisnya, algoritma tebakanmu, dan potensi biasnya!</p>
+                <h3>8.3 Cara Memakai AI secara Realistis</h3>
+                <p>Gunakan AI sebagai asisten, bukan pengganti penilaian manusia. Untuk tugas ringan, AI bisa mempercepat. Untuk keputusan penting, AI harus menjadi bahan pertimbangan yang diverifikasi, bukan penentu tunggal.</p>
+            `
+        },
+        '/participant-ai-ethics': {
+            title: 'Bias, Halusinasi, Privasi, dan Black Box',
+            description: 'Membedah risiko fundamental AI sebagai sistem sosial dan teknis.',
+            duration: '50 menit',
+            tag: 'Etika AI',
+            content: `
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-shield-halved"></i> Topik 9: Bias, Halusinasi, Privasi, dan Black Box
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Mengenali risiko AI yang paling sering muncul dalam kehidupan nyata.
+                    </p>
                 </div>
+
+                <h3>9.1 Bias: Ketika Masa Lalu Diulang Mesin</h3>
+                <p>Miskonsepsi besar tentang AI adalah anggapan bahwa keputusan komputer pasti objektif. Padahal AI belajar dari data historis yang dibuat oleh manusia dan institusi. Jika sejarah memuat diskriminasi, ketimpangan, atau pengecualian kelompok tertentu, model dapat mengulangnya dengan tampilan yang seolah netral.</p>
+                <p>Contoh: alat rekrutmen dilatih dari data pelamar sukses sepuluh tahun terakhir. Jika data lama didominasi laki-laki dari kampus tertentu, model bisa menganggap pola itu sebagai tanda kandidat ideal dan menurunkan skor kandidat perempuan atau kandidat dari jalur pendidikan lain.</p>
+
+                <h3>9.2 Halusinasi: Jawaban Rapi yang Salah</h3>
+                <p>Model bahasa modern dapat menghasilkan teks yang runtut, sopan, dan terdengar meyakinkan. Tetapi ia tetap bisa mengarang fakta, kutipan, nama jurnal, pasal hukum, atau nomor kasus. Ini disebut halusinasi algoritmik.</p>
+                <div style="background: rgba(246,51,146,.08); border: 1px solid rgba(246,51,146,.18); border-radius: 16px; padding: 20px; margin: 24px 0;">
+                    <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-gavel" style="color: var(--fellow-pink);"></i> Contoh risiko hukum</h4>
+                    <p style="margin: 0; color: var(--fellow-text);">Jika chatbot menyusun argumen hukum dan mencantumkan kasus preseden palsu, dokumen bisa terlihat profesional tetapi tetap berbahaya. Dalam konteks hukum, medis, akademik, dan keuangan, setiap klaim harus diverifikasi ke sumber resmi.</p>
+                </div>
+
+                <h3>9.3 Privasi: Data sebagai Bahan Bakar</h3>
+                <p>Banyak sistem AI membutuhkan data personal: lokasi, riwayat klik, pembelian, suara, wajah, pesan, atau pola interaksi. Pengumpulan data tanpa persetujuan yang jelas dapat mengancam keamanan dan martabat pengguna.</p>
+                <p>Pertanyaan pentingnya bukan hanya apakah data bisa dikumpulkan, tetapi apakah data boleh dikumpulkan, apakah pengguna memahami tujuannya, berapa lama data disimpan, dan siapa yang dapat mengaksesnya.</p>
+
+                <h3>9.4 Black Box: Ketika Alasan Tidak Jelas</h3>
+                <p>Beberapa model kompleks sulit dijelaskan bahkan oleh pembuatnya. Masalah muncul ketika keputusan berdampak besar: kredit ditolak, akun diblokir, CV disaring, atau layanan publik tidak diberikan. Jika alasan tidak jelas, pengguna kehilangan hak untuk mempertanyakan dan memperbaiki keputusan.</p>
+
+                <h3>9.5 Prinsip Aman untuk Pemula</h3>
+                <ol style="line-height: 1.8; color: var(--fellow-text);">
+                    <li>Jangan langsung percaya output AI hanya karena bahasanya rapi.</li>
+                    <li>Selalu cek sumber untuk fakta penting.</li>
+                    <li>Curigai sistem yang tidak memberi alasan atau jalur koreksi.</li>
+                    <li>Perhatikan siapa yang mungkin tidak terwakili dalam data.</li>
+                    <li>Jaga data pribadi sebelum memasukkan informasi sensitif ke alat AI.</li>
+                </ol>
+            `
+        },
+        '/participant-ai-summary': {
+            title: 'Audit Sistem Sosio-Teknis',
+            description: 'Mengunci semua konsep dengan kerangka audit praktis yang bisa dipakai di kehidupan harian.',
+            duration: '35 menit',
+            tag: 'Audit AI',
+            content: `
+                <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
+                    <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-magnifying-glass-chart"></i> Topik 10: Audit Sistem Sosio-Teknis
+                    </h3>
+                    <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
+                        Goal: Mengubah peserta dari pengguna pasif menjadi auditor kritis sistem AI harian.
+                    </p>
+                </div>
+
+                <p>Literasi AI tidak selesai ketika kita bisa menjelaskan cara kerja model. Peserta juga perlu bertanya: apakah sistem ini aman, adil, transparan, menjaga privasi, dan masih memungkinkan manusia melakukan koreksi?</p>
+                <p>Bagian ini adalah inti dari literasi sosio-teknis. AI tidak boleh dinilai hanya dari seberapa cepat atau canggih output-nya. Sistem yang cepat tetapi bias, tidak transparan, melanggar privasi, atau tidak bisa dikoreksi tetap berbahaya.</p>
+
+                <div style="display: grid; gap: 16px; margin: 24px 0;">
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-scale-balanced"></i> Ilusi objektivitas dan bias</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">AI belajar dari data historis. Jika data masa lalu memuat diskriminasi gender, kelas, ras, wilayah, atau akses pendidikan, model dapat mengulang pola tidak adil itu dalam bentuk yang terlihat netral.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-triangle-exclamation"></i> Halusinasi algoritmik</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Model bahasa bisa menghasilkan jawaban yang terdengar rapi tetapi faktanya salah. Untuk konteks hukum, medis, akademik, atau keputusan penting, verifikasi independen wajib dilakukan.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-user-lock"></i> Privasi dan data personal</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Banyak sistem prediktif membutuhkan lokasi, perilaku klik, pembelian, wajah, suara, atau interaksi. Pengumpulan tanpa persetujuan yang jelas dapat mengancam martabat dan keamanan pengguna.</p>
+                    </article>
+                    <article style="padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--fellow-line);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-box"></i> Black box dan hak bertanya</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Jika sistem menolak pinjaman, memblokir akun, atau menyaring CV tanpa alasan yang bisa dipahami, pengguna kehilangan kesempatan untuk mengoreksi dan mengajukan keberatan.</p>
+                    </article>
+                </div>
+
+                <h3>4.1 Studi Kasus Risiko</h3>
+                <div style="display: grid; gap: 16px; margin: 20px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-user-tie" style="color: var(--fellow-pink);"></i> Rekrutmen dan bias masa lalu</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Jika alat rekrutmen dilatih dari data perusahaan yang dulu lebih sering menerima laki-laki dari kampus tertentu, model bisa membaca pola itu sebagai tanda kandidat ideal. Akibatnya, CV perempuan atau kandidat dari jalur pendidikan berbeda bisa dinilai lebih rendah walaupun kompetensinya kuat.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-gavel" style="color: var(--fellow-pink);"></i> Halusinasi hukum</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Model bahasa bisa menyusun argumen hukum yang rapi sekaligus menciptakan nomor kasus palsu. Kesalahannya bukan karena model berniat menipu, melainkan karena ia memprediksi rangkaian kata yang tampak cocok. Untuk urusan hukum, setiap rujukan harus dicek ke sumber resmi.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-map" style="color: var(--fellow-pink);"></i> Optimasi navigasi</h4>
+                        <p style="margin: 0; color: var(--fellow-text);">Jika tujuan sistem hanya mengurangi waktu tempuh pengendara, rute bisa dialihkan ke jalan pemukiman kecil. Pengendara terbantu, tetapi warga lokal menanggung kebisingan, kemacetan, dan risiko keselamatan. Ini menunjukkan bahwa tujuan sistem perlu dirancang dengan mempertimbangkan dampak komunitas.</p>
+                    </article>
+                </div>
+
+                <h3>Ringkasan yang Perlu Dibawa</h3>
+                <ul class="summary-check-list" style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-circle-check" style="color: var(--fellow-pink); margin-top: 4px;"></i> <span>AI adalah sistem berbasis mesin yang menyimpulkan dari input untuk menghasilkan prediksi, rekomendasi, konten, atau keputusan.</span></li>
+                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-circle-check" style="color: var(--fellow-pink); margin-top: 4px;"></i> <span>Software biasa mengikuti aturan eksplisit; AI modern memanfaatkan data dan korelasi pola.</span></li>
+                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-circle-check" style="color: var(--fellow-pink); margin-top: 4px;"></i> <span>AI, ML, dan DL tersusun seperti payung: AI mencakup ML, ML mencakup DL.</span></li>
+                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-circle-check" style="color: var(--fellow-pink); margin-top: 4px;"></i> <span>AI saat ini adalah ANI: spesialis sempit, bukan kecerdasan umum yang sadar diri.</span></li>
+                    <li style="margin-bottom: 12px; display: flex; gap: 12px;"><i class="fas fa-circle-check" style="color: var(--fellow-pink); margin-top: 4px;"></i> <span>Human check adalah kebiasaan wajib untuk melawan bias, halusinasi, keputusan buram, dan risiko privasi.</span></li>
+                </ul>
+
+                <div class="daily-ai-box" style="margin-top: 32px; background: white; border: 2px dashed var(--fellow-pink); border-radius: 16px; padding: 24px;">
+                    <h3 style="margin-top: 0; color: var(--fellow-pink);"><i class="fas fa-magnifying-glass-chart"></i> Mini Project: Audit Sistem Sosio-Teknis Harian</h3>
+                    <p style="font-size: 0.95rem; color: var(--fellow-muted); margin-bottom: 0;">Di tab Latihan, pilih satu layanan otomatis yang kamu gunakan dalam 24 jam terakhir. Bedah tujuan, input, pola, output, pemeriksaan manusia, risiko privasi, dan potensi ketidakadilan.</p>
+                </div>
+
+                <h3 style="margin-top: 32px;">4.2 Pertanyaan Penutup untuk Setiap Output AI</h3>
+                <ol style="line-height: 1.8; color: var(--fellow-text);">
+                    <li>Apakah output ini fakta, prediksi, rekomendasi, atau opini sintetis?</li>
+                    <li>Apakah ada sumber independen yang bisa dipakai untuk memverifikasi?</li>
+                    <li>Apakah data yang dipakai mungkin tidak mewakili kelompok tertentu?</li>
+                    <li>Apakah pengguna punya hak untuk menolak, mengoreksi, atau meminta penjelasan?</li>
+                    <li>Apakah keputusan akhir seharusnya tetap dipegang manusia?</li>
+                </ol>
             `
         }
     };
@@ -612,7 +983,7 @@
         form.dataset.discussionReady = 'true';
         const key = 'heraiAiIntroDiscussionThread';
         const fallback = [
-            { id: 'seed-1', name: 'Aisyah Putri', time: 'Hari ini, 09.15', text: 'Menurutku AI paling terasa di rekomendasi konten dan navigasi. Tapi aku masih penasaran bagaimana cara membedakan rekomendasi yang membantu dan yang manipulatif.', replies: [{ name: 'Mentor Rani', time: 'Hari ini, 09.28', text: 'Pertanyaan bagus. Salah satu caranya adalah melihat transparansi data, tujuan sistem, dan apakah pengguna masih punya kontrol.' }] }
+            { id: 'seed-1', name: 'Aisyah Putri', time: 'Hari ini, 09.15', text: 'Menurutku tahap Pemeriksaan Manusia paling penting saat AI dipakai untuk rekrutmen atau hukum. Kalau output terlihat rapi tetapi datanya bias atau fiktif, manusia tetap harus berani menghentikan keputusan.', replies: [{ name: 'Mentor Rani', time: 'Hari ini, 09.28', text: 'Setuju. Coba selalu mulai dari pertanyaan: apa tujuan sistem, data siapa yang dipakai, siapa yang terdampak, dan bagaimana koreksinya bisa dilakukan.' }] }
         ];
         const escapeHtml = (value = '') => String(value)
             .replaceAll('&', '&amp;')
@@ -702,7 +1073,7 @@
 
         if (isQuizDone) {
             const savedScore = Number(localStorage.getItem(quizScoreKey) || 0);
-            showResult(savedScore, 5);
+            showResult(savedScore, 10);
             quizForm.querySelectorAll('input').forEach(input => input.disabled = true);
             if (submitButton) {
                 submitButton.disabled = true;
@@ -713,7 +1084,18 @@
 
         quizForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            const groups = ['q1', 'q2', 'q3', 'q4', 'q5'];
+            const groups = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
+            const unanswered = groups.some(group => !quizForm.querySelector(`input[name="${group}"]:checked`));
+            if (unanswered) {
+                if (resultBox) {
+                    resultBox.hidden = false;
+                    resultBox.innerHTML = `
+                        <strong>Lengkapi semua soal terlebih dahulu.</strong>
+                        <span>Pilih satu jawaban untuk setiap nomor sebelum submit.</span>
+                    `;
+                }
+                return;
+            }
             let score = 0;
             for (const group of groups) {
                 const selected = quizForm.querySelector(`input[name="${group}"]:checked`);

@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status:** sudah commit lokal, belum push
+**Status:** ada perubahan lokal belum commit, belum push
 **Commit fitur terakhir:** `280c087 refactor: standardize curriculum placeholders`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
@@ -17,11 +17,342 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ---
 
+## Checkpoint Final Sesi - Pengantar AI 10 Topik dan Next Python untuk AI
+
+Status terbaru setelah review user: materi Pengantar AI sudah diperinci ulang dan daftar materi runtime sudah diperluas dari 4 item menjadi 10 topik. Perubahan ini memakai route Pengantar AI yang sudah ada di `js/router.js`, sehingga tidak ada route baru dan tidak ada perubahan struktur navigasi besar.
+
+Yang sudah dikerjakan pada sesi Pengantar AI:
+
+1. Membaca guardrail dan source of truth:
+   - `AGENTS.md`
+   - `GEMINI.md`
+   - seluruh dokumen utama di `handover/`
+   - `materi/lama/pengantar-ai.md`
+   - `materi/baru/pengantar-ai-baru.md`
+2. Membuat snapshot sinkron terbaru:
+   - `materi/pengantar-ai.md`
+3. Mengintegrasikan materi final ke runtime peserta:
+   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/materi.html`
+   - `js/frontend/fellow-dashboard/settings.js`
+   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/latihan.html`
+   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/kuis.html`
+   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/diskusi.html`
+4. Memperluas struktur runtime Pengantar AI menjadi 10 topik:
+   - `#/participant-ai-intro`
+   - `#/participant-ai-history`
+   - `#/participant-ai-components`
+   - `#/participant-ai-types`
+   - `#/participant-ai-pipeline`
+   - `#/participant-ai-ml-dl`
+   - `#/participant-ai-applications`
+   - `#/participant-ai-pros-cons`
+   - `#/participant-ai-ethics`
+   - `#/participant-ai-summary`
+5. Mempertahankan area yang dilarang berubah:
+   - `js/router.js` tidak diubah.
+   - Sidebar utama, topbar, breadcrumb, lesson tabs, right panel shell, dan footer nav shell tetap dipertahankan.
+   - Right panel hanya berubah pada daftar materi/progres agar sesuai 10 topik.
+6. Mengganti aktivitas Pengantar AI:
+   - Latihan: proyek mini `Audit Sistem Sosio-Teknis Harian`.
+   - Kuis: 10 soal single attempt.
+   - Diskusi: bias rekrutmen, halusinasi hukum, dan dilema optimasi navigasi.
+
+Checkpoint verifikasi terakhir:
+
+```text
+node --check js/router.js -> passed
+node --check js/frontend/fellow-dashboard/settings.js -> passed
+git diff --check -> passed
+node scripts/check-participant-routes.mjs -> Total: 110 | 110 passed | 0 failed
+```
+
+Status git:
+
+- Perubahan lokal belum commit.
+- `materi/` masih area handoff/snapshot non-runtime dan terlihat sebagai untracked jika belum di-add.
+- Jangan push tanpa izin user.
+
+Next work yang diminta user: lanjut ke materi `Pemrograman Python untuk AI`.
+
+Target awal untuk modul Python untuk AI:
+
+```text
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/materi.html
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/latihan.html
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/kuis.html
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/diskusi.html
+js/frontend/fellow-dashboard/ai-python-basic.js
+```
+
+Sebelum mengubah Python untuk AI, wajib baca dulu file runtime di atas dan cek apakah ada snapshot materi Python yang sudah tersedia di `materi/`. Jangan mengubah route Python atau controller Pyodide kecuali memang diperlukan oleh konten final.
+
+---
+
+## Executive Summary Checkpoint - 10 Juli 2026
+
+Checkpoint kerja sesi ini:
+
+1. Membaca guardrail proyek:
+   - `AGENTS.md`
+   - `GEMINI.md`
+   - `handover/HANDOVER_UPDATE.md`
+   - `handover/MODULE_STATUS_MAP.md`
+   - `handover/COURSE_HIERARCHY.md`
+   - `handover/PROMPT_AI_BARU.md`
+   - `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md`
+   - baseline lama `materi/lama/pengantar-ai.md`
+   - materi final `materi/baru/pengantar-ai-baru.md`
+2. Menemukan bahwa instruksi menyebut `materi/pengantar-ai.md`, tetapi working tree saat awal sesi berisi:
+   - `materi/lama/pengantar-ai.md`
+   - `materi/baru/pengantar-ai-baru.md`
+3. Membuat dan menyinkronkan snapshot terbaru:
+   - `materi/pengantar-ai.md`
+4. Mengintegrasikan materi final Pengantar AI ke runtime peserta tanpa mengubah route atau layout besar.
+5. Menjaga area yang tidak boleh disentuh:
+   - `js/router.js` tidak diubah.
+   - Sidebar tidak diubah.
+   - Topbar tidak diubah.
+   - Breadcrumb tidak diubah.
+   - Lesson tabs tidak diubah.
+   - Right panel tidak diubah kecuali teks daftar materi/progres yang relevan.
+   - Footer nav tidak diubah strukturnya.
+6. Mengupdate semua dokumen handover agar status Pengantar AI tidak lagi tercatat sebagai “rencana rombak”, tetapi sebagai konten final terbaru.
+
+File runtime yang diubah:
+
+```text
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/materi.html
+js/frontend/fellow-dashboard/settings.js
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/latihan.html
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/kuis.html
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/diskusi.html
+```
+
+File dokumentasi/snapshot yang diubah:
+
+```text
+materi/pengantar-ai.md
+handover/HANDOVER_UPDATE.md
+handover/MODULE_STATUS_MAP.md
+handover/COURSE_HIERARCHY.md
+handover/PROMPT_AI_BARU.md
+handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+```
+
+File arsip materi yang dipertahankan:
+
+```text
+materi/lama/pengantar-ai.md
+materi/baru/pengantar-ai-baru.md
+```
+
+Status git saat checkpoint ini:
+
+- Perubahan lokal belum commit.
+- `materi/` masih terlihat untracked jika belum ditambahkan ke git.
+- Jangan push tanpa izin user.
+- Jika commit dibuat, pilih file dengan sengaja karena `materi/` memuat snapshot terbaru sekaligus arsip lama/baru.
+
+---
+
+## Update 10 Juli 2026 - Rombak Final Materi Pengantar AI
+
+Update terbaru sesi ini belum dicommit.
+
+Yang sudah dilakukan:
+
+- Materi final dari `materi/baru/pengantar-ai-baru.md` sudah diintegrasikan ke runtime Pengantar AI.
+- Route, sidebar, topbar, breadcrumb, lesson tabs, right panel, dan footer nav tidak diubah.
+- `js/router.js` tidak diubah.
+- Konten runtime yang berubah:
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/materi.html`
+  - `js/frontend/fellow-dashboard/settings.js` bagian `introLessonRoutes` dan `generatedLessonContent`
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/latihan.html`
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/kuis.html`
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/diskusi.html`
+- Snapshot terbaru disinkronkan ke `materi/pengantar-ai.md`.
+- `materi/lama/pengantar-ai.md` dan `materi/baru/pengantar-ai-baru.md` dibiarkan sebagai arsip bahan lama/baru.
+
+Struktur topik Pengantar AI terbaru:
+
+1. AI di Sekitar Kita
+2. Definisi Modern AI
+3. Software Biasa vs Sistem AI
+4. Model Mental Cara Kerja AI
+5. Training, Inferensi, dan Human Check
+6. Peta Istilah AI, ML, DL, dan ANI
+7. Penerapan AI dalam Kehidupan
+8. Manfaat dan Keterbatasan AI
+9. Bias, Halusinasi, Privasi, dan Black Box
+10. Audit Sistem Sosio-Teknis
+
+Aktivitas terbaru:
+
+- Latihan menjadi proyek mini `Audit Sistem Sosio-Teknis Harian`.
+- Kuis menjadi 10 soal single attempt dan controller `settings.js` sudah menghitung 10 grup jawaban.
+- Diskusi diarahkan ke skenario bias rekrutmen, halusinasi hukum, dan dilema optimasi navigasi.
+
+Catatan implementasi:
+
+- Materi final diringkas dari gaya laporan panjang menjadi copy runtime pembelajaran agar tidak terlalu padat di UI.
+- Fokus pedagogis dipindah ke model mental, literasi sosio-teknis, ANI praktis, bias, halusinasi, privasi, black box, dan pemeriksaan manusia.
+- Detail teknis seperti metrik evaluasi, pipeline coding, matematika, dan arsitektur model tetap dipindahkan ke modul lanjutan.
+
+Follow-up setelah review user:
+
+- User mengecek materi runtime dan menilai isi masih terlalu sedikit dibanding materi final brainstorming.
+- Konten Pengantar AI kemudian diperluas lagi di:
+  - `materi.html` untuk Topik 1.
+- `settings.js` untuk Topik 2-10.
+  - `materi/pengantar-ai.md` sebagai snapshot terbaru.
+- Penambahan mencakup objektif pembelajaran, perbandingan software biasa vs AI, analogi buku resep/pekerja magang, detail training/inferensi, checklist audit, studi kasus penerapan, dan studi kasus risiko.
+- Follow-up kedua: sidebar/daftar materi Pengantar AI dipecah dari 4 topik menjadi 10 topik memakai route yang sudah tersedia di `js/router.js`, tanpa menambah route baru.
+- Route tambahan yang sekarang aktif di daftar materi: `/participant-ai-history`, `/participant-ai-components`, `/participant-ai-pipeline`, `/participant-ai-ml-dl`, `/participant-ai-pros-cons`, dan `/participant-ai-ethics`.
+- Route/layout tetap tidak berubah.
+
+Verifikasi sesi ini:
+
+```text
+node --check js/router.js -> passed
+node --check js/frontend/fellow-dashboard/settings.js -> passed
+git diff --check -> passed
+node scripts/check-participant-routes.mjs -> Total: 110 | 110 passed | 0 failed
+```
+
+---
+
+## Update 10 Juli 2026 - Snapshot Awal Materi Pengantar AI (Historis)
+
+Catatan: bagian ini adalah checkpoint sebelum rombak final. Status terbaru ada di bagian `Rombak Final Materi Pengantar AI` di atas.
+
+Update terbaru sesi ini belum dicommit.
+
+Yang sudah dilakukan:
+
+- Membuat folder baru `materi/` di root repo sebagai area handoff konten non-runtime.
+- Membuat file `materi/pengantar-ai.md`.
+- File tersebut saat itu adalah versi Markdown bersih dari materi `Pengantar AI`, sebelum rombak final.
+- Snapshot mencakup:
+  - konteks course `AI Fundamentals & Advanced`
+  - daftar submodul aktif dan scaffold
+  - Topik lama 1: Apa itu Artificial Intelligence?
+  - Topik lama 2: Jenis & Komponen AI
+  - Topik lama 3: Penerapan & Masa Depan AI
+  - Topik lama 4: Ringkasan Modul 1
+  - latihan reflektif
+  - kuis dan opsi jawaban benar/salah
+  - prompt diskusi
+  - prompt siap pakai untuk AI lain
+- Tidak ada route, CSS, layout runtime, controller JS, atau file peserta yang diubah pada checkpoint ini.
+
+File baru:
+
+```text
+materi/pengantar-ai.md
+```
+
+Sumber yang dirangkum ke file tersebut:
+
+```text
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/materi.html
+js/frontend/fellow-dashboard/settings.js
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/latihan.html
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/kuis.html
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/diskusi.html
+```
+
+Status penting:
+
+- `materi/` bukan folder runtime aplikasi.
+- `materi/` tidak boleh dianggap sebagai folder canonical course.
+- Folder canonical Pengantar AI tetap:
+
+```text
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/
+```
+
+Verifikasi sesi ini:
+
+```text
+node --check js/router.js -> passed
+node --check js/frontend/fellow-dashboard/settings.js -> passed
+git diff --check -> passed
+node scripts/check-participant-routes.mjs -> Total: 110 | 110 passed | 0 failed
+```
+
+### Rencana Next Step Saat Itu: Rombak Materi Pengantar AI
+
+Rencana ini sudah selesai pada checkpoint rombak final di atas. Gunakan `materi/pengantar-ai.md` sebagai snapshot terbaru bila ada revisi lanjutan.
+
+Arsip tugas historis yang sudah dieksekusi:
+
+1. Baca baseline:
+   - `materi/pengantar-ai.md`
+   - `handover/HANDOVER_UPDATE.md`
+   - `handover/MODULE_STATUS_MAP.md`
+   - `handover/COURSE_HIERARCHY.md`
+   - `handover/PROMPT_AI_BARU.md`
+   - `AGENTS.md`
+2. Jangan langsung replace seluruh file HTML.
+3. Bandingkan materi baru dengan baseline agar tidak duplikat dengan:
+   - Python untuk AI
+   - Konsep AI Modern
+   - Math for AI
+   - Machine Learning
+   - NLP
+   - Computer Vision
+4. Tentukan target perubahan:
+   - `materi.html` untuk konten Topik 1 / intro utama.
+   - `settings.js` bagian `generatedLessonContent` untuk topik lanjutan Pengantar AI.
+   - `latihan.html` jika latihan reflektif berubah.
+   - `kuis.html` jika soal kuis berubah.
+   - `diskusi.html` jika prompt diskusi berubah.
+5. Pertahankan layout existing:
+   - jangan ubah sidebar, topbar, breadcrumb, tabs, right panel, dan footer nav kecuali memang diminta.
+   - edit hanya isi di dalam `lesson-article` atau string `generatedLessonContent`.
+   - jangan mengubah route di `js/router.js` bila hanya update materi.
+6. Patuhi design rules:
+   - tidak boleh ada `border-radius: 0`.
+   - gunakan text utama `#171827` dan secondary minimal `#6f7282`.
+   - pink `#f63392` untuk aksen.
+   - jangan tambah emoji baru di UI; gunakan FontAwesome icon.
+7. Setelah update materi, verifikasi:
+
+```bash
+node --check js/frontend/fellow-dashboard/settings.js
+node --check js/router.js
+git diff --check
+node scripts/check-participant-routes.mjs
+```
+
+8. Smoke test manual minimal:
+   - `#/participant-ai-intro`
+   - `#/participant-ai-types`
+   - `#/participant-ai-applications`
+   - `#/participant-ai-summary`
+   - `#/participant-ai-intro-practice`
+   - `#/participant-ai-intro-quiz`
+   - `#/participant-ai-intro-discussion`
+9. Setelah selesai, update lagi:
+   - `materi/pengantar-ai.md` sebagai snapshot terbaru.
+   - `handover/HANDOVER_UPDATE.md`
+   - `handover/MODULE_STATUS_MAP.md`
+   - `handover/PROMPT_AI_BARU.md`
+   - `handover/COURSE_HIERARCHY.md` hanya jika struktur topik/module berubah.
+
+Catatan risiko:
+
+- Konten Pengantar AI tersebar di dua tempat: HTML `materi.html` dan object `generatedLessonContent` di `settings.js`.
+- Route `/participant-ai-history`, `/participant-ai-components`, `/participant-ai-pipeline`, `/participant-ai-ml-dl`, `/participant-ai-pros-cons`, dan `/participant-ai-ethics` sekarang sudah dipakai di `introLessonRoutes` Pengantar AI. Route `/participant-ai-future` tetap terdaftar di router tetapi belum dipakai di daftar 10 topik.
+- `settings.js` juga memuat logic dashboard participant lain; edit harus scoped ke `introLessonRoutes`, `generatedLessonContent`, atau initializer Pengantar AI yang relevan.
+
+---
+
 ## Current Snapshot - 10 Juli 2026
 
 State terbaru setelah checkpoint `280c087`:
 
-- Working tree terakhir bersih setelah commit.
+- Working tree terakhir bersih setelah commit `280c087`, lalu ada perubahan lokal baru untuk `materi/pengantar-ai.md` dan update dokumen handover.
 - Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
 - Course aktif final yang harus dijaga:
   - AI Modern: `#/participant-ai-modern`, `#/participant-ai-modern-practice`, `#/participant-ai-modern-quiz`, `#/participant-ai-modern-discussion`
@@ -194,12 +525,14 @@ Wajib baca dulu:
 
 Konteks terbaru:
 - Commit checkpoint terakhir: 280c087 refactor: standardize curriculum placeholders.
-- Route checker terakhir: Total 110, 0 failed.
+- Ada perubahan lokal setelah commit: materi final Pengantar AI sudah masuk runtime, `materi/pengantar-ai.md` menjadi snapshot terbaru, dan dokumen handover sudah diperbarui.
+- Route checker terakhir setelah rombak Pengantar AI: Total 110, 0 failed.
 - Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
 - Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
+- Pengantar AI sudah dirombak final tanpa perubahan route/layout besar. Snapshot terbaru ada di `materi/pengantar-ai.md`.
 
 Sebelum edit, jalankan:
 git status --short
@@ -209,16 +542,20 @@ node scripts/check-participant-routes.mjs
 git diff --check
 
 Tugas utama berikutnya:
-1. Lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
-2. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
-3. Setelah perubahan, wajib update folder handover:
+1. Jika user meminta revisi lanjutan Pengantar AI, baca materi/pengantar-ai.md lalu update konten runtime Pengantar AI secara scoped.
+2. Target Pengantar AI tetap: materi.html, settings.js bagian generatedLessonContent, dan activity file hanya jika latihan/kuis/diskusi ikut berubah.
+3. Jangan ubah route atau layout besar Pengantar AI kecuali user eksplisit minta.
+4. Kalau task berikutnya adalah Python untuk AI, baca dulu folder `02-python-untuk-ai/` dan `js/frontend/fellow-dashboard/ai-python-basic.js`, lalu jaga interaktif Pyodide dan route existing.
+5. Kalau task bukan Python untuk AI atau revisi Pengantar AI, lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
+6. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
+7. Setelah perubahan, wajib update folder handover:
    - HANDOVER_UPDATE.md
    - MODULE_STATUS_MAP.md
    - COURSE_HIERARCHY.md
    - PROMPT_AI_BARU.md
    - HANDOVER_COURSE_FILESYSTEM_REFACTOR.md kalau routing/folder berubah
-4. Jalankan verifikasi ulang.
-5. Commit lokal. Jangan push tanpa izin.
+8. Jalankan verifikasi ulang.
+9. Commit lokal. Jangan push tanpa izin.
 
 Mulai dengan membaca file handover, lalu buat rencana singkat berdasarkan task yang diberikan user.
 ```
@@ -370,9 +707,10 @@ Catatan console saat live check:
 Next step yang disarankan:
 
 1. Jadikan pola Python/AI Modern sebagai standar markup course aktif berikutnya, tapi lakukan bertahap per course agar layout tidak rusak.
-2. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final.
-3. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
-4. Setelah setiap perubahan routing, jalankan `node scripts/check-participant-routes.mjs`.
+2. Untuk request terbaru, lanjutkan materi `Python untuk AI` di folder canonical existing dan jaga interaktif Pyodide.
+3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final hanya jika user mengalihkan task ke Generative AI.
+4. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
+5. Setelah setiap perubahan routing, jalankan `node scripts/check-participant-routes.mjs`.
 
 ---
 

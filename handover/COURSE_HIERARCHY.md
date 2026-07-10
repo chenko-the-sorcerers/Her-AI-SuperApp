@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final dan standardisasi placeholder scaffold
+**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final, standardisasi placeholder scaffold, dan rombak final konten Pengantar AI
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
 
@@ -60,6 +60,58 @@ Commit lokal terbaru:
 280c087 refactor: standardize curriculum placeholders
 ```
 
+Checkpoint final sesi Pengantar AI:
+
+- `01 - Pengantar AI` selesai dirombak berdasarkan `materi/baru/pengantar-ai-baru.md`.
+- Setelah review user, konten runtime diperluas lagi agar tidak terasa terlalu ringkas.
+- Daftar materi Pengantar AI sekarang 10 topik dan semuanya memakai route yang sudah tersedia.
+- Tidak ada perubahan hierarchy produk:
+  - Category tetap `Foundation & Core AI`
+  - Course tetap `AI Fundamentals & Advanced`
+  - Module tetap `01 - Pengantar AI`
+  - Activity tetap `Materi -> Latihan -> Kuis -> Diskusi`
+- Tidak ada perubahan `js/router.js`, folder canonical, atau struktur navigation shell.
+- Verifikasi terakhir: route checker `Total: 110 | 110 passed | 0 failed`.
+- Next request user: lanjut ke module `02 - Python untuk AI`.
+
+Checkpoint lokal terbaru setelah commit tersebut:
+
+- Pengantar AI sudah dirombak final dari materi sumber `materi/baru/pengantar-ai-baru.md`.
+- Snapshot terbaru konten Pengantar AI ada di `materi/pengantar-ai.md`.
+- Arsip bahan tetap ada di `materi/lama/pengantar-ai.md` dan `materi/baru/pengantar-ai-baru.md`.
+- Struktur hierarchy produk tidak berubah:
+  - Category: `Foundation & Core AI`
+  - Course: `AI Fundamentals & Advanced`
+  - Module: `01 - Pengantar AI`
+  - Activity: `Materi -> Latihan -> Kuis -> Diskusi`
+- Route peserta tidak berubah.
+- Folder canonical Pengantar AI tetap:
+
+```text
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/
+```
+
+Topik runtime Pengantar AI terbaru:
+
+1. AI di Sekitar Kita
+2. Definisi Modern AI
+3. Software Biasa vs Sistem AI
+4. Model Mental Cara Kerja AI
+5. Training, Inferensi, dan Human Check
+6. Peta Istilah AI, ML, DL, dan ANI
+7. Penerapan AI dalam Kehidupan
+8. Manfaat dan Keterbatasan AI
+9. Bias, Halusinasi, Privasi, dan Black Box
+10. Audit Sistem Sosio-Teknis
+
+Aktivitas Pengantar AI terbaru:
+
+- `materi.html`: materi utama runtime Topik 1.
+- `settings.js`: daftar topik dan konten generated lesson untuk Topik 2-10.
+- `latihan.html`: proyek mini audit sistem sosio-teknis.
+- `kuis.html`: 10 soal single attempt.
+- `diskusi.html`: skenario bias rekrutmen, halusinasi hukum, dan optimasi navigasi.
+
 Ringkasan state kurikulum saat ini:
 
 - AI Fundamentals & Advanced sebagian aktif:
@@ -72,6 +124,9 @@ Ringkasan state kurikulum saat ini:
 - Computer Vision dan NLP aktif.
 - Semua course/track/module yang belum final memakai `course-placeholder.html` dan manifest `COURSE_SCAFFOLDS`.
 - Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
+- Folder `materi/` di root repo adalah area handoff konten, bukan bagian hierarchy produk atau route peserta.
+- Snapshot Pengantar AI terbaru ada di `materi/pengantar-ai.md`.
+- Pengantar AI sudah memakai materi final baru di runtime tanpa perubahan hierarchy, route, atau folder canonical.
 
 Aturan scaffold resmi:
 
@@ -85,11 +140,15 @@ Aturan scaffold resmi:
 
 Next step untuk tim penerus:
 
-1. Prioritaskan Generative AI karena route masih scaffold dan file overview draft sudah ada.
-2. Jika konten belum final, update manifest scaffold saja.
-3. Jika konten sudah final, buat file activity lengkap di folder canonical dan update route.
-4. Jangan mengubah route final existing tanpa task spesifik.
-5. Setelah selesai, update `HANDOVER_UPDATE.md`, `MODULE_STATUS_MAP.md`, `COURSE_HIERARCHY.md`, `PROMPT_AI_BARU.md`, dan dokumen filesystem bila folder/routing berubah.
+1. Jika tugasnya revisi lanjutan Pengantar AI, baca `materi/pengantar-ai.md` dan edit file canonical Pengantar AI tanpa mengubah route/layout besar.
+2. Untuk request terbaru user, lanjutkan module `02 - Python untuk AI` di folder canonical:
+   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/`
+   - `js/frontend/fellow-dashboard/ai-python-basic.js`
+3. Jika task berikutnya bukan Python untuk AI atau revisi Pengantar AI, prioritaskan Generative AI sesuai backlog sebelumnya.
+4. Jika konten belum final, update manifest scaffold saja.
+5. Jika konten sudah final, buat file activity lengkap di folder canonical dan update route.
+6. Jangan mengubah route final existing tanpa task spesifik.
+7. Setelah selesai, update `HANDOVER_UPDATE.md`, `MODULE_STATUS_MAP.md`, `COURSE_HIERARCHY.md`, `PROMPT_AI_BARU.md`, dan dokumen filesystem bila folder/routing berubah.
 
 ---
 
@@ -307,6 +366,11 @@ Materi -> Latihan -> Kuis -> Diskusi
 Catatan implementasi saat ini:
 
 - Course aktif seperti Machine Learning dapat memakai satu activity gabungan per course. Contoh ML: materi berisi 8 chapter, latihan berisi 10 skenario, kuis berisi 24 soal, diskusi berisi 8 prompt.
+- Pengantar AI aktif memakai campuran file HTML dan generated content:
+  - `01-pengantar-ai/materi.html` untuk materi intro utama.
+  - `js/frontend/fellow-dashboard/settings.js` bagian `generatedLessonContent` untuk topik lanjutan.
+  - `latihan.html`, `kuis.html`, dan `diskusi.html` untuk activity pendukung.
+  - Snapshot copy-paste terbaru ada di `materi/pengantar-ai.md`.
 - Course scaffold memakai outline module/chapter awal dari manifest `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js`.
 - Course scaffold tetap menampilkan tab standar `Materi -> Latihan -> Kuis -> Diskusi`; activity yang belum final memakai query hash pada route scaffold, misalnya `#/participant-ai-lab-gen?activity=latihan`, agar peserta tidak dilempar ke `under-development.html`.
 - Detail module scaffold memakai query `module` dan `activity`, misalnya `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`.

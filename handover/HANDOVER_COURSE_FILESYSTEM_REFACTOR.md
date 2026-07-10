@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026  
 **Branch:** `design`  
-**Status:** sudah commit lokal, belum push  
+**Status:** ada perubahan lokal belum commit, belum push
 **Checkpoint aktif:** `3f238a7 refactor: move fellowship courses into dashboard hierarchy`
 **Checkpoint routing/UI terbaru:** `280c087 refactor: standardize curriculum placeholders`
 
@@ -11,6 +11,57 @@ Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar
 ---
 
 ## Update Terbaru Setelah Refactor Filesystem
+
+Update lokal terbaru setelah checkpoint `280c087`:
+
+- Folder root `materi/` dibuat sebagai area handoff konten non-runtime.
+- File `materi/pengantar-ai.md` berisi snapshot terbaru materi Pengantar AI setelah rombak final.
+- Materi final Pengantar AI sudah masuk ke runtime canonical `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/`.
+- Setelah review user, Pengantar AI diperluas dari 4 topik menjadi 10 topik detail tanpa membuat route atau folder baru.
+- Perubahan ini tidak mengubah folder canonical course catalog, route peserta, target file router, atau manifest scaffold.
+- `materi/` tidak boleh dipakai sebagai folder route/course aktif.
+- Next request user adalah lanjut ke `02 - Python untuk AI`; folder canonical yang harus dipakai adalah `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/`.
+
+Checkpoint detail sesi rombak Pengantar AI:
+
+```text
+Sumber final: materi/baru/pengantar-ai-baru.md
+Baseline lama: materi/lama/pengantar-ai.md
+Snapshot terbaru: materi/pengantar-ai.md
+Folder runtime: pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/
+Controller/topik: js/frontend/fellow-dashboard/settings.js
+Router: tidak berubah
+Route checker: Total 110 | 110 passed | 0 failed
+```
+
+Update follow-up:
+
+- Daftar materi Pengantar AI diperluas dari 4 topik menjadi 10 topik.
+- Perluasan memakai route Pengantar AI yang sebelumnya sudah terdaftar di `js/router.js`.
+- Tidak ada folder baru dan tidak ada route baru.
+- Route `/participant-ai-future` masih terdaftar di router tetapi tidak dipakai di daftar 10 topik terbaru.
+- Verifikasi terakhir setelah update handover dan runtime Pengantar AI: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` lulus.
+
+File runtime Pengantar AI yang berubah:
+
+```text
+01-pengantar-ai/materi.html
+01-pengantar-ai/latihan.html
+01-pengantar-ai/kuis.html
+01-pengantar-ai/diskusi.html
+js/frontend/fellow-dashboard/settings.js
+```
+
+Keputusan filesystem:
+
+- Tidak membuat folder course baru.
+- Tidak memindahkan Pengantar AI.
+- Tidak menghidupkan folder legacy `ai-fundamental/`.
+- Tidak membuat ulang folder `course-catalog/`.
+- Tidak mengubah mapping route di `js/router.js`.
+- `materi/` tetap hanya artefak handoff/snapshot, bukan canonical runtime.
+- Untuk lanjut Python untuk AI, jangan membuat folder baru; pakai folder canonical existing `02-python-untuk-ai/`.
+- Jangan memindahkan atau rename `js/frontend/fellow-dashboard/ai-python-basic.js` karena file ini memuat controller/interaktif Python.
 
 Checkpoint `280c087 refactor: standardize curriculum placeholders` menambahkan standardisasi scaffold tanpa mengubah keputusan folder canonical.
 
@@ -69,6 +120,14 @@ pages/frontend/fellow-dashboard/course-catalog/
 pages/frontend/fellow-dashboard/ai-fundamental/
 pages/frontend/fellow-dashboard/ai-lab/
 ```
+
+Folder root berikut juga **bukan path aktif peserta**:
+
+```text
+materi/
+```
+
+`materi/` hanya untuk snapshot, copywriting, prompt handoff, dan bahan brainstorming. Jika konten sudah final, implementasikan ke folder canonical runtime yang sesuai.
 
 Catatan sejarah:
 
@@ -186,6 +245,20 @@ pages/frontend/fellow-dashboard/
 
 `pages/frontend/fellow-dashboard/README.md` juga berisi ringkasan struktur ini untuk navigasi cepat.
 
+Artefak handoff non-runtime:
+
+```text
+materi/
+  pengantar-ai.md
+```
+
+Catatan: file di atas tidak diload oleh aplikasi. Untuk rombak Pengantar AI, sumber runtime tetap:
+
+```text
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/
+js/frontend/fellow-dashboard/settings.js
+```
+
 ---
 
 ## Perubahan File dan Rename Penting
@@ -248,6 +321,7 @@ Update setelah checkpoint routing/UI terbaru:
 - Detail module scaffold memakai query:
   - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
 - Query hash ini tidak menambah route baru di `js/router.js`; router sudah membuang query sebelum lookup route.
+- Snapshot `materi/pengantar-ai.md` tidak menambah route baru dan tidak perlu didaftarkan di `js/router.js`.
 
 ---
 
@@ -299,6 +373,9 @@ Total: 110 | 110 passed | 0 failed
    - `handover/HANDOVER_UPDATE.md`
    - `handover/PROMPT_AI_BARU.md`
 5. Jika hanya memperkaya scaffold tanpa file final, cukup update `COURSE_SCAFFOLDS`, route bila perlu, dan semua dokumen handover terkait status.
-6. Next step aman: lanjutkan Generative AI melalui scaffold dulu; aktifkan route final hanya jika konten activity sudah lengkap.
-7. Jalankan `node scripts/check-participant-routes.mjs` setelah perubahan routing.
-8. Commit lokal setiap checkpoint fitur/refactor, tapi jangan push tanpa izin user.
+6. Next step aman: jika user meminta revisi lanjutan Pengantar AI, update konten Pengantar AI di folder canonical tanpa mengubah route/layout besar.
+7. Untuk request terbaru, lanjutkan `Python untuk AI` di folder canonical existing `02-python-untuk-ai/` dan jangan mengubah struktur filesystem.
+8. Jika task bukan Python untuk AI atau Pengantar AI, lanjutkan Generative AI melalui scaffold dulu.
+9. Aktifkan route final hanya jika konten activity sudah lengkap.
+10. Jalankan `node scripts/check-participant-routes.mjs` setelah perubahan routing.
+11. Commit lokal setiap checkpoint fitur/refactor, tapi jangan push tanpa izin user.

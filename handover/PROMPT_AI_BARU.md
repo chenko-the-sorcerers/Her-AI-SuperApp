@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 10 Juli 2026 (Full Curriculum Placeholder Scaffold + Aktivasi Math for AI + activity final Konsep AI Modern)
+**Tanggal:** 10 Juli 2026 (Rombak Final Materi Pengantar AI)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -25,12 +25,47 @@ Wajib baca dulu:
 
 Konteks terbaru:
 - Commit checkpoint terakhir: 280c087 refactor: standardize curriculum placeholders.
+- Ada perubahan lokal setelah commit: materi final Pengantar AI sudah masuk runtime dan `materi/pengantar-ai.md` sudah menjadi snapshot terbaru.
+- Checkpoint final sesi terbaru: Pengantar AI sudah diperluas dari 4 topik menjadi 10 topik detail setelah review user.
+- Sumber rombak Pengantar AI: `materi/baru/pengantar-ai-baru.md`.
+- Baseline lama yang dibaca: `materi/lama/pengantar-ai.md`.
+- File runtime Pengantar AI yang sudah diupdate:
+  - `01-pengantar-ai/materi.html`
+  - `js/frontend/fellow-dashboard/settings.js`
+  - `01-pengantar-ai/latihan.html`
+  - `01-pengantar-ai/kuis.html`
+  - `01-pengantar-ai/diskusi.html`
+- Dokumen handover yang sudah diupdate:
+  - `handover/HANDOVER_UPDATE.md`
+  - `handover/MODULE_STATUS_MAP.md`
+  - `handover/COURSE_HIERARCHY.md`
+  - `handover/PROMPT_AI_BARU.md`
+  - `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md`
+- Verifikasi rombak Pengantar AI sudah lulus:
+  - `node --check js/router.js`
+  - `node --check js/frontend/fellow-dashboard/settings.js`
+  - `git diff --check`
+  - `node scripts/check-participant-routes.mjs` -> Total 110, 0 failed
 - Route checker terakhir: Total 110, 0 failed.
 - Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
 - Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
+- Pengantar AI sudah dirombak berdasarkan `materi/baru/pengantar-ai-baru.md` tanpa mengubah route/layout besar.
+- Struktur topik Pengantar AI terbaru sekarang 10 topik: AI di Sekitar Kita; Definisi Modern AI; Software Biasa vs Sistem AI; Model Mental Cara Kerja AI; Training, Inferensi, dan Human Check; Peta Istilah AI, ML, DL, dan ANI; Penerapan AI dalam Kehidupan; Manfaat dan Keterbatasan AI; Bias, Halusinasi, Privasi, dan Black Box; Audit Sistem Sosio-Teknis.
+- Latihan Pengantar AI sekarang proyek mini audit sistem sosio-teknis, kuis 10 soal, diskusi memakai skenario etika.
+- Snapshot konten terbaru Pengantar AI ada di materi/pengantar-ai.md.
+- `js/router.js` tidak disentuh untuk rombak Pengantar AI.
+- Sidebar, topbar, breadcrumb, lesson tabs, right panel, dan footer nav tetap dipertahankan.
+- Daftar materi Pengantar AI sudah diperluas dari 4 topik menjadi 10 topik memakai route lama yang sudah terdaftar; tidak ada route baru.
+- Request user berikutnya: lanjut ke materi `Pemrograman Python untuk AI`.
+- Target awal Python untuk AI:
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/materi.html`
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/latihan.html`
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/kuis.html`
+  - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/diskusi.html`
+  - `js/frontend/fellow-dashboard/ai-python-basic.js`
 
 Sebelum edit, jalankan:
 git status --short
@@ -40,16 +75,25 @@ node scripts/check-participant-routes.mjs
 git diff --check
 
 Tugas utama berikutnya:
-1. Lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
-2. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
-3. Setelah perubahan, wajib update folder handover:
+1. Jika user meminta lanjut ke Python untuk AI, baca dulu seluruh file runtime `02-python-untuk-ai/` dan `js/frontend/fellow-dashboard/ai-python-basic.js`, lalu buat rencana scoped sebelum edit.
+2. Untuk Python untuk AI, jangan mematikan interaktif Pyodide, validasi latihan, kuis, diskusi, route, atau tab activity.
+3. Jika user meminta revisi lanjutan Pengantar AI, baca materi/pengantar-ai.md lalu update konten runtime Pengantar AI secara scoped.
+4. Untuk Pengantar AI, target edit utama tetap:
+   - pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/materi.html
+   - js/frontend/fellow-dashboard/settings.js bagian generatedLessonContent
+   - latihan.html, kuis.html, diskusi.html hanya jika activity ikut berubah
+5. Jangan ubah route Pengantar AI atau Python untuk AI kecuali user eksplisit minta.
+6. Jangan replace layout besar. Pertahankan sidebar, topbar, breadcrumb, lesson tabs, right panel, dan footer nav.
+7. Kalau task bukan Python untuk AI atau revisi Pengantar AI, lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
+8. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
+9. Setelah perubahan, wajib update folder handover:
    - HANDOVER_UPDATE.md
    - MODULE_STATUS_MAP.md
    - COURSE_HIERARCHY.md
    - PROMPT_AI_BARU.md
    - HANDOVER_COURSE_FILESYSTEM_REFACTOR.md kalau routing/folder berubah
-4. Jalankan verifikasi ulang.
-5. Commit lokal. Jangan push tanpa izin.
+10. Jalankan verifikasi ulang.
+11. Commit lokal. Jangan push tanpa izin.
 
 Mulai dengan membaca file handover, lalu buat rencana singkat berdasarkan task yang diberikan user.
 ```
@@ -137,6 +181,8 @@ Business & Industry Applications
 
 Catatan penting:
 - Checkpoint lokal terbaru: `280c087 refactor: standardize curriculum placeholders`.
+- Ada checkpoint konten belum commit: Pengantar AI sudah dirombak final dan `materi/pengantar-ai.md` adalah snapshot terbaru.
+- Folder `materi/` bukan folder runtime, bukan folder canonical course, dan bukan route peserta.
 - Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
 - Machine Learning adalah course di category Foundation & Core AI, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 - Folder aktif Machine Learning ada di pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/.
@@ -224,22 +270,31 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 9. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
 10. Setiap perubahan hierarki course/module harus ikut update dokumen handover dan dibuat commit lokal.
 11. Setelah update route, scaffold, course final, copy, UI, atau struktur folder, wajib update folder `handover/` sebelum commit.
+12. Pengantar AI tersebar di dua sumber runtime: `materi.html` dan `settings.js` bagian `generatedLessonContent`. Jangan hanya mengubah salah satu kalau revisi menyentuh topik lanjutan.
+13. Saat merevisi Pengantar AI, edit konten di dalam `lesson-article` atau string `generatedLessonContent`; jangan menghapus struktur sidebar, topbar, breadcrumb, tabs, right panel, atau nav footer.
+14. Setelah revisi Pengantar AI, update ulang `materi/pengantar-ai.md` agar snapshot copy-paste tetap sesuai kondisi terbaru.
 
 ---
 
 NEXT STEP YANG DISARANKAN:
 
-1. Mulai dari Generative AI karena route masih scaffold dan file overview draft sudah ada.
-2. Jika konten belum final, perbaiki data di `COURSE_SCAFFOLDS` saja.
-3. Jika konten sudah final, buat folder canonical dan file activity lengkap baru pindahkan route.
-4. Jangan menyentuh route final AI Modern, Math for AI, Machine Learning, Python, Pengantar AI, CV, dan NLP tanpa task spesifik.
-5. Setelah perubahan apa pun, update folder `handover/`:
+1. Jika user meminta revisi lanjutan Pengantar AI, gunakan `materi/pengantar-ai.md` sebagai baseline terbaru dan guardrail anti-duplikasi.
+2. Masukkan revisi ke file runtime Pengantar AI secara scoped:
+   - `01-pengantar-ai/materi.html`
+   - `settings.js` bagian `generatedLessonContent`
+   - activity file jika latihan/kuis/diskusi ikut berubah
+3. Jika user melanjutkan request terbaru, mulai dari `Python untuk AI` dengan membaca `02-python-untuk-ai/` dan `js/frontend/fellow-dashboard/ai-python-basic.js`.
+4. Jika task bukan Python untuk AI atau Pengantar AI, mulai dari Generative AI karena route masih scaffold dan file overview draft sudah ada.
+5. Jika konten belum final, perbaiki data di `COURSE_SCAFFOLDS` saja.
+6. Jika konten sudah final, buat folder canonical dan file activity lengkap baru pindahkan route.
+7. Jangan menyentuh route final AI Modern, Math for AI, Machine Learning, Python, Pengantar AI, CV, dan NLP tanpa task spesifik.
+8. Setelah perubahan apa pun, update folder `handover/`:
    - `HANDOVER_UPDATE.md`
    - `MODULE_STATUS_MAP.md`
    - `COURSE_HIERARCHY.md`
    - `PROMPT_AI_BARU.md`
    - `HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` kalau routing/folder berubah
-6. Jalankan verifikasi dan commit lokal.
+9. Jalankan verifikasi dan commit lokal.
 
 FORMAT UPDATE HANDOVER WAJIB:
 
@@ -308,11 +363,12 @@ File penting yang harus kamu baca sekarang:
 ### Kalau Mau Lanjutkan Modul yang Belum Selesai
 ```
 Prioritas kerja:
-1. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
-2. Untuk course/module belum final, update `COURSE_SCAFFOLDS` dulu dan jangan buat file activity final
-3. Buat atau aktifkan course final langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
-4. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
-5. Setelah update apa pun, update folder `handover/` dan tulis hasil verifikasi terakhir
+1. Untuk request terbaru, lanjutkan `Python untuk AI` di folder canonical existing dan jaga interaktif Pyodide
+2. Kalau task beralih ke course/module belum final, update `COURSE_SCAFFOLDS` dulu dan jangan buat file activity final
+3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final hanya jika user mengarah ke Generative AI
+4. Buat atau aktifkan course final langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
+5. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
+6. Setelah update apa pun, update folder `handover/` dan tulis hasil verifikasi terakhir
 ```
 
 ### Kalau Mau Bikin Course/Track Baru
