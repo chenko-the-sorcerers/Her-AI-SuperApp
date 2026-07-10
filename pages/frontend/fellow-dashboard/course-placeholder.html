@@ -64,8 +64,9 @@
                         <h1 data-course-scaffold-heading>Course sedang disiapkan</h1>
                         <p data-course-scaffold-summary>Tim HerAI sedang menyiapkan outline pembelajaran ini.</p>
                         <div class="lesson-meta-row">
-                            <span><i class="far fa-clock"></i> Draft outline</span>
-                            <span><i class="fas fa-list-check"></i> <b data-course-scaffold-count>0</b> topik awal</span>
+                            <span><i class="far fa-clock"></i> <b data-course-scaffold-duration>Draft outline</b></span>
+                            <span><i class="fas fa-list-check"></i> <b data-course-scaffold-count>0</b> <span data-course-scaffold-unit>topik awal</span></span>
+                            <span data-course-scaffold-level-wrap hidden><i class="fas fa-signal"></i> <b data-course-scaffold-level>Level</b></span>
                             <b data-course-scaffold-status>Scaffold</b>
                         </div>
                     </div>
@@ -97,6 +98,7 @@
                                 <h2 data-course-scaffold-section-title>Outline awal</h2>
                             </div>
                             <ol data-course-scaffold-modules></ol>
+                            <div class="reasoning-scaffold-rich" data-course-scaffold-rich-content hidden></div>
                         </div>
 
                         <div class="course-scaffold-grid">
@@ -132,9 +134,9 @@
 
             <aside class="lesson-right-panel">
                 <section class="module-side-card lesson-progress-card">
-                    <h2>Status Course</h2>
+                    <h2 data-course-scaffold-progress-title>Status Course</h2>
                     <div class="lesson-progress-mini"><b style="--value:12%"></b><strong>12%</strong></div>
-                    <p>Scaffold sudah tersedia. Konten lengkap belum aktif.</p>
+                    <p data-course-scaffold-progress-copy>Scaffold sudah tersedia. Konten lengkap belum aktif.</p>
                     <a href="#/participant-modules">Lihat Catalog</a>
                 </section>
 

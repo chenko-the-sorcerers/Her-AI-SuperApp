@@ -69,7 +69,7 @@ Konteks terbaru:
   - Materi Python punya panel Belajar Aktif di setiap chapter.
   - Code block materi Python memakai background HerAI pink-light, bukan terminal hitam.
   - AGENTS.md diperbarui agar aturan ini wajib dipakai agent berikutnya.
-- Tim lain sedang mengerjakan course Reasoning. Sebelum merge/pull perubahan Reasoning, baca `handover/MERGE_GUIDE_REASONING_TEAM.md`.
+- Course Reasoning dari `origin/design` sudah masuk sebagai scaffold lengkap. Route tetap `#/participant-ai-reasoning`; belum canonical final.
 - File runtime Python yang sudah menjadi target utama:
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/materi.html`
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/latihan.html`
@@ -143,7 +143,7 @@ Konteks penting:
 - AGENTS.md sudah diperbarui dengan aturan UI ini.
 - Jangan merusak route/layout/sidebar/topbar/breadcrumb/tabs/right panel/footer nav.
 - Jangan mengubah localStorage keys atau fungsi interaktif Python.
-- Reasoning di repo ini masih scaffold route `#/participant-ai-reasoning`, biasanya lewat `course-placeholder.js`.
+- Reasoning di repo ini adalah scaffold lengkap route `#/participant-ai-reasoning`, lewat `course-placeholder.js`.
 
 Sebelum merge:
 1. Jalankan `git status --short`.

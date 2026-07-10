@@ -2,8 +2,8 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status:** ada perubahan lokal belum commit, belum push
-**Commit fitur terakhir:** `6eb03f8 feat: expand ai introduction lesson content`
+**Status:** merge Reasoning sedang diselesaikan, belum push
+**Commit fitur terakhir sebelum merge:** `c1870d4 feat: finalize python ai module and merge handover`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
@@ -32,8 +32,13 @@ Status terbaru 10 Juli 2026 setelah follow-up user:
   - single attempt harus menjelaskan state terkunci;
   - code block materi wajib pink-light, bukan terminal hitam;
   - tema HerAI pink harus konsisten di materi, latihan, kuis, diskusi, callout, quick check, selected state, active border, icon, dan code block.
-- Route `js/router.js` tidak diubah selama pekerjaan ini.
-- Area Reasoning sedang dikerjakan oleh tim lain. Merge harus mengikuti dokumen khusus:
+- Route `js/router.js` tidak diubah selama pekerjaan Python/Pengantar AI.
+- Pekerjaan Reasoning dari `origin/design` sudah di-merge ke working tree:
+  - route tetap `#/participant-ai-reasoning`;
+  - target tetap `pages/frontend/fellow-dashboard/course-placeholder.html`;
+  - konten lengkap berada di `COURSE_SCAFFOLDS`;
+  - status masih scaffold lengkap, belum canonical final.
+- Dokumen merge tetap disimpan sebagai referensi:
   - `handover/MERGE_GUIDE_REASONING_TEAM.md`
 
 File penting yang berubah pada checkpoint terbaru:
@@ -65,9 +70,39 @@ node scripts/check-participant-routes.mjs -> Total: 110 | 110 passed | 0 failed
 
 Catatan merge penting:
 
-- File `materi/baru/pemorgraman-pyhton.md` sedang berstatus deleted di working tree dan bukan bagian utama runtime final. Jangan restore/hapus ulang tanpa keputusan tim.
-- File sumber baru `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md` masih untracked pada checkpoint lokal ini; pastikan ikut di-add kalau ingin menyimpan sumber brainstorming.
-- Tim Reasoning kemungkinan akan menyentuh `js/router.js`, `js/frontend/fellow-dashboard/course-placeholder.js`, overview AI Fundamentals, atau folder baru untuk Reasoning. Jangan menimpa perubahan Python/Pengantar AI saat merge.
+- File sumber baru `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md` sudah masuk commit lokal Python.
+- Saat merge Reasoning, perubahan runtime Python dan Pengantar AI harus tetap dipertahankan.
+
+---
+
+## Update Merge - Reasoning dari origin/design
+
+Remote `origin/design` membawa commit Reasoning:
+
+```text
+e90725e fix: prevent reasoning scaffold content overflow
+00da94f docs: update expanded reasoning handover
+e11e0a3 feat: expand ai reasoning learning module
+6fde98b docs: update reasoning scaffold handover
+b33c1b4 feat: enrich ai reasoning scaffold
+```
+
+Keputusan merge:
+
+- Perubahan Reasoning diterima pada:
+  - `js/frontend/fellow-dashboard/course-placeholder.js`
+  - `pages/frontend/fellow-dashboard/course-placeholder.html`
+  - `css/frontend/fellow-dashboard/modules.css`
+  - `index.html`
+- Konflik hanya terjadi di dokumen handover.
+- Resolusi konflik handover: memakai checkpoint Python/Pengantar AI terbaru sebagai basis, lalu menambahkan status Reasoning hasil kerja tim.
+- Reasoning sekarang berstatus `lengkap di scaffold`, bukan final/canonical:
+  - 4 submateri: `how-ai-reasons`, `planning-and-decomposition`, `chain-of-thought`, `tool-use`;
+  - 17 latihan;
+  - 25 soal kuis;
+  - 4 diskusi;
+  - route tetap `#/participant-ai-reasoning`;
+  - belum membuat folder canonical `04-reasoning/`.
 
 ---
 

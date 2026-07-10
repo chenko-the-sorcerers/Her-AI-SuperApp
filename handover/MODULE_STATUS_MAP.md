@@ -22,7 +22,7 @@ Checkpoint final terbaru 10 Juli 2026:
 - `01 - Pengantar AI` aktif final terbaru. Kuisnya sekarang full-card clickable, single attempt, dan locked state jelas. Jawaban benar tetap tidak ditampilkan setelah submit.
 - `02 - Python untuk AI` aktif final terbaru dengan 13 chapter runtime, panel `Belajar Aktif` per chapter, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal full-card clickable, dan diskusi final.
 - `AGENTS.md` sudah memuat aturan baru: course tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink harus konsisten.
-- `04 - Reasoning` masih scaffold aktif di repo ini, tetapi menjadi area kerja tim lain. Lihat `handover/MERGE_GUIDE_REASONING_TEAM.md` sebelum merge.
+- `04 - Reasoning` sudah masuk dari `origin/design` sebagai scaffold lengkap: 4 submateri, 17 latihan, 25 soal, dan 4 diskusi. Route tetap `#/participant-ai-reasoning`; belum canonical final.
 - Verifikasi terakhir lulus: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `node --check js/frontend/fellow-dashboard/ai-python-basic.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` dengan `Total: 110 | 110 passed | 0 failed`.
 
 Commit lokal terbaru:
@@ -241,7 +241,7 @@ pages/frontend/fellow-dashboard/
 | 01 - Pengantar AI | Aktif final terbaru | Aktif, audit sosio-teknis | Aktif, 10 soal full-card clickable single attempt | Aktif, skenario etika | `settings.js` | Route sub-topik tetap memakai `lesson.html`; konten final sinkron dengan `materi/pengantar-ai.md`; quiz locked state jelas; route/layout besar tidak berubah |
 | 02 - Python untuk AI | Aktif final terbaru, 13 chapter + panel Belajar Aktif | Aktif, Pyodide + mini project preprocessing teks | Aktif, 15 soal full-card clickable single attempt | Aktif, prompt Python untuk AI | `ai-python-basic.js` | Rombak final dari `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md`; code block pink-light; route/layout tetap; snapshot di `materi/python-untuk-ai.md` |
 | 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
-| 04 - Reasoning | Scaffold, area kerja tim lain | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-reasoning`; sebelum merge baca `handover/MERGE_GUIDE_REASONING_TEAM.md` |
+| 04 - Reasoning | Lengkap di scaffold | Lengkap di scaffold | Lengkap di scaffold, 25 soal | Lengkap di scaffold, 4 diskusi | `course-placeholder.js` | 4 submateri, 17 latihan, 25 soal, 4 diskusi; route tetap `#/participant-ai-reasoning`, belum final/canonical |
 | 05 - Evaluation | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evaluation`, belum punya file final |
 | 06 - Evolution of AI | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evolution`, belum punya file final |
 
