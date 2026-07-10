@@ -17,6 +17,31 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ---
 
+## Update 10 Juli 2026 - Full Curriculum Placeholder Scaffold
+
+Update lanjutan sesi ini:
+
+- `js/frontend/fellow-dashboard/course-placeholder.js` sekarang menjadi manifest tunggal `COURSE_SCAFFOLDS` untuk course/track/module yang belum final.
+- Math for AI sudah dihapus dari manifest scaffold karena route final Math aktif di `foundation-core-ai/math-for-ai/`.
+- Setiap module scaffold punya metadata minimal: `slug`, `title`, `summary`, `materi`, `latihan`, `kuis`, dan `diskusi`.
+- Scaffold mendukung route overview dan detail module via query:
+  - `#/participant-ai-lab-gen?activity=latihan`
+  - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
+- Query `activity` invalid fallback ke `materi`; query `module` invalid fallback ke overview route utama.
+- Route scaffold baru AI Fundamentals:
+  - `#/participant-ai-reasoning`
+  - `#/participant-ai-evaluation`
+  - `#/participant-ai-evolution`
+- Card AI Fundamentals untuk Reasoning, Evaluation, dan Evolution of AI sekarang berupa link route, bukan button non-route.
+
+Aturan tim konten:
+
+- Course/module belum final tidak boleh membuat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`.
+- Isi dulu manifest `COURSE_SCAFFOLDS` di `course-placeholder.js`.
+- File final baru dibuat kalau konten activity sudah benar-benar siap dan route akan dipindahkan dari `course-placeholder.html`.
+
+---
+
 ## Update 10 Juli 2026 - Activity Tabs Scaffold dan Aktivasi Materi Konsep AI Modern
 
 Update lanjutan sesi ini:

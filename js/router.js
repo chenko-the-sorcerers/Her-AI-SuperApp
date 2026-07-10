@@ -51,6 +51,9 @@ const router = {
         "/participant-ai-modern-practice": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/latihan.html",
         "/participant-ai-modern-quiz": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/kuis.html",
         "/participant-ai-modern-discussion": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/diskusi.html",
+        "/participant-ai-reasoning": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-evaluation": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-evolution": "/pages/frontend/fellow-dashboard/course-placeholder.html",
         "/participant-mentor": "/pages/frontend/fellow-dashboard/mentor.html",
         "/participant-tasks": "/pages/frontend/fellow-dashboard/tasks.html",
         "/participant-projects": "/pages/frontend/fellow-dashboard/projects.html",
@@ -362,6 +365,9 @@ const router = {
             "/participant-ai-modern-practice",
             "/participant-ai-modern-quiz",
             "/participant-ai-modern-discussion",
+            "/participant-ai-reasoning",
+            "/participant-ai-evaluation",
+            "/participant-ai-evolution",
             "/participant-profile",
             "/participant-mentor",
             "/participant-tasks",
@@ -718,6 +724,11 @@ const router = {
                     }
 
 
+                } else if ((path === "/participant-ai-reasoning" || path === "/participant-ai-evaluation" || path === "/participant-ai-evolution") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if (typeof window.initCoursePlaceholder === "function") {
+                        window.initCoursePlaceholder();
+                    }
                 } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
                 } else if (path.startsWith("/participant-specialization-") && typeof window.initFellowDashboardPage === "function") {
@@ -794,6 +805,10 @@ const router = {
                     window.initPageInteractions();
                 }
 
+            }
+
+            if (routeUrl === "/pages/frontend/fellow-dashboard/course-placeholder.html" && typeof window.initCoursePlaceholder === "function") {
+                window.initCoursePlaceholder();
             }
 
             // Halaman publik tetap mulai dari atas; halaman admin menjaga konteks panel samping.

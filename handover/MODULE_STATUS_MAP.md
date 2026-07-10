@@ -33,7 +33,7 @@ Course utama yang terlihat di katalog peserta, dikelompokkan sesuai category/dom
 
 | Category / Domain | Course | Status | Isi utama |
 |---|---|---|---|
-| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif | Pengantar AI, Python untuk AI, Konsep AI Modern, Reasoning, Evaluation, Evolution of AI |
+| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif + scaffold | Pengantar AI, Python untuk AI, Konsep AI Modern aktif; Reasoning, Evaluation, Evolution of AI scaffold |
 | Foundation & Core AI | Math for AI | Aktif | Overview, 7 lesson, latihan, kuis, diskusi |
 | Foundation & Core AI | Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
 | Foundation & Core AI | Deep Learning | Scaffold aktif | Neural Network Basics, Training & Backpropagation, CNN/RNN Overview, Transformer Basics, Regularization |
@@ -287,15 +287,23 @@ js/frontend/fellow-dashboard/course-placeholder.js
 Catatan activity scaffold:
 
 - `course-placeholder.html` memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`.
+- `js/frontend/fellow-dashboard/course-placeholder.js` adalah manifest tunggal untuk semua course/track/module yang belum final.
+- Course yang belum final tidak boleh membuat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html` dulu. Isi `COURSE_SCAFFOLDS` sampai konten benar-benar siap.
+- File final baru dibuat hanya saat materi, latihan, kuis, dan diskusi sudah siap dipindahkan dari scaffold ke folder canonical.
 - Tab `Materi` memakai route utama course/track, misalnya `#/participant-ai-lab-gen`.
 - Tab activity yang belum final tetap berada di halaman scaffold yang sama memakai query hash:
   - `#/participant-ai-lab-gen?activity=latihan`
   - `#/participant-ai-lab-gen?activity=kuis`
   - `#/participant-ai-lab-gen?activity=diskusi`
+- Detail module scaffold memakai query `module` dan `activity`, contoh:
+  - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
 - Jangan arahkan tab scaffold non-final ke `#/participant-under-development` kecuali memang user meminta fallback global.
 
 | Route | Course/Track |
 |---|---|
+| `/participant-ai-reasoning` | Reasoning module scaffold |
+| `/participant-ai-evaluation` | Evaluation module scaffold |
+| `/participant-ai-evolution` | Evolution of AI module scaffold |
 | `/participant-ai-lab-gen` | Generative AI |
 | `/participant-ai-lab-deep-learning` | Deep Learning |
 | `/participant-ai-lab-reinforcement-learning` | Reinforcement Learning |

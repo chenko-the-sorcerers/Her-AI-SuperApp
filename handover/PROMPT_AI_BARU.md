@@ -92,11 +92,27 @@ Catatan penting:
 - Folder category/domain canonical ada langsung di pages/frontend/fellow-dashboard/.
 - Course/track placeholder sudah punya route eksplisit ke `course-placeholder.html` agar tim tinggal mengisi outline atau mengganti mapping route saat konten final siap.
 - Course/track placeholder memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`; tab activity non-materi memakai query hash seperti `#/participant-ai-lab-gen?activity=latihan`, bukan `#/participant-under-development`.
+- Detail module placeholder memakai query `module` dan `activity`, contoh `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`.
+- Untuk course/module belum final, jangan buat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`. Isi manifest `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js` dulu.
+- File final baru dibuat kalau konten benar-benar siap dan route akan dipindahkan dari `course-placeholder.html`.
 - Jangan buat folder `course-catalog/`, `ai-fundamental/`, atau `ai-lab/` lagi sebagai path aktif. Itu folder lama/superseded. Category/domain canonical langsung di bawah `pages/frontend/fellow-dashboard/`.
 
 ---
 
 POLA PEMBUATAN COURSE/MODUL BARU:
+
+Jika course/module belum final:
+  1. Tambahkan route ke `course-placeholder.html` di `js/router.js`
+  2. Tambahkan route ke `participantDashboardPages`
+  3. Isi manifest `COURSE_SCAFFOLDS` dengan `title`, `category`, `icon`, `status`, `summary`, dan `modules`
+  4. Isi setiap module dengan `slug`, `title`, `summary`, `materi`, `latihan`, `kuis`, dan `diskusi`
+  5. Gunakan query scaffold:
+     - `#/participant-ai-lab-gen?activity=latihan`
+     - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
+
+Jangan membuat file `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html` untuk course/module yang masih scaffold.
+
+Jika konten sudah final:
 
 Setiap course baru sebaiknya dibuat di hierarchy canonical:
   pages/frontend/fellow-dashboard/CATEGORY-SLUG/COURSE-SLUG/
