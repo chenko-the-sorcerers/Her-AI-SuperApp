@@ -1,149 +1,90 @@
-<div class="lesson-module-content">
-    <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
-        <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-            <i class="fas fa-rocket"></i> Topik 5: Ekosistem Data Science
-        </h3>
-        <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-            Goal: Membuka gerbang menuju AI dengan menggunakan pustaka (library) esensial pengolah angka dan tabel.
-        </p>
-    </div>
-
-    <!-- CHAPTER 1: NUMPY -->
-    <section class="cdd-chapter">
-        <h2>Chapter 1: Kalkulator Massal (NumPy)</h2>
-        
-        <div class="cdd-step">
-            <h3>Learning Objective</h3>
-            <p>Peserta memahami bagaimana <code>NumPy</code> digunakan untuk melakukan perhitungan matematika kompleks pada ribuan data sekaligus tanpa perlu perulangan (loop) manual.</p>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Analogy</h3>
-            <p>Bayangkan kamu adalah kasir di minimarket. Jika pakai List Python biasa, kamu harus men-scan dan menghitung total harga barang <strong>satu per satu</strong> (menggunakan <em>Loop</em>).</p>
-            <p>Dengan <strong>NumPy</strong>, ibarat kamu punya <em>scanner</em> keranjang pintar: Cukup letakkan sekeranjang penuh barang, dan NumPy akan mengalikan semua jumlah barang dengan harga diskonnya secara <strong>serentak dalam 1 detik!</strong> (Komputasi Vektorisasi).</p>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Syntax & Code Example</h3>
-            <p>Pertama, kita harus <em>import</em> (meminjam) alat NumPy ini ke dalam program kita.</p>
-            
-            <div class="playground-wrapper" id="play-np" style="margin-top: 16px;">
-                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>numpy_kasir.py</div>
-                    <div class="py-actions" style="display: flex; gap: 8px;">
-                        <button class="py-reset" data-play="np" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                        <button class="py-run" id="btn-run-np" data-play="np" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                    </div>
-                </div>
-                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
-<textarea class="py-editor" style="width: 100%; min-height: 250px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-import numpy as np
-
-# List biasa (lambat)
-harga_list = [10000, 20000, 30000, 40000]
-
-# NumPy Array (Super cepat & Kuat!)
-harga_np = np.array([10000, 20000, 30000, 40000])
-
-# Semua barang didiskon 50%! 
-# Di NumPy, kita bisa langsung mengalikan semuanya sekaligus:
-harga_diskon = harga_np * 0.5
-
-print("Harga awal  :", harga_np)
-print("Harga diskon:", harga_diskon)
-</textarea>
-                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
-                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output <span style="font-size:0.7rem; color:var(--fellow-muted); text-transform:none;">(NumPy butuh waktu beberapa detik untuk diunduh pertama kali)</span></div>
-                        <pre class="py-output" id="out-np" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-code-branch"></i> Topik 5 dari 13</span>
+        <h1>Alur Logika dan Percabangan</h1>
+        <p>Materi final Pemrograman Python untuk AI disajikan lengkap, rinci, dan bertahap dari fondasi bahasa sampai pintu gerbang data science.</p>
     </section>
 
-    <!-- CHAPTER 2: PANDAS -->
-    <section class="cdd-chapter">
-        <h2>Chapter 2: Excel Super Canggih (Pandas)</h2>
-        
-        <div class="cdd-step">
-            <h3>Learning Objective</h3>
-            <p>Peserta memahami apa itu <code>DataFrame</code> di Pandas dan bagaimana Pandas digunakan untuk menganalisis data dalam format baris dan kolom persis seperti Microsoft Excel.</p>
-        </div>
+    <section class="python-section-card python-source-content">
 
-        <div class="cdd-step">
-            <h3>Analogy</h3>
-            <p>NumPy ahli dalam menghitung angka murni, tapi kurang ramah kalau kita punya data campur aduk (ada teks nama orang, ada angka umur, ada uang). Di sinilah <strong>Pandas</strong> masuk!</p>
-            <p><strong>Pandas DataFrame</strong> ibarat <em>spreadsheet</em> (lembar kerja) Excel yang super canggih. Kamu bisa menyaring <em>(filter)</em>, mengelompokkan <em>(group)</em>, dan membersihkan data kosong dalam sekejap mata lewat kode.</p>
-        </div>
+<h2 id="tujuan-chapter">Tujuan Chapter</h2>
+<p>Peserta mampu merancang alur logika keputusan program menggunakan operator perbandingan, operator logika, serta struktur kontrol percabangan if, elif, dan else.</p>
+<h2 id="konsep-utama">Konsep Utama</h2>
+<p>Percabangan mengontrol eksekusi baris kode berdasarkan evaluasi kondisi boolean. Python mengevaluasi ekspresi kondisional dari atas ke bawah dan mengeksekusi blok kode pertama yang bernilai True.</p>
+<h2 id="analogi">Analogi</h2>
+<p>Bayangkan percabangan seperti <strong>Gerbang Pemeriksaan Otomatis</strong> di bandara. Gerbang akan mengecek kondisi dokumen Anda: <strong>Jika</strong> memiliki paspor diplomatik, Anda melewati jalur khusus pertama. <strong>Jika tidak (Elif)</strong>, jika memiliki paspor reguler yang valid, Anda melewati jalur pemeriksaan umum. <strong>Selain itu (Else)</strong>, jika semua syarat tidak terpenuhi, Anda diarahkan ke loket penanganan darurat.</p>
+<h2 id="penjelasan-teori-rinci">Penjelasan Teori Rinci</h2>
+<p>Secara default, interpreter Python mengeksekusi kode secara berurutan baris demi baris dari atas ke bawah. Namun, aplikasi dunia nyata membutuhkan kemampuan untuk mengambil keputusan secara dinamis. Struktur percabangan memungkinkan program untuk memilih jalur eksekusi yang berbeda berdasarkan kondisi data saat ini.<br />Struktur percabangan di Python ditulis dengan kata kunci if, diikuti oleh ekspresi kondisi, dan diakhiri dengan titik dua. Blok kode yang termasuk dalam percabangan tersebut ditentukan menggunakan tingkat indentasi, bukan menggunakan tanda kurung kurawal seperti pada bahasa pemrograman lain.<br />Evaluasi kondisi menggunakan dua jenis operator utama:<br /><strong>Operator Perbandingan</strong>: Digunakan untuk membandingkan dua nilai.</p>
+<ul>
+<li>== (Sama dengan)<br /></li>
+<li>!= (Tidak sama dengan)<br /></li>
+<li>&gt; (Lebih dari), &lt; (Kurang dari)<br /></li>
+<li>&gt;= (Lebih dari atau sama dengan), &lt;= (Kurang dari atau sama dengan)</li>
+</ul>
+<p><strong>Operator Logika</strong>: Digunakan untuk menggabungkan beberapa kondisi.</p>
+<ul>
+<li>and: Mengembalikan True hanya jika kedua kondisi bernilai benar.<br /></li>
+<li>or: Mengembalikan True jika salah satu atau kedua kondisi bernilai benar.<br /></li>
+<li>not: Membalik nilai boolean.</li>
+</ul>
+<p>Ketika mengevaluasi rantai keputusan if - elif - else, Python bekerja secara <em>short-circuit</em>.4 Artinya, begitu Python menemukan satu kondisi yang bernilai True, ia akan langsung mengeksekusi blok kode di bawahnya dan mengabaikan semua kondisi berikutnya dalam rantai tersebut, meskipun kondisi di bawahnya mungkin juga bernilai benar. Oleh karena itu, urutan penulisan kondisi dari yang paling spesifik ke yang paling umum sangatlah krusial.</p>
+<p>Alur Logika Percabangan:<br /> Apakah Kondisi IF Benar?<br /> / \<br /> (Ya) / \ (Tidak)<br /> / \<br /> Eksekusi Blok IF Apakah Kondisi ELIF Benar?<br /> / \<br /> (Ya) / \ (Tidak)<br /> / \<br /> Eksekusi Blok ELIF Eksekusi Blok ELSE</p>
+<h2 id="contoh-kode-utama">Contoh Kode Utama</h2>
+<pre class="sourceCode python"><code class="sourceCode python">akurasi = <span class="fl">0.85</span></code></pre>
+<p>if akurasi &gt;= 0.90:<br /> print(&quot;Model Sangat Akurat&quot;)<br />elif akurasi &gt;= 0.75:<br /> print(&quot;Model Cukup Akurat&quot;)<br />else:<br /> print(&quot;Model Tidak Akurat&quot;)</p>
+<h2 id="penjelasan-kode-baris-demi-baris">Penjelasan Kode Baris demi Baris</h2>
+<ul>
+<li><strong>Baris 1</strong>: akurasi = 0.85<br /> Mendefinisikan variabel akurasi dengan nilai float 0.85.<br /></li>
+<li><strong>Baris 2</strong>: if akurasi &gt;= 0.90: Mengevaluasi apakah nilai akurasi lebih besar atau sama dengan 0.90.4 Karena 0.85 &gt;= 0.90 bernilai False, blok di bawahnya diabaikan.<br /></li>
+<li><strong>Baris 4</strong>: elif akurasi &gt;= 0.75: Karena kondisi pertama gagal, Python menguji kondisi ini. 0.85 &gt;= 0.75 bernilai True, sehingga program memasuki blok ini.<br /></li>
+<li><strong>Baris 5</strong>: print(&quot;Model Cukup Akurat&quot;) Mencetak teks &quot;Model Cukup Akurat&quot;.4 Jalur percabangan selesai dan blok else diabaikan.</li>
+</ul>
+<h2 id="contoh-tambahan">3 Contoh Tambahan</h2>
+<ol style="list-style-type: decimal">
+<li><p>Menggunakan operator logika and untuk memvalidasi beberapa kriteria 11:</p>
+<pre class="sourceCode python"><code class="sourceCode python">   loss = <span class="fl">0.12</span>
+   val_accuracy = <span class="fl">0.88</span></code></pre></li>
+</ol>
+<p>if loss &lt; 0.15 and val_accuracy &gt; 0.85:<br /> print(&quot;Model Stabil&quot;)</p>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: loss = 0.12 menetapkan nilai loss.<br /> * <strong>Baris 2</strong>: val_accuracy = 0.88 menetapkan akurasi validasi.<br /> * <strong>Baris 4</strong>: if loss &lt; 0.15 and val_accuracy &gt; 0.85: mengevaluasi kedua kondisi. Karena keduanya bernilai True, operasi and menghasilkan True.<br /> * <strong>Baris 5</strong>: print(&quot;Model Stabil&quot;) dijalankan.<br />2. Memeriksa keberadaan elemen di dalam List menggunakan operator in :</p>
+<pre class="sourceCode python"><code class="sourceCode python">   token_list = [<span class="st">&quot;ai&quot;</span>, <span class="st">&quot;python&quot;</span>, <span class="st">&quot;data&quot;</span>]
+   <span class="kw">if</span> <span class="st">&quot;python&quot;</span> in token_list:
+       <span class="dt">print</span>(<span class="st">&quot;Token Ditemukan&quot;</span>)</code></pre>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: token_list = [...] mendefinisikan list berisi tiga token kata.<br /> * <strong>Baris 2</strong>: if &quot;python&quot; in token_list: mengecek apakah string &quot;python&quot; ada di dalam list tersebut.<br /> * <strong>Baris 3</strong>: print(&quot;Token Ditemukan&quot;) mencetak pesan karena kondisi bernilai True.<br />3. Ekspresi kondisional satu baris:</p>
+<pre class="sourceCode python"><code class="sourceCode python">   score = <span class="fl">0.4</span>
+   status = <span class="st">&quot;Lulus&quot;</span> <span class="kw">if</span> score &gt;= <span class="fl">0.5</span> <span class="kw">else</span> <span class="st">&quot;Gagal&quot;</span>
+   <span class="dt">print</span>(status)</code></pre>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: score = 0.4 menetapkan nilai skor.<br /> * <strong>Baris 2</strong>: status = &quot;Lulus&quot; if score &gt;= 0.5 else &quot;Gagal&quot; mengevaluasi kondisi. Karena score &gt;= 0.5 adalah False, variabel status diisi dengan nilai di setelah kata kunci else, yaitu &quot;Gagal&quot;.<br /> * <strong>Baris 3</strong>: print(status) mencetak teks &quot;Gagal&quot;.4</p>
+<h2 id="common-mistakes">3 Common Mistakes</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Menggunakan Operator Penugasan sebagai Pembanding</strong>: Menulis if skor = 100: alih-alih if skor == 100:. Karakter = tunggal digunakan untuk memasukkan nilai ke variabel, sedangkan == ganda digunakan untuk membandingkan nilai.<br /></li>
+<li><strong>Kesalahan Indentasi</strong>: Menulis kode di dalam blok percabangan tanpa memberikan spasi indentasi yang seragam di awal baris.<br /></li>
+<li><strong>Tumpang Tindih Kondisi yang Tidak Logis</strong>: Menuliskan kondisi yang lebih umum di atas kondisi yang lebih spesifik, sehingga kondisi spesifik tidak pernah tercapai karena terpotong oleh evaluasi awal.</li>
+</ol>
+<h2 id="best-practices">3 Best Practices</h2>
+<ol style="list-style-type: decimal">
+<li>Pastikan blok keputusan mencakup kondisi alternatif melalui else untuk menangani skenario data yang tidak terduga agar program tidak lolos begitu saja tanpa penanganan.<br /></li>
+<li>Hindari membuat percabangan bersarang yang terlalu dalam karena akan menyulitkan pembacaan logika kode; pecah menjadi beberapa kondisi logis terpisah atau gunakan fungsi pembantu.<br /></li>
+<li>Gunakan tanda kurung jika menggabungkan banyak operator logika and dan or sekaligus dalam satu baris untuk mempertegas urutan prioritas evaluasi logika.</li>
+</ol>
+<h2 id="hubungan-konsep-ini-dengan-aidata-science">Hubungan Konsep Ini dengan AI/Data Science</h2>
+<p>Algoritma kecerdasan buatan sering kali menggunakan logika ambang batas. Misalnya, sebuah sistem klasifikasi sentimen mendeteksi bahwa peluang sebuah ulasan bernilai positif adalah . Program Python akan menggunakan blok if untuk menentukan: jika peluang tersebut berada di atas , maka ulasan diklasifikasikan sebagai positif, jika tidak, diklasifikasikan sebagai negatif.</p>
+<h2 id="latihan-kecil-dengan-contoh-jawaban">Latihan Kecil dengan Contoh Jawaban</h2>
+<p>Tuliskan struktur percabangan yang memeriksa variabel tingkat_error (float). Jika tingkat_error di bawah 0.05, cetak &quot;Akurasi Tinggi&quot;. Jika di antara 0.05 dan 0.15, cetak &quot;Akurasi Sedang&quot;. Selain itu, cetak &quot;Akurasi Rendah&quot;.<br /><em>Contoh Jawaban</em>:</p>
+<pre class="sourceCode python"><code class="sourceCode python">tingkat_error = <span class="fl">0.08</span>
+<span class="kw">if</span> tingkat_error &lt; <span class="fl">0.05</span>:
+    <span class="dt">print</span>(<span class="st">&quot;Akurasi Tinggi&quot;</span>)
+<span class="kw">elif</span> tingkat_error &lt;= <span class="fl">0.15</span>:
+    <span class="dt">print</span>(<span class="st">&quot;Akurasi Sedang&quot;</span>)
+<span class="kw">else</span>:
+    <span class="dt">print</span>(<span class="st">&quot;Akurasi Rendah&quot;</span>)</code></pre>
+<h2 id="ringkasan-chapter">Ringkasan Chapter</h2>
+<p>Struktur kontrol percabangan yang didukung oleh operator perbandingan dan logika memungkinkan pembuatan keputusan pemrograman secara dinamik berdasarkan data masukan.</p>
 
-        <div class="cdd-step">
-            <h3>Syntax & Code Example</h3>
-            <p>Mari kita buat tabel data member salon sederhana menggunakan tipe data <code>Dictionary</code> dan mengubahnya menjadi tabel DataFrame Pandas.</p>
-            
-            <div class="playground-wrapper" id="play-pd" style="margin-top: 16px;">
-                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>pandas_salon.py</div>
-                    <div class="py-actions" style="display: flex; gap: 8px;">
-                        <button class="py-reset" data-play="pd" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                        <button class="py-run" id="btn-run-pd" data-play="pd" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                    </div>
-                </div>
-                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
-<textarea class="py-editor" style="width: 100%; min-height: 280px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-import pandas as pd
-
-# Data mentah kita (Dictionary)
-data_mentah = {
-    "Nama": ["Aisyah", "Budi", "Citra", "Diana"],
-    "Umur": [25, 30, 22, 28],
-    "VIP": [True, False, False, True]
-}
-
-# Menyulapnya menjadi tabel rapi (DataFrame)
-df = pd.DataFrame(data_mentah)
-
-print("Tabel Keseluruhan:")
-print(df)
-
-print("\n--- Cari Member VIP Saja ---")
-vip_saja = df[df["VIP"] == True]
-print(vip_saja)
-</textarea>
-                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
-                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                        <pre class="py-output" id="out-pd" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CHAPTER 3: MEMBACA CSV -->
-    <section class="cdd-chapter">
-        <h2>Chapter 3: Membaca Dataset CSV</h2>
-        
-        <div class="cdd-step">
-            <h3>Theory & Practical Use</h3>
-            <p>Di dunia AI sungguhan, kita hampir tidak pernah mengetik data manual seperti contoh di atas. <em>Data Scientist</em> biasanya mengunduh file <strong>CSV (Comma Separated Values)</strong> yang berisi jutaan baris data, lalu memintanya dibaca oleh Pandas.</p>
-            <p>Fungsi sakti yang digunakan adalah <code>pd.read_csv("nama_file.csv")</code>.</p>
-            <p>Contoh <em>pseudocode</em> di dunia nyata:</p>
-            
-            <div class="code-block" style="margin-top: 12px; margin-bottom: 16px;">
-                <pre><code><span class="co">import</span> pandas <span class="co">as</span> pd
-
-<span class="cm"># Membaca data penjualan e-commerce selama 5 tahun</span>
-dataset_penjualan = pd.read_csv(<span class="st">"penjualan_sepatu_2020_2025.csv"</span>)
-
-<span class="cm"># Menampilkan 5 baris pertama untuk ngintip datanya</span>
-<span class="fn">print</span>(dataset_penjualan.head())</code></pre>
-            </div>
-        </div>
-        
-        <div class="cdd-step" style="background: linear-gradient(135deg, rgba(246,51,146,.05) 0%, rgba(246,51,146,.15) 100%); padding: 32px; border-radius: 16px; margin-top: 40px; text-align: center; border: 1px solid rgba(246,51,146,.3);">
-            <h3 style="margin-top:0; font-size: 1.6rem; color: #f63392;">🎓 Materi Python Selesai!</h3>
-            <p style="font-size: 1.1rem; color: #171827; margin-bottom: 24px;">Kamu telah menuntaskan seluruh fondasi penting Python untuk AI: dari membuat variabel, logika loop, mengemas kode dalam fungsi & class, hingga menyentuh NumPy dan Pandas! Langkah selanjutnya? Uji pemahamanmu di sesi latihan mandiri!</p>
-            <a href="#/participant-ai-python-practice" class="fellow-btn-primary" style="display: inline-block; text-decoration: none;"><i class="fas fa-keyboard"></i> Lanjut ke Sesi Latihan</a>
-        </div>
     </section>
 
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Berikutnya, kita mengulang proses pada banyak data menggunakan perulangan.</p>
+    </section>
 </div>

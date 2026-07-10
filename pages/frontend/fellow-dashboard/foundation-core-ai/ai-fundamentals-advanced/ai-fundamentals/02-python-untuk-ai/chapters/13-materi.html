@@ -1,0 +1,112 @@
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-table"></i> Topik 13 dari 13</span>
+        <h1>Pandas dan Tabular Data</h1>
+        <p>Fondasi manipulasi data tabel untuk membaca dataset, inspeksi awal, filter, dan ringkasan statistik sebelum masuk ke machine learning.</p>
+    </section>
+
+    <section class="python-section-card python-source-content">
+        <h2>Tujuan Chapter</h2>
+        <p>Peserta memahami struktur Series dan DataFrame, mampu membuat DataFrame dari dictionary, membaca dataset CSV, melakukan inspeksi awal, memilih kolom, dan memfilter baris berdasarkan kondisi.</p>
+
+        <h2>Kenapa Topik Ini Penting untuk AI</h2>
+        <p>Sebagian besar waktu proyek AI tidak habis untuk membuat model, tetapi untuk menyiapkan data. Data sering datang sebagai tabel: CSV pendaftaran, log transaksi, hasil survei, metadata gambar, label sentimen, atau catatan sensor. Pandas memberi alat untuk membaca, memeriksa, membersihkan, dan memfilter data semacam itu secara sistematis.</p>
+
+        <h2>Konsep Utama</h2>
+        <p><strong>Series</strong> adalah struktur satu dimensi seperti satu kolom tabel. <strong>DataFrame</strong> adalah struktur dua dimensi seperti spreadsheet: ada baris, kolom, nama kolom, dan indeks.</p>
+        <p>DataFrame dapat dibuat dari dictionary, dibaca dari CSV dengan <code>pd.read_csv()</code>, diperiksa dengan <code>.head()</code>, diringkas dengan <code>.info()</code> dan <code>.describe()</code>, lalu difilter memakai boolean masking.</p>
+        <p>Pandas dibangun di atas NumPy, tetapi lebih cocok untuk data dunia nyata yang heterogen: ada teks, angka, boolean, kategori, dan tanggal dalam satu tabel.</p>
+
+        <div class="python-table-wrap"><table><thead><tr><th>Operasi</th><th>Contoh</th><th>Kegunaan AI</th></tr></thead><tbody><tr><td>Membuat DataFrame</td><td><code>pd.DataFrame(data)</code></td><td>Mengubah dictionary/list menjadi tabel</td></tr><tr><td>Intip data</td><td><code>df.head()</code></td><td>Melihat baris awal dataset</td></tr><tr><td>Info kolom</td><td><code>df.info()</code></td><td>Cek tipe data dan missing values</td></tr><tr><td>Filter</td><td><code>df[df["Akurasi"] &gt; 0.8]</code></td><td>Memilih sampel/model yang memenuhi syarat</td></tr></tbody></table></div>
+
+        <h2>Analogi</h2>
+        <p>Jika NumPy adalah kalkulator matriks super cepat, Pandas adalah Excel di dalam Python. Bedanya, Pandas bisa diprogram, diulang, diaudit, dan digabung dengan pipeline AI. Filter yang biasanya diklik manual di spreadsheet bisa ditulis sebagai kode yang konsisten.</p>
+
+        <h2>Contoh Kode Utama: Membuat dan Memfilter DataFrame</h2>
+        <pre class="sourceCode python"><code class="sourceCode python">import pandas as pd
+
+data = {
+    &quot;Nama&quot;: [&quot;Aisyah&quot;, &quot;Budi&quot;, &quot;Citra&quot;],
+    &quot;Skor&quot;: [92, 75, 88],
+    &quot;Aktif&quot;: [True, False, True]
+}
+
+df = pd.DataFrame(data)
+lulus = df[df[&quot;Skor&quot;] &gt;= 85]
+
+print(&quot;Data lengkap:&quot;)
+print(df)
+print(&quot;
+Peserta skor &gt;= 85:&quot;)
+print(lulus)</code></pre>
+        <p><strong>Penjelasan:</strong> dictionary berisi nama kolom dan list nilai. Pandas mengubahnya menjadi DataFrame. Ekspresi <code>df["Skor"] &gt;= 85</code> menghasilkan mask boolean, lalu mask itu dipakai untuk memilih baris yang lulus.</p>
+
+        <h2>Contoh Tambahan 1: Statistik Deskriptif</h2>
+        <pre class="sourceCode python"><code class="sourceCode python">import pandas as pd
+
+data_skor = {&quot;Nilai&quot;: [80, 90, 75, 85, 95]}
+df_skor = pd.DataFrame(data_skor)
+
+print(df_skor.describe())</code></pre>
+        <p><code>.describe()</code> menghitung count, mean, std, min, kuartil, dan max untuk kolom numerik. Ini membantu membaca karakter awal dataset.</p>
+
+        <h2>Contoh Tambahan 2: Rata-rata Kolom</h2>
+        <pre class="sourceCode python"><code class="sourceCode python">import pandas as pd
+
+data_loss = {&quot;loss&quot;: [0.4, 0.2, 0.1]}
+df_loss = pd.DataFrame(data_loss)
+mean_loss = df_loss[&quot;loss&quot;].mean()
+
+print(mean_loss)</code></pre>
+        <p>Kolom <code>loss</code> diakses sebagai Series, lalu method <code>.mean()</code> menghitung rata-rata.</p>
+
+        <h2>Contoh Tambahan 3: Simulasi Membaca CSV</h2>
+        <pre class="sourceCode python"><code class="sourceCode python">import pandas as pd
+from io import StringIO
+
+csv_text = &quot;&quot;&quot;model,akurasi,status
+A,0.85,aktif
+B,0.72,aktif
+C,0.91,arsip
+&quot;&quot;&quot;
+
+df_csv = pd.read_csv(StringIO(csv_text))
+aktif_bagus = df_csv[(df_csv[&quot;akurasi&quot;] &gt; 0.80) &amp; (df_csv[&quot;status&quot;] == &quot;aktif&quot;)]
+
+print(df_csv.head())
+print(&quot;
+Model aktif dengan akurasi bagus:&quot;)
+print(aktif_bagus)</code></pre>
+        <p>Di proyek nyata, <code>pd.read_csv("dataset.csv")</code> membaca file fisik. Di contoh browser, <code>StringIO</code> membuat CSV tiruan agar kode tetap bisa dijalankan tanpa file eksternal.</p>
+
+        <h2>Common Mistakes</h2>
+        <ol><li>Salah menulis nama kolom sehingga muncul <code>KeyError</code>.</li><li>Memakai <code>and</code> untuk filter Pandas. Gunakan <code>&amp;</code> dan bungkus tiap kondisi dengan tanda kurung.</li><li>Mengira semua operasi otomatis mengubah DataFrame asal. Banyak operasi mengembalikan DataFrame baru.</li><li>Tidak mengecek missing values dan tipe data sebelum analisis.</li></ol>
+
+        <h2>Best Practices</h2>
+        <ol><li>Gunakan alias standar <code>import pandas as pd</code>.</li><li>Jalankan <code>df.head()</code>, <code>df.info()</code>, dan <code>df.describe()</code> saat menerima dataset baru.</li><li>Simpan hasil filter ke variabel baru agar transformasi mudah dilacak.</li><li>Gunakan nama kolom yang jelas dan konsisten.</li></ol>
+
+        <h2>Latihan Kecil</h2>
+        <p>Buat DataFrame berisi model A, B, C dengan akurasi 0.85, 0.72, 0.91. Filter hanya model dengan akurasi di atas 0.80.</p>
+        <pre class="sourceCode python"><code class="sourceCode python">import pandas as pd
+
+data_ai = {
+    &quot;Model&quot;: [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;],
+    &quot;Akurasi&quot;: [0.85, 0.72, 0.91]
+}
+
+df_ai = pd.DataFrame(data_ai)
+filter_df = df_ai[df_ai[&quot;Akurasi&quot;] &gt; 0.80]
+print(filter_df)</code></pre>
+
+        <h2>Mini Project Akhir Modul</h2>
+        <p>Gabungkan semua fondasi: buat dataset teks mini, bersihkan baris rusak, simpan objek ulasan, ubah menjadi DataFrame, lalu hitung jumlah kategori positif dan negatif. Project lengkapnya ada di tab Latihan.</p>
+
+        <h2>Ringkasan Chapter</h2>
+        <p>Pandas membuat data tabular mudah dibaca, difilter, diperiksa, dan diringkas. Setelah menguasai Pandas, peserta siap masuk ke modul lanjutan seperti machine learning, evaluasi model, NLP, dan computer vision.</p>
+    </section>
+
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Materi selesai. Lanjutkan ke Playground Latihan untuk menggabungkan semua topik dalam mini pipeline Python untuk AI.</p>
+    </section>
+</div>

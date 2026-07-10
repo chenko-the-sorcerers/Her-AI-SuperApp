@@ -1,131 +1,64 @@
-<div class="lesson-module-content">
-    <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
-        <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-            <i class="fas fa-rocket"></i> Topik 2: Koleksi & Alur Logika
-        </h3>
-        <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-            Goal: Mampu menyimpan ribuan data menggunakan Struktur Data dan mengatur jalannya program menggunakan Control Flow.
-        </p>
-    </div>
-
-    <!-- CHAPTER 1: STRUKTUR DATA (LIST & TUPLE) -->
-    <section class="cdd-chapter">
-        <h2>Chapter 1: Menyimpan Jutaan Data</h2>
-        
-        <div class="cdd-step">
-            <h3>Learning Objective</h3>
-            <p>Peserta mampu menjelaskan perbedaan utama List, Tuple, Dictionary, dan Set, serta kapan waktu yang tepat untuk menggunakannya dalam konteks pemrosesan data AI.</p>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Analogy</h3>
-            <p>Bayangkan jika kamu punya koleksi 1.000 lipstik. Jika tidak diatur, kamu akan pusing saat mencari satu warna tertentu. <strong>Struktur Data</strong> ibarat "Rak Kosmetik Acrylic" yang membagi produk sesuai kategorinya.</p>
-            <p><strong>List</strong> ibarat laci bertingkat, di mana lipstik dijejer secara berurutan. <strong>Tuple</strong> ibarat kotak <em>palette</em> yang warnanya sudah permanen tidak bisa diganti. <strong>Dictionary</strong> ibarat memberikan label khusus ("Lipstik Merah", "Nude", "Glossy") pada setiap slot sehingga gampang dicari, tanpa perlu menghitung urutannya.</p>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Theory</h3>
-            <p>Python memiliki 4 struktur data utama (built-in):</p>
-            <ul>
-                <li><strong>List (Daftar):</strong> Koleksi berurutan yang isinya bisa ditambah, diubah, atau dihapus (<em>mutable</em>). Sangat fleksibel.</li>
-                <li><strong>Tuple (Konstan):</strong> Mirip List, tapi isinya <strong>terkunci</strong> dan tidak bisa diubah (<em>immutable</em>). Lebih cepat dari List dan aman dari perubahan tidak sengaja.</li>
-                <li><strong>Dictionary (Kamus):</strong> Menyimpan data dengan pasangan <em>Key</em> (Kata Kunci) dan <em>Value</em> (Nilai). Digunakan saat kita butuh mencari data berdasarkan label, bukan urutan nomor.</li>
-                <li><strong>Set (Himpunan):</strong> Koleksi yang <strong>tidak memiliki data kembar</strong>. Sangat berguna di AI (seperti NLP) untuk mencari kosakata unik dari jutaan kata.</li>
-            </ul>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Syntax & Code Example</h3>
-            <p>Cobalah jalankan kode di bawah ini untuk melihat bagaimana kita membuat List dan Tuple.</p>
-            
-            <div class="interactive-playground" id="play-list" style="border: 1px solid var(--fellow-line); border-radius: 12px; overflow: hidden; margin-bottom: 24px;">
-                <div class="playground-header" style="background: var(--fellow-line); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family: monospace; font-weight: 600; color: var(--fellow-text);"><i class="fab fa-python" style="color: #f63392;"></i> struktur_data.py</span>
-                    <button type="button" class="btn-run py-run" id="btn-run-list" style="background: #f63392; color: white; border: none; padding: 6px 16px; border-radius: 100px; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-play"></i> Run Code
-                    </button>
-                </div>
-                <div class="playground-body" style="display: flex; flex-direction: column;">
-                    <textarea class="py-editor" spellcheck="false" autocomplete="off" style="width: 100%; height: 260px; padding: 16px; border: none; font-family: monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical;">
-# 1. LIST (Pakai kurung siku [ ])
-peserta = ["Aisyah", "Budi", "Citra"]
-peserta.append("Deni")  # Menambah data baru
-print("List Peserta:", peserta)
-print("Peserta pertama:", peserta[0])  # Komputer menghitung dari 0!
-
-# 2. TUPLE (Pakai kurung biasa ( ))
-koordinat = (3.14, 2.71)
-print("Titik koordinat:", koordinat)
-# koordinat[0] = 9.99 # Ini akan ERROR jika dijalankan!
-
-# 3. DICTIONARY (Pakai kurung kurawal { })
-profil = {"nama": "Aisyah", "skor": 95}
-print("Skor Aisyah:", profil["skor"])
-</textarea>
-                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
-                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                        <pre class="py-output" id="out-list" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="cdd-step">
-            <h3>Common Mistakes</h3>
-            <p>Pemula sering terjebak dengan konsep <strong>Zero-based Indexing</strong>. Di dunia nyata kita mulai berhitung dari angka 1, tapi komputer mulai berhitung dari <strong>0</strong>. Jadi data pertama berada di laci nomor 0, data kedua di laci 1, dan seterusnya.</p>
-        </div>
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-terminal"></i> Topik 2 dari 13</span>
+        <h1>Instalasi dan Environment</h1>
+        <p>Materi final Pemrograman Python untuk AI disajikan lengkap, rinci, dan bertahap dari fondasi bahasa sampai pintu gerbang data science.</p>
     </section>
 
-    <!-- CHAPTER 2: CONTROL FLOW (IF-ELSE & LOOPS) -->
-    <section class="cdd-chapter">
-        <h2>Chapter 2: Pengendali Alur (Logika AI)</h2>
-        
-        <div class="cdd-step">
-            <h3>Learning Objective</h3>
-            <p>Peserta memahami cara kerja percabangan logika (If-Else) dan kemampuan perulangan (For/While) untuk memproses jutaan baris data tanpa henti secara otomatis.</p>
-        </div>
+    <section class="python-section-card python-source-content">
 
-        <div class="cdd-step">
-            <h3>Analogy</h3>
-            <p>Logika percabangan (<strong>If-Else</strong>) ibarat kurator <em>fashion</em> pribadi di kepalamu. "JIKA hari ini hujan, pakai <em>trench coat</em>. JIKA TIDAK, pakai <em>blouse</em> santai." Mesin (Python) akan selalu mengevaluasi kondisinya sebelum bertindak.</p>
-            <p>Logika perulangan (<strong>Looping</strong>) ibarat kamu melakukan tahapan <em>skincare routine</em> 10-step. Daripada memikirkan "oles pipi kanan, oles pipi kiri, dahi, dagu" berulang kali setiap malam, otakmu sudah melakukan <em>looping</em> secara otomatis sampai seluruh wajah selesai diaplikasikan.</p>
-        </div>
+<h2 id="tujuan-chapter">Tujuan Chapter</h2>
+<p>Peserta mampu melakukan instalasi Python, mengonfigurasi VS Code, serta membuat dan mengaktifkan lingkungan virtual untuk mengelola dependensi proyek tanpa konflik.</p>
+<h2 id="konsep-utama">Konsep Utama</h2>
+<p>Lingkungan virtual adalah direktori terisolasi yang memiliki interpreter Python dan pustaka mandiri, sehingga instalasi paket pada satu proyek tidak memengaruhi proyek lainnya.</p>
+<h2 id="analogi">Analogi</h2>
+<p>Bayangkan sistem komputer sebagai sebuah <strong>Rumah Besar</strong>.1 Jika menyimpan semua kosmetik, peralatan menjahit, dan kabel charger dalam satu kotak besar yang sama di ruang tamu, barang-barang tersebut akan saling melilit dan berantakan. Membuat lingkungan virtual sama seperti menyiapkan <strong>Kotak Penyimpanan Khusus</strong> yang terpisah untuk setiap kategori barang. Proyek kecerdasan buatan untuk memproses teks memiliki kotaknya sendiri, sementara proyek untuk mengenali gambar memiliki kotak lainnya, sehingga kedua proyek tidak saling mengacaukan dependensi satu sama lain.</p>
+<h2 id="penjelasan-teori-rinci">Penjelasan Teori Rinci</h2>
+<p>Ketika melakukan instalasi Python untuk pertama kali di komputer, kita mendapatkan instalasi Python global. Pustaka-pustaka tambahan yang dipasang menggunakan pengelola paket Python (pip) secara default akan disimpan di dalam direktori global tersebut. Hal ini dapat memicu masalah serius ketika mengerjakan lebih dari satu proyek.<br />Misalnya, Proyek A membutuhkan pustaka Pandas versi lama (misalnya versi 1.2) untuk menjalankan kode warisan, sedangkan Proyek B membutuhkan Pandas versi terbaru (versi 2.0) untuk memanfaatkan fitur performa terbaru. Jika menggunakan lingkungan global, menginstal Pandas versi baru untuk Proyek B akan menimpa Pandas versi lama milik Proyek A, sehingga kode pada Proyek A akan mengalami eror atau tidak bisa dijalankan.<br />Untuk menyelesaikan dilema ini, Python menyediakan solusi bawaan bernama venv (Virtual Environment). Ketika mengeksekusi perintah pembuatan lingkungan virtual, Python akan membuat direktori baru yang berisi salinan mandiri dari file eksekusi Python dan struktur direktori pustaka. Saat lingkungan virtual ini diaktifkan, terminal akan mengubah variabel lingkungan PATH sehingga merujuk ke interpreter lokal di dalam direktori tersebut, bukan interpreter global sistem.<br />Integrasi antara editor teks dan lingkungan virtual juga sangat penting. Visual Studio Code harus dikonfigurasi agar mendeteksi interpreter Python yang berada di dalam lingkungan virtual aktif. Dengan begitu, fitur analisis kode dan pelengkapan otomatis dapat bekerja secara akurat sesuai dengan pustaka yang terpasang di lingkungan terisolasi tersebut.<br />Pengelolaan dependensi ini merupakan pilar utama dari prinsip reproduksibilitas dalam sains data dan kecerdasan buatan. Tanpa lingkungan virtual, sangat sulit bagi pengembang lain untuk menduplikasi eksperimen kecerdasan buatan Anda karena mereka tidak tahu persis versi pustaka apa saja yang digunakan di komputer Anda.</p>
+<p>Struktur Isolasi Lingkungan:<br />+-----------------------------------------------------------------+<br />| Sistem Operasi (Global Environment: Python 3.10) |<br />| |<br />| +-------------------------+ +-------------------------+ |<br />| | Virtual Env: Proyek A | | Virtual Env: Proyek B | |<br />| | - Python 3.10 | | - Python 3.10 | |<br />| | - Pandas v1.2 | | - Pandas v2.0 | |<br />| +-------------------------+ +-------------------------+ |<br />+-----------------------------------------------------------------+</p>
+<h2 id="contoh-kode-utama">Contoh Kode Utama</h2>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">python</span> -m venv env_ai</code></pre>
+<h2 id="penjelasan-kode-baris-demi-baris">Penjelasan Kode Baris demi Baris</h2>
+<ul>
+<li><strong>Langkah 1</strong>: python -m venv env_ai Perintah terminal ini memanggil interpreter Python dengan opsi -m untuk menjalankan modul bawaan bernama venv. Argumen terakhir, env_ai, adalah nama direktori baru yang akan dibuat. Direktori ini akan berisi salinan eksekutif Python, skrip aktivasi terminal, dan folder kosong untuk menampung pustaka pihak ketiga secara terisolasi.</li>
+</ul>
+<h2 id="contoh-tambahan">3 Contoh Tambahan</h2>
+<ol style="list-style-type: decimal">
+<li><p>Mengaktifkan lingkungan virtual di Windows (melalui Command Prompt):</p>
+<pre class="bat"><code>   env_ai\\Scripts\\activate</code></pre></li>
+</ol>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: env_ai\Scripts\activate menjalankan skrip aktivasi Windows. Eksekusi ini akan memodifikasi variabel lingkungan PATH di terminal aktif sehingga menunjuk ke direktori biner di dalam env_ai.<br />2. Mengaktifkan lingkungan virtual di macOS atau Linux (melalui Terminal):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">   <span class="kw">source</span> env_ai/bin/activate</code></pre>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: source env_ai/bin/activate menggunakan perintah source pada shell Unix untuk menjalankan skrip aktivasi dalam sesi shell yang sama. Perubahan path interpreter akan langsung diterapkan pada terminal aktif.<br />3. Menghasilkan daftar dependensi proyek ke dalam file eksternal 8:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">   <span class="kw">pip</span> freeze <span class="kw">&gt;</span> requirements.txt</code></pre>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: pip freeze menampilkan daftar pustaka beserta versinya yang terpasang di lingkungan virtual aktif. Simbol &gt; mengalihkan keluaran tersebut untuk ditulis langsung ke dalam berkas teks bernama requirements.txt.</p>
+<h2 id="common-mistakes">3 Common Mistakes</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Lupa Mengaktifkan Lingkungan Virtual</strong>: Menuliskan perintah instalasi pustaka sebelum mengaktifkan lingkungan virtual. Akibatnya, pustaka tersebut akan terpasang di lingkungan global sistem.<br /></li>
+<li><strong>Memasukkan Folder Lingkungan ke Repositori Git</strong>: Mengunggah seluruh folder lingkungan virtual (yang berukuran besar dan berisi file biner sistem) ke Git/GitHub. Seharusnya, folder ini diabaikan menggunakan file .gitignore.<br /></li>
+<li><strong>Memindahkan Folder Proyek</strong>: Memindahkan direktori proyek yang berisi lingkungan virtual ke lokasi baru di komputer. Karena beberapa path di dalam skrip aktivasi bersifat absolut, hal ini sering kali merusak lingkungan virtual tersebut, sehingga lebih baik membuat ulang lingkungan virtual baru di lokasi yang baru.</li>
+</ol>
+<h2 id="best-practices">3 Best Practices</h2>
+<ol style="list-style-type: decimal">
+<li>Selalu buat satu lingkungan virtual unik untuk setiap proyek kecerdasan buatan baru yang dikerjakan.<br /></li>
+<li>Gunakan nama folder yang standar untuk lingkungan virtual, seperti .venv atau env, dan pastikan nama tersebut tercantum di dalam berkas .gitignore.<br /></li>
+<li>Catat semua pustaka yang dipasang ke dalam sebuah berkas teks menggunakan perintah pip freeze &gt; requirements.txt agar orang lain dapat merekonstruksi lingkungan kerja Anda dengan mudah.</li>
+</ol>
+<h2 id="hubungan-konsep-ini-dengan-aidata-science">Hubungan Konsep Ini dengan AI/Data Science</h2>
+<p>Model kecerdasan buatan modern sangat bergantung pada kecocokan versi pustaka. Misalnya, kode jaringan saraf tiruan yang ditulis menggunakan PyTorch versi 1.x bisa saja mengalami kerusakan fungsi jika dijalankan pada PyTorch versi 2.x. Menguasai teknik isolasi lingkungan sejak awal adalah kunci untuk menghindari frustrasi akibat kegagalan eksekusi model kecerdasan buatan yang diunduh dari internet.</p>
+<h2 id="latihan-kecil-dengan-contoh-jawaban">Latihan Kecil dengan Contoh Jawaban</h2>
+<p>Tuliskan urutan perintah terminal untuk membuat lingkungan virtual bernama herai_dev, mengaktifkannya di macOS/Linux, dan memeriksa daftar pustaka yang terpasang. <em>Contoh Jawaban</em>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">python</span> -m venv herai_dev
+<span class="kw">source</span> herai_dev/bin/activate
+<span class="kw">pip</span> list</code></pre>
+<h2 id="ringkasan-chapter">Ringkasan Chapter</h2>
+<p>Mengelola workspace pemrograman yang bersih melibatkan pembuatan lingkungan virtual terisolasi menggunakan venv. Praktik ini mencegah bentrokan antar-pustaka dan memastikan eksperimen kecerdasan buatan Anda dapat direproduksi secara konsisten di komputer mana pun.</p>
+<h2 id="topik-2-bahan-baku-program">Topik 2: Bahan Baku Program</h2>
 
-        <div class="cdd-step">
-            <h3>Syntax & Code Example</h3>
-            <p>Di sini kita akan menggunakan perulangan <code>for</code> untuk memeriksa data skor peserta dan <code>if</code> untuk menentukan apakah mereka lolos seleksi.</p>
-            
-            <div class="interactive-playground" id="play-loop" style="border: 1px solid var(--fellow-line); border-radius: 12px; overflow: hidden; margin-bottom: 24px;">
-                <div class="playground-header" style="background: var(--fellow-line); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-family: monospace; font-weight: 600; color: var(--fellow-text);"><i class="fab fa-python" style="color: #f63392;"></i> seleksi.py</span>
-                    <button type="button" class="btn-run py-run" id="btn-run-loop" style="background: #f63392; color: white; border: none; padding: 6px 16px; border-radius: 100px; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-play"></i> Run Code
-                    </button>
-                </div>
-                <div class="playground-body" style="display: flex; flex-direction: column;">
-                    <textarea class="py-editor" spellcheck="false" autocomplete="off" style="width: 100%; height: 260px; padding: 16px; border: none; font-family: monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical;">
-daftar_skor = [65, 90, 85, 40, 75]
+    </section>
 
-# Melakukan perulangan untuk mengecek setiap skor
-for skor in daftar_skor:
-    if skor >= 80:
-        print("Skor", skor, "=> LOLOS Seleksi")
-    elif skor >= 60:
-        print("Skor", skor, "=> Masuk Daftar Cadangan")
-    else:
-        print("Skor", skor, "=> TIDAK Lolos")
-</textarea>
-                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
-                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                        <pre class="py-output" id="out-loop" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Interactive Exercise & Challenge</h3>
-            <p>Buka <strong>Tab Latihan</strong> sekarang. Coba buat program kecil yang bisa mencetak deret bilangan ganjil dari angka 1 sampai 20 dengan menggunakan <code>for</code> loop dan <code>if</code>!</p>
-        </div>
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Berikutnya, kita mulai menyimpan data paling dasar lewat variabel dan tipe data Python.</p>
     </section>
 </div>

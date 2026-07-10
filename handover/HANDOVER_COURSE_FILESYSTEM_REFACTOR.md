@@ -14,6 +14,13 @@ Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar
 
 Update lokal terbaru setelah checkpoint `6eb03f8`:
 
+- Follow-up terbaru setelah rombak Python:
+  - `AGENTS.md` diperbarui dengan aturan UI course: materi tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink wajib konsisten.
+  - Kuis Pengantar AI dan Python untuk AI sudah memakai opsi full-card clickable.
+  - Code block materi Python tidak memakai terminal hitam sebagai default.
+  - Panel `Belajar Aktif` ditambahkan ke setiap chapter Python lewat controller `ai-python-basic.js`.
+  - Dokumen merge khusus Reasoning dibuat di `handover/MERGE_GUIDE_REASONING_TEAM.md`.
+
 - Folder root `materi/` dibuat sebagai area handoff konten non-runtime.
 - File `materi/pengantar-ai.md` berisi snapshot terbaru materi Pengantar AI setelah rombak final.
 - Materi final Pengantar AI sudah masuk ke runtime canonical `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/`.
@@ -21,7 +28,10 @@ Update lokal terbaru setelah checkpoint `6eb03f8`:
 - Update lanjutan setelah commit `6eb03f8`: bug penomoran runtime diperbaiki dan Chapter 3-5 diperdalam lagi. Perubahan tetap hanya menyentuh konten dan handover, tidak mengubah route atau folder.
 - Perubahan ini tidak mengubah folder canonical course catalog, route peserta, target file router, atau manifest scaffold.
 - `materi/` tidak boleh dipakai sebagai folder route/course aktif.
-- Next request user adalah lanjut ke `02 - Python untuk AI`; folder canonical yang harus dipakai adalah `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/`.
+- Request terbaru `02 - Python untuk AI` sudah dikerjakan di folder canonical `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/`.
+- Struktur Python runtime sekarang 13 chapter final, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal, dan diskusi final. Tidak ada route atau folder canonical baru.
+- Snapshot konten Python terbaru ada di `materi/python-untuk-ai.md`.
+- Route Reasoning masih scaffold aktif di repo ini. Karena tim lain sedang mengerjakan Reasoning, merge harus menjaga folder canonical dan route final yang sudah ada. Lihat `handover/MERGE_GUIDE_REASONING_TEAM.md`.
 
 Checkpoint detail sesi rombak Pengantar AI:
 
@@ -64,6 +74,7 @@ Keputusan filesystem:
 - `materi/` tetap hanya artefak handoff/snapshot, bukan canonical runtime.
 - Untuk lanjut Python untuk AI, jangan membuat folder baru; pakai folder canonical existing `02-python-untuk-ai/`.
 - Jangan memindahkan atau rename `js/frontend/fellow-dashboard/ai-python-basic.js` karena file ini memuat controller/interaktif Python.
+- Untuk merge Reasoning dari tim lain, jangan menghapus perubahan final Pengantar AI/Python. Jika Reasoning sudah final, update route/folder canonical secara eksplisit dan dokumentasikan di seluruh `handover/`.
 
 Checkpoint `280c087 refactor: standardize curriculum placeholders` menambahkan standardisasi scaffold tanpa mengubah keputusan folder canonical.
 
@@ -376,8 +387,9 @@ Total: 110 | 110 passed | 0 failed
    - `handover/PROMPT_AI_BARU.md`
 5. Jika hanya memperkaya scaffold tanpa file final, cukup update `COURSE_SCAFFOLDS`, route bila perlu, dan semua dokumen handover terkait status.
 6. Next step aman: jika user meminta revisi lanjutan Pengantar AI, update konten Pengantar AI di folder canonical tanpa mengubah route/layout besar.
-7. Untuk request terbaru, lanjutkan `Python untuk AI` di folder canonical existing `02-python-untuk-ai/` dan jangan mengubah struktur filesystem.
-8. Jika task bukan Python untuk AI atau Pengantar AI, lanjutkan Generative AI melalui scaffold dulu.
-9. Aktifkan route final hanya jika konten activity sudah lengkap.
-10. Jalankan `node scripts/check-participant-routes.mjs` setelah perubahan routing.
-11. Commit lokal setiap checkpoint fitur/refactor, tapi jangan push tanpa izin user.
+7. Jika ada revisi lanjutan Python untuk AI, lanjutkan di folder canonical existing `02-python-untuk-ai/` dan jangan mengubah struktur filesystem.
+8. Jika ada merge Reasoning dari tim lain, baca `handover/MERGE_GUIDE_REASONING_TEAM.md` dan jangan menghapus perubahan final Pengantar AI/Python.
+9. Jika task bukan Python untuk AI, Pengantar AI, atau merge Reasoning, lanjutkan Generative AI melalui scaffold dulu.
+10. Aktifkan route final hanya jika konten activity sudah lengkap.
+11. Jalankan `node scripts/check-participant-routes.mjs` setelah perubahan routing.
+12. Commit lokal setiap checkpoint fitur/refactor, tapi jangan push tanpa izin user.

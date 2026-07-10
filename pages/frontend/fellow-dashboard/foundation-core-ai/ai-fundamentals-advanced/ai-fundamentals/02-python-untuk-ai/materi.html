@@ -61,9 +61,9 @@
                 <section class="lesson-hero">
                     <div class="lesson-hero-copy">
                         <h1>Pemrograman Python untuk AI</h1>
-                        <p>Dasar pemrograman Python yang wajib dikuasai sebelum membangun solusi Artificial Intelligence.</p>
+                        <p>Fondasi Python yang runtut, rinci, dan praktis untuk membaca data, menulis logika, membangun pipeline kecil, serta memahami library data science sebelum masuk ke AI modern.</p>
                         <div class="lesson-meta-row">
-                            <span><i class="far fa-clock"></i> 50 menit</span>
+                            <span><i class="far fa-clock"></i> 150 menit</span>
                             <span><i class="fas fa-book-open"></i> Modul 2 dari 6</span>
                             <b>Dasar</b>
                         </div>
@@ -97,8 +97,57 @@
                             #materi-python.ai-lab-content .code-block .fn { color: #8e24aa; font-weight: 600; } /* functions */
                             #materi-python.ai-lab-content .code-block .st { color: #2e7d32; } /* strings (soft green for contrast) */
                             #materi-python.ai-lab-content .code-block .nu { color: #1e88e5; } /* numbers */
-                            #materi-python.ai-lab-content .code-block .cm { color: #8e91a0; font-style: italic; } /* comments */
+                            #materi-python.ai-lab-content .code-block .cm { color: #6f7282; font-style: italic; } /* comments */
                             #materi-python.ai-lab-content .code-block .kw { color: #d81b60; font-weight: 600; } /* True/False */
+
+                            #materi-python.ai-lab-content .python-rich-chapter { color: #171827; }
+                            #materi-python.ai-lab-content .python-chapter-hero { background: linear-gradient(145deg, #fff7fb, #ffffff); border: 1px solid rgba(246,51,146,.18); border-radius: 20px; padding: 30px; margin-bottom: 28px; box-shadow: 0 8px 24px rgba(246,51,146,.06); }
+                            #materi-python.ai-lab-content .python-chapter-hero span { display: inline-flex; align-items: center; gap: 8px; color: #f63392; font-weight: 800; text-transform: uppercase; font-size: .82rem; letter-spacing: .08em; }
+                            #materi-python.ai-lab-content .python-chapter-hero h1 { margin: 12px 0 10px; color: #171827; font-size: 1.9rem; line-height: 1.2; }
+                            #materi-python.ai-lab-content .python-chapter-hero p { margin: 0; color: #51596d; font-size: 1.02rem; line-height: 1.7; }
+                            #materi-python.ai-lab-content .python-section-card { background: #ffffff; border: 1px solid rgba(244,143,188,.26); border-radius: 18px; padding: 24px; margin: 18px 0; box-shadow: 0 4px 18px rgba(23,24,39,.035); }
+                            #materi-python.ai-lab-content .python-section-card h2 { color: #171827; font-size: 1.28rem; margin: 26px 0 12px; }
+                            #materi-python.ai-lab-content .python-section-card h2:first-child { margin-top: 0; }
+                            #materi-python.ai-lab-content .python-section-card h3 { color: #171827; font-size: 1.05rem; margin: 18px 0 8px; }
+                            #materi-python.ai-lab-content .python-section-card p, #materi-python.ai-lab-content .python-section-card li { color: #171827; line-height: 1.78; }
+                            #materi-python.ai-lab-content .python-section-card ul, #materi-python.ai-lab-content .python-section-card ol { padding-left: 22px; }
+                            #materi-python.ai-lab-content .python-source-content h2 { display: flex; align-items: center; gap: 10px; border-top: 1px solid rgba(244,143,188,.22); padding-top: 22px; }
+                            #materi-python.ai-lab-content .python-source-content h2:first-child { border-top: 0; padding-top: 0; }
+                            #materi-python.ai-lab-content .python-source-content h2::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #f63392; box-shadow: 0 0 0 5px rgba(246,51,146,.12); flex: 0 0 auto; }
+                            #materi-python.ai-lab-content .python-source-content p:has(strong), #materi-python.ai-lab-content .python-source-content li:has(strong) { color: #171827; }
+                            #materi-python.ai-lab-content .python-section-card pre { position: relative; white-space: pre-wrap; overflow-x: auto; background: linear-gradient(180deg, rgba(246,51,146,.16) 0 34px, #fff7fb 34px); color: #171827; border-radius: 16px; padding: 48px 20px 18px; border: 1px solid rgba(246,51,146,.34); box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px rgba(246,51,146,.10); }
+                            #materi-python.ai-lab-content .python-section-card pre::before { content: "PYTHON"; position: absolute; top: 11px; left: 18px; color: #c2186a; font-size: .72rem; font-weight: 900; letter-spacing: .12em; }
+                            #materi-python.ai-lab-content .python-section-card pre::after { content: ""; position: absolute; top: 15px; right: 18px; width: 10px; height: 10px; border-radius: 50%; background: #f63392; box-shadow: -16px 0 0 rgba(246,51,146,.45), -32px 0 0 rgba(246,51,146,.22); }
+                            #materi-python.ai-lab-content .python-section-card pre code { color: inherit; font-size: .92rem; line-height: 1.7; }
+                            #materi-python.ai-lab-content .python-section-card pre .st { color: #a90f5a; }
+                            #materi-python.ai-lab-content .python-section-card pre .dv, #materi-python.ai-lab-content .python-section-card pre .fl { color: #156d4f; }
+                            #materi-python.ai-lab-content .python-section-card pre .kw, #materi-python.ai-lab-content .python-section-card pre .cf { color: #c2186a; font-weight: 700; }
+                            #materi-python.ai-lab-content .python-source-content blockquote { margin: 18px 0; padding: 14px 18px; border-left: 4px solid #f63392; background: rgba(246,51,146,.08); border-radius: 14px; color: #171827; }
+                            #materi-python.ai-lab-content .python-summary-card { border-color: rgba(246,51,146,.30); background: linear-gradient(145deg, rgba(246,51,146,.08), #ffffff); }
+                            #materi-python.ai-lab-content .python-active-lab { border: 1px solid rgba(246,51,146,.28); background: linear-gradient(145deg, #fff7fb, #fff); border-radius: 20px; padding: 22px; margin: 22px 0; box-shadow: 0 10px 28px rgba(246,51,146,.08); }
+                            #materi-python.ai-lab-content .python-active-lab header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+                            #materi-python.ai-lab-content .python-active-lab h2 { margin: 0 0 6px; color: #171827; font-size: 1.2rem; }
+                            #materi-python.ai-lab-content .python-active-lab p { margin: 0; color: #51596d; line-height: 1.65; }
+                            #materi-python.ai-lab-content .python-active-lab .lab-badge { display: inline-flex; align-items: center; gap: 8px; color: #f63392; background: rgba(246,51,146,.12); border-radius: 100px; padding: 8px 12px; font-weight: 800; white-space: nowrap; }
+                            #materi-python.ai-lab-content .python-lab-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 14px; margin-top: 16px; }
+                            #materi-python.ai-lab-content .python-lab-card { background: #fff; border: 1px solid rgba(244,143,188,.26); border-radius: 18px; padding: 16px; }
+                            #materi-python.ai-lab-content .python-lab-card h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; color: #171827; font-size: 1rem; }
+                            #materi-python.ai-lab-content .python-lab-card h3 i { color: #f63392; }
+                            #materi-python.ai-lab-content .python-check-options { display: grid; gap: 8px; }
+                            #materi-python.ai-lab-content .python-check-options button { text-align: left; border: 1px solid rgba(220,221,225,.95); background: #fff; color: #171827; border-radius: 14px; padding: 11px 13px; cursor: pointer; font-weight: 650; line-height: 1.45; }
+                            #materi-python.ai-lab-content .python-check-options button:hover { border-color: rgba(246,51,146,.38); background: #fff7fb; }
+                            #materi-python.ai-lab-content .python-check-options button.is-correct { border-color: #2ea043; background: rgba(46,160,67,.10); }
+                            #materi-python.ai-lab-content .python-check-options button.is-wrong { border-color: #e74c3c; background: rgba(231,76,60,.10); }
+                            #materi-python.ai-lab-content .python-check-feedback { min-height: 24px; margin-top: 10px; color: #51596d; font-weight: 650; }
+                            #materi-python.ai-lab-content .python-lab-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+                            #materi-python.ai-lab-content .python-lab-actions a, #materi-python.ai-lab-content .python-lab-actions button { display: inline-flex; align-items: center; gap: 8px; border-radius: 100px; border: 1px solid rgba(246,51,146,.32); padding: 10px 14px; background: #fff; color: #f63392; font-weight: 800; text-decoration: none; cursor: pointer; }
+                            #materi-python.ai-lab-content .python-lab-actions a:first-child { background: #f63392; color: #fff; border-color: #f63392; }
+                            #materi-python.ai-lab-content .python-table-wrap { overflow-x: auto; border-radius: 16px; border: 1px solid rgba(244,143,188,.26); margin: 16px 0; }
+                            #materi-python.ai-lab-content table { width: 100%; border-collapse: collapse; min-width: 620px; }
+                            #materi-python.ai-lab-content th, #materi-python.ai-lab-content td { padding: 12px 14px; text-align: left; border-bottom: 1px solid rgba(244,143,188,.20); color: #171827; vertical-align: top; }
+                            #materi-python.ai-lab-content th { background: rgba(246,51,146,.10); color: #171827; }
+                            @media (max-width: 760px) { #materi-python.ai-lab-content .python-chapter-hero { padding: 22px; } #materi-python.ai-lab-content .python-chapter-hero h1 { font-size: 1.45rem; } #materi-python.ai-lab-content .python-active-lab header { display: block; } #materi-python.ai-lab-content .python-active-lab .lab-badge { margin-top: 12px; } #materi-python.ai-lab-content .python-lab-grid { grid-template-columns: 1fr; } }
+
                         </style>
 
                         <div id="python-chapter-container">
@@ -132,18 +181,26 @@
                 <section class="module-side-card lesson-progress-card">
                     <h2>Progres Sub-Modul</h2>
                     <div class="lesson-progress-mini"><b style="--value:0%"></b><strong>0%</strong></div>
-                    <p>0 dari 5 materi selesai</p>
+                    <p>0 dari 13 materi selesai</p>
                     <a href="#/participant-ai-python">Mulai Belajar</a>
                 </section>
 
                 <section class="module-side-card lesson-list-card">
                     <h2>Daftar Materi</h2>
                     <ol id="python-sidebar-list">
-                        <li class="active" data-chapter="1"><span>1</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(1)">Memulai Python</a><i class="far fa-circle-play"></i></li>
-                        <li data-chapter="2"><span>2</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(2)">Struktur Data & Logika</a><i class="far fa-circle"></i></li>
-                        <li data-chapter="3"><span>3</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(3)">Modularitas & Efisiensi</a><i class="far fa-circle"></i></li>
-                        <li data-chapter="4"><span>4</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(4)">OOP & File I/O</a><i class="far fa-circle"></i></li>
-                        <li data-chapter="5"><span>5</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(5)">Library Data Science</a><i class="far fa-circle"></i></li>
+                        <li class="active" data-chapter="1"><span>1</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(1)">Apa Itu Python untuk AI</a><i class="far fa-circle-play"></i></li>
+                        <li data-chapter="2"><span>2</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(2)">Environment & Venv</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="3"><span>3</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(3)">Variabel & Tipe Data</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="4"><span>4</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(4)">Struktur Data Koleksi</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="5"><span>5</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(5)">Percabangan Logika</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="6"><span>6</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(6)">Perulangan</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="7"><span>7</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(7)">Fungsi Modular</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="8"><span>8</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(8)">Lambda & Generator</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="9"><span>9</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(9)">OOP Dasar</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="10"><span>10</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(10)">Exception Handling</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="11"><span>11</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(11)">File I/O</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="12"><span>12</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(12)">NumPy & Matriks</a><i class="far fa-circle"></i></li>
+                        <li data-chapter="13"><span>13</span><a href="javascript:void(0)" onclick="window.loadPythonChapter(13)">Pandas & DataFrame</a><i class="far fa-circle"></i></li>
                     </ol>
                 </section>
 

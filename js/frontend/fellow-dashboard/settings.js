@@ -1294,19 +1294,35 @@
 
         const resultBox = document.getElementById('aiIntroQuizResult');
         const submitButton = quizForm.querySelector('.quiz-submit-btn');
+        const syncSelectedLabels = () => {
+            quizForm.querySelectorAll('label').forEach((label) => {
+                const input = label.querySelector('input[type="radio"]');
+                if (input) label.classList.toggle('is-selected', input.checked);
+            });
+        };
+        quizForm.querySelectorAll('input[type="radio"]').forEach((input) => {
+            input.addEventListener('change', syncSelectedLabels);
+        });
         const showResult = (score, total) => {
             if (!resultBox) return;
             resultBox.hidden = false;
             resultBox.innerHTML = `
                 <strong>Nilai kamu: ${score}/${total}</strong>
-                <span>Skor tersimpan. Jawaban benar tidak ditampilkan agar evaluasi tetap fair.</span>
+                <span>Skor tersimpan. Kuis single attempt sudah terkunci; jawaban benar tidak ditampilkan agar evaluasi tetap fair.</span>
             `;
         };
 
         if (isQuizDone) {
             const savedScore = Number(localStorage.getItem(quizScoreKey) || 0);
             showResult(savedScore, 10);
-            quizForm.querySelectorAll('input').forEach(input => input.disabled = true);
+            quizForm.querySelectorAll('label').forEach((label) => {
+                const input = label.querySelector('input[type="radio"]');
+                if (input) {
+                    input.disabled = true;
+                    label.classList.add('is-locked');
+                    label.classList.toggle('is-selected', input.checked);
+                }
+            });
             if (submitButton) {
                 submitButton.disabled = true;
                 submitButton.textContent = 'Kuis Sudah Dikirim';
@@ -1336,7 +1352,14 @@
             localStorage.setItem(quizDoneKey, 'true');
             localStorage.setItem(quizScoreKey, String(score));
             showResult(score, groups.length);
-            quizForm.querySelectorAll('input').forEach(input => input.disabled = true);
+            quizForm.querySelectorAll('label').forEach((label) => {
+                const input = label.querySelector('input[type="radio"]');
+                if (input) {
+                    input.disabled = true;
+                    label.classList.add('is-locked');
+                    label.classList.toggle('is-selected', input.checked);
+                }
+            });
             if (submitButton) {
                 submitButton.disabled = true;
                 submitButton.textContent = 'Kuis Sudah Dikirim';

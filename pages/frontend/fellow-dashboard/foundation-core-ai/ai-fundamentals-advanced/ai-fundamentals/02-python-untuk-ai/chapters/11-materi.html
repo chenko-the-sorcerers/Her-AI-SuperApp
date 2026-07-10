@@ -1,0 +1,77 @@
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-file-lines"></i> Topik 11 dari 13</span>
+        <h1>Operasi File I/O</h1>
+        <p>Materi final Pemrograman Python untuk AI disajikan lengkap, rinci, dan bertahap dari fondasi bahasa sampai pintu gerbang data science.</p>
+    </section>
+
+    <section class="python-section-card python-source-content">
+
+<h2 id="tujuan-chapter">Tujuan Chapter</h2>
+<p>Peserta mampu melakukan interaksi baca-tulis dokumen fisik pada format teks secara aman menggunakan manajer konteks, serta memahami cara kerja navigasi direktori berkas.</p>
+<h2 id="konsep-utama">Konsep Utama</h2>
+<p>Operasi File I/O memungkinkan penyimpanan dan pembacaan data secara persisten ke dalam cakram keras. Penggunaan struktur with menjamin berkas ditutup otomatis oleh sistem demi mencegah terjadinya penguncian data.</p>
+<h2 id="analogi">Analogi</h2>
+<p>Bayangkan membaca berkas seperti <strong>Mengambil Buku dari Lemari Arsip Terkunci</strong>. Langkah konvensionalnya adalah: Anda mengambil kunci, membuka pintu lemari, mengambil dokumen, membaca isinya, lalu Anda wajib mengunci kembali pintu lemari tersebut dan menyimpan kuncinya. Jika Anda lupa mengunci kembali lemari (atau terjadi kecelakaan di tengah jalan saat Anda membaca), lemari akan tetap terbuka selamanya, berisiko dirusak orang lain atau file terkunci. Penggunaan manajer konteks with bertindak seperti <strong>Petugas Arsip Otomatis</strong> yang mendampingi Anda: ia membukakan lemari, dan begitu selesai membaca atau pergi dari meja, ia langsung mengunci kembali lemari tersebut secara instan tanpa perlu Anda ingat.</p>
+<h2 id="penjelasan-teori-rinci">Penjelasan Teori Rinci</h2>
+<p>Sejauh ini, semua variabel dan objek data yang kita buat hanya disimpan di dalam memori akses acak komputer. Saat program mati atau komputer dimatikan, semua data tersebut akan langsung hilang. Operasi File I/O memungkinkan kita untuk membaca data masukan dari media penyimpanan non-volatile dan menyimpan hasil pemrosesan program secara permanen.<br />Dalam Python, untuk berinteraksi dengan berkas, kita menggunakan fungsi bawaan open(file, mode). Parameter mode menentukan jenis interaksi yang diizinkan 6:</p>
+<ul>
+<li>&quot;r&quot; (Read): Membuka berkas hanya untuk dibaca. Jika berkas tidak eksis di direktori tujuan, akan muncul eror FileNotFoundError.<br /></li>
+<li>&quot;w&quot; (Write): Membuka berkas untuk ditulis. Jika berkas belum ada, berkas baru akan dibuat secara otomatis. Jika berkas sudah ada, seluruh isi lamanya akan dihapus total (ditimpa).<br /></li>
+<li>&quot;a&quot; (Append): Membuka berkas untuk ditulis, namun isinya tidak dihapus. Data baru yang kita tulis akan ditambahkan di baris paling akhir dari isi berkas lama.</li>
+</ul>
+<p>Masalah terbesar bagi pemula saat menulis kode File I/O adalah lupa menutup koneksi berkas menggunakan fungsi .close() setelah operasi selesai. Hal ini dapat menyebabkan penggunaan sumber daya memori yang tidak efisien, mencegah proses lain untuk memodifikasi berkas tersebut, atau bahkan kehilangan data yang belum sempat dikirim dari buffer ke cakram keras.<br />Untuk mengatasi risiko tersebut, Python menyediakan protokol manajer konteks yang ditandai dengan kata kunci with. Ketika blok with open(...) as f: dibuat, Python akan mendirikan batas eksekusi aman. Begitu program keluar dari blok indentasi with tersebut, Python secara otomatis akan memanggil fungsi .close() di balik layar untuk melepas berkas kembali ke sistem operasi.</p>
+<p>Alur Manajer Konteks WITH:<br /> with open(&quot;data.txt&quot;, &quot;r&quot;) as f:<br /> |<br /> Masuk Blok Indentasi<br /> (Operasi Baca File)<br /> |<br /> Apakah Keluar Blok (Atau Terjadi Eror)?<br /> |<br /> +-------v-------+<br /> | Sistem AUTO- |<br /> | CLOSE Berkas |<br /> +---------------+</p>
+<h2 id="contoh-kode-utama">Contoh Kode Utama</h2>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">with</span> <span class="dt">open</span>(<span class="st">&quot;log.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="ch">as</span> f:
+    f.write(<span class="st">&quot;Akurasi: 0.95&quot;</span>)</code></pre>
+<h2 id="penjelasan-kode-baris-demi-baris">Penjelasan Kode Baris demi Baris</h2>
+<ul>
+<li><strong>Baris 1</strong>: with open(&quot;log.txt&quot;, &quot;w&quot;) as f: Menggunakan manajer konteks with untuk membuka berkas bernama &quot;log.txt&quot; dalam mode menulis &quot;w&quot;.6 Objek berkas dirujuk dengan variabel penunjuk alias f.<br /></li>
+<li><strong>Baris 2</strong>: f.write(&quot;Akurasi: 0.95&quot;) Memanggil metode .write() milik objek berkas untuk merekam string &quot;Akurasi: 0.95&quot; ke dalam berkas fisik di hard disk. Setelah baris ini selesai, Python secara otomatis menutup berkas.</li>
+</ul>
+<h2 id="contoh-tambahan">3 Contoh Tambahan</h2>
+<ol style="list-style-type: decimal">
+<li><p>Membaca seluruh konten berkas sekaligus 6:</p>
+<pre class="sourceCode python"><code class="sourceCode python">   <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&quot;log.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="ch">as</span> f:
+   isi = f.read()
+   <span class="dt">print</span>(isi)</code></pre></li>
+</ol>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: with open(...) membuka berkas log dalam mode membaca &quot;r&quot;.6<br /> * <strong>Baris 2</strong>: isi = f.read() memanggil metode .read() untuk menyedot seluruh konten teks berkas menjadi satu string tunggal.<br /> * <strong>Baris 3</strong>: print(isi) mencetak isi berkas tersebut.<br />2. Membaca berkas baris demi baris secara efisien menggunakan perulangan 6:</p>
+<pre class="sourceCode python"><code class="sourceCode python">   <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&quot;log.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="ch">as</span> f:
+       <span class="kw">for</span> baris in f:
+           <span class="dt">print</span>(baris.strip())</code></pre>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: with open(...) membuka berkas log untuk dibaca.<br /> * <strong>Baris 2</strong>: for baris in f: memanfaatkan sifat iterable dari objek berkas untuk membaca baris demi baris secara malas, sangat hemat memori RAM.<br /> * <strong>Baris 3</strong>: print(baris.strip()) mencetak baris dengan membuang karakter spasi atau baris baru di ujung teks menggunakan .strip().<br />3. Menambahkan baris teks baru tanpa menghapus isi lama menggunakan mode &quot;a&quot; 6:</p>
+<pre class="sourceCode python"><code class="sourceCode python">   <span class="kw">with</span> <span class="dt">open</span>(<span class="st">&quot;log.txt&quot;</span>, <span class="st">&quot;a&quot;</span>) <span class="ch">as</span> f:
+       f.write(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">nEpoch berikutnya selesai&quot;</span>)</code></pre>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: with open(...) membuka berkas dengan mode &quot;a&quot; (Append).<br /> * <strong>Baris 2</strong>: f.write(...) menulis teks tambahan di bagian paling akhir berkas log fisik.</p>
+<h2 id="common-mistakes">3 Common Mistakes</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Lupa Menggunakan Manajer Konteks with</strong>: Membuka berkas dengan penulisan lama f = open(&quot;file.txt&quot;) dan lupa memanggil f.close(). Akibatnya, berkas terkunci oleh sistem operasi.<br /></li>
+<li><strong>Menggunakan Mode &quot;w&quot; Saat Ingin Menambah Data</strong>: Salah memilih mode tulis, berniat ingin menambahkan data baru namun menggunakan mode &quot;w&quot; alih-alih &quot;a&quot;. Ini mengakibatkan seluruh data riwayat lama Anda di dalam berkas terhapus bersih secara permanen.<br /></li>
+<li><strong>Kesalahan Lokasi Berkas</strong>: Mencoba membaca berkas dengan nama relatif tanpa menyadari bahwa terminal aktif berada di direktori yang berbeda, sehingga memicu FileNotFoundError. Selalu pastikan path lokasi berkas dirujuk secara tepat.</li>
+</ol>
+<h2 id="best-practices">3 Best Practices</h2>
+<ol style="list-style-type: decimal">
+<li>Selalu gunakan struktur manajer konteks with open(...) untuk menjamin keamanan penutupan berkas secara otomatis.<br /></li>
+<li>Tentukan parameter penyandian karakter secara eksplisit saat membuka berkas teks, contoh: open(&quot;data.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;), untuk menghindari masalah eror pembacaan karakter non-ASCII di sistem operasi yang berbeda.<br /></li>
+<li>Untuk penanganan jalur berkas yang tangguh lintas sistem operasi, gunakan modul pustaka standar pathlib bawaan Python.</li>
+</ol>
+<h2 id="hubungan-konsep-ini-dengan-aidata-science">Hubungan Konsep Ini dengan AI/Data Science</h2>
+<p>Operasi File I/O adalah gerbang masuk pertama bagi model kecerdasan buatan. Dalam pemrosesan bahasa alami, dataset teks mentah seperti ulasan pelanggan, dokumen PDF hukum, atau percakapan obrolan tersimpan di dalam cakram keras dalam bentuk file teks. Program Python harus membuka file-file tersebut terlebih dahulu, mengekstrak teks di dalamnya baris demi baris, melakukan pembersihan teks, sebelum akhirnya data dikonversi menjadi representasi vektor numerik untuk dilatih oleh model.</p>
+<h2 id="latihan-kecil-dengan-contoh-jawaban">Latihan Kecil dengan Contoh Jawaban</h2>
+<p>Tuliskan program yang membuat berkas bernama token.txt dan menulis kata &quot;Fellowship&quot; di dalamnya, kemudian baca kembali berkas tersebut dan tampilkan isinya. <em>Contoh Jawaban</em>:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">with</span> <span class="dt">open</span>(<span class="st">&quot;token.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="ch">as</span> f:
+    f.write(<span class="st">&quot;Fellowship&quot;</span>)</code></pre>
+<p>with open(&quot;token.txt&quot;, &quot;r&quot;) as f:<br /> konten = f.read()<br /> print(konten)</p>
+<h2 id="ringkasan-chapter">Ringkasan Chapter</h2>
+<p>Interaksi berkas fisik berbasis penyimpanan permanen dikelola dengan menggunakan fungsi open() dan parameter mode aksesnya, di mana struktur manajer konteks with bertindak sebagai pengaman utama pelepasan sumber daya sistem secara otomatis.</p>
+<h2 id="topik-5-pintu-gerbang-data-science">Topik 5: Pintu Gerbang Data Science</h2>
+
+    </section>
+
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Berikutnya, kita masuk ke NumPy untuk operasi array dan matriks cepat.</p>
+    </section>
+</div>

@@ -17,6 +17,96 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ---
 
+## Checkpoint Final Terbaru - Python, Quiz UI, Design Rules, dan Merge Reasoning
+
+Status terbaru 10 Juli 2026 setelah follow-up user:
+
+- Modul `02 - Python untuk AI` sudah final runtime dengan 13 chapter dari `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md`.
+- Materi Python tidak lagi hanya teks panjang: setiap chapter mendapat panel `Belajar Aktif` melalui `js/frontend/fellow-dashboard/ai-python-basic.js`, berisi quick check, feedback langsung, mini challenge, dan tombol `Buka Playground`.
+- Code block materi Python sudah mengikuti tema HerAI pink-light. Background terminal hitam/dark block tidak dipakai sebagai default.
+- Kuis Python sudah diperbaiki menjadi full-card clickable, bukan radio kecil. State `selected`, `correct`, `wrong`, dan `locked` terlihat jelas.
+- Kuis Pengantar AI juga sudah diperbaiki menjadi full-card clickable. State `selected` dan `locked` jelas, tetapi jawaban benar tetap tidak ditampilkan sesuai desain evaluasi Pengantar AI.
+- `AGENTS.md` diperbarui agar aturan ini tidak terulang:
+  - materi course tidak boleh teks polos saja;
+  - kuis wajib full-card clickable;
+  - single attempt harus menjelaskan state terkunci;
+  - code block materi wajib pink-light, bukan terminal hitam;
+  - tema HerAI pink harus konsisten di materi, latihan, kuis, diskusi, callout, quick check, selected state, active border, icon, dan code block.
+- Route `js/router.js` tidak diubah selama pekerjaan ini.
+- Area Reasoning sedang dikerjakan oleh tim lain. Merge harus mengikuti dokumen khusus:
+  - `handover/MERGE_GUIDE_REASONING_TEAM.md`
+
+File penting yang berubah pada checkpoint terbaru:
+
+```text
+AGENTS.md
+handover/HANDOVER_UPDATE.md
+handover/MODULE_STATUS_MAP.md
+handover/COURSE_HIERARCHY.md
+handover/PROMPT_AI_BARU.md
+handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+handover/MERGE_GUIDE_REASONING_TEAM.md
+js/frontend/fellow-dashboard/ai-python-basic.js
+js/frontend/fellow-dashboard/settings.js
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/kuis.html
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/
+materi/python-untuk-ai.md
+```
+
+Verifikasi terakhir yang sudah lulus setelah patch quiz/UI:
+
+```text
+node --check js/router.js -> passed
+node --check js/frontend/fellow-dashboard/settings.js -> passed
+node --check js/frontend/fellow-dashboard/ai-python-basic.js -> passed
+git diff --check -> passed
+node scripts/check-participant-routes.mjs -> Total: 110 | 110 passed | 0 failed
+```
+
+Catatan merge penting:
+
+- File `materi/baru/pemorgraman-pyhton.md` sedang berstatus deleted di working tree dan bukan bagian utama runtime final. Jangan restore/hapus ulang tanpa keputusan tim.
+- File sumber baru `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md` masih untracked pada checkpoint lokal ini; pastikan ikut di-add kalau ingin menyimpan sumber brainstorming.
+- Tim Reasoning kemungkinan akan menyentuh `js/router.js`, `js/frontend/fellow-dashboard/course-placeholder.js`, overview AI Fundamentals, atau folder baru untuk Reasoning. Jangan menimpa perubahan Python/Pengantar AI saat merge.
+
+---
+
+## Checkpoint Rombak Final - Pemrograman Python untuk AI
+
+Status terbaru 10 Juli 2026: modul `02 - Python untuk AI` sudah dirombak berdasarkan sumber final `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md` tanpa mengubah route peserta, shell layout, tab activity, atau sistem interaktif Pyodide.
+
+Perubahan struktur utama:
+
+- Struktur materi runtime berubah dari 5 chapter lama menjadi 13 chapter final yang lebih runtut:
+  1. Apa Itu Python dan Perannya dalam AI
+  2. Instalasi, Environment, dan Cara Menjalankan Python
+  3. Variabel dan Tipe Data Dasar
+  4. Struktur Data Koleksi
+  5. Alur Logika dan Percabangan
+  6. Perulangan
+  7. Fungsi dan Parameter
+  8. Lambda Expression dan Generator Basics
+  9. Object-Oriented Programming Dasar
+  10. Exception Handling
+  11. Operasi File I/O
+  12. NumPy dan Operasi Matriks
+  13. Pandas dan Tabular Data
+- Sidebar `materi.html`, `totalChapters`, mapping `loadChapter()`, progress, dan prev/next behavior sudah disesuaikan ke 13 chapter.
+- Chapter baru ditambahkan di folder canonical `02-python-untuk-ai/chapters/` sampai `13-materi.html`.
+- Latihan tetap memakai Pyodide runner existing dan ditambah mini project preprocessing dataset teks.
+- Kuis diperluas menjadi 15 soal single attempt.
+- Diskusi diperbarui agar menguji pemahaman Python sebagai bahasa orkestrasi AI, environment, data quality, dan batas Python vs backend native.
+- Snapshot materi baru dibuat di `materi/python-untuk-ai.md`.
+- Route `js/router.js` tidak diubah.
+
+Area yang wajib tetap dijaga:
+
+- Jangan ganti ID/class runtime Python: `python-chapter-container`, `python-sidebar-list`, `btn-prev-chapter`, `btn-next-chapter`, `btn-finish-materi`, `aiPythonQuizForm`, `pythonPracticeStatus`, `py-editor`, `py-run`, `py-output`, `py-reset`.
+- Jangan ganti localStorage keys: `heraiAiPythonCurrentChapter`, `heraiAiPythonPractice`, `heraiAiPythonQuizDone`, `heraiAiPythonQuizScore`, `heraiAiPythonDiscussion`.
+- Jangan mematikan fungsi `initAiPythonMateri()`, `window.loadPythonChapter()`, `initAiPythonBasic()`, `initAiPythonQuiz()`, atau `initAiPythonDiscussion()`.
+
+---
+
 ## Checkpoint Final Sesi - Pengantar AI 5 Chapter Padat dan Next Python untuk AI
 
 Status terbaru setelah review user: Pengantar AI sempat diperluas menjadi 10 topik, lalu dikonsolidasikan lagi menjadi 5 chapter padat karena user lebih memilih chapter sedikit dengan isi panjang. Perubahan ini memakai route Pengantar AI yang sudah ada di `js/router.js`, sehingga tidak ada route baru dan tidak ada perubahan struktur navigasi besar.
@@ -80,9 +170,7 @@ Status git:
 - `materi/` sudah tracked sejak commit `6eb03f8`, tetapi tetap hanya area handoff/snapshot non-runtime.
 - Jangan push tanpa izin user.
 
-Next work yang diminta user: lanjut ke materi `Pemrograman Python untuk AI`.
-
-Target awal untuk modul Python untuk AI:
+Python untuk AI sudah dirombak final pada sesi berikutnya. File utama modul Python:
 
 ```text
 pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/materi.html
@@ -711,10 +799,11 @@ Catatan console saat live check:
 Next step yang disarankan:
 
 1. Jadikan pola Python/AI Modern sebagai standar markup course aktif berikutnya, tapi lakukan bertahap per course agar layout tidak rusak.
-2. Untuk request terbaru, lanjutkan materi `Python untuk AI` di folder canonical existing dan jaga interaktif Pyodide.
-3. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final hanya jika user mengalihkan task ke Generative AI.
-4. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
-5. Setelah setiap perubahan routing, jalankan `node scripts/check-participant-routes.mjs`.
+2. Untuk merge pekerjaan Reasoning dari tim lain, baca `handover/MERGE_GUIDE_REASONING_TEAM.md` dulu.
+3. Untuk revisi Python/Pengantar AI, kerjakan scoped di folder canonical masing-masing dan jaga route/layout/interaktif.
+4. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final hanya jika user mengalihkan task ke Generative AI.
+5. Aktivasi course scaffold berikutnya hanya jika konten final sudah siap; kalau belum, tetap gunakan query activity scaffold.
+6. Setelah setiap perubahan routing, jalankan `node scripts/check-participant-routes.mjs`.
 
 ---
 

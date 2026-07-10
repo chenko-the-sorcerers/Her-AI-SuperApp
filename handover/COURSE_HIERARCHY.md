@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final, standardisasi placeholder scaffold, dan rombak final konten Pengantar AI
+**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, dan polish UI kuis/code block.
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
 
@@ -54,6 +54,15 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ## Checkpoint Implementasi Terbaru
 
+Checkpoint final terbaru:
+
+- Hierarchy produk tidak berubah.
+- `01 - Pengantar AI` tetap module aktif di `AI Fundamentals & Advanced`, dengan activity `Materi -> Latihan -> Kuis -> Diskusi`.
+- `02 - Python untuk AI` tetap module aktif di `AI Fundamentals & Advanced`, sekarang 13 chapter final.
+- `04 - Reasoning` masih scaffold aktif di branch ini dan menjadi area kerja tim lain. Jika tim lain membuat Reasoning final, merge harus menjaga route final Pengantar AI, Python untuk AI, Konsep AI Modern, Math, ML, CV, dan NLP.
+- Dokumen merge khusus untuk tim Reasoning: `handover/MERGE_GUIDE_REASONING_TEAM.md`.
+- Tidak ada perubahan folder canonical untuk Python atau Pengantar AI.
+
 Commit lokal terbaru:
 
 ```text
@@ -74,7 +83,7 @@ Checkpoint final sesi Pengantar AI:
   - Activity tetap `Materi -> Latihan -> Kuis -> Diskusi`
 - Tidak ada perubahan `js/router.js`, folder canonical, atau struktur navigation shell.
 - Verifikasi terakhir: route checker `Total: 110 | 110 passed | 0 failed`.
-- Next request user: lanjut ke module `02 - Python untuk AI`.
+- Request Python terbaru sudah dikerjakan: module `02 - Python untuk AI` sekarang memakai 13 chapter final dari materi brainstorming.
 
 Checkpoint lokal terbaru setelah commit tersebut:
 
@@ -128,7 +137,13 @@ Ringkasan state kurikulum saat ini:
 - Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
 - Folder `materi/` di root repo adalah area handoff konten, bukan bagian hierarchy produk atau route peserta.
 - Snapshot Pengantar AI terbaru ada di `materi/pengantar-ai.md`.
+- Snapshot Python untuk AI terbaru ada di `materi/python-untuk-ai.md`.
 - Pengantar AI sudah memakai materi final baru di runtime tanpa perubahan hierarchy, route, atau folder canonical.
+- Python untuk AI sudah memakai materi final baru di runtime tanpa perubahan route atau folder canonical.
+- UI lintasan belajar sudah dipoles:
+  - kuis Pengantar AI dan Python memakai full-card clickable;
+  - code block Python memakai background pink-light, bukan terminal hitam;
+  - materi Python punya panel `Belajar Aktif` di setiap chapter.
 
 Aturan scaffold resmi:
 
@@ -143,14 +158,15 @@ Aturan scaffold resmi:
 Next step untuk tim penerus:
 
 1. Jika tugasnya revisi lanjutan Pengantar AI, baca `materi/pengantar-ai.md` dan edit file canonical Pengantar AI tanpa mengubah route/layout besar.
-2. Untuk request terbaru user, lanjutkan module `02 - Python untuk AI` di folder canonical:
+2. Jika tugasnya revisi lanjutan Python untuk AI, lanjutkan di folder canonical dan jaga struktur 13 chapter final:
    - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/`
    - `js/frontend/fellow-dashboard/ai-python-basic.js`
-3. Jika task berikutnya bukan Python untuk AI atau revisi Pengantar AI, prioritaskan Generative AI sesuai backlog sebelumnya.
-4. Jika konten belum final, update manifest scaffold saja.
-5. Jika konten sudah final, buat file activity lengkap di folder canonical dan update route.
-6. Jangan mengubah route final existing tanpa task spesifik.
-7. Setelah selesai, update `HANDOVER_UPDATE.md`, `MODULE_STATUS_MAP.md`, `COURSE_HIERARCHY.md`, `PROMPT_AI_BARU.md`, dan dokumen filesystem bila folder/routing berubah.
+3. Jika task berikutnya adalah merge Reasoning dari tim lain, baca `handover/MERGE_GUIDE_REASONING_TEAM.md` terlebih dahulu.
+4. Jika task berikutnya bukan Python untuk AI, Pengantar AI, atau merge Reasoning, prioritaskan Generative AI sesuai backlog sebelumnya.
+5. Jika konten belum final, update manifest scaffold saja.
+6. Jika konten sudah final, buat file activity lengkap di folder canonical dan update route.
+7. Jangan mengubah route final existing tanpa task spesifik.
+8. Setelah selesai, update `HANDOVER_UPDATE.md`, `MODULE_STATUS_MAP.md`, `COURSE_HIERARCHY.md`, `PROMPT_AI_BARU.md`, dan dokumen filesystem bila folder/routing berubah.
 
 ---
 

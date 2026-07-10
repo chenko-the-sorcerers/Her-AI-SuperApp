@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, dan rombak final materi Pengantar AI
+**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, rombak final Pengantar AI, rombak final Python untuk AI, dan polish UI kuis/code block.
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -16,6 +16,14 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 ---
 
 ## Checkpoint Terbaru
+
+Checkpoint final terbaru 10 Juli 2026:
+
+- `01 - Pengantar AI` aktif final terbaru. Kuisnya sekarang full-card clickable, single attempt, dan locked state jelas. Jawaban benar tetap tidak ditampilkan setelah submit.
+- `02 - Python untuk AI` aktif final terbaru dengan 13 chapter runtime, panel `Belajar Aktif` per chapter, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal full-card clickable, dan diskusi final.
+- `AGENTS.md` sudah memuat aturan baru: course tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink harus konsisten.
+- `04 - Reasoning` masih scaffold aktif di repo ini, tetapi menjadi area kerja tim lain. Lihat `handover/MERGE_GUIDE_REASONING_TEAM.md` sebelum merge.
+- Verifikasi terakhir lulus: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `node --check js/frontend/fellow-dashboard/ai-python-basic.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` dengan `Total: 110 | 110 passed | 0 failed`.
 
 Commit lokal terbaru:
 
@@ -41,7 +49,7 @@ Checkpoint final sesi Pengantar AI:
   - `node --check js/frontend/fellow-dashboard/settings.js`
   - `git diff --check`
   - `node scripts/check-participant-routes.mjs` -> `Total: 110 | 110 passed | 0 failed`
-- Next request user: lanjut ke materi `Pemrograman Python untuk AI`.
+- Python untuk AI sekarang sudah dirombak final menjadi 13 chapter berdasarkan materi brainstorming terbaru.
 
 Ringkasan checkpoint kerja sesi ini:
 
@@ -230,10 +238,10 @@ pages/frontend/fellow-dashboard/
 
 | Modul | Materi | Latihan | Kuis | Diskusi | Controller JS | Catatan |
 |---|---|---|---|---|---|---|
-| 01 - Pengantar AI | Aktif final terbaru | Aktif, audit sosio-teknis | Aktif, 10 soal | Aktif, skenario etika | `settings.js` | Route sub-topik tetap memakai `lesson.html`; konten final sudah sinkron dengan `materi/pengantar-ai.md`; route/layout besar tidak berubah |
-| 02 - Python untuk AI | Aktif, next target review/rombak | Aktif, Pyodide | Aktif | Basic | `ai-python-basic.js` | Modul paling interaktif; next work user adalah lanjut memperbarui materi ini. Target awal: `02-python-untuk-ai/` dan `js/frontend/fellow-dashboard/ai-python-basic.js` |
+| 01 - Pengantar AI | Aktif final terbaru | Aktif, audit sosio-teknis | Aktif, 10 soal full-card clickable single attempt | Aktif, skenario etika | `settings.js` | Route sub-topik tetap memakai `lesson.html`; konten final sinkron dengan `materi/pengantar-ai.md`; quiz locked state jelas; route/layout besar tidak berubah |
+| 02 - Python untuk AI | Aktif final terbaru, 13 chapter + panel Belajar Aktif | Aktif, Pyodide + mini project preprocessing teks | Aktif, 15 soal full-card clickable single attempt | Aktif, prompt Python untuk AI | `ai-python-basic.js` | Rombak final dari `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md`; code block pink-light; route/layout tetap; snapshot di `materi/python-untuk-ai.md` |
 | 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
-| 04 - Reasoning | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-reasoning`, belum punya file final |
+| 04 - Reasoning | Scaffold, area kerja tim lain | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-reasoning`; sebelum merge baca `handover/MERGE_GUIDE_REASONING_TEAM.md` |
 | 05 - Evaluation | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evaluation`, belum punya file final |
 | 06 - Evolution of AI | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evolution`, belum punya file final |
 
@@ -446,10 +454,11 @@ Catatan activity scaffold:
   - `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` jika folder/routing filesystem berubah
 - Next step prioritas untuk tim penerus:
   1. Jika user meminta revisi Pengantar AI, kerjakan secara scoped dengan baseline `materi/pengantar-ai.md`.
-  2. Jika user melanjutkan request terbaru, kerjakan `Python untuk AI` di `02-python-untuk-ai/` dan `js/frontend/fellow-dashboard/ai-python-basic.js`.
-  3. Jika task bukan Python untuk AI atau Pengantar AI, lanjutkan Generative AI lewat `COURSE_SCAFFOLDS` bila konten belum final.
-  4. Aktifkan route final hanya kalau `materi`, `latihan`, `kuis`, dan `diskusi` sudah siap.
-  5. Jaga route final AI Modern, Math for AI, ML, Python, Pengantar AI, CV, dan NLP.
+  2. Jika user meminta revisi Python untuk AI, kerjakan di `02-python-untuk-ai/` dan `js/frontend/fellow-dashboard/ai-python-basic.js` sambil mempertahankan 13 chapter, panel Belajar Aktif, Pyodide, dan quiz full-card.
+  3. Jika user atau tim meminta merge Reasoning, baca `handover/MERGE_GUIDE_REASONING_TEAM.md` dulu.
+  4. Jika task bukan Python, Pengantar AI, atau merge Reasoning, lanjutkan Generative AI lewat `COURSE_SCAFFOLDS` bila konten belum final.
+  5. Aktifkan route final hanya kalau `materi`, `latihan`, `kuis`, dan `diskusi` sudah siap.
+  6. Jaga route final AI Modern, Math for AI, ML, Python, Pengantar AI, CV, dan NLP.
 - Jalankan minimal:
 
 ```bash

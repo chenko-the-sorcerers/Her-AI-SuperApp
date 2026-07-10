@@ -1,0 +1,89 @@
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-cubes"></i> Topik 9 dari 13</span>
+        <h1>Object-Oriented Programming Dasar</h1>
+        <p>Class, object, self, method, dan inheritance untuk membaca arsitektur library AI.</p>
+    </section>
+    <section class="python-section-card python-source-content">
+
+<h2>Tujuan Chapter</h2>
+<p>Peserta memahami class, object, attribute, method, constructor <code>__init__</code>, <code>self</code>, dan inheritance dasar sebagai fondasi membaca library AI modern.</p>
+<h2>Kenapa Topik Ini Penting untuk AI</h2>
+<p>Library machine learning banyak memakai OOP. Di scikit-learn, model dibuat sebagai object lalu dipanggil dengan <code>.fit()</code> dan <code>.predict()</code>. Di PyTorch, model neural network ditulis sebagai class turunan <code>torch.nn.Module</code>. Memahami OOP membuat dokumentasi framework AI jauh lebih mudah dibaca.</p>
+<h2>Konsep Utama</h2>
+<p><strong>Class</strong> adalah blueprint. <strong>Object</strong> adalah instance nyata dari blueprint tersebut. <strong>Attribute</strong> adalah data yang menempel pada object. <strong>Method</strong> adalah fungsi yang menempel pada object. <code>self</code> menunjuk ke object aktif yang sedang memakai method.</p>
+<h2>Analogi</h2>
+<p>Class seperti cetak biru rumah. Object adalah rumah fisik yang dibangun dari cetak biru. Dari satu blueprint, kita bisa membuat banyak rumah dengan warna, pemilik, atau isi yang berbeda.</p>
+<h2>Contoh Kode Utama</h2>
+<pre class="sourceCode python"><code class="sourceCode python">class Model:
+    def __init__(self, nama):
+        self.nama = nama
+
+    def info(self):
+        return f&quot;Model aktif: {self.nama}&quot;
+
+model = Model(&quot;SentimentAnalyzer&quot;)
+print(model.info())</code></pre>
+<p><strong>Penjelasan:</strong> <code>Model</code> adalah class. Saat object dibuat, <code>__init__</code> menyimpan nama ke <code>self.nama</code>. Method <code>info()</code> membaca attribute tersebut dan mengembalikan teks.</p>
+<h2>Contoh Tambahan</h2>
+<h3>1. Inheritance sederhana</h3>
+<pre class="sourceCode python"><code class="sourceCode python">class Model:
+    def __init__(self, nama):
+        self.nama = nama
+
+class JaringanSaraf(Model):
+    def latih(self):
+        return f&quot;Melatih model: {self.nama}&quot;
+
+nn = JaringanSaraf(&quot;MultiLayerPerceptron&quot;)
+print(nn.latih())</code></pre>
+<h3>2. Representasi string object</h3>
+<pre class="sourceCode python"><code class="sourceCode python">class Metrik:
+    def __init__(self, nama, skor):
+        self.nama = nama
+        self.skor = skor
+
+    def __str__(self):
+        return f&quot;Metrik {self.nama}: {self.skor}&quot;
+
+m = Metrik(&quot;Akurasi&quot;, 0.95)
+print(m)</code></pre>
+<h3>3. Class dataset mini</h3>
+<pre class="sourceCode python"><code class="sourceCode python">class DatasetMini:
+    def __init__(self, data):
+        self.data = data
+
+    def jumlah_baris(self):
+        return len(self.data)
+
+    def kosong(self):
+        return len(self.data) == 0
+
+ds = DatasetMini([10, 20, 30])
+print(ds.jumlah_baris())
+print(ds.kosong())</code></pre>
+<h2>Common Mistakes</h2>
+<ol><li>Lupa menulis <code>self</code> sebagai parameter pertama method.</li><li>Mengira attribute object satu otomatis memengaruhi object lain.</li><li>Membuat satu class raksasa yang mengurus semua hal.</li><li>Lupa memanggil <code>super().__init__()</code> saat class anak punya constructor sendiri.</li></ol>
+<h2>Best Practices</h2>
+<ol><li>Gunakan PascalCase untuk nama class.</li><li>Jaga class tetap punya tanggung jawab tunggal.</li><li>Gunakan method untuk perilaku yang benar-benar terkait object.</li><li>Baca dokumentasi AI dengan pola: buat object, latih, prediksi, evaluasi.</li></ol>
+<h2>Latihan Kecil</h2>
+<p>Buat class <code>Tokenizer</code> yang menerima list vocab dan method <code>is_known(kata)</code>.</p>
+<pre class="sourceCode python"><code class="sourceCode python">class Tokenizer:
+    def __init__(self, vocab):
+        self.vocab = vocab
+
+    def is_known(self, kata):
+        return kata in self.vocab
+
+tok = Tokenizer([&quot;ai&quot;, &quot;deep&quot;, &quot;learning&quot;])
+print(tok.is_known(&quot;deep&quot;))
+print(tok.is_known(&quot;python&quot;))</code></pre>
+<h2>Ringkasan Chapter</h2>
+<p>OOP membantu menggabungkan data dan perilaku dalam object. Ini adalah pola utama banyak framework AI modern, sehingga peserta perlu memahaminya sebelum masuk ke model yang lebih kompleks.</p>
+
+    </section>
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Berikutnya, kita membuat program lebih tangguh dengan exception handling.</p>
+    </section>
+</div>

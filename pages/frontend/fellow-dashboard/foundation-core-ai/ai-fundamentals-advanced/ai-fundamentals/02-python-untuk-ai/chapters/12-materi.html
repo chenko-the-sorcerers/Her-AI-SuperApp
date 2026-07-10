@@ -1,0 +1,107 @@
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-calculator"></i> Topik 12 dari 13</span>
+        <h1>NumPy dan Operasi Matriks</h1>
+        <p>Fondasi komputasi numerik untuk AI: array, shape, vektorisasi, statistik, transpose, dan dot product.</p>
+    </section>
+
+    <section class="python-section-card python-source-content">
+        <h2>Tujuan Chapter</h2>
+        <p>Peserta mampu melakukan inisialisasi array multi-dimensi menggunakan NumPy, memahami konsep efisiensi komputasi berbasis vektorisasi, serta mengeksekusi operasi matriks dasar yang menjadi fondasi banyak model AI.</p>
+
+        <h2>Kenapa Topik Ini Penting untuk AI</h2>
+        <p>Model AI tidak melihat gambar, teks, atau suara seperti manusia. Di dalam komputer, semuanya berubah menjadi angka. Gambar menjadi matriks piksel, teks menjadi vektor token atau embedding, dan bobot model menjadi matriks parameter. NumPy adalah pintu pertama untuk memahami dunia angka tersebut sebelum peserta bertemu PyTorch, TensorFlow, scikit-learn, atau library machine learning lain.</p>
+
+        <h2>Konsep Utama</h2>
+        <p><strong>NumPy</strong> menyediakan struktur <code>ndarray</code>, yaitu array multi-dimensi homogen yang jauh lebih efisien untuk operasi numerik dibanding list Python biasa. List Python fleksibel, tetapi fleksibilitasnya membuat operasi matematika besar lambat karena interpreter harus memeriksa elemen satu per satu.</p>
+        <p><strong>Vektorisasi</strong> adalah cara mengekspresikan operasi pada banyak angka sekaligus tanpa loop Python manual. Saat kita menulis <code>array * 2</code>, NumPy menjalankan operasi pada semua elemen dengan backend native yang jauh lebih cepat.</p>
+        <p><strong>Shape</strong> menunjukkan bentuk array. Array satu dimensi bisa berbentuk <code>(5,)</code>, matriks dua dimensi bisa berbentuk <code>(2, 3)</code>, dan data gambar bisa berbentuk <code>(tinggi, lebar, channel)</code>. Mengecek shape adalah kebiasaan wajib sebelum operasi matriks.</p>
+        <p><strong>Dot product</strong> atau perkalian matriks adalah operasi baris-kali-kolom. Ini bukan perkalian elemen satu per satu. Di NumPy, dot product dapat ditulis dengan operator <code>@</code> atau fungsi <code>np.dot()</code>.</p>
+
+        <div class="python-table-wrap"><table><thead><tr><th>Aspek</th><th>Python List</th><th>NumPy Array</th></tr></thead><tbody><tr><td>Tipe elemen</td><td>Bisa campuran</td><td>Idealnya homogen</td></tr><tr><td>Operasi matematika</td><td>Biasanya perlu loop</td><td>Bisa langsung vektorisasi</td></tr><tr><td>Memori</td><td>Referensi objek tersebar</td><td>Lebih kontigu dan efisien</td></tr><tr><td>Peran AI</td><td>Struktur dasar kecil</td><td>Fondasi matriks dan tensor</td></tr></tbody></table></div>
+
+        <h2>Analogi</h2>
+        <p>Menggunakan list Python murni untuk operasi angka besar seperti memeras 100 jeruk satu per satu dengan tangan. NumPy seperti mesin pemeras industri: semua jeruk diproses bersamaan dengan satu tombol. Kita menulis instruksi ringkas, mesin cepat di bawahnya yang bekerja.</p>
+
+        <h2>Contoh Kode Utama: Statistik Array</h2>
+        <pre class="sourceCode python"><code class="sourceCode python">import numpy as np
+
+data = np.array([78, 92, 65, 88, 71])
+
+print(&quot;Data:&quot;, data)
+print(&quot;Shape:&quot;, data.shape)
+print(&quot;Rata-rata:&quot;, data.mean())
+print(&quot;Standar deviasi:&quot;, round(data.std(), 2))
+print(&quot;Nilai tertinggi:&quot;, data.max())</code></pre>
+        <p><strong>Penjelasan:</strong> <code>np.array(...)</code> mengubah list menjadi array NumPy. Method <code>.mean()</code>, <code>.std()</code>, dan <code>.max()</code> menghitung statistik langsung pada seluruh array. Peserta tidak perlu menulis loop manual untuk menghitung satu per satu.</p>
+
+        <h2>Contoh Tambahan 1: Vektorisasi</h2>
+        <pre class="sourceCode python"><code class="sourceCode python">import numpy as np
+
+harga = np.array([10000, 20000, 30000, 40000])
+diskon = harga * 0.5
+
+print(&quot;Harga awal:&quot;, harga)
+print(&quot;Harga diskon:&quot;, diskon)</code></pre>
+        <p>Operator <code>*</code> di sini mengalikan setiap elemen array dengan 0.5. Ini disebut operasi elemen-demi-elemen, bukan dot product.</p>
+
+        <h2>Contoh Tambahan 2: Matriks dan Transpose</h2>
+        <pre class="sourceCode python"><code class="sourceCode python">import numpy as np
+
+matriks = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print(&quot;Shape awal:&quot;, matriks.shape)
+print(&quot;Transpose:&quot;)
+print(matriks.T)
+print(&quot;Shape transpose:&quot;, matriks.T.shape)</code></pre>
+        <p><code>matriks.T</code> menukar baris menjadi kolom. Shape awal <code>(2, 3)</code> berubah menjadi <code>(3, 2)</code>.</p>
+
+        <h2>Contoh Tambahan 3: Dot Product</h2>
+        <pre class="sourceCode python"><code class="sourceCode python">import numpy as np
+
+A = np.array([
+    [1, 2],
+    [3, 4]
+])
+B = np.array([
+    [5, 6],
+    [7, 8]
+])
+
+hasil_dot = A @ B
+hasil_elemen = A * B
+
+print(&quot;Dot product:&quot;)
+print(hasil_dot)
+print(&quot;Perkalian elemen-demi-elemen:&quot;)
+print(hasil_elemen)</code></pre>
+        <p>Operator <code>@</code> melakukan dot product matriks. Operator <code>*</code> melakukan perkalian elemen dengan elemen pada posisi yang sama. Perbedaan ini sangat penting karena banyak bug numerik AI berasal dari salah memahami dua operator tersebut.</p>
+
+        <h2>Common Mistakes</h2>
+        <ol><li>Mengira <code>*</code> adalah dot product. Untuk aljabar matriks gunakan <code>@</code> atau <code>np.dot()</code>.</li><li>Tidak mengecek <code>.shape</code> sebelum operasi matriks, lalu terkena error dimensi.</li><li>Menulis <code>np.zeros(3, 4)</code> padahal shape harus tuple: <code>np.zeros((3, 4))</code>.</li><li>Masih menulis loop Python manual untuk operasi yang bisa divektorisasi.</li></ol>
+
+        <h2>Best Practices</h2>
+        <ol><li>Selalu gunakan alias standar <code>import numpy as np</code>.</li><li>Cetak <code>.shape</code> saat debugging data numerik.</li><li>Gunakan vektorisasi untuk operasi array besar.</li><li>Bedakan operasi statistik, operasi elemen-demi-elemen, dan operasi aljabar matriks.</li></ol>
+
+        <h2>Latihan Kecil</h2>
+        <p>Buat dua array <code>x = [1, 2]</code> dan <code>y = [3, 4]</code>. Hitung dot product dengan <code>np.dot(x, y)</code> dan jelaskan hasilnya.</p>
+        <pre class="sourceCode python"><code class="sourceCode python">import numpy as np
+
+x = np.array([1, 2])
+y = np.array([3, 4])
+
+hasil = np.dot(x, y)
+print(hasil)  # (1 * 3) + (2 * 4) = 11</code></pre>
+
+        <h2>Ringkasan Chapter</h2>
+        <p>NumPy memperkenalkan cara berpikir berbasis array dan matriks. Peserta belajar bahwa AI sangat bergantung pada data numerik, shape, vektorisasi, dan operasi matriks yang efisien.</p>
+    </section>
+
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Berikutnya, kita memakai Pandas untuk data tabular, inspeksi dataset, filter baris, dan pembersihan data awal sebelum model AI dilatih.</p>
+    </section>
+</div>

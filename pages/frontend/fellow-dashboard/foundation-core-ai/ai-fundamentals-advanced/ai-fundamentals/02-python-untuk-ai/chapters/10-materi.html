@@ -1,0 +1,91 @@
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-shield-halved"></i> Topik 10 dari 13</span>
+        <h1>Exception Handling</h1>
+        <p>Materi final Pemrograman Python untuk AI disajikan lengkap, rinci, dan bertahap dari fondasi bahasa sampai pintu gerbang data science.</p>
+    </section>
+
+    <section class="python-section-card python-source-content">
+
+<h2 id="tujuan-chapter">Tujuan Chapter</h2>
+<p>Peserta mampu mengantisipasi anomali runtime program, mengisolasi kode rawan eror menggunakan blok try, except, else, dan finally, serta memahami cara membaca jejak galat.</p>
+<h2 id="konsep-utama">Konsep Utama</h2>
+<p>Penanganan kesalahan mencegah program mati seketika saat menemui kendala runtime dengan mengalihkan kendali eksekusi ke blok penanganan darurat kustom.</p>
+<h2 id="analogi">Analogi</h2>
+<p>Bayangkan Anda sedang berkendara menggunakan mobil dengan <strong>Sistem Autopilot</strong>. Di jalur utama yang mulus, sistem berjalan lancar. Namun, tiba-tiba di tengah jalan terdapat genangan air yang sangat dalam atau jalanan amblas. Jika sistem autopilot tidak memiliki penanganan kondisi darurat, mobil akan langsung menabrak rintangan atau mati mesin di tengah jalan. Namun, jika diprogram dengan baik, sistem akan mendeteksi rintangan tersebut (<strong>Try</strong>), menghentikan kemudi otomatis (<strong>Except</strong>), membunyikan alarm peringatan, dan menyerahkan kendali kembali secara aman kepada pengemudi manusia (<strong>Finally</strong>).</p>
+<h2 id="penjelasan-teori-rinci">Penjelasan Teori Rinci</h2>
+<p>Eror dalam pemrograman diklasifikasikan menjadi dua jenis utama :<br /><strong>Syntax Error</strong>: Terjadi saat penulisan kode melanggar aturan sintaksis Python. Eror jenis ini dideteksi sebelum program mulai dijalankan.<br /><strong>Exceptions (Runtime Error)</strong>: Terjadi ketika sintaksis kode sudah benar, namun terjadi anomali tidak terduga pada saat program sedang berjalan. Contoh klasik meliputi pembagian angka dengan nol, memanggil variabel yang tidak ada, membuka berkas yang tidak eksis di cakram keras, atau salah tipe data.<br />Jika program tidak memiliki mekanisme penanganan, kemunculan satu buah <em>exception</em> akan menghentikan seluruh proses eksekusi seketika itu juga. Untuk aplikasi yang berjalan terus-menerus, hal ini sangat berbahaya.<br />Python menyediakan arsitektur penanganan kesalahan yang elegan menggunakan blok berikut :</p>
+<ul>
+<li>try: Blok tempat kita meletakkan baris kode yang berisiko memicu eror. Python akan mencoba mengeksekusi blok ini terlebih dahulu.<br /></li>
+<li>except: Jika terjadi eror di dalam blok try, Python akan menghentikan eksekusi baris tersisa di dalam try, mencari blok except yang sesuai dengan tipe eror tersebut, dan mengeksekusi penanganan kustom di dalamnya.<br /></li>
+<li>else: Berisi kode yang hanya dijalankan jika blok try berhasil dieksekusi sepenuhnya tanpa memicu eror sama sekali.<br /></li>
+<li>finally: Berisi kode yang <strong>dijamin akan selalu dieksekusi</strong>, tidak peduli apakah terjadi eror atau tidak di blok try. Blok ini sangat ideal untuk melakukan operasi pembersihan sistem seperti menutup koneksi database atau menutup file yang terbuka.</li>
+</ul>
+<p>Alur Eksekusi Exception Handling:<br /> Masuk Blok TRY<br /> |<br /> Apakah Terjadi Eror?<br /> / \<br /> (Ya) / \ (Tidak)<br /> / \<br /> Blok EXCEPT Blok ELSE<br /> \ /<br /> \ /<br /> v v<br /> Blok FINALLY</p>
+<h2 id="contoh-kode-utama">Contoh Kode Utama</h2>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    hasil = <span class="dv">10</span> / <span class="dv">0</span>
+<span class="kw">except</span> <span class="ot">ZeroDivisionError</span>:
+    hasil = <span class="dv">0</span></code></pre>
+<h2 id="penjelasan-kode-baris-demi-baris">Penjelasan Kode Baris demi Baris</h2>
+<ul>
+<li><strong>Baris 1</strong>: try:<br /> Memulai blok pemantauan keamanan eksekusi kode.<br /></li>
+<li><strong>Baris 2</strong>: hasil = 10 / 0 Mencoba membagi angka 10 dengan 0.3 Karena secara matematis hal ini ilegal, Python langsung memicu ZeroDivisionError. Eksekusi dalam blok try segera dihentikan.<br /></li>
+<li><strong>Baris 3</strong>: except ZeroDivisionError:<br /> Interpreter mencocokkan tipe kesalahan. Karena cocok, alur dialihkan ke dalam blok ini.<br /></li>
+<li><strong>Baris 4</strong>: hasil = 0<br /> Menetapkan nilai alternatif hasil = 0 agar program dapat terus berjalan dengan selamat tanpa mengalami crash.</li>
+</ul>
+<h2 id="contoh-tambahan">3 Contoh Tambahan</h2>
+<ol style="list-style-type: decimal">
+<li><p>Menangkap beberapa jenis eror secara terpisah :</p>
+<pre class="sourceCode python"><code class="sourceCode python">   <span class="kw">try</span>:
+   d = {<span class="st">&quot;a&quot;</span>: <span class="dv">1</span>}
+   nilai = d[<span class="st">&quot;b&quot;</span>]
+   <span class="kw">except</span> <span class="ot">KeyError</span>:
+   <span class="dt">print</span>(<span class="st">&quot;Kunci tidak ada&quot;</span>)
+   <span class="kw">except</span> <span class="ot">IndexError</span>:
+   <span class="dt">print</span>(<span class="st">&quot;Indeks salah&quot;</span>)</code></pre></li>
+</ol>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: try: memulai blok keamanan.<br /> * <strong>Baris 3</strong>: nilai = d[&quot;b&quot;] mencoba mengakses kunci yang tidak eksis di Dictionary, memicu KeyError.<br /> * <strong>Baris 4</strong>: except KeyError: menangkap kesalahan kunci dan mencetak peringatan.<br /> * <strong>Baris 6</strong>: except IndexError: diabaikan karena tidak relevan.<br />2. Menggunakan blok finally untuk menjamin pembersihan :</p>
+<pre class="sourceCode python"><code class="sourceCode python">   <span class="kw">try</span>:
+       <span class="dt">print</span>(<span class="st">&quot;Membuka Koneksi&quot;</span>)
+       eror_pemicu = <span class="dv">5</span> / <span class="dv">0</span>
+   <span class="kw">except</span> <span class="ot">ZeroDivisionError</span>:
+       <span class="dt">print</span>(<span class="st">&quot;Eror Ditangani&quot;</span>)
+   <span class="kw">finally</span>:
+       <span class="dt">print</span>(<span class="st">&quot;Koneksi Ditutup&quot;</span>)</code></pre>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 2</strong>: print(&quot;Membuka Koneksi&quot;) dijalankan.<br /> * <strong>Baris 3</strong>: eror_pemicu = 5 / 0 memicu kesalahan pembagian dengan nol.<br /> * <strong>Baris 4</strong>: except ZeroDivisionError: menangkap kesalahan tersebut.<br /> * <strong>Baris 6</strong>: finally: menjamin blok terakhir dijalankan sehingga teks &quot;Koneksi Ditutup&quot; tetap tercetak.<br />3. Melempar Exception kustom secara sengaja menggunakan raise :</p>
+<pre class="sourceCode python"><code class="sourceCode python">   <span class="kw">def</span> validasi_skor(s):
+       <span class="kw">if</span> s &lt; <span class="dv">0</span>:
+           <span class="kw">raise</span> <span class="ot">ValueError</span>(<span class="st">&quot;Skor tidak boleh negatif&quot;</span>)</code></pre>
+<p>try:<br /> validasi_skor(-10)<br /> except ValueError as e:<br /> print(f&quot;Eror Tertangkap: {e}&quot;)</p>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: def validasi_skor(s): mendefinisikan fungsi validasi.<br /> * <strong>Baris 3</strong>: raise ValueError(...) memicu kesalahan secara manual jika kondisi terpenuhi.<br /> * <strong>Baris 5</strong>: try: memantau eksekusi fungsi.<br /> * <strong>Baris 8</strong>: print(...) menangkap objek pesan kesalahan dan menampilkan rinciannya ke layar.</p>
+<h2 id="common-mistakes">3 Common Mistakes</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Menggunakan Blok Except Kosong</strong>: Menuliskan kode except: tanpa mendefinisikan tipe eror atau tanpa menuliskan aksi penanganan di dalamnya. Praktik buruk ini menyembunyikan masalah serius dalam kode sehingga membuat proses pencarian bug menjadi sangat sulit.<br /></li>
+<li><strong>Salah Memosisikan Penanganan Generik</strong>: Menulis except Exception: di bagian paling atas sebelum penanganan spesifik seperti except ZeroDivisionError:. Python mengevaluasi dari atas ke bawah, sehingga blok generik akan menangkap semua eror terlebih dahulu dan mematikan blok spesifik di bawahnya.<br /></li>
+<li><strong>Mengasumsikan Exception Handling Menyembunyikan Bug Desain</strong>: Menggunakan try-except untuk menutupi kesalahan logika penulisan kode dasar yang seharusnya diperbaiki, bukan disembunyikan lewat blok penangkapan eror.</li>
+</ol>
+<h2 id="best-practices">3 Best Practices</h2>
+<ol style="list-style-type: decimal">
+<li>Tangkaplah tipe kesalahan yang sespesifik mungkin agar tahu persis cara menangani kondisi darurat tersebut secara presisi.<br /></li>
+<li>Gunakan blok finally secara disiplin untuk menutup koneksi eksternal (file, jaringan, database) guna mencegah terjadinya kebocoran sumber daya sistem.<br /></li>
+<li>Catat rincian eror yang terjadi menggunakan pustaka pencatatan resmi Python alih-alih hanya mencetaknya dengan fungsi print, agar riwayat kesalahan dapat ditelusuri di lingkungan server produksi.</li>
+</ol>
+<h2 id="hubungan-konsep-ini-dengan-aidata-science">Hubungan Konsep Ini dengan AI/Data Science</h2>
+<p>Aplikasi kecerdasan buatan sering kali berinteraksi dengan dunia luar yang tidak ideal. Saat model bertugas mengambil data gambar dari kamera keamanan internet, koneksi jaringan bisa saja terputus di tengah jalan. Saat memproses dataset teks ulasan dari internet, ada kemungkinan beberapa baris ulasan kosong atau rusak. Tanpa adanya penanganan kesalahan menggunakan try-except, satu baris data yang rusak atau gangguan jaringan sesaat dapat mematikan seluruh sistem pengolahan kecerdasan buatan yang sedang berjalan.</p>
+<h2 id="latihan-kecil-dengan-contoh-jawaban">Latihan Kecil dengan Contoh Jawaban</h2>
+<p>Tuliskan program yang mencoba mengubah string &quot;bukan_angka&quot; menjadi integer menggunakan fungsi int(). Tangkap kesalahan ValueError yang terjadi dan cetak pesan &quot;Konversi Gagal!&quot;.2 <em>Contoh Jawaban</em>:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    angka = <span class="dt">int</span>(<span class="st">&quot;bukan_angka&quot;</span>)
+<span class="kw">except</span> <span class="ot">ValueError</span>:
+    <span class="dt">print</span>(<span class="st">&quot;Konversi Gagal!&quot;</span>)</code></pre>
+<h2 id="ringkasan-chapter">Ringkasan Chapter</h2>
+<p>Arsitektur penanganan kesalahan menggunakan struktur blok try-except-else-finally menjamin keberlangsungan aplikasi dari ancaman crash akibat anomali data atau kegagalan interaksi sistem di fase runtime.</p>
+
+    </section>
+
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Berikutnya, kita menghubungkan program dengan file fisik melalui File I/O.</p>
+    </section>
+</div>

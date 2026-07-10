@@ -1,197 +1,66 @@
-<div class="lesson-module-content">
-    <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
-        <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-            <i class="fas fa-rocket"></i> Topik 4: Arsitektur & I/O
-        </h3>
-        <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-            Goal: Memahami OOP tingkat dasar untuk membangun sistem besar dan mengantisipasi masalah lewat Error Handling.
-        </p>
-    </div>
-
-    <!-- CHAPTER 1: OBJECT ORIENTED PROGRAMMING (OOP) -->
-    <section class="cdd-chapter">
-        <h2>Chapter 1: Pemrograman Berorientasi Objek (OOP)</h2>
-        
-        <div class="cdd-step">
-            <h3>Learning Objective</h3>
-            <p>Peserta memahami cara membungkus data dan fungsi ke dalam satu entitas menggunakan paradigma OOP <em>(Object-Oriented Programming)</em>.</p>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Analogy</h3>
-            <p><strong>Class</strong> ibarat <em>Blueprint</em> atau sketsa desain tas tangan eksklusif di atas kertas. Di sketsa itu tertulis spesifikasinya (Atribut): warna, bahan kulit, dan ukuran. Tertulis juga apa yang bisa dilakukan tas itu (Method): membuka resleting, mengunci magnet.</p>
-            <p><strong>Object</strong> ibarat tas nyata (fisik) yang sudah diproduksi dari sketsa tersebut. Kamu bisa memproduksi ratusan tas berbeda warna, tapi pola jahitannya tetap mengikuti satu sketsa yang sama.</p>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Theory</h3>
-            <ul>
-                <li><strong>Class:</strong> Cetakan atau templat. (Contoh: `class Tas:`)</li>
-                <li><strong>Object:</strong> Hasil cetakan atau perwujudan nyata. (Contoh: `tas_aku = Tas()`)</li>
-                <li><strong>Attribute:</strong> Ciri-ciri atau variabel yang nempel di objek. (Contoh: `warna = "Pink"`)</li>
-                <li><strong>Method:</strong> Tindakan atau fungsi yang nempel di objek. (Contoh: `def buka_resleting(self):`)</li>
-                <li><strong><code>__init__</code>:</strong> Fungsi ajaib yang selalu otomatis dipanggil saat sebuah tas baru diproduksi dari pabrik.</li>
-            </ul>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Syntax & Code Example</h3>
-            <p>Mari kita praktikkan membangun 'pabrik tas' menggunakan OOP.</p>
-            
-            <div class="playground-wrapper" id="play-oop" style="margin-top: 16px;">
-                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>class_object.py</div>
-                    <div class="py-actions" style="display: flex; gap: 8px;">
-                        <button class="py-reset" data-play="oop" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                        <button class="py-run" id="btn-run-oop" data-play="oop" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                    </div>
-                </div>
-                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
-<textarea class="py-editor" style="width: 100%; min-height: 380px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-# 1. CLASS (Cetakan Blueprint)
-class TasKosmetik:
-    # Ini metode yang dipanggil otomatis saat tas baru diciptakan
-    def __init__(self, warna, pemilik):
-        self.warna = warna      # Atribut
-        self.pemilik = pemilik  # Atribut
-        self.isi = []           # Atribut list kosong
-        
-    # Method (Apa yang bisa dilakukan tas)
-    def masukkan_barang(self, barang):
-        self.isi.append(barang)
-        print("+" + barang, "dimasukkan ke tas", self.warna)
-
-# 2. OBJECT (Wujud nyata)
-tas_aisyah = TasKosmetik("Pink Pastel", "Aisyah")
-tas_budi = TasKosmetik("Hitam Matte", "Budi")
-
-# Memanggil Method
-tas_aisyah.masukkan_barang("Lipstik")
-tas_budi.masukkan_barang("Parfum")
-
-print("Isi tas Aisyah:", tas_aisyah.isi)
-</textarea>
-                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
-                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                        <pre class="py-output" id="out-oop" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                    </div>
-                </div>
-            </div>
-            
-            <p style="margin-top: 16px;"><strong>Note:</strong> Kata <code>self</code> sangat wajib dipakai di dalam metode Class. Itu adalah cara tas merujuk pada "dirinya sendiri".</p>
-        </div>
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-layer-group"></i> Topik 4 dari 13</span>
+        <h1>Struktur Data Koleksi</h1>
+        <p>List, Tuple, Dictionary, dan Set untuk menyimpan data AI secara tepat.</p>
     </section>
+    <section class="python-section-card python-source-content">
 
-    <!-- CHAPTER 2: ERROR HANDLING -->
-    <section class="cdd-chapter">
-        <h2>Chapter 2: Persiapan Rencana B (Error Handling)</h2>
-        
-        <div class="cdd-step">
-            <h3>Learning Objective</h3>
-            <p>Peserta mampu memprediksi masalah di program dan membuat rencana cadangan agar program tidak berhenti tiba-tiba <em>(crash)</em>.</p>
-        </div>
+<h2>Tujuan Chapter</h2>
+<p>Peserta menguasai karakteristik List, Tuple, Dictionary, dan Set, lalu mampu memilih struktur yang sesuai untuk menyimpan dataset, metadata, konfigurasi model, dan token unik.</p>
+<h2>Kenapa Topik Ini Penting untuk AI</h2>
+<p>Dalam AI, kita hampir tidak pernah bekerja dengan satu nilai tunggal. Kita menyimpan daftar file gambar, label kelas, konfigurasi hyperparameter, riwayat akurasi, vocabulary teks, dan metadata dataset. Struktur data yang salah membuat kode sulit dibaca, rawan error, dan lambat saat data membesar.</p>
+<h2>Konsep Utama</h2>
+<p><strong>List</strong> adalah koleksi berurutan dan mutable. Elemen bisa ditambah, dihapus, atau diubah. Cocok untuk batch data, daftar skor, nama file, dan urutan token.</p>
+<p><strong>Tuple</strong> mirip list tetapi immutable. Cocok untuk data yang seharusnya tidak berubah, seperti shape gambar <code>(224, 224, 3)</code>, koordinat, atau konfigurasi tetap.</p>
+<p><strong>Dictionary</strong> menyimpan pasangan key-value. Cocok untuk metadata, profil sampel, dan hyperparameter karena data diakses lewat label yang jelas, bukan indeks angka.</p>
+<p><strong>Set</strong> menyimpan elemen unik. Cocok untuk deduplikasi label atau membuat vocabulary unik dari daftar kata.</p>
+<div class="python-table-wrap"><table><thead><tr><th>Tipe</th><th>Urutan</th><th>Mutable</th><th>Akses</th><th>Contoh AI</th></tr></thead><tbody><tr><td>List</td><td>Ya</td><td>Ya</td><td>Indeks</td><td>Daftar skor, file, batch</td></tr><tr><td>Tuple</td><td>Ya</td><td>Tidak</td><td>Indeks</td><td>Shape gambar</td></tr><tr><td>Dictionary</td><td>Ya</td><td>Ya</td><td>Key</td><td>Hyperparameter</td></tr><tr><td>Set</td><td>Tidak fokus</td><td>Ya</td><td>Iterasi</td><td>Token unik</td></tr></tbody></table></div>
+<h2>Analogi</h2>
+<p>List seperti antrean pelanggan yang bisa berubah. Tuple seperti menu yang sudah dicetak dan tidak boleh diubah. Dictionary seperti loker dengan nomor kunci. Set seperti daftar tamu unik: nama yang sama tetap dihitung satu kali.</p>
+<h2>Contoh Kode Utama</h2>
+<pre class="sourceCode python"><code class="sourceCode python">list_model = [&quot;YOLO&quot;, &quot;BERT&quot;, &quot;ResNet&quot;]
+tuple_dimensi = (224, 224, 3)
+dict_param = {&quot;learning_rate&quot;: 0.01, &quot;batch_size&quot;: 32}
+set_token = {&quot;nlp&quot;, &quot;computer_vision&quot;, &quot;nlp&quot;}
 
-        <div class="cdd-step">
-            <h3>Analogy</h3>
-            <p>Menulis kode tanpa <em>Error Handling</em> ibarat mengadakan pesta kebun <em>outdoor</em> yang sangat megah tanpa menyiapkan tenda (Plan B). Begitu hujan turun mendadak (Error), seluruh pesta bubar dan berantakan <em>(Crash)</em>.</p>
-            <p>Konsep <strong>Try-Except</strong> adalah tenda cadangannya. <strong>Try:</strong> "Coba kita gelar pestanya di kebun". <strong>Except:</strong> "Kalau tiba-tiba hujan, alihkan tamu masuk ke dalam gedung, acaranya tetap lanjut!"</p>
-        </div>
+print(&quot;List model:&quot;, list_model)
+print(&quot;Dimensi gambar:&quot;, tuple_dimensi)
+print(&quot;Learning rate:&quot;, dict_param[&quot;learning_rate&quot;])
+print(&quot;Token unik:&quot;, set_token)</code></pre>
+<p><strong>Penjelasan:</strong> list menyimpan nama model secara berurutan, tuple menyimpan shape gambar yang aman dari perubahan, dictionary menyimpan konfigurasi model, dan set otomatis menghapus token duplikat.</p>
+<h2>Contoh Tambahan</h2>
+<h3>1. Slicing List</h3>
+<pre class="sourceCode python"><code class="sourceCode python">angka = [10, 20, 30, 40, 50]
+potongan = angka[1:4]
+print(potongan)  # [20, 30, 40]</code></pre>
+<h3>2. Dictionary dengan .get()</h3>
+<pre class="sourceCode python"><code class="sourceCode python">config = {&quot;epochs&quot;: 100}
+lr = config.get(&quot;learning_rate&quot;, 0.001)
+print(lr)</code></pre>
+<h3>3. Operasi Set</h3>
+<pre class="sourceCode python"><code class="sourceCode python">set_a = {&quot;ai&quot;, &quot;python&quot;, &quot;data&quot;}
+set_b = {&quot;python&quot;, &quot;nlp&quot;, &quot;data&quot;}
+print(&quot;Gabungan:&quot;, set_a.union(set_b))
+print(&quot;Irisan:&quot;, set_a.intersection(set_b))</code></pre>
+<h2>Common Mistakes</h2>
+<ol><li>Mengakses indeks pertama dengan <code>list[1]</code>. Python mulai dari indeks 0.</li><li>Mencoba mengubah tuple: <code>tuple_dimensi[0] = 128</code>.</li><li>Mengakses dictionary dengan key yang tidak ada tanpa <code>.get()</code>.</li><li>Mengira set menjaga urutan data seperti list.</li></ol>
+<h2>Best Practices</h2>
+<ol><li>Gunakan list untuk data yang berubah.</li><li>Gunakan tuple untuk data tetap.</li><li>Gunakan dictionary untuk data berlabel.</li><li>Gunakan set untuk deduplikasi.</li><li>Pilih struktur data dari kebutuhan akses, bukan dari kebiasaan.</li></ol>
+<h2>Latihan Kecil</h2>
+<p>Buat dictionary <code>model_info</code> dengan key <code>nama</code>, <code>akurasi_history</code>, dan <code>optimum</code>. Cetak akurasi pertama.</p>
+<pre class="sourceCode python"><code class="sourceCode python">model_info = {
+    &quot;nama&quot;: &quot;ResNet-50&quot;,
+    &quot;akurasi_history&quot;: [0.85, 0.88, 0.91],
+    &quot;optimum&quot;: True
+}
+print(model_info[&quot;akurasi_history&quot;][0])</code></pre>
+<h2>Ringkasan Chapter</h2>
+<p>List, tuple, dictionary, dan set adalah alat penyimpanan data utama Python. Menguasai perbedaannya membuat pipeline data AI lebih jelas, aman, dan mudah diperluas.</p>
 
-        <div class="cdd-step">
-            <h3>Syntax & Code Example</h3>
-            <p>Contoh masalah paling umum adalah mencoba membagi angka dengan nol, atau mencoba membuka file Excel yang ternyata terhapus. Tanpa Try-Except, Python akan langsung ngambek dan <em>crash</em>.</p>
-            
-            <div class="playground-wrapper" id="play-err" style="margin-top: 16px;">
-                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>try_except.py</div>
-                    <div class="py-actions" style="display: flex; gap: 8px;">
-                        <button class="py-reset" data-play="err" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                        <button class="py-run" id="btn-run-err" data-play="err" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                    </div>
-                </div>
-                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
-<textarea class="py-editor" style="width: 100%; min-height: 250px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-try:
-    print("Mencoba membagi diskon...")
-    angka = 100
-    pembagi = 0
-    hasil = angka / pembagi # Akan memicu ZeroDivisionError!
-    print("Berhasil! Hasil:", hasil)
-
-except ZeroDivisionError:
-    # Rencana B yang berjalan saat ERROR terjadi
-    print("Oops! Terjadi masalah: Kamu tidak bisa membagi dengan angka Nol.")
-    
-finally:
-    # Selalu berjalan apapun yang terjadi (baik hujan maupun cerah)
-    print("Selesai menghitung.")
-</textarea>
-                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
-                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                        <pre class="py-output" id="out-err" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
     </section>
-
-    <!-- CHAPTER 3: INTERAKSI FILE (I/O) -->
-    <section class="cdd-chapter">
-        <h2>Chapter 3: Buku Tamu Digital (File I/O)</h2>
-        
-        <div class="cdd-step">
-            <h3>Learning Objective</h3>
-            <p>Peserta mampu membaca data dari sebuah file teks dan menyimpan hasil pemrosesan AI kembali ke dalam file menggunakan fungsi <code>open()</code>.</p>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Analogy</h3>
-            <p>Membaca dan menulis file <strong>(I/O)</strong> ibarat menjaga meja penerima tamu di sebuah acara. Saat tamu datang, kamu <strong>membaca</strong> daftar undangan (File Read). Saat tamu menyerahkan kado, kamu <strong>menulis</strong> namanya di buku tanda terima kado (File Write). Begitulah cara AI berinteraksi dengan dunia luar: mengambil dataset, lalu mencetak laporan.</p>
-        </div>
-
-        <div class="cdd-step">
-            <h3>Syntax & Code Example</h3>
-            <p>Kita menggunakan fungsi bawaan <code>open()</code> dengan mode <code>"r"</code> untuk <em>Read</em> (membaca) dan mode <code>"w"</code> untuk <em>Write</em> (menulis/menimpa).</p>
-            
-            <div class="playground-wrapper" id="play-io" style="margin-top: 16px;">
-                <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                    <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>buku_tamu.py</div>
-                    <div class="py-actions" style="display: flex; gap: 8px;">
-                        <button class="py-reset" data-play="io" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                        <button class="py-run" id="btn-run-io" data-play="io" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                    </div>
-                </div>
-                <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 0 0 16px 16px; position: relative;">
-<textarea class="py-editor" style="width: 100%; min-height: 250px; border: none; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-# 1. Menulis ke dalam file (Mode "w")
-# Jika file belum ada, Python akan membuatnya secara otomatis!
-file_tulis = open("buku_tamu.txt", "w")
-file_tulis.write("Tamu 1: Aisyah Putri\n")
-file_tulis.write("Tamu 2: Budi Santoso\n")
-file_tulis.close()  # JANGAN LUPA DITUTUP!
-print("Berhasil menulis 2 nama ke buku_tamu.txt")
-
-# 2. Membaca isi file (Mode "r")
-print("\n--- Membuka Buku Tamu ---")
-file_baca = open("buku_tamu.txt", "r")
-isi_buku = file_baca.read()
-print(isi_buku)
-file_baca.close()
-</textarea>
-                    <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 0 0 16px 16px; border-top: none;">
-                        <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                        <pre class="py-output" id="out-io" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                    </div>
-                </div>
-            </div>
-            <p style="margin-top: 16px; color: var(--fellow-muted); font-size: 0.9rem;"><strong>Pro Tip:</strong> <em>Data Scientist</em> masa kini biasanya memakai perintah <code>with open(...) as file:</code> agar tidak perlu repot memanggil <code>.close()</code>, karena file akan tertutup otomatis saat proses selesai.</p>
-        </div>
-        
-        <div class="cdd-step">
-            <h3>Summary</h3>
-            <p>Selamat! Di Modul 4 ini kamu resmi menjadi arsitek <em>software</em> yang tangguh! Melalui <strong>OOP</strong> kamu membungkus data layaknya <em>blueprint</em> produk, melalui <strong>Error Handling</strong> kamu mengantisipasi hari hujan yang tak terduga, dan lewat <strong>File I/O</strong> kamu berhasil menghubungkan programmu dengan dunia luar.</p>
-        </div>
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Berikutnya, kita membuat program mampu mengambil keputusan dengan percabangan logika.</p>
     </section>
-
 </div>

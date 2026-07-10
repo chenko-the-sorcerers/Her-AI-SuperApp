@@ -1,0 +1,80 @@
+<div class="lesson-module-content python-rich-chapter">
+    <section class="python-chapter-hero">
+        <span><i class="fas fa-gauge-high"></i> Topik 8 dari 13</span>
+        <h1>Lambda Expression dan Generator Basics</h1>
+        <p>Materi final Pemrograman Python untuk AI disajikan lengkap, rinci, dan bertahap dari fondasi bahasa sampai pintu gerbang data science.</p>
+    </section>
+
+    <section class="python-section-card python-source-content">
+
+<h2 id="tujuan-chapter">Tujuan Chapter</h2>
+<p>Peserta mampu menyusun fungsi anonim sekali pakai menggunakan ekspresi Lambda dan menghemat konsumsi memori untuk aliran data besar menggunakan konsep Generator sederhana.</p>
+<h2 id="konsep-utama">Konsep Utama</h2>
+<p>Lambda adalah fungsi tanpa nama yang ditulis dalam satu baris ekspresi tunggal. Generator adalah jenis fungsi khusus yang menghasilkan urutan nilai secara bertahap menggunakan kata kunci yield alih-alih mengembalikan semua nilai sekaligus di memori.</p>
+<h2 id="analogi">Analogi</h2>
+<ul>
+<li><strong>Lambda Expression</strong> seperti <strong>Pena Sekali Pakai</strong> di bank. Anda hanya membutuhkannya untuk menandatangani satu slip formulir cepat, lalu Anda meninggalkannya begitu saja tanpa perlu menyimpannya di tempat pensil khusus.<br /></li>
+<li><strong>Generator</strong> seperti <strong>Keran Dispenser Air</strong>. Jika membutuhkan 10 liter air untuk diminum sepanjang hari, Anda tidak perlu membawa ember raksasa 10 liter ke mana-mana. Cukup gunakan botol kecil, dan putar keran dispenser untuk mengeluarkan air <strong>hanya pada saat haus</strong> satu gelas demi satu gelas.</li>
+</ul>
+<h2 id="penjelasan-teori-rinci">Penjelasan Teori Rinci</h2>
+<p>Seiring dengan semakin besarnya skala aplikasi kecerdasan buatan dan sains data yang kita bangun, teknik penulisan kode konvensional kadang tidak lagi efisien. Python menyediakan fitur pemrograman fungsional tingkat lanjut untuk menyiasati keterbatasan efisiensi penulisan dan memori.<br /><strong>Lambda Expression</strong>: Ditulis dengan kata kunci lambda, diikuti parameter, tanda titik dua, dan ekspresi tunggal yang langsung dievaluasi serta dikembalikan hasilnya. Sintaksis Lambda sangat minimalis karena tidak membutuhkan kata kunci def maupun pernyataan return. Karakteristik utama Lambda adalah ia tidak memiliki nama di ruang namespace program. Lambda biasanya digunakan sebagai argumen untuk fungsi tingkat tinggi yang menerima fungsi lain sebagai masukannya, seperti fungsi filter, sorting khusus, atau fungsi pemetaan data pada Pandas DataFrame.<br /><strong>Generator</strong>: Fungsi normal di Python akan menghitung semua nilai hasil kalkulasi, menyimpannya di dalam memori sebagai satu List besar, lalu mengembalikannya ke pemanggil. Namun, jika dataset Anda berisi jutaan baris dokumen teks, menyimpannya sekaligus dalam memori akan menyebabkan sistem kehabisan RAM. Generator mengatasi masalah ini dengan menerapkan prinsip evaluasi malas.<br />Generator dideklarasikan seperti fungsi biasa menggunakan def, namun alih-alih menggunakan return, ia menggunakan kata kunci yield. Ketika fungsi generator dipanggil, ia tidak langsung menjalankan kode di dalamnya. Ia hanya mengembalikan objek generator. Ketika program meminta nilai berikutnya (misalnya melalui fungsi next() atau perulangan for), generator akan berjalan hingga menemui baris yield, mengembalikan nilai tersebut, dan <strong>membekukan status eksekusinya</strong> di titik tersebut. Saat diminta nilai berikutnya lagi, generator melanjutkan eksekusi dari titik beku tersebut.</p>
+<p>Perbandingan Memori (Return vs Yield):<br />Return (Konvensional): ==&gt; Dimuat semua ke RAM sekaligus<br />Yield (Generator): ==&gt; Hanya satu data di RAM, sisanya diproses bertahap sesuai permintaan</p>
+<h2 id="contoh-kode-utama">Contoh Kode Utama</h2>
+<pre class="sourceCode python"><code class="sourceCode python">kali_dua = <span class="kw">lambda</span> x: x \* <span class="dv">2</span></code></pre>
+<p>def generator_angka():<br /> yield 1<br /> yield 2</p>
+<h2 id="penjelasan-kode-baris-demi-baris">Penjelasan Kode Baris demi Baris</h2>
+<ul>
+<li><strong>Baris 1</strong>: kali_dua = lambda x: x * 2 Membuat fungsi anonim Lambda yang menerima satu parameter x dan langsung mengembalikan hasil perkalian x * 2.6 Fungsi ini disimpan ke variabel referensi kali_dua agar bisa dipanggil.<br /></li>
+<li><strong>Baris 3</strong>: def generator_angka(): Mendeklarasikan fungsi generator khusus menggunakan kata kunci def.<br /></li>
+<li><strong>Baris 4</strong>: yield 1 Menyerahkan angka 1 ke program utama dan menjeda eksekusi fungsi generator.<br /></li>
+<li><strong>Baris 5</strong>: yield 2 Ketika dipanggil kembali untuk kedua kalinya, generator melanjutkan dan menyerahkan angka 2.1</li>
+</ul>
+<h2 id="contoh-tambahan">3 Contoh Tambahan</h2>
+<ol style="list-style-type: decimal">
+<li><p>Menggunakan Lambda bersama fungsi filter 6:</p>
+<pre class="sourceCode python"><code class="sourceCode python">   list_loss = [<span class="fl">0.8</span>, <span class="fl">0.4</span>, <span class="fl">0.9</span>, <span class="fl">0.2</span>]
+   loss_kecil = <span class="dt">list</span>(<span class="dt">filter</span>(<span class="kw">lambda</span> x: x &lt; <span class="fl">0.5</span>, list_loss))
+   <span class="dt">print</span>(loss_kecil)</code></pre></li>
+</ol>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: list_loss = [...] mendefinisikan list angka.<br /> * <strong>Baris 2</strong>: loss_kecil =... memanggil fungsi filter() yang menyaring elemen list menggunakan ekspresi Lambda lambda x: x &lt; 0.5.6 Hasil saringan dikonversi kembali menjadi List.<br /> * <strong>Baris 3</strong>: print(loss_kecil) mencetak [0.4, 0.2].<br />2. Membuat Generator deret angka genap dinamis 1:</p>
+<pre class="sourceCode python"><code class="sourceCode python">   <span class="kw">def</span> genap_generator(maks):
+       n = <span class="dv">0</span>
+       <span class="kw">while</span> n &lt; maks:
+           <span class="kw">yield</span> n
+           n += <span class="dv">2</span></code></pre>
+<p>for angka in genap_generator(5):<br /> print(angka)</p>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: def genap_generator(maks): mendeklarasikan generator.<br /> * <strong>Baris 3</strong>: while n &lt; maks: mengevaluasi batas perulangan.<br /> * <strong>Baris 4</strong>: yield n mengeluarkan angka genap aktif dan menjeda fungsi.<br /> * <strong>Baris 5</strong>: n += 2 menaikkan nilai variabel untuk putaran berikutnya.<br /> * <strong>Baris 7</strong>: for angka in... melintasi generator, menghasilkan output cetak 0 dan 2 secara bertahap.<br />3. List Comprehension sebagai bentuk ringkas pemrosesan data 6:</p>
+<pre class="sourceCode python"><code class="sourceCode python">   skor_mentah =
+   skor_bersih = [x + <span class="dv">5</span> <span class="kw">for</span> x in skor_mentah]
+   <span class="dt">print</span>(skor_bersih)</code></pre>
+<p><em>Penjelasan baris demi baris</em>:<br /> * <strong>Baris 1</strong>: skor_mentah = [...] mendefinisikan list awal.<br /> * <strong>Baris 2</strong>: skor_bersih = [x + 5 for x in skor_mentah] menggunakan sintaksis List Comprehension untuk menambah setiap elemen dengan 5 secara ringkas dan cepat.<br /> * <strong>Baris 3</strong>: print(skor_bersih) mencetak ``.4</p>
+<h2 id="common-mistakes">3 Common Mistakes</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Mencoba Menulis Banyak Baris Logika di Dalam Lambda</strong>: Memaksakan percabangan atau perulangan di dalam ekspresi Lambda. Ingat bahwa Lambda dirancang hanya untuk menampung ekspresi satu baris tunggal.<br /></li>
+<li><strong>Menggunakan Generator yang Sudah Habis</strong>: Berusaha membaca ulang elemen dari generator yang sudah selesai dilintasi. Generator hanya bisa dibaca satu kali melintas; jika ingin dibaca ulang, Anda harus menginstansiasi ulang objek generator baru dari fungsinya.<br /></li>
+<li><strong>Mengasumsikan Generator Menyimpan Data Secara Fisik</strong>: Mengira bahwa objek generator adalah sebuah list yang bisa diperiksa panjangnya menggunakan fungsi len(). Hal ini akan langsung memicu TypeError karena generator tidak memiliki konsep ukuran panjang sebelum dievaluasi secara tuntas.</li>
+</ol>
+<h2 id="best-practices">3 Best Practices</h2>
+<ol style="list-style-type: decimal">
+<li>Gunakan <strong>Lambda Expression</strong> hanya untuk fungsi pemrosesan satu baris yang sangat sederhana dan dilewatkan sebagai argumen fungsi pemetaan pustaka seperti Pandas atau Map.<br /></li>
+<li>Gunakan <strong>Generator</strong> jika perlu memproses berkas teks besar, logs sistem raksasa, atau batch gambar berukuran gigabyte untuk menghemat kapasitas RAM komputer.<br /></li>
+<li>Tuliskan dokumentasi yang jelas pada generator Anda untuk mempermudah developer lain memahami format batch data yang dikeluarkan di setiap putaran <em>yield</em>.1</li>
+</ol>
+<h2 id="hubungan-konsep-ini-dengan-aidata-science">Hubungan Konsep Ini dengan AI/Data Science</h2>
+<p>Pelatihan model pembelajaran mendalam modern tidak mungkin dilakukan tanpa generator. Dataset gambar medis atau teks internet raksasa berukuran ratusan gigabyte tidak akan muat di memori komputer. Dengan menggunakan generator (diimplementasikan sebagai <em>DataLoader</em> di PyTorch atau <em>Data Generator</em> di TensorFlow), model dapat mengambil gambar bertahap 32 per 32 gambar untuk dilatih, membebaskan memori RAM agar program tetap berjalan stabil.</p>
+<h2 id="latihan-kecil-dengan-contoh-jawaban">Latihan Kecil dengan Contoh Jawaban</h2>
+<p>Buatlah ekspresi Lambda bernama is_positive yang menerima satu parameter angka dan mengembalikan nilai True jika angka tersebut lebih besar dari nol, dan False jika sebaliknya. <em>Contoh Jawaban</em>:</p>
+<pre class="sourceCode python"><code class="sourceCode python">is_positive = <span class="kw">lambda</span> x: x &gt; <span class="dv">0</span>
+<span class="dt">print</span>(is_positive(<span class="dv">5</span>))
+<span class="dt">print</span>(is_positive(-<span class="dv">3</span>))</code></pre>
+<h2 id="ringkasan-chapter">Ringkasan Chapter</h2>
+<p>Ekspresi Lambda menyederhanakan deklarasi fungsi anonim sekali pakai untuk pemrosesan ringkas. Sementara itu, konsep Generator bertindak sebagai penyelamat kinerja sistem memori saat memproses aliran data bervolume besar melalui evaluasi malas berbasis yield.</p>
+<h2 id="topik-4-program-terstruktur-dan-robust">Topik 4: Program Terstruktur dan Robust</h2>
+
+    </section>
+
+    <section class="python-section-card python-summary-card">
+        <h2>Transisi Belajar</h2>
+        <p>Berikutnya, kita masuk ke struktur program besar dengan Object-Oriented Programming.</p>
+    </section>
+</div>
