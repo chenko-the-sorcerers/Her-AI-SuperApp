@@ -19,7 +19,7 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Checkpoint final terbaru 11 Juli 2026:
 
-- `01 - Pengantar AI` aktif final terbaru. Kuisnya sekarang full-card clickable, single attempt, dan locked state jelas. Jawaban benar tetap tidak ditampilkan setelah submit.
+- `01 - Pengantar AI` aktif final terbaru. Kuisnya sekarang full-card clickable, single attempt, dan locked state jelas dengan kartu benar/salah setelah submit.
 - `02 - Python untuk AI` aktif final terbaru dengan 13 chapter runtime, panel `Belajar Aktif` per chapter, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal full-card clickable, dan diskusi final. Audit terbaru memperbaiki string newline pada mini project latihan nomor 7 agar Run Code Pyodide berhasil.
 - `AGENTS.md` sudah memuat aturan baru: course tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink harus konsisten.
 - `04 - Reasoning` sudah final canonical di folder `04-reasoning/`: 4 submateri, 17 latihan, 25 soal full-card clickable single attempt, dan 4 prompt diskusi. Route final: `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`.
@@ -242,7 +242,7 @@ pages/frontend/fellow-dashboard/
 
 | Modul | Materi | Latihan | Kuis | Diskusi | Controller JS | Catatan |
 |---|---|---|---|---|---|---|
-| 01 - Pengantar AI | Aktif final terbaru | Aktif, audit sosio-teknis | Aktif, 10 soal full-card clickable single attempt | Aktif, skenario etika | `settings.js` | Route sub-topik tetap memakai `lesson.html`; konten final sinkron dengan `materi/pengantar-ai.md`; quiz locked state jelas; route/layout besar tidak berubah |
+| 01 - Pengantar AI | Aktif final terbaru | Aktif, audit sosio-teknis | Aktif, 10 soal full-card clickable single attempt dengan state correct/wrong/locked | Aktif, skenario etika | `settings.js` | Route sub-topik tetap memakai `lesson.html`; konten final sinkron dengan `materi/pengantar-ai.md`; jawaban peserta tersimpan di `heraiAiIntroQuizAnswers` untuk restore state locked; route/layout besar tidak berubah |
 | 02 - Python untuk AI | Aktif final terbaru, 13 chapter + panel Belajar Aktif | Aktif, Pyodide + mini project preprocessing teks | Aktif, 15 soal full-card clickable single attempt | Aktif, prompt Python untuk AI | `ai-python-basic.js` | Rombak final dari `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md`; code block pink-light; route/layout tetap; snapshot di `materi/python-untuk-ai.md` |
 | 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
 | 04 - Reasoning | Aktif final canonical | Aktif final, 17 latihan | Aktif final, 25 soal full-card clickable single attempt | Aktif final, 4 prompt diskusi | `ai-reasoning.js` | Folder canonical `04-reasoning/`; route activity final `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`; konten bersumber dari data Reasoning yang diekspos oleh `course-placeholder.js` |

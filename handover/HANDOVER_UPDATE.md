@@ -35,6 +35,7 @@ Status terbaru 11 Juli 2026 setelah rombak Reasoning:
 - Controller baru: `js/frontend/fellow-dashboard/ai-reasoning.js`.
 - `course-placeholder.js` masih mengekspos `window.HERAI_REASONING_COURSE` sebagai sumber data konten Reasoning agar materi scaffold lengkap tidak diduplikasi manual.
 - Evaluation dan Evolution of AI tetap scaffold melalui `course-placeholder.html`.
+- Kuis Pengantar AI diselaraskan dengan Python/AI Modern/Reasoning: setelah submit atau saat locked dari localStorage, kartu hijau menandai jawaban benar dan kartu merah menandai pilihan peserta yang salah. Jawaban peserta disimpan di `heraiAiIntroQuizAnswers` tanpa mengubah key lama `heraiAiIntroQuizDone` dan `heraiAiIntroQuizScore`.
 - Verifikasi awal routing setelah perubahan: `node scripts/check-participant-routes.mjs` -> `Total: 113 | 113 passed | 0 failed`.
 
 ## Checkpoint Sebelumnya - Audit Setelah Merge
@@ -88,7 +89,7 @@ Status 10 Juli 2026 setelah follow-up user:
 - Materi Python tidak lagi hanya teks panjang: setiap chapter mendapat panel `Belajar Aktif` melalui `js/frontend/fellow-dashboard/ai-python-basic.js`, berisi quick check, feedback langsung, mini challenge, dan tombol `Buka Playground`.
 - Code block materi Python sudah mengikuti tema HerAI pink-light. Background terminal hitam/dark block tidak dipakai sebagai default.
 - Kuis Python sudah diperbaiki menjadi full-card clickable, bukan radio kecil. State `selected`, `correct`, `wrong`, dan `locked` terlihat jelas.
-- Kuis Pengantar AI juga sudah diperbaiki menjadi full-card clickable. State `selected` dan `locked` jelas, tetapi jawaban benar tetap tidak ditampilkan sesuai desain evaluasi Pengantar AI.
+- Kuis Pengantar AI juga sudah diperbaiki menjadi full-card clickable. State `selected`, `correct`, `wrong`, dan `locked` jelas.
 - `AGENTS.md` diperbarui agar aturan ini tidak terulang:
   - materi course tidak boleh teks polos saja;
   - kuis wajib full-card clickable;

@@ -70,7 +70,7 @@ Konteks terbaru:
 - Request Python terbaru sudah dikerjakan: materi `Pemrograman Python untuk AI` dirombak menjadi 13 chapter final dari sumber brainstorming.
 - Follow-up terbaru:
   - Kuis Python sudah full-card clickable, state selected/correct/wrong/locked jelas.
-  - Kuis Pengantar AI sudah full-card clickable, state selected/locked jelas, jawaban benar tetap tidak ditampilkan.
+  - Kuis Pengantar AI sudah full-card clickable, state selected/correct/wrong/locked jelas.
   - Materi Python punya panel Belajar Aktif di setiap chapter.
   - Code block materi Python memakai background HerAI pink-light, bukan terminal hitam.
   - AGENTS.md diperbarui agar aturan ini wajib dipakai agent berikutnya.

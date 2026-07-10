@@ -1268,7 +1268,9 @@
     function initLessonControls() {
         const quizDoneKey = 'heraiAiIntroQuizDone';
         const quizScoreKey = 'heraiAiIntroQuizScore';
+        const quizAnswersKey = 'heraiAiIntroQuizAnswers';
         const isQuizDone = localStorage.getItem(quizDoneKey) === 'true';
+        const quizGroups = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
 
         document.querySelectorAll('[data-locked-after-quiz]').forEach((item) => {
             item.hidden = !isQuizDone;
@@ -1308,21 +1310,44 @@
             resultBox.hidden = false;
             resultBox.innerHTML = `
                 <strong>Nilai kamu: ${score}/${total}</strong>
-                <span>Skor tersimpan. Kuis single attempt sudah terkunci; jawaban benar tidak ditampilkan agar evaluasi tetap fair.</span>
+                <span>Skor tersimpan. Kuis single attempt sudah terkunci; kartu hijau adalah jawaban benar, kartu merah adalah pilihanmu yang salah.</span>
             `;
+        };
+        const getSavedAnswers = () => {
+            try {
+                const saved = JSON.parse(localStorage.getItem(quizAnswersKey) || '{}');
+                return saved && typeof saved === 'object' ? saved : {};
+            } catch (error) {
+                return {};
+            }
+        };
+        const getCurrentAnswers = () => quizGroups.reduce((answers, group) => {
+            const inputs = Array.from(quizForm.querySelectorAll(`input[name="${group}"]`));
+            const selectedIndex = inputs.findIndex(input => input.checked);
+            answers[group] = selectedIndex >= 0 ? selectedIndex : '';
+            return answers;
+        }, {});
+        const markQuizAnswers = (answers = {}) => {
+            quizForm.querySelectorAll('label').forEach((label) => {
+                const input = label.querySelector('input[type="radio"]');
+                if (!input) return;
+                const optionIndex = Array.from(quizForm.querySelectorAll(`input[name="${input.name}"]`)).indexOf(input);
+                const savedAnswer = answers[input.name];
+                const isCorrect = input.value === '1';
+                const isSelected = savedAnswer === optionIndex || savedAnswer === String(optionIndex) || (!Number.isInteger(Number(savedAnswer)) && input.checked);
+                input.disabled = true;
+                if (savedAnswer === optionIndex || savedAnswer === String(optionIndex)) input.checked = true;
+                label.classList.add('is-locked');
+                label.classList.toggle('is-selected', Boolean(isSelected));
+                label.classList.toggle('is-correct', isCorrect);
+                label.classList.toggle('is-wrong', Boolean(isSelected && !isCorrect));
+            });
         };
 
         if (isQuizDone) {
             const savedScore = Number(localStorage.getItem(quizScoreKey) || 0);
             showResult(savedScore, 10);
-            quizForm.querySelectorAll('label').forEach((label) => {
-                const input = label.querySelector('input[type="radio"]');
-                if (input) {
-                    input.disabled = true;
-                    label.classList.add('is-locked');
-                    label.classList.toggle('is-selected', input.checked);
-                }
-            });
+            markQuizAnswers(getSavedAnswers());
             if (submitButton) {
                 submitButton.disabled = true;
                 submitButton.textContent = 'Kuis Sudah Dikirim';
@@ -1332,8 +1357,7 @@
 
         quizForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            const groups = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
-            const unanswered = groups.some(group => !quizForm.querySelector(`input[name="${group}"]:checked`));
+            const unanswered = quizGroups.some(group => !quizForm.querySelector(`input[name="${group}"]:checked`));
             if (unanswered) {
                 if (resultBox) {
                     resultBox.hidden = false;
@@ -1345,21 +1369,16 @@
                 return;
             }
             let score = 0;
-            for (const group of groups) {
+            const answers = getCurrentAnswers();
+            for (const group of quizGroups) {
                 const selected = quizForm.querySelector(`input[name="${group}"]:checked`);
                 if (selected && selected.value === '1') score += 1;
             }
             localStorage.setItem(quizDoneKey, 'true');
             localStorage.setItem(quizScoreKey, String(score));
-            showResult(score, groups.length);
-            quizForm.querySelectorAll('label').forEach((label) => {
-                const input = label.querySelector('input[type="radio"]');
-                if (input) {
-                    input.disabled = true;
-                    label.classList.add('is-locked');
-                    label.classList.toggle('is-selected', input.checked);
-                }
-            });
+            localStorage.setItem(quizAnswersKey, JSON.stringify(answers));
+            showResult(score, quizGroups.length);
+            markQuizAnswers(answers);
             if (submitButton) {
                 submitButton.disabled = true;
                 submitButton.textContent = 'Kuis Sudah Dikirim';

@@ -10,7 +10,7 @@
         <header class="lesson-topbar"><nav class="lesson-breadcrumb" aria-label="Breadcrumb materi"><a href="#/participant-ai-fundamentals"><i class="fas fa-arrow-left"></i><span>AI Fundamentals</span></a><span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span><span>Kuis Pengantar AI</span></nav><div class="fellow-actions"><label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label><button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button><a href="#/participant-profile" class="fellow-user-button"><span class="avatar-img"></span><span><strong>Aisyah Putri</strong><small>Peserta</small></span><i class="fas fa-chevron-down"></i></a></div></header>
         <div class="lesson-layout">
             <div class="lesson-main-content">
-                <section class="lesson-hero compact"><div class="lesson-hero-copy"><h1>Kuis Pengantar AI</h1><p>Kerjakan satu kali untuk mengukur pemahaman konseptual. Nilai akan langsung muncul setelah dikirim, tanpa menampilkan jawaban benar.</p><div class="lesson-meta-row"><span><i class="far fa-clock"></i> 15 menit</span><span><i class="far fa-clipboard"></i> 10 soal</span><b>Single Attempt</b></div></div><img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow mengerjakan kuis"></section>
+                <section class="lesson-hero compact"><div class="lesson-hero-copy"><h1>Kuis Pengantar AI</h1><p>Kerjakan satu kali untuk mengukur pemahaman konseptual. Setelah dikirim, kartu jawaban akan menampilkan mana yang benar dan mana pilihanmu yang salah.</p><div class="lesson-meta-row"><span><i class="far fa-clock"></i> 15 menit</span><span><i class="far fa-clipboard"></i> 10 soal</span><b>Single Attempt</b></div></div><img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow mengerjakan kuis"></section>
                 <section class="lesson-material-panel">
                     <style>
                         #aiIntroQuizForm.lesson-quiz-section { color: #171827; }
@@ -26,6 +26,10 @@
                         #aiIntroQuizForm .quiz-list input[type="radio"]:checked { border-color: #f63392; background: #f63392; }
                         #aiIntroQuizForm .quiz-list label.is-selected { border-color: rgba(246,51,146,.55); background: rgba(246,51,146,.10); box-shadow: 0 10px 24px rgba(246,51,146,.10); }
                         #aiIntroQuizForm .quiz-list label.is-locked { cursor: not-allowed; opacity: .9; transform: none; }
+                        #aiIntroQuizForm .quiz-list label.is-correct { border-color: rgba(40,189,119,.36); background: #f0fff7; color: #236a49; }
+                        #aiIntroQuizForm .quiz-list label.is-wrong { border-color: rgba(225,29,72,.28); background: #fff1f2; color: #9f1239; }
+                        #aiIntroQuizForm .quiz-list label.is-correct::after { content: "Benar"; margin-left: auto; color: #236a49; font-weight: 800; }
+                        #aiIntroQuizForm .quiz-list label.is-wrong::after { content: "Pilihanmu"; margin-left: auto; color: #9f1239; font-weight: 800; }
                         #aiIntroQuizForm .quiz-result-card { border: 1px solid rgba(246,51,146,.30); border-radius: 18px; padding: 18px; margin: 22px 0; background: linear-gradient(145deg, rgba(246,51,146,.10), #fff); color: #171827; }
                         #aiIntroQuizForm .quiz-result-card strong { display: block; margin-bottom: 6px; font-size: 1.05rem; }
                         #aiIntroQuizForm .quiz-result-card span { color: #51596d; line-height: 1.6; }
@@ -36,8 +40,8 @@
                     <article class="lesson-article">
                         <form id="aiIntroQuizForm" class="lesson-quiz-section" data-quiz-key="heraiAiIntroQuizDone">
                             <h2>Kuis Pengantar AI</h2>
-                            <p>Pilih satu jawaban untuk setiap soal. Setelah submit, sistem hanya menampilkan nilai akhir.</p>
-                            <div class="quiz-note"><i class="fas fa-circle-info"></i><span>Klik area kartu jawaban, bukan hanya lingkaran radio. Setelah kuis dikirim, semua opsi terkunci karena modul ini single attempt.</span></div>
+                            <p>Pilih satu jawaban untuk setiap soal. Setelah submit, nilai dan pembahasan visual benar/salah akan muncul.</p>
+                            <div class="quiz-note"><i class="fas fa-circle-info"></i><span>Klik area kartu jawaban, bukan hanya lingkaran radio. Setelah kuis dikirim, semua opsi terkunci dan kartu benar/salah akan terlihat.</span></div>
                             <div class="quiz-list">
                                 <article><span>1</span><h3>Definisi AI yang paling akurat dalam modul ini adalah...</h3><label><input type="radio" name="q1" value="0"> Mesin fisik yang memiliki kesadaran seperti manusia.</label><label><input type="radio" name="q1" value="1"> Sistem berbasis mesin yang menggunakan input untuk menghasilkan prediksi, rekomendasi, konten, atau keputusan.</label><label><input type="radio" name="q1" value="0"> Program statis yang hanya menjalankan perintah manual tanpa data.</label></article>
                                 <article><span>2</span><h3>Analogi pekerja magang menjelaskan bahwa AI modern...</h3><label><input type="radio" name="q2" value="0"> Selalu mengikuti resep kaku yang ditulis satu per satu.</label><label><input type="radio" name="q2" value="1"> Belajar mengenali pola setelah melihat banyak contoh historis.</label><label><input type="radio" name="q2" value="0"> Tidak membutuhkan data untuk mengambil keputusan.</label></article>
