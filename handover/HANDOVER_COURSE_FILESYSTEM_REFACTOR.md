@@ -12,12 +12,13 @@ Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar
 
 ## Update Terbaru Setelah Refactor Filesystem
 
-Update lokal terbaru setelah checkpoint `280c087`:
+Update lokal terbaru setelah checkpoint `6eb03f8`:
 
 - Folder root `materi/` dibuat sebagai area handoff konten non-runtime.
 - File `materi/pengantar-ai.md` berisi snapshot terbaru materi Pengantar AI setelah rombak final.
 - Materi final Pengantar AI sudah masuk ke runtime canonical `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/`.
-- Setelah review user, Pengantar AI diperluas dari 4 topik menjadi 10 topik detail tanpa membuat route atau folder baru.
+- Setelah review user, Pengantar AI dikonsolidasikan menjadi 5 chapter padat tanpa membuat route atau folder baru.
+- Update lanjutan setelah commit `6eb03f8`: bug penomoran runtime diperbaiki dan Chapter 3-5 diperdalam lagi. Perubahan tetap hanya menyentuh konten dan handover, tidak mengubah route atau folder.
 - Perubahan ini tidak mengubah folder canonical course catalog, route peserta, target file router, atau manifest scaffold.
 - `materi/` tidak boleh dipakai sebagai folder route/course aktif.
 - Next request user adalah lanjut ke `02 - Python untuk AI`; folder canonical yang harus dipakai adalah `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/`.
@@ -36,10 +37,11 @@ Route checker: Total 110 | 110 passed | 0 failed
 
 Update follow-up:
 
-- Daftar materi Pengantar AI diperluas dari 4 topik menjadi 10 topik.
-- Perluasan memakai route Pengantar AI yang sebelumnya sudah terdaftar di `js/router.js`.
+- Daftar materi Pengantar AI sekarang 5 chapter padat.
+- Konsolidasi memakai route Pengantar AI yang sebelumnya sudah terdaftar di `js/router.js`.
 - Tidak ada folder baru dan tidak ada route baru.
-- Route `/participant-ai-future` masih terdaftar di router tetapi tidak dipakai di daftar 10 topik terbaru.
+- Penomoran chapter aktif sekarang konsisten: Chapter 3 `3.1-3.12`, Chapter 4 `4.1-4.12`, Chapter 5 `5.1-5.13`.
+- Route kecil lama seperti `/participant-ai-components`, `/participant-ai-pipeline`, `/participant-ai-applications`, `/participant-ai-pros-cons`, `/participant-ai-ethics`, dan `/participant-ai-future` masih terdaftar di router tetapi tidak tampil di daftar 5 chapter terbaru.
 - Verifikasi terakhir setelah update handover dan runtime Pengantar AI: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` lulus.
 
 File runtime Pengantar AI yang berubah:

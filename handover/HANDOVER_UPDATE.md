@@ -3,7 +3,7 @@
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
 **Status:** ada perubahan lokal belum commit, belum push
-**Commit fitur terakhir:** `280c087 refactor: standardize curriculum placeholders`
+**Commit fitur terakhir:** `6eb03f8 feat: expand ai introduction lesson content`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
@@ -17,9 +17,22 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ---
 
-## Checkpoint Final Sesi - Pengantar AI 10 Topik dan Next Python untuk AI
+## Checkpoint Final Sesi - Pengantar AI 5 Chapter Padat dan Next Python untuk AI
 
-Status terbaru setelah review user: materi Pengantar AI sudah diperinci ulang dan daftar materi runtime sudah diperluas dari 4 item menjadi 10 topik. Perubahan ini memakai route Pengantar AI yang sudah ada di `js/router.js`, sehingga tidak ada route baru dan tidak ada perubahan struktur navigasi besar.
+Status terbaru setelah review user: Pengantar AI sempat diperluas menjadi 10 topik, lalu dikonsolidasikan lagi menjadi 5 chapter padat karena user lebih memilih chapter sedikit dengan isi panjang. Perubahan ini memakai route Pengantar AI yang sudah ada di `js/router.js`, sehingga tidak ada route baru dan tidak ada perubahan struktur navigasi besar.
+
+Update terbaru setelah commit `6eb03f8`:
+
+- User menemukan bug penomoran di runtime: Chapter 3 masih menampilkan subbagian `2.1`.
+- Penomoran chapter aktif sudah dibetulkan:
+  - Chapter 3: `3.1` sampai `3.12`
+  - Chapter 4: `4.1` sampai `4.12`
+  - Chapter 5: `5.1` sampai `5.13`
+- Chapter 3 diperdalam dengan studi kasus chatbot pendidikan, kredit mikro, filter wajah, dan pola kesalahan umum.
+- Chapter 4 diperdalam dengan penerapan AI di pendidikan, kesehatan, keamanan siber, bisnis, dan matriks membaca penerapan.
+- Chapter 5 diperdalam dengan rubrik skor risiko, template jawaban audit, contoh jawaban audit, dan kebiasaan kritis untuk modul lanjutan.
+- Snapshot `materi/pengantar-ai.md` sudah diperbarui agar mencatat struktur 5 chapter padat dan rentang penomoran terbaru.
+- Handover diperbarui ulang untuk mencatat checkpoint ini sebelum lanjut ke `Pemrograman Python untuk AI`.
 
 Yang sudah dikerjakan pada sesi Pengantar AI:
 
@@ -37,21 +50,16 @@ Yang sudah dikerjakan pada sesi Pengantar AI:
    - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/latihan.html`
    - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/kuis.html`
    - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/diskusi.html`
-4. Memperluas struktur runtime Pengantar AI menjadi 10 topik:
+4. Mengonsolidasikan struktur runtime Pengantar AI menjadi 5 chapter padat:
    - `#/participant-ai-intro`
    - `#/participant-ai-history`
-   - `#/participant-ai-components`
    - `#/participant-ai-types`
-   - `#/participant-ai-pipeline`
    - `#/participant-ai-ml-dl`
-   - `#/participant-ai-applications`
-   - `#/participant-ai-pros-cons`
-   - `#/participant-ai-ethics`
    - `#/participant-ai-summary`
 5. Mempertahankan area yang dilarang berubah:
    - `js/router.js` tidak diubah.
    - Sidebar utama, topbar, breadcrumb, lesson tabs, right panel shell, dan footer nav shell tetap dipertahankan.
-   - Right panel hanya berubah pada daftar materi/progres agar sesuai 10 topik.
+   - Right panel hanya berubah pada daftar materi/progres agar sesuai 5 chapter.
 6. Mengganti aktivitas Pengantar AI:
    - Latihan: proyek mini `Audit Sistem Sosio-Teknis Harian`.
    - Kuis: 10 soal single attempt.
@@ -69,7 +77,7 @@ node scripts/check-participant-routes.mjs -> Total: 110 | 110 passed | 0 failed
 Status git:
 
 - Perubahan lokal belum commit.
-- `materi/` masih area handoff/snapshot non-runtime dan terlihat sebagai untracked jika belum di-add.
+- `materi/` sudah tracked sejak commit `6eb03f8`, tetapi tetap hanya area handoff/snapshot non-runtime.
 - Jangan push tanpa izin user.
 
 Next work yang diminta user: lanjut ke materi `Pemrograman Python untuk AI`.
@@ -149,7 +157,7 @@ materi/baru/pengantar-ai-baru.md
 Status git saat checkpoint ini:
 
 - Perubahan lokal belum commit.
-- `materi/` masih terlihat untracked jika belum ditambahkan ke git.
+- `materi/` sudah tracked sejak commit `6eb03f8`.
 - Jangan push tanpa izin user.
 - Jika commit dibuat, pilih file dengan sengaja karena `materi/` memuat snapshot terbaru sekaligus arsip lama/baru.
 
@@ -173,18 +181,13 @@ Yang sudah dilakukan:
 - Snapshot terbaru disinkronkan ke `materi/pengantar-ai.md`.
 - `materi/lama/pengantar-ai.md` dan `materi/baru/pengantar-ai-baru.md` dibiarkan sebagai arsip bahan lama/baru.
 
-Struktur topik Pengantar AI terbaru:
+Struktur Pengantar AI terbaru:
 
-1. AI di Sekitar Kita
-2. Definisi Modern AI
-3. Software Biasa vs Sistem AI
-4. Model Mental Cara Kerja AI
-5. Training, Inferensi, dan Human Check
-6. Peta Istilah AI, ML, DL, dan ANI
-7. Penerapan AI dalam Kehidupan
-8. Manfaat dan Keterbatasan AI
-9. Bias, Halusinasi, Privasi, dan Black Box
-10. Audit Sistem Sosio-Teknis
+1. AI di Sekitar Kita dan Fondasi Awal
+2. Definisi, Software Biasa, dan Sistem AI
+3. Cara Kerja AI: Data, Model, dan Human Check
+4. Peta Istilah dan Penerapan AI
+5. Risiko, Etika, dan Audit Sosio-Teknis
 
 Aktivitas terbaru:
 
@@ -202,12 +205,13 @@ Follow-up setelah review user:
 
 - User mengecek materi runtime dan menilai isi masih terlalu sedikit dibanding materi final brainstorming.
 - Konten Pengantar AI kemudian diperluas lagi di:
-  - `materi.html` untuk Topik 1.
-- `settings.js` untuk Topik 2-10.
+  - `materi.html` untuk Chapter 1.
+  - `settings.js` untuk Chapter 2-5.
   - `materi/pengantar-ai.md` sebagai snapshot terbaru.
 - Penambahan mencakup objektif pembelajaran, perbandingan software biasa vs AI, analogi buku resep/pekerja magang, detail training/inferensi, checklist audit, studi kasus penerapan, dan studi kasus risiko.
-- Follow-up kedua: sidebar/daftar materi Pengantar AI dipecah dari 4 topik menjadi 10 topik memakai route yang sudah tersedia di `js/router.js`, tanpa menambah route baru.
-- Route tambahan yang sekarang aktif di daftar materi: `/participant-ai-history`, `/participant-ai-components`, `/participant-ai-pipeline`, `/participant-ai-ml-dl`, `/participant-ai-pros-cons`, dan `/participant-ai-ethics`.
+- Follow-up kedua: sidebar/daftar materi Pengantar AI dikonsolidasikan menjadi 5 chapter padat memakai route yang sudah tersedia di `js/router.js`, tanpa menambah route baru.
+- Route yang sekarang aktif di daftar materi: `/participant-ai-intro`, `/participant-ai-history`, `/participant-ai-types`, `/participant-ai-ml-dl`, dan `/participant-ai-summary`.
+- Route kecil lama tetap ada di router agar link lama tidak rusak, tetapi tidak tampil di daftar materi utama.
 - Route/layout tetap tidak berubah.
 
 Verifikasi sesi ini:
@@ -343,16 +347,16 @@ node scripts/check-participant-routes.mjs
 Catatan risiko:
 
 - Konten Pengantar AI tersebar di dua tempat: HTML `materi.html` dan object `generatedLessonContent` di `settings.js`.
-- Route `/participant-ai-history`, `/participant-ai-components`, `/participant-ai-pipeline`, `/participant-ai-ml-dl`, `/participant-ai-pros-cons`, dan `/participant-ai-ethics` sekarang sudah dipakai di `introLessonRoutes` Pengantar AI. Route `/participant-ai-future` tetap terdaftar di router tetapi belum dipakai di daftar 10 topik.
+- Route yang tampil di `introLessonRoutes` Pengantar AI sekarang hanya 5 chapter utama: `/participant-ai-intro`, `/participant-ai-history`, `/participant-ai-types`, `/participant-ai-ml-dl`, dan `/participant-ai-summary`. Route kecil lama tetap terdaftar di router agar link lama tidak rusak, tetapi tidak tampil di daftar materi utama.
 - `settings.js` juga memuat logic dashboard participant lain; edit harus scoped ke `introLessonRoutes`, `generatedLessonContent`, atau initializer Pengantar AI yang relevan.
 
 ---
 
 ## Current Snapshot - 10 Juli 2026
 
-State terbaru setelah checkpoint `280c087`:
+State terbaru setelah checkpoint `6eb03f8`:
 
-- Working tree terakhir bersih setelah commit `280c087`, lalu ada perubahan lokal baru untuk `materi/pengantar-ai.md` dan update dokumen handover.
+- Working tree terakhir bersih setelah commit `6eb03f8`, lalu ada perubahan lokal baru untuk konsolidasi 5 chapter padat, perbaikan penomoran Chapter 3-5, `materi/pengantar-ai.md`, dan update dokumen handover.
 - Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
 - Course aktif final yang harus dijaga:
   - AI Modern: `#/participant-ai-modern`, `#/participant-ai-modern-practice`, `#/participant-ai-modern-quiz`, `#/participant-ai-modern-discussion`
@@ -524,8 +528,8 @@ Wajib baca dulu:
 7. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Konteks terbaru:
-- Commit checkpoint terakhir: 280c087 refactor: standardize curriculum placeholders.
-- Ada perubahan lokal setelah commit: materi final Pengantar AI sudah masuk runtime, `materi/pengantar-ai.md` menjadi snapshot terbaru, dan dokumen handover sudah diperbarui.
+- Commit checkpoint terakhir: 6eb03f8 feat: expand ai introduction lesson content.
+- Ada perubahan lokal setelah commit: Pengantar AI dikonsolidasikan menjadi 5 chapter padat, penomoran Chapter 3-5 diperbaiki, `materi/pengantar-ai.md` menjadi snapshot terbaru, dan dokumen handover sudah diperbarui.
 - Route checker terakhir setelah rombak Pengantar AI: Total 110, 0 failed.
 - Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
 - Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.

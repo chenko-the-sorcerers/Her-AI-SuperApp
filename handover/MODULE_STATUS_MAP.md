@@ -20,17 +20,22 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 Commit lokal terbaru:
 
 ```text
-280c087 refactor: standardize curriculum placeholders
+6eb03f8 feat: expand ai introduction lesson content
 ```
 
 Checkpoint final sesi Pengantar AI:
 
 - User meminta materi Pengantar AI tidak dikompres dan ingin semua bagian dibuat lebih rinci.
-- Daftar materi runtime Pengantar AI sudah diperluas dari 4 item menjadi 10 topik.
+- Daftar materi runtime Pengantar AI dikonsolidasikan menjadi 5 chapter padat setelah user menilai 10 topik terasa terlalu tipis.
 - Semua topik Pengantar AI sekarang aktif melalui route yang sudah ada di `js/router.js`; tidak ada route baru.
 - `settings.js` memuat `introLessonRoutes` dan `generatedLessonContent` untuk seluruh topik.
-- `materi.html`, `latihan.html`, `kuis.html`, dan `diskusi.html` sudah disesuaikan dengan struktur 10 topik.
+- `materi.html`, `latihan.html`, dan `kuis.html` sudah disesuaikan dengan struktur 5 chapter padat.
 - Snapshot terbaru ada di `materi/pengantar-ai.md`.
+- Update setelah commit `6eb03f8`: bug penomoran Chapter 3 yang tampil sebagai `2.1` sudah diperbaiki. Chapter aktif sekarang memakai penomoran konsisten: Chapter 3 `3.1-3.12`, Chapter 4 `4.1-4.12`, Chapter 5 `5.1-5.13`.
+- Chapter 3-5 diperdalam lagi:
+  - Chapter 3: studi kasus chatbot pendidikan, kredit mikro, filter wajah, dan pola kesalahan.
+  - Chapter 4: penerapan AI di pendidikan, kesehatan, keamanan siber, bisnis, dan matriks penerapan.
+  - Chapter 5: rubrik skor risiko, template jawaban audit, contoh audit, dan kebiasaan kritis untuk modul lanjutan.
 - Verifikasi terakhir lulus:
   - `node --check js/router.js`
   - `node --check js/frontend/fellow-dashboard/settings.js`
@@ -57,7 +62,7 @@ Update lokal terbaru setelah commit tersebut:
 - Runtime yang berubah: `materi.html`, `settings.js` bagian Pengantar AI, `latihan.html`, `kuis.html`, dan `diskusi.html`.
 - Tidak ada perubahan route, folder canonical, sidebar, topbar, breadcrumb, lesson tabs, right panel, atau footer nav.
 - Pengantar AI tetap berstatus aktif dan folder canonical tetap di `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/`.
-- Struktur topik Pengantar AI terbaru terdiri dari 10 topik: AI di Sekitar Kita; Definisi Modern AI; Software Biasa vs Sistem AI; Model Mental Cara Kerja AI; Training, Inferensi, dan Human Check; Peta Istilah AI, ML, DL, dan ANI; Penerapan AI dalam Kehidupan; Manfaat dan Keterbatasan AI; Bias, Halusinasi, Privasi, dan Black Box; Audit Sistem Sosio-Teknis.
+- Struktur Pengantar AI terbaru terdiri dari 5 chapter padat: AI di Sekitar Kita dan Fondasi Awal; Definisi, Software Biasa, dan Sistem AI; Cara Kerja AI: Data, Model, dan Human Check; Peta Istilah dan Penerapan AI; Risiko, Etika, dan Audit Sosio-Teknis.
 - Kuis Pengantar AI sekarang 10 soal single attempt; latihan menjadi proyek mini audit sistem sosio-teknis; diskusi memakai skenario bias rekrutmen, halusinasi hukum, dan optimasi navigasi.
 - Verifikasi setelah rombak Pengantar AI: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` lulus. Route checker: `Total: 110 | 110 passed | 0 failed`.
 
@@ -66,7 +71,7 @@ Rincian perubahan Pengantar AI:
 | Area | Sebelum | Sekarang |
 |---|---|---|
 | Materi utama | Definisi umum, sejarah, contoh harian, AI/ML/DL | AI sebagai sistem prediktif, software biasa vs AI, contoh harian, kebiasaan berpikir kritis |
-| Topik lanjutan | Jenis & komponen AI, penerapan & masa depan, ringkasan | 9 topik lanjutan detail via `lesson.html`: definisi modern, software vs AI, model mental, training/inferensi, AI/ML/DL/ANI, penerapan, manfaat/batasan, risiko etis, audit |
+| Topik lanjutan | Jenis & komponen AI, penerapan & masa depan, ringkasan | 4 chapter lanjutan detail via `lesson.html`: definisi/software, cara kerja AI, peta istilah/penerapan, risiko/etika/audit |
 | Latihan | Refleksi ANI/AGI/hierarki | Audit sistem sosio-teknis harian |
 | Kuis | 5 soal | 10 soal single attempt |
 | Diskusi | Pertanyaan umum | Skenario bias rekrutmen, halusinasi hukum, dan optimasi navigasi |

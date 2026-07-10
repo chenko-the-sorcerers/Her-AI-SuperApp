@@ -42,16 +42,23 @@ Posisi: Modul 1 dari 6.
 
 ## Daftar Topik
 
-1. AI di Sekitar Kita
-2. Definisi Modern AI
-3. Software Biasa vs Sistem AI
-4. Model Mental Cara Kerja AI
-5. Training, Inferensi, dan Human Check
-6. Peta Istilah AI, ML, DL, dan ANI
-7. Penerapan AI dalam Kehidupan
-8. Manfaat dan Keterbatasan AI
-9. Bias, Halusinasi, Privasi, dan Black Box
-10. Audit Sistem Sosio-Teknis
+Struktur runtime terbaru dipadatkan dari 10 topik kecil menjadi 5 chapter besar agar setiap sesi baca terasa lebih panjang dan mendalam.
+
+1. AI di Sekitar Kita dan Fondasi Awal
+2. Definisi, Software Biasa, dan Sistem AI
+3. Cara Kerja AI: Data, Model, dan Human Check
+4. Peta Istilah dan Penerapan AI
+5. Risiko, Etika, dan Audit Sosio-Teknis
+
+Catatan sinkronisasi:
+
+- Route lama seperti `#/participant-ai-components`, `#/participant-ai-pipeline`, `#/participant-ai-applications`, `#/participant-ai-pros-cons`, dan `#/participant-ai-ethics` tetap ada di `js/router.js` agar link lama tidak rusak.
+- Daftar materi utama yang tampil ke peserta sekarang hanya 5 chapter.
+- Materi dari route kecil lama digabung ke chapter besar agar peserta membaca lebih padat dalam satu alur.
+- Chapter 2 menggabungkan definisi modern AI, software biasa vs AI, analogi buku resep/pekerja magang, dan contoh harian.
+- Chapter 3 menggabungkan model mental enam langkah, contoh spam, training, inferensi, human check, cara pandang sosio-teknis, studi kasus navigasi, chatbot pendidikan, kredit mikro, filter wajah, dan pola kesalahan umum. Penomoran runtime: 3.1 sampai 3.12.
+- Chapter 4 menggabungkan peta istilah AI/ML/DL/ANI, penerapan harian, manfaat, batas awal AI, jembatan ke modul lanjutan, serta penerapan di pendidikan, kesehatan, keamanan siber, dan bisnis. Penomoran runtime: 4.1 sampai 4.12.
+- Chapter 5 menggabungkan bias, halusinasi, privasi, black box, rubrik audit, studi kasus, template jawaban audit, rubrik skor risiko, contoh audit, dan kesimpulan modul. Penomoran runtime: 5.1 sampai 5.13.
 
 ## Topik 1: AI di Sekitar Kita
 

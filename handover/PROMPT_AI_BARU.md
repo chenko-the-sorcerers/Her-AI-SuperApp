@@ -24,9 +24,11 @@ Wajib baca dulu:
 7. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Konteks terbaru:
-- Commit checkpoint terakhir: 280c087 refactor: standardize curriculum placeholders.
+- Commit checkpoint terakhir: 6eb03f8 feat: expand ai introduction lesson content.
 - Ada perubahan lokal setelah commit: materi final Pengantar AI sudah masuk runtime dan `materi/pengantar-ai.md` sudah menjadi snapshot terbaru.
-- Checkpoint final sesi terbaru: Pengantar AI sudah diperluas dari 4 topik menjadi 10 topik detail setelah review user.
+- Checkpoint final sesi terbaru: Pengantar AI sempat diperluas menjadi 10 topik, lalu dikonsolidasikan menjadi 5 chapter padat karena user lebih memilih chapter sedikit dengan isi panjang.
+- Update setelah commit 6eb03f8: penomoran runtime sudah diperbaiki. Chapter 3 sekarang 3.1-3.12, Chapter 4 sekarang 4.1-4.12, Chapter 5 sekarang 5.1-5.13.
+- Chapter 3-5 diperdalam lagi dengan studi kasus, rubrik risiko, template audit, contoh audit, dan matriks penerapan.
 - Sumber rombak Pengantar AI: `materi/baru/pengantar-ai-baru.md`.
 - Baseline lama yang dibaca: `materi/lama/pengantar-ai.md`.
 - File runtime Pengantar AI yang sudah diupdate:
@@ -53,12 +55,12 @@ Konteks terbaru:
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
 - Pengantar AI sudah dirombak berdasarkan `materi/baru/pengantar-ai-baru.md` tanpa mengubah route/layout besar.
-- Struktur topik Pengantar AI terbaru sekarang 10 topik: AI di Sekitar Kita; Definisi Modern AI; Software Biasa vs Sistem AI; Model Mental Cara Kerja AI; Training, Inferensi, dan Human Check; Peta Istilah AI, ML, DL, dan ANI; Penerapan AI dalam Kehidupan; Manfaat dan Keterbatasan AI; Bias, Halusinasi, Privasi, dan Black Box; Audit Sistem Sosio-Teknis.
+- Struktur Pengantar AI terbaru sekarang 5 chapter padat: AI di Sekitar Kita dan Fondasi Awal; Definisi, Software Biasa, dan Sistem AI; Cara Kerja AI: Data, Model, dan Human Check; Peta Istilah dan Penerapan AI; Risiko, Etika, dan Audit Sosio-Teknis.
 - Latihan Pengantar AI sekarang proyek mini audit sistem sosio-teknis, kuis 10 soal, diskusi memakai skenario etika.
 - Snapshot konten terbaru Pengantar AI ada di materi/pengantar-ai.md.
 - `js/router.js` tidak disentuh untuk rombak Pengantar AI.
 - Sidebar, topbar, breadcrumb, lesson tabs, right panel, dan footer nav tetap dipertahankan.
-- Daftar materi Pengantar AI sudah diperluas dari 4 topik menjadi 10 topik memakai route lama yang sudah terdaftar; tidak ada route baru.
+- Daftar materi Pengantar AI sekarang 5 chapter padat memakai route lama yang sudah terdaftar; tidak ada route baru.
 - Request user berikutnya: lanjut ke materi `Pemrograman Python untuk AI`.
 - Target awal Python untuk AI:
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/materi.html`
@@ -180,8 +182,8 @@ Business & Industry Applications
 └── AI for Geospatial            -> SCAFFOLD AKTIF
 
 Catatan penting:
-- Checkpoint lokal terbaru: `280c087 refactor: standardize curriculum placeholders`.
-- Ada checkpoint konten belum commit: Pengantar AI sudah dirombak final dan `materi/pengantar-ai.md` adalah snapshot terbaru.
+- Checkpoint lokal terbaru: `6eb03f8 feat: expand ai introduction lesson content`.
+- Ada perubahan lokal setelah commit `6eb03f8`: Pengantar AI dikonsolidasikan menjadi 5 chapter padat, penomoran Chapter 3-5 diperbaiki, dan `materi/pengantar-ai.md` adalah snapshot terbaru.
 - Folder `materi/` bukan folder runtime, bukan folder canonical course, dan bukan route peserta.
 - Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
 - Machine Learning adalah course di category Foundation & Core AI, sejajar dengan AI Fundamentals & Advanced dan Math for AI.

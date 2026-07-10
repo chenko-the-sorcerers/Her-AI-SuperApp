@@ -260,31 +260,26 @@
     }
 
     const introLessonRoutes = [
-        { path: '/participant-ai-intro', title: 'AI di Sekitar Kita', short: 'AI Sekitar Kita' },
-        { path: '/participant-ai-history', title: 'Definisi Modern AI', short: 'Definisi AI' },
-        { path: '/participant-ai-components', title: 'Software Biasa vs Sistem AI', short: 'Software vs AI' },
-        { path: '/participant-ai-types', title: 'Model Mental Cara Kerja AI', short: 'Cara Kerja AI' },
-        { path: '/participant-ai-pipeline', title: 'Training, Inferensi, dan Human Check', short: 'Training & Inferensi' },
-        { path: '/participant-ai-ml-dl', title: 'Peta Istilah AI, ML, DL, dan ANI', short: 'Peta Istilah' },
-        { path: '/participant-ai-applications', title: 'Penerapan AI dalam Kehidupan', short: 'Penerapan AI' },
-        { path: '/participant-ai-pros-cons', title: 'Manfaat dan Keterbatasan AI', short: 'Batasan AI' },
-        { path: '/participant-ai-ethics', title: 'Bias, Halusinasi, Privasi, dan Black Box', short: 'Risiko Etis' },
-        { path: '/participant-ai-summary', title: 'Audit Sistem Sosio-Teknis', short: 'Audit AI' }
+        { path: '/participant-ai-intro', title: 'AI di Sekitar Kita dan Fondasi Awal', short: 'Fondasi Awal' },
+        { path: '/participant-ai-history', title: 'Definisi, Software Biasa, dan Sistem AI', short: 'Definisi & Software' },
+        { path: '/participant-ai-types', title: 'Cara Kerja AI: Data, Model, dan Human Check', short: 'Cara Kerja AI' },
+        { path: '/participant-ai-ml-dl', title: 'Peta Istilah dan Penerapan AI', short: 'Peta & Penerapan' },
+        { path: '/participant-ai-summary', title: 'Risiko, Etika, dan Audit Sosio-Teknis', short: 'Risiko & Audit' }
     ];
 
     const generatedLessonContent = {
         '/participant-ai-history': {
-            title: 'Definisi Modern AI',
-            description: 'Meluruskan definisi AI agar tidak terjebak pada gambaran robot sadar diri atau fiksi ilmiah.',
-            duration: '35 menit',
+            title: 'Definisi, Software Biasa, dan Sistem AI',
+            description: 'Membangun fondasi definisi AI, membedakan software deterministik dari sistem prediktif, dan membaca contoh harian secara kritis.',
+            duration: '55 menit',
             tag: 'Fondasi',
             content: `
                 <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
                     <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-compass"></i> Topik 2: Definisi Modern AI
+                        <i class="fas fa-compass"></i> Chapter 2: Definisi, Software Biasa, dan Sistem AI
                     </h3>
                     <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-                        Goal: Menjelaskan AI secara akurat sebagai sistem berbasis mesin yang menghasilkan output dari input.
+                        Goal: Memahami AI sebagai sistem prediktif, bukan robot fiksi ilmiah, sekaligus membedakan software biasa dari sistem berbasis data.
                     </p>
                 </div>
 
@@ -321,6 +316,48 @@
 
                 <h3>2.4 Prinsip Awal untuk Peserta</h3>
                 <p>Dalam modul ini, setiap sistem AI akan dibaca dengan pertanyaan praktis: sistem ini dibuat untuk tujuan apa, input apa yang dipakai, pola apa yang dipelajari, output apa yang muncul, dan siapa yang memeriksa dampaknya.</p>
+
+                <h3>2.5 Software Biasa: Ketika Semua Aturan Ditulis Manual</h3>
+                <p>Untuk benar-benar memahami AI, peserta perlu tahu dulu apa yang bukan AI. Software biasa bekerja seperti instruksi yang sudah dikunci. Pemrogram menulis aturan dengan jelas, lalu komputer menjalankan aturan itu tanpa menafsirkan pola baru. Jika aturan mengatakan formulir email harus mengandung simbol @, maka formulir akan menolak input yang tidak memenuhi syarat itu. Sistem tidak memahami email, tidak belajar dari ribuan alamat email, dan tidak memperbaiki dirinya dari waktu ke waktu.</p>
+                <p>Kalkulator adalah contoh paling sederhana. Ketika pengguna memasukkan 7 x 8, kalkulator menjalankan operasi aritmatika. Ia tidak memprediksi, tidak membaca pola, dan tidak membuat keputusan probabilistik. Hal yang sama berlaku pada tombol submit, menu dropdown, validasi nomor telepon berbasis jumlah digit, atau sistem absensi yang hanya mencatat waktu masuk. Semua itu bisa sangat berguna, tetapi belum tentu AI.</p>
+
+                <h3>2.6 Sistem AI: Ketika Aturan Dipelajari dari Contoh</h3>
+                <p>Sistem AI bekerja dengan pola yang berbeda. Alih-alih semua aturan ditulis manual, sistem diberi banyak contoh, lalu mencari keteraturan dari contoh tersebut. Filter spam, misalnya, tidak hanya mengandalkan daftar kata terlarang. Ia membaca arsip email lama, label spam dari pengguna, reputasi domain pengirim, pola tautan, waktu pengiriman, format pesan, sampai kebiasaan penipuan yang berubah dari waktu ke waktu.</p>
+                <p>Perbedaan ini penting karena AI sering menghasilkan output yang berupa tebakan terbaik, bukan kebenaran final. Ketika sistem memberi label "spam", sebenarnya ia sedang mengatakan: berdasarkan pola masa lalu, email ini sangat mirip dengan email yang sebelumnya dianggap spam. Karena itu, sistem bisa salah. Email wawancara kerja bisa masuk spam, pesan penipuan bisa lolos, dan rekomendasi produk bisa meleset dari kebutuhan pengguna.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 10px 0; color: var(--fellow-text);"><i class="fas fa-list-check" style="color: var(--fellow-pink);"></i> Ciri software biasa</h4>
+                        <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--fellow-text);">
+                            <li>Aturan utama ditulis eksplisit oleh manusia.</li>
+                            <li>Output biasanya stabil untuk input yang sama.</li>
+                            <li>Tidak otomatis membaik karena melihat contoh baru.</li>
+                            <li>Cocok untuk tugas yang jelas, pasti, dan mudah dirumuskan.</li>
+                        </ul>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 10px 0; color: var(--fellow-text);"><i class="fas fa-chart-line" style="color: var(--fellow-pink);"></i> Ciri sistem AI</h4>
+                        <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--fellow-text);">
+                            <li>Mencari pola dari data historis atau contoh besar.</li>
+                            <li>Output sering berupa prediksi, skor, label, rekomendasi, atau konten.</li>
+                            <li>Bisa salah ketika data tidak lengkap, bias, atau konteks berubah.</li>
+                            <li>Perlu mekanisme koreksi dan pemeriksaan manusia.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <h3>2.7 Analogi Buku Resep dan Pekerja Magang</h3>
+                <p>Software biasa seperti buku resep yang sangat kaku. Semua takaran, suhu, dan urutan langkah harus ditulis. Jika resep tidak memuat instruksi tertentu, sistem tidak akan menebaknya sendiri. AI lebih mirip pekerja magang yang diberi ribuan contoh pekerjaan lama. Ia melihat dokumen mana yang diterima, pelanggan mana yang dilayani, email mana yang dianggap penipuan, atau kandidat mana yang dulu dianggap berhasil.</p>
+                <p>Analogi pekerja magang membantu, tetapi juga harus dibaca dengan hati-hati. Pekerja magang bisa belajar kebiasaan buruk jika lingkungan lamanya buruk. Sistem AI juga begitu. Jika contoh lama berisi bias gender, bias kelas, bias wilayah, atau bias institusi pendidikan, AI dapat menganggap bias tersebut sebagai pola normal. Inilah alasan modul ini sejak awal membahas AI sebagai sistem sosio-teknis, bukan sekadar alat teknis.</p>
+
+                <h3>2.8 Latihan Membaca Contoh Harian</h3>
+                <p>Ketika aplikasi musik merekomendasikan lagu, jangan berhenti pada kesan "aplikasinya tahu seleraku". Baca sistemnya: tujuannya mungkin mempertahankan pengguna agar tetap mendengar; input-nya riwayat lagu, durasi dengar, skip, jam penggunaan, dan pola pengguna lain; output-nya daftar lagu yang diurutkan; pemeriksaan manusianya berupa skip, like, dislike, atau pengaturan rekomendasi.</p>
+                <p>Ketika aplikasi belanja menampilkan produk yang terasa kebetulan cocok, itu bukan tebakan gaib. Sistem membaca kata kunci, kategori barang, harga yang sering dilihat, produk yang dimasukkan keranjang, durasi berhenti di halaman tertentu, dan pola belanja pengguna lain yang mirip. Dengan cara ini peserta mulai melihat AI sebagai mesin pengurutan dan prediksi, bukan sebagai entitas yang memahami keinginan manusia secara utuh.</p>
+
+                <div style="background: rgba(246,51,146,.08); border: 1px solid rgba(246,51,146,.18); border-radius: 16px; padding: 20px; margin: 28px 0;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--fellow-text);"><i class="fas fa-magnifying-glass-chart" style="color: var(--fellow-pink);"></i> Ringkasan cara berpikir chapter ini</h4>
+                    <p style="margin: 0; color: var(--fellow-text);">Jangan bertanya "apakah mesin ini pintar seperti manusia?" sebagai pertanyaan utama. Pertanyaan yang lebih berguna adalah: data apa yang dipakai, pola apa yang dipelajari, output apa yang diberikan, siapa yang diuntungkan, siapa yang bisa dirugikan, dan bagaimana manusia dapat mengoreksi output yang keliru.</p>
+                </div>
             `
         },
         '/participant-ai-components': {
@@ -383,21 +420,21 @@
             `
         },
         '/participant-ai-types': {
-            title: 'Model Mental Cara Kerja AI',
-            description: 'Membangun model mental sederhana: tujuan, input, pola, model, output, dan pemeriksaan manusia.',
-            duration: '55 menit',
+            title: 'Cara Kerja AI: Data, Model, dan Human Check',
+            description: 'Membedah alur kerja AI dari tujuan, input, pola, model, output, training, inferensi, sampai pemeriksaan manusia.',
+            duration: '70 menit',
             tag: 'Model Mental',
             content: `
                 <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
                     <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-route"></i> Topik 4: Model Mental Cara Kerja AI
+                        <i class="fas fa-route"></i> Chapter 3: Cara Kerja AI: Data, Model, dan Human Check
                     </h3>
                     <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-                        Goal: Memahami alur kerja AI tanpa masuk ke kode, rumus, atau arsitektur teknis.
+                        Goal: Memahami alur kerja AI secara utuh tanpa masuk ke kode, rumus, atau arsitektur teknis.
                     </p>
                 </div>
 
-                <h3>2.1 Model Mental Enam Langkah</h3>
+                <h3>3.1 Model Mental Enam Langkah</h3>
                 <p>Setiap sistem AI bisa dibaca melalui alur sederhana: <strong>Tujuan, Input, Pola, Model, Output, dan Pemeriksaan Manusia</strong>. Alur ini membantu kita membedah AI tanpa perlu melihat kode di balik layar.</p>
                 <p>Model mental ini sengaja dibuat sederhana agar peserta bisa menggunakannya pada banyak situasi: email, rekomendasi video, chatbot, peta digital, sistem pinjaman, sampai alat rekrutmen. Tujuannya bukan menghafal istilah teknis, tetapi membiasakan diri melihat AI sebagai rangkaian keputusan yang bisa ditanya dan diaudit.</p>
 
@@ -434,7 +471,7 @@
                     </article>
                 </div>
 
-                <h3 style="margin-top: 32px;">2.2 Contoh: Penyaring Email Spam</h3>
+                <h3 style="margin-top: 32px;">3.2 Contoh: Penyaring Email Spam</h3>
                 <p>Bayangkan kotak masuk email yang otomatis memisahkan pesan penting dari spam. Sistemnya tidak sekadar diberi aturan kaku seperti &quot;jika ada kata hadiah, pasti spam&quot;. Sistem belajar dari banyak contoh email masa lalu dan mencari pola yang sering muncul pada pesan penipuan.</p>
                 <p>Di balik fitur sederhana ini ada keputusan yang berlapis. Email dari pengirim baru bisa terlihat mencurigakan karena kombinasi subjek, isi pesan, tautan, waktu kirim, alamat domain, dan riwayat laporan pengguna lain. Sistem tidak tahu makna penipuan seperti manusia, tetapi ia bisa membaca korelasi yang sering muncul pada email berbahaya.</p>
                 <div style="display: flex; flex-direction: column; gap: 16px; margin: 24px 0;">
@@ -468,7 +505,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin-top: 32px;">2.3 Pelatihan dan Inferensi</h3>
+                <h3 style="margin-top: 32px;">3.3 Pelatihan dan Inferensi</h3>
                 <p>Proses AI biasanya terbagi menjadi dua fase. <strong>Pelatihan</strong> adalah saat sistem belajar dari banyak contoh dan membentuk model. <strong>Inferensi</strong> adalah saat model yang sudah jadi digunakan untuk memproses input baru dan menghasilkan output.</p>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;">
                     <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
@@ -499,7 +536,7 @@
                     </div>
                 </div>
 
-                <h3>2.4 Cara Pandang Sosio-Teknis</h3>
+                <h3>3.4 Cara Pandang Sosio-Teknis</h3>
                 <p>Kualitas AI tidak hanya ditentukan oleh kode. Sistem juga dipengaruhi oleh siapa yang membiayai, data siapa yang dominan, kelompok mana yang terwakili, dan siapa yang menanggung dampak saat sistem salah. Karena itu, setiap output AI perlu dilihat sebagai hasil interaksi antara teknologi dan masyarakat.</p>
                 <p>Contohnya, sistem rekrutmen yang dilatih dari arsip karyawan sukses selama sepuluh tahun bisa tampak objektif, padahal arsip lama mungkin mencerminkan budaya kerja yang tidak adil. Jika masa lalu lebih sering memberi kesempatan kepada kelompok tertentu, model dapat belajar bahwa kelompok itulah pola kandidat ideal.</p>
                 <p>Karena itu, pertanyaan pentingnya bukan hanya &quot;apakah modelnya pintar?&quot;, tetapi juga: data siapa yang dipakai, siapa yang tidak terlihat dalam data, siapa yang diuntungkan, siapa yang berisiko dirugikan, dan apakah ada jalur banding ketika sistem mengambil keputusan yang salah.</p>
@@ -513,6 +550,60 @@
                         <li>Output apa yang memengaruhi pengguna?</li>
                         <li>Siapa yang memeriksa dan bertanggung jawab jika output keliru?</li>
                     </ol>
+                </div>
+
+                <h3>3.5 Studi Kasus Lengkap: Navigasi Kota</h3>
+                <p>Ambil contoh aplikasi peta. Dari sisi pengguna, tujuannya terlihat sederhana: sampai tujuan lebih cepat. Namun dari sisi sistem, keputusan yang dibuat jauh lebih kompleks. Sistem menerima input lokasi perangkat, kecepatan kendaraan, laporan kecelakaan, kondisi jalan historis, jam sibuk, rute favorit pengguna, dan pola pergerakan banyak perangkat lain. Dari input itu, sistem mencari pola kemacetan dan memperkirakan rute yang mungkin paling cepat.</p>
+                <p>Output-nya berupa estimasi waktu tiba dan rekomendasi rute. Tetapi output ini tidak netral sepenuhnya. Jika tujuan sistem hanya mengoptimalkan waktu tempuh pengendara, maka jalan pemukiman kecil bisa tiba-tiba dipenuhi kendaraan besar. Pengendara diuntungkan, tetapi warga lokal menanggung kebisingan, risiko keselamatan, dan kemacetan baru. Ini menunjukkan bahwa tahap "tujuan" harus dibaca secara kritis, bukan dianggap teknis semata.</p>
+
+                <h3>3.6 Training dan Inferensi dalam Bahasa Sehari-hari</h3>
+                <p>Bayangkan seorang peserta belajar mengenali jenis tanaman. Pada masa belajar, ia melihat banyak contoh daun, batang, warna, bentuk, dan label nama tanaman. Setelah cukup banyak contoh, ia mulai membangun ingatan pola. Itulah analogi training. Ketika esok hari ia melihat tanaman baru dan menebak namanya, itulah analogi inferensi. Bedanya, sistem AI melakukan proses ini pada data digital berskala jauh lebih besar.</p>
+                <p>Training biasanya tidak terlihat oleh pengguna. Pengguna hanya bertemu hasil akhirnya: autocomplete, rekomendasi, ringkasan, atau deteksi spam. Karena fase training tersembunyi, pengguna sering lupa bahwa kualitas output sangat bergantung pada data masa lalu. Jika data training tidak mewakili semua kelompok, model akan lebih akurat untuk kelompok yang banyak muncul di data dan lebih buruk untuk kelompok yang jarang muncul.</p>
+
+                <h3>3.7 Human Check sebagai Sabuk Pengaman</h3>
+                <p>Pemeriksaan manusia bukan aksesori. Ia adalah bagian penting dari sistem. Human check dapat berupa tombol "laporkan", proses banding, review manual, audit berkala, validasi sumber, atau kewajiban manusia untuk mengambil keputusan final. Semakin besar dampak keputusan AI terhadap hidup seseorang, semakin kuat pula kebutuhan human check.</p>
+                <p>Untuk rekomendasi lagu, human check bisa sesederhana tombol skip. Untuk filter spam, human check adalah kemampuan memindahkan email penting dari folder spam. Untuk rekrutmen, human check harus lebih kuat: audit bias, penjelasan keputusan, review kandidat yang tertolak, dan jalur keberatan. Untuk hukum dan kesehatan, human check berarti AI tidak boleh menjadi sumber final tanpa profesional manusia yang bertanggung jawab.</p>
+
+                <div style="background: rgba(246,51,146,.08); border: 1px solid rgba(246,51,146,.18); border-radius: 16px; padding: 20px; margin: 28px 0;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--fellow-text);"><i class="fas fa-user-shield" style="color: var(--fellow-pink);"></i> Aturan praktis human check</h4>
+                    <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--fellow-text);">
+                        <li>Jika output hanya memengaruhi kenyamanan, koreksi ringan mungkin cukup.</li>
+                        <li>Jika output memengaruhi kesempatan kerja, pinjaman, pendidikan, kesehatan, hukum, atau keselamatan, review manusia wajib kuat.</li>
+                        <li>Jika sistem tidak bisa menjelaskan alasan, sediakan jalur banding dan audit manual.</li>
+                        <li>Jika sistem sering salah pada kelompok tertentu, masalahnya bukan hanya teknis, tetapi juga keadilan data.</li>
+                    </ul>
+                </div>
+
+                <h3>3.8 Cara Membaca Setiap Sistem dengan Satu Kerangka</h3>
+                <p>Setelah chapter ini, peserta seharusnya bisa mengambil aplikasi apa pun dan membedahnya. Untuk chatbot: tujuannya menjawab pertanyaan; input-nya prompt dan riwayat percakapan; pola yang dipakai adalah pola bahasa; model menghasilkan jawaban; output perlu diverifikasi. Untuk sistem pinjaman: tujuannya menilai risiko; input-nya riwayat finansial; pola yang dipakai adalah korelasi pembayaran masa lalu; output-nya persetujuan, penolakan, atau skor; manusia harus memastikan tidak ada diskriminasi tersembunyi.</p>
+                <p>Kerangka yang sama berlaku untuk rekomendasi video, filter wajah, prediksi cuaca, transkripsi suara, dan screening CV. Semakin sering peserta berlatih membaca sistem seperti ini, semakin kecil kemungkinan mereka menjadi pengguna pasif yang langsung percaya pada layar.</p>
+
+                <h3 style="margin-top: 32px;">3.9 Bedah Kasus: Chatbot Pendidikan</h3>
+                <p>Bayangkan peserta menggunakan chatbot untuk memahami materi sekolah. Tujuannya tampak positif: membantu peserta mendapat penjelasan cepat. Input yang terlihat adalah pertanyaan peserta. Namun input yang mungkin memengaruhi output bisa lebih luas: riwayat percakapan, bahasa yang digunakan, instruksi sistem, dokumen rujukan, dan pola pertanyaan dari banyak pengguna lain. Model kemudian menghasilkan jawaban yang tampak seperti penjelasan guru.</p>
+                <p>Risikonya muncul ketika peserta menganggap jawaban itu pasti benar. Chatbot bisa menjelaskan konsep dengan bahasa yang meyakinkan, tetapi salah dalam contoh, salah menyebut istilah, atau membuat rujukan palsu. Human check dalam konteks pendidikan berarti peserta tetap membandingkan jawaban dengan modul resmi, bertanya kepada mentor, dan tidak mengutip jawaban mentah tanpa memahami ulang.</p>
+
+                <h3 style="margin-top: 32px;">3.10 Bedah Kasus: Sistem Kredit Mikro</h3>
+                <p>Pada sistem kredit, tujuan model biasanya menilai apakah pemohon berisiko gagal bayar. Input dapat berupa riwayat pembayaran, pendapatan, lokasi usaha, jenis pekerjaan, pola transaksi, usia usaha, dan data lain yang dikumpulkan lembaga. Output-nya bisa berupa persetujuan, penolakan, batas pinjaman, atau suku bunga. Di atas kertas, sistem seperti ini terlihat efisien karena membantu memproses banyak pemohon.</p>
+                <p>Namun dampaknya jauh lebih serius daripada rekomendasi lagu. Jika data historis lebih lengkap untuk kelompok yang sudah lama punya akses bank, sistem dapat lebih percaya pada kelompok itu. Pemohon dari komunitas informal, pekerja rumahan, atau wilayah yang kurang terdokumentasi bisa dianggap lebih berisiko bukan karena mereka tidak mampu, tetapi karena data mereka tidak terlihat. Karena itu, human check harus mencakup jalur banding, penjelasan alasan, dan review manual untuk kasus yang tidak cocok dengan pola mayoritas.</p>
+
+                <h3 style="margin-top: 32px;">3.11 Bedah Kasus: Filter Wajah dan Kamera</h3>
+                <p>Filter wajah tampak ringan, tetapi ia juga contoh sistem prediktif. Tujuannya mendeteksi fitur wajah agar efek visual dapat ditempelkan dengan tepat. Input-nya adalah gambar dari kamera, posisi mata, warna kulit, pencahayaan, bentuk wajah, dan pola visual yang pernah dipelajari model. Output-nya adalah deteksi wajah, efek visual, atau perbaikan otomatis.</p>
+                <p>Masalah muncul jika data training tidak beragam. Sistem bisa bekerja lebih baik pada wajah dengan pencahayaan, warna kulit, atau bentuk tertentu, tetapi buruk pada kelompok lain. Dalam konteks hiburan, ini mungkin terasa seperti gangguan kecil. Dalam konteks keamanan, absensi, verifikasi identitas, atau layanan publik, kegagalan deteksi wajah dapat menjadi bentuk diskriminasi teknis yang nyata.</p>
+
+                <h3 style="margin-top: 32px;">3.12 Pola Kesalahan yang Perlu Dikenali</h3>
+                <div style="display: grid; gap: 14px; margin: 20px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-database" style="color: var(--fellow-pink);"></i> Data tidak lengkap</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Sistem hanya mengenal dunia yang muncul dalam data. Jika kelompok tertentu jarang muncul, sistem bisa buruk saat melayani mereka.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-bullseye" style="color: var(--fellow-pink);"></i> Tujuan terlalu sempit</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Sistem mengoptimalkan satu angka, seperti klik atau waktu tempuh, tetapi mengabaikan dampak sosial di luar angka itu.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-triangle-exclamation" style="color: var(--fellow-pink);"></i> Output terlalu dipercaya</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Pengguna menganggap skor, label, atau jawaban sebagai kebenaran final, padahal output AI adalah hasil prediksi yang perlu konteks.</p>
+                    </article>
                 </div>
             `
         },
@@ -577,21 +668,21 @@
             `
         },
         '/participant-ai-ml-dl': {
-            title: 'Peta Istilah AI, ML, DL, dan ANI',
-            description: 'Memisahkan istilah dasar agar peserta siap masuk ke modul lanjutan tanpa tertukar konsep.',
-            duration: '45 menit',
+            title: 'Peta Istilah dan Penerapan AI',
+            description: 'Memahami hubungan AI, Machine Learning, Deep Learning, ANI, penerapan harian, manfaat, dan batas awalnya.',
+            duration: '65 menit',
             tag: 'Literasi AI',
             content: `
                 <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
                     <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-layer-group"></i> Topik 6: Peta Istilah AI, ML, DL, dan ANI
+                        <i class="fas fa-layer-group"></i> Chapter 4: Peta Istilah dan Penerapan AI
                     </h3>
                     <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-                        Goal: Memahami hubungan payung antara AI, Machine Learning, Deep Learning, dan Narrow AI.
+                        Goal: Memahami istilah dasar AI sekaligus membaca penerapannya di kehidupan, pendidikan, dan ruang kerja.
                     </p>
                 </div>
 
-                <h3>3.1 Hubungan AI, Machine Learning, dan Deep Learning</h3>
+                <h3>4.1 Hubungan AI, Machine Learning, dan Deep Learning</h3>
                 <p>AI adalah payung besar. Di dalamnya ada Machine Learning, yaitu pendekatan yang membuat komputer belajar dari data. Di dalam Machine Learning ada Deep Learning, pendekatan berlapis yang kuat untuk gambar, suara, teks, dan data tak terstruktur berskala besar.</p>
                 <p>Pemisahan istilah ini penting karena media sering memakai semua istilah secara bergantian. Tidak semua AI adalah Deep Learning, dan tidak semua sistem otomatis adalah Machine Learning. Dengan memahami payungnya, peserta tidak mudah tertukar ketika nanti masuk ke modul Python, Matematika, Machine Learning, NLP, dan Computer Vision.</p>
 
@@ -613,7 +704,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin-top: 32px;">3.2 Fokus Praktis: ANI, Bukan Fiksi AGI</h3>
+                <h3 style="margin-top: 32px;">4.2 Fokus Praktis: ANI, Bukan Fiksi AGI</h3>
                 <p>Teknologi yang kita gunakan hari ini adalah <strong>Artificial Narrow Intelligence</strong>: sistem spesialis yang sangat mahir pada tugas sempit. Sistem pendeteksi kanker tidak otomatis bisa bermain catur, dan sistem rekomendasi musik tidak otomatis memahami hukum. AGI dan ASI cukup dikenali sebagai konsep spekulatif, bukan fokus utama modul dasar.</p>
                 <p>Artificial General Intelligence atau AGI biasanya dibayangkan sebagai mesin yang fleksibel seperti manusia di semua bidang. Artificial Superintelligence atau ASI lebih spekulatif lagi, yaitu skenario ketika kemampuan mesin melampaui manusia secara luas. Modul dasar ini tidak menolak diskusi tersebut, tetapi menaruhnya di pinggir agar fokus belajar tetap pada sistem nyata yang sudah memengaruhi hidup peserta hari ini.</p>
 
@@ -622,7 +713,7 @@
                     <p style="margin: 0; color: var(--fellow-muted);">Jangan menghabiskan energi belajar pada robot fiksi yang sadar diri. Fokuslah pada sistem sempit yang sudah memengaruhi email, pinjaman, rekrutmen, navigasi, pembelajaran, dan rekomendasi konten.</p>
                 </div>
 
-                <h3 style="margin-top: 32px;">3.3 AI dalam Kehidupan Sehari-hari</h3>
+                <h3 style="margin-top: 32px;">4.3 AI dalam Kehidupan Sehari-hari</h3>
                 <p>AI sering hadir sebagai mesin pembantu keputusan. Ia menyaring banyak kemungkinan menjadi rekomendasi kecil yang terlihat sederhana di layar.</p>
 
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
@@ -646,7 +737,7 @@
 
                 <p>Setelah memahami pola ini, rekomendasi belanja atau rute peta tidak lagi terlihat seperti tebakan gaib. Sistem sedang menghitung kemiripan perilaku, probabilitas, dan pola dari banyak pengguna lain.</p>
 
-                <h3 style="margin-top: 32px;">3.4 Membaca Penerapan dengan Alur Tujuan ke Output</h3>
+                <h3 style="margin-top: 32px;">4.4 Membaca Penerapan dengan Alur Tujuan ke Output</h3>
                 <div style="display: grid; gap: 16px; margin: 20px 0;">
                     <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
                         <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-play"></i> Layanan streaming</h4>
@@ -659,6 +750,73 @@
                     <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
                         <h4 style="margin: 0 0 8px 0; color: var(--fellow-pink);"><i class="fas fa-file-lines"></i> Screening resume</h4>
                         <p style="margin: 0; color: var(--fellow-text);">Tujuannya mempercepat seleksi. Input-nya CV, riwayat kandidat sukses, kata kunci, institusi, dan pengalaman. Output-nya skor atau shortlist. Risiko muncul jika data lama sudah bias terhadap kelompok tertentu.</p>
+                    </article>
+                </div>
+
+                <h3 style="margin-top: 32px;">4.5 Manfaat Praktis AI jika Dipakai dengan Tepat</h3>
+                <p>AI bermanfaat bukan karena ia ajaib, tetapi karena ia dapat membantu manusia menghadapi terlalu banyak informasi. Dalam kelas, AI dapat membantu membuat ringkasan awal, mengubah penjelasan rumit menjadi bahasa sederhana, menyusun contoh soal, atau membantu peserta memeriksa struktur tulisan. Di tempat kerja, AI dapat membantu memilah tiket layanan pelanggan, membuat draft email, menyusun ringkasan rapat, membaca pola transaksi, atau membantu pencarian dokumen.</p>
+                <p>Namun manfaat ini paling sehat ketika AI diposisikan sebagai asisten. Pengguna tetap menentukan tujuan, memeriksa fakta, memahami konteks, dan mengambil keputusan akhir. AI mempercepat proses, tetapi tidak menggantikan tanggung jawab manusia.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-filter" style="color: var(--fellow-pink);"></i> Menyaring informasi</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Membantu memilih informasi relevan dari banyak email, dokumen, komentar, tiket, atau konten.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-clock" style="color: var(--fellow-pink);"></i> Menghemat waktu</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Membuat draft, ringkasan, klasifikasi awal, atau daftar opsi agar manusia bisa fokus pada keputusan.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-eye" style="color: var(--fellow-pink);"></i> Mengenali pola tersembunyi</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Membantu menemukan pola transaksi, pola kemacetan, pola keluhan, atau pola belajar yang tidak mudah terlihat manual.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-universal-access" style="color: var(--fellow-pink);"></i> Membuka akses</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Transkripsi, caption, penerjemah, dan asisten belajar dapat membantu lebih banyak orang mengakses informasi.</p>
+                    </article>
+                </div>
+
+                <h3 style="margin-top: 32px;">4.6 Batas Awal yang Harus Diingat</h3>
+                <p>AI tetap bergantung pada data. Jika data keliru, output bisa keliru. Jika konteks berubah, pola lama bisa tidak relevan. Jika tujuan sistem sempit, output bisa mengoptimalkan satu hal sambil merusak hal lain. Contoh paling mudah adalah sistem rekomendasi yang mengoptimalkan durasi menonton, tetapi membuat pengguna terjebak dalam konten yang makin ekstrem atau repetitif.</p>
+                <p>AI juga dapat gagal memahami konteks sosial. Sistem dapat melihat bahwa rute A lebih cepat, tetapi tidak memahami bahwa rute itu melewati sekolah kecil pada jam pulang anak. Sistem dapat melihat bahwa kandidat tertentu tidak mirip dengan pola karyawan masa lalu, tetapi tidak memahami bahwa pola masa lalu lahir dari ketidakadilan. Karena itu, memahami penerapan AI harus selalu disandingkan dengan memahami dampaknya.</p>
+
+                <h3 style="margin-top: 32px;">4.7 Jembatan ke Modul Lanjutan</h3>
+                <p>Chapter ini menjadi jembatan untuk modul berikutnya. Ketika nanti belajar Python untuk AI, peserta akan mulai melihat bagaimana data direpresentasikan dan diproses. Ketika belajar Matematika untuk AI, peserta akan memahami probabilitas, vektor, optimisasi, dan statistik yang menopang model. Ketika masuk Machine Learning, peserta akan melihat bagaimana pola dipelajari secara lebih formal. Ketika masuk NLP dan Computer Vision, peserta akan melihat bagaimana teks dan gambar diproses sebagai data.</p>
+                <p>Jadi, tujuan chapter ini bukan membuat peserta menghafal istilah, tetapi membangun peta. Dengan peta ini, peserta tidak tersesat saat bertemu istilah baru. Mereka tahu bahwa AI adalah payung besar, ML adalah pendekatan belajar dari data, DL adalah cabang berlapis untuk pola kompleks, dan ANI adalah bentuk AI praktis yang hari ini benar-benar dipakai.</p>
+
+                <h3 style="margin-top: 32px;">4.8 Penerapan di Pendidikan</h3>
+                <p>Dalam pendidikan, AI dapat membantu peserta membuat ringkasan, menyusun pertanyaan latihan, memberi umpan balik awal pada tulisan, menerjemahkan materi, atau menjelaskan konsep dengan bahasa yang lebih sederhana. Manfaatnya besar untuk peserta yang butuh pendamping belajar fleksibel. Namun pendidikan juga menuntut pemahaman, bukan sekadar jawaban cepat.</p>
+                <p>Risikonya adalah peserta menjadi terlalu bergantung pada output AI. Jika setiap tugas langsung diminta ke chatbot, peserta mungkin mendapat jawaban tetapi kehilangan proses berpikir. Karena itu, penggunaan AI dalam belajar sebaiknya diarahkan untuk bertanya, membandingkan, merevisi, dan memahami alasan, bukan sekadar menyalin output. Mentor perlu menilai proses berpikir peserta, bukan hanya hasil akhir yang rapi.</p>
+
+                <h3 style="margin-top: 32px;">4.9 Penerapan di Kesehatan</h3>
+                <p>Di kesehatan, AI bisa membantu membaca citra medis, mendeteksi pola risiko, memprioritaskan pasien, atau merangkum catatan klinis. Sistem seperti ini dapat membantu tenaga kesehatan bekerja lebih cepat dan menemukan sinyal awal yang mungkin terlewat. Tetapi konteks kesehatan memiliki risiko tinggi karena kesalahan dapat memengaruhi nyawa, akses layanan, dan keputusan medis.</p>
+                <p>Karena itu, output AI di kesehatan tidak boleh berdiri sendiri. Model yang mendeteksi kemungkinan penyakit dari gambar harus tetap diperiksa dokter. Sistem triase harus mempertimbangkan konteks pasien, bukan hanya angka risiko. Data kesehatan juga sangat sensitif sehingga privasi, consent, keamanan penyimpanan, dan batas penggunaan data harus dijaga lebih ketat daripada aplikasi hiburan.</p>
+
+                <h3 style="margin-top: 32px;">4.10 Penerapan di Keamanan Siber</h3>
+                <p>AI banyak dipakai untuk mendeteksi spam, phishing, malware, anomali login, atau pola transaksi mencurigakan. Di sini AI berguna karena serangan digital berubah cepat dan volumenya terlalu besar untuk dicek manual satu per satu. Sistem dapat membaca pola baru dari banyak sinyal: alamat pengirim, tautan, waktu akses, lokasi login, perangkat yang dipakai, dan perilaku pengguna.</p>
+                <p>Namun sistem keamanan juga bisa salah. Akun pengguna sah bisa diblokir, pesan penting bisa ditahan, atau aktivitas normal bisa dianggap ancaman. Karena itu, sistem keamanan perlu jalur pemulihan, notifikasi yang jelas, review manusia untuk kasus serius, dan desain yang tidak menghukum pengguna tanpa penjelasan.</p>
+
+                <h3 style="margin-top: 32px;">4.11 Penerapan di Bisnis dan Operasional</h3>
+                <p>Dalam bisnis, AI sering dipakai untuk memprediksi permintaan, mengurutkan prospek pelanggan, memberi rekomendasi harga, membaca sentimen pelanggan, atau membantu layanan pelanggan. Manfaat utamanya adalah efisiensi dan kemampuan melihat pola dari data operasional. Tetapi tujuan bisnis sering kali tidak sama dengan kepentingan pengguna.</p>
+                <p>Contohnya, sistem rekomendasi harga dapat mengoptimalkan pendapatan perusahaan, tetapi membuat kelompok tertentu mendapat harga lebih mahal. Sistem prioritas pelanggan dapat mempercepat layanan untuk pelanggan bernilai tinggi, tetapi memperlambat kelompok lain. Karena itu, penerapan AI di bisnis harus diaudit bukan hanya dari sisi performa, tetapi juga dari sisi keadilan perlakuan.</p>
+
+                <h3 style="margin-top: 32px;">4.12 Matriks Membaca Penerapan</h3>
+                <div style="display: grid; gap: 14px; margin: 20px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-school" style="color: var(--fellow-pink);"></i> Pendidikan</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Manfaat: pendamping belajar. Risiko: ketergantungan, jawaban salah, plagiarisme, dan hilangnya proses berpikir.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-heart-pulse" style="color: var(--fellow-pink);"></i> Kesehatan</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Manfaat: deteksi awal dan ringkasan klinis. Risiko: salah diagnosis, privasi data, dan keputusan tanpa konteks pasien.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-shield-halved" style="color: var(--fellow-pink);"></i> Keamanan siber</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Manfaat: deteksi anomali. Risiko: false positive, pemblokiran keliru, dan kurangnya jalur pemulihan.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-briefcase" style="color: var(--fellow-pink);"></i> Bisnis</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Manfaat: efisiensi operasi. Risiko: optimasi profit yang mengabaikan perlakuan adil terhadap pengguna.</p>
                     </article>
                 </div>
             `
@@ -807,17 +965,17 @@
             `
         },
         '/participant-ai-summary': {
-            title: 'Audit Sistem Sosio-Teknis',
-            description: 'Mengunci semua konsep dengan kerangka audit praktis yang bisa dipakai di kehidupan harian.',
-            duration: '35 menit',
+            title: 'Risiko, Etika, dan Audit Sosio-Teknis',
+            description: 'Membedah bias, halusinasi, privasi, black box, dan cara melakukan audit sistem AI harian secara rinci.',
+            duration: '75 menit',
             tag: 'Audit AI',
             content: `
                 <div style="background: linear-gradient(90deg, rgba(246,51,146,.1) 0%, rgba(246,51,146,.02) 100%); border: 1px solid rgba(246,51,146,.15); padding: 24px; margin-bottom: 32px; border-radius: 20px; display: flex; flex-direction: column; gap: 8px;">
                     <h3 style="margin:0; color: #f63392; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-magnifying-glass-chart"></i> Topik 10: Audit Sistem Sosio-Teknis
+                        <i class="fas fa-magnifying-glass-chart"></i> Chapter 5: Risiko, Etika, dan Audit Sosio-Teknis
                     </h3>
                     <p style="margin: 0; font-size: 1.05rem; color: var(--fellow-text); font-weight: 500;">
-                        Goal: Mengubah peserta dari pengguna pasif menjadi auditor kritis sistem AI harian.
+                        Goal: Mengubah peserta dari pengguna pasif menjadi auditor kritis yang mampu membaca dampak sistem AI.
                     </p>
                 </div>
 
@@ -843,7 +1001,7 @@
                     </article>
                 </div>
 
-                <h3>4.1 Studi Kasus Risiko</h3>
+                <h3>5.1 Studi Kasus Risiko</h3>
                 <div style="display: grid; gap: 16px; margin: 20px 0;">
                     <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 20px;">
                         <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-user-tie" style="color: var(--fellow-pink);"></i> Rekrutmen dan bias masa lalu</h4>
@@ -873,7 +1031,7 @@
                     <p style="font-size: 0.95rem; color: var(--fellow-muted); margin-bottom: 0;">Di tab Latihan, pilih satu layanan otomatis yang kamu gunakan dalam 24 jam terakhir. Bedah tujuan, input, pola, output, pemeriksaan manusia, risiko privasi, dan potensi ketidakadilan.</p>
                 </div>
 
-                <h3 style="margin-top: 32px;">4.2 Pertanyaan Penutup untuk Setiap Output AI</h3>
+                <h3 style="margin-top: 32px;">5.2 Pertanyaan Penutup untuk Setiap Output AI</h3>
                 <ol style="line-height: 1.8; color: var(--fellow-text);">
                     <li>Apakah output ini fakta, prediksi, rekomendasi, atau opini sintetis?</li>
                     <li>Apakah ada sumber independen yang bisa dipakai untuk memverifikasi?</li>
@@ -881,6 +1039,80 @@
                     <li>Apakah pengguna punya hak untuk menolak, mengoreksi, atau meminta penjelasan?</li>
                     <li>Apakah keputusan akhir seharusnya tetap dipegang manusia?</li>
                 </ol>
+
+                <h3 style="margin-top: 32px;">5.3 Membaca Bias sebagai Warisan Sistemik</h3>
+                <p>Bias AI jarang muncul karena mesin memiliki kebencian. Bias lebih sering muncul karena data historis mencerminkan dunia yang tidak setara. Jika selama bertahun-tahun akses pendidikan, promosi kerja, kredit, atau layanan publik lebih mudah didapat kelompok tertentu, maka data masa lalu akan memuat pola ketimpangan itu. Model yang dilatih dari data tersebut dapat membaca ketimpangan sebagai pola normal.</p>
+                <p>Inilah yang membuat bias AI berbahaya: ia dapat terlihat objektif karena dibungkus angka, skor, atau label. Padahal angka tersebut bisa menjadi cara baru untuk memperpanjang keputusan lama yang tidak adil. Karena itu, audit bias harus bertanya siapa yang terwakili, siapa yang tidak terlihat, dan kelompok mana yang paling mungkin dirugikan ketika output salah.</p>
+
+                <h3 style="margin-top: 32px;">5.4 Halusinasi dan Ilusi Kepastian Bahasa</h3>
+                <p>Halusinasi berbahaya karena bentuknya sering rapi. Model bahasa bisa membuat paragraf yang terdengar tenang, lengkap, dan profesional, walaupun isinya salah. Bagi pemula, risiko terbesar bukan hanya kesalahan fakta, tetapi rasa percaya diri palsu yang muncul karena bahasa mesin terdengar meyakinkan.</p>
+                <p>Dalam tugas belajar, halusinasi bisa membuat peserta mengutip artikel yang tidak ada. Dalam pekerjaan hukum, halusinasi bisa menciptakan kasus preseden palsu. Dalam kesehatan, halusinasi bisa memberi saran yang terdengar ilmiah tetapi tidak aman. Karena itu, semakin tinggi risiko konteksnya, semakin wajib verifikasi manusia dilakukan sebelum output dipakai.</p>
+
+                <h3 style="margin-top: 32px;">5.5 Privasi, Consent, dan Data yang Tidak Terlihat</h3>
+                <p>Banyak data yang dipakai sistem AI tidak terasa seperti data bagi pengguna. Waktu berhenti pada satu video, lokasi saat membuka aplikasi, urutan klik, produk yang hanya dilihat tetapi tidak dibeli, pola mengetik, suara, wajah, dan relasi sosial semuanya dapat menjadi sinyal. Data kecil yang dikumpulkan terus-menerus dapat membentuk gambaran perilaku yang sangat detail.</p>
+                <p>Audit privasi perlu bertanya apakah pengguna tahu data apa yang dikumpulkan, apakah pengguna diberi pilihan bermakna, apakah data disimpan terlalu lama, apakah data dibagikan ke pihak lain, dan apakah data tersebut bisa dipakai untuk tujuan yang berbeda dari tujuan awal. Prinsipnya sederhana: data pribadi bukan sekadar bahan bakar teknologi, tetapi bagian dari martabat dan keamanan manusia.</p>
+
+                <h3 style="margin-top: 32px;">5.6 Black Box dan Hak untuk Meminta Penjelasan</h3>
+                <p>Black box menjadi masalah ketika sistem berdampak pada hak, kesempatan, atau akses seseorang. Jika rekomendasi film tidak bisa dijelaskan, dampaknya kecil. Tetapi jika penolakan kredit, pemblokiran akun, penyaringan CV, atau keputusan layanan publik tidak bisa dijelaskan, pengguna kehilangan kesempatan untuk memahami dan memperbaiki keadaan.</p>
+                <p>Karena itu, sistem berisiko tinggi harus memiliki jejak keputusan, alasan yang bisa dipahami, jalur banding, dan manusia yang bertanggung jawab. Transparansi bukan berarti semua rumus harus dibuka ke publik, tetapi pengguna terdampak harus punya hak untuk mengetahui alasan umum, data penting yang digunakan, dan langkah koreksi yang tersedia.</p>
+
+                <h3 style="margin-top: 32px;">5.7 Rubrik Audit Sederhana</h3>
+                <div style="display: grid; gap: 14px; margin: 20px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-bullseye" style="color: var(--fellow-pink);"></i> Tujuan</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Apa yang dioptimalkan sistem: akurasi, klik, waktu tinggal, efisiensi biaya, keselamatan, keadilan, atau kombinasi beberapa tujuan?</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-database" style="color: var(--fellow-pink);"></i> Data</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Data apa yang dipakai, siapa yang paling banyak muncul dalam data, siapa yang kurang terwakili, dan apakah data dikumpulkan dengan persetujuan yang jelas?</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-arrow-up-right-from-square" style="color: var(--fellow-pink);"></i> Output</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Apakah output berupa saran, skor, label, ranking, konten, atau keputusan otomatis? Seberapa besar dampaknya pada pengguna?</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-user-check" style="color: var(--fellow-pink);"></i> Kontrol manusia</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Apakah pengguna bisa mengoreksi, menolak, meminta alasan, mengajukan banding, atau meminta review manusia?</p>
+                    </article>
+                </div>
+
+                <h3 style="margin-top: 32px;">5.8 Skenario Latihan Analitis</h3>
+                <p><strong>Rekrutmen:</strong> jika sistem menolak CV yang memuat organisasi perempuan atau kampus khusus wanita, masalahnya bukan sekadar bug teknis. Ini tanda bahwa sistem mungkin belajar dari sejarah rekrutmen yang bias. Solusinya bukan hanya menghapus satu kata sensitif, tetapi melakukan audit data, mengukur dampak pada kelompok berbeda, mengubah tujuan evaluasi, dan memastikan review manusia.</p>
+                <p><strong>Chatbot hukum:</strong> jika model membuat kasus palsu dengan bahasa rapi, masalahnya adalah halusinasi. Sistem tidak memahami kebenaran hukum seperti pengacara. Ia memprediksi rangkaian kata yang mungkin cocok. Solusinya adalah verifikasi sumber resmi, pembatasan penggunaan untuk konteks berisiko tinggi, dan kewajiban profesional manusia memeriksa setiap rujukan.</p>
+                <p><strong>Navigasi:</strong> jika sistem mengalihkan kendaraan besar ke jalan kecil pemukiman, masalahnya ada pada tujuan optimasi yang terlalu sempit. Sistem mengejar efisiensi waktu pengendara, tetapi tidak menghitung beban sosial warga lokal. Solusinya adalah memasukkan batas keselamatan, jenis jalan, jam sekolah, kapasitas lingkungan, dan mekanisme laporan warga ke dalam desain sistem.</p>
+
+                <h3 style="margin-top: 32px;">5.9 Kesimpulan Modul</h3>
+                <p>Pengantar AI ini tidak meminta peserta menjadi programmer dalam satu pertemuan. Targetnya lebih mendasar: peserta mampu membaca sistem AI dengan tenang, kritis, dan konkret. Mereka tahu bahwa AI bekerja dari input, pola, model, dan output. Mereka tahu bahwa AI modern yang dipakai hari ini adalah sistem sempit, bukan makhluk sadar diri. Mereka juga tahu bahwa output AI perlu diperiksa karena bisa salah, bias, manipulatif, atau tidak transparan.</p>
+                <p>Dengan fondasi ini, peserta siap masuk ke Pemrograman Python untuk AI, Matematika untuk AI, Machine Learning, NLP, dan Computer Vision tanpa kehilangan kompas etis. Semakin teknis materi berikutnya, semakin penting kebiasaan bertanya yang sudah dibangun di sini: apa tujuan sistemnya, data apa yang dipakai, siapa yang terdampak, dan bagaimana manusia tetap bertanggung jawab.</p>
+
+                <h3 style="margin-top: 32px;">5.10 Rubrik Skor Risiko Cepat</h3>
+                <p>Untuk membantu peserta menilai sistem AI secara praktis, gunakan skala sederhana dari rendah, sedang, sampai tinggi. Sistem berisiko rendah biasanya hanya memengaruhi kenyamanan, seperti rekomendasi lagu. Sistem berisiko sedang memengaruhi informasi, perhatian, atau pilihan ekonomi kecil, seperti rekomendasi belanja dan ranking konten. Sistem berisiko tinggi memengaruhi hak, keselamatan, reputasi, pendidikan, kesehatan, pekerjaan, pinjaman, atau layanan publik.</p>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0;">
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-circle" style="color: var(--fellow-pink);"></i> Rendah</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Kesalahan mengganggu, tetapi mudah dikoreksi dan tidak merugikan kesempatan hidup. Contoh: playlist kurang cocok.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-circle-half-stroke" style="color: var(--fellow-pink);"></i> Sedang</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Kesalahan dapat memengaruhi informasi, perhatian, uang, atau akses sementara. Contoh: rekomendasi produk manipulatif.</p>
+                    </article>
+                    <article style="background: #fff; border: 1px solid var(--fellow-line); border-radius: 16px; padding: 18px;">
+                        <h4 style="margin: 0 0 8px 0; color: var(--fellow-text);"><i class="fas fa-triangle-exclamation" style="color: var(--fellow-pink);"></i> Tinggi</h4>
+                        <p style="margin: 0; color: var(--fellow-muted);">Kesalahan memengaruhi kerja, kesehatan, hukum, pendidikan, pinjaman, identitas, atau keselamatan. Wajib ada review manusia.</p>
+                    </article>
+                </div>
+
+                <h3 style="margin-top: 32px;">5.11 Template Jawaban Audit</h3>
+                <p>Ketika mengerjakan latihan audit, peserta dapat memakai struktur berikut agar jawabannya lengkap dan tidak hanya berupa opini umum. Pertama, jelaskan sistem yang dipilih dan konteks pemakaiannya. Kedua, tuliskan tujuan sistem dari sudut pengguna dan dari sudut perusahaan. Ketiga, daftar input yang terlihat dan input yang mungkin tersembunyi. Keempat, jelaskan output yang muncul di layar. Kelima, analisis risiko bias, halusinasi, privasi, black box, dan human check.</p>
+                <p>Bagian terakhir harus memuat rekomendasi perbaikan. Rekomendasi tidak perlu teknis mendalam. Peserta bisa mengusulkan tombol koreksi, penjelasan alasan, batas penggunaan data, opsi mematikan personalisasi, review manusia untuk keputusan penting, atau audit berkala terhadap dampak pada kelompok rentan.</p>
+
+                <h3 style="margin-top: 32px;">5.12 Contoh Jawaban Singkat Audit</h3>
+                <p><strong>Sistem:</strong> rekomendasi video pendek. <strong>Tujuan pengguna:</strong> menemukan hiburan atau informasi cepat. <strong>Tujuan platform:</strong> mempertahankan perhatian pengguna selama mungkin. <strong>Input:</strong> video yang ditonton sampai selesai, video yang dilewati, komentar, like, waktu menonton, lokasi umum, dan pola pengguna mirip. <strong>Output:</strong> urutan video yang terasa personal.</p>
+                <p><strong>Risiko:</strong> sistem bisa mempersempit sudut pandang pengguna, mendorong konten sensasional, dan mengumpulkan data perilaku yang sangat detail. <strong>Human check:</strong> pengguna perlu tombol tidak tertarik, kontrol topik, riwayat rekomendasi yang bisa dihapus, dan transparansi mengapa video tertentu muncul. <strong>Perbaikan:</strong> platform sebaiknya memberi opsi membatasi personalisasi, memperjelas penggunaan data, dan tidak hanya mengoptimalkan durasi menonton.</p>
+
+                <h3 style="margin-top: 32px;">5.13 Kebiasaan yang Dibawa ke Modul Berikutnya</h3>
+                <p>Saat nanti mulai belajar Python, peserta akan menulis kode. Saat belajar machine learning, peserta akan melihat dataset, fitur, label, training, dan evaluasi. Saat belajar NLP atau Computer Vision, peserta akan memproses teks dan gambar. Tetapi kebiasaan paling penting sudah dimulai di modul ini: jangan hanya bertanya bagaimana membuat sistem bekerja, tetapi juga bagaimana memastikan sistem tidak merugikan manusia.</p>
+                <p>Setiap kali bertemu teknik baru, ulangi pertanyaan dasar: data apa yang masuk, pola apa yang dicari, output apa yang dihasilkan, metrik apa yang dikejar, siapa yang diuntungkan, siapa yang berisiko, dan siapa yang bertanggung jawab. Pertanyaan ini membuat pembelajaran teknis tetap terhubung dengan tujuan sosial program Fellowship.</p>
             `
         }
     };
@@ -917,7 +1149,7 @@
         page.querySelector('[data-lesson-list]').innerHTML = renderLessonList(path);
         page.querySelector('[data-lesson-progress-bar]').style.setProperty('--value', `${progress}%`);
         page.querySelector('[data-lesson-progress-text]').textContent = `${progress}%`;
-        page.querySelector('[data-lesson-progress-caption]').textContent = `${index + 1} dari ${introLessonRoutes.length} materi selesai`;
+        page.querySelector('[data-lesson-progress-caption]').textContent = `${index + 1} dari ${introLessonRoutes.length} chapter selesai`;
         const prevLink = page.querySelector('[data-lesson-prev]');
         const nextLink = page.querySelector('[data-lesson-next]');
         prevLink.href = `#${prev.path}`;

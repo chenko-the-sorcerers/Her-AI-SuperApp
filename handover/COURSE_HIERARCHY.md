@@ -57,14 +57,16 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 Commit lokal terbaru:
 
 ```text
-280c087 refactor: standardize curriculum placeholders
+6eb03f8 feat: expand ai introduction lesson content
 ```
 
 Checkpoint final sesi Pengantar AI:
 
 - `01 - Pengantar AI` selesai dirombak berdasarkan `materi/baru/pengantar-ai-baru.md`.
 - Setelah review user, konten runtime diperluas lagi agar tidak terasa terlalu ringkas.
-- Daftar materi Pengantar AI sekarang 10 topik dan semuanya memakai route yang sudah tersedia.
+- Daftar materi Pengantar AI sekarang 5 chapter padat dan semuanya memakai route yang sudah tersedia.
+- Update terbaru setelah commit `6eb03f8`: penomoran subbagian runtime sudah dibetulkan agar mengikuti nomor chapter aktif. Chapter 3 memakai `3.x`, Chapter 4 memakai `4.x`, dan Chapter 5 memakai `5.x`.
+- Chapter 3-5 juga diperdalam dengan studi kasus dan rubrik tambahan tanpa mengubah hierarchy produk.
 - Tidak ada perubahan hierarchy produk:
   - Category tetap `Foundation & Core AI`
   - Course tetap `AI Fundamentals & Advanced`
@@ -107,7 +109,7 @@ Topik runtime Pengantar AI terbaru:
 Aktivitas Pengantar AI terbaru:
 
 - `materi.html`: materi utama runtime Topik 1.
-- `settings.js`: daftar topik dan konten generated lesson untuk Topik 2-10.
+- `settings.js`: daftar chapter dan konten generated lesson untuk Chapter 2-5.
 - `latihan.html`: proyek mini audit sistem sosio-teknis.
 - `kuis.html`: 10 soal single attempt.
 - `diskusi.html`: skenario bias rekrutmen, halusinasi hukum, dan optimasi navigasi.
