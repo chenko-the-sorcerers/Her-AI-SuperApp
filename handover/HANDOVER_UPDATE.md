@@ -23,6 +23,7 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Status terbaru 11 Juli 2026 setelah rombak Reasoning:
 
+- Update Python UX 11 Juli 2026: panel `Belajar Aktif` di materi Python tetap dipakai, tetapi CTA mini challenge tidak lagi generik `Buka Playground`. Setiap chapter sekarang diarahkan ke latihan terkait dengan route `#/participant-ai-python-practice?focus=play-N`, halaman latihan menyorot kartu target via `data-practice-focus="play-N"`, dan menampilkan catatan konteks agar peserta tahu latihan tersebut berasal dari materi yang baru dibaca.
 - `04 - Reasoning` tidak lagi hanya scaffold route `course-placeholder.html`; sekarang aktif sebagai folder canonical:
   `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
 - Route final Reasoning:

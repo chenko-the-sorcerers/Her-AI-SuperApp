@@ -72,6 +72,7 @@ Konteks terbaru:
   - Kuis Python sudah full-card clickable, state selected/correct/wrong/locked jelas.
   - Kuis Pengantar AI sudah full-card clickable, state selected/correct/wrong/locked jelas.
   - Materi Python punya panel Belajar Aktif di setiap chapter.
+  - CTA mini challenge di panel Belajar Aktif Python sekarang tidak generik: setiap chapter diarahkan ke `#/participant-ai-python-practice?focus=play-N`, lalu kartu latihan terkait diberi highlight dan catatan konteks.
   - Code block materi Python memakai background HerAI pink-light, bukan terminal hitam.
   - AGENTS.md diperbarui agar aturan ini wajib dipakai agent berikutnya.
 - Course Reasoning sudah final canonical di `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.

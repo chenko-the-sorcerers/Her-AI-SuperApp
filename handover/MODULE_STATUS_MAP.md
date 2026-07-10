@@ -21,6 +21,7 @@ Checkpoint final terbaru 11 Juli 2026:
 
 - `01 - Pengantar AI` aktif final terbaru. Kuisnya sekarang full-card clickable, single attempt, dan locked state jelas dengan kartu benar/salah setelah submit.
 - `02 - Python untuk AI` aktif final terbaru dengan 13 chapter runtime, panel `Belajar Aktif` per chapter, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal full-card clickable, dan diskusi final. Audit terbaru memperbaiki string newline pada mini project latihan nomor 7 agar Run Code Pyodide berhasil.
+- UX terbaru Python: CTA mini challenge di panel `Belajar Aktif` sekarang eksplisit menunjuk `Latihan N - Topik` yang relevan, memakai hash query `#/participant-ai-python-practice?focus=play-N`. Kartu latihan canonical memiliki `data-practice-focus="play-N"` dan akan diberi highlight + catatan konteks saat dibuka dari materi.
 - `AGENTS.md` sudah memuat aturan baru: course tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink harus konsisten.
 - `04 - Reasoning` sudah final canonical di folder `04-reasoning/`: 4 submateri, 17 latihan, 25 soal full-card clickable single attempt, dan 4 prompt diskusi. Route final: `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`.
 - Merge Reasoning sudah committed di `b0c6829`; audit/fix terbaru sudah committed di `c93a5fb`.

@@ -64,6 +64,14 @@
         }
     }
 
+    function getHashQueryParam(name) {
+        var hash = window.location.hash || '';
+        var queryIndex = hash.indexOf('?');
+        if (queryIndex === -1) return '';
+        var params = new URLSearchParams(hash.slice(queryIndex + 1));
+        return params.get(name) || '';
+    }
+
     function runCode(playId) {
         if (!pyodideReady || !pyodideInstance) return;
         var editor = document.querySelector('#play-' + playId + ' .py-editor');
@@ -173,6 +181,23 @@
         document.querySelectorAll('.py-editor').forEach(function(ed) {
             ed.setAttribute('data-original', ed.value);
         });
+
+        var focusTarget = getHashQueryParam('focus');
+        if (focusTarget) {
+            var safeFocusTarget = focusTarget.replace(/[^a-z0-9-]/gi, '');
+            var focusedCard = document.querySelector('[data-practice-focus="' + safeFocusTarget + '"]');
+            if (focusedCard) {
+                focusedCard.style.borderColor = 'rgba(246,51,146,.58)';
+                focusedCard.style.boxShadow = '0 0 0 5px rgba(246,51,146,.12), 0 14px 34px rgba(246,51,146,.14)';
+                focusedCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                var note = document.createElement('div');
+                note.className = 'python-focus-note';
+                note.style.cssText = 'display:flex;align-items:flex-start;gap:10px;margin:0 0 16px;padding:12px 14px;border:1px solid rgba(246,51,146,.28);border-radius:16px;background:#fff7fb;color:#171827;font-weight:700;';
+                note.innerHTML = '<i class="fas fa-location-dot" style="color:#f63392;margin-top:3px;"></i><span>Latihan ini dibuka dari materi yang sedang kamu baca. Kerjakan bagian ini dulu sebelum lanjut ke latihan lain.</span>';
+                var body = focusedCard.querySelector('div[style*="padding: 24px"]') || focusedCard;
+                if (!body.querySelector('.python-focus-note')) body.prepend(note);
+            }
+        }
 
         startPyodide();
     };
@@ -340,15 +365,33 @@
             { q: 'Apa fungsi Pandas dalam alur data AI?', options: ['Membaca, membersihkan, memfilter, dan meringkas data tabular', 'Mengganti seluruh model neural network', 'Membuat virtual environment'], answer: 0, challenge: 'Tulis tiga kolom DataFrame kecil untuk eksperimen klasifikasi.' }
         ];
 
+        var practiceTargets = {
+            1: { focus: 'play-1', title: 'Latihan 1 - Tipe Data & Variabel', copy: 'Menghubungkan fondasi Python dengan data AI sederhana.' },
+            2: { focus: 'play-7', title: 'Latihan 7 - Mini Project Pipeline', copy: 'Melihat dependency, file, dan alur runtime dalam pipeline kecil.' },
+            3: { focus: 'play-1', title: 'Latihan 1 - Tipe Data & Variabel', copy: 'Menguji variabel, tipe data, dan nilai dasar model.' },
+            4: { focus: 'play-2', title: 'Latihan 2 - List & Dictionary', copy: 'Mempraktikkan koleksi data untuk fitur dan konfigurasi.' },
+            5: { focus: 'play-3', title: 'Latihan 3 - Control Flow', copy: 'Menguji logika kondisi untuk keputusan sederhana.' },
+            6: { focus: 'play-3', title: 'Latihan 3 - Control Flow', copy: 'Memakai loop untuk memproses banyak item data.' },
+            7: { focus: 'play-4', title: 'Latihan 4 - Functions', copy: 'Membuat fungsi reusable untuk logic pipeline.' },
+            8: { focus: 'play-7', title: 'Latihan 7 - Mini Project Pipeline', copy: 'Melihat generator dan proses bertahap pada data teks.' },
+            9: { focus: 'play-6', title: 'Latihan 6 - OOP & Error Handling', copy: 'Membungkus data dan perilaku ke dalam class.' },
+            10: { focus: 'play-6', title: 'Latihan 6 - OOP & Error Handling', copy: 'Menangani input bermasalah tanpa membuat pipeline berhenti diam-diam.' },
+            11: { focus: 'play-7', title: 'Latihan 7 - Mini Project Pipeline', copy: 'Membaca dan menulis file dalam alur preprocessing teks.' },
+            12: { focus: 'play-5', title: 'Latihan 5 - Libraries AI', copy: 'Mempraktikkan NumPy untuk array dan statistik dasar.' },
+            13: { focus: 'play-7', title: 'Latihan 7 - Mini Project Pipeline', copy: 'Membuat DataFrame Pandas dan ringkasan data tabular.' }
+        };
+
         function appendActiveLab(chapterNumber) {
             var data = activeLabs[chapterNumber];
             if (!data || container.querySelector('.python-active-lab')) return;
+            var target = practiceTargets[chapterNumber] || practiceTargets[1];
+            var targetHref = '#/participant-ai-python-practice?focus=' + encodeURIComponent(target.focus);
             var lab = document.createElement('section');
             lab.className = 'python-active-lab';
             lab.innerHTML = '<header><div><h2>Belajar Aktif</h2><p>Gunakan panel ini untuk memastikan konsep chapter tidak hanya dibaca, tapi langsung diuji dan dihubungkan ke praktik Python untuk AI.</p></div><span class="lab-badge"><i class="fas fa-bolt"></i> Quick Check</span></header>' +
                 '<div class="python-lab-grid">' +
                     '<div class="python-lab-card"><h3><i class="fas fa-circle-question"></i> Cek Pemahaman</h3><p>' + data.q + '</p><div class="python-check-options">' + data.options.map(function(opt, idx) { return '<button type="button" data-answer="' + idx + '">' + opt + '</button>'; }).join('') + '</div><div class="python-check-feedback" aria-live="polite"></div></div>' +
-                    '<div class="python-lab-card"><h3><i class="fas fa-code"></i> Mini Challenge</h3><p>' + data.challenge + '</p><div class="python-lab-actions"><a href="#/participant-ai-python-practice"><i class="fas fa-terminal"></i> Buka Playground</a><button type="button" data-mark-understood><i class="far fa-circle-check"></i> Tandai Paham</button></div></div>' +
+                    '<div class="python-lab-card"><h3><i class="fas fa-code"></i> Mini Challenge</h3><p>' + data.challenge + '</p><p><strong>Latihan terkait:</strong> ' + target.title + '. <span>' + target.copy + '</span></p><div class="python-lab-actions"><a href="' + targetHref + '"><i class="fas fa-location-dot"></i> Buka ' + target.title + '</a><button type="button" data-mark-understood><i class="far fa-circle-check"></i> Tandai Paham</button></div></div>' +
                 '</div>';
             container.appendChild(lab);
             var feedback = lab.querySelector('.python-check-feedback');
