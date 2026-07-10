@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
+**Status dokumen:** source of truth hierarki katalog course peserta setelah Reasoning canonical final, refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
 
@@ -59,10 +59,11 @@ Checkpoint final terbaru:
 - Hierarchy produk tidak berubah.
 - `01 - Pengantar AI` tetap module aktif di `AI Fundamentals & Advanced`, dengan activity `Materi -> Latihan -> Kuis -> Diskusi`.
 - `02 - Python untuk AI` tetap module aktif di `AI Fundamentals & Advanced`, sekarang 13 chapter final.
-- `04 - Reasoning` sudah masuk dari `origin/design` sebagai scaffold lengkap. Route tetap `#/participant-ai-reasoning`; belum dipindah ke folder canonical final.
+- `04 - Reasoning` sudah dipindah dari scaffold lengkap menjadi module canonical final di `ai-fundamentals/04-reasoning/`.
+- Activity final Reasoning tersedia di route `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, dan `#/participant-ai-reasoning-discussion`.
 - Dokumen merge khusus Reasoning tetap dipertahankan sebagai referensi: `handover/MERGE_GUIDE_REASONING_TEAM.md`.
 - Tidak ada perubahan folder canonical untuk Python atau Pengantar AI.
-- Audit final setelah merge tidak mengubah taxonomy, route, folder canonical, atau hierarchy produk. Perbaikan hanya pada polish CSS, contoh kode latihan Python, dan status handover.
+- Finalisasi Reasoning tidak mengubah taxonomy produk; perubahan hanya memindahkan implementasi Reasoning ke folder canonical dan menambah route activity final.
 - Baseline lokal terbaru sebelum push: `c93a5fb fix: audit python module polish`.
 
 Commit lokal terbaru:
@@ -133,12 +134,12 @@ Ringkasan state kurikulum saat ini:
   - Pengantar AI aktif
   - Python untuk AI aktif
   - Konsep AI Modern aktif untuk materi, latihan, kuis, dan diskusi
-  - Reasoning lengkap di scaffold; Evaluation dan Evolution of AI scaffold dasar
+  - Reasoning aktif final canonical; Evaluation dan Evolution of AI scaffold dasar
 - Math for AI aktif final dan tidak lagi masuk manifest scaffold.
 - Machine Learning aktif final dengan 8 chapter, latihan, kuis, dan diskusi.
 - Computer Vision dan NLP aktif.
 - Semua course/track/module yang belum final memakai `course-placeholder.html` dan manifest `COURSE_SCAFFOLDS`.
-- Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
+- Route checker setelah Reasoning canonical: `Total: 113 | 113 passed | 0 failed`.
 - Folder `materi/` di root repo adalah area handoff konten, bukan bagian hierarchy produk atau route peserta.
 - Snapshot Pengantar AI terbaru ada di `materi/pengantar-ai.md`.
 - Snapshot Python untuk AI terbaru ada di `materi/python-untuk-ai.md`.
@@ -409,7 +410,7 @@ Source UI utama: `pages/frontend/fellow-dashboard/modules.html`.
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif + scaffold | `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html`; Reasoning lengkap di scaffold, Evaluation/Evolution route memakai scaffold dasar |
+| AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif + scaffold | `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html`; Reasoning aktif final canonical, Evaluation/Evolution route memakai scaffold dasar |
 | Math for AI | Foundation | `#/participant-ai-lab-math` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/` |
 | Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/` |
 | Deep Learning | Core | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
@@ -422,7 +423,7 @@ AI Fundamentals & Advanced berisi module berikut:
 | Pengantar AI | Aktif | `#/participant-ai-intro` |
 | Python untuk AI | Aktif | `#/participant-ai-python` |
 | Konsep AI Modern | Aktif | `#/participant-ai-modern` |
-| Reasoning | Lengkap di scaffold | `#/participant-ai-reasoning` |
+| Reasoning | Aktif final canonical | `#/participant-ai-reasoning` |
 | Evaluation | Scaffold aktif | `#/participant-ai-evaluation` |
 | Evolution of AI | Scaffold aktif | `#/participant-ai-evolution` |
 

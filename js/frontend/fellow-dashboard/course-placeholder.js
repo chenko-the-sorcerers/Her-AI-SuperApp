@@ -874,6 +874,14 @@
         }
     };
 
+    window.HERAI_REASONING_COURSE = {
+        title: "Reasoning",
+        displayTitle: "Cara AI Menalar, Merencanakan, dan Menggunakan Tools",
+        overviewHtml: REASONING_OVERVIEW,
+        modules: REASONING_MODULES,
+        referencesHtml: REASONING_REFERENCES
+    };
+
     function getRouteState() {
         const hash = window.location.hash || "";
         const parts = hash.replace("#", "").split("?");

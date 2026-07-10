@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** merge Reasoning selesai, audit menyeluruh selesai, belum push
+**Status:** Reasoning canonical final selesai, audit menyeluruh sebelumnya selesai, belum push
 **Commit audit terbaru:** `c93a5fb fix: audit python module polish`
 **Commit merge Reasoning lokal:** `b0c6829 merge: integrate reasoning scaffold updates`
 **Commit fitur terakhir sebelum merge:** `c1870d4 feat: finalize python ai module and merge handover`
@@ -19,7 +19,25 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ---
 
-## Checkpoint Final Terbaru - Audit Setelah Merge
+## Checkpoint Final Terbaru - Reasoning Canonical
+
+Status terbaru 11 Juli 2026 setelah rombak Reasoning:
+
+- `04 - Reasoning` tidak lagi hanya scaffold route `course-placeholder.html`; sekarang aktif sebagai folder canonical:
+  `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
+- Route final Reasoning:
+  - `#/participant-ai-reasoning` -> `materi.html`
+  - `#/participant-ai-reasoning-practice` -> `latihan.html`
+  - `#/participant-ai-reasoning-quiz` -> `kuis.html`
+  - `#/participant-ai-reasoning-discussion` -> `diskusi.html`
+- Konten Reasoning tetap memakai 4 submateri hasil scaffold lengkap: how AI reasons, planning and decomposition, chain-of-thought, dan tool use.
+- Activity Reasoning sudah mengikuti pola Pengantar AI/Python: tab final, materi chapter internal, 17 latihan reveal, kuis 25 soal full-card clickable single attempt, dan diskusi localStorage.
+- Controller baru: `js/frontend/fellow-dashboard/ai-reasoning.js`.
+- `course-placeholder.js` masih mengekspos `window.HERAI_REASONING_COURSE` sebagai sumber data konten Reasoning agar materi scaffold lengkap tidak diduplikasi manual.
+- Evaluation dan Evolution of AI tetap scaffold melalui `course-placeholder.html`.
+- Verifikasi awal routing setelah perubahan: `node scripts/check-participant-routes.mjs` -> `Total: 113 | 113 passed | 0 failed`.
+
+## Checkpoint Sebelumnya - Audit Setelah Merge
 
 Status terbaru 11 Juli 2026 setelah audit menyeluruh:
 

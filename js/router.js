@@ -51,7 +51,10 @@ const router = {
         "/participant-ai-modern-practice": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/latihan.html",
         "/participant-ai-modern-quiz": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/kuis.html",
         "/participant-ai-modern-discussion": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/diskusi.html",
-        "/participant-ai-reasoning": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-reasoning": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/materi.html",
+        "/participant-ai-reasoning-practice": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/latihan.html",
+        "/participant-ai-reasoning-quiz": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/kuis.html",
+        "/participant-ai-reasoning-discussion": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/diskusi.html",
         "/participant-ai-evaluation": "/pages/frontend/fellow-dashboard/course-placeholder.html",
         "/participant-ai-evolution": "/pages/frontend/fellow-dashboard/course-placeholder.html",
         "/participant-mentor": "/pages/frontend/fellow-dashboard/mentor.html",
@@ -366,6 +369,9 @@ const router = {
             "/participant-ai-modern-quiz",
             "/participant-ai-modern-discussion",
             "/participant-ai-reasoning",
+            "/participant-ai-reasoning-practice",
+            "/participant-ai-reasoning-quiz",
+            "/participant-ai-reasoning-discussion",
             "/participant-ai-evaluation",
             "/participant-ai-evolution",
             "/participant-profile",
@@ -630,6 +636,20 @@ const router = {
                     }
                     if (path === "/participant-ai-modern-discussion" && typeof window.initAiModernDiscussion === "function") {
                         window.initAiModernDiscussion();
+                    }
+                } else if (path.startsWith("/participant-ai-reasoning") && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if (path === "/participant-ai-reasoning" && typeof window.initAiReasoningMateri === "function") {
+                        window.initAiReasoningMateri();
+                    }
+                    if (path === "/participant-ai-reasoning-practice" && typeof window.initAiReasoningPractice === "function") {
+                        window.initAiReasoningPractice();
+                    }
+                    if (path === "/participant-ai-reasoning-quiz" && typeof window.initAiReasoningQuiz === "function") {
+                        window.initAiReasoningQuiz();
+                    }
+                    if (path === "/participant-ai-reasoning-discussion" && typeof window.initAiReasoningDiscussion === "function") {
+                        window.initAiReasoningDiscussion();
                     }
                 } else if ((path === "/participant-ai-lab-machine-learning" || path.startsWith("/participant-ai-lab-ml")) && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");

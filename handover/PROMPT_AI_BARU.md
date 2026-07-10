@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 11 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning, Audit Final)
+**Tanggal:** 11 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning, Reasoning Canonical Final, Audit Final)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -54,9 +54,9 @@ Konteks terbaru:
   - `node --check js/frontend/fellow-dashboard/settings.js`
   - `git diff --check`
   - `node scripts/check-participant-routes.mjs` -> Total 110, 0 failed
-- Route checker terakhir: Total 110, 0 failed.
-- Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
-- Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.
+- Route checker setelah Reasoning canonical: Total 113, 0 failed.
+- Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, Reasoning, CV, NLP.
+- Route scaffold AI Fundamentals aktif: #/participant-ai-evaluation, #/participant-ai-evolution.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
@@ -74,15 +74,16 @@ Konteks terbaru:
   - Materi Python punya panel Belajar Aktif di setiap chapter.
   - Code block materi Python memakai background HerAI pink-light, bukan terminal hitam.
   - AGENTS.md diperbarui agar aturan ini wajib dipakai agent berikutnya.
-- Course Reasoning dari `origin/design` sudah masuk sebagai scaffold lengkap. Route tetap `#/participant-ai-reasoning`; belum canonical final.
-- Reasoning scaffold sudah dites via browser: 4 submateri, 17 latihan, 25 soal, 4 diskusi; activity materi/latihan/kuis/diskusi render, reveal latihan dan check quiz berjalan.
+- Course Reasoning sudah final canonical di `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
+- Route final Reasoning: `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, dan `#/participant-ai-reasoning-discussion`.
+- Reasoning final memakai 4 submateri, 17 latihan reveal, 25 soal full-card clickable single attempt, dan 4 prompt diskusi; controller ada di `js/frontend/fellow-dashboard/ai-reasoning.js`.
 - Smoke test browser terakhir:
   - Python materi: 13 chapter, sidebar, progress, tombol Playground, panel Belajar Aktif.
   - Python practice: Pyodide siap, Run Code berhasil, mini project nomor 7 berhasil, save latihan masuk localStorage.
   - Python quiz: 15 soal submit, skor tersimpan, single attempt lock.
   - Pengantar AI quiz: 10 soal submit, skor tersimpan, single attempt lock.
   - Python discussion: posting tersimpan di `heraiAiPythonDiscussion`.
-  - Reasoning: overview dan semua activity query render tanpa overflow.
+  - Reasoning: route final materi/latihan/kuis/diskusi wajib dicek setelah perubahan canonical.
 - File runtime Python yang sudah menjadi target utama:
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/materi.html`
   - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/latihan.html`
@@ -157,7 +158,7 @@ Konteks penting:
 - AGENTS.md sudah diperbarui dengan aturan UI ini.
 - Jangan merusak route/layout/sidebar/topbar/breadcrumb/tabs/right panel/footer nav.
 - Jangan mengubah localStorage keys atau fungsi interaktif Python.
-- Reasoning di repo ini adalah scaffold lengkap route `#/participant-ai-reasoning`, lewat `course-placeholder.js`.
+- Reasoning di repo ini sudah final canonical route `#/participant-ai-reasoning`, lewat folder `04-reasoning/` dan controller `ai-reasoning.js`.
 
 Sebelum merge:
 1. Jalankan `git status --short`.
@@ -234,7 +235,7 @@ Foundation & Core AI
 │   ├── Pengantar AI             -> AKTIF
 │   ├── Python untuk AI          -> AKTIF
 │   ├── Konsep AI Modern         -> AKTIF
-│   ├── Reasoning                -> SCAFFOLD AKTIF
+│   ├── Reasoning                -> AKTIF FINAL
 │   ├── Evaluation               -> SCAFFOLD AKTIF
 │   └── Evolution of AI          -> SCAFFOLD AKTIF
 ├── Math for AI                  -> AKTIF
@@ -276,7 +277,7 @@ Catatan penting:
 - Python untuk AI sudah final 13 chapter, panel Belajar Aktif, Pyodide practice, quiz 15 soal, dan diskusi final.
 - Audit final memperbaiki mini project Python latihan nomor 7 dan polish CSS sesuai AGENTS.
 - Folder `materi/` bukan folder runtime, bukan folder canonical course, dan bukan route peserta.
-- Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
+- Route checker setelah Reasoning canonical: `Total: 113 | 113 passed | 0 failed`.
 - Machine Learning adalah course di category Foundation & Core AI, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 - Folder aktif Machine Learning ada di pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/.
 - Folder category/domain canonical ada langsung di pages/frontend/fellow-dashboard/.
@@ -357,7 +358,7 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
 4. Modul 3a (Konsep AI Modern) sudah aktif untuk materi, latihan, kuis, dan diskusi.
 5. Math for AI sudah aktif dari draft Nazril dengan overview, lesson, latihan, kuis, dan diskusi.
-6. Reasoning, Evaluation, dan Evolution of AI sudah punya route scaffold; jangan balikkan ke button non-route atau under-development.
+6. Reasoning sudah punya route final canonical; Evaluation dan Evolution of AI masih punya route scaffold. Jangan balikkan route aktif ke button non-route atau under-development.
 7. Generative AI punya file overview; route utama masih scaffold/placeholder sampai konten final diaktifkan.
 8. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
 9. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.

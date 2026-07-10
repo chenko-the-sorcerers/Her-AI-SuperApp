@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
+**Status dokumen:** update setelah Reasoning canonical final, full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -22,10 +22,10 @@ Checkpoint final terbaru 11 Juli 2026:
 - `01 - Pengantar AI` aktif final terbaru. Kuisnya sekarang full-card clickable, single attempt, dan locked state jelas. Jawaban benar tetap tidak ditampilkan setelah submit.
 - `02 - Python untuk AI` aktif final terbaru dengan 13 chapter runtime, panel `Belajar Aktif` per chapter, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal full-card clickable, dan diskusi final. Audit terbaru memperbaiki string newline pada mini project latihan nomor 7 agar Run Code Pyodide berhasil.
 - `AGENTS.md` sudah memuat aturan baru: course tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink harus konsisten.
-- `04 - Reasoning` sudah masuk dari `origin/design` sebagai scaffold lengkap: 4 submateri, 17 latihan, 25 soal, dan 4 diskusi. Route tetap `#/participant-ai-reasoning`; belum canonical final.
+- `04 - Reasoning` sudah final canonical di folder `04-reasoning/`: 4 submateri, 17 latihan, 25 soal full-card clickable single attempt, dan 4 prompt diskusi. Route final: `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`.
 - Merge Reasoning sudah committed di `b0c6829`; audit/fix terbaru sudah committed di `c93a5fb`.
 - Browser smoke test sudah mencakup materi Python, practice Pyodide, kuis Python, kuis Pengantar AI, diskusi Python, dan Reasoning scaffold/activity query. Tidak ada horizontal overflow pada desktop/mobile route yang diuji.
-- Verifikasi terakhir lulus: `node --check js/router.js`, `node --check js/frontend/fellow-dashboard/settings.js`, `node --check js/frontend/fellow-dashboard/ai-python-basic.js`, `node --check js/frontend/fellow-dashboard/course-placeholder.js`, `git diff --check`, dan `node scripts/check-participant-routes.mjs` dengan `Total: 110 | 110 passed | 0 failed`.
+- Verifikasi routing awal setelah Reasoning canonical: `node scripts/check-participant-routes.mjs` dengan `Total: 113 | 113 passed | 0 failed`.
 
 Commit lokal terbaru:
 
@@ -132,7 +132,7 @@ Course utama yang terlihat di katalog peserta, dikelompokkan sesuai category/dom
 
 | Category / Domain | Course | Status | Isi utama |
 |---|---|---|---|
-| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif + scaffold | Pengantar AI, Python untuk AI, Konsep AI Modern aktif; Reasoning, Evaluation, Evolution of AI scaffold |
+| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif + scaffold | Pengantar AI, Python untuk AI, Konsep AI Modern, dan Reasoning aktif; Evaluation dan Evolution of AI scaffold |
 | Foundation & Core AI | Math for AI | Aktif | Overview, 7 lesson, latihan, kuis, diskusi |
 | Foundation & Core AI | Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
 | Foundation & Core AI | Deep Learning | Scaffold aktif | Neural Network Basics, Training & Backpropagation, CNN/RNN Overview, Transformer Basics, Regularization |
@@ -245,7 +245,7 @@ pages/frontend/fellow-dashboard/
 | 01 - Pengantar AI | Aktif final terbaru | Aktif, audit sosio-teknis | Aktif, 10 soal full-card clickable single attempt | Aktif, skenario etika | `settings.js` | Route sub-topik tetap memakai `lesson.html`; konten final sinkron dengan `materi/pengantar-ai.md`; quiz locked state jelas; route/layout besar tidak berubah |
 | 02 - Python untuk AI | Aktif final terbaru, 13 chapter + panel Belajar Aktif | Aktif, Pyodide + mini project preprocessing teks | Aktif, 15 soal full-card clickable single attempt | Aktif, prompt Python untuk AI | `ai-python-basic.js` | Rombak final dari `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md`; code block pink-light; route/layout tetap; snapshot di `materi/python-untuk-ai.md` |
 | 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
-| 04 - Reasoning | Lengkap di scaffold | Lengkap di scaffold | Lengkap di scaffold, 25 soal | Lengkap di scaffold, 4 diskusi | `course-placeholder.js` | 4 submateri, 17 latihan, 25 soal, 4 diskusi; route tetap `#/participant-ai-reasoning`, belum final/canonical |
+| 04 - Reasoning | Aktif final canonical | Aktif final, 17 latihan | Aktif final, 25 soal full-card clickable single attempt | Aktif final, 4 prompt diskusi | `ai-reasoning.js` | Folder canonical `04-reasoning/`; route activity final `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`; konten bersumber dari data Reasoning yang diekspos oleh `course-placeholder.js` |
 | 05 - Evaluation | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evaluation`, belum punya file final |
 | 06 - Evolution of AI | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evolution`, belum punya file final |
 
@@ -400,7 +400,10 @@ Catatan activity scaffold:
 
 | Route | Course/Track |
 |---|---|
-| `/participant-ai-reasoning` | Reasoning module scaffold |
+| `/participant-ai-reasoning` | Reasoning materi final canonical |
+| `/participant-ai-reasoning-practice` | Reasoning latihan final canonical |
+| `/participant-ai-reasoning-quiz` | Reasoning kuis final canonical |
+| `/participant-ai-reasoning-discussion` | Reasoning diskusi final canonical |
 | `/participant-ai-evaluation` | Evaluation module scaffold |
 | `/participant-ai-evolution` | Evolution of AI module scaffold |
 | `/participant-ai-lab-gen` | Generative AI |

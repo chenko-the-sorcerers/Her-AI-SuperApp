@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** merge Reasoning selesai, audit final selesai, belum push
+**Status:** Reasoning canonical final selesai, audit final sebelumnya selesai, belum push
 **Checkpoint audit terbaru:** `c93a5fb fix: audit python module polish`
 **Checkpoint merge Reasoning:** `b0c6829 merge: integrate reasoning scaffold updates`
 **Checkpoint aktif:** `3f238a7 refactor: move fellowship courses into dashboard hierarchy`
@@ -15,6 +15,18 @@ Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar
 ## Update Terbaru Setelah Refactor Filesystem
 
 Update lokal terbaru setelah checkpoint `c93a5fb`:
+
+- Reasoning sudah difinalkan menjadi folder canonical:
+  `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
+- File activity final Reasoning: `materi.html`, `latihan.html`, `kuis.html`, dan `diskusi.html`.
+- Route Reasoning sekarang mengarah ke file final:
+  - `#/participant-ai-reasoning`
+  - `#/participant-ai-reasoning-practice`
+  - `#/participant-ai-reasoning-quiz`
+  - `#/participant-ai-reasoning-discussion`
+- Controller final Reasoning ada di `js/frontend/fellow-dashboard/ai-reasoning.js`.
+- Evaluation dan Evolution of AI tetap scaffold.
+- Route checker awal setelah perubahan: `Total: 113 | 113 passed | 0 failed`.
 
 - Merge Reasoning dari `origin/design` sudah selesai dan committed.
 - Audit menyeluruh setelah merge sudah selesai dan committed.
