@@ -52,19 +52,275 @@
         return items.map(item => makeModule(item[0], item[1]));
     }
 
+    function renderQuizQuestions(questions) {
+        return `<div class="reasoning-scaffold-quiz">
+            ${questions.map((question, index) => `
+                <details>
+                    <summary><span>${index + 1}</span>${escapeHtml(question.question)}</summary>
+                    <ol type="A">
+                        ${question.options.map(option => `<li>${escapeHtml(option)}</li>`).join("")}
+                    </ol>
+                    <div class="reasoning-scaffold-answer">
+                        <strong>Jawaban: ${escapeHtml(question.answer)}</strong>
+                        <p>${escapeHtml(question.explanation)}</p>
+                    </div>
+                </details>
+            `).join("")}
+        </div>`;
+    }
+
+    function renderDiscussionPrompt(topic, guides) {
+        return `<div class="reasoning-scaffold-discussion">
+            <i class="far fa-comments" aria-hidden="true"></i>
+            <div>
+                <span>Topik diskusi</span>
+                <h3>${escapeHtml(topic)}</h3>
+                <p>Gunakan pertanyaan berikut untuk menjaga diskusi tetap terarah:</p>
+                <ul>${guides.map(guide => `<li>${escapeHtml(guide)}</li>`).join("")}</ul>
+            </div>
+        </div>`;
+    }
+
+    const REASONING_REFERENCES = `
+        <section class="reasoning-scaffold-references" aria-labelledby="reasoning-references-title">
+            <h3 id="reasoning-references-title">Referensi Singkat</h3>
+            <ol>
+                <li>Wang, L., dkk. (2023). <a href="https://arxiv.org/abs/2305.04091" target="_blank" rel="noopener noreferrer">Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models</a>. arXiv:2305.04091.</li>
+                <li>Wei, J., dkk. (2022). <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener noreferrer">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</a>. arXiv:2201.11903.</li>
+                <li>Schick, T., dkk. (2023). <a href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener noreferrer">Toolformer: Language Models Can Teach Themselves to Use Tools</a>. arXiv:2302.04761.</li>
+                <li>Yao, S., dkk. (2022). <a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer">ReAct: Synergizing Reasoning and Acting in Language Models</a>. arXiv:2210.03629.</li>
+            </ol>
+        </section>`;
+
+    const REASONING_OVERVIEW = `
+        <div class="reasoning-scaffold-overview">
+            <section class="reasoning-scaffold-objectives">
+                <div class="reasoning-scaffold-section-heading">
+                    <i class="fas fa-bullseye" aria-hidden="true"></i>
+                    <div><span>Tujuan pembelajaran</span><h3>Setelah menyelesaikan materi, peserta mampu:</h3></div>
+                </div>
+                <ol>
+                    <li>Menjelaskan reasoning dalam konteks sistem AI.</li>
+                    <li>Membedakan reasoning, planning, action, dan observation.</li>
+                    <li>Memecah tujuan besar menjadi subtugas yang lebih kecil.</li>
+                    <li>Menjelaskan Chain-of-Thought secara tepat beserta keterbatasannya.</li>
+                    <li>Menentukan kapan AI perlu menggunakan tool.</li>
+                    <li>Membaca alur Reason -> Plan -> Act -> Observe -> Answer.</li>
+                    <li>Memeriksa keterbatasan jawaban, rencana, dan hasil tool AI.</li>
+                </ol>
+            </section>
+
+            <section class="reasoning-scaffold-integrated">
+                <div class="reasoning-scaffold-section-heading">
+                    <i class="fas fa-arrows-to-circle" aria-hidden="true"></i>
+                    <div><span>Gambaran besar</span><h3>Satu alur, enam tahap yang saling terhubung</h3></div>
+                </div>
+                <div class="reasoning-scaffold-flow" aria-label="Alur Reason, Plan, Act, Observe, Update, Answer">
+                    <div><strong>Reason</strong><span>Memahami masalah dan informasi</span></div>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <div><strong>Plan</strong><span>Menentukan langkah</span></div>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <div><strong>Act</strong><span>Menjawab atau memakai tool</span></div>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <div><strong>Observe</strong><span>Membaca hasil tindakan</span></div>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <div><strong>Update</strong><span>Memperbaiki rencana</span></div>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <div><strong>Answer</strong><span>Memberikan hasil akhir</span></div>
+                </div>
+            </section>
+
+            <section class="reasoning-scaffold-case">
+                <span>Studi kasus terpadu</span>
+                <h3>Apakah anggaran konsumsi cukup?</h3>
+                <p><strong>Tugas:</strong> Berdasarkan data peserta di spreadsheet, tentukan apakah anggaran konsumsi cukup dan berikan rekomendasi.</p>
+                <dl>
+                    <div><dt>Reason</dt><dd>Data jumlah peserta dan biaya berada di spreadsheet.</dd></div>
+                    <div><dt>Plan</dt><dd>Baca jumlah peserta dan biaya, hitung kebutuhan, bandingkan dengan anggaran, lalu periksa hasil.</dd></div>
+                    <div><dt>Act</dt><dd>Gunakan spreadsheet atau Python untuk membaca dan menghitung data.</dd></div>
+                    <div><dt>Observe</dt><dd>Tool mengembalikan data peserta dan hasil perhitungan.</dd></div>
+                    <div><dt>Update</dt><dd>Periksa data kosong, format salah, atau biaya tambahan.</dd></div>
+                    <div><dt>Answer</dt><dd>Sampaikan sisa atau kekurangan anggaran, asumsi, dan rekomendasi yang dapat ditindaklanjuti.</dd></div>
+                </dl>
+            </section>
+
+            <section class="reasoning-scaffold-checklist">
+                <h3><i class="fas fa-list-check" aria-hidden="true"></i> Checklist sebelum memberi jawaban</h3>
+                <ul>
+                    <li>Tujuan tugas sudah jelas.</li><li>Informasi relevan sudah ditemukan.</li>
+                    <li>Asumsi sudah disebutkan.</li><li>Masalah sudah dipecah menjadi langkah.</li>
+                    <li>Tool dipilih sesuai kebutuhan.</li><li>Parameter tool sudah benar.</li>
+                    <li>Hasil tool dibaca dengan tepat.</li><li>Jawaban akhir sudah diperiksa.</li>
+                </ul>
+            </section>
+            ${REASONING_REFERENCES}
+        </div>`;
+
+    const REASONING_MODULES = [
+        {
+            slug: "how-ai-reasons",
+            title: "Bagaimana AI Melakukan Penalaran?",
+            summary: "Memahami bagaimana AI menghubungkan instruksi, konteks, informasi yang tersedia, dan hasil sebelumnya untuk menentukan respons berikutnya.",
+            materi: "Model mental reasoning AI: memahami tujuan, memilih informasi relevan, menentukan langkah, menjalankan langkah, memeriksa hasil, lalu menjawab.",
+            latihan: "Klasifikasikan tahapan reasoning dan perbaiki jawaban AI yang memakai asumsi tanpa menyebutkannya.",
+            kuis: "Empat soal tentang reasoning AI, fakta dan asumsi, pemeriksaan, serta keterbatasan jawaban yang terlihat runtut.",
+            diskusi: "Bahas apakah jawaban yang runtut berarti AI benar-benar memahami masalah.",
+            rich: {
+                materi: `
+                    <section class="reasoning-scaffold-prose">
+                        <p class="reasoning-scaffold-lead">Dalam konteks large language model (LLM), reasoning tidak berarti AI berpikir persis seperti manusia. LLM menghasilkan token berdasarkan konteks dan pola yang dipelajari. Untuk tugas kompleks, model dapat menghasilkan langkah perantara yang membantu menyusun penyelesaian.</p>
+                        <div class="reasoning-scaffold-flow reasoning-scaffold-flow--compact" aria-label="Tahapan penalaran AI">
+                            <div><strong>Masalah</strong><span>Instruksi awal</span></div><i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            <div><strong>Tujuan</strong><span>Hasil yang diminta</span></div><i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            <div><strong>Informasi</strong><span>Fakta relevan</span></div><i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            <div><strong>Langkah</strong><span>Urutan penyelesaian</span></div><i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            <div><strong>Periksa</strong><span>Validasi hasil</span></div><i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            <div><strong>Jawaban</strong><span>Kesimpulan akhir</span></div>
+                        </div>
+                        <div class="reasoning-scaffold-grid reasoning-scaffold-grid--two">
+                            <article><i class="fas fa-bullseye"></i><h3>Input dan tujuan</h3><p>Kenali apa yang diminta, hasil akhir, format jawaban, dan batasan tugas.</p></article>
+                            <article><i class="fas fa-filter"></i><h3>Informasi relevan</h3><p>Pisahkan fakta, informasi yang tidak relevan, data yang belum tersedia, dan asumsi.</p></article>
+                            <article><i class="fas fa-list-ol"></i><h3>Langkah penyelesaian</h3><p>Hubungkan informasi dengan tujuan, lalu pilih langkah yang dapat menghasilkan jawaban.</p></article>
+                            <article><i class="fas fa-magnifying-glass-check"></i><h3>Pemeriksaan</h3><p>Pastikan tujuan dipahami, data benar, tidak ada langkah terlewat, dan kesimpulan mengikuti data.</p></article>
+                        </div>
+                        <section class="reasoning-scaffold-example">
+                            <span>Contoh anggaran</span><h3>Menghitung konsumsi kegiatan</h3>
+                            <p>Anggaran Rp3.000.000, peserta 60 orang, biaya konsumsi Rp35.000 per orang.</p>
+                            <div class="reasoning-scaffold-calculation"><code>60 x Rp35.000 = Rp2.100.000</code><code>Rp3.000.000 - Rp2.100.000 = Rp900.000</code></div>
+                            <p>Kesimpulan: anggaran konsumsi mencukupi dan tersisa Rp900.000, dengan asumsi tidak ada biaya konsumsi tambahan.</p>
+                        </section>
+                        <div class="reasoning-scaffold-callout"><i class="fas fa-triangle-exclamation"></i><p><strong>Penjelasan yang terdengar meyakinkan bukan bukti bahwa jawabannya benar.</strong> Jawaban tetap dapat salah karena pertanyaan disalahpahami, informasi tidak relevan dipakai, asumsi tidak disebutkan, langkah terlewat, atau perhitungan keliru.</p></div>
+                    </section>`,
+                latihan: `
+                    <section class="reasoning-scaffold-exercises">
+                        <article><span>Latihan 1</span><h3>Klasifikasikan tahapan reasoning</h3><p>Panitia memiliki tiga ruangan berkapasitas 25, 30, dan 40 orang untuk menempatkan 80 peserta.</p><p>Kelompokkan aktivitas berikut sebagai <strong>memahami tujuan, mengambil fakta, menentukan langkah, menjalankan langkah,</strong> atau <strong>memeriksa hasil</strong>:</p><ol><li>Mencatat kapasitas tiap ruangan.</li><li>Menentukan bahwa semua peserta harus mendapat tempat.</li><li>Menyusun kombinasi ruangan yang cukup.</li><li>Menjumlahkan kapasitas ruangan terpilih.</li><li>Memastikan kapasitas tidak kurang dari 80 dan kursi kosong tidak berlebihan.</li></ol></article>
+                        <article><span>Latihan 2</span><h3>Temukan asumsi tersembunyi</h3><p>AI menjawab: "Gunakan ruangan 40 dan 30 orang karena pasti cukup untuk 80 peserta."</p><p>Perbaiki jawaban tersebut. Sebutkan kesalahan hitung, informasi yang masih perlu diketahui, dan asumsi yang boleh dipakai hanya jika dinyatakan dengan jelas.</p></article>
+                    </section>`,
+                kuis: renderQuizQuestions([
+                    { question: "Apa arti reasoning dalam konteks sistem AI?", options: ["AI memiliki kesadaran seperti manusia", "Proses menghubungkan tujuan, konteks, informasi, dan langkah untuk menghasilkan respons", "Kemampuan menghafal semua jawaban", "Proses menjalankan tool tanpa tujuan"], answer: "B", explanation: "Reasoning membantu sistem menghubungkan informasi dengan tujuan dan langkah penyelesaian; ini bukan klaim bahwa AI berpikir seperti manusia." },
+                    { question: "Manakah yang termasuk asumsi, bukan fakta?", options: ["Anggaran tertulis Rp3.000.000", "Jumlah peserta pada daftar adalah 60", "Semua peserta pasti hadir", "Harga konsumsi tertulis Rp35.000"], answer: "C", explanation: "Kehadiran penuh belum menjadi fakta jika tidak ada data konfirmasi; asumsi ini perlu disebutkan atau diverifikasi." },
+                    { question: "Apa fungsi utama tahap pemeriksaan?", options: ["Membuat jawaban lebih panjang", "Memastikan data, langkah, dan kesimpulan saling sesuai", "Menghilangkan semua asumsi", "Mengganti tujuan pengguna"], answer: "B", explanation: "Pemeriksaan mencari salah tafsir, data keliru, langkah terlewat, dan kesimpulan yang tidak mengikuti hasil." },
+                    { question: "Mengapa jawaban yang terlihat runtut belum tentu benar?", options: ["Karena semua langkah perantara selalu palsu", "Karena AI tidak boleh menghitung", "Karena langkah dapat memakai asumsi atau data yang salah", "Karena jawaban singkat selalu lebih akurat"], answer: "C", explanation: "Keruntutan membantu verifikasi, tetapi kebenaran tetap bergantung pada pemahaman, data, asumsi, dan perhitungan yang benar." }
+                ]),
+                diskusi: renderDiscussionPrompt("Apakah AI yang menghasilkan jawaban runtut dapat dikatakan benar-benar memahami masalah?", ["Apa perbedaan jawaban yang runtut dengan pemahaman?", "Bukti apa yang kamu perlukan sebelum mempercayai jawaban AI?", "Kapan pengguna perlu memeriksa fakta atau perhitungan secara mandiri?", "Bagaimana cara menyampaikan ketidakpastian tanpa membuat jawaban sulit dibaca?"])
+            }
+        },
+        {
+            slug: "planning-and-decomposition",
+            title: "Planning dan Problem Decomposition",
+            summary: "Memahami cara AI mengubah tujuan besar menjadi subtugas, menyusun urutan tindakan, dan memperbarui rencana saat kondisi berubah.",
+            materi: "Bedakan reasoning dan planning, lalu gunakan goal, initial state, constraints, subtasks, sequence, serta success criteria untuk menyusun rencana.",
+            latihan: "Susun rencana workshop AI dua jam, lalu revisi rencana ketika proyektor tidak tersedia pada 30 menit pertama.",
+            kuis: "Empat soal tentang planning, problem decomposition, constraints, serta static dan dynamic planning.",
+            diskusi: "Bahas kapan AI harus mempertahankan atau memperbarui rencana awal.",
+            rich: {
+                materi: `
+                    <section class="reasoning-scaffold-prose">
+                        <div class="reasoning-scaffold-compare"><article><span>Reasoning</span><p>Apa masalahnya, informasi apa yang penting, dan hubungan apa yang perlu dipahami?</p></article><article><span>Planning</span><p>Langkah apa yang harus dilakukan untuk mencapai tujuan?</p></article></div>
+                        <div class="reasoning-scaffold-table-wrap"><table><thead><tr><th>Komponen</th><th>Pertanyaan</th></tr></thead><tbody><tr><td>Goal</td><td>Hasil akhir apa yang ingin dicapai?</td></tr><tr><td>Initial state</td><td>Informasi dan sumber daya apa yang tersedia?</td></tr><tr><td>Constraints</td><td>Batasan apa yang harus dipatuhi?</td></tr><tr><td>Subtasks</td><td>Tugas kecil apa yang harus diselesaikan?</td></tr><tr><td>Sequence</td><td>Langkah mana yang dikerjakan lebih dahulu?</td></tr><tr><td>Success criteria</td><td>Bagaimana mengetahui tugas sudah selesai?</td></tr></tbody></table></div>
+                        <section class="reasoning-scaffold-example"><span>Contoh dekomposisi</span><h3>Workshop pengenalan AI selama dua jam untuk 50 mahasiswa</h3><ol><li>Kenali profil peserta.</li><li>Tentukan tujuan pembelajaran.</li><li>Pilih materi inti.</li><li>Bagi durasi sesi.</li><li>Tentukan kebutuhan perangkat.</li><li>Siapkan latihan.</li><li>Siapkan evaluasi.</li><li>Periksa kesesuaian waktu dan sumber daya.</li></ol></section>
+                        <div class="reasoning-scaffold-compare"><article><span>Static planning</span><p>Rencana dibuat di awal lalu dijalankan tanpa perubahan: Plan -> Step 1 -> Step 2 -> Step 3 -> Result.</p></article><article><span>Dynamic planning</span><p>Setelah action dan observation, sistem menilai apakah rencana masih sesuai. Jika tidak, rencana diperbarui.</p></article></div>
+                        <p class="reasoning-scaffold-citation">Pendekatan Plan-and-Solve memisahkan penyelesaian menjadi pembuatan rencana dan pelaksanaan subtugas berdasarkan rencana tersebut pada eksperimen yang dilaporkan [1]. Temuan ini tidak berarti semua jenis planning AI selalu lebih baik.</p>
+                    </section>`,
+                latihan: `<section class="reasoning-scaffold-exercises"><article><span>Latihan 1</span><h3>Bangun rencana kelas</h3><p>Susun kelas pengenalan AI selama dua jam untuk 30 peserta dengan satu mentor dan satu proyektor.</p><p>Isi enam bagian: <strong>goal, initial state, constraints, subtasks, sequence,</strong> dan <strong>success criteria</strong>.</p></article><article><span>Latihan 2</span><h3>Perbarui rencana</h3><p>Informasi baru muncul: proyektor tidak dapat digunakan selama 30 menit pertama.</p><p>Tentukan bagian rencana yang berubah, kegiatan pengganti pada 30 menit pertama, dan cara memastikan tujuan pembelajaran tetap tercapai.</p></article></section>`,
+                kuis: renderQuizQuestions([
+                    { question: "Apa fungsi utama planning?", options: ["Menentukan langkah untuk mencapai tujuan", "Menghapus semua batasan", "Menambah panjang jawaban", "Menjalankan semua tool"], answer: "A", explanation: "Planning menyusun langkah dan urutan tindakan berdasarkan tujuan, kondisi awal, serta batasan." },
+                    { question: "Apa manfaat problem decomposition?", options: ["Membuat tugas selalu selesai otomatis", "Memecah tujuan besar menjadi subtugas yang lebih mudah dikelola", "Menghindari pemeriksaan hasil", "Mengganti goal di tengah proses"], answer: "B", explanation: "Dekomposisi membantu mengatur ketergantungan, urutan, dan pemeriksaan pada bagian tugas yang lebih kecil." },
+                    { question: "Proyektor tidak tersedia selama 30 menit pertama termasuk komponen apa?", options: ["Goal", "Constraint", "Success criteria", "Final answer"], answer: "B", explanation: "Keterbatasan perangkat dan waktu merupakan constraint yang harus dipertimbangkan saat menyusun rencana." },
+                    { question: "Apa ciri dynamic planning?", options: ["Rencana tidak pernah berubah", "Tidak memiliki tujuan", "Rencana dapat diperbarui berdasarkan observation", "Semua langkah dijalankan bersamaan"], answer: "C", explanation: "Dynamic planning memakai hasil tindakan atau informasi baru untuk menilai dan memperbarui langkah berikutnya." }
+                ]),
+                diskusi: renderDiscussionPrompt("Apakah AI sebaiknya selalu mengikuti rencana awal, atau boleh mengubahnya ketika menemukan informasi baru?", ["Kapan perubahan rencana menjadi keputusan yang tepat?", "Batas apa yang tidak boleh diubah tanpa persetujuan pengguna?", "Bagaimana AI menjelaskan alasan perubahan rencana?", "Siapa yang bertanggung jawab bila rencana baru menimbulkan risiko?"])
+            }
+        },
+        {
+            slug: "chain-of-thought",
+            title: "Chain-of-Thought dan Langkah Penyelesaian",
+            summary: "Memahami fungsi langkah perantara pada tugas kompleks tanpa menganggapnya sebagai akses penuh ke proses internal model.",
+            materi: "Chain-of-Thought adalah rangkaian langkah perantara yang dihasilkan model sebelum jawaban akhir; langkah ini membantu pemeriksaan tetapi tidak menjamin kebenaran.",
+            latihan: "Bandingkan prompt langsung dengan prompt terstruktur, lalu temukan kesalahan pada langkah penyelesaian AI.",
+            kuis: "Empat soal tentang definisi, kegunaan, dan keterbatasan Chain-of-Thought.",
+            diskusi: "Bahas apakah langkah penyelesaian AI harus selalu ditampilkan kepada pengguna.",
+            rich: {
+                materi: `
+                    <section class="reasoning-scaffold-prose">
+                        <p class="reasoning-scaffold-lead"><strong>Chain-of-Thought</strong> adalah rangkaian langkah perantara yang dihasilkan model sebelum memberikan jawaban akhir.</p>
+                        <div class="reasoning-scaffold-flow reasoning-scaffold-flow--compact" aria-label="Alur langkah penyelesaian"><div><strong>Pertanyaan</strong><span>Masalah awal</span></div><i class="fas fa-arrow-right"></i><div><strong>Langkah perantara</strong><span>Urutan penyelesaian</span></div><i class="fas fa-arrow-right"></i><div><strong>Pemeriksaan</strong><span>Validasi</span></div><i class="fas fa-arrow-right"></i><div><strong>Jawaban akhir</strong><span>Hasil ringkas</span></div></div>
+                        <div class="reasoning-scaffold-compare"><article><span>Jawaban langsung</span><p>Sisa anggarannya adalah Rp900.000.</p></article><article><span>Jawaban terstruktur</span><p>60 x Rp35.000 = Rp2.100.000. Rp3.000.000 - Rp2.100.000 = Rp900.000. Jadi anggaran mencukupi.</p></article></div>
+                        <p>Langkah terstruktur berguna saat tugas memiliki beberapa tahap, melibatkan perhitungan, mengandung banyak batasan, membutuhkan perbandingan, atau perlu diperiksa kembali. Pertanyaan fakta sederhana tidak selalu memerlukannya.</p>
+                        <section class="reasoning-scaffold-example"><span>Pola yang aman</span><h3>Langkah penyelesaian yang dapat diperiksa</h3><ol><li>Identifikasi tujuan.</li><li>Catat informasi relevan.</li><li>Pecah masalah menjadi beberapa langkah.</li><li>Kerjakan setiap langkah.</li><li>Periksa hasilnya.</li><li>Berikan jawaban akhir secara ringkas.</li></ol></section>
+                        <div class="reasoning-scaffold-callout"><i class="fas fa-circle-info"></i><p><strong>Chain-of-Thought tidak menjamin jawaban benar.</strong> Teks langkah perantara juga tidak selalu menjadi gambaran lengkap proses internal model. Perlakukan sebagai langkah penyelesaian yang dapat diperiksa, bukan "isi pikiran rahasia AI".</p></div>
+                        <p class="reasoning-scaffold-citation">Wei dkk. memperkenalkan Chain-of-Thought prompting melalui contoh yang berisi langkah reasoning perantara dan melaporkan peningkatan pada beberapa tugas aritmetika, commonsense, dan symbolic reasoning, pada eksperimen dan model yang diuji [2].</p>
+                    </section>`,
+                latihan: `<section class="reasoning-scaffold-exercises"><article><span>Latihan 1</span><h3>Bandingkan dua prompt</h3><div class="reasoning-scaffold-prompts"><code>Hitung kebutuhan konsumsi acara ini.</code><code>Identifikasi data yang tersedia, susun langkah perhitungan, kerjakan setiap langkah, periksa hasilnya, lalu berikan jawaban akhir.</code></div><p>Bandingkan kelengkapan, kejelasan, ketepatan, dan kemudahan verifikasi dari hasil kedua prompt.</p></article><article><span>Latihan 2</span><h3>Temukan kesalahan</h3><p>AI menulis: "50 peserta x Rp40.000 = Rp1.500.000, jadi anggaran Rp1.800.000 tersisa Rp300.000."</p><p>Tandai langkah yang salah, perbaiki perhitungannya, lalu perbarui kesimpulan akhir.</p></article></section>`,
+                kuis: renderQuizQuestions([
+                    { question: "Apa definisi sederhana Chain-of-Thought?", options: ["Akses penuh ke proses internal model", "Rangkaian langkah perantara yang dihasilkan sebelum jawaban akhir", "Database fakta milik AI", "Tool untuk mencari informasi terbaru"], answer: "B", explanation: "CoT adalah teks langkah perantara yang dihasilkan model, bukan jendela lengkap menuju proses internalnya." },
+                    { question: "Kapan langkah perantara paling berguna?", options: ["Saat tugas terdiri dari beberapa tahap dan perlu diperiksa", "Untuk setiap salam singkat", "Hanya saat memakai internet", "Saat pengguna tidak memberi tujuan"], answer: "A", explanation: "Tugas multi-langkah, perhitungan, perbandingan, dan banyak batasan lebih terbantu oleh langkah yang terstruktur." },
+                    { question: "Pernyataan mana yang tepat tentang keterbatasan CoT?", options: ["Selalu menunjukkan seluruh proses internal model", "Selalu menghasilkan jawaban benar", "Dapat membantu pemeriksaan tetapi tetap dapat berisi kesalahan", "Tidak boleh digunakan untuk perhitungan"], answer: "C", explanation: "Langkah terstruktur memudahkan pemeriksaan, tetapi data, asumsi, atau perhitungannya tetap dapat salah." },
+                    { question: "Mengapa CoT tidak menjamin kebenaran?", options: ["Karena langkah yang runtut dapat dibangun dari pemahaman atau data yang salah", "Karena model tidak dapat menghasilkan teks", "Karena jawaban akhir selalu acak", "Karena semua tugas harus memakai tool"], answer: "A", explanation: "Struktur yang rapi tidak memperbaiki fakta salah, asumsi tanpa dasar, atau kesalahan hitung secara otomatis." }
+                ]),
+                diskusi: renderDiscussionPrompt("Apakah langkah penyelesaian AI harus selalu ditampilkan kepada pengguna?", ["Kapan transparansi langkah membantu pengguna melakukan verifikasi?", "Kapan langkah panjang justru mengganggu kesederhanaan antarmuka?", "Apa risiko jika penjelasan yang ditampilkan terdengar masuk akal tetapi tidak akurat?", "Bentuk ringkasan atau bukti apa yang lebih berguna daripada langkah yang sangat panjang?"])
+            }
+        },
+        {
+            slug: "tool-use",
+            title: "Tool Use: Ketika AI Membutuhkan Alat Eksternal",
+            summary: "Memahami cara AI memilih, memanggil, membaca, dan memeriksa hasil tool ketika teks saja tidak cukup menyelesaikan tugas.",
+            materi: "Tool use membantu perhitungan presisi, informasi terbaru, dokumen, spreadsheet, kode, kalender, database, dan layanan eksternal.",
+            latihan: "Klasifikasikan kebutuhan tool dan lengkapi simulasi Reason, Plan, Tool, Observation, Updated plan, serta Final answer.",
+            kuis: "Lima soal tentang kebutuhan tool, pemilihan tool, parameter, observation, dan verifikasi hasil.",
+            diskusi: "Bahas batas otorisasi ketika AI menggunakan tool atau mengambil tindakan.",
+            rich: {
+                materi: `
+                    <section class="reasoning-scaffold-prose">
+                        <p class="reasoning-scaffold-lead"><strong>Tool use</strong> adalah kemampuan sistem AI untuk menggunakan alat atau layanan eksternal ketika tugas tidak cukup diselesaikan hanya dengan menghasilkan teks.</p>
+                        <div class="reasoning-scaffold-table-wrap"><table><thead><tr><th>Kebutuhan</th><th>Tool yang sesuai</th></tr></thead><tbody><tr><td>Perhitungan presisi</td><td>Kalkulator</td></tr><tr><td>Pengolahan data</td><td>Python atau spreadsheet</td></tr><tr><td>Informasi terbaru</td><td>Web search atau API</td></tr><tr><td>Isi dokumen tertentu</td><td>Document retrieval</td></tr><tr><td>Jadwal aktual</td><td>Calendar</td></tr><tr><td>Lokasi dan rute</td><td>Maps</td></tr><tr><td>Komunikasi</td><td>Email atau messaging service</td></tr></tbody></table></div>
+                        <div class="reasoning-scaffold-flow reasoning-scaffold-flow--compact" aria-label="Siklus penggunaan tool"><div><strong>Tujuan</strong><span>Pahami tugas</span></div><i class="fas fa-arrow-right"></i><div><strong>Pilih</strong><span>Tentukan tool</span></div><i class="fas fa-arrow-right"></i><div><strong>Parameter</strong><span>Siapkan input</span></div><i class="fas fa-arrow-right"></i><div><strong>Hasil</strong><span>Baca output</span></div><i class="fas fa-arrow-right"></i><div><strong>Perbarui</strong><span>Revisi jawaban</span></div></div>
+                        <section class="reasoning-scaffold-case"><span>Contoh spreadsheet</span><h3>Menghitung rata-rata nilai peserta</h3><dl><div><dt>Reason</dt><dd>Data nilai berada di file, bukan di prompt.</dd></div><div><dt>Plan</dt><dd>Buka file, cari kolom nilai, periksa data kosong, hitung rata-rata, sajikan hasil.</dd></div><div><dt>Action</dt><dd>Gunakan spreadsheet tool atau Python.</dd></div><div><dt>Observation</dt><dd>Tool mengembalikan rata-rata 82,4.</dd></div><div><dt>Answer</dt><dd>Rata-rata nilai peserta adalah 82,4, setelah data kosong dan format tidak valid diperiksa.</dd></div></dl></section>
+                        <div class="reasoning-scaffold-compare"><article><span>Tool perlu digunakan</span><p>Data belum ada di konteks, informasi mudah berubah, hasil membutuhkan presisi, tugas perlu dieksekusi, atau hasil harus diverifikasi ke sistem eksternal.</p></article><article><span>Tool tidak perlu digunakan</span><p>Informasi sudah ada di prompt, tugas hanya menyusun ulang teks, pertanyaan konseptual dapat dijawab dari konteks, atau tool tidak menambah manfaat.</p></article></div>
+                        <section class="reasoning-scaffold-example"><span>Kesalahan umum</span><h3>Tool tetap perlu diawasi</h3><ol><li>Memilih tool yang salah.</li><li>Menggunakan tool padahal tidak diperlukan.</li><li>Mengirim parameter yang salah.</li><li>Salah membaca hasil tool.</li><li>Menganggap output tool pasti benar.</li><li>Tidak memeriksa data kosong atau format data.</li><li>Menggunakan data lama untuk pertanyaan terbaru.</li></ol></section>
+                        <p class="reasoning-scaffold-citation">Toolformer mempelajari keputusan mengenai tool, waktu pemanggilan, argumen, dan penggunaan hasil tool dalam generasi berikutnya [3]. ReAct menggabungkan reasoning dan tindakan secara bergantian agar hasil tindakan dapat memperbarui langkah berikutnya [4]. Keduanya adalah pendekatan riset, bukan arsitektur wajib bagi semua sistem tool-using AI.</p>
+                    </section>`,
+                latihan: `
+                    <section class="reasoning-scaffold-exercises">
+                        <article><span>Latihan 1</span><h3>Apakah tool diperlukan?</h3><div class="reasoning-scaffold-table-wrap"><table><thead><tr><th>Tugas</th><th>Tool diperlukan?</th></tr></thead><tbody><tr><td>Menjelaskan pengertian machine learning</td><td>Tidak</td></tr><tr><td>Menghitung 287 x 9.451 secara presisi</td><td>Ya</td></tr><tr><td>Mengetahui cuaca hari ini</td><td>Ya</td></tr><tr><td>Merangkum paragraf yang diberikan</td><td>Tidak</td></tr><tr><td>Menganalisis 10.000 baris data</td><td>Ya</td></tr><tr><td>Membaca agenda peserta minggu depan</td><td>Ya</td></tr></tbody></table></div><p>Untuk setiap tugas, pilih tool yang paling sesuai dan jelaskan alasannya.</p></article>
+                        <article><span>Latihan 2</span><h3>Simulasikan tool use</h3><div class="reasoning-scaffold-template"><p><strong>Reason:</strong> ...</p><p><strong>Plan:</strong> ...</p><p><strong>Tool:</strong> ...</p><p><strong>Observation:</strong> ...</p><p><strong>Updated plan:</strong> ...</p><p><strong>Final answer:</strong> ...</p></div><p>Gunakan kasus data spreadsheet atau jadwal aktual. Pastikan hasil tool diperiksa sebelum jawaban akhir dibuat.</p></article>
+                    </section>`,
+                kuis: renderQuizQuestions([
+                    { question: "Apa yang dimaksud dengan tool use?", options: ["Kemampuan AI menggunakan layanan eksternal untuk membantu menyelesaikan tugas", "Kemampuan AI menghafal semua data", "Cara membuat jawaban lebih panjang", "Proses menghapus konteks pengguna"], answer: "A", explanation: "Tool memberi sistem kemampuan tambahan seperti menghitung, membaca file, mencari data terbaru, atau menjalankan tindakan." },
+                    { question: "Tool apa yang paling sesuai untuk menghitung rata-rata 10.000 baris nilai?", options: ["Calendar", "Python atau spreadsheet", "Maps", "Email"], answer: "B", explanation: "Python atau spreadsheet cocok untuk membaca banyak baris, membersihkan data, dan menghitung agregasi secara presisi." },
+                    { question: "Apa risiko parameter tool yang salah?", options: ["Tool selalu memperbaikinya otomatis", "Hasil dapat menggunakan data, rentang, atau operasi yang keliru", "Jawaban pasti menjadi lebih singkat", "Tidak ada dampak pada hasil"], answer: "B", explanation: "Input menentukan operasi tool; parameter salah dapat menghasilkan observation yang tampak valid tetapi tidak relevan." },
+                    { question: "Apa yang harus dilakukan setelah menerima observation dari tool?", options: ["Langsung menganggapnya benar", "Memeriksa hasil dan memperbarui rencana atau jawaban", "Menghapus tujuan awal", "Selalu memanggil tool kedua"], answer: "B", explanation: "Observation perlu dibaca dalam konteks tujuan, format, kelengkapan data, dan kemungkinan error." },
+                    { question: "Kapan tool biasanya tidak diperlukan?", options: ["Saat pengguna meminta cuaca hari ini", "Saat data ada di spreadsheet besar", "Saat pengguna meminta merangkum teks yang sudah diberikan", "Saat jadwal aktual harus diperiksa"], answer: "C", explanation: "Ringkasan dapat dibuat dari konteks yang sudah tersedia; tool eksternal tidak menambah akurasi atau manfaat." }
+                ]),
+                diskusi: renderDiscussionPrompt("Apakah AI boleh menggunakan tool dan mengambil tindakan tanpa persetujuan pengguna?", ["Tindakan apa yang boleh dilakukan tanpa konfirmasi dan mana yang harus meminta izin?", "Bagaimana sistem menjelaskan tool, data, dan tujuan yang digunakan?", "Apa risiko ketika tool mengakses data pribadi?", "Siapa yang bertanggung jawab atas tindakan otomatis yang keliru?", "Bagaimana manusia tetap memiliki kontrol akhir?"])
+            }
+        }
+    ];
+
     const COURSE_SCAFFOLDS = {
         "/participant-ai-reasoning": {
             title: "Reasoning",
-            category: "AI Fundamentals",
+            displayTitle: "Cara AI Menalar, Merencanakan, dan Menggunakan Tools",
+            category: "Foundation & Core AI",
+            parentCourse: "AI Fundamentals & Advanced",
             icon: "fas fa-code-branch",
-            status: "Module scaffold",
-            summary: "Module untuk memahami cara sistem AI melakukan penalaran, planning, tool use, dan validasi langkah.",
-            modules: modules([
-                ["Reasoning Overview", "Konsep penalaran AI, batasan model, dan pola reasoning pada task sehari-hari."],
-                ["Planning and Decomposition", "Cara memecah tujuan menjadi langkah kecil yang dapat dieksekusi dan diperiksa."],
-                ["Tool Use Workflow", "Pola penggunaan tool, input-output contract, dan guardrail saat AI beraksi."],
-                ["Reasoning Quality Review", "Cara menilai koherensi, trace, error, dan reliability dari hasil reasoning."]
-            ])
+            status: "Scaffold aktif dengan konten diperkaya",
+            moduleStatus: "Submateri scaffold",
+            duration: "75-100 menit",
+            unitLabel: "submateri",
+            actionLabel: "Buka submateri",
+            sectionLabel: "Bagian pembelajaran",
+            sectionTitle: "Empat submateri Reasoning",
+            detailLabel: "Submateri Reasoning",
+            activityTitles: {
+                materi: "Materi scaffold Reasoning diperkaya",
+                latihan: "Latihan scaffold Reasoning siap digunakan",
+                kuis: "Kuis scaffold Reasoning dengan pembahasan",
+                diskusi: "Panduan diskusi scaffold Reasoning"
+            },
+            summary: "Pelajari bagaimana AI mengolah masalah, menyusun rencana, menghasilkan langkah penyelesaian, dan menggunakan alat eksternal untuk memperoleh jawaban yang lebih akurat.",
+            overviewHtml: REASONING_OVERVIEW,
+            modules: REASONING_MODULES
         },
         "/participant-ai-evaluation": {
             title: "Evaluation",
@@ -519,22 +775,51 @@
     function renderModules(course, activeActivity) {
         const list = document.querySelector("[data-course-scaffold-modules]");
         if (!list) return;
+        list.hidden = false;
         list.innerHTML = (course.modules || []).map((item, index) => `
             <li>
                 <span>${index + 1}</span>
                 <div>
                     <strong>${escapeHtml(item.title)}</strong>
                     <p>${escapeHtml(item.summary)}</p>
-                    <a class="lesson-action" href="${buildHref(getRouteState().path, item.slug, activeActivity)}">Buka module</a>
+                    <a class="lesson-action" href="${buildHref(getRouteState().path, item.slug, activeActivity)}">${escapeHtml(course.actionLabel || "Buka module")}</a>
                 </div>
             </li>
         `).join("");
+
+        const richContent = document.querySelector("[data-course-scaffold-rich-content]");
+        if (richContent) {
+            const showOverview = activeActivity === "materi" && course.overviewHtml;
+            richContent.hidden = !showOverview;
+            richContent.innerHTML = showOverview ? course.overviewHtml : "";
+        }
     }
 
     function renderModuleActivity(moduleData, activeActivity) {
         const list = document.querySelector("[data-course-scaffold-modules]");
         if (!list) return;
         const activityText = moduleData[activeActivity] || moduleData.materi;
+        const richContent = document.querySelector("[data-course-scaffold-rich-content]");
+        const richHtml = moduleData.rich && moduleData.rich[activeActivity];
+
+        if (richHtml && richContent) {
+            list.hidden = true;
+            list.innerHTML = "";
+            richContent.hidden = false;
+            richContent.innerHTML = `
+                <a class="reasoning-scaffold-back" href="${buildHref(getRouteState().path, "", "materi")}">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Kembali ke overview Reasoning
+                </a>
+                ${richHtml}
+            `;
+            return;
+        }
+
+        list.hidden = false;
+        if (richContent) {
+            richContent.hidden = true;
+            richContent.innerHTML = "";
+        }
         list.innerHTML = `
             <li>
                 <span>1</span>
@@ -564,19 +849,20 @@
 
     function renderActivityContent(course, moduleData, activity) {
         const content = ACTIVITY_CONTENT[activity] || ACTIVITY_CONTENT.materi;
+        const activityTitle = (course.activityTitles && course.activityTitles[activity]) || content.title;
         if (moduleData) {
-            setText("[data-course-scaffold-activity-title]", `${content.title}: ${moduleData.title}`);
+            setText("[data-course-scaffold-activity-title]", `${activityTitle}: ${moduleData.title}`);
             setText("[data-course-scaffold-activity-copy]", moduleData[activity] || moduleData.materi);
-            setText("[data-course-scaffold-section-label]", content.label);
+            setText("[data-course-scaffold-section-label]", course.detailLabel || content.label);
             setText("[data-course-scaffold-section-title]", moduleData.title);
             renderModuleActivity(moduleData, activity);
             return;
         }
 
-        setText("[data-course-scaffold-activity-title]", content.title);
-        setText("[data-course-scaffold-activity-copy]", `${content.copy} Pilih salah satu module ${course.title} untuk membuka detail activity.`);
-        setText("[data-course-scaffold-section-label]", "Overview course");
-        setText("[data-course-scaffold-section-title]", "Daftar module scaffold");
+        setText("[data-course-scaffold-activity-title]", activityTitle);
+        setText("[data-course-scaffold-activity-copy]", `${content.copy} Pilih salah satu ${course.unitLabel || "module"} ${course.title} untuk membuka detail activity.`);
+        setText("[data-course-scaffold-section-label]", course.sectionLabel || "Overview course");
+        setText("[data-course-scaffold-section-title]", course.sectionTitle || "Daftar module scaffold");
         renderModules(course, activity);
     }
 
@@ -585,6 +871,7 @@
         if (!page) return;
 
         const state = getRouteState();
+        page.classList.toggle("reasoning-scaffold-page", state.path === "/participant-ai-reasoning");
         const data = COURSE_SCAFFOLDS[state.path] || {
             title: "Course Scaffold",
             category: "Course Catalog",
@@ -602,10 +889,12 @@
 
         setText("[data-course-scaffold-title]", data.title);
         setText("[data-course-scaffold-category]", data.category);
-        setText("[data-course-scaffold-heading]", currentModule ? currentModule.title : data.title);
+        setText("[data-course-scaffold-heading]", currentModule ? currentModule.title : (data.displayTitle || data.title));
         setText("[data-course-scaffold-summary]", currentModule ? currentModule.summary : data.summary);
-        setText("[data-course-scaffold-status]", currentModule ? "Module scaffold" : data.status);
+        setText("[data-course-scaffold-status]", currentModule ? (data.moduleStatus || "Module scaffold") : data.status);
         setText("[data-course-scaffold-count]", String((data.modules || []).length));
+        setText("[data-course-scaffold-duration]", data.duration || "Draft outline");
+        setText("[data-course-scaffold-unit]", data.unitLabel || "topik awal");
         setIcon("[data-course-scaffold-icon]", data.icon);
         setIcon("[data-course-scaffold-visual-icon]", data.icon);
         renderActivityContent(data, currentModule, state.activity);

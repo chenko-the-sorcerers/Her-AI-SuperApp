@@ -1549,6 +1549,489 @@
     width: 38px;
 }
 
+.reasoning-scaffold-rich[hidden] {
+    display: none;
+}
+
+.reasoning-scaffold-page .course-scaffold-hero {
+    grid-template-columns: minmax(0, 1fr) 220px;
+}
+
+.reasoning-scaffold-page .lesson-hero-copy {
+    min-width: 0;
+}
+
+.reasoning-scaffold-page .lesson-hero-copy h1 {
+    font-size: 2.65rem;
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+}
+
+.reasoning-scaffold-page .course-scaffold-visual {
+    align-self: center;
+    flex-basis: auto;
+    justify-self: end;
+    width: 220px;
+}
+
+.reasoning-scaffold-rich {
+    color: var(--fellow-text, #171827);
+    margin-top: 20px;
+}
+
+.reasoning-scaffold-rich h3,
+.reasoning-scaffold-rich p {
+    letter-spacing: 0;
+}
+
+.reasoning-scaffold-rich h3 {
+    color: var(--fellow-text, #171827);
+    font-size: 1.08rem;
+    line-height: 1.4;
+    margin: 4px 0 10px;
+}
+
+.reasoning-scaffold-rich p,
+.reasoning-scaffold-rich li,
+.reasoning-scaffold-rich dd,
+.reasoning-scaffold-rich td,
+.reasoning-scaffold-rich th {
+    color: var(--fellow-muted, #6f7282);
+    line-height: 1.7;
+}
+
+.reasoning-scaffold-rich ol,
+.reasoning-scaffold-rich ul {
+    display: block;
+    list-style-position: outside;
+    margin: 10px 0 0;
+    padding-left: 22px;
+}
+
+.reasoning-scaffold-rich ol {
+    list-style: decimal;
+}
+
+.reasoning-scaffold-rich ul {
+    list-style: disc;
+}
+
+.reasoning-scaffold-rich ol li,
+.reasoning-scaffold-rich ul li {
+    background: transparent;
+    border: 0;
+    border-radius: 14px;
+    display: list-item;
+    padding: 3px 0;
+}
+
+.reasoning-scaffold-back {
+    align-items: center;
+    border: 1px solid rgba(246,51,146,.24);
+    border-radius: 100px;
+    color: var(--fellow-pink, #f63392);
+    display: inline-flex;
+    font-size: .84rem;
+    font-weight: 750;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding: 9px 14px;
+    text-decoration: none;
+}
+
+.reasoning-scaffold-back:hover,
+.reasoning-scaffold-back:focus-visible {
+    background: rgba(246,51,146,.1);
+    outline: 3px solid rgba(246,51,146,.18);
+    outline-offset: 2px;
+}
+
+.reasoning-scaffold-overview,
+.reasoning-scaffold-prose,
+.reasoning-scaffold-exercises {
+    display: grid;
+    gap: 18px;
+}
+
+.reasoning-scaffold-objectives,
+.reasoning-scaffold-integrated,
+.reasoning-scaffold-case,
+.reasoning-scaffold-checklist,
+.reasoning-scaffold-example,
+.reasoning-scaffold-exercises > article,
+.reasoning-scaffold-discussion,
+.reasoning-scaffold-references,
+.reasoning-scaffold-compare > article,
+.reasoning-scaffold-grid > article,
+.reasoning-scaffold-quiz details {
+    background: #fff;
+    border: 1px solid rgba(244,143,188,.26);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.reasoning-scaffold-section-heading {
+    align-items: flex-start;
+    display: flex;
+    gap: 12px;
+}
+
+.reasoning-scaffold-section-heading > i,
+.reasoning-scaffold-grid article > i,
+.reasoning-scaffold-discussion > i {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border-radius: 50%;
+    color: var(--fellow-pink, #f63392);
+    display: inline-flex;
+    flex: 0 0 42px;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+}
+
+.reasoning-scaffold-section-heading span,
+.reasoning-scaffold-case > span,
+.reasoning-scaffold-example > span,
+.reasoning-scaffold-exercises article > span,
+.reasoning-scaffold-discussion span {
+    color: var(--fellow-pink, #f63392);
+    font-size: .75rem;
+    font-weight: 850;
+    text-transform: uppercase;
+}
+
+.reasoning-scaffold-lead {
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.2);
+    border-radius: 16px;
+    color: #3d4254 !important;
+    font-size: 1rem;
+    margin: 0;
+    padding: 18px;
+}
+
+.reasoning-scaffold-flow {
+    align-items: stretch;
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    overflow-x: auto;
+    padding: 4px 2px 10px;
+}
+
+.reasoning-scaffold-flow > div {
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.2);
+    border-radius: 16px;
+    flex: 1 0 118px;
+    min-width: 0;
+    padding: 14px;
+}
+
+.reasoning-scaffold-flow > div strong,
+.reasoning-scaffold-flow > div span {
+    display: block;
+}
+
+.reasoning-scaffold-flow > div strong {
+    color: var(--fellow-text, #171827);
+    font-size: .86rem;
+}
+
+.reasoning-scaffold-flow > div span {
+    color: var(--fellow-muted, #6f7282);
+    font-size: .74rem;
+    line-height: 1.45;
+    margin-top: 4px;
+}
+
+.reasoning-scaffold-flow > i {
+    align-self: center;
+    color: var(--fellow-pink, #f63392);
+    flex: 0 0 auto;
+}
+
+.reasoning-scaffold-grid,
+.reasoning-scaffold-compare {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reasoning-scaffold-grid article > i {
+    height: 38px;
+    margin-bottom: 8px;
+    width: 38px;
+}
+
+.reasoning-scaffold-case dl {
+    display: grid;
+    gap: 8px;
+    margin: 16px 0 0;
+}
+
+.reasoning-scaffold-case dl > div {
+    background: #fff7fb;
+    border-radius: 14px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 84px minmax(0, 1fr);
+    padding: 12px 14px;
+}
+
+.reasoning-scaffold-case dt {
+    color: var(--fellow-pink, #f63392);
+    font-weight: 800;
+}
+
+.reasoning-scaffold-case dd {
+    margin: 0;
+}
+
+.reasoning-scaffold-checklist ul {
+    display: grid;
+    gap: 8px 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    list-style: none;
+    padding: 0;
+}
+
+.reasoning-scaffold-checklist li::before {
+    color: var(--fellow-pink, #f63392);
+    content: "\f058";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 8px;
+}
+
+.reasoning-scaffold-references ol {
+    margin-top: 12px;
+}
+
+.reasoning-scaffold-references li {
+    font-size: .84rem;
+}
+
+.reasoning-scaffold-references a {
+    color: #c21868;
+    font-weight: 700;
+}
+
+.reasoning-scaffold-references a:focus-visible {
+    border-radius: 6px;
+    outline: 3px solid rgba(246,51,146,.2);
+    outline-offset: 2px;
+}
+
+.reasoning-scaffold-calculation,
+.reasoning-scaffold-prompts,
+.reasoning-scaffold-template {
+    display: grid;
+    gap: 10px;
+    margin: 14px 0;
+}
+
+.reasoning-scaffold-calculation code,
+.reasoning-scaffold-prompts code,
+.reasoning-scaffold-template {
+    background: #f7f7fa;
+    border: 1px solid #e2e3e9;
+    border-radius: 14px;
+    color: var(--fellow-text, #171827);
+    font-family: Consolas, monospace;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    padding: 12px 14px;
+    white-space: normal;
+}
+
+.reasoning-scaffold-callout {
+    align-items: flex-start;
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.25);
+    border-radius: 16px;
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+}
+
+.reasoning-scaffold-callout > i {
+    color: var(--fellow-pink, #f63392);
+    margin-top: 4px;
+}
+
+.reasoning-scaffold-callout p {
+    margin: 0;
+}
+
+.reasoning-scaffold-table-wrap {
+    border: 1px solid #e2e3e9;
+    border-radius: 16px;
+    overflow-x: auto;
+}
+
+.reasoning-scaffold-table-wrap table {
+    border-collapse: collapse;
+    min-width: 560px;
+    width: 100%;
+}
+
+.reasoning-scaffold-table-wrap th,
+.reasoning-scaffold-table-wrap td {
+    border-bottom: 1px solid #ececf1;
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.reasoning-scaffold-table-wrap th {
+    background: #fff7fb;
+    color: var(--fellow-text, #171827);
+}
+
+.reasoning-scaffold-citation {
+    border-left: 4px solid var(--fellow-pink, #f63392);
+    font-size: .86rem;
+    margin: 0;
+    padding: 4px 0 4px 14px;
+}
+
+.reasoning-scaffold-quiz {
+    display: grid;
+    gap: 12px;
+}
+
+.reasoning-scaffold-quiz details {
+    padding: 0;
+}
+
+.reasoning-scaffold-quiz summary {
+    align-items: flex-start;
+    color: var(--fellow-text, #171827);
+    cursor: pointer;
+    display: flex;
+    font-weight: 750;
+    gap: 10px;
+    list-style: none;
+    padding: 16px 18px;
+}
+
+.reasoning-scaffold-quiz summary::-webkit-details-marker {
+    display: none;
+}
+
+.reasoning-scaffold-quiz summary > span {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border-radius: 50%;
+    color: var(--fellow-pink, #f63392);
+    display: inline-flex;
+    flex: 0 0 30px;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.reasoning-scaffold-quiz details > ol {
+    margin: 0 18px 12px 60px;
+}
+
+.reasoning-scaffold-answer {
+    background: #fff7fb;
+    border-radius: 14px;
+    margin: 0 18px 18px;
+    padding: 14px;
+}
+
+.reasoning-scaffold-answer strong {
+    color: #c21868;
+}
+
+.reasoning-scaffold-answer p {
+    margin: 5px 0 0;
+}
+
+.reasoning-scaffold-discussion {
+    align-items: flex-start;
+    display: flex;
+    gap: 14px;
+}
+
+.reasoning-scaffold-discussion > div {
+    min-width: 0;
+}
+
+@media (max-width: 860px) {
+    .reasoning-scaffold-page,
+    .reasoning-scaffold-page .fellow-main,
+    .reasoning-scaffold-page .lesson-layout,
+    .reasoning-scaffold-page .lesson-main-content,
+    .reasoning-scaffold-page .lesson-material-panel {
+        box-sizing: border-box;
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .reasoning-scaffold-page .course-scaffold-hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .reasoning-scaffold-page .lesson-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .reasoning-scaffold-page .lesson-hero-copy h1 {
+        font-size: 2rem;
+    }
+
+    .reasoning-scaffold-flow {
+        align-items: stretch;
+        flex-direction: column;
+        overflow-x: visible;
+    }
+
+    .reasoning-scaffold-flow > div {
+        flex-basis: auto;
+    }
+
+    .reasoning-scaffold-flow > i {
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 560px) {
+    .reasoning-scaffold-grid,
+    .reasoning-scaffold-compare,
+    .reasoning-scaffold-checklist ul {
+        grid-template-columns: 1fr;
+    }
+
+    .reasoning-scaffold-objectives,
+    .reasoning-scaffold-integrated,
+    .reasoning-scaffold-case,
+    .reasoning-scaffold-checklist,
+    .reasoning-scaffold-example,
+    .reasoning-scaffold-exercises > article,
+    .reasoning-scaffold-discussion,
+    .reasoning-scaffold-references {
+        padding: 16px;
+    }
+
+    .reasoning-scaffold-case dl > div {
+        grid-template-columns: 1fr;
+    }
+
+    .reasoning-scaffold-discussion {
+        flex-direction: column;
+    }
+
+    .reasoning-scaffold-quiz details > ol {
+        margin-left: 38px;
+    }
+}
+
 .lesson-meta-row {
     align-items: center;
     display: flex;
