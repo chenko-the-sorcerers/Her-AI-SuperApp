@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
+**Status dokumen:** update setelah full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, dan refactor filesystem/routing final
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -11,6 +11,39 @@ Source of truth hierarki katalog course ada di:
 ```text
 handover/COURSE_HIERARCHY.md
 handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+```
+
+---
+
+## Checkpoint Terbaru
+
+Commit lokal terbaru:
+
+```text
+280c087 refactor: standardize curriculum placeholders
+```
+
+Yang sudah dibuat pada checkpoint terbaru:
+
+- `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js` menjadi manifest tunggal untuk semua course/track/module yang belum final.
+- Math for AI dihapus dari manifest scaffold karena sudah aktif final di folder canonical.
+- Setiap scaffold punya data course: `title`, `category`, `icon`, `status`, `summary`, `modules`.
+- Setiap module scaffold punya metadata: `slug`, `title`, `summary`, `materi`, `latihan`, `kuis`, `diskusi`.
+- Route scaffold baru AI Fundamentals:
+  - `#/participant-ai-reasoning`
+  - `#/participant-ai-evaluation`
+  - `#/participant-ai-evolution`
+- Card overview AI Fundamentals untuk Reasoning, Evaluation, dan Evolution of AI sudah berupa link route.
+- Query scaffold resmi:
+  - `?activity=materi`
+  - `?activity=latihan`
+  - `?activity=kuis`
+  - `?activity=diskusi`
+  - `?module=prompting-workflow&activity=kuis`
+- Route checker terakhir:
+
+```text
+Total: 110 | 110 passed | 0 failed
 ```
 
 ---
@@ -146,9 +179,9 @@ pages/frontend/fellow-dashboard/
 | 01 - Pengantar AI | Aktif | Template/basic | Basic | Basic | `settings.js` | Route sub-topik memakai `lesson.html` |
 | 02 - Python untuk AI | Aktif | Aktif, Pyodide | Aktif | Basic | `ai-python-basic.js` | Modul paling interaktif |
 | 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
-| 04 - Reasoning | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
-| 05 - Evaluation | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
-| 06 - Evolution of AI | Belum ada | Belum ada | Belum ada | Belum ada | - | Belum ada folder/route |
+| 04 - Reasoning | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-reasoning`, belum punya file final |
+| 05 - Evaluation | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evaluation`, belum punya file final |
+| 06 - Evolution of AI | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evolution`, belum punya file final |
 
 ---
 
@@ -342,10 +375,13 @@ Catatan activity scaffold:
 - Jangan mengubah route CV/NLP/Python/Math/GenAI saat mengerjakan ML.
 - Untuk Konsep AI Modern, route materi, latihan, kuis, dan diskusi sudah aktif di folder canonical `03-konsep-ai-modern/`.
 - Jika membuat file activity final untuk scaffold course, ganti query scaffold menjadi route/file final secara eksplisit dan update dokumen ini.
+- Jika course/module belum final, jangan membuat file `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`; isi `COURSE_SCAFFOLDS` dulu.
+- Setelah mengubah route scaffold, pastikan route masuk `routes`, `participantDashboardPages`, dan init placeholder tetap terpanggil.
 - Jalankan minimal:
 
 ```bash
 node --check js/router.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
 node --check js/frontend/fellow-dashboard/ai-ml-basic.js
 git diff --check
 node scripts/check-participant-routes.mjs

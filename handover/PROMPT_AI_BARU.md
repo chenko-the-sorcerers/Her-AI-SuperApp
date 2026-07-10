@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 10 Juli 2026 (Aktivasi Math for AI + activity final Konsep AI Modern)
+**Tanggal:** 10 Juli 2026 (Full Curriculum Placeholder Scaffold + Aktivasi Math for AI + activity final Konsep AI Modern)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -51,9 +51,9 @@ Foundation & Core AI
 │   ├── Pengantar AI             -> AKTIF
 │   ├── Python untuk AI          -> AKTIF
 │   ├── Konsep AI Modern         -> AKTIF
-│   ├── Reasoning                -> BELUM ADA
-│   ├── Evaluation               -> BELUM ADA
-│   └── Evolution of AI          -> BELUM ADA
+│   ├── Reasoning                -> SCAFFOLD AKTIF
+│   ├── Evaluation               -> SCAFFOLD AKTIF
+│   └── Evolution of AI          -> SCAFFOLD AKTIF
 ├── Math for AI                  -> AKTIF
 ├── Machine Learning             -> AKTIF FULL (8 chapter, 10 latihan, 24 soal kuis, 8 prompt diskusi)
 ├── Deep Learning                -> SCAFFOLD AKTIF
@@ -87,14 +87,21 @@ Business & Industry Applications
 └── AI for Geospatial            -> SCAFFOLD AKTIF
 
 Catatan penting:
+- Checkpoint lokal terbaru: `280c087 refactor: standardize curriculum placeholders`.
+- Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
 - Machine Learning adalah course di category Foundation & Core AI, sejajar dengan AI Fundamentals & Advanced dan Math for AI.
 - Folder aktif Machine Learning ada di pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/.
 - Folder category/domain canonical ada langsung di pages/frontend/fellow-dashboard/.
 - Course/track placeholder sudah punya route eksplisit ke `course-placeholder.html` agar tim tinggal mengisi outline atau mengganti mapping route saat konten final siap.
+- Manifest tunggal placeholder ada di `js/frontend/fellow-dashboard/course-placeholder.js` pada object `COURSE_SCAFFOLDS`.
 - Course/track placeholder memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`; tab activity non-materi memakai query hash seperti `#/participant-ai-lab-gen?activity=latihan`, bukan `#/participant-under-development`.
 - Detail module placeholder memakai query `module` dan `activity`, contoh `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`.
 - Untuk course/module belum final, jangan buat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`. Isi manifest `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js` dulu.
 - File final baru dibuat kalau konten benar-benar siap dan route akan dipindahkan dari `course-placeholder.html`.
+- Route scaffold AI Fundamentals yang sudah aktif:
+  - `#/participant-ai-reasoning`
+  - `#/participant-ai-evaluation`
+  - `#/participant-ai-evolution`
 - Jangan buat folder `course-catalog/`, `ai-fundamental/`, atau `ai-lab/` lagi sebagai path aktif. Itu folder lama/superseded. Category/domain canonical langsung di bawah `pages/frontend/fellow-dashboard/`.
 
 ---
@@ -162,10 +169,11 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
 4. Modul 3a (Konsep AI Modern) sudah aktif untuk materi, latihan, kuis, dan diskusi.
 5. Math for AI sudah aktif dari draft Nazril dengan overview, lesson, latihan, kuis, dan diskusi.
-6. Generative AI punya file overview; route utama masih scaffold/placeholder sampai konten final diaktifkan.
-7. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
-8. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
-9. Setiap perubahan hierarki course/module harus ikut update dokumen handover dan dibuat commit lokal.
+6. Reasoning, Evaluation, dan Evolution of AI sudah punya route scaffold; jangan balikkan ke button non-route atau under-development.
+7. Generative AI punya file overview; route utama masih scaffold/placeholder sampai konten final diaktifkan.
+8. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
+9. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
+10. Setiap perubahan hierarki course/module harus ikut update dokumen handover dan dibuat commit lokal.
 
 ---
 
@@ -186,6 +194,7 @@ Jangan langsung ngerjain tanpa konfirmasi scope dan file yang akan disentuh.
 | Source of truth hierarki course | `handover/COURSE_HIERARCHY.md` | Lengkap |
 | Prompt onboarding AI baru | `handover/PROMPT_AI_BARU.md` | File ini |
 | Checkpoint rename/folder/routing course catalog | `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` | Lengkap |
+| Full curriculum placeholder scaffold | `js/frontend/fellow-dashboard/course-placeholder.js` + handover docs | Lengkap |
 | Bug log & lessons learned | `GEMINI.md` (bagian bawah) | Lengkap |
 | Zona bahaya file | `GEMINI.md` (bagian tengah) | Lengkap |
 | Konvensi penamaan | File ini (bagian prompt) | Lengkap |
@@ -212,8 +221,9 @@ File penting yang harus kamu baca sekarang:
 ```
 Prioritas kerja:
 1. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final
-2. Buat atau aktifkan course baru langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
-3. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
+2. Untuk course/module belum final, update `COURSE_SCAFFOLDS` dulu dan jangan buat file activity final
+3. Buat atau aktifkan course final langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
+4. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0 dan warna text terlalu terang
 ```
 
 ### Kalau Mau Bikin Course/Track Baru

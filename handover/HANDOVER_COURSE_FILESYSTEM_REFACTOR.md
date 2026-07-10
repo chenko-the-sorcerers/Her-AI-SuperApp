@@ -4,9 +4,39 @@
 **Branch:** `design`  
 **Status:** sudah commit lokal, belum push  
 **Checkpoint aktif:** `3f238a7 refactor: move fellowship courses into dashboard hierarchy`
-**Checkpoint routing/UI terbaru:** `e750127 fix: link ai modern card to materi`
+**Checkpoint routing/UI terbaru:** `280c087 refactor: standardize curriculum placeholders`
 
 Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar AI agent, developer, dan mentor berikutnya tidak bingung antara hierarchy produk, folder lama, dan route peserta yang tetap stabil.
+
+---
+
+## Update Terbaru Setelah Refactor Filesystem
+
+Checkpoint `280c087 refactor: standardize curriculum placeholders` menambahkan standardisasi scaffold tanpa mengubah keputusan folder canonical.
+
+Yang berubah setelah refactor filesystem:
+
+- `js/frontend/fellow-dashboard/course-placeholder.js` menjadi manifest tunggal `COURSE_SCAFFOLDS` untuk course/track/module belum final.
+- Math for AI tidak lagi masuk scaffold manifest karena sudah aktif final di `foundation-core-ai/math-for-ai/`.
+- Route scaffold AI Fundamentals ditambahkan:
+  - `#/participant-ai-reasoning`
+  - `#/participant-ai-evaluation`
+  - `#/participant-ai-evolution`
+- Card AI Fundamentals untuk Reasoning, Evaluation, dan Evolution of AI sekarang link route, bukan button kosong.
+- Query scaffold mendukung overview dan detail module:
+  - `#/participant-ai-lab-gen?activity=latihan`
+  - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
+- Route checker terbaru:
+
+```text
+Total: 110 | 110 passed | 0 failed
+```
+
+Aturan penting:
+
+- Course/module belum final jangan dibuatkan file `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`.
+- Isi manifest scaffold dulu; file final baru dibuat kalau konten siap dan route akan dipindahkan ke folder canonical.
+- Keputusan folder canonical tetap sama: category/domain langsung di bawah `pages/frontend/fellow-dashboard/`.
 
 ---
 
@@ -186,6 +216,9 @@ Hash route peserta tetap dijaga stabil. Yang berubah adalah file target internal
 | `/participant-ai-intro` dan subroute Pengantar AI | `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/...` |
 | `/participant-ai-python` dan subroute Python | `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/...` |
 | `/participant-ai-modern` | `foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/...` |
+| `/participant-ai-reasoning` | `pages/frontend/fellow-dashboard/course-placeholder.html` |
+| `/participant-ai-evaluation` | `pages/frontend/fellow-dashboard/course-placeholder.html` |
+| `/participant-ai-evolution` | `pages/frontend/fellow-dashboard/course-placeholder.html` |
 | `/participant-ai-lab-machine-learning` | `foundation-core-ai/machine-learning/materi.html` |
 | `/participant-ai-lab-ml` dan semua route chapter ML | `foundation-core-ai/machine-learning/materi.html` |
 | `/participant-ai-lab-ml-practice` | `foundation-core-ai/machine-learning/latihan.html` |
@@ -203,11 +236,16 @@ Update setelah checkpoint routing/UI terbaru:
 
 - `#/participant-ai-modern` sekarang aktif ke materi Konsep AI Modern di folder canonical.
 - Card `Konsep AI Modern` di `foundation-core-ai/ai-fundamentals-advanced/overview.html` sudah mengarah ke `#/participant-ai-modern`, bukan `#/participant-under-development`.
+- `#/participant-ai-reasoning`, `#/participant-ai-evaluation`, dan `#/participant-ai-evolution` sekarang aktif ke reusable scaffold.
+- Card `Reasoning`, `Evaluation`, dan `Evolution of AI` di overview AI Fundamentals sudah berupa link route scaffold.
 - `course-placeholder.html` sudah memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`.
+- `COURSE_SCAFFOLDS` sekarang menyimpan metadata lengkap per module: `slug`, `title`, `summary`, `materi`, `latihan`, `kuis`, `diskusi`.
 - Tab activity scaffold non-final memakai query hash pada route yang sama, misalnya:
   - `#/participant-ai-lab-gen?activity=latihan`
   - `#/participant-ai-lab-gen?activity=kuis`
   - `#/participant-ai-lab-gen?activity=diskusi`
+- Detail module scaffold memakai query:
+  - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
 - Query hash ini tidak menambah route baru di `js/router.js`; router sudah membuang query sebelum lookup route.
 
 ---
@@ -220,7 +258,7 @@ Update setelah checkpoint routing/UI terbaru:
 | `js/frontend/fellow-dashboard/ai-ml-basic.js` | `ML_BASE` menjadi `/pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning` |
 | `js/frontend/fellow-dashboard/ai-python-basic.js` | Fetch chapter Python diarahkan ke folder `foundation-core-ai/ai-fundamentals-advanced/...` |
 | `js/frontend/fellow-dashboard/ai-modern.js` | Fetch chapter Konsep AI Modern diarahkan ke folder `foundation-core-ai/ai-fundamentals-advanced/...` |
-| `index.html` | Cache buster router menjadi `router.js?v=20260710-ai-modern-materi`; cache buster `course-placeholder.js` menjadi `20260710-scaffold-tabs-query` |
+| `index.html` | Cache buster router menjadi `router.js?v=20260710-ai-fundamentals-scaffold`; cache buster `course-placeholder.js` menjadi `20260710-full-scaffold-manifest` |
 
 ---
 
@@ -233,6 +271,7 @@ node --check js/router.js
 node --check js/frontend/fellow-dashboard/ai-ml-basic.js
 node --check js/frontend/fellow-dashboard/ai-python-basic.js
 node --check js/frontend/fellow-dashboard/ai-modern.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
 node scripts/check-participant-routes.mjs
 git diff --check
 ```
@@ -240,7 +279,7 @@ git diff --check
 Hasil route checker:
 
 ```text
-Total: 107 | 107 passed | 0 failed
+Total: 110 | 110 passed | 0 failed
 ```
 
 ---

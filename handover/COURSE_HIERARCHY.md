@@ -2,7 +2,7 @@
 
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final
+**Status dokumen:** source of truth hierarki katalog course peserta setelah refactor folder final dan standardisasi placeholder scaffold
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
 
@@ -49,6 +49,38 @@ Checkpoint detail rename/folder/routing ada di:
 ```text
 handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 ```
+
+---
+
+## Checkpoint Implementasi Terbaru
+
+Commit lokal terbaru:
+
+```text
+280c087 refactor: standardize curriculum placeholders
+```
+
+Ringkasan state kurikulum saat ini:
+
+- AI Fundamentals & Advanced sebagian aktif:
+  - Pengantar AI aktif
+  - Python untuk AI aktif
+  - Konsep AI Modern aktif untuk materi, latihan, kuis, dan diskusi
+  - Reasoning, Evaluation, dan Evolution of AI scaffold aktif
+- Math for AI aktif final dan tidak lagi masuk manifest scaffold.
+- Machine Learning aktif final dengan 8 chapter, latihan, kuis, dan diskusi.
+- Computer Vision dan NLP aktif.
+- Semua course/track/module yang belum final memakai `course-placeholder.html` dan manifest `COURSE_SCAFFOLDS`.
+- Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
+
+Aturan scaffold resmi:
+
+- Course/module belum final tidak boleh membuat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`.
+- Isi dulu manifest `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js`.
+- File final baru dibuat saat konten benar-benar siap dan route dipindahkan dari scaffold ke folder canonical.
+- Query activity dan module scaffold:
+  - `#/participant-ai-lab-gen?activity=latihan`
+  - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
 
 ---
 
@@ -282,7 +314,7 @@ Source UI utama: `pages/frontend/fellow-dashboard/modules.html`.
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html` |
+| AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif + scaffold | `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html`; Reasoning/Evaluation/Evolution route memakai scaffold |
 | Math for AI | Foundation | `#/participant-ai-lab-math` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/` |
 | Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/` |
 | Deep Learning | Core | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
@@ -374,6 +406,7 @@ Specialization track adalah jalur spesialisasi, bukan course tunggal. Track dapa
 | Under-development | File/draft bisa ada, tetapi route peserta belum diarahkan ke konten aktif |
 | Placeholder | Card UI ada, tetapi belum ada route/konten course aktif |
 | Scaffold aktif | Route peserta sudah diarahkan ke `course-placeholder.html` dengan outline awal |
+| Sebagian aktif + scaffold | Sebagian module sudah final, module sisanya memakai scaffold manifest |
 
 ---
 

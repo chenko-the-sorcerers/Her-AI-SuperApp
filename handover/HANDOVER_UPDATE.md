@@ -3,7 +3,7 @@
 **Tanggal:** 10 Juli 2026
 **Branch:** `design`
 **Status:** sudah commit lokal, belum push
-**Commit fitur terakhir:** `e750127 fix: link ai modern card to materi`
+**Commit fitur terakhir:** `280c087 refactor: standardize curriculum placeholders`
 **Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
@@ -17,10 +17,72 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ---
 
+## Current Snapshot - 10 Juli 2026
+
+State terbaru setelah checkpoint `280c087`:
+
+- Working tree terakhir bersih setelah commit.
+- Route checker terakhir: `Total: 110 | 110 passed | 0 failed`.
+- Course aktif final yang harus dijaga:
+  - AI Modern: `#/participant-ai-modern`, `#/participant-ai-modern-practice`, `#/participant-ai-modern-quiz`, `#/participant-ai-modern-discussion`
+  - Math for AI: `#/participant-ai-lab-math` plus lesson/practice/quiz/discussion
+  - Machine Learning: `#/participant-ai-lab-ml` plus 8 chapter, latihan, kuis, diskusi
+  - Python untuk AI: `#/participant-ai-python` plus practice/quiz/discussion
+  - Pengantar AI: `#/participant-ai-intro` plus practice/quiz/discussion
+  - CV/NLP route aktif tetap aman
+- Course/module belum final memakai reusable scaffold:
+  - File HTML: `pages/frontend/fellow-dashboard/course-placeholder.html`
+  - Manifest: `js/frontend/fellow-dashboard/course-placeholder.js`
+  - Source of truth data: `COURSE_SCAFFOLDS`
+- Route scaffold AI Fundamentals yang baru aktif:
+  - `#/participant-ai-reasoning`
+  - `#/participant-ai-evaluation`
+  - `#/participant-ai-evolution`
+- Query scaffold standar:
+  - `#/participant-ai-lab-gen`
+  - `#/participant-ai-lab-gen?activity=latihan`
+  - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`
+- Fallback sudah dicek:
+  - `activity` invalid fallback ke `materi`
+  - `module` invalid fallback ke overview route utama
+
+Checkpoint commit lokal terbaru:
+
+```text
+280c087 refactor: standardize curriculum placeholders
+93e4275 feat: activate math for ai course
+c9a2786 feat: activate ai modern activities
+7f823b7 docs: add latest course checkpoint to gemini
+086d511 docs: update handover activity tabs checkpoint
+e750127 fix: link ai modern card to materi
+a93e917 fix: activate ai modern materi route
+ebe0256 fix: keep scaffold activity tabs on course page
+```
+
+Verifikasi terakhir yang sudah lulus:
+
+```text
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+git diff --check
+node scripts/check-participant-routes.mjs
+```
+
+Smoke test browser terakhir:
+
+- `#/participant-ai-lab-gen` render overview Generative AI scaffold.
+- `#/participant-ai-lab-gen?activity=latihan` render tab Latihan.
+- `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis` render detail module Prompting Workflow + tab Kuis.
+- `#/participant-ai-reasoning`, `#/participant-ai-evaluation`, dan `#/participant-ai-evolution` render scaffold, bukan 404.
+- Regression route final `#/participant-ai-modern`, `#/participant-ai-lab-math`, `#/participant-ai-lab-ml`, dan `#/participant-ai-python` tetap render.
+
+---
+
 ## Update 10 Juli 2026 - Full Curriculum Placeholder Scaffold
 
 Update lanjutan sesi ini:
 
+- Commit lokal: `280c087 refactor: standardize curriculum placeholders`.
 - `js/frontend/fellow-dashboard/course-placeholder.js` sekarang menjadi manifest tunggal `COURSE_SCAFFOLDS` untuk course/track/module yang belum final.
 - Math for AI sudah dihapus dari manifest scaffold karena route final Math aktif di `foundation-core-ai/math-for-ai/`.
 - Setiap module scaffold punya metadata minimal: `slug`, `title`, `summary`, `materi`, `latihan`, `kuis`, dan `diskusi`.
@@ -33,12 +95,30 @@ Update lanjutan sesi ini:
   - `#/participant-ai-evaluation`
   - `#/participant-ai-evolution`
 - Card AI Fundamentals untuk Reasoning, Evaluation, dan Evolution of AI sekarang berupa link route, bukan button non-route.
+- `index.html` cache buster diperbarui:
+  - `course-placeholder.js?v=20260710-full-scaffold-manifest`
+  - `router.js?v=20260710-ai-fundamentals-scaffold`
 
 Aturan tim konten:
 
 - Course/module belum final tidak boleh membuat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`.
 - Isi dulu manifest `COURSE_SCAFFOLDS` di `course-placeholder.js`.
 - File final baru dibuat kalau konten activity sudah benar-benar siap dan route akan dipindahkan dari `course-placeholder.html`.
+
+Verifikasi checkpoint ini:
+
+```text
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+git diff --check
+node scripts/check-participant-routes.mjs
+```
+
+Hasil route checker:
+
+```text
+Total: 110 | 110 passed | 0 failed
+```
 
 ---
 
@@ -79,7 +159,7 @@ Update lanjutan sesi ini:
   - `heraiAiModernQuizAnswers`
   - `heraiAiModernDiscussion`
 
-Checkpoint lokal terbaru, sudah commit dan belum push:
+Checkpoint lokal pada sesi activity tabs tersebut, sudah commit dan belum push:
 
 ```text
 a56f051 refactor: standardize scaffold activity tabs
@@ -99,7 +179,8 @@ Yang sudah dilakukan:
   - `#/participant-ai-lab-gen?activity=kuis`
   - `#/participant-ai-lab-gen?activity=diskusi`
 - Tab scaffold tidak lagi melempar peserta ke `#/participant-under-development`; peserta tetap berada di halaman course scaffold yang sama sambil melihat placeholder activity yang sesuai.
-- `index.html` cache buster `course-placeholder.js` diperbarui ke `20260710-scaffold-tabs-query`.
+- `index.html` cache buster `course-placeholder.js` saat itu diperbarui ke `20260710-scaffold-tabs-query`.
+- Catatan terbaru: cache buster ini sudah superseded oleh `20260710-full-scaffold-manifest` pada checkpoint `280c087`.
 - Route materi `#/participant-ai-modern` di `js/router.js` sudah diaktifkan ke file canonical:
   `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/materi.html`.
 - Link card `Konsep AI Modern` di `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html` sudah diperbaiki dari `#/participant-under-development` menjadi `#/participant-ai-modern`.
@@ -123,7 +204,7 @@ node scripts/check-participant-routes.mjs
 git diff --check
 ```
 
-Hasil route checker:
+Hasil route checker saat checkpoint ini:
 
 ```text
 Total: 107 | 107 passed | 0 failed
@@ -176,7 +257,7 @@ Catatan supaya tidak salah baca sejarah:
 - Commit itu sudah dikoreksi/superseded oleh `3f238a7`.
 - Source of truth detail rename dan routing ada di `handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md`.
 
-Verifikasi terakhir:
+Verifikasi terakhir pada checkpoint filesystem ini:
 
 ```text
 node --check js/router.js
@@ -187,7 +268,7 @@ node scripts/check-participant-routes.mjs
 git diff --check
 ```
 
-Hasil route checker:
+Hasil route checker saat checkpoint filesystem ini:
 
 ```text
 Total: 107 | 107 passed | 0 failed
