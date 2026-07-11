@@ -53,7 +53,7 @@
     function runCode(playId) {
         if (!pyodideReady || !pyodideInstance) return;
         var editor = document.querySelector('#play-' + playId + ' .py-editor');
-        console.log("DEBUG_SP: sourcePath=", module?.sourcePath);
+        
         if (!editor || !output) return;
         var code = editor.value;
         output.className = 'py-output visible';
@@ -1273,9 +1273,9 @@ var SOURCE_VISUALS = {
                 // 7. Phase layout — wrap source content, add fase badges
                 try {
                     // Debug: check HTML before phaseLayout
-                    console.log("DEBUG pre-phaseLayout: children=" + container.children.length + " textLen=" + container.textContent.length + " hasH1=" + (!!container.querySelector('h1')) + " h2count=" + container.querySelectorAll('h2').length);
+                    
                     phaseLayout(container);
-                    console.log("DEBUG post-phaseLayout: children=" + container.children.length + " h2count=" + container.querySelectorAll('h2').length);
+                    
                 } catch (e) { console.error("phaseLayout:", e); }
             })
             .catch(function () {
