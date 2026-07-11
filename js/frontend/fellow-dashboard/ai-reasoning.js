@@ -50,7 +50,7 @@
         },
         "concepts": [
             {"title": "Apa Itu Reasoning dalam AI?", "content": ["Dalam konteks LLM, <strong>reasoning</strong> adalah istilah praktis untuk menggambarkan kemampuan model menggunakan instruksi, konteks, pola yang dipelajari, langkah perantara, dan hasil sebelumnya untuk menghasilkan respons yang sesuai dengan tugas.", "LLM pada dasarnya bekerja dengan memprediksi token berikutnya. Namun, pola yang dipelajari dalam skala besar dapat menghasilkan perilaku seperti: mengikuti aturan, membandingkan alternatif, menghubungkan beberapa fakta, melakukan perhitungan bertahap, menyusun rencana, dan memperbaiki jawaban setelah menerima informasi baru."]},
-            {"title": "Tahapan Penalaran Sederhana", "diagram": ["1. Memahami permintaan", "2. Mengidentifikasi tujuan", "3. Mengambil informasi relevan", "4. Mengenali informasi yang hilang", "5. Menentukan hubungan antar informasi", "6. Menyusun langkah penyelesaian", "7. Menghasilkan hasil", "8. Memeriksa hasil"], "content": ["Model mental berikut dapat digunakan untuk membaca bagaimana AI menyelesaikan sebuah tugas. Setiap tahap saling terkait — melewatkan satu saja dapat membuat jawaban AI terlihat benar tetapi sebenarnya tidak lengkap atau menyesatkan."]},
+            {"title": "Tahapan Penalaran Sederhana", "diagram": ["Memahami permintaan", "Mengidentifikasi tujuan", "Mengambil informasi relevan", "Mengenali informasi yang hilang", "Menentukan hubungan antar informasi", "Menyusun langkah penyelesaian", "Menghasilkan hasil", "Memeriksa hasil"], "content": ["Model mental berikut dapat digunakan untuk membaca bagaimana AI menyelesaikan sebuah tugas. Setiap tahap saling terkait — melewatkan satu saja dapat membuat jawaban AI terlihat benar tetapi sebenarnya tidak lengkap atau menyesatkan."]},
             {"title": "Empat Elemen Penting", "table": {"headers": ["Elemen", "Pengertian", "Contoh"], "rows": [["Fakta", "Informasi yang diberikan atau sudah diverifikasi", "Peserta berjumlah 60 orang"], ["Asumsi", "Informasi yang dianggap benar agar proses dapat dilanjutkan", "Semua peserta menerima satu paket konsumsi"], ["Langkah", "Operasi atau proses yang dilakukan", "60 \u00d7 Rp35.000"], ["Kesimpulan", "Hasil yang ditarik dari fakta dan langkah", "Anggaran cukup dengan sisa Rp650.000"]]}, "content": ["Empat elemen berikut sering tercampur dalam jawaban AI. Membedakannya adalah keterampilan dasar untuk menilai kualitas reasoning."]}
         ],
         "flow": [
@@ -1213,6 +1213,27 @@
 
     function enhanceSourceMaterialForCanvas(container, chapter) {
         if (!container) return;
+
+        // Hapus module-level headings dari source (Deskripsi Modul, Tujuan Pembelajaran, Peta Pembelajaran)
+        // karena hanya relevan di level module, bukan per-chapter
+        var moduleHeadings = ["deskripsi modul", "tujuan pembelajaran", "peta pembelajaran"];
+        container.querySelectorAll("h2").forEach(function (h2) {
+            var text = (h2.textContent || "").toLowerCase().trim();
+            if (moduleHeadings.some(function (kw) { return text.indexOf(kw) !== -1; })) {
+                var next = h2.nextElementSibling;
+                while (next && !next.matches("h1, h2, hr")) {
+                    var toRemove = next;
+                    next = next.nextElementSibling;
+                    toRemove.remove();
+                }
+                h2.remove();
+                // Hapus <hr> setelah heading jika ada
+                if (next && next.matches("hr")) {
+                    next.remove();
+                }
+            }
+        });
+
         container.querySelectorAll("table").forEach(function (table) {
             if (!table.parentElement.classList.contains("reasoning-scaffold-table-wrap")) {
                 var scroll = document.createElement("div");
@@ -1413,78 +1434,66 @@
         return '<section class="reasoning-prompt-section">\n                <div class="reasoning-code-block">\n                    <div><i class="fas fa-terminal" aria-hidden="true"></i><span>Prompt Pattern</span><button type="button" class="reasoning-copy-btn" data-copy-content="' + escapeHtml(lines.join("\n")) + '" aria-label="Salin prompt"><i class="fas fa-copy"></i></button></div>\n                    <pre><code>' + cleanLines.join("\n") + '</code></pre>\n                </div>\n            </section>';
     }
 
+    function renderStageWrap(id, label, icon, content, open) {
+        return '<section class="reasoning-stage-group" data-stage="' + id + '">\n            <button type="button" class="reasoning-stage-toggle" aria-expanded="' + (open ? "true" : "false") + '">\n                <i class="' + icon + '" aria-hidden="true"></i>\n                <span>' + escapeHtml(label) + '</span>\n                <i class="fas fa-chevron-down reasoning-stage-arrow" aria-hidden="true"></i>\n            </button>\n            <div class="reasoning-stage-body"' + (open ? "" : ' hidden') + '>' + content + '</div>\n        </section>';
+    }
+
     function renderChapterContent(chapter, chapterNumber, total, visualConfig) {
-        var parts = [];
+        // Group sections into progressive stages
+        var stages = [];
+        var buf = {};
 
-        // 1. Hook
-        if (chapter.hook) {
-            parts.push(finalRenderHookSection(chapter.hook));
-        }
-
-        // 2. Opening / Pembuka
+        // Stage 1: Pembuka (open by default)
+        buf = [];
+        if (chapter.hook) buf.push(finalRenderHookSection(chapter.hook));
         if (chapter.opening && chapter.opening.length) {
-            parts.push(finalRenderOpeningSection(chapter.opening));
-            if (chapter.recallVsReasoningTable) {
-                parts.push(finalRenderComparisonTable(chapter.recallVsReasoningTable));
-            }
+            buf.push(finalRenderOpeningSection(chapter.opening));
+            if (chapter.recallVsReasoningTable) buf.push(finalRenderComparisonTable(chapter.recallVsReasoningTable));
         }
+        stages.push(renderStageWrap("pembuka", "Mulai Belajar", "fas fa-hand-pointer", buf.join("\n"), true));
 
-        // 3. Analogy
+        // Stage 2: Konsep Dasar (collapsed)
+        buf = [];
         if (chapter.analogy) {
-            parts.push('<section class="reasoning-scaffold-callout" data-section="konsep"><i class="fas fa-lightbulb" aria-hidden="true"></i><p><strong>Analogi:</strong> ' + escapeHtml(chapter.analogy) + '</p></section>');
+            buf.push('<section class="reasoning-scaffold-callout" data-section="konsep"><i class="fas fa-lightbulb" aria-hidden="true"></i><p><strong>Analogi:</strong> ' + escapeHtml(chapter.analogy) + '</p></section>');
         }
-
-        // 4. Concepts / Penjelasan
         if (chapter.concepts && chapter.concepts.length) {
-            parts.push(finalRenderConceptSections(chapter.concepts));
+            buf.push(finalRenderConceptSections(chapter.concepts));
         }
+        stages.push(renderStageWrap("konsep", "Pahami Konsep Dasar", "fas fa-book-open", buf.join("\n"), false));
 
-        // 5. Flow Diagram
+        // Stage 3: Visual & Contoh (collapsed)
+        buf = [];
         if (chapter.flow && chapter.flow.length) {
-            parts.push('<section class="reasoning-visual-board" data-section="visual" aria-label="Alur reasoning">\n                <div class="reasoning-visual-head"><i class="fas fa-route" aria-hidden="true"></i><div><span>Visual reasoning flow</span><h3>Alur pikir yang bisa dilacak</h3></div></div>\n                ' + renderFlow(chapter.flow) + '\n            </section>');
+            buf.push('<section class="reasoning-visual-board" data-section="visual" aria-label="Alur reasoning">\n                <div class="reasoning-visual-head"><i class="fas fa-route" aria-hidden="true"></i><div><span>Visual reasoning flow</span><h3>Alur pikir yang bisa dilacak</h3></div></div>\n                ' + renderFlow(chapter.flow) + '\n            </section>');
         }
-
-        // 6. Example / Contoh Terurai
-        if (chapter.example) {
-            parts.push(finalRenderExampleSection(chapter.example));
-        }
-
-        // 7. Interactive Exploration / Lab
+        if (chapter.example) buf.push(finalRenderExampleSection(chapter.example));
         if (visualConfig && visualConfig.options) {
-            parts.push('<div data-section="eksplorasi">' + renderSourceVisualLab(visualConfig) + '</div>');
+            buf.push('<div data-section="eksplorasi">' + renderSourceVisualLab(visualConfig) + '</div>');
         }
+        stages.push(renderStageWrap("visual", "Visual & Contoh", "fas fa-chart-simple", buf.join("\n"), false));
 
-        // 8. Quick Check
-        if (chapter.quickCheck) {
-            parts.push(finalRenderQuickCheckSection(chapter.quickCheck));
-        }
-
-        // 9. LLM Example
+        // Stage 4: Uji Pemahaman (collapsed)
+        buf = [];
+        if (chapter.quickCheck) buf.push(finalRenderQuickCheckSection(chapter.quickCheck));
         if (chapter.llmExample) {
-            parts.push('<section class="reasoning-scaffold-example" data-section="contoh">\n                <span>Contoh AI/LLM</span>\n                <h3>Bagaimana konsep ini muncul di produk AI</h3>\n                <p>' + escapeHtml(chapter.llmExample) + '</p>\n            </section>');
+            buf.push('<section class="reasoning-scaffold-example" data-section="contoh">\n                <span>Contoh AI/LLM</span>\n                <h3>Bagaimana konsep ini muncul di produk AI</h3>\n                <p>' + escapeHtml(chapter.llmExample) + '</p>\n            </section>');
         }
+        if (chapter.prompt && chapter.prompt.length) buf.push(finalRenderPromptSection(chapter.prompt));
+        if (chapter.challenge) buf.push(finalRenderChallengeSection(chapter.challenge, chapterNumber));
+        stages.push(renderStageWrap("check", "Latihan & Refleksi", "fas fa-pen-to-square", buf.join("\n"), false));
 
-        // 10. Prompt Pattern
-        if (chapter.prompt && chapter.prompt.length) {
-            parts.push(finalRenderPromptSection(chapter.prompt));
-        }
-
-        // 11. Mini Challenge
-        if (chapter.challenge) {
-            parts.push(finalRenderChallengeSection(chapter.challenge, chapterNumber));
-        }
-
-        // 12. Common Mistakes + Best Practices
+        // Stage 5: Kesimpulan (open by default)
+        buf = [];
         if ((chapter.mistakes && chapter.mistakes.length) || (chapter.bestPractices && chapter.bestPractices.length)) {
-            parts.push(finalRenderMistakesPractices(chapter.mistakes || [], chapter.bestPractices || []));
+            buf.push(finalRenderMistakesPractices(chapter.mistakes || [], chapter.bestPractices || []));
         }
-
-        // 13. Ringkasan
         if (chapter.learningOutcomes && chapter.learningOutcomes.length) {
-            parts.push(finalRenderSummarySection(chapter.learningOutcomes, chapter.transition, chapterNumber, total));
+            buf.push(finalRenderSummarySection(chapter.learningOutcomes, chapter.transition, chapterNumber, total));
         }
+        stages.push(renderStageWrap("ringkasan", "Kesimpulan", "fas fa-flag-checkered", buf.join("\n"), true));
 
-        return parts.join("\n");
+        return stages.join("\n");
     }
 
     function setupViewToggle(container) {
@@ -1649,6 +1658,17 @@
             button.addEventListener("click", function () {
                 var section = container.querySelector('[data-section="' + button.dataset.jump + '"]');
                 if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+    }
+
+    function setupStageGroups(container) {
+        container.querySelectorAll(".reasoning-stage-toggle").forEach(function (toggle) {
+            toggle.addEventListener("click", function () {
+                var body = toggle.nextElementSibling;
+                var isOpen = toggle.getAttribute("aria-expanded") === "true";
+                toggle.setAttribute("aria-expanded", String(!isOpen));
+                if (body) body.hidden = isOpen;
             });
         });
     }
@@ -1821,6 +1841,7 @@
         setupChallengeInteraction(container);
         setupVisualNav(container);
         setupCopyButtons(container);
+        setupStageGroups(container);
 
         loadSourceHtml(module.sourcePath, "reasoning-scaffold-rich-content", module);
 
