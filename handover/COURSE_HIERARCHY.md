@@ -144,7 +144,7 @@ Ringkasan state kurikulum saat ini:
 - AI Fundamentals & Advanced sebagian aktif:
   - Pengantar AI aktif
   - Python untuk AI aktif
-  - Konsep AI Modern aktif untuk materi, latihan, kuis, dan diskusi
+  - Konsep AI Modern aktif final terbaru untuk materi, latihan, kuis, dan diskusi; rebuild 12 Juli 2026 berisi 4 chapter, 13 latihan, 20 soal, dan 4 prompt diskusi
   - Reasoning aktif final canonical; Evaluation aktif final canonical; Evolution of AI aktif final canonical
 - Generative AI tetap scaffold, tetapi manifest `COURSE_SCAFFOLDS` sudah diperkaya dengan 5 module draft dan activity `Materi -> Latihan -> Kuis -> Diskusi` per module.
 - Math for AI aktif final dan tidak lagi masuk manifest scaffold.
@@ -435,7 +435,7 @@ AI Fundamentals & Advanced berisi module berikut:
 |---|---|---|
 | Pengantar AI | Aktif | `#/participant-ai-intro` |
 | Python untuk AI | Aktif | `#/participant-ai-python` |
-| Konsep AI Modern | Aktif | `#/participant-ai-modern` |
+| Konsep AI Modern | Aktif final terbaru | `#/participant-ai-modern` |
 | Reasoning | Aktif final canonical | `#/participant-ai-reasoning` |
 | Evaluation | Aktif final canonical | `#/participant-ai-evaluation` |
 | Evolution of AI | Aktif final canonical | `#/participant-ai-evolution` |

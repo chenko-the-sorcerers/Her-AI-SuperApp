@@ -6647,6 +6647,445 @@
     color: #171827;
 }
 
+/* Konsep AI Modern rebuild */
+.ai-modern-chapter {
+    color: #171827;
+    display: grid;
+    gap: 22px;
+}
+
+.ai-modern-chapter-hero,
+.ai-modern-section,
+.ai-modern-active {
+    background: #fff;
+    border: 1px solid rgba(244,143,188,.26);
+    border-radius: 18px;
+    box-shadow: 0 16px 42px rgba(35, 20, 31, .06);
+    padding: 24px;
+}
+
+.ai-modern-chapter-hero {
+    background: linear-gradient(135deg, #fff7fb, #fff);
+}
+
+.ai-modern-chapter-hero > span,
+.ai-modern-section h3,
+.ai-modern-active span,
+.ai-modern-practice-item small,
+.ai-modern-quiz-top span {
+    color: #f63392;
+    font-weight: 900;
+}
+
+.ai-modern-chapter-hero h2,
+.ai-modern-section h3,
+.ai-modern-active h3 {
+    color: #171827;
+    margin: 0 0 12px;
+}
+
+.ai-modern-chapter-hero p,
+.ai-modern-section p,
+.ai-modern-active p,
+.ai-modern-practice-body p,
+.ai-modern-discussion-prompt p,
+.ai-modern-discussion-prompt small {
+    color: #51596d;
+    line-height: 1.7;
+}
+
+.ai-modern-objectives {
+    background: #fff;
+    border: 1px solid rgba(246,51,146,.18);
+    border-radius: 16px;
+    margin-top: 18px;
+    padding: 18px;
+}
+
+.ai-modern-objectives ul,
+.ai-modern-checklist {
+    display: grid;
+    gap: 10px;
+    margin: 12px 0 0;
+    padding: 0;
+}
+
+.ai-modern-objectives li,
+.ai-modern-checklist li {
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.ai-modern-checklist i {
+    color: #f63392;
+    margin-top: 4px;
+}
+
+.ai-modern-question,
+.ai-modern-callout,
+.ai-modern-warning,
+.ai-modern-summary,
+.ai-modern-feedback,
+.ai-modern-loading,
+.ai-modern-error {
+    align-items: flex-start;
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.18);
+    border-radius: 16px;
+    display: flex;
+    gap: 14px;
+    padding: 16px;
+}
+
+.ai-modern-question i,
+.ai-modern-callout i,
+.ai-modern-warning i,
+.ai-modern-error i {
+    color: #f63392;
+    margin-top: 4px;
+}
+
+.ai-modern-flow,
+.ai-modern-pipeline,
+.ai-modern-architecture {
+    align-items: stretch;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    margin: 18px 0;
+}
+
+.ai-modern-flow span,
+.ai-modern-pipeline span,
+.ai-modern-architecture span {
+    align-items: center;
+    background: #fffcfd;
+    border: 1px solid rgba(246,51,146,.2);
+    border-radius: 16px;
+    color: #171827;
+    display: flex;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 64px;
+    padding: 12px;
+    text-align: center;
+}
+
+.ai-modern-flow i {
+    align-self: center;
+    color: #f63392;
+    justify-self: center;
+}
+
+.ai-modern-flow-vertical,
+.ai-modern-wide-architecture {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.ai-modern-card-grid,
+.ai-modern-comparison {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    margin: 18px 0;
+}
+
+.ai-modern-card-grid article,
+.ai-modern-comparison article,
+.ai-modern-discussion-prompt {
+    background: #fff;
+    border: 1px solid rgba(244,143,188,.26);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.ai-modern-card-grid h4,
+.ai-modern-comparison strong,
+.ai-modern-discussion-prompt h3 {
+    color: #171827;
+    margin: 0 0 8px;
+}
+
+.ai-modern-comparison span {
+    color: #51596d;
+    display: block;
+    line-height: 1.6;
+}
+
+.ai-modern-table-wrap {
+    border-radius: 16px;
+    margin: 18px 0;
+    overflow-x: auto;
+}
+
+.ai-modern-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 680px;
+    width: 100%;
+}
+
+.ai-modern-table th,
+.ai-modern-table td {
+    background: #fff;
+    border-bottom: 1px solid rgba(244,143,188,.26);
+    color: #171827;
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.ai-modern-table th {
+    background: #fff7fb;
+    color: #9d3668;
+    font-weight: 900;
+}
+
+.ai-modern-code {
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.22);
+    border-radius: 16px;
+    color: #171827;
+    overflow-x: auto;
+    padding: 16px;
+}
+
+.ai-modern-code code {
+    color: #171827;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    line-height: 1.65;
+}
+
+.ai-modern-quote {
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.2);
+    border-radius: 16px;
+    color: #171827;
+    font-weight: 800;
+    margin: 18px 0;
+    padding: 18px;
+}
+
+.ai-modern-quote cite {
+    color: #6f7282;
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.ai-modern-active {
+    display: grid;
+    gap: 16px;
+}
+
+.ai-modern-active button,
+.ai-modern-cta,
+.ai-modern-practice-progress,
+.ai-modern-quiz-nav button,
+.ai-modern-quiz-map button,
+.ai-modern-discussion-prompt button {
+    align-items: center;
+    background: #f63392;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: 900;
+    gap: 8px;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    text-decoration: none;
+}
+
+.ai-modern-feedback[hidden] {
+    display: none;
+}
+
+.ai-modern-glossary {
+    display: grid;
+    gap: 10px;
+}
+
+.ai-modern-glossary dt {
+    color: #171827;
+    font-weight: 900;
+}
+
+.ai-modern-glossary dd {
+    color: #51596d;
+    margin: 0;
+}
+
+.ai-modern-references {
+    background: #fffcfd;
+    border-radius: 16px;
+    padding: 14px;
+}
+
+.ai-modern-practice-progress {
+    margin-bottom: 18px;
+    width: fit-content;
+}
+
+.ai-modern-practice-body {
+    display: grid;
+    gap: 14px;
+    padding: 0 20px 20px;
+}
+
+.ai-modern-practice-body details {
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.18);
+    border-radius: 16px;
+    color: #51596d;
+    padding: 14px;
+}
+
+.ai-modern-practice-body summary {
+    color: #171827;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.ai-modern-quiz-app {
+    display: grid;
+    gap: 16px;
+}
+
+.ai-modern-quiz-top {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.ai-modern-quiz-card {
+    background: #fff;
+    border: 1px solid rgba(244,143,188,.26);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.ai-modern-quiz-options {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.ai-modern-quiz-options button {
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid rgba(244,143,188,.3);
+    border-radius: 16px;
+    color: #171827;
+    cursor: pointer;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 34px minmax(0, 1fr);
+    padding: 14px;
+    text-align: left;
+}
+
+.ai-modern-quiz-options button span,
+.ai-modern-discussion-prompt > span {
+    align-items: center;
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.2);
+    border-radius: 999px;
+    color: #f63392;
+    display: inline-flex;
+    font-weight: 900;
+    height: 34px;
+    justify-content: center;
+    width: 34px;
+}
+
+.ai-modern-quiz-options button.is-selected {
+    background: #fff7fb;
+    border-color: rgba(246,51,146,.46);
+}
+
+.ai-modern-quiz-options button.is-correct {
+    background: #f0fff7;
+    border-color: rgba(40,189,119,.36);
+}
+
+.ai-modern-quiz-options button.is-wrong {
+    background: #fff1f2;
+    border-color: rgba(225,29,72,.26);
+}
+
+.ai-modern-quiz-nav,
+.ai-modern-quiz-map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ai-modern-quiz-nav button[disabled],
+.ai-modern-quiz-map button[disabled],
+.ai-modern-quiz-options button[disabled] {
+    cursor: not-allowed;
+    opacity: .72;
+}
+
+.ai-modern-quiz-map button {
+    background: #fff;
+    border: 1px solid rgba(244,143,188,.32);
+    color: #6f7282;
+    min-width: 42px;
+    padding: 0 12px;
+}
+
+.ai-modern-quiz-map button.active,
+.ai-modern-quiz-map button.answered {
+    background: #f63392;
+    color: #fff;
+}
+
+.ai-modern-discussion-prompts {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    margin-bottom: 22px;
+}
+
+.ai-modern-discussion-prompt {
+    display: grid;
+    gap: 10px;
+}
+
+.ai-modern-discussion-prompt div {
+    background: #fff7fb;
+    border-radius: 14px;
+    color: #51596d;
+    line-height: 1.55;
+    padding: 10px;
+}
+
+@media (max-width: 700px) {
+    .ai-modern-chapter-hero,
+    .ai-modern-section,
+    .ai-modern-active,
+    .ai-modern-quiz-card {
+        padding: 18px;
+    }
+
+    .ai-modern-flow i {
+        display: none;
+    }
+
+    .ai-modern-quiz-options button {
+        grid-template-columns: 30px minmax(0, 1fr);
+    }
+}
+
 .ai-evolution-hero,
 .ai-evolution-outcomes,
 .ai-evolution-module-card,

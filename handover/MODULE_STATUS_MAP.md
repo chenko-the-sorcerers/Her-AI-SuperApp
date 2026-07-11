@@ -19,6 +19,18 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ## Checkpoint Terbaru
 
+Checkpoint Konsep AI Modern rebuild 12 Juli 2026:
+
+- `03 - Konsep AI Modern` tetap aktif final canonical di route stabil `#/participant-ai-modern`, `#/participant-ai-modern-practice`, `#/participant-ai-modern-quiz`, dan `#/participant-ai-modern-discussion`.
+- Controller tetap `js/frontend/fellow-dashboard/ai-modern.js`; route tidak diubah.
+- Sumber materi baru: `D:\Downloads\deep-research-report-konsep-ai-modern.md`.
+- Snapshot lama: `materi/lama/konsep-ai-modern.md`; sumber baru: `materi/baru/konsep-ai-modern-baru.md`; snapshot final: `materi/konsep-ai-modern.md`.
+- Materi final tetap 4 chapter: Foundation Models, Transformer, AI Agents, Sistem AI Masa Kini.
+- Latihan final: 12 latihan utama + 1 capstone, tersimpan di `heraiAiModernPractice`.
+- Kuis final: 20 soal, passing score 75%, single attempt, tersimpan di `heraiAiModernQuizDone`, `heraiAiModernQuizScore`, dan `heraiAiModernQuizAnswers`.
+- Diskusi final: 4 prompt utama dengan thread dan reply, tersimpan di `heraiAiModernDiscussion`.
+- Styling baru scoped `ai-modern-*`; cache buster `modules.css` dan `ai-modern.js` sudah dibump di `index.html`.
+
 Checkpoint Evolution of AI canonical 11 Juli 2026:
 
 - `06 - Evolution of AI` aktif final canonical di route stabil `#/participant-ai-evolution`.
@@ -49,6 +61,7 @@ Checkpoint Evaluation AI canonical 11 Juli 2026:
 
 Checkpoint final terbaru 11 Juli 2026:
 
+- `03 - Konsep AI Modern` aktif final terbaru hasil rebuild 12 Juli 2026 dengan 4 chapter, 13 latihan, 20 soal kuis, dan 4 prompt diskusi.
 - `01 - Pengantar AI` aktif final terbaru. Kuisnya sekarang full-card clickable, single attempt, dan locked state jelas dengan kartu benar/salah setelah submit.
 - `02 - Python untuk AI` aktif final terbaru dengan 13 chapter runtime, panel `Belajar Aktif` per chapter, latihan Pyodide plus mini project preprocessing teks, kuis 15 soal full-card clickable, dan diskusi final. Audit terbaru memperbaiki string newline pada mini project latihan nomor 7 agar Run Code Pyodide berhasil.
 - UX terbaru Python: CTA mini challenge di panel `Belajar Aktif` sekarang eksplisit menunjuk `Latihan N - Topik` yang relevan, memakai hash query `#/participant-ai-python-practice?focus=play-N`. Kartu latihan canonical memiliki `data-practice-focus="play-N"` dan akan diberi highlight + catatan konteks saat dibuka dari materi.
@@ -283,7 +296,7 @@ pages/frontend/fellow-dashboard/
 |---|---|---|---|---|---|---|
 | 01 - Pengantar AI | Aktif final terbaru | Aktif, audit sosio-teknis | Aktif, 10 soal full-card clickable single attempt dengan state correct/wrong/locked | Aktif, skenario etika | `settings.js` | Route sub-topik tetap memakai `lesson.html`; konten final sinkron dengan `materi/pengantar-ai.md`; jawaban peserta tersimpan di `heraiAiIntroQuizAnswers` untuk restore state locked; route/layout besar tidak berubah |
 | 02 - Python untuk AI | Aktif final terbaru, 13 chapter + panel Belajar Aktif | Aktif, Pyodide + mini project preprocessing teks | Aktif, 15 soal full-card clickable single attempt | Aktif, prompt Python untuk AI | `ai-python-basic.js` | Rombak final dari `materi/baru/Pengembangan Materi Pemrograman Python untuk AI- Baru.md`; code block pink-light; route/layout tetap; snapshot di `materi/python-untuk-ai.md` |
-| 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
+| 03a - Konsep AI Modern | Aktif final terbaru, 4 chapter: Foundation Models, Transformer, AI Agents, Sistem AI Masa Kini | Aktif final, 12 latihan + 1 capstone | Aktif final, 20 soal, passing score 75% | Aktif final, 4 prompt utama | `ai-modern.js` | Rebuild 12 Juli 2026 dari `deep-research-report-konsep-ai-modern.md`; snapshot `materi/konsep-ai-modern.md` |
 | 04 - Reasoning | Aktif final baru, 5 chapter + visual flow/quick check + panel sumber utuh `Reasoning-baru.md` | Aktif final, 6 skenario step-by-step, masing-masing 3 textarea, navigator + save/edit/reset; referensi utuh setelah workspace | Aktif final, 15 soal one-at-a-time, navigator + answered counter, full-card single attempt; referensi utuh setelah workspace | Aktif final, sumber diskusi utuh + prompt/thread lokal | `ai-reasoning.js` + `04-reasoning/chapters/*-full.html` | Folder canonical `04-reasoning/`; checkpoint terbaru `8007acb`; konten sumber tidak dikompres dan bukan scaffold placeholder |
 | 05 - Evaluation | Aktif final canonical, 6 chapter | 15 latihan studi kasus | 24 soal, passing score 75% | 6 prompt refleksi | `ai-evaluation.js` | Route `#/participant-ai-evaluation`; folder `ai-advanced/05-evaluation/`; source `deep-research-report.md`; snapshot `materi/evaluation-ai.md` |
 | 06 - Evolution of AI | Aktif final canonical, 7 chapter | 16 latihan studi kasus | 21 soal, passing score 75% | 7 prompt refleksi | `ai-evolution.js` | Route `#/participant-ai-evolution`; folder `ai-advanced/06-evolution-of-ai/`; source `deep-research-report (1).md`; snapshot `materi/evolution-of-ai.md` |

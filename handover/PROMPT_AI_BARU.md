@@ -246,7 +246,7 @@ Foundation & Core AI
 ├── AI Fundamentals & Advanced   -> SEBAGIAN AKTIF
 │   ├── Pengantar AI             -> AKTIF
 │   ├── Python untuk AI          -> AKTIF
-│   ├── Konsep AI Modern         -> AKTIF
+│   ├── Konsep AI Modern         -> AKTIF FINAL TERBARU
 │   ├── Reasoning                -> AKTIF FINAL
 │   ├── Evaluation               -> AKTIF FINAL CANONICAL
 │   └── Evolution of AI          -> AKTIF FINAL CANONICAL
@@ -368,7 +368,7 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 1. Filesystem course catalog sudah final memakai category/domain langsung di bawah `pages/frontend/fellow-dashboard/`.
 2. Folder `course-catalog/` sempat dibuat di checkpoint lama, tetapi sudah superseded. Jangan dipakai lagi.
 3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
-4. Modul 3a (Konsep AI Modern) sudah aktif untuk materi, latihan, kuis, dan diskusi.
+4. Modul 3a (Konsep AI Modern) sudah aktif final terbaru untuk materi, latihan, kuis, dan diskusi. Rebuild 12 Juli 2026 memakai `deep-research-report-konsep-ai-modern.md`, snapshot `materi/konsep-ai-modern.md`, 4 chapter, 13 latihan, 20 soal kuis, dan 4 prompt diskusi.
 5. Math for AI sudah aktif dari draft Nazril dengan overview, lesson, latihan, kuis, dan diskusi.
 6. Reasoning, Evaluation, dan Evolution of AI sudah punya route final canonical. Jangan balikkan route aktif ke button non-route, `COURSE_SCAFFOLDS`, atau under-development.
 7. Generative AI punya file overview draft dan scaffold diperkaya; route utama masih scaffold/placeholder sampai konten final diaktifkan.

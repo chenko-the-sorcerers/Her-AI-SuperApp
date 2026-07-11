@@ -25,6 +25,67 @@ handover/REASONING_FINAL_CHECKPOINT.md
 
 ---
 
+## Checkpoint Lokal Terbaru - Konsep AI Modern Rebuild
+
+Commit lokal:
+`PENDING feat: rebuild modern ai concepts learning module`
+
+Yang dilakukan:
+- Merombak konten module `03 - Konsep AI Modern` berdasarkan `D:\Downloads\deep-research-report-konsep-ai-modern.md`.
+- Mempertahankan folder canonical, route publik, dan controller `js/frontend/fellow-dashboard/ai-modern.js`.
+- Membuat snapshot lama `materi/lama/konsep-ai-modern.md`, sumber baru `materi/baru/konsep-ai-modern-baru.md`, dan snapshot final `materi/konsep-ai-modern.md`.
+- Mengganti 4 chapter runtime existing tanpa mengubah nama file fetch: `01-materi.html`, `02-materi.html`, `03-materi.html`, `04-materi.html`.
+- Struktur chapter final: Foundation Models, Transformer, AI Agents, dan Sistem AI Masa Kini.
+- Mengubah latihan menjadi 12 latihan utama + 1 capstone dengan save/edit/reset dan restore dari `heraiAiModernPractice`.
+- Mengubah kuis menjadi 20 soal multiple choice progressive, full-card clickable, single attempt, passing score 75%, dan migrasi aman jika data jawaban lama tidak cocok jumlah soal.
+- Mengubah diskusi menjadi 4 prompt utama dengan konteks, posisi A/B, contoh kasus, thread, reply, timestamp, empty state, dan sanitasi output user.
+- Menambahkan style scoped `ai-modern-*` di `modules.css` dan bump cache buster `modules.css` serta `ai-modern.js` di `index.html`.
+- Tidak mengubah `js/router.js`, tidak menambahkan AI Modern ke `COURSE_SCAFFOLDS`, dan tidak membuat folder legacy.
+
+File penting:
+- `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/`
+- `js/frontend/fellow-dashboard/ai-modern.js`
+- `css/frontend/fellow-dashboard/modules.css`
+- `index.html`
+- `materi/lama/konsep-ai-modern.md`
+- `materi/baru/konsep-ai-modern-baru.md`
+- `materi/konsep-ai-modern.md`
+
+LocalStorage contract:
+- `heraiAiModernCurrentChapter`
+- `heraiAiModernPractice`
+- `heraiAiModernQuizDone`
+- `heraiAiModernQuizScore`
+- `heraiAiModernQuizAnswers`
+- `heraiAiModernDiscussion`
+
+Verifikasi:
+- `node --check js/router.js` -> passed
+- `node --check js/frontend/fellow-dashboard/ai-modern.js` -> passed
+- `node --check js/frontend/fellow-dashboard/course-placeholder.js` -> passed
+- `git diff --check` -> passed
+- `node scripts/check-participant-routes.mjs` -> Total: 113 | 0 failed
+- `rg -n "^(<<<<<<< .+|=======$|>>>>>>> .+)" .` -> no matches
+- scan token sitasi internal pada materi baru/final/runtime AI Modern -> no matches
+- scan `border-radius:\s*0|#8e91a0|#7c3aed` pada scope AI Modern/controller/modules.css -> no matches
+
+Smoke test:
+- HTTP smoke `#/participant-ai-modern` -> 200
+- HTTP smoke `#/participant-ai-modern-practice` -> 200
+- HTTP smoke `#/participant-ai-modern-quiz` -> 200
+- HTTP smoke `#/participant-ai-modern-discussion` -> 200
+- Browser interaction smoke desktop/mobile belum berhasil dijalankan dari tooling session ini karena Edge headless tidak menghasilkan artifact screenshot/DOM yang dapat diverifikasi.
+
+Catatan risiko:
+- Perlu review manual browser untuk save/edit/reset latihan, submit kuis, locked state, pembahasan, post/reply diskusi, dan mobile overflow.
+- `rg -n '<<<<<<<|=======|>>>>>>>' .` versi literal terlalu luas di repo ini karena menangkap separator komentar `=======`; gunakan pattern marker Git spesifik di atas untuk conflict marker.
+
+Next step:
+- Review UI di browser lokal pada empat route AI Modern.
+- Setelah stabil, push sesuai flow branch `design` dengan izin user.
+
+---
+
 ## Checkpoint Lokal Terbaru - Evolution of AI Canonical Final
 
 Commit lokal:
