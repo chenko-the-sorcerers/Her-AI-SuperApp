@@ -1398,8 +1398,8 @@
     }
 
     function renderChallengeSection(challenge, chapterNumber) {
-        var key = 'heraiAiReasoningChallenge_' + chapterNumber;
-        return '<section class="reasoning-challenge-workspace" data-section="challenge">\n                <div class="reasoning-challenge-head"><i class="fas fa-pen-ruler" aria-hidden="true"></i><div><span>Mini Challenge</span><h3>Latihan reflektif</h3></div></div>\n                <p class="reasoning-challenge-instruction">' + escapeHtml(challenge.instruction) + '</p>\n                <textarea class="reasoning-challenge-textarea" data-challenge-key="' + key + '" rows="5" placeholder="' + escapeHtml(challenge.placeholder) + '"></textarea>\n                <div class="reasoning-challenge-actions">\n                    <button type="button" class="btn-reasoning-save" data-challenge-save><i class="fas fa-floppy-disk" aria-hidden="true"></i> Simpan</button>\n                    <button type="button" class="btn-reasoning-reset" data-challenge-reset><i class="fas fa-rotate-left" aria-hidden="true"></i> Reset</button>\n                    <button type="button" class="btn-reasoning-example" data-challenge-example hidden><i class="fas fa-lightbulb" aria-hidden="true"></i> Lihat Contoh</button>\n                </div>\n                <div class="reasoning-challenge-example" data-challenge-example-content hidden><strong>Contoh:</strong><p>' + escapeHtml(challenge.example) + '</p></div>\n            </section>';
+        var key = 'heraiAiReasoningChallengeCh' + chapterNumber;
+        return '<section class="reasoning-challenge-workspace" data-section="challenge" data-challenge-workspace="' + key + '">\n                <div class="reasoning-challenge-head"><i class="fas fa-pen-ruler" aria-hidden="true"></i><div><span>Mini Challenge</span><h3>Latihan reflektif</h3></div></div>\n                <p class="reasoning-challenge-instruction">' + escapeHtml(challenge.instruction) + '</p>\n                <textarea class="reasoning-challenge-textarea" data-challenge-textarea="' + key + '" rows="5" placeholder="' + escapeHtml(challenge.placeholder) + '"></textarea>\n                <div class="reasoning-challenge-actions">\n                    <button type="button" class="btn-reasoning-save" data-challenge-save><i class="fas fa-floppy-disk" aria-hidden="true"></i> Simpan</button>\n                    <button type="button" class="btn-reasoning-edit" data-challenge-edit hidden><i class="fas fa-pen" aria-hidden="true"></i> Edit</button>\n                    <button type="button" class="btn-reasoning-reset" data-challenge-reset><i class="fas fa-rotate-left" aria-hidden="true"></i> Reset</button>\n                    <button type="button" class="btn-reasoning-example" data-challenge-example hidden><i class="fas fa-lightbulb" aria-hidden="true"></i> Lihat Contoh</button>\n                </div>\n                <div class="reasoning-challenge-example" data-challenge-example-content hidden><strong>Contoh:</strong><p>' + escapeHtml(challenge.example) + '</p></div>\n            </section>';
     }
 
     function renderMistakesPractices(mistakes, bestPractices) {
@@ -1582,36 +1582,53 @@
     }
 
     function setupChallengeInteraction(container) {
-        container.querySelectorAll("[data-challenge-key]").forEach(function (textarea) {
-            var key = textarea.dataset.challengeKey;
+        container.querySelectorAll("[data-challenge-textarea]").forEach(function (textarea) {
+            var key = textarea.dataset.challengeTextarea;
             var saved = localStorage.getItem(key);
-            if (saved) textarea.value = saved;
+            if (saved && saved !== "undefined") textarea.value = saved;
 
             var section = textarea.closest(".reasoning-challenge-workspace");
             if (!section) return;
             var saveBtn = section.querySelector("[data-challenge-save]");
+            var editBtn = section.querySelector("[data-challenge-edit]");
             var resetBtn = section.querySelector("[data-challenge-reset]");
             var exampleBtn = section.querySelector("[data-challenge-example]");
             var exampleContent = section.querySelector("[data-challenge-example-content]");
 
             if (saveBtn) saveBtn.addEventListener("click", function () {
                 localStorage.setItem(key, textarea.value);
-                saveBtn.classList.add("is-saved");
-                setTimeout(function () { saveBtn.classList.remove("is-saved"); }, 1500);
+                textarea.readOnly = true;
+                textarea.classList.add("is-saved");
+                saveBtn.hidden = true;
+                if (editBtn) editBtn.hidden = false;
+                if (exampleBtn) exampleBtn.hidden = false;
+            });
+
+            if (saved && saved !== "undefined") {
+                textarea.readOnly = true;
+                textarea.classList.add("is-saved");
+                saveBtn.hidden = true;
+                if (editBtn) editBtn.hidden = false;
+                if (exampleBtn) exampleBtn.hidden = false;
+            }
+
+            if (editBtn) editBtn.addEventListener("click", function () {
+                textarea.readOnly = false;
+                textarea.classList.remove("is-saved");
+                textarea.focus();
+                editBtn.hidden = true;
+                if (saveBtn) saveBtn.hidden = false;
             });
             if (resetBtn) resetBtn.addEventListener("click", function () {
+                if (textarea.value.trim() && !confirm("Reset jawabanmu? Jawaban yang sudah disimpan akan dihapus.")) return;
                 textarea.value = "";
+                textarea.readOnly = false;
+                textarea.classList.remove("is-saved");
                 localStorage.removeItem(key);
+                if (saveBtn) saveBtn.hidden = false;
+                if (editBtn) editBtn.hidden = true;
+                if (exampleBtn) exampleBtn.hidden = true;
             });
-            if (exampleBtn && exampleContent) {
-                if (textarea.value.trim()) exampleBtn.hidden = false;
-                textarea.addEventListener("input", function () {
-                    if (exampleBtn) exampleBtn.hidden = !textarea.value.trim();
-                });
-                exampleBtn.addEventListener("click", function () {
-                    if (exampleContent) exampleContent.hidden = !exampleContent.hidden;
-                });
-            }
         });
     }
 
@@ -2234,7 +2251,15 @@
                 </div>
                 <p><b>${escapeHtml(post.prompt)}</b></p>
                 <p>${escapeHtml(post.text)}</p>
-                <button type="button" data-reply="${escapeHtml(post.id)}"><i class="far fa-message"></i> Balas</button>
+                <button type="button" class="discussion-reply-btn" data-reply="${escapeHtml(post.id)}"><i class="far fa-message"></i> Balas</button>
+                <div class="discussion-reply-composer" data-reply-composer="${escapeHtml(post.id)}" hidden>
+                    <textarea rows="3" placeholder="Tulis balasanmu..." aria-label="Tulis balasan"></textarea>
+                    <div class="discussion-reply-actions">
+                        <button type="button" class="btn-reply-send" data-reply-send="${escapeHtml(post.id)}"><i class="fas fa-paper-plane" aria-hidden="true"></i> Kirim Balasan</button>
+                        <button type="button" class="btn-reply-cancel" data-reply-cancel="${escapeHtml(post.id)}"><i class="fas fa-times" aria-hidden="true"></i> Batal</button>
+                    </div>
+                    <p class="discussion-reply-validation" data-reply-validation="${escapeHtml(post.id)}" hidden><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Tulis balasan terlebih dahulu.</p>
+                </div>
                 <div class="discussion-replies">
                     ${replies.map(function (reply) {
                         return `<article><strong>Aisyah Putri</strong><small>${new Date(reply.createdAt).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })}</small><p>${escapeHtml(reply.text)}</p></article>`;
@@ -2245,15 +2270,50 @@
 
         list.querySelectorAll("[data-reply]").forEach(function (button) {
             button.addEventListener("click", function () {
-                const text = window.prompt("Tulis balasan singkat untuk thread ini:");
-                if (!text || !text.trim()) return;
-                const posts = getDiscussionPosts();
-                const target = posts.find(post => post.id === button.dataset.reply);
+                var postId = button.dataset.reply;
+                var composer = list.querySelector('[data-reply-composer="' + postId + '"]');
+                if (!composer) return;
+                var isOpen = !composer.hidden;
+                list.querySelectorAll("[data-reply-composer]").forEach(function (c) { c.hidden = true; });
+                if (isOpen) return;
+                composer.hidden = false;
+                var textarea = composer.querySelector("textarea");
+                if (textarea) textarea.focus();
+            });
+        });
+
+        list.querySelectorAll("[data-reply-send]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var postId = button.dataset.replySend;
+                var composer = list.querySelector('[data-reply-composer="' + postId + '"]');
+                if (!composer) return;
+                var textarea = composer.querySelector("textarea");
+                var validation = composer.querySelector('[data-reply-validation="' + postId + '"]');
+                if (!textarea || !textarea.value.trim()) {
+                    if (validation) validation.hidden = false;
+                    return;
+                }
+                if (validation) validation.hidden = true;
+                var posts = getDiscussionPosts();
+                var target = posts.find(function (post) { return post.id === postId; });
                 if (!target) return;
                 target.replies = Array.isArray(target.replies) ? target.replies : [];
-                target.replies.push({ text: text.trim(), createdAt: new Date().toISOString() });
+                target.replies.push({ text: textarea.value.trim(), createdAt: new Date().toISOString() });
                 saveDiscussionPosts(posts);
                 renderDiscussion(posts);
+            });
+        });
+
+        list.querySelectorAll("[data-reply-cancel]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var postId = button.dataset.replyCancel;
+                var composer = list.querySelector('[data-reply-composer="' + postId + '"]');
+                if (!composer) return;
+                var textarea = composer.querySelector("textarea");
+                if (textarea) textarea.value = "";
+                composer.hidden = true;
+                var replyBtn = list.querySelector('[data-reply="' + postId + '"]');
+                if (replyBtn) replyBtn.focus();
             });
         });
     }

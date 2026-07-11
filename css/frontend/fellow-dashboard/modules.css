@@ -2166,8 +2166,22 @@
         width: 100%;
     }
 
-    .reasoning-scaffold-page .course-scaffold-hero {
+    .reasoning-scaffold-page .course-scaffold-hero,
+    .reasoning-scaffold-page .lesson-hero {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .reasoning-scaffold-page .lesson-hero img {
+        max-width: 120px;
+        order: -1;
+    }
+
+    .reasoning-scaffold-page .lesson-hero.lesson-hero-compact {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .reasoning-scaffold-page .lesson-hero-copy {
+        min-width: 0;
     }
 
     .reasoning-scaffold-page .lesson-layout {
@@ -2201,8 +2215,40 @@
 @media (max-width: 560px) {
     .reasoning-scaffold-grid,
     .reasoning-scaffold-compare,
-    .reasoning-scaffold-checklist ul {
+    .reasoning-scaffold-checklist ul,
+    .reasoning-compare-grid,
+    .reasoning-mp-grid {
         grid-template-columns: 1fr;
+    }
+
+    .reasoning-visual-board .reasoning-scaffold-flow > div {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .reasoning-concept-card,
+    .reasoning-example-section,
+    .reasoning-hook-section,
+    .reasoning-opening-section,
+    .reasoning-quick-check,
+    .reasoning-mini-challenge,
+    .reasoning-scaffold-example,
+    .reasoning-scaffold-summary,
+    .reasoning-challenge-workspace,
+    .reasoning-summary-section,
+    .reasoning-mistakes-practices {
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .reasoning-example-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .reasoning-scaffold-table-wrap {
+        max-width: 100%;
+        overflow-x: auto;
     }
 
     .reasoning-scaffold-objectives,
@@ -2375,7 +2421,6 @@
 .reasoning-code-block pre {
     background: transparent;
     border: none;
-    border-radius: 0;
     margin: 0;
     overflow-x: auto;
     padding: 14px;
@@ -2384,7 +2429,6 @@
 .reasoning-code-block code {
     background: transparent;
     border: none;
-    border-radius: 0;
     padding: 0;
 }
 
@@ -3928,6 +3972,97 @@
 .reasoning-challenge-actions button:hover { background: #fff7fb; }
 .reasoning-challenge-actions .btn-reasoning-save { background: #f63392; border-color: #f63392; color: #fff; }
 .reasoning-challenge-actions .btn-reasoning-save:hover { background: #d91d78; }
+
+.reasoning-challenge-textarea.is-saved {
+    background: #f2fbf5;
+    border-color: #82c796;
+    color: #245d34;
+}
+
+.btn-reasoning-edit {
+    background: #ffffff;
+    border: 1px solid rgba(246,51,146,.3);
+    border-radius: 100px;
+    color: var(--fellow-pink, #f63392);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    padding: 10px 16px;
+}
+
+/* Inline reply composer */
+.discussion-reply-composer {
+    margin-top: 12px;
+    padding: 12px;
+    background: #fffcfd;
+    border: 1px solid rgba(244,143,188,.26);
+    border-radius: 16px;
+}
+
+.discussion-reply-composer textarea {
+    width: 100%;
+    min-height: 80px;
+    border: 1px solid rgba(244,143,188,.34);
+    border-radius: 14px;
+    padding: 12px;
+    font: inherit;
+    color: #171827;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.discussion-reply-composer textarea:focus {
+    border-color: rgba(246,51,146,.55);
+    outline: 3px solid rgba(246,51,146,.15);
+}
+
+.discussion-reply-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.discussion-reply-actions button {
+    align-items: center;
+    border-radius: 100px;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-weight: 800;
+    gap: 8px;
+    padding: 10px 16px;
+}
+
+.btn-reply-send {
+    background: var(--fellow-pink, #f63392);
+    border: none;
+    color: #ffffff;
+}
+
+.btn-reply-cancel {
+    background: #ffffff;
+    border: 1px solid rgba(246,51,146,.3);
+    color: var(--fellow-pink, #f63392);
+}
+
+.discussion-reply-validation {
+    background: #fff4f6;
+    border: 1px solid #e08b9c;
+    border-radius: 14px;
+    color: #8e2940;
+    font-weight: 650;
+    margin: 8px 0 0;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.discussion-reply-validation i {
+    color: #e08b9c;
+}
 
 .reasoning-challenge-example {
     background: #fff7fb;
