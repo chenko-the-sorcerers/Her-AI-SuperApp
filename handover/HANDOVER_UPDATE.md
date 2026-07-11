@@ -43,6 +43,7 @@ Status terbaru 11 Juli 2026 setelah implementasi materi final baru Reasoning:
 - Latihan Reasoning memuat latihan/proyek akhir sumber secara utuh, ditambah 6 skenario reflektif dengan textarea yang bisa disimpan, diedit, direset, dan dipulihkan dari `localStorage`.
 - Kuis Reasoning memuat kuis sumber secara utuh, ditambah 15 soal interaktif full-card clickable, single attempt, menyimpan jawaban, menampilkan selected/correct/wrong/locked state, dan menjelaskan jika attempt sudah dipakai.
 - Diskusi Reasoning memuat prompt diskusi sumber secara utuh, ditambah prompt button, thread, dan reply tersimpan lokal.
+- UX activity terbaru: latihan menampilkan satu dari 6 skenario dengan tiga textarea dan step navigator; kuis menampilkan satu dari 15 soal dengan answered counter. Workspace jawaban tampil sebelum referensi sumber, sedangkan teks sumber utuh tetap tersedia setelahnya dalam panel referensi yang dapat dibuka.
 - Cache buster `index.html` dibump untuk `ai-reasoning.js` ke `20260711-reasoning-visual-canvas-fix` dan `modules.css` ke `20260711-reasoning-visual-canvas-fix2` agar browser tidak memakai renderer/style lama.
 - Route final tetap:
   - `#/participant-ai-reasoning` -> `materi.html`

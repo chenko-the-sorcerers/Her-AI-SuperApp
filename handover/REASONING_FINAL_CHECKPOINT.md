@@ -94,12 +94,15 @@ Latihan:
 
 - materi latihan dan proyek akhir sumber tetap utuh;
 - 6 skenario terstruktur;
+- workspace menampilkan satu skenario pada satu waktu dengan navigator 1-6, status selesai, dan tombol sebelumnya/berikutnya;
+- setiap skenario mempunyai tiga textarea berlabel untuk jawaban peserta;
 - jawaban dapat disimpan, diedit, direset, dan dipulihkan.
 
 Kuis:
 
 - materi kuis sumber tetap utuh;
 - 15 soal interaktif;
+- satu soal ditampilkan pada satu waktu dengan navigator 1-15 dan penghitung jumlah terjawab;
 - seluruh kartu opsi dapat diklik;
 - state `selected`, `correct`, `wrong`, dan `locked` jelas;
 - single attempt menjelaskan bahwa attempt sudah dipakai.
@@ -174,6 +177,7 @@ Console browser dapat menampilkan error koneksi service settings lokal `127.0.0.
 - Bump cache buster JS dan CSS jika runtime/style Reasoning berubah.
 - Verifikasi dengan screenshot desktop dan mobile, bukan hanya syntax atau `scrollWidth`.
 - Jangan push tanpa permintaan eksplisit user.
+- Pada latihan/kuis, workspace interaktif harus tampil sebelum panel referensi sumber. Referensi lengkap tetap utuh di panel `<details>` setelah workspace.
 
 ## Urutan Baca AI Berikutnya
 

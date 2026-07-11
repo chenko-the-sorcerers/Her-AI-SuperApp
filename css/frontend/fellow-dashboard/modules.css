@@ -2951,9 +2951,195 @@
     gap: 18px;
 }
 
+.reasoning-task-navigator {
+    display: flex;
+    gap: 8px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 4px 2px 8px;
+    scrollbar-color: rgba(246,51,146,.35) transparent;
+}
+
+.reasoning-task-navigator button {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid rgba(244,143,188,.3);
+    border-radius: 100px;
+    color: #51596d;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font: inherit;
+    font-weight: 800;
+    gap: 7px;
+    min-height: 44px;
+    padding: 8px 12px;
+}
+
+.reasoning-task-navigator button > span {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border-radius: 50%;
+    color: #c21868;
+    display: inline-flex;
+    height: 28px;
+    justify-content: center;
+    width: 28px;
+}
+
+.reasoning-task-navigator button small {
+    color: inherit;
+    font-size: .76rem;
+    white-space: nowrap;
+}
+
+.reasoning-task-navigator button.is-active {
+    background: #f63392;
+    border-color: #f63392;
+    color: #ffffff;
+}
+
+.reasoning-task-navigator button.is-active > span {
+    background: #ffffff;
+    color: #c21868;
+}
+
+.reasoning-task-navigator button.is-complete:not(.is-active) {
+    background: #fff7fb;
+    border-color: rgba(246,51,146,.45);
+    color: #9f124f;
+}
+
+.reasoning-task-navigator button.is-complete:not(.is-active)::after {
+    color: #f63392;
+    content: "\f058";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.reasoning-task-navigator button:hover,
+.reasoning-task-navigator button:focus-visible,
+.reasoning-task-controls button:focus-visible,
+.reasoning-reference-details summary:focus-visible {
+    outline: 3px solid rgba(246,51,146,.16);
+    outline-offset: 2px;
+}
+
+.reasoning-task-controls {
+    align-items: center;
+    background: #fffcfd;
+    border: 1px solid rgba(244,143,188,.25);
+    border-radius: 16px;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr auto 1fr;
+    padding: 12px;
+}
+
+.reasoning-task-controls strong {
+    color: #51596d;
+    font-size: .84rem;
+    text-align: center;
+}
+
+.reasoning-task-controls button {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid rgba(246,51,146,.3);
+    border-radius: 100px;
+    color: #c21868;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-weight: 800;
+    gap: 8px;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 14px;
+}
+
+.reasoning-task-controls button:last-child {
+    justify-self: end;
+}
+
+.reasoning-task-controls button:disabled {
+    background: #f4f4f6;
+    border-color: #dedfe5;
+    color: #6f7282;
+    cursor: not-allowed;
+    opacity: .62;
+}
+
+.reasoning-reference-details {
+    background: #fff7fb;
+    border: 1px solid rgba(246,51,146,.25);
+    border-radius: 18px;
+    margin-top: 22px;
+    overflow: hidden;
+}
+
+.reasoning-reference-details summary {
+    align-items: center;
+    cursor: pointer;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 42px minmax(0, 1fr) 32px;
+    list-style: none;
+    min-height: 76px;
+    padding: 14px 16px;
+}
+
+.reasoning-reference-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.reasoning-reference-details summary > i:first-child {
+    align-items: center;
+    background: rgba(246,51,146,.12);
+    border-radius: 50%;
+    color: #f63392;
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+}
+
+.reasoning-reference-details summary span {
+    display: grid;
+    gap: 3px;
+}
+
+.reasoning-reference-details summary b {
+    color: #171827;
+}
+
+.reasoning-reference-details summary small {
+    color: #51596d;
+    line-height: 1.5;
+}
+
+.reasoning-reference-details summary > i:last-child {
+    color: #f63392;
+    transition: transform .2s ease;
+}
+
+.reasoning-reference-details[open] summary > i:last-child {
+    transform: rotate(180deg);
+}
+
+.reasoning-reference-details > .reasoning-source-container {
+    border-top: 1px solid rgba(246,51,146,.2);
+    padding: 16px;
+}
+
 .reasoning-practice-card {
     display: grid;
     gap: 16px;
+}
+
+.reasoning-practice-card[hidden],
+.ai-reasoning-quiz-page .quiz-list > article[hidden] {
+    display: none !important;
 }
 
 .reasoning-practice-card-head {
@@ -3107,6 +3293,28 @@
     .reasoning-save-panel button {
         justify-content: center;
         width: 100%;
+    }
+
+    .reasoning-task-controls {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .reasoning-task-controls strong {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .reasoning-task-controls button:last-child {
+        justify-self: stretch;
+    }
+
+    .reasoning-task-controls button {
+        width: 100%;
+    }
+
+    .reasoning-reference-details summary {
+        grid-template-columns: 38px minmax(0, 1fr) 24px;
+        padding: 13px;
     }
 
     .reasoning-source-toolbar {

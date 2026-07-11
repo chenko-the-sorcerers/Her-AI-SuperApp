@@ -872,7 +872,7 @@
     }
 
     function renderPracticeCard(item, index) {
-        return `<article class="reasoning-practice-card" data-practice-id="${escapeHtml(item.id)}">
+        return `<article class="reasoning-practice-card" data-practice-id="${escapeHtml(item.id)}" tabindex="-1">
             <div class="reasoning-practice-card-head">
                 <span>${index + 1}</span>
                 <div><small>${escapeHtml(item.focus)}</small><h3>${escapeHtml(item.title)}</h3></div>
@@ -899,11 +899,84 @@
         const saved = getSavedPractice();
         const savedAnswers = saved.answers || {};
         const revealed = Array.isArray(saved.revealed) ? saved.revealed.slice() : [];
+        const navigator = document.getElementById("aiReasoningPracticeNavigator");
+        const counter = document.getElementById("aiReasoningPracticeCounter");
+        const previousButton = form.querySelector("[data-practice-prev]");
+        const nextButton = form.querySelector("[data-practice-next]");
+        let currentPractice = 0;
+
+        function isPracticeComplete(index) {
+            const card = practiceList.querySelectorAll("[data-practice-id]")[index];
+            if (!card) return false;
+            return Array.from(card.querySelectorAll("textarea")).every(field => field.value.trim());
+        }
+
+        function updatePracticeNavigator() {
+            if (navigator) {
+                navigator.querySelectorAll("[data-practice-step]").forEach(function (button) {
+                    const index = Number(button.dataset.practiceStep);
+                    button.classList.toggle("is-active", index === currentPractice);
+                    button.classList.toggle("is-complete", isPracticeComplete(index));
+                    button.setAttribute("aria-current", index === currentPractice ? "step" : "false");
+                });
+            }
+            if (counter) counter.textContent = "Skenario " + (currentPractice + 1) + " dari " + PRACTICES.length;
+            if (previousButton) previousButton.disabled = currentPractice === 0;
+            if (nextButton) nextButton.disabled = currentPractice === PRACTICES.length - 1;
+        }
+
+        function showPractice(index, shouldFocus) {
+            currentPractice = Math.min(Math.max(index, 0), PRACTICES.length - 1);
+            practiceList.querySelectorAll("[data-practice-id]").forEach(function (card, cardIndex) {
+                card.hidden = cardIndex !== currentPractice;
+            });
+            updatePracticeNavigator();
+            if (shouldFocus) {
+                const activeCard = practiceList.querySelectorAll("[data-practice-id]")[currentPractice];
+                if (activeCard) activeCard.focus({ preventScroll: true });
+            }
+        }
+
+        if (navigator) {
+            navigator.innerHTML = PRACTICES.map(function (item, index) {
+                return `<button type="button" data-practice-step="${index}" title="${escapeHtml(item.title)}"><span>${index + 1}</span><small>${escapeHtml(item.focus)}</small></button>`;
+            }).join("");
+            navigator.querySelectorAll("[data-practice-step]").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    savePracticePayload({ answers: collectPracticeAnswers(form), revealed: revealed });
+                    showPractice(Number(button.dataset.practiceStep), true);
+                });
+            });
+        }
 
         Object.entries(savedAnswers).forEach(function (entry) {
             const field = form.querySelector('[name="' + escapeSelector(entry[0]) + '"]');
             if (field) field.value = entry[1];
         });
+
+        const firstIncomplete = PRACTICES.findIndex(function (_item, index) {
+            return !isPracticeComplete(index);
+        });
+        currentPractice = firstIncomplete === -1 ? PRACTICES.length - 1 : firstIncomplete;
+        showPractice(currentPractice, false);
+
+        form.addEventListener("input", function (event) {
+            if (event.target.matches("textarea")) updatePracticeNavigator();
+        });
+
+        if (previousButton) {
+            previousButton.addEventListener("click", function () {
+                savePracticePayload({ answers: collectPracticeAnswers(form), revealed: revealed });
+                showPractice(currentPractice - 1, true);
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener("click", function () {
+                savePracticePayload({ answers: collectPracticeAnswers(form), revealed: revealed });
+                showPractice(currentPractice + 1, true);
+            });
+        }
 
         revealed.forEach(function (id) {
             const answer = form.querySelector('[data-reasoning-answer="' + escapeSelector(id) + '"]');
@@ -962,6 +1035,7 @@
                 form.querySelectorAll("textarea").forEach(field => { field.disabled = false; });
                 form.querySelectorAll("[data-reasoning-answer]").forEach(answer => { answer.hidden = true; });
                 revealed.splice(0, revealed.length);
+                showPractice(0, false);
                 setStatus("#aiReasoningPracticeStatus", "Jawaban latihan direset dari browser ini.", "warning");
             });
         }
@@ -1026,7 +1100,7 @@
 
         loadSourceHtml(SOURCE_BASE + "quiz-source-full.html", "aiReasoningQuizSource");
         list.innerHTML = QUIZ.map(function (question, index) {
-            return `<article data-quiz-index="${index}">
+            return `<article data-quiz-index="${index}" tabindex="-1">
                 <span>${index + 1}</span>
                 <small>Reasoning Final</small>
                 <h3>${escapeHtml(question[0])}</h3>
@@ -1039,12 +1113,65 @@
             </article>`;
         }).join("");
 
+        const navigator = document.getElementById("aiReasoningQuizNavigator");
+        const counter = document.getElementById("aiReasoningQuizCounter");
+        const previousButton = form.querySelector("[data-quiz-prev]");
+        const nextButton = form.querySelector("[data-quiz-next]");
+        let currentQuiz = 0;
+
+        function isQuizAnswered(index) {
+            return Boolean(form.querySelector('input[name="reasoning-q' + index + '"]:checked'));
+        }
+
+        function updateQuizNavigator() {
+            const answered = QUIZ.reduce((total, _question, index) => total + (isQuizAnswered(index) ? 1 : 0), 0);
+            if (navigator) {
+                navigator.querySelectorAll("[data-quiz-step]").forEach(function (button) {
+                    const index = Number(button.dataset.quizStep);
+                    button.classList.toggle("is-active", index === currentQuiz);
+                    button.classList.toggle("is-complete", isQuizAnswered(index));
+                    button.setAttribute("aria-current", index === currentQuiz ? "step" : "false");
+                });
+            }
+            if (counter) counter.textContent = "Soal " + (currentQuiz + 1) + " dari " + QUIZ.length + " | " + answered + " terjawab";
+            if (previousButton) previousButton.disabled = currentQuiz === 0;
+            if (nextButton) nextButton.disabled = currentQuiz === QUIZ.length - 1;
+        }
+
+        function showQuiz(index, shouldFocus) {
+            currentQuiz = Math.min(Math.max(index, 0), QUIZ.length - 1);
+            list.querySelectorAll("[data-quiz-index]").forEach(function (article, articleIndex) {
+                article.hidden = articleIndex !== currentQuiz;
+            });
+            updateQuizNavigator();
+            if (shouldFocus) {
+                const activeQuestion = list.querySelector('[data-quiz-index="' + currentQuiz + '"]');
+                if (activeQuestion) activeQuestion.focus({ preventScroll: true });
+            }
+        }
+
+        if (navigator) {
+            navigator.innerHTML = QUIZ.map(function (_question, index) {
+                return `<button type="button" data-quiz-step="${index}" aria-label="Buka soal ${index + 1}">${index + 1}</button>`;
+            }).join("");
+            navigator.querySelectorAll("[data-quiz-step]").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    showQuiz(Number(button.dataset.quizStep), true);
+                });
+            });
+        }
+
+        if (previousButton) previousButton.addEventListener("click", () => showQuiz(currentQuiz - 1, true));
+        if (nextButton) nextButton.addEventListener("click", () => showQuiz(currentQuiz + 1, true));
+        showQuiz(0, false);
+
         const savedDone = localStorage.getItem(STORAGE.quizDone) === "true";
         const savedAnswers = safeJsonParse(localStorage.getItem(STORAGE.quizAnswers), {});
         if (savedDone && Object.keys(savedAnswers).length === QUIZ.length) {
             const savedScore = Number(localStorage.getItem(STORAGE.quizScore)) || 0;
             renderQuizResult(savedScore, QUIZ.length, "Attempt sudah dipakai. Kuis single attempt, jadi jawaban, skor, dan pembahasan dikunci agar review tetap objektif.");
             lockQuiz(form, savedAnswers);
+            updateQuizNavigator();
             return;
         }
 
@@ -1055,6 +1182,7 @@
             if (!article) return;
             article.querySelectorAll("label").forEach(item => item.classList.remove("is-selected"));
             label.classList.add("is-selected");
+            updateQuizNavigator();
         });
 
         form.addEventListener("submit", function (event) {
@@ -1063,6 +1191,8 @@
             const unanswered = Object.values(answers).filter(value => !value).length;
             if (unanswered) {
                 renderQuizResult(0, QUIZ.length, "Masih ada " + unanswered + " soal yang belum dijawab.");
+                const firstUnanswered = QUIZ.findIndex((_question, index) => !answers["reasoning-q" + index]);
+                if (firstUnanswered >= 0) showQuiz(firstUnanswered, true);
                 return;
             }
 

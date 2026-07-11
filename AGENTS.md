@@ -68,3 +68,6 @@ Gunakan aturan:
 - Saat smoke test aplikasi hash-router/SPA, selector generik dapat menangkap DOM route sebelumnya sebelum fetch/render baru selesai. Tunggu container route-specific dan teks unik milik route/chapter target.
 - Setelah transformasi DOM materi sumber, bandingkan `textContent` sebelum dan sesudah transformasi untuk memastikan tidak ada materi yang hilang.
 - Untuk overflow mobile, cek `document.documentElement.scrollWidth <= innerWidth` dan inspeksi elemen penyebab. Tabel/chip panjang harus scroll di dalam wrapper, bukan memperlebar dokumen.
+- Pada halaman latihan dan kuis, aksi utama serta tempat menjawab harus muncul sebelum referensi/materi sumber panjang. Jangan menaruh dump materi puluhan ribu karakter di atas form atau soal.
+- Jika latihan memiliki banyak skenario atau kuis memiliki banyak soal, gunakan progressive disclosure/step navigation agar peserta mengerjakan satu unit pada satu waktu. Tetap sediakan overview progres dan akses langsung ke setiap unit.
+- Materi sumber utuh boleh ditempatkan setelah workspace dalam panel referensi `<details>`, selama isinya tetap dimuat, tidak dikurangi, dan labelnya menjelaskan bahwa itu referensi pendukung.
