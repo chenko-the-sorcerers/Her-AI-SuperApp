@@ -1,0 +1,127 @@
+<h1>Chapter 10 — Error Handling: Program yang Tahan Gangguan</h1>
+<h2>Learning Objectives</h2>
+<ul>
+<li>Membaca error sebagai informasi.</li>
+<li>Menggunakan <code>try</code>, <code>except</code>, <code>else</code>, dan <code>finally</code>.</li>
+<li>Menangkap exception secara spesifik.</li>
+</ul>
+<h2>Kenapa Materi Ini Penting?</h2>
+<p>Program data bertemu file hilang, teks di kolom angka, dan input kosong. Error handling bukan menyembunyikan masalah, melainkan meresponsnya dengan jelas.</p>
+<h2>Hubungan dengan AI</h2>
+<p>Pipeline data harus berhenti atau memberi fallback ketika input tidak valid. Data buruk yang diam-diam lolos dapat menghasilkan output yang menyesatkan.</p>
+<h2>Analogi</h2>
+<p>Sabuk pengaman tidak mencegah semua kecelakaan, tetapi mengurangi dampak ketika masalah terjadi.</p>
+<h2>Penjelasan Konsep</h2>
+<p>Kode berisiko ditempatkan dalam <code>try</code>. <code>except</code> menangani error tertentu. <code>else</code> berjalan jika tidak ada error. <code>finally</code> selalu berjalan, misalnya untuk menutup resource.</p>
+<h2>Visual Thinking</h2>
+<pre><code class="language-text">Try process → sukses → else
+       └────→ error spesifik → except
+                    ↓
+                 finally
+</code></pre>
+<h2>Contoh Nyata</h2>
+<p>Input nilai dari form masih berupa teks dan mungkin berisi kata “delapan puluh”.</p>
+<h2>Contoh AI</h2>
+<p>Sebelum data diproses, pipeline memvalidasi tipe dan mencatat record yang gagal.</p>
+<h2>Kode Python</h2>
+<pre><code class="language-python">raw_score = &quot;88&quot;
+
+try:
+    score = float(raw_score)
+except ValueError:
+    print(&quot;Nilai harus berupa angka&quot;)
+else:
+    print(f&quot;Nilai valid: {score}&quot;)
+finally:
+    print(&quot;Validasi selesai&quot;)
+</code></pre>
+<h2>Penjelasan Kode Baris per Baris</h2>
+<ol>
+<li>Input awal masih string.</li>
+<li><code>try</code> mencoba mengubahnya menjadi float.</li>
+<li><code>ValueError</code> ditangani jika format salah.</li>
+<li><code>else</code> hanya berjalan saat konversi berhasil.</li>
+<li><code>finally</code> memberi penutup yang selalu dijalankan.</li>
+</ol>
+<h2>Common Mistakes</h2>
+<ul>
+<li>Memakai <code>except:</code> yang menangkap semua error.</li>
+<li>Mengabaikan error tanpa log atau pesan.</li>
+<li>Menggunakan exception untuk alur normal yang mudah diperiksa dengan <code>if</code>.</li>
+</ul>
+<h2>Best Practices</h2>
+<ul>
+<li>Tangkap exception paling spesifik.</li>
+<li>Berikan pesan yang membantu tindakan berikutnya.</li>
+<li>Jangan melanjutkan pipeline dengan data rusak tanpa keputusan eksplisit.</li>
+</ul>
+<h2>Mini Challenge</h2>
+<p>Buat function <code>parse_score(value)</code> yang mengembalikan float atau <code>None</code> dengan pesan yang jelas.</p>
+<h2>Ringkasan</h2>
+<p>Error handling membuat kegagalan terlihat, terkontrol, dan dapat diperbaiki.</p>
+<h2>Persiapan Chapter Berikutnya</h2>
+<p>Berikutnya kita membawa program keluar dari memori dengan membaca dan menulis file.</p>
+<hr>
+<h1>Chapter 11 — File I/O: Bertemu Dataset</h1>
+<h2>Learning Objectives</h2>
+<ul>
+<li>Membaca dan menulis file teks serta CSV dasar.</li>
+<li>Menggunakan context manager <code>with</code>.</li>
+<li>Memahami path, encoding, dan schema sederhana.</li>
+</ul>
+<h2>Kenapa Materi Ini Penting?</h2>
+<p>Data jarang diketik langsung ke kode. Ia datang dari file, database, form, atau API. File I/O adalah jembatan pertama menuju dataset nyata.</p>
+<h2>Hubungan dengan AI</h2>
+<p>Dataset CSV, konfigurasi JSON, dan output eksperimen perlu dibaca serta disimpan secara konsisten.</p>
+<h2>Analogi</h2>
+<p>Program adalah pekerja di meja; file adalah lemari arsip. Membuka file berarti mengambil arsip, membaca atau mengubahnya, lalu menutup lemari.</p>
+<h2>Penjelasan Konsep</h2>
+<p>Mode umum: <code>r</code> membaca, <code>w</code> menulis ulang, <code>a</code> menambah. Context manager <code>with</code> menutup file otomatis. Encoding <code>utf-8</code> membantu menangani karakter Indonesia.</p>
+<h2>Visual Thinking</h2>
+<pre><code class="language-text">participants.csv → open/read → Python → process → report.txt
+</code></pre>
+<h2>Contoh Nyata</h2>
+<p>Panitia menyimpan nilai dalam CSV lalu membuat laporan teks.</p>
+<h2>Contoh AI</h2>
+<p>CSV dapat menjadi input tahap cleaning sebelum digunakan lebih lanjut pada workflow AI.</p>
+<h2>Kode Python</h2>
+<pre><code class="language-python">from pathlib import Path
+
+report_path = Path(&quot;report.txt&quot;)
+
+with report_path.open(&quot;w&quot;, encoding=&quot;utf-8&quot;) as file:
+    file.write(&quot;Rata-rata nilai: 84.5\n&quot;)
+
+with report_path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
+    report = file.read()
+
+print(report)
+</code></pre>
+<h2>Penjelasan Kode Baris per Baris</h2>
+<ol>
+<li><code>Path</code> membantu mengelola lokasi file.</li>
+<li>Path output dibuat.</li>
+<li>File dibuka dalam mode tulis dengan UTF-8.</li>
+<li>Teks dan newline ditulis.</li>
+<li>File dibuka kembali dalam mode baca.</li>
+<li>Isi disimpan ke variable dan ditampilkan.</li>
+</ol>
+<h2>Common Mistakes</h2>
+<ul>
+<li>Memakai <code>w</code> lalu tidak sengaja menimpa file.</li>
+<li>Mengandalkan working directory tanpa memahami path.</li>
+<li>Tidak menentukan encoding.</li>
+</ul>
+<h2>Best Practices</h2>
+<ul>
+<li>Gunakan <code>with</code> dan <code>pathlib.Path</code>.</li>
+<li>Pisahkan folder data mentah dan output.</li>
+<li>Jangan menimpa raw dataset; simpan hasil sebagai file baru.</li>
+</ul>
+<h2>Mini Challenge</h2>
+<p>Tulis tiga baris ringkasan ke <code>summary.txt</code>, baca kembali, dan tampilkan.</p>
+<h2>Ringkasan</h2>
+<p>File I/O memungkinkan data bertahan setelah program selesai dan menjadi input untuk proses berikutnya.</p>
+<h2>Persiapan Chapter Berikutnya</h2>
+<p>Python dasar dapat melakukan banyak hal, tetapi library membuat pekerjaan data jauh lebih efisien.</p>
+<hr>
