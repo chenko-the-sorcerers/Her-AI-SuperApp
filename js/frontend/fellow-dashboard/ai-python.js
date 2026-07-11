@@ -103,7 +103,7 @@ const CHAPTERS = [
       "Membedakan tipe data",
       "Menggunakan list, tuple, set, dictionary"
     ],
-    "sourcePath": "/pages/.../02-python-untuk-ai/chapters/02-topic.html"
+    "sourcePath": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/02-topic.html"
   },
   {
     "title": "Control Flow: Logika & Perulangan",
@@ -115,7 +115,7 @@ const CHAPTERS = [
       "Menggunakan if/elif/else",
       "Menggunakan for dan while loop"
     ],
-    "sourcePath": "/pages/.../02-python-untuk-ai/chapters/03-topic.html"
+    "sourcePath": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/03-topic.html"
   },
   {
     "title": "Function & Modularitas",
@@ -127,7 +127,7 @@ const CHAPTERS = [
       "Menulis function dengan parameter",
       "Menggunakan lambda dan generator"
     ],
-    "sourcePath": "/pages/.../02-python-untuk-ai/chapters/04-topic.html"
+    "sourcePath": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/04-topic.html"
   },
   {
     "title": "OOP untuk AI",
@@ -139,7 +139,7 @@ const CHAPTERS = [
       "Memahami class dan object",
       "Menggunakan inheritance"
     ],
-    "sourcePath": "/pages/.../02-python-untuk-ai/chapters/05-topic.html"
+    "sourcePath": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/05-topic.html"
   },
   {
     "title": "Program Tangguh: Error & File",
@@ -151,7 +151,7 @@ const CHAPTERS = [
       "Menangani error dengan try/except",
       "Membaca/menulis file"
     ],
-    "sourcePath": "/pages/.../02-python-untuk-ai/chapters/06-topic.html"
+    "sourcePath": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/06-topic.html"
   },
   {
     "title": "Ekosistem & NumPy",
@@ -163,7 +163,7 @@ const CHAPTERS = [
       "Memahami ekosistem library AI",
       "Menggunakan NumPy array"
     ],
-    "sourcePath": "/pages/.../02-python-untuk-ai/chapters/07-topic.html"
+    "sourcePath": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/07-topic.html"
   },
   {
     "title": "Data & Mini Workflow",
@@ -176,7 +176,7 @@ const CHAPTERS = [
       "Membersihkan data",
       "Mini AI workflow"
     ],
-    "sourcePath": "/pages/.../02-python-untuk-ai/chapters/08-topic.html"
+    "sourcePath": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/08-topic.html"
   }
 ];
 
