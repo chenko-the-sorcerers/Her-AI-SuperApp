@@ -55,8 +55,8 @@ const router = {
         "/participant-ai-reasoning-practice": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/latihan.html",
         "/participant-ai-reasoning-quiz": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/kuis.html",
         "/participant-ai-reasoning-discussion": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/diskusi.html",
-        "/participant-ai-evaluation": "/pages/frontend/fellow-dashboard/course-placeholder.html",
-        "/participant-ai-evolution": "/pages/frontend/fellow-dashboard/course-placeholder.html",
+        "/participant-ai-evaluation": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-advanced/05-evaluation/materi.html",
+        "/participant-ai-evolution": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-advanced/06-evolution-of-ai/materi.html",
         "/participant-mentor": "/pages/frontend/fellow-dashboard/mentor.html",
         "/participant-tasks": "/pages/frontend/fellow-dashboard/tasks.html",
         "/participant-projects": "/pages/frontend/fellow-dashboard/projects.html",
@@ -744,10 +744,15 @@ const router = {
                     }
 
 
-                } else if ((path === "/participant-ai-reasoning" || path === "/participant-ai-evaluation" || path === "/participant-ai-evolution") && typeof window.initFellowDashboardPage === "function") {
+                } else if (path === "/participant-ai-evaluation" && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");
-                    if (typeof window.initCoursePlaceholder === "function") {
-                        window.initCoursePlaceholder();
+                    if (typeof window.initAiEvaluation === "function") {
+                        window.initAiEvaluation();
+                    }
+                } else if (path === "/participant-ai-evolution" && typeof window.initFellowDashboardPage === "function") {
+                    window.initFellowDashboardPage("modules");
+                    if (typeof window.initAiEvolution === "function") {
+                        window.initAiEvolution();
                     }
                 } else if (path.startsWith("/participant-ai-") && typeof window.initFellowDashboardPage === "function") {
                     window.initFellowDashboardPage("modules");

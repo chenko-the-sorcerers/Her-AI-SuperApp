@@ -40,8 +40,8 @@
                 <section class="lesson-hero compact">
                     <div class="lesson-hero-copy">
                         <h1>Diskusi Konsep AI Modern</h1>
-                        <p>Hubungkan konsep teknis dengan keputusan produk, guardrail, evaluasi, dan pengalaman peserta HerAI.</p>
-                        <div class="lesson-meta-row"><span><i class="far fa-message"></i> 6 prompt</span><span><i class="far fa-clock"></i> Tersimpan lokal</span><b>Kolaboratif</b></div>
+                        <p>Diskusikan trade-off foundation model, context, agent autonomy, dan sistem AI fellowship yang aman dioperasikan.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-message"></i> 4 prompt utama</span><span><i class="far fa-clock"></i> Tersimpan lokal</span><b>Kolaboratif</b></div>
                     </div>
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow berdiskusi tentang AI Modern">
                 </section>
@@ -58,33 +58,24 @@
                         <div class="ml-section-head">
                             <span>Discussion Board</span>
                             <h2>Forum Pertanyaan AI Modern</h2>
-                            <p>Pilih prompt atau tulis pertanyaan sendiri. Thread tersimpan di browser dengan key <code>heraiAiModernDiscussion</code>.</p>
+                            <p>Pilih prompt atau tulis posisi sendiri. Thread tersimpan di browser dengan key <code>heraiAiModernDiscussion</code>.</p>
                         </div>
 
-                        <div class="ml-discussion-prompts" aria-label="Prompt diskusi Konsep AI Modern">
-                            <button type="button" data-discussion-prompt="Kapan context window besar cukup, dan kapan sistem tetap perlu RAG?"><i class="fas fa-window-maximize"></i><span>Konteks</span></button>
-                            <button type="button" data-discussion-prompt="Apa risiko memakai foundation model umum untuk data internal fellowship?"><i class="fas fa-layer-group"></i><span>Foundation model</span></button>
-                            <button type="button" data-discussion-prompt="Tool apa saja yang aman diberikan ke agent pembelajaran, dan mana yang perlu approval manusia?"><i class="fas fa-screwdriver-wrench"></i><span>Agent tools</span></button>
-                            <button type="button" data-discussion-prompt="Bagaimana kamu membuktikan jawaban assistant benar-benar grounded pada dokumen sumber?"><i class="fas fa-link"></i><span>RAG</span></button>
-                            <button type="button" data-discussion-prompt="Metrik apa yang paling penting untuk assistant peserta: factuality, helpfulness, latency, atau cost?"><i class="fas fa-chart-simple"></i><span>Evaluasi</span></button>
-                            <button type="button" data-discussion-prompt="Bagaimana HerAI sebaiknya menjelaskan batas kemampuan AI kepada peserta?"><i class="fas fa-shield-halved"></i><span>Safety</span></button>
-                        </div>
+                        <div id="aiModernDiscussionPrompts" class="ai-modern-discussion-prompts" aria-label="Prompt diskusi Konsep AI Modern"></div>
 
                         <form class="practice-response-form discussion-compose ml-discussion-form" id="aiModernDiscussionForm">
                             <label>
                                 <span>Prompt diskusi</span>
                                 <select name="discussionPrompt">
-                                    <option>Kapan context window besar cukup, dan kapan sistem tetap perlu RAG?</option>
-                                    <option>Apa risiko memakai foundation model umum untuk data internal fellowship?</option>
-                                    <option>Tool apa saja yang aman diberikan ke agent pembelajaran, dan mana yang perlu approval manusia?</option>
-                                    <option>Bagaimana kamu membuktikan jawaban assistant benar-benar grounded pada dokumen sumber?</option>
-                                    <option>Metrik apa yang paling penting untuk assistant peserta: factuality, helpfulness, latency, atau cost?</option>
-                                    <option>Bagaimana HerAI sebaiknya menjelaskan batas kemampuan AI kepada peserta?</option>
+                                    <option>Foundation model sebagai infrastruktur bersama</option>
+                                    <option>Transformer dan batas context</option>
+                                    <option>Agent autonomy</option>
+                                    <option>Sistem AI untuk fellowship</option>
                                 </select>
                             </label>
                             <label>
                                 <span>Tulis posting diskusi</span>
-                                <textarea rows="6" placeholder="Contoh: Untuk assistant fellowship, RAG tetap penting karena kebijakan dan jadwal berubah. Context window besar membantu membaca percakapan, tetapi sumber resmi tetap harus diambil ulang..."></textarea>
+                                <textarea rows="6" placeholder="Tulis posisi, alasan, risiko, dan contoh kasus. Input HTML akan disanitasi saat ditampilkan."></textarea>
                             </label>
                             <div class="ml-save-panel">
                                 <p id="aiModernDiscussionStatus" class="practice-status">Posting akan tersimpan di browser ini.</p>
