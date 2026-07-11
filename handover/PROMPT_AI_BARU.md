@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 11 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning, Reasoning Canonical Final, Audit Final)
+**Tanggal:** 11 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning, Reasoning Canonical Final, Snapshot Reasoning Lama, Audit Final)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -25,7 +25,10 @@ Wajib baca dulu:
 8. handover/MERGE_GUIDE_REASONING_TEAM.md
 
 Konteks terbaru:
-- Commit checkpoint lokal terbaru: c93a5fb fix: audit python module polish.
+- Commit checkpoint lokal terbaru sebelum snapshot Reasoning lama: 5298a96 fix: link python active labs to focused practice.
+- Commit quiz review: 551654c fix: show intro quiz review states.
+- Commit Reasoning canonical: 75125a8 feat: finalize reasoning course routes.
+- Commit audit final sebelumnya: c93a5fb fix: audit python module polish.
 - Commit merge Reasoning: b0c6829 merge: integrate reasoning scaffold updates.
 - Commit final Python/Pengantar AI sebelum merge: c1870d4 feat: finalize python ai module and merge handover.
 - Branch lokal `design` sudah berisi merge Reasoning dan audit final; belum push kecuali user mengatakan sudah push.
@@ -78,6 +81,8 @@ Konteks terbaru:
 - Course Reasoning sudah final canonical di `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
 - Route final Reasoning: `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, dan `#/participant-ai-reasoning-discussion`.
 - Reasoning final memakai 4 submateri, 17 latihan reveal, 25 soal full-card clickable single attempt, dan 4 prompt diskusi; controller ada di `js/frontend/fellow-dashboard/ai-reasoning.js`.
+- Snapshot lengkap baseline lama Reasoning untuk deep research ada di `materi/lama/reasoning.md`. File ini tidak dikompres dan memuat overview, materi, latihan + pembahasan, kuis + kunci + pembahasan, diskusi, dan referensi.
+- Prompt khusus untuk AI penerus setelah materi Reasoning baru selesai dibuat ada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
 - Smoke test browser terakhir:
   - Python materi: 13 chapter, sidebar, progress, tombol Playground, panel Belajar Aktif.
   - Python practice: Pyodide siap, Run Code berhasil, mini project nomor 7 berhasil, save latihan masuk localStorage.
@@ -105,25 +110,26 @@ Tugas utama berikutnya:
 1. Jika user meminta revisi lanjutan Python untuk AI, baca dulu snapshot `materi/python-untuk-ai.md`, seluruh file runtime `02-python-untuk-ai/`, dan `js/frontend/fellow-dashboard/ai-python-basic.js`.
 2. Untuk Python untuk AI, pertahankan struktur 13 chapter final dan jangan mematikan interaktif Pyodide, validasi latihan, kuis, diskusi, route, atau tab activity.
 3. Jika user meminta revisi lanjutan Pengantar AI, baca materi/pengantar-ai.md lalu update konten runtime Pengantar AI secara scoped.
-4. Jika user meminta merge pekerjaan tim Reasoning, baca `handover/MERGE_GUIDE_REASONING_TEAM.md`, lalu bandingkan perubahan mereka terhadap route scaffold Reasoning dan file final yang mungkin mereka tambah.
-5. Untuk Pengantar AI, target edit utama tetap:
+4. Jika user meminta merge pekerjaan tim Reasoning, baca `handover/MERGE_GUIDE_REASONING_TEAM.md`, lalu bandingkan perubahan mereka terhadap route Reasoning final dan file final yang mungkin mereka tambah.
+5. Jika user membawa materi Reasoning baru dari deep research, baca `materi/lama/reasoning.md`, simpan materi baru di `materi/baru/`, lalu gunakan `handover/PROMPT_REASONING_MATERI_BARU.md` sebagai instruksi kerja.
+6. Untuk Pengantar AI, target edit utama tetap:
    - pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/materi.html
    - js/frontend/fellow-dashboard/settings.js bagian generatedLessonContent
    - latihan.html, kuis.html, diskusi.html hanya jika activity ikut berubah
-6. Jangan ubah route Pengantar AI atau Python untuk AI kecuali user eksplisit minta.
-7. Jangan replace layout besar. Pertahankan sidebar, topbar, breadcrumb, lesson tabs, right panel, dan footer nav.
-8. Kalau task bukan Python untuk AI, revisi Pengantar AI, atau merge Reasoning, lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
-9. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
-10. Setelah perubahan, wajib update folder handover:
+7. Jangan ubah route Pengantar AI atau Python untuk AI kecuali user eksplisit minta.
+8. Jangan replace layout besar. Pertahankan sidebar, topbar, breadcrumb, lesson tabs, right panel, dan footer nav.
+9. Kalau task bukan Python untuk AI, revisi Pengantar AI, revisi Reasoning, atau merge Reasoning, lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
+10. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
+11. Setelah perubahan, wajib update folder handover:
    - HANDOVER_UPDATE.md
    - MODULE_STATUS_MAP.md
    - COURSE_HIERARCHY.md
    - PROMPT_AI_BARU.md
    - MERGE_GUIDE_REASONING_TEAM.md kalau menyangkut Reasoning/merge
    - HANDOVER_COURSE_FILESYSTEM_REFACTOR.md kalau routing/folder berubah
-11. Jalankan verifikasi ulang.
-12. Commit lokal. Jangan push tanpa izin.
-13. Jika kondisi branch belum berubah, baseline lokal aman terakhir adalah `c93a5fb`.
+12. Jalankan verifikasi ulang.
+13. Commit lokal. Jangan push tanpa izin.
+14. Jika kondisi branch belum berubah, baseline lokal aman terakhir adalah `5298a96` ditambah snapshot Reasoning sesi ini jika sudah committed.
 
 Mulai dengan membaca file handover, lalu buat rencana singkat berdasarkan task yang diberikan user.
 ```

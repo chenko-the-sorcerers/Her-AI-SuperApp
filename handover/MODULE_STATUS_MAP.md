@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah Reasoning canonical final, full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
+**Status dokumen:** update setelah Reasoning canonical final, snapshot materi lama Reasoning untuk deep research, full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
 
 Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
 
@@ -24,6 +24,8 @@ Checkpoint final terbaru 11 Juli 2026:
 - UX terbaru Python: CTA mini challenge di panel `Belajar Aktif` sekarang eksplisit menunjuk `Latihan N - Topik` yang relevan, memakai hash query `#/participant-ai-python-practice?focus=play-N`. Kartu latihan canonical memiliki `data-practice-focus="play-N"` dan akan diberi highlight + catatan konteks saat dibuka dari materi.
 - `AGENTS.md` sudah memuat aturan baru: course tidak boleh teks polos, kuis harus full-card clickable, code block materi harus pink-light, dan tema HerAI pink harus konsisten.
 - `04 - Reasoning` sudah final canonical di folder `04-reasoning/`: 4 submateri, 17 latihan, 25 soal full-card clickable single attempt, dan 4 prompt diskusi. Route final: `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`.
+- Snapshot lengkap konten lama Reasoning untuk brainstorming ada di `materi/lama/reasoning.md`. Isinya tidak dikompres: overview, seluruh materi, latihan + pembahasan, kuis + kunci + pembahasan, diskusi, dan referensi dari runtime saat ini. File ini bukan route aktif.
+- Prompt handoff untuk AI berikutnya setelah materi Reasoning baru selesai dibuat ada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
 - Merge Reasoning sudah committed di `b0c6829`; audit/fix terbaru sudah committed di `c93a5fb`.
 - Browser smoke test sudah mencakup materi Python, practice Pyodide, kuis Python, kuis Pengantar AI, diskusi Python, dan Reasoning scaffold/activity query. Tidak ada horizontal overflow pada desktop/mobile route yang diuji.
 - Verifikasi routing awal setelah Reasoning canonical: `node scripts/check-participant-routes.mjs` dengan `Total: 113 | 113 passed | 0 failed`.
@@ -31,6 +33,9 @@ Checkpoint final terbaru 11 Juli 2026:
 Commit lokal terbaru:
 
 ```text
+5298a96 fix: link python active labs to focused practice
+551654c fix: show intro quiz review states
+75125a8 feat: finalize reasoning course routes
 c93a5fb fix: audit python module polish
 b0c6829 merge: integrate reasoning scaffold updates
 c1870d4 feat: finalize python ai module and merge handover

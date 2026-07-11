@@ -2,7 +2,10 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning canonical final selesai, audit menyeluruh sebelumnya selesai, belum push
+**Status:** Reasoning canonical final selesai, snapshot materi lama Reasoning untuk deep research sudah dibuat, audit menyeluruh sebelumnya selesai, belum push
+**Commit UX Python terbaru:** `5298a96 fix: link python active labs to focused practice`
+**Commit quiz review:** `551654c fix: show intro quiz review states`
+**Commit Reasoning canonical:** `75125a8 feat: finalize reasoning course routes`
 **Commit audit terbaru:** `c93a5fb fix: audit python module polish`
 **Commit merge Reasoning lokal:** `b0c6829 merge: integrate reasoning scaffold updates`
 **Commit fitur terakhir sebelum merge:** `c1870d4 feat: finalize python ai module and merge handover`
@@ -23,6 +26,8 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 Status terbaru 11 Juli 2026 setelah rombak Reasoning:
 
+- Update brainstorming Reasoning 11 Juli 2026: seluruh konten Reasoning runtime saat ini diekstrak menjadi snapshot lengkap di `materi/lama/reasoning.md`. File ini memuat overview, 4 submateri, materi lengkap, 17 latihan + pembahasan, 25 soal kuis + kunci + pembahasan, 4 diskusi, dan referensi. Tujuannya untuk bahan deep research/brainstorming materi Reasoning baru, bukan sebagai route runtime peserta.
+- Prompt khusus untuk AI berikutnya yang akan menerima materi Reasoning baru dibuat di `handover/PROMPT_REASONING_MATERI_BARU.md`. Gunakan prompt ini setelah materi baru dari AI/browser selesai dibuat.
 - Update Python UX 11 Juli 2026: panel `Belajar Aktif` di materi Python tetap dipakai, tetapi CTA mini challenge tidak lagi generik `Buka Playground`. Setiap chapter sekarang diarahkan ke latihan terkait dengan route `#/participant-ai-python-practice?focus=play-N`, halaman latihan menyorot kartu target via `data-practice-focus="play-N"`, dan menampilkan catatan konteks agar peserta tahu latihan tersebut berasal dari materi yang baru dibaca.
 - `04 - Reasoning` tidak lagi hanya scaffold route `course-placeholder.html`; sekarang aktif sebagai folder canonical:
   `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
@@ -35,9 +40,20 @@ Status terbaru 11 Juli 2026 setelah rombak Reasoning:
 - Activity Reasoning sudah mengikuti pola Pengantar AI/Python: tab final, materi chapter internal, 17 latihan reveal, kuis 25 soal full-card clickable single attempt, dan diskusi localStorage.
 - Controller baru: `js/frontend/fellow-dashboard/ai-reasoning.js`.
 - `course-placeholder.js` masih mengekspos `window.HERAI_REASONING_COURSE` sebagai sumber data konten Reasoning agar materi scaffold lengkap tidak diduplikasi manual.
+- Jika materi Reasoning baru sudah diterima dari deep research, simpan dulu sebagai snapshot baru di `materi/baru/`, baca `materi/lama/reasoning.md` sebagai baseline lama, lalu implementasikan ke canonical `04-reasoning/` dan `ai-reasoning.js` tanpa merusak route final.
 - Evaluation dan Evolution of AI tetap scaffold melalui `course-placeholder.html`.
 - Kuis Pengantar AI diselaraskan dengan Python/AI Modern/Reasoning: setelah submit atau saat locked dari localStorage, kartu hijau menandai jawaban benar dan kartu merah menandai pilihan peserta yang salah. Jawaban peserta disimpan di `heraiAiIntroQuizAnswers` tanpa mengubah key lama `heraiAiIntroQuizDone` dan `heraiAiIntroQuizScore`.
 - Verifikasi awal routing setelah perubahan: `node scripts/check-participant-routes.mjs` -> `Total: 113 | 113 passed | 0 failed`.
+
+Commit lokal penting sebelum snapshot Reasoning lama:
+
+```text
+5298a96 fix: link python active labs to focused practice
+551654c fix: show intro quiz review states
+75125a8 feat: finalize reasoning course routes
+9b32ac0 docs: update final audit handover checkpoint
+c93a5fb fix: audit python module polish
+```
 
 ## Checkpoint Sebelumnya - Audit Setelah Merge
 

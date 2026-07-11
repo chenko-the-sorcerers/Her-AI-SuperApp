@@ -2,7 +2,9 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning canonical final selesai, audit final sebelumnya selesai, belum push
+**Status:** Reasoning canonical final selesai, snapshot materi lama Reasoning untuk deep research sudah dibuat, audit final sebelumnya selesai, belum push
+**Checkpoint UX Python terbaru:** `5298a96 fix: link python active labs to focused practice`
+**Checkpoint Reasoning canonical:** `75125a8 feat: finalize reasoning course routes`
 **Checkpoint audit terbaru:** `c93a5fb fix: audit python module polish`
 **Checkpoint merge Reasoning:** `b0c6829 merge: integrate reasoning scaffold updates`
 **Checkpoint aktif:** `3f238a7 refactor: move fellowship courses into dashboard hierarchy`
@@ -16,6 +18,8 @@ Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar
 
 Update lokal terbaru setelah checkpoint `c93a5fb`:
 
+- Snapshot lengkap konten lama Reasoning dibuat di `materi/lama/reasoning.md` sebagai bahan brainstorming/deep research. File ini tidak mengubah filesystem canonical course, tidak menjadi route aktif, dan hanya dipakai sebagai bahan handoff konten.
+- Prompt khusus AI penerus untuk memasukkan materi Reasoning baru dibuat di `handover/PROMPT_REASONING_MATERI_BARU.md`.
 - Reasoning sudah difinalkan menjadi folder canonical:
   `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
 - File activity final Reasoning: `materi.html`, `latihan.html`, `kuis.html`, dan `diskusi.html`.
@@ -133,6 +137,7 @@ Aturan penting:
 - Course/module belum final jangan dibuatkan file `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`.
 - Isi manifest scaffold dulu; file final baru dibuat kalau konten siap dan route akan dipindahkan ke folder canonical.
 - Keputusan folder canonical tetap sama: category/domain langsung di bawah `pages/frontend/fellow-dashboard/`.
+- Untuk Reasoning, `materi/lama/reasoning.md` adalah baseline lama lengkap. Materi baru dari deep research harus masuk dulu ke `materi/baru/` lalu baru dipindahkan ke runtime canonical `04-reasoning/` jika sudah disetujui.
 - Kalau tim penerus mengubah folder, rename file, memindahkan route dari scaffold ke final, atau menambah route final, wajib update folder `handover/` sebelum commit.
 
 ---

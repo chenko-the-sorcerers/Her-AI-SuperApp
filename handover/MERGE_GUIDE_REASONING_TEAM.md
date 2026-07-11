@@ -1,7 +1,7 @@
 # Merge Guide - Reasoning Team
 
 **Tanggal:** 11 Juli 2026
-**Tujuan:** panduan merge lanjutan pekerjaan `Reasoning` dengan branch yang sudah berisi rombak final Pengantar AI, Python untuk AI, merge Reasoning scaffold, audit final, dan finalisasi Reasoning canonical.
+**Tujuan:** panduan merge lanjutan pekerjaan `Reasoning` dengan branch yang sudah berisi rombak final Pengantar AI, Python untuk AI, merge Reasoning scaffold, audit final, finalisasi Reasoning canonical, dan snapshot materi lama Reasoning untuk deep research.
 
 Dokumen ini dibuat karena pekerjaan lokal terbaru menyentuh banyak area AI Fundamentals. Reasoning scaffold dari `origin/design` sudah di-merge dan kini sudah difinalkan menjadi folder canonical. Semua lanjutan wajib menjaga perubahan final yang sudah masuk.
 
@@ -12,6 +12,9 @@ Dokumen ini dibuat karena pekerjaan lokal terbaru menyentuh banyak area AI Funda
 Checkpoint lokal terbaru:
 
 - Baseline lokal terbaru:
+  - `5298a96 fix: link python active labs to focused practice`
+  - `551654c fix: show intro quiz review states`
+  - `75125a8 feat: finalize reasoning course routes`
   - `c93a5fb fix: audit python module polish`
   - `b0c6829 merge: integrate reasoning scaffold updates`
   - `c1870d4 feat: finalize python ai module and merge handover`
@@ -37,6 +40,8 @@ Checkpoint lokal terbaru:
   - 4 diskusi.
   - Folder canonical: `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
   - Activity route final: `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`.
+- Snapshot lengkap baseline lama Reasoning ada di `materi/lama/reasoning.md`. File ini memuat seluruh materi runtime lama, latihan + pembahasan, kuis + kunci + pembahasan, diskusi, dan referensi untuk bahan deep research.
+- Jika materi Reasoning baru datang dari AI/browser, simpan dulu di `materi/baru/`, lalu gunakan `handover/PROMPT_REASONING_MATERI_BARU.md` untuk melanjutkan implementasi tanpa merusak route final.
 - Route checker awal setelah canonical final:
 
 Route checker terakhir:
@@ -97,6 +102,8 @@ pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/over
 pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/
 handover/
 materi/
+materi/lama/reasoning.md
+materi/baru/
 ```
 
 Jika Reasoning masih draft/scaffold:

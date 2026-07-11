@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta setelah Reasoning canonical final, refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
+**Status dokumen:** source of truth hierarki katalog course peserta setelah Reasoning canonical final, snapshot materi lama Reasoning untuk deep research, refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
 
@@ -61,14 +61,19 @@ Checkpoint final terbaru:
 - `02 - Python untuk AI` tetap module aktif di `AI Fundamentals & Advanced`, sekarang 13 chapter final.
 - `04 - Reasoning` sudah dipindah dari scaffold lengkap menjadi module canonical final di `ai-fundamentals/04-reasoning/`.
 - Activity final Reasoning tersedia di route `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, dan `#/participant-ai-reasoning-discussion`.
+- Snapshot konten lama Reasoning untuk deep research berada di `materi/lama/reasoning.md`. Folder `materi/` tetap area handoff/brainstorming, bukan bagian hierarchy produk atau route peserta.
+- Prompt lanjutan setelah materi Reasoning baru selesai dibuat berada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
 - Dokumen merge khusus Reasoning tetap dipertahankan sebagai referensi: `handover/MERGE_GUIDE_REASONING_TEAM.md`.
 - Tidak ada perubahan folder canonical untuk Python atau Pengantar AI.
 - Finalisasi Reasoning tidak mengubah taxonomy produk; perubahan hanya memindahkan implementasi Reasoning ke folder canonical dan menambah route activity final.
-- Baseline lokal terbaru sebelum push: `c93a5fb fix: audit python module polish`.
+- Baseline lokal terbaru sebelum snapshot Reasoning lama: `5298a96 fix: link python active labs to focused practice`.
 
 Commit lokal terbaru:
 
 ```text
+5298a96 fix: link python active labs to focused practice
+551654c fix: show intro quiz review states
+75125a8 feat: finalize reasoning course routes
 c93a5fb fix: audit python module polish
 b0c6829 merge: integrate reasoning scaffold updates
 c1870d4 feat: finalize python ai module and merge handover
@@ -143,6 +148,7 @@ Ringkasan state kurikulum saat ini:
 - Folder `materi/` di root repo adalah area handoff konten, bukan bagian hierarchy produk atau route peserta.
 - Snapshot Pengantar AI terbaru ada di `materi/pengantar-ai.md`.
 - Snapshot Python untuk AI terbaru ada di `materi/python-untuk-ai.md`.
+- Snapshot lama Reasoning lengkap ada di `materi/lama/reasoning.md`; materi baru hasil deep research sebaiknya disimpan dahulu di `materi/baru/` sebelum masuk runtime.
 - Pengantar AI sudah memakai materi final baru di runtime tanpa perubahan hierarchy, route, atau folder canonical.
 - Python untuk AI sudah memakai materi final baru di runtime tanpa perubahan route atau folder canonical.
 - UI lintasan belajar sudah dipoles:
