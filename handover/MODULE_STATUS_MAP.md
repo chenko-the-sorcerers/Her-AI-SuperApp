@@ -1,12 +1,26 @@
 # Peta Status Kurikulum HerAI
 
-**Tanggal:** 11 Juli 2026
+**Tanggal:** 12 Juli 2026
 **Branch:** `design`
-**Status dokumen:** update setelah Reasoning final baru dari `materi/baru/Reasoning-baru.md`, Reasoning canonical final, snapshot materi lama Reasoning untuk deep research, full curriculum placeholder scaffold, aktivasi Math for AI, activity final Konsep AI Modern, scaffold activity tabs, migrasi Machine Learning full content, klarifikasi hierarchy course, refactor filesystem/routing final, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
+**Status dokumen:** Reasoning Nazril CANONICAL FINAL — unified single-page, 6 chapter, semua blocker fixed, belum push
 
-Dokumen ini memetakan status course, module/chapter, dan route agar developer berikutnya tahu mana yang aktif, mana yang masih under-development, dan route mana yang perlu dijaga.
+Dokumen ini memetakan status course, module/chapter, dan route.
 
 Detail implementasi, bug, kontrak runtime, dan hasil smoke test Reasoning final ada di `handover/REASONING_FINAL_CHECKPOINT.md`.
+
+## Checkpoint Reasoning Nazril Final (12 Juli 2026)
+
+- `04 - Reasoning` CANONICAL FINAL dengan source Nazril (`materi/nazril/submateri-reasoning-ai.md`).
+- **Layout unified single-page** — Visual/Source toggle sudah dihapus. Semua konten dalam satu halaman mengalir. Sumber Lengkap collapsible di paling bawah.
+- **6 chapter** dengan pedagogical flow lengkap: Hook → Konsep → Visual → Contoh → Eksplorasi → Quick Check → Prompt → Challenge → Mistakes/Practices → Ringkasan → Sumber Lengkap.
+- **Interactive components:** concept lab (3 tab per chapter), hook (pilih A/B, tidak dinilai), quick check (selected/correct/wrong/feedback/retry), mini challenge (textarea + save/edit/reset/restore + example reveal), inline reply composer.
+- **Activity final:** 17 latihan (progressive disclosure, save/edit/reset), 26 kuis (full-card clickable, single attempt), 4 diskusi (inline reply, localStorage).
+- **6 blocker audit semua terselesaikan:** mobile hero, mini challenge, internal clipping, window.prompt, border-radius:0, Visual/Source toggle.
+- **LocalStorage keys:** `heraiAiReasoningCurrentChapter`, `heraiAiReasoningPractice`, `heraiAiReasoningQuizDone/Score/Answers`, `heraiAiReasoningDiscussion`, `heraiAiReasoningChallengeCh1`–`Ch6`.
+- **Route final:** `#/participant-ai-reasoning`, `...-practice`, `...-quiz`, `...-discussion`.
+- **Verifikasi:** JS syntax OK, route checker 113/113, nol conflict marker, nol border-radius:0 reasoning.
+- **Belum push.** Branch `design` ahead 6 commits.
+- **Commit final:** `12f29b4`.
 
 Source of truth hierarki katalog course ada di:
 

@@ -2,11 +2,11 @@
 
 **Tanggal:** 12 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning Nazril canonical final-polish — renderer collision, mobile hero, challenge persistence, clipping, dan inline reply sudah diperbaiki; belum push
-**Commit Reasoning final-polish:** (mengikuti — commit lokal berikutnya)
-**Commit Reasoning canonical sebelumnya:** `da4c57d feat(reasoning): complete canonical implementation using Nazril source`
+**Status:** Reasoning Nazril CANONICAL FINAL — unified single-page layout, 6-chapter pedagogical flow, semua blocker audit terselesaikan; belum push
+**Commit final:** `12f29b4 fix(reasoning): merge Visual/Source into single flowing page`
+**Commit canonical baseline:** `da4c57d feat(reasoning): complete canonical implementation using Nazril source`
 
-Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
+Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya.
 
 Source of truth hierarki course terbaru:
 
@@ -17,6 +17,151 @@ handover/REASONING_FINAL_CHECKPOINT.md
 ```
 
 ---
+
+## 🎯 CHECKPOINT FINAL — Reasoning Nazril Canonical (12 Juli 2026)
+
+### Commits Reasoning (dari yang paling baru)
+
+| Commit | Deskripsi |
+|---|---|
+| `12f29b4` | fix(reasoning): merge Visual/Source into single flowing page |
+| `281c8ed` | fix(reasoning): finalize responsive learning flow |
+| `9c66e09` | fix(reasoning): audit fixes — mobile hero, mini challenge, inline reply, clipping, code radius |
+| `ef489ac` | feat(reasoning): complete pedagogical overhaul with learning flow, hooks, and interactive components |
+| `373d2a8` | feat(reasoning): visual overhaul with concept labs, view toggle, and nav chips |
+| `da4c57d` | feat(reasoning): complete canonical implementation using Nazril source |
+
+### Status Akhir Module Reasoning
+
+| Item | Status |
+|---|---|
+| **Source canonical** | `materi/nazril/submateri-reasoning-ai.md` (2.755 baris, tidak dikurangi) |
+| **Chapter** | 6 chapter Nazril |
+| **Route** | `#/participant-ai-reasoning`, `...-practice`, `...-quiz`, `...-discussion` |
+| **Folder canonical** | `pages/frontend/fellow-dashboard/.../04-reasoning/` |
+| **Controller** | `js/frontend/fellow-dashboard/ai-reasoning.js` |
+| **CSS** | `css/frontend/fellow-dashboard/modules.css` |
+| **Cache buster** | `20260712-reasoning-final-v15` di `index.html` |
+| **Source chapter HTML** | `chapters/01-full.html` s/d `06-full.html` — TIDAK DIUBAH |
+| **Latihan** | 17 skenario, progressive disclosure, save/edit/reset localStorage |
+| **Kuis** | 26 soal, full-card clickable, single attempt, locked state jelas |
+| **Diskusi** | 4 prompt, inline reply composer, post/reply persistence localStorage |
+| **Push** | BELUM |
+
+### Arsitektur Layout — Unified Single Page
+
+Layout sekarang MENYATU dalam satu halaman mengalir:
+
+```
+Chapter Orientation (judul, durasi, objectives, analogi)
+→ Navigation chips (Pembuka→Konsep→Visual→Contoh→Eksplorasi→Check→Challenge→Ringkasan)
+→ Hook (curiosity builder, pilih A/B, tidak dinilai)
+→ Opening (paragraf pembuka konsep)
+→ Recall vs Reasoning comparison table
+→ Concept sections (penjelasan, tabel, numbered list, diagram)
+→ Flow diagram (visual reasoning flow)
+→ Example (contoh terurai dengan langkah dan kesimpulan)
+→ Interactive concept lab (3 tab interaktif per chapter)
+→ Quick Check (selected→correct/wrong→feedback→retry)
+→ LLM Example
+→ Prompt Pattern (code block pink-light + copy button, newline asli)
+→ Mini Challenge (textarea + save/edit/reset/restore + example reveal)
+→ Common Mistakes + Best Practices (paired, dua kolom desktop)
+→ Ringkasan (learning outcomes checklist + transisi next chapter)
+→ [Collapsible] Sumber Lengkap (materi Nazril utuh)
+```
+
+**Visual/Source toggle sudah DIHAPUS.** Semua konten dalam satu halaman. Sumber Lengkap di paling bawah sebagai `<details>` collapsible.
+
+### Learning Flow per Chapter
+
+| Ch | Judul | Konsep Utama | Interaksi |
+|---|---|---|---|
+| 1 | Dari Menjawab ke Menalar | Fakta, asumsi, hubungan, kesimpulan | Reasoning Anatomy Explorer (3 tab) |
+| 2 | Reasoning yang Dapat Diperiksa | Verifikasi, error spotting, valid vs meyakinkan | Error Spotting Lab (3 tab) |
+| 3 | Planning & Problem Decomposition | Goal, constraints, dependencies, replanning | Replanning Simulator (3 tab) |
+| 4 | Structured Reasoning & Chain-of-Thought | CoT, faithfulness, prompt patterns | Prompt Transformer (3 tab) |
+| 5 | Tool Use yang Bertanggung Jawab | Tool selection, parameter, observation, permission | Tool Decision Lab (3 tab) |
+| 6 | Integrated Reasoning Mission | Reason→Plan→Act→Observe→Update→Answer | Guided Mission Stepper (3 tab) |
+
+### LocalStorage Contract (TIDAK BOLEH DIUBAH TANPA MIGRASI)
+
+```text
+heraiAiReasoningCurrentChapter       — chapter terakhir dibaca
+heraiAiReasoningPractice              — jawaban latihan
+heraiAiReasoningQuizDone              — kuis sudah dikerjakan
+heraiAiReasoningQuizScore             — skor kuis
+heraiAiReasoningQuizAnswers           — jawaban kuis per soal
+heraiAiReasoningDiscussion            — post dan reply diskusi
+heraiAiReasoningChallengeCh1          — Mini Challenge Chapter 1
+heraiAiReasoningChallengeCh2          — Mini Challenge Chapter 2
+heraiAiReasoningChallengeCh3          — Mini Challenge Chapter 3
+heraiAiReasoningChallengeCh4          — Mini Challenge Chapter 4
+heraiAiReasoningChallengeCh5          — Mini Challenge Chapter 5
+heraiAiReasoningChallengeCh6          — Mini Challenge Chapter 6
+```
+
+### Blocker yang SUDAH DIPERBAIKI
+
+| # | Blocker | Status |
+|---|---|---|
+| 1 | Mobile hero rusak (4 route) | ✅ Fixed — `.lesson-hero` responsive, image max-width 120px |
+| 2 | Mini Challenge simpan `undefined` | ✅ Fixed — `data-challenge-textarea`, key `heraiAiReasoningChallengeChN` |
+| 3 | Internal clipping Ch1/3/4 mobile | ✅ Fixed — grid collapse, flow vertical, max-width constraints |
+| 4 | `window.prompt` reply diskusi | ✅ Fixed — inline reply composer + validation |
+| 5 | `border-radius: 0` code block | ✅ Fixed — dihapus dari `.reasoning-code-block pre/code` |
+| 6 | Visual/Source toggle memisahkan konten | ✅ Fixed — merged into single flowing page |
+
+### Bug/Known Issues Saat Ini
+
+- **Tidak ada document-level overflow** pada desktop 1280px maupun mobile 390px.
+- **Tidak ada error runtime Reasoning** di console browser. Hanya `ERR_CONNECTION_REFUSED` ke `127.0.0.1:8092` (API settings lokal — bukan error Reasoning).
+- **Belum diuji:** submit kuis single attempt (jangan submit sembarangan — gunakan backup localStorage atau isolated context).
+- **Belum push** — branch `design` ahead of `origin/design` by 6 commits.
+
+### File yang Berubah dalam Session Reasoning Ini
+
+| File | Perubahan |
+|---|---|
+| `js/frontend/fellow-dashboard/ai-reasoning.js` | ~2400 lines — complete rewrite: CHAPTERS enriched, rendering engine, hooks, quick checks, challenges, discussion inline reply |
+| `css/frontend/fellow-dashboard/modules.css` | +900 lines — pedagogical components, unified canvas, reply composer, responsive fixes |
+| `pages/.../04-reasoning/materi.html` | Progress "0 dari 5" → "0 dari 6" |
+| `index.html` | Cache buster `20260712-reasoning-final-v15` |
+| `handover/*` | Semua dokumen handover diperbarui |
+
+### File yang TIDAK BOLEH DIUBAH
+
+- `chapters/01-full.html` s/d `06-full.html` — source Nazril utuh
+- `chapters/practice-full.html` — 17 latihan
+- `chapters/quiz-source-full.html` — 26 kuis
+- `chapters/discussion-source-full.html` — 4 diskusi
+- `materi/nazril/submateri-reasoning-ai.md` — source canonical
+- `js/router.js` — route tidak berubah
+- `course-placeholder.js` — Reasoning TIDAK pakai scaffold ini
+- Dashboard shell: sidebar, topbar, breadcrumb, footer nav — tidak berubah
+
+### Verifikasi Terakhir
+
+```text
+✅ node --check js/frontend/fellow-dashboard/ai-reasoning.js
+✅ node --check js/router.js
+✅ node --check js/frontend/fellow-dashboard/course-placeholder.js
+✅ git diff --check
+✅ node scripts/check-participant-routes.mjs → 113/113 passed
+✅ rg '<<<<<<<|>>>>>>>' → no conflict markers
+✅ rg 'border-radius:\s*0' di reasoning CSS → tidak ditemukan
+```
+
+### Instruksi untuk AI Penerus
+
+1. **Baca WAJIB:** `AGENTS.md`, `GEMINI.md`, `handover/HANDOVER_UPDATE.md`, `handover/REASONING_FINAL_CHECKPOINT.md`
+2. **Jangan mengubah:** source chapter HTML, localStorage keys, route, dashboard shell
+3. **Jangan push** tanpa izin user
+4. **Jika mengubah JS/CSS Reasoning:** bump cache buster di `index.html`
+5. **Jika smoke test kuis:** backup localStorage dulu — single attempt akan mengunci state
+6. **Source canonical:** `materi/nazril/submateri-reasoning-ai.md`
+7. **Jangan mengembalikan Visual/Source toggle** — layout sekarang unified
+8. **Jangan mengurangi materi Nazril**
 
 ---
 

@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 11 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning, Reasoning Canonical Final, Snapshot Reasoning Lama, Audit Final)
+**Tanggal:** 12 Juli 2026 (Reasoning Nazril CANONICAL FINAL — unified single-page, semua blocker fixed)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -8,6 +8,176 @@
 ---
 
 ## PROMPT CEPAT UNTUK TIM PENERUS
+
+```text
+Kamu melanjutkan proyek HerAI Fellowship SuperApp di branch design.
+
+Wajib baca dulu:
+1. GEMINI.md
+2. AGENTS.md
+3. handover/HANDOVER_UPDATE.md
+4. handover/REASONING_FINAL_CHECKPOINT.md
+5. handover/MODULE_STATUS_MAP.md
+6. handover/COURSE_HIERARCHY.md
+7. handover/PROMPT_AI_BARU.md
+8. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+
+Konteks terbaru (12 Juli 2026):
+- Branch `design`, ahead of origin by 6 commits. BELUM PUSH.
+- Commit final Reasoning: 12f29b4 "fix(reasoning): merge Visual/Source into single flowing page"
+- Reasoning sekarang CANONICAL FINAL — source Nazril (materi/nazril/submateri-reasoning-ai.md), 2.755 baris, 6 chapter.
+- Layout unified single-page — TIDAK ADA Visual/Source toggle lagi. Semua konten mengalir dalam satu halaman.
+- Sumber Lengkap di paling bawah sebagai <details> collapsible.
+- 6 chapter Nazril: Dari Menjawab ke Menalar, Reasoning Dapat Diperiksa, Planning, CoT, Tool Use, Integrated Mission.
+- Setiap chapter memiliki: Hook, Concepts, Flow Diagram, Example, Interactive Lab (3 tab), Quick Check (retry), Prompt Pattern (copy button), Mini Challenge (save/edit/reset), Mistakes+Best Practices, Ringkasan, Sumber Lengkap.
+- Activity: 17 latihan (step navigator, save localStorage), 26 kuis (full-card clickable, SINGLE ATTEMPT — jangan submit sembarangan), 4 diskusi (inline reply composer).
+- LocalStorage keys: heraiAiReasoningCurrentChapter/Practice/QuizDone/Score/Answers/Discussion, heraiAiReasoningChallengeCh1-Ch6.
+- Semua blocker audit fixed: mobile hero, mini challenge, internal clipping, window.prompt, border-radius:0, Visual/Source toggle.
+- Route final: #/participant-ai-reasoning, ...-practice, ...-quiz, ...-discussion.
+- Jangan ubah: source chapter HTML, localStorage keys, route, dashboard shell, sidebar, topbar, breadcrumb.
+- Jangan kembalikan Visual/Source toggle. Jangan kurangi materi Nazril.
+- Jika smoke test kuis: BACKUP localStorage dulu. Single attempt akan mengunci state.
+- Jika ubah JS/CSS Reasoning: BUMP cache buster di index.html.
+- Jangan push tanpa izin user.
+- Source of truth: handover/HANDOVER_UPDATE.md dan handover/REASONING_FINAL_CHECKPOINT.md.
+
+Sebelum edit, jalankan:
+git status --short --branch
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+node --check js/frontend/fellow-dashboard/ai-reasoning.js
+node scripts/check-participant-routes.mjs
+git diff --check
+
+Tugas utama berikutnya:
+1. Jika user minta revisi Reasoning, baca handover/REASONING_FINAL_CHECKPOINT.md dulu.
+2. Jika user minta revisi Python, baca folder canonical 02-python-untuk-ai/.
+3. Jika user minta revisi Pengantar AI, baca folder canonical 01-pengantar-ai/.
+4. Jangan ubah route final existing tanpa task spesifik.
+5. Setelah selesai, update handover/ dan commit lokal. Jangan push.
+```
+
+---
+
+## 🎯 STATUS COURSE — 12 Juli 2026
+
+### Course Aktif Final
+
+| Course | Status | Route | Folder |
+|---|---|---|---|
+| **Pengantar AI** | Final | `#/participant-ai-intro` | `01-pengantar-ai/` |
+| **Python untuk AI** | Final | `#/participant-ai-python` | `02-python-untuk-ai/` |
+| **Konsep AI Modern** | Materi aktif, activity under-dev | `#/participant-ai-modern` | `03-konsep-ai-modern/` |
+| **Reasoning** | CANONICAL FINAL | `#/participant-ai-reasoning` | `04-reasoning/` |
+| **Math for AI** | Final | `#/participant-ai-lab-math` | `math-for-ai/` |
+| **Machine Learning** | Final | `#/participant-ai-lab-machine-learning` | `machine-learning/` |
+| **Computer Vision** | Aktif | `#/participant-ai-lab-cv` | `computer-vision/` |
+| **NLP** | Aktif | `#/participant-ai-lab-nlp` | `nlp/` |
+
+### Course Scaffold (Belum Final)
+
+Semua course/module belum final memakai `course-placeholder.html` dengan manifest `COURSE_SCAFFOLDS`.
+
+Jangan buat file `materi.html`, `latihan.html`, `kuis.html`, `diskusi.html` untuk course yang belum final — isi scaffold dulu.
+
+### Route Checker Baseline
+
+```text
+Total: 113 passed | 0 failed
+```
+
+---
+
+## 🧠 REASONING CANONICAL FINAL — Ringkasan Teknis
+
+### Arsitektur File
+
+```
+js/frontend/fellow-dashboard/ai-reasoning.js  → Controller (2400 lines)
+css/frontend/fellow-dashboard/modules.css       → Style (+900 lines reasoning)
+index.html                                       → Cache buster: 20260712-reasoning-final-v15
+pages/.../04-reasoning/materi.html              → HTML shell
+pages/.../04-reasoning/latihan.html             → Practice shell
+pages/.../04-reasoning/kuis.html                → Quiz shell
+pages/.../04-reasoning/diskusi.html             → Discussion shell
+pages/.../04-reasoning/chapters/01-full.html    → Source Ch1 (237 lines)
+pages/.../04-reasoning/chapters/02-full.html    → Source Ch2 (227 lines)
+pages/.../04-reasoning/chapters/03-full.html    → Source Ch3 (380 lines)
+pages/.../04-reasoning/chapters/04-full.html    → Source Ch4 (292 lines)
+pages/.../04-reasoning/chapters/05-full.html    → Source Ch5 (467 lines)
+pages/.../04-reasoning/chapters/06-full.html    → Source Ch6 (337 lines)
+```
+
+### Layout (Unified Single Page)
+
+```
+renderChapter() → Orientation + Nav Chips + Unified Canvas
+  renderChapterContent() →
+    finalRenderHookSection()       → Hook A/B
+    finalRenderOpeningSection()    → Paragraf pembuka
+    finalRenderComparisonTable()   → Recall vs Reasoning
+    finalRenderConceptSections()   → Konsep + tabel + diagram
+    renderFlow()                    → Flow diagram
+    finalRenderExampleSection()    → Contoh terurai
+    renderSourceVisualLab()        → Interactive lab (3 tab)
+    finalRenderQuickCheckSection() → Quick Check + retry
+    renderPromptSection()          → Prompt pattern + copy
+    renderChallengeSection()       → Mini challenge workspace
+    finalRenderMistakesPractices() → Mistakes + Best Practices
+    finalRenderSummarySection()    → Ringkasan + transisi
+  [Collapsible] Sumber Lengkap     → Source HTML dari chapters/
+```
+
+### Data Layer
+
+- `CHAPTERS[]` — 6 chapter dengan metadata lengkap (hook, concepts, flow, example, lab, dll)
+- `PRACTICES[]` — 17 latihan dari source Nazril
+- `QUIZ[]` — 26 soal kuis (array of [question, options[], answerIndex, explanation])
+- `DISCUSSION_PROMPTS[]` — 4 topik diskusi
+- `SOURCE_VISUALS{}` — Konfigurasi concept lab per chapter (3 tab options)
+
+### Chapter Content
+
+Setiap chapter memiliki data enriched dalam `ai-reasoning.js`:
+- `hook` — Pertanyaan + 2 jawaban (A/B) + message
+- `opening` — Array paragraf pembuka
+- `concepts[]` — Array {title, content[], table?, numberedList?, diagram?}
+- `flow[]` — Array [label, description] untuk flow diagram
+- `example` — {title, case, steps[], conclusion, commonErrors[]}
+- `lab` — Konfigurasi concept lab (eyebrow, title, description, options[])
+- `quickCheck` — {question, options[], answer, explanationCorrect, explanationWrong}
+- `challenge` — {instruction, placeholder, example}
+- `mistakes[], bestPractices[], learningOutcomes[]`
+- `transition` — Teks transisi ke next chapter
+
+### Interaction Handlers
+
+- `setupHookInteraction()` — Hook pilih A/B, tampilkan message
+- `setupQuickChecks()` — Select option → Submit → Correct/Wrong → Retry
+- `setupChallengeInteraction()` — Save/Edit/Reset with localStorage persistence
+- `setupViewToggle()` — (SUDAH TIDAK DIPANGGIL — toggle dihapus)
+- `setupVisualNav()` — Navigation chips jump to sections
+- `setupCopyButtons()` — Copy prompt ke clipboard
+
+### DO NOT REGRESS
+
+- ❌ Jangan kembalikan Visual/Source toggle
+- ❌ Jangan kurangi materi Nazril
+- ❌ Jangan ubah localStorage contract
+- ❌ Jangan ubah route
+- ❌ Jangan ubah dashboard shell
+- ❌ Jangan hapus source chapter HTML
+- ❌ Jangan gunakan `window.HERAI_REASONING_COURSE`
+
+### Verifikasi Wajib Sebelum Commit
+
+```bash
+node --check js/frontend/fellow-dashboard/ai-reasoning.js
+node --check js/router.js
+node --check js/frontend/fellow-dashboard/course-placeholder.js
+git diff --check
+node scripts/check-participant-routes.mjs
+```
 
 Gunakan prompt ini kalau butuh versi pendek tetapi tetap aman:
 

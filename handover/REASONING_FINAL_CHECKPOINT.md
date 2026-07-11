@@ -2,12 +2,140 @@
 
 **Tanggal:** 12 Juli 2026
 **Branch:** `design`
-**Status:** final canonical Nazril, final-polish aktif, belum push
+**Status:** CANONICAL FINAL — unified single-page, 6 chapter Nazril, semua blocker audit fixed; belum push
 **Sumber materi:** `materi/nazril/submateri-reasoning-ai.md`
-**Commit visual final:** `7668070 feat: finalize reasoning visual course`
-**Commit activity UX:** `8007acb fix: clarify reasoning activity flow`
+**Commit final:** `12f29b4 fix(reasoning): merge Visual/Source into single flowing page`
 
 Dokumen ini adalah checkpoint canonical untuk seluruh pekerjaan submodul `04 - Reasoning`. AI/developer berikutnya wajib membaca dokumen ini setelah `AGENTS.md`, `GEMINI.md`, dan `handover/HANDOVER_UPDATE.md` sebelum mengubah Reasoning.
+
+## 🏁 Hasil Akhir (12 Juli 2026)
+
+### Route Final (TIDAK BERUBAH)
+
+```text
+#/participant-ai-reasoning           → materi.html
+#/participant-ai-reasoning-practice  → latihan.html
+#/participant-ai-reasoning-quiz      → kuis.html
+#/participant-ai-reasoning-discussion → diskusi.html
+```
+
+### Folder Runtime Canonical
+
+```text
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/
+  materi.html
+  latihan.html
+  kuis.html
+  diskusi.html
+  chapters/
+    01-full.html      (Submateri 1 — Bagaimana AI Melakukan Penalaran)
+    02-full.html      (Submateri 1 verification + error spotting)
+    03-full.html      (Submateri 2 — Planning dan Problem Decomposition)
+    04-full.html      (Submateri 3 — Chain-of-Thought)
+    05-full.html      (Submateri 4 — Tool Use)
+    06-full.html      (Integrasi — Reason, Plan, Act, Observe, Update, Answer)
+    practice-full.html    (17 latihan)
+    quiz-source-full.html (26 soal kuis)
+    discussion-source-full.html (4 diskusi)
+```
+
+### Controller
+
+```text
+js/frontend/fellow-dashboard/ai-reasoning.js  (~2400 lines)
+css/frontend/fellow-dashboard/modules.css      (+900 lines reasoning)
+index.html                                      (cache buster: 20260712-reasoning-final-v15)
+```
+
+### Struktur Chapter (6 Chapter Nazril)
+
+| Ch | Judul | Source |
+|---|---|---|
+| 1 | Dari Menjawab ke Menalar | Submateri 1.1–1.10 |
+| 2 | Reasoning yang Dapat Diperiksa | Submateri 1.7–1.8 + verifikasi |
+| 3 | Planning & Problem Decomposition | Submateri 2.1–2.14 |
+| 4 | Structured Reasoning & Chain-of-Thought | Submateri 3.1–3.13 |
+| 5 | Tool Use yang Bertanggung Jawab | Submateri 4.1–4.17 |
+| 6 | Integrated Reasoning Mission | Submateri integrasi + studi kasus |
+
+### Layout — Unified Single Page
+
+Visual/Source toggle sudah DIHAPUS. Semua konten dalam satu halaman mengalir:
+
+```
+Orientation → Nav Chips → Hook → Opening → Concepts → Flow → Example
+→ Lab → Quick Check → LLM Example → Prompt → Challenge → Mistakes/Practices
+→ Ringkasan → [Collapsible] Sumber Lengkap
+```
+
+Sumber Lengkap berupa `<details>` yang bisa dibuka/tutup — berisi seluruh materi Nazril tanpa pengurangan.
+
+### Integritas Materi
+
+- Sumber Nazril: 2.755 baris, tidak dikurangi, tidak diringkas.
+- Chapter HTML files (`01-full.html` s/d `06-full.html`) — TIDAK PERNAH DIUBAH. Hanya presentation layer (JS + CSS) yang berubah.
+- Semua 17 latihan, 26 kuis, dan 4 diskusi dari source Nazril tersedia di activity route.
+- Visual adalah lapisan presentasi tambahan, bukan pengganti materi.
+
+### LocalStorage Keys (KONTRAK — JANGAN DIUBAH)
+
+```text
+heraiAiReasoningCurrentChapter
+heraiAiReasoningPractice
+heraiAiReasoningQuizDone
+heraiAiReasoningQuizScore
+heraiAiReasoningQuizAnswers
+heraiAiReasoningDiscussion
+heraiAiReasoningChallengeCh1
+heraiAiReasoningChallengeCh2
+heraiAiReasoningChallengeCh3
+heraiAiReasoningChallengeCh4
+heraiAiReasoningChallengeCh5
+heraiAiReasoningChallengeCh6
+```
+
+### Blocker History (SEMUA TERSELESAIKAN)
+
+| # | Blocker | Commit Fix |
+|---|---|---|
+| 1 | Mobile hero rusak 4 route | `9c66e09` |
+| 2 | Mini Challenge simpan `undefined` | `9c66e09` |
+| 3 | Internal clipping Ch1/3/4 | `9c66e09` |
+| 4 | `window.prompt` reply | `9c66e09` |
+| 5 | `border-radius: 0` code block | `9c66e09` |
+| 6 | Visual/Source toggle terpisah | `12f29b4` |
+
+### Verifikasi Final
+
+```text
+✅ node --check ai-reasoning.js
+✅ node --check router.js
+✅ node --check course-placeholder.js
+✅ git diff --check
+✅ route checker: 113 passed / 0 failed
+✅ nol conflict marker
+✅ nol border-radius: 0 di reasoning CSS
+✅ server: http://localhost:3000 → 200 OK
+```
+
+### Known Issues Saat Ini
+
+1. **Quiz single attempt** — jangan submit sembarangan saat smoke test. Gunakan backup localStorage.
+2. **API settings error** — `ERR_CONNECTION_REFUSED` ke `127.0.0.1:8092` adalah error service lokal, BUKAN error Reasoning.
+3. **Belum push** — branch `design` ahead 6 commits.
+
+### Aturan Maintenance
+
+- ❌ JANGAN kembalikan route Reasoning ke `course-placeholder.html`
+- ❌ JANGAN ambil data Reasoning dari `window.HERAI_REASONING_COURSE`
+- ❌ JANGAN hapus file `chapters/*-full.html`
+- ❌ JANGAN kompres materi sumber
+- ❌ JANGAN ganti localStorage key tanpa migrasi
+- ❌ JANGAN ubah dashboard shell, sidebar, topbar, breadcrumb, tabs
+- ❌ JANGAN kembalikan Visual/Source toggle
+- ✅ BUMP cache buster jika JS/CSS Reasoning berubah
+- ✅ JAGA integritas source Nazril
+- ✅ COMMIT lokal, JANGAN push tanpa izin
 
 ## Checkpoint Terbaru — Final Polish Nazril
 
