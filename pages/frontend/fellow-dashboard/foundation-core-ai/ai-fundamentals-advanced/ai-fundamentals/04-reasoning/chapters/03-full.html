@@ -1,29 +1,381 @@
-<section class="reasoning-source-material" data-source-lines="67"><h4><strong>Bab 3: Mekanisme Penalaran Internal pada LLM</strong></h4>
-<p><strong>Tujuan Chapter:</strong> Menguasai secara konseptual arsitektur dan strategi dekonstruksi pemikiran (<em>decoding strategies</em>) yang memungkinkan LLM bernalar secara internal. Pembahasan mencakup teknik <em>Chain-of-Thought</em>, <em>Tree of Thoughts</em>, <em>Scratchpad</em>, serta mengkaji integrasi revolusioner <em>Reinforcement Learning</em> pada model <em>state-of-the-art</em> (seperti OpenAI o1 dan DeepSeek-R1).   <strong>Kenapa Chapter Ini Penting:</strong> Kemampuan untuk memahami bagaimana instruksi sintaksis atau struktur arsitektural dapat merangsang model dari sekadar reaktor pencocokan kata mentah menjadi mesin orkestrasi pemecahan masalah <em>multi-langkah</em> adalah esensi dari penguasaan AI saat ini. Pengetahuan ini menjadi pemisah antara pengguna amatir yang menebak-nebak prompt, dan <em>engineer</em> yang mampu merancang saluran logika yang memaksimalkan potensi komputasi model.   <strong>Penjelasan Konsep Utama:</strong>   Evolusi paling transformatif dalam kapabilitas kognitif LLM belakangan ini tidak lagi didominasi oleh seberapa eksponensial volume data yang dijejalkan ke dalam parameter pelatihan mereka, melainkan oleh bagaimana proses inferensi (fase ketika model melakukan pembangkitan respons) dieksekusi secara struktural.   Salah satu intervensi metodologis yang paling berpengaruh adalah paradigma <em>Chain-of-Thought</em> (CoT) prompting, yang pertama kali dikristalisasi oleh Jason Wei dan rekan-rekannya pada tahun 2022.13 Secara tradisional, model selalu diinstruksikan untuk memuntahkan jawaban akhir secara langsung atau <em>zero-shot</em>. Pendekatan CoT meruntuhkan konvensi ini dengan mendikte model untuk mengekspos dan memproduksi jejak penalaran perantara (<em>intermediate reasoning steps</em>) secara tekstual sebelum melakukan konvergensi pada kesimpulan akhir.13   Data empiris membuktikan bahwa integrasi CoT meningkatkan akurasi operasional model besar secara masif, khususnya pada domain yang padat penalaran seperti aritmetika algoritmik, logika simbolik, dan evaluasi akal sehat.14 Memecah masalah makro ke dalam sekuens mikro bertindak sebagai katup pengaman; hal ini mencegah akumulasi kesalahan probabilistik yang rentan terjadi jika proses autoreregresif dipaksa melompat langsung ke konklusi.6   Pengembangan arsitektural lebih lanjut melahirkan algoritma <em>Tree of Thoughts</em> (ToT).16 Sementara topologi CoT bergerak secara linear dan deterministik (satu langkah logis mengekor langkah sebelumnya tanpa ragu), ToT meminjam konsep algoritma penelusuran heuristik untuk mengizinkan model memelihara banyak cabang penalaran alternatif secara simultan.16 Model merumuskan beberapa hipotesis rute awal, mengevaluasi potensi keberhasilan setiap cabang komputasi secara mandiri (melalui <em>self-evaluation</em>), melakukan <em>backtracking</em> (mundur ke simpul persimpangan logis sebelumnya) jika suatu rute terindikasi menemui paradoks buntu, dan pada akhirnya mensintesis rute kognitif yang dinilai paling optimal.17   Manifestasi praktis dari konsep eksplorasi ini di ranah aplikasi perangkat lunak diwujudkan melalui penggunaan <em>Scratchpad</em> atau <em>Working Memory</em>. Ini adalah area kontekstual terisolasi (sering kali dibungkus dalam tag XML kustom atau disembunyikan di <em>backend</em> agar tidak terlihat oleh <em>end-user</em>) di mana LLM diperbolehkan untuk &quot;berpikir lantang&quot;, mendeklarasikan variabel perhitungan sementara, atau menyusun draf komputasi kotor sebelum memformulasikan keluaran sintaksis akhir yang terpoles sempurna.   Pergeseran revolusioner pada generasi terkini bergeser dari sekadar manipulasi <em>prompt</em> buatan manusia, menuju integrasi kemampuan penalaran langsung ke dalam struktur arsitektur dasar model melalui <em>Reinforcement Learning</em> (RL). Model OpenAI o1 berdiri sebagai pionir dalam lompatan ini dengan menyematkan infrastruktur CoT secara <em>native</em>.6 Alih-alih dilatih semata-mata untuk meniru jawaban manusia melalui pengawasan label statis (<em>Supervised Fine-Tuning</em>), o1 diekspos pada simulasi RL berskala raksasa di mana ia diberi imbalan (reward) untuk memoles rantai penalarannya secara mandiri.20 Selama jendela inferensi, o1 mensekresikan waktu komputasi laten untuk menjalankan pencarian implisit, mendeteksi kalkulasi yang cacat, memecah arsitektur masalah, dan merombak strateginya sendiri secara dinamis sebelum memuntahkan satu token pun ke layar pengguna.22   Penelitian independen dari DeepSeek-R1 mengonfirmasi dan memperluas teori bahwa kemampuan penalaran deduktif dan logika terstruktur ini dapat terwujud (&quot;emerge&quot;) murni dari <em>Reinforcement Learning</em>, tanpa memerlukan <em>Supervised Fine-Tuning</em> (SFT) berskala besar.24 Fenomena ini sangat terlihat pada varian eksperimental R1-Zero, yang tidak diberi contoh data penalaran manusia sama sekali.26 Berlandaskan sistem <em>reward</em> yang memvalidasi kebenaran output matematika atau fungsionalitas kode program, DeepSeek R1-Zero melalui proses <em>trial-and-error</em> triliunan kali mengembangkan perilaku kognitif <em>emergent</em> seperti kapasitas refleksi diri, arsitektur verifikasi mandiri, dan momen sintesis <em>aha moments</em>.24 Model ini secara harfiah mampu menyadari adanya kesalahan komputasional di tengah pembangunan kalimat dan memutar balik alur logikanya sendiri.26 Model R1 final kemudian disuntikkan porsi kecil data observasi awal (<em>cold-start</em>) sekadar untuk mengatur format keluaran (<em>readability</em>) agar hasil pikirannya tidak menggunakan sintaksis yang terlalu alien bagi pembaca manusia.25   Baik o1 maupun arsitektur R1 mewakili pergeseran tektonik ekuilibrium komputasi AI: mereka menggeser porsi besar beban komputasi dari fase prapelatihan statis (<em>pre-training compute</em>) menuju komputasi dinamis saat inferensi (<em>test-time compute / test-time search</em>).20</p>
-<div class="reasoning-scaffold-table-wrap"><table><thead><tr><th>Mekanisme</th><th>Topologi Pemikiran</th><th>Integrasi Utama</th><th>Keunggulan Spesifik</th></tr></thead><tbody><tr><td><strong>Zero-Shot</strong></td><td>Langsung ke kesimpulan</td><td><em>Default</em> prediksi token</td><td>Kecepatan inferensi tinggi</td></tr><tr><td><strong>Chain-of-Thought</strong></td><td>Linear sekuensial (Langkah demi langkah)</td><td><em>Prompt Engineering</em></td><td>Menurunkan error matematika</td></tr><tr><td><strong>Tree of Thoughts</strong></td><td>Multi-cabang dengan evaluasi &amp; <em>backtrack</em></td><td><em>Agentic Loop / Prompting</em></td><td>Eksplorasi solusi kompleks yang probabilistik</td></tr><tr><td><strong>RL-Native (o1/R1)</strong></td><td>Pencarian implisit mandiri, <em>self-correction</em></td><td><em>Model Architecture / Training</em></td><td>Kapabilitas otonom setara ahli pada STEM</td></tr></tbody></table></div>
-<p><strong>Analogi Sederhana:</strong></p>
-<ol>
-<li><strong>Zero-Shot vs Chain-of-Thought</strong>: Menginstruksikan seseorang untuk mengalikan 789 x 456. Jika ia diwajibkan memberikan jawaban definitif dalam dua detik (<em>zero-shot</em>), ia hanya bisa menebak berdasarkan insting numerik dangkal. Namun, jika ia diberikan meja, selembar kertas buram, dan pena (<em>scratchpad</em>) untuk menjalankan kalkulasi perkalian bersusun lapis demi lapis (<em>Chain-of-Thought</em>), probabilitas jawaban benarnya mendekati absolut.  </li>
-<li><strong>Tree of Thoughts</strong>: Mensimulasikan navigasi di dalam labirin raksasa. CoT bertindak layaknya seseorang yang berjalan lurus menelusuri dinding hingga akhirnya menemui jalan buntu dan terdiam. ToT bertindak layaknya seorang kartografer yang berjalan, menemukan jalan buntu, mengingat koordinat persimpangan terakhir, secara terstruktur mundur (<em>backtrack</em>), lalu menginvestigasi lorong alternatif yang belum terpetakan.</li>
-</ol>
-<p><strong>Contoh Kasus Sehari-hari:</strong></p>
-<ol>
-<li><strong>Pengorganisasian Proyek (CoT/Scratchpad)</strong>: Seseorang ditugaskan merencanakan acara konferensi perusahaan. Alih-alih langsung menyebarkan draf jadwal kosong (kegagalan System 1), ia membuka aplikasi catatan pribadi (<em>scratchpad</em>), membedah alokasi anggaran katering, menyusun jadwal panggung utama, dan mendata ketersediaan tamu VIP (langkah perantara), sebelum akhirnya merender satu dokumen PDF eksekutif yang bersih.  </li>
-<li><strong>Evaluasi dan Koreksi Diri (DeepSeek-R1 style)</strong>: Saat berdiskusi dengan rekan kerja, seseorang berargumen, &quot;Proyek itu harus selesai di Q2 tahun 2024. Tunggu sebentar, anggaran tahunannya baru cair bulan Agustus, yang artinya itu masuk ranah Q3. Pendekatan saya di awal tadi salah, mari kita geser tenggat waktunya ke bulan September.&quot; Proses ini mewakili revisi logika secara <em>real-time</em>.</li>
-</ol>
-<p><strong>Contoh Kasus AI/LLM:</strong></p>
-<ol>
-<li><strong>Rekayasa Perangkat Lunak (OpenAI o1)</strong>: Ketika disodorkan instruksi algoritma enkripsi spesifik, model o1 tidak gegabah langsung mengetikkan baris <em>script</em>. Jejak pemikiran latennya (yang biasanya disembunyikan sistem) mungkin merepresentasikan dialog internal: &quot;Pendekatan <em>brute-force</em> memiliki kompleksitas iterasi O(N^2), yang akan gagal dalam skenario skala besar. Saya akan mencoba arsitektur <em>sliding window</em>... Tidak, itu juga akan memakan memori berlebih. Mari implementasikan <em>hash map</em> untuk optimasi <em>lookup</em>. Ya, opsi terakhir adalah yang paling efisien.&quot; 21  </li>
-<li><strong>Kalkulasi Matematis Dinamis (DeepSeek R1-Zero)</strong>: Diminta menyelesaikan ekspresi polinomial tingkat tinggi. Model mencetak rantai persamaan linear, menemukan bahwa langkah integrasi ke-4 menghasilkan angka imajiner yang melanggar parameter awal pertanyaan, lalu model itu mencetak teks secara mandiri, &quot;Asumsi substitusi variabel y di atas tidak valid karena batasan bilangan real, saya akan menganulir dan mengulangi ekspansi matriks dari langkah ke-2.&quot; Semuanya dilakukan tanpa panduan intervensi interaktif dari pengguna manusia.27</li>
-</ol>
-<p><strong>Contoh Prompt (Memicu CoT dengan Scratchpad):</strong>   &quot;Lakukan audit kelayakan terhadap rencana ekspansi bisnis dari Perusahaan Z. Jangan pernah memformulasikan keputusan akhir secara langsung. Patuhi protokol berikut:   Langkah 1: Dekonstruksi struktur biaya tetap dan biaya variabel.   Langkah 2: Ekstrapolasikan metrik tersebut terhadap batas toleransi risiko makroekonomi saat ini.   Langkah 3: Identifikasi potensi krisis rantai pasok (<em>supply chain</em>) di wilayah baru.   Langkah 4: Tuangkan seluruh proses deduksi analitis Anda, secara sistematis, di dalam area \&lt;scratchpad\&gt;... \&lt;/scratchpad\&gt;.   Setelah area <em>scratchpad</em> ditutup, sintesiskan konklusi akhir dalam satu paragraf yang definitif.&quot;   <strong>Common Mistakes:</strong></p>
+<h1>Submateri 2 — Planning dan Problem Decomposition</h1>
+<h2>2.1 Pembuka: Tujuan Besar Tidak Dikerjakan dalam Satu Langkah</h2>
+<p>Permintaan berikut terlihat sederhana:</p>
+<blockquote>
+<p>“Buat workshop pengenalan AI.”</p>
+</blockquote>
+<p>Namun, permintaan tersebut sebenarnya terdiri atas banyak keputusan:</p>
 <ul>
-<li>Menginjeksi parameter CoT pada model berbobot parameter sangat kecil (misal arsitektur dasar \&lt; 7B parameter yang tidak dirancang untuk itu). Alih-alih meningkatkan kualitas, model berkapasitas rendah ini akan mengalami <em>hallucination compounding</em>, di mana mereka mengarang rentetan logika fiktif yang tidak koheren.  </li>
-<li>Memaksakan protokol analisis langkah demi langkah (<em>step-by-step reasoning</em>) pada masalah trivial yang berdimensi sempit. Memaksa LLM bertele-tele untuk menjawab &quot;Apa ibukota negara Perancis?&quot; hanya mendistorsi nilai latensi inferensi dan mengekstraksi biaya <em>token</em> tanpa sedikit pun nilai heuristik tambah.28</li>
+<li>siapa pesertanya;</li>
+<li>apa tujuan belajarnya;</li>
+<li>berapa durasinya;</li>
+<li>materi apa yang dipilih;</li>
+<li>bagaimana bentuk latihan;</li>
+<li>fasilitas apa yang tersedia;</li>
+<li>bagaimana keberhasilannya diukur.</li>
 </ul>
-<p><strong>Best Practices:</strong></p>
+<p>Sistem AI yang langsung menghasilkan jadwal tanpa memahami bagian-bagian tersebut berisiko membuat rencana yang tidak realistis.</p>
+<pre><code class="language-text">Reasoning:
+Apa masalahnya, informasi apa yang penting,
+dan hubungan apa yang perlu dipahami?
+
+Planning:
+Langkah apa yang perlu dilakukan
+untuk mencapai tujuan?
+</code></pre>
+<h2>2.2 Apa Itu Planning?</h2>
+<p><strong>Planning</strong> adalah proses mengubah tujuan menjadi urutan langkah yang dapat dilaksanakan.</p>
+<p>Planning menjawab pertanyaan seperti:</p>
 <ul>
-<li>Demarkasi secara sintaksis antara fase penalaran internal dan presentasi keluaran akhir menggunakan <em>delimiters</em> (pembatas) yang tidak ambigu, seperti tag XML (\&lt;thought_process\&gt; dan \&lt;final_answer\&gt;). Hal ini mengisolasi proses dan memudahkan penarikan data (<em>parsing</em>) di sisi aplikasi <em>backend</em>.  </li>
-<li>Pahami pergeseran paradigma bahwa untuk model <em>Native Reasoner</em> (seperti OpenAI o1 atau keluarga DeepSeek-R1), injeksi <em>prompt</em> gaya lama (seperti &quot;berpikirlah langkah demi langkah&quot;) sering kali mubazir atau kontraproduktif. Model-model ini sudah menelan kebijakan RL untuk menalar dalam-dalam.6 Rekayasa <em>prompt</em> untuk kelas model ini harus beralih fokus pada membatasi kendala <em>output</em> (konteks akhir) dan memperjelas struktur masalah, bukan menggurui mereka tentang <em>cara</em> berpikir.</li>
+<li>apa hasil akhirnya;</li>
+<li>apa kondisi awalnya;</li>
+<li>apa batasannya;</li>
+<li>tugas kecil apa yang diperlukan;</li>
+<li>apa urutan yang tepat;</li>
+<li>kapan rencana dinyatakan selesai;</li>
+<li>apa yang dilakukan jika kondisi berubah.</li>
 </ul>
-<p><strong>Quick Check / Pertanyaan Reflektif:</strong>   Dalam konteks arsitektur heuristik model bahasa, pendekatan logis manakah yang paling representatif menggambarkan protokol &quot;Tree of Thoughts&quot;?   A. Model diwajibkan menyajikan satu penjelasan komputasional yang melintang lurus (<em>linear</em>) dari awal hingga memecahkan parameter masalah.   B. Model membangkitkan secara simultan tiga rute kognitif penyelesaian yang berbeda, menjalankan rutinitas evaluasi untuk mengukur cabang mana yang secara matematis paling menjanjikan, membuang iterasi cabang yang buntu, dan mengekstrapolasi langkah final dari rute pemenang.   C. Model mengaktifkan modul pencarian (<em>search retrieval</em>) ke pangkalan data eksternal Wikipedia dan mereplikasi verbatim teks yang ditemukan.   Analisis Jawaban: B. Kerangka kerja ToT diformulasikan tepat untuk memungkinkan dekomposisi hierarkis yang bercabang dan evaluasi paralel untuk penelusuran heuristik multi-dimensi.18   <strong>Mini Challenge:</strong>   Bayangkan Anda ditugaskan menyelesaikan teka-teki logika sekuensial sederhana: &quot;Lemari A lebih tinggi dari Lemari B. Lemari C lebih pendek dari Lemari B. Manakah unit furnitur yang paling tinggi?&quot;   Tulislah simulasi singkat dari proses <em>Chain of Thought</em> (terbatas dalam tiga langkah diskret) yang akan dilalui arsitektur AI untuk tiba pada penyelesaian yang anti-halusinasi dan stabil secara logika.   <strong>Ringkasan Chapter:</strong>   Evolusi penalaran internal model bahasa besar telah melesat dari intervensi rekayasa <em>prompt</em> berdimensi permukaan (memaksa model menjabarkan langkahnya secara tekstual) menjadi restrukturisasi kapabilitas <em>native</em> yang dikristalisasi oleh proses pelatihan <em>Reinforcement Learning</em>. Teknik segregasi memori seperti <em>scratchpad</em> memfasilitasi ruang komputasi sementara bagi model untuk mendeduksi kompleksitas operasional secara sistematis tanpa menodai struktur jawaban akhir.   <strong>Transisi ke Chapter Berikutnya:</strong>   Sebuah model yang dianugerahi kapasitas penalaran internal luar biasa (bahkan setingkat ahli) masih menyimpan satu cacat fundamental: model tersebut statis, tidak mampu menembus realitas fisik, dan terpenjara oleh <em>knowledge cutoff</em> prapelatihannya. Bab 4 akan menginvestigasi bagaimana simpul penalaran brilian ini dijahitkan dengan protokol interaksi eksternal melalui pembentukan arsitektur Agen dan utilisasi alat (<em>Tool Use</em>).</p></section>
+<p>Pendekatan Plan-and-Solve membagi proses menjadi dua bagian: menyusun rencana yang memecah tugas menjadi subtugas, kemudian menjalankan subtugas tersebut berdasarkan rencana [1].</p>
+<h2>2.3 Komponen Utama Planning</h2>
+<h3>1. Goal</h3>
+<p>Goal adalah hasil akhir yang ingin dicapai.</p>
+<p>Contoh terlalu kabur:</p>
+<blockquote>
+<p>“Membuat workshop yang bagus.”</p>
+</blockquote>
+<p>Contoh lebih terukur:</p>
+<blockquote>
+<p>“Menyelenggarakan workshop pengenalan AI selama dua jam untuk 50 peserta pemula, dengan satu sesi praktik dan satu kuis akhir.”</p>
+</blockquote>
+<p>Goal yang jelas membantu AI menentukan apakah rencana sudah sesuai.</p>
+<h3>2. Initial State</h3>
+<p>Initial state adalah kondisi awal sebelum tindakan dilakukan.</p>
+<p>Contoh:</p>
+<ul>
+<li>peserta berjumlah 50;</li>
+<li>tersedia dua mentor;</li>
+<li>hanya ada satu proyektor;</li>
+<li>internet tidak stabil;</li>
+<li>ruangan tersedia selama 120 menit.</li>
+</ul>
+<h3>3. Constraints</h3>
+<p>Constraints adalah batasan yang harus dipatuhi.</p>
+<p>Batasan dapat berupa:</p>
+<ul>
+<li>waktu;</li>
+<li>anggaran;</li>
+<li>jumlah orang;</li>
+<li>kapasitas ruangan;</li>
+<li>kebijakan;</li>
+<li>akses alat;</li>
+<li>kemampuan peserta;</li>
+<li>tenggat;</li>
+<li>izin.</li>
+</ul>
+<h3>4. Actions</h3>
+<p>Actions adalah tindakan yang dapat dilakukan untuk mendekati goal.</p>
+<p>Contoh:</p>
+<ul>
+<li>menentukan materi;</li>
+<li>membuat slide;</li>
+<li>menyiapkan demo;</li>
+<li>membagi kelompok;</li>
+<li>membuat kuis.</li>
+</ul>
+<h3>5. Dependencies</h3>
+<p>Dependencies adalah hubungan ketergantungan antarpekerjaan.</p>
+<pre><code class="language-text">Materi selesai
+    ↓
+Slide dapat dibuat
+    ↓
+Latihan disesuaikan
+    ↓
+Kuis disusun
+</code></pre>
+<h3>6. Success Criteria</h3>
+<p>Success criteria menentukan kapan rencana dianggap berhasil.</p>
+<p>Contoh:</p>
+<ul>
+<li>total durasi tepat 120 menit;</li>
+<li>peserta memperoleh satu aktivitas praktik;</li>
+<li>semua sesi memiliki tujuan;</li>
+<li>tidak ada kebutuhan alat yang melebihi fasilitas;</li>
+<li>terdapat evaluasi akhir.</li>
+</ul>
+<hr />
+<h2>2.4 Problem Decomposition</h2>
+<p><strong>Problem decomposition</strong> adalah proses memecah tugas besar menjadi bagian yang lebih kecil, lebih jelas, dan dapat dikerjakan.</p>
+<pre><code class="language-text">Tugas besar:
+Menyelenggarakan workshop AI
+
+Subtugas:
+1. Menentukan profil peserta.
+2. Menentukan tujuan belajar.
+3. Memilih materi.
+4. Menentukan metode.
+5. Membuat jadwal.
+6. Menentukan kebutuhan fasilitas.
+7. Membuat latihan.
+8. Menyiapkan evaluasi.
+9. Memeriksa risiko.
+</code></pre>
+<p>Subtugas yang baik seharusnya:</p>
+<ul>
+<li>memiliki tujuan yang jelas;</li>
+<li>memiliki input;</li>
+<li>menghasilkan output;</li>
+<li>dapat dikerjakan;</li>
+<li>dapat diperiksa;</li>
+<li>tidak terlalu besar;</li>
+<li>tidak terlalu kecil;</li>
+<li>memiliki hubungan yang jelas dengan goal utama.</li>
+</ul>
+<h3>Subtugas Terlalu Besar</h3>
+<blockquote>
+<p>“Selesaikan seluruh persiapan workshop.”</p>
+</blockquote>
+<p>Subtugas ini masih terlalu luas.</p>
+<h3>Subtugas Terlalu Kecil</h3>
+<blockquote>
+<p>“Tekan tombol Enter setelah menulis judul.”</p>
+</blockquote>
+<p>Subtugas ini terlalu detail untuk planning tingkat modul.</p>
+<h3>Subtugas yang Lebih Baik</h3>
+<blockquote>
+<p>“Buat outline materi yang mencakup pengertian AI, contoh penggunaan, risiko, dan latihan.”</p>
+</blockquote>
+<hr />
+<h2>2.5 Hierarchical Planning</h2>
+<p>Planning dapat disusun dalam beberapa tingkat.</p>
+<pre><code class="language-text">Tujuan utama
+├── Persiapan materi
+│   ├── Menentukan topik
+│   ├── Membuat contoh
+│   └── Membuat latihan
+├── Persiapan teknis
+│   ├── Memeriksa ruangan
+│   ├── Memeriksa proyektor
+│   └── Menyiapkan demo offline
+└── Evaluasi
+    ├── Membuat kuis
+    └── Mengumpulkan feedback
+</code></pre>
+<p>Struktur hierarkis membantu AI dan manusia melihat hubungan antara tujuan besar dan pekerjaan kecil.</p>
+<h2>2.6 Urutan dan Dependensi</h2>
+<p>Perhatikan rencana berikut:</p>
+<pre><code class="language-text">1. Mencetak sertifikat.
+2. Menentukan nama peserta.
+3. Membuka pendaftaran.
+</code></pre>
+<p>Urutannya salah. Nama peserta belum tersedia sebelum pendaftaran dibuka.</p>
+<p>Urutan yang lebih tepat:</p>
+<pre><code class="language-text">1. Membuka pendaftaran.
+2. Mengumpulkan nama peserta.
+3. Memverifikasi kehadiran.
+4. Mencetak sertifikat.
+</code></pre>
+<p>Kesalahan dependensi dapat menghasilkan:</p>
+<ul>
+<li>pekerjaan ulang;</li>
+<li>waktu terbuang;</li>
+<li>data tidak akurat;</li>
+<li>output yang harus dibuat ulang;</li>
+<li>konflik jadwal.</li>
+</ul>
+<hr />
+<h2>2.7 Static Planning dan Dynamic Planning</h2>
+<h3>Static Planning</h3>
+<p>Rencana statis dibuat di awal dan dijalankan tanpa perubahan.</p>
+<pre><code class="language-text">Plan → Step 1 → Step 2 → Step 3 → Result
+</code></pre>
+<p>Cocok ketika:</p>
+<ul>
+<li>kondisi stabil;</li>
+<li>data lengkap;</li>
+<li>langkah sudah jelas;</li>
+<li>risiko perubahan rendah;</li>
+<li>tugas berulang dengan pola yang sama.</li>
+</ul>
+<p>Contoh:</p>
+<blockquote>
+<p>Mengubah ukuran 20 gambar ke dimensi yang sama menggunakan satu proses otomatis.</p>
+</blockquote>
+<h3>Dynamic Planning</h3>
+<p>Rencana dinamis dapat diperbarui berdasarkan hasil atau informasi baru.</p>
+<pre><code class="language-text">Buat rencana
+    ↓
+Jalankan langkah
+    ↓
+Amati hasil
+    ↓
+Apakah kondisi sesuai?
+ ├── Ya → lanjut
+ └── Tidak → ubah rencana
+</code></pre>
+<p>Contoh:</p>
+<blockquote>
+<p>Workshop direncanakan menggunakan demo online. Tiga puluh menit sebelum acara, internet tidak tersedia. Rencana perlu diperbarui menjadi demo offline atau simulasi berbasis tangkapan layar.</p>
+</blockquote>
+<p>Replanning bukan selalu tanda kegagalan. Dalam lingkungan yang berubah, replanning justru dapat menunjukkan bahwa sistem menggunakan observation untuk menyesuaikan tindakan.</p>
+<hr />
+<h2>2.8 Contoh Terurai — Merencanakan Workshop AI</h2>
+<h3>Kondisi Awal</h3>
+<pre><code class="language-text">Peserta: 50
+Durasi: 120 menit
+Mentor: 2
+Proyektor: 1
+Internet: tidak stabil
+Target: peserta memahami konsep dasar AI dan mencoba satu aktivitas
+</code></pre>
+<h3>Goal</h3>
+<p>Menyelenggarakan workshop pengenalan AI selama 120 menit untuk 50 peserta pemula, dengan penjelasan konsep, demonstrasi, aktivitas praktik, dan evaluasi.</p>
+<h3>Constraints</h3>
+<ul>
+<li>total waktu tidak boleh melebihi 120 menit;</li>
+<li>hanya tersedia satu proyektor;</li>
+<li>internet tidak stabil;</li>
+<li>hanya terdapat dua mentor;</li>
+<li>seluruh peserta harus dapat mengikuti aktivitas.</li>
+</ul>
+<h3>Dekomposisi</h3>
+<ol>
+<li>Pembukaan dan orientasi.</li>
+<li>Pengenalan konsep AI.</li>
+<li>Contoh penggunaan AI.</li>
+<li>Demonstrasi offline.</li>
+<li>Latihan kelompok.</li>
+<li>Pembahasan hasil.</li>
+<li>Kuis singkat.</li>
+<li>Penutup.</li>
+</ol>
+<h3>Jadwal</h3>
+<table>
+<thead>
+<tr>
+<th>Sesi</th>
+<th style="text-align: right;">Durasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pembukaan</td>
+<td style="text-align: right;">10 menit</td>
+</tr>
+<tr>
+<td>Konsep dasar AI</td>
+<td style="text-align: right;">25 menit</td>
+</tr>
+<tr>
+<td>Contoh dan demo</td>
+<td style="text-align: right;">20 menit</td>
+</tr>
+<tr>
+<td>Latihan kelompok</td>
+<td style="text-align: right;">35 menit</td>
+</tr>
+<tr>
+<td>Pembahasan</td>
+<td style="text-align: right;">15 menit</td>
+</tr>
+<tr>
+<td>Kuis</td>
+<td style="text-align: right;">10 menit</td>
+</tr>
+<tr>
+<td>Penutup</td>
+<td style="text-align: right;">5 menit</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>120 menit</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Dependensi</h3>
+<ul>
+<li>latihan harus dibuat setelah tujuan belajar ditentukan;</li>
+<li>demo harus diuji sebelum acara;</li>
+<li>kuis harus mengukur materi yang benar-benar disampaikan;</li>
+<li>pembagian kelompok harus mempertimbangkan jumlah mentor.</li>
+</ul>
+<h3>Skenario Perubahan</h3>
+<blockquote>
+<p>Proyektor tidak dapat digunakan selama 30 menit pertama.</p>
+</blockquote>
+<h3>Replanning</h3>
+<pre><code class="language-text">Menit 0–10:
+Pembukaan tanpa proyektor.
+
+Menit 10–30:
+Diskusi contoh AI dari pengalaman peserta.
+
+Menit 30–50:
+Konsep dasar menggunakan papan tulis atau handout.
+
+Setelah proyektor tersedia:
+Demo dan materi visual dilanjutkan.
+</code></pre>
+<p>Rencana yang baik tidak hanya menyusun urutan ideal, tetapi juga mengenali titik yang mungkin gagal.</p>
+<hr />
+<h2>2.9 Planning Failure</h2>
+<h3>1. Goal Terlalu Kabur</h3>
+<p>Tanpa target terukur, AI tidak tahu kapan rencana selesai.</p>
+<h3>2. Subtugas Tidak Lengkap</h3>
+<p>Rencana melupakan evaluasi, izin, atau kebutuhan teknis.</p>
+<h3>3. Dependensi Terlewat</h3>
+<p>Sertifikat dicetak sebelum peserta terverifikasi.</p>
+<h3>4. Batasan Tidak Diperhitungkan</h3>
+<p>Total sesi menjadi 150 menit padahal ruangan hanya tersedia 120 menit.</p>
+<h3>5. Rencana Terlalu Kaku</h3>
+<p>Rencana tetap memaksakan demo online meskipun internet mati.</p>
+<h3>6. Terlalu Banyak Langkah</h3>
+<p>Rencana menjadi sangat detail hingga sulit digunakan.</p>
+<h3>7. Tidak Ada Success Criteria</h3>
+<p>AI tidak dapat memeriksa apakah tujuan sudah tercapai.</p>
+<h3>8. Tidak Mengantisipasi Risiko</h3>
+<p>Tidak ada alternatif ketika alat utama gagal.</p>
+<h3>9. Tidak Memperbarui Rencana</h3>
+<p>Observation baru diabaikan.</p>
+<hr />
+<h2>2.10 Cara Memeriksa Rencana AI</h2>
+<pre><code class="language-text">□ Tujuan dapat diukur
+□ Kondisi awal sudah dicatat
+□ Batasan sudah dikenali
+□ Subtugas mencakup seluruh kebutuhan
+□ Subtugas memiliki output yang jelas
+□ Urutan mengikuti dependensi
+□ Total waktu dan sumber daya masuk akal
+□ Risiko penting sudah dipertimbangkan
+□ Rencana dapat diperbarui jika kondisi berubah
+□ Kriteria selesai sudah jelas
+</code></pre>
+<hr />
+<h2>2.11 Kapan Planning Diperlukan?</h2>
+<p>Planning diperlukan ketika:</p>
+<ul>
+<li>tugas terdiri atas banyak langkah;</li>
+<li>terdapat dependensi;</li>
+<li>terdapat batasan waktu atau sumber daya;</li>
+<li>hasil membutuhkan koordinasi;</li>
+<li>tugas dapat berubah berdasarkan observation;</li>
+<li>kegagalan satu langkah memengaruhi langkah lain.</li>
+</ul>
+<p>Planning sederhana atau eksplisit tidak selalu diperlukan untuk:</p>
+<ul>
+<li>jawaban fakta satu langkah;</li>
+<li>formatting teks;</li>
+<li>koreksi typo;</li>
+<li>operasi yang sangat kecil dan langsung.</li>
+</ul>
+<hr />
+<h2>2.12 Ringkasan Submateri</h2>
+<ul>
+<li>Planning mengubah tujuan menjadi urutan tindakan.</li>
+<li>Goal, initial state, constraints, actions, dependencies, dan success criteria adalah komponen utama rencana.</li>
+<li>Problem decomposition memecah tugas besar menjadi subtugas yang dapat dikerjakan.</li>
+<li>Urutan harus mengikuti dependensi.</li>
+<li>Static plan cocok untuk kondisi stabil.</li>
+<li>Dynamic plan cocok untuk kondisi yang dapat berubah.</li>
+<li>Rencana AI tetap harus diperiksa dari sisi kelengkapan, kelayakan, risiko, dan batasan.</li>
+</ul>
+<hr />

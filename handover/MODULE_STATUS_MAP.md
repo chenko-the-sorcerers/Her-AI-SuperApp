@@ -484,3 +484,10 @@ node --check js/frontend/fellow-dashboard/ai-ml-basic.js
 git diff --check
 node scripts/check-participant-routes.mjs
 ```
+
+## 2026-07-11 23:10:10 - Reasoning Module Canonical Refactor
+- Source canonical Reasoning kini beralih sepenuhnya ke materi Nazril (`materi/nazril/submateri-reasoning-ai.md`).
+- Chapter materi disederhanakan dari 9 chapter menjadi 6 chapter yang lebih koheren untuk pemula.
+- Semua skenario latihan (17), soal kuis (26), dan topik diskusi (4) berhasil diekstrak dan diinjeksikan ke runtime `ai-reasoning.js`.
+- File source markdown (`01-full.html` hingga `06-full.html`, `practice-full.html`, dll.) dibuat dengan presisi lossless.
+- Cache buster pada `index.html` telah dibump.
