@@ -32,8 +32,8 @@
                 <section class="lesson-hero compact">
                     <div class="lesson-hero-copy">
                         <h1>Kuis Reasoning</h1>
-                        <p>Uji pemahaman tentang reasoning, planning, chain-of-thought, validasi, dan tool use.</p>
-                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 20 menit</span><span><i class="far fa-clipboard"></i> 25 soal</span><b>Single Attempt</b></div>
+                        <p>Uji pemahaman tentang kognisi mesin, jenis penalaran, CoT/ToT, ReAct, tool use, dan verifikasi risiko.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 25 menit</span><span><i class="far fa-clipboard"></i> 15 soal</span><b>Single Attempt</b></div>
                     </div>
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow mengerjakan kuis Reasoning">
                 </section>
@@ -45,11 +45,24 @@
                         <a href="#/participant-ai-reasoning-discussion"><i class="far fa-message"></i> Diskusi</a>
                     </div>
                     <article class="lesson-article">
+                        <section class="reasoning-source-panel">
+                            <div class="reasoning-source-panel-head">
+                                <i class="fas fa-file-lines" aria-hidden="true"></i>
+                                <div>
+                                    <span>Sumber utuh</span>
+                                    <h2>Kuis Kompetensi dari Materi Sumber</h2>
+                                    <p>Bagian ini memuat teks kuis dari <code>materi/baru/Reasoning-baru.md</code> tanpa dikurangi.</p>
+                                </div>
+                            </div>
+                            <div id="aiReasoningQuizSource" class="reasoning-source-container">
+                                <p class="reasoning-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat kuis sumber...</p>
+                            </div>
+                        </section>
                         <form id="aiReasoningQuizForm" class="lesson-quiz-section">
                             <div class="ml-section-head">
                                 <span>Knowledge Check</span>
                                 <h2>Kuis Reasoning</h2>
-                                <p>Pilih satu jawaban paling tepat. Kuis single attempt dan akan terkunci setelah dikirim.</p>
+                                <p>Pilih satu jawaban paling tepat. Seluruh kartu opsi bisa diklik. Kuis single attempt dan akan terkunci setelah dikirim.</p>
                             </div>
                             <div class="quiz-list" id="aiReasoningQuizList"></div>
                             <div class="quiz-result-card" id="aiReasoningQuizResult" hidden></div>
@@ -66,7 +79,7 @@
                 <section class="module-side-card lesson-progress-card">
                     <h2>Progres Modul</h2>
                     <div class="lesson-progress-mini"><b style="--value:75%"></b><strong>75%</strong></div>
-                    <p>Kuis mengunci jawaban setelah submit agar pembahasan objektif.</p>
+                    <p>Kuis mengunci jawaban setelah submit agar pembahasan objektif dan state benar/salah terlihat jelas.</p>
                     <a href="#/participant-ai-reasoning-discussion">Buka Diskusi</a>
                 </section>
                 <section class="module-side-card lesson-list-card">

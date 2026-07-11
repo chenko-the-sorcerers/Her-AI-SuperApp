@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning canonical final selesai, snapshot materi lama Reasoning untuk deep research sudah dibuat, audit final sebelumnya selesai, belum push
+**Status:** Reasoning final baru dari `materi/baru/Reasoning-baru.md` sudah masuk runtime canonical, snapshot materi lama Reasoning tetap ada, belum push
 **Checkpoint UX Python terbaru:** `5298a96 fix: link python active labs to focused practice`
 **Checkpoint Reasoning canonical:** `75125a8 feat: finalize reasoning course routes`
 **Checkpoint audit terbaru:** `c93a5fb fix: audit python module polish`
@@ -12,12 +12,16 @@
 
 Dokumen ini adalah catatan khusus refactor folder course catalog. Tujuannya agar AI agent, developer, dan mentor berikutnya tidak bingung antara hierarchy produk, folder lama, dan route peserta yang tetap stabil.
 
+Checkpoint teknis lengkap folder/runtime Reasoning final ada di `handover/REASONING_FINAL_CHECKPOINT.md`.
+
 ---
 
 ## Update Terbaru Setelah Refactor Filesystem
 
 Update lokal terbaru setelah checkpoint `c93a5fb`:
 
+- Materi final baru Reasoning dari `materi/baru/Reasoning-baru.md` sudah diimplementasikan di folder canonical `04-reasoning/` tanpa perubahan route. Teks sumber tidak dikompres: bagian materi, latihan/proyek akhir, kuis, diskusi, dan referensi dirender ke `04-reasoning/chapters/*-full.html` lalu dimuat di runtime.
+- `js/frontend/fellow-dashboard/ai-reasoning.js` menjadi controller konten runtime Reasoning final baru, dengan interactive layer berupa 5 chapter, 6 latihan tersimpan localStorage, 15 soal kuis full-card single attempt, dan board diskusi. `course-placeholder.js` tidak diubah dan tetap dipakai course/module scaffold lain.
 - Snapshot lengkap konten lama Reasoning dibuat di `materi/lama/reasoning.md` sebagai bahan brainstorming/deep research. File ini tidak mengubah filesystem canonical course, tidak menjadi route aktif, dan hanya dipakai sebagai bahan handoff konten.
 - Prompt khusus AI penerus untuk memasukkan materi Reasoning baru dibuat di `handover/PROMPT_REASONING_MATERI_BARU.md`.
 - Reasoning sudah difinalkan menjadi folder canonical:

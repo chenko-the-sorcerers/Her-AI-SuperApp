@@ -2,9 +2,11 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta setelah Reasoning canonical final, snapshot materi lama Reasoning untuk deep research, refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
+**Status dokumen:** source of truth hierarki katalog course peserta setelah Reasoning final baru dari `materi/baru/Reasoning-baru.md`, Reasoning canonical final, snapshot materi lama Reasoning untuk deep research, refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
+
+Checkpoint teknis lengkap Reasoning final ada di `handover/REASONING_FINAL_CHECKPOINT.md`.
 
 ---
 
@@ -59,7 +61,7 @@ Checkpoint final terbaru:
 - Hierarchy produk tidak berubah.
 - `01 - Pengantar AI` tetap module aktif di `AI Fundamentals & Advanced`, dengan activity `Materi -> Latihan -> Kuis -> Diskusi`.
 - `02 - Python untuk AI` tetap module aktif di `AI Fundamentals & Advanced`, sekarang 13 chapter final.
-- `04 - Reasoning` sudah dipindah dari scaffold lengkap menjadi module canonical final di `ai-fundamentals/04-reasoning/`.
+- `04 - Reasoning` sudah menjadi module canonical final di `ai-fundamentals/04-reasoning/` dan sudah memakai materi final baru dari `materi/baru/Reasoning-baru.md` tanpa kompresi: 5 chapter, latihan/proyek akhir, kuis sumber, diskusi sumber, serta referensi dirender ke `chapters/*-full.html`; interactive layer berisi visual flow, quick check, 6 latihan, 15 soal kuis, dan board diskusi.
 - Activity final Reasoning tersedia di route `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, dan `#/participant-ai-reasoning-discussion`.
 - Snapshot konten lama Reasoning untuk deep research berada di `materi/lama/reasoning.md`. Folder `materi/` tetap area handoff/brainstorming, bukan bagian hierarchy produk atau route peserta.
 - Prompt lanjutan setelah materi Reasoning baru selesai dibuat berada di `handover/PROMPT_REASONING_MATERI_BARU.md`.

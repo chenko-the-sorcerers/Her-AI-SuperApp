@@ -32,8 +32,8 @@
                 <section class="lesson-hero compact">
                     <div class="lesson-hero-copy">
                         <h1>Diskusi Reasoning</h1>
-                        <p>Diskusikan batas reasoning AI, transparansi langkah, validasi tool, dan kontrol manusia.</p>
-                        <div class="lesson-meta-row"><span><i class="far fa-message"></i> 4 prompt</span><span><i class="far fa-clock"></i> Tersimpan lokal</span><b>Kolaboratif</b></div>
+                        <p>Diskusikan batas kepercayaan, transparansi reasoning, tool approval, AI tutor, dan verifikasi pada domain berisiko.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-message"></i> Prompt sumber</span><span><i class="far fa-clock"></i> Tersimpan lokal</span><b>Kolaboratif</b></div>
                     </div>
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow berdiskusi tentang Reasoning">
                 </section>
@@ -45,25 +45,40 @@
                         <a href="#/participant-ai-reasoning-discussion" class="active"><i class="far fa-message"></i> Diskusi</a>
                     </div>
                     <article class="lesson-article">
+                        <section class="reasoning-source-panel">
+                            <div class="reasoning-source-panel-head">
+                                <i class="fas fa-file-lines" aria-hidden="true"></i>
+                                <div>
+                                    <span>Sumber utuh</span>
+                                    <h2>Prompt Diskusi dari Materi Sumber</h2>
+                                    <p>Bagian ini memuat teks diskusi dari <code>materi/baru/Reasoning-baru.md</code> tanpa dikurangi.</p>
+                                </div>
+                            </div>
+                            <div id="aiReasoningDiscussionSource" class="reasoning-source-container">
+                                <p class="reasoning-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat prompt diskusi sumber...</p>
+                            </div>
+                        </section>
                         <div class="ml-section-head">
                             <span>Discussion Board</span>
                             <h2>Forum Reasoning AI</h2>
                             <p>Pilih prompt atau tulis pertanyaan sendiri. Thread tersimpan di browser dengan key <code>heraiAiReasoningDiscussion</code>.</p>
                         </div>
                         <div class="ml-discussion-prompts" aria-label="Prompt diskusi Reasoning">
-                            <button type="button" data-discussion-prompt="Apakah jawaban AI yang runtut berarti AI benar-benar memahami masalah?"><i class="fas fa-brain"></i><span>Pemahaman</span></button>
-                            <button type="button" data-discussion-prompt="Kapan rencana AI perlu diperbarui saat kondisi berubah?"><i class="fas fa-route"></i><span>Planning</span></button>
-                            <button type="button" data-discussion-prompt="Apakah langkah penyelesaian AI harus selalu ditampilkan kepada pengguna?"><i class="fas fa-list-ol"></i><span>Transparansi</span></button>
-                            <button type="button" data-discussion-prompt="Seberapa jauh AI boleh menggunakan tool dan mengambil tindakan atas nama pengguna?"><i class="fas fa-screwdriver-wrench"></i><span>Tool use</span></button>
+                            <button type="button" data-discussion-prompt="Apakah jawaban AI yang terlihat runtut cukup untuk dipercaya, atau harus selalu ada bukti eksternal?"><i class="fas fa-shield-heart"></i><span>Kepercayaan</span></button>
+                            <button type="button" data-discussion-prompt="Kapan chain-of-thought perlu diringkas untuk pengguna, dan kapan cukup ditampilkan sebagai checklist verifikasi?"><i class="fas fa-list-check"></i><span>Transparansi</span></button>
+                            <button type="button" data-discussion-prompt="Tool apa yang aman diberikan ke assistant peserta HerAI, dan tool apa yang wajib butuh approval manusia?"><i class="fas fa-screwdriver-wrench"></i><span>Tool use</span></button>
+                            <button type="button" data-discussion-prompt="Bagaimana cara mendesain AI tutor yang membantu siswa berpikir tanpa langsung memberikan semua jawaban?"><i class="fas fa-graduation-cap"></i><span>AI tutor</span></button>
+                            <button type="button" data-discussion-prompt="Di domain hukum, medis, atau finansial, batas minimum verifikasi reasoning AI seharusnya seperti apa?"><i class="fas fa-scale-balanced"></i><span>High-stakes</span></button>
                         </div>
                         <form class="practice-response-form discussion-compose ml-discussion-form" id="aiReasoningDiscussionForm">
                             <label>
                                 <span>Prompt diskusi</span>
                                 <select name="discussionPrompt">
-                                    <option>Apakah jawaban AI yang runtut berarti AI benar-benar memahami masalah?</option>
-                                    <option>Kapan rencana AI perlu diperbarui saat kondisi berubah?</option>
-                                    <option>Apakah langkah penyelesaian AI harus selalu ditampilkan kepada pengguna?</option>
-                                    <option>Seberapa jauh AI boleh menggunakan tool dan mengambil tindakan atas nama pengguna?</option>
+                                    <option>Apakah jawaban AI yang terlihat runtut cukup untuk dipercaya, atau harus selalu ada bukti eksternal?</option>
+                                    <option>Kapan chain-of-thought perlu diringkas untuk pengguna, dan kapan cukup ditampilkan sebagai checklist verifikasi?</option>
+                                    <option>Tool apa yang aman diberikan ke assistant peserta HerAI, dan tool apa yang wajib butuh approval manusia?</option>
+                                    <option>Bagaimana cara mendesain AI tutor yang membantu siswa berpikir tanpa langsung memberikan semua jawaban?</option>
+                                    <option>Di domain hukum, medis, atau finansial, batas minimum verifikasi reasoning AI seharusnya seperti apa?</option>
                                 </select>
                             </label>
                             <label>
@@ -87,7 +102,7 @@
                 <section class="module-side-card lesson-progress-card">
                     <h2>Progres Modul</h2>
                     <div class="lesson-progress-mini"><b style="--value:100%"></b><strong>100%</strong></div>
-                    <p>Diskusi menguji batas penggunaan reasoning AI dalam produk nyata.</p>
+                    <p>Diskusi menguji batas penggunaan reasoning AI dalam produk nyata dan domain berisiko.</p>
                     <a href="#/participant-ai-reasoning">Buka Materi</a>
                 </section>
                 <section class="module-side-card lesson-list-card">

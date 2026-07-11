@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning canonical final selesai, snapshot materi lama Reasoning untuk deep research sudah dibuat, audit menyeluruh sebelumnya selesai, belum push
+**Status:** Reasoning final baru dari `materi/baru/Reasoning-baru.md` sudah masuk runtime canonical, snapshot materi lama Reasoning tetap ada untuk arsip, belum push
 **Commit UX Python terbaru:** `5298a96 fix: link python active labs to focused practice`
 **Commit quiz review:** `551654c fix: show intro quiz review states`
 **Commit Reasoning canonical:** `75125a8 feat: finalize reasoning course routes`
@@ -18,11 +18,39 @@ Source of truth hierarki course terbaru:
 ```text
 handover/COURSE_HIERARCHY.md
 handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
+handover/REASONING_FINAL_CHECKPOINT.md
 ```
 
 ---
 
-## Checkpoint Final Terbaru - Reasoning Canonical
+## Checkpoint Final Terbaru - Reasoning Materi Baru
+
+Status terbaru 11 Juli 2026 setelah implementasi materi final baru Reasoning:
+
+- Sumber baru `materi/baru/Reasoning-baru.md` sudah diintegrasikan ke runtime canonical Reasoning tanpa mengubah route final.
+- Teks sumber tidak dikompres: seluruh bagian markdown dirender ke file HTML sumber di `04-reasoning/chapters/` dan dimuat di halaman materi/latihan/kuis/diskusi sebagai panel "Sumber utuh".
+- Panel sumber sekarang memakai visual learning canvas sebagai mode default: toggle `Visual/Source`, navigation chips, numbered knowledge cards, focusable comparison tables, dan wrapper scroll tabel pada mobile. Pergantian mode hanya mengubah presentasi CSS; node teks sumber tidak dihapus atau ditulis ulang.
+- Lima chapter memiliki lab interaktif berbeda: cognitive mode switch, reasoning compass, inference strategy explorer, ReAct control loop, dan verification gate. Semua lab adalah lapisan tambahan di atas materi sumber lengkap.
+- Audit visual lanjutan mengubah seluruh concept lab dan milestone menjadi light theme HerAI. Paragraph hasil konversi Markdown yang memuat beberapa label kini dipecah menjadi subsection visual berdasarkan `<strong>` tanpa mengubah urutan atau isi text node; ini memperbaiki bug teks satu huruf per baris pada `Tujuan Chapter` dan `Quick Check`.
+- `js/frontend/fellow-dashboard/ai-reasoning.js` sekarang menjadi controller runtime final Reasoning baru, tidak lagi mengambil konten materi dari `window.HERAI_REASONING_COURSE` di `course-placeholder.js`.
+- Struktur materi Reasoning final baru menjadi 5 chapter:
+  1. Kognisi Mesin: dari Pattern Matching ke Reasoning
+  2. Paradigma Penalaran: Deduktif, Induktif, Abduktif, dan Kausal
+  3. Reasoning Internal LLM: CoT, ToT, Scratchpad, dan Native Reasoner
+  4. Reasoning Eksternal: Planning, ReAct, dan Tool Use
+  5. Evaluasi, Risiko, dan Arsitektur Verifikasi Reasoning
+- Setiap chapter punya learning objective, konsep utama, analogi, contoh AI/LLM, visual reasoning flow, prompt/code block pink-light, quick check interaktif, mini challenge, common mistakes, dan ringkasan.
+- Latihan Reasoning memuat latihan/proyek akhir sumber secara utuh, ditambah 6 skenario reflektif dengan textarea yang bisa disimpan, diedit, direset, dan dipulihkan dari `localStorage`.
+- Kuis Reasoning memuat kuis sumber secara utuh, ditambah 15 soal interaktif full-card clickable, single attempt, menyimpan jawaban, menampilkan selected/correct/wrong/locked state, dan menjelaskan jika attempt sudah dipakai.
+- Diskusi Reasoning memuat prompt diskusi sumber secara utuh, ditambah prompt button, thread, dan reply tersimpan lokal.
+- Cache buster `index.html` dibump untuk `ai-reasoning.js` ke `20260711-reasoning-visual-canvas-fix` dan `modules.css` ke `20260711-reasoning-visual-canvas-fix2` agar browser tidak memakai renderer/style lama.
+- Route final tetap:
+  - `#/participant-ai-reasoning` -> `materi.html`
+  - `#/participant-ai-reasoning-practice` -> `latihan.html`
+  - `#/participant-ai-reasoning-quiz` -> `kuis.html`
+  - `#/participant-ai-reasoning-discussion` -> `diskusi.html`
+
+## Checkpoint Sebelumnya - Reasoning Canonical
 
 Status terbaru 11 Juli 2026 setelah rombak Reasoning:
 

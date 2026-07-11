@@ -1,12 +1,14 @@
-# Prompt AI Baru - Lanjut Materi Reasoning Setelah Deep Research
+# Prompt AI Baru - Maintenance dan Revisi Reasoning Final
 
-Copy-paste prompt ini ke AI/developer baru setelah materi Reasoning hasil deep research sudah tersedia.
+Materi hasil deep research sudah diterapkan. Copy-paste prompt ini hanya untuk maintenance/revisi lanjutan; jangan membangun ulang module atau mengembalikannya ke scaffold.
+
+> **STATUS FINAL:** Baca `handover/REASONING_FINAL_CHECKPOINT.md` sebagai source of truth. Instruksi historis yang menganggap data masih berasal dari `window.HERAI_REASONING_COURSE` sudah tidak berlaku.
 
 ```text
 Kamu melanjutkan proyek HerAI Fellowship SuperApp di branch design.
 
 Tugas utama:
-Integrasikan materi Reasoning baru hasil deep research ke module final `04 - Reasoning` tanpa merusak course lain.
+Rawat atau revisi module final `04 - Reasoning` tanpa mengurangi materi sumber dan tanpa merusak course lain.
 
 Wajib baca dulu:
 1. GEMINI.md
@@ -18,6 +20,8 @@ Wajib baca dulu:
 7. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 8. handover/MERGE_GUIDE_REASONING_TEAM.md
 9. materi/lama/reasoning.md
+10. materi/baru/Reasoning-baru.md
+11. handover/REASONING_FINAL_CHECKPOINT.md
 
 Konteks terbaru:
 - Branch aktif: design.
@@ -31,12 +35,11 @@ Konteks terbaru:
   - #/participant-ai-reasoning-discussion
 - Controller Reasoning:
   js/frontend/fellow-dashboard/ai-reasoning.js
-- Data lama Reasoning masih berasal dari:
-  window.HERAI_REASONING_COURSE di js/frontend/fellow-dashboard/course-placeholder.js
+- Runtime Reasoning final berasal dari `ai-reasoning.js` dan `04-reasoning/chapters/*-full.html`, bukan `window.HERAI_REASONING_COURSE`.
 - Snapshot lengkap baseline lama Reasoning ada di:
   materi/lama/reasoning.md
 - Snapshot lama itu memuat overview, 4 submateri, materi lengkap, 17 latihan + pembahasan, 25 kuis + kunci + pembahasan, 4 diskusi, dan referensi.
-- Materi baru hasil deep research harus disimpan dulu di `materi/baru/` sebelum diimplementasikan ke runtime.
+- Materi final sudah tersimpan di `materi/baru/Reasoning-baru.md` dan sudah diimplementasikan tanpa kompresi.
 
 Aturan desain wajib:
 - Ikuti AGENTS.md.
@@ -74,24 +77,12 @@ Strategi kerja:
    node --check js/frontend/fellow-dashboard/course-placeholder.js
    node scripts/check-participant-routes.mjs
    git diff --check
-2. Baca `materi/lama/reasoning.md` sebagai baseline lama.
-3. Simpan materi Reasoning baru dari user/deep research ke `materi/baru/` dengan nama yang jelas, misalnya `reasoning-baru.md`.
-4. Bandingkan materi baru dengan baseline lama:
-   - struktur submateri,
-   - kedalaman materi,
-   - latihan,
-   - kuis,
-   - diskusi,
-   - referensi,
-   - risiko miskonsepsi.
-5. Rancang struktur final tetap `Materi -> Latihan -> Kuis -> Diskusi`.
-6. Jika masih tahap konten/brainstorming, jangan ubah runtime dulu; update snapshot dan handover saja.
-7. Jika user minta implementasi runtime:
-   - update data Reasoning di `course-placeholder.js` atau pindahkan data ke file Reasoning khusus jika scope disetujui;
-   - jaga route final di `js/router.js`;
-   - jaga controller `ai-reasoning.js`;
-   - pastikan materi tetap rapi, interaktif, dan tidak hanya teks polos;
-   - pastikan latihan, kuis, dan diskusi sesuai konteks materi baru.
+2. Baca `materi/baru/Reasoning-baru.md` dan `handover/REASONING_FINAL_CHECKPOINT.md` sebagai source of truth aktif; gunakan `materi/lama/reasoning.md` hanya sebagai arsip.
+3. Pertahankan struktur final `Materi -> Latihan -> Kuis -> Diskusi`, 5 chapter, source fragments, route, dan localStorage contract.
+4. Saat revisi visual, pertahankan seluruh `textContent` sumber dan bandingkan sebelum/sesudah transformasi DOM.
+5. Jangan update data Reasoning final di `course-placeholder.js`; controller aktif adalah `ai-reasoning.js`.
+6. Bump cache buster JS dan CSS bersama-sama jika keduanya berubah.
+7. Ikuti seluruh guardrail bug di `AGENTS.md`, khususnya larangan dark learning surface dan grid/flex langsung pada paragraf campuran.
 8. Smoke test browser minimal:
    - #/participant-ai-reasoning
    - #/participant-ai-reasoning-practice

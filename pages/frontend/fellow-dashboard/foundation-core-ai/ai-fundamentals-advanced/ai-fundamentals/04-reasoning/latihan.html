@@ -32,8 +32,8 @@
                 <section class="lesson-hero compact">
                     <div class="lesson-hero-copy">
                         <h1>Latihan Reasoning</h1>
-                        <p>Latih pemisahan fakta, asumsi, urutan langkah, planning, chain-of-thought, dan tool use.</p>
-                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 45 menit</span><span><i class="fas fa-list-check"></i> 17 latihan</span><b>Terarah</b></div>
+                        <p>Latih triase System 1/System 2, klasifikasi logika, scratchpad aman, ReAct, audit premis, dan arsitektur produk.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 60 menit</span><span><i class="fas fa-list-check"></i> 6 skenario</span><b>Interaktif</b></div>
                     </div>
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow latihan Reasoning">
                 </section>
@@ -45,12 +45,35 @@
                         <a href="#/participant-ai-reasoning-discussion"><i class="far fa-message"></i> Diskusi</a>
                     </div>
                     <article class="lesson-article reasoning-scaffold-rich">
-                        <div class="ml-section-head">
-                            <span>Practice Lab</span>
-                            <h2>Latihan Reasoning Terstruktur</h2>
-                            <p id="aiReasoningPracticeStatus">Buka pembahasan setelah mencoba menjawab sendiri.</p>
-                        </div>
-                        <div id="aiReasoningPracticeList"></div>
+                        <section class="reasoning-source-panel">
+                            <div class="reasoning-source-panel-head">
+                                <i class="fas fa-file-lines" aria-hidden="true"></i>
+                                <div>
+                                    <span>Sumber utuh</span>
+                                    <h2>Latihan Reflektif dan Proyek Akhir</h2>
+                                    <p>Bagian ini memuat teks latihan dari <code>materi/baru/Reasoning-baru.md</code> tanpa dikurangi.</p>
+                                </div>
+                            </div>
+                            <div id="aiReasoningPracticeSource" class="reasoning-source-container">
+                                <p class="reasoning-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat latihan sumber...</p>
+                            </div>
+                        </section>
+                        <form class="practice-response-form reasoning-practice-form" id="aiReasoningPracticeForm">
+                            <div class="ml-section-head">
+                                <span>Practice Lab</span>
+                                <h2>Latihan Reasoning Terstruktur</h2>
+                                <p id="aiReasoningPracticeStatus">Jawaban akan tersimpan di browser ini.</p>
+                            </div>
+                            <div id="aiReasoningPracticeList"></div>
+                            <div class="ml-save-panel reasoning-save-panel">
+                                <p class="practice-status">Gunakan simpan untuk mengunci sementara jawabanmu. Kamu tetap bisa edit lagi.</p>
+                                <div>
+                                    <button type="button" data-practice-save><i class="fas fa-floppy-disk"></i> Simpan Jawaban</button>
+                                    <button type="button" data-practice-edit><i class="fas fa-pen"></i> Edit</button>
+                                    <button type="button" data-practice-reset><i class="fas fa-rotate-left"></i> Reset</button>
+                                </div>
+                            </div>
+                        </form>
                     </article>
                     <footer class="lesson-nav-footer">
                         <a href="#/participant-ai-reasoning"><i class="fas fa-chevron-left"></i> Kembali ke Materi</a>
@@ -62,7 +85,7 @@
                 <section class="module-side-card lesson-progress-card">
                     <h2>Progres Modul</h2>
                     <div class="lesson-progress-mini"><b style="--value:50%"></b><strong>50%</strong></div>
-                    <p>Latihan membantu mengubah konsep reasoning menjadi kebiasaan verifikasi.</p>
+                    <p>Latihan membantu mengubah konsep reasoning menjadi kebiasaan verifikasi yang bisa dipakai di produk nyata.</p>
                     <a href="#/participant-ai-reasoning-quiz">Buka Kuis</a>
                 </section>
                 <section class="module-side-card lesson-list-card">

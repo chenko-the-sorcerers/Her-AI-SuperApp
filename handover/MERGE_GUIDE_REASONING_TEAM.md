@@ -1,9 +1,11 @@
 # Merge Guide - Reasoning Team
 
 **Tanggal:** 11 Juli 2026
-**Tujuan:** panduan merge lanjutan pekerjaan `Reasoning` dengan branch yang sudah berisi rombak final Pengantar AI, Python untuk AI, merge Reasoning scaffold, audit final, finalisasi Reasoning canonical, dan snapshot materi lama Reasoning untuk deep research.
+**Tujuan:** panduan merge/maintenance Reasoning setelah materi final baru, visual learning canvas, activity final, dan audit integritas selesai.
 
 Dokumen ini dibuat karena pekerjaan lokal terbaru menyentuh banyak area AI Fundamentals. Reasoning scaffold dari `origin/design` sudah di-merge dan kini sudah difinalkan menjadi folder canonical. Semua lanjutan wajib menjaga perubahan final yang sudah masuk.
+
+> **STATUS FINAL:** Materi `materi/baru/Reasoning-baru.md` sudah masuk runtime tanpa kompresi. Jangan mengikuti instruksi historis di bawah yang menganggap Reasoning masih scaffold atau menunggu materi baru. Source of truth maintenance sekarang adalah `handover/REASONING_FINAL_CHECKPOINT.md`.
 
 ---
 
@@ -34,14 +36,15 @@ Checkpoint lokal terbaru:
   - Code block materi memakai background HerAI pink-light, bukan terminal hitam.
 - `AGENTS.md` sudah diperbarui dengan aturan UI baru.
 - `04 - Reasoning` di repo ini sudah final canonical lewat route `#/participant-ai-reasoning`.
-  - 4 submateri: `how-ai-reasons`, `planning-and-decomposition`, `chain-of-thought`, `tool-use`.
-  - 17 latihan.
-  - 25 soal.
-  - 4 diskusi.
+  - 5 chapter final dari `materi/baru/Reasoning-baru.md` tanpa kompresi.
+  - Visual learning canvas plus mode Source.
+  - 6 latihan terstruktur plus latihan/proyek sumber utuh.
+  - 15 soal full-card single attempt plus kuis sumber utuh.
+  - 6 prompt button, thread/reply, dan diskusi sumber utuh.
   - Folder canonical: `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
   - Activity route final: `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`.
 - Snapshot lengkap baseline lama Reasoning ada di `materi/lama/reasoning.md`. File ini memuat seluruh materi runtime lama, latihan + pembahasan, kuis + kunci + pembahasan, diskusi, dan referensi untuk bahan deep research.
-- Jika materi Reasoning baru datang dari AI/browser, simpan dulu di `materi/baru/`, lalu gunakan `handover/PROMPT_REASONING_MATERI_BARU.md` untuk melanjutkan implementasi tanpa merusak route final.
+- Materi Reasoning baru sudah diterapkan. `handover/PROMPT_REASONING_MATERI_BARU.md` sekarang dipakai sebagai prompt maintenance/revisi, bukan implementasi dari scaffold.
 - Route checker awal setelah canonical final:
 
 Route checker terakhir:
@@ -108,11 +111,15 @@ materi/baru/
 
 Jika Reasoning masih draft/scaffold:
 
+> Bagian ini hanya histori dan tidak berlaku pada checkpoint final saat ini.
+
 - Jangan membuat folder final `materi.html`, `latihan.html`, `kuis.html`, `diskusi.html`.
 - Update `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js`.
 - Route tetap `#/participant-ai-reasoning`.
 
 Jika Reasoning sudah final:
+
+> Ini adalah kondisi aktif repo saat ini. Pertahankan implementasi final; jangan membuat ulang folder atau route yang sudah ada.
 
 - Boleh buat folder canonical, misalnya:
 
@@ -205,6 +212,7 @@ Wajib baca dulu:
 6. handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 7. handover/MERGE_GUIDE_REASONING_TEAM.md
 8. handover/PROMPT_AI_BARU.md
+9. handover/REASONING_FINAL_CHECKPOINT.md
 
 Konteks:
 - Pengantar AI sudah final 5 chapter.
@@ -214,7 +222,7 @@ Konteks:
 - Kuis Python sudah full-card clickable.
 - Code block materi Python wajib pink-light, bukan terminal hitam.
 - AGENTS.md sudah memuat aturan UI baru.
-- Reasoning di repo target masih scaffold route `#/participant-ai-reasoning`.
+- Reasoning di repo target sudah final canonical dari `materi/baru/Reasoning-baru.md`; route materi/latihan/kuis/diskusi aktif.
 
 Tugas:
 1. Bantu merge perubahan Reasoning tanpa merusak Pengantar AI, Python untuk AI, route existing, layout shell, Pyodide, quiz localStorage, atau handover.
@@ -225,8 +233,8 @@ Tugas:
    - js/frontend/fellow-dashboard/ai-python-basic.js
    - pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/01-pengantar-ai/
    - pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/
-4. Jika Reasoning masih draft, update COURSE_SCAFFOLDS saja.
-5. Jika Reasoning final, buat folder canonical dan activity lengkap, update router, overview, dan semua handover.
+4. Pertahankan folder canonical, source fragments, controller, route, dan localStorage contract Reasoning final.
+5. Jangan mengompres materi, mengembalikan dark learning surface, atau menerapkan grid/flex langsung pada paragraf campuran text node dan inline element.
 
 Verifikasi wajib:
 - node --check js/router.js
