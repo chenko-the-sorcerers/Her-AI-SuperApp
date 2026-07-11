@@ -62,6 +62,7 @@ Checkpoint final terbaru:
 - `01 - Pengantar AI` tetap module aktif di `AI Fundamentals & Advanced`, dengan activity `Materi -> Latihan -> Kuis -> Diskusi`.
 - `02 - Python untuk AI` tetap module aktif di `AI Fundamentals & Advanced`, sekarang 13 chapter final.
 - `04 - Reasoning` sudah menjadi module canonical final di `ai-fundamentals/04-reasoning/` dan sudah memakai materi final baru dari `materi/baru/Reasoning-baru.md` tanpa kompresi: 5 chapter, latihan/proyek akhir, kuis sumber, diskusi sumber, serta referensi dirender ke `chapters/*-full.html`; interactive layer berisi visual flow, quick check, 6 latihan, 15 soal kuis, dan board diskusi.
+- Activity UX checkpoint `8007acb`: latihan memakai 6-step scenario workspace dengan tiga textarea per skenario; kuis memakai 15-step question workspace dengan answered counter. Materi sumber tetap utuh sebagai referensi setelah form/kuis.
 - Activity final Reasoning tersedia di route `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, dan `#/participant-ai-reasoning-discussion`.
 - Snapshot konten lama Reasoning untuk deep research berada di `materi/lama/reasoning.md`. Folder `materi/` tetap area handoff/brainstorming, bukan bagian hierarchy produk atau route peserta.
 - Prompt lanjutan setelah materi Reasoning baru selesai dibuat berada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
@@ -78,6 +79,8 @@ Commit lokal terbaru:
 75125a8 feat: finalize reasoning course routes
 c93a5fb fix: audit python module polish
 b0c6829 merge: integrate reasoning scaffold updates
+7668070 feat: finalize reasoning visual course
+8007acb fix: clarify reasoning activity flow
 c1870d4 feat: finalize python ai module and merge handover
 ```
 

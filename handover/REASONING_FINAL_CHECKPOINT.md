@@ -4,6 +4,8 @@
 **Branch:** `design`
 **Status:** final canonical, materi baru aktif, belum push
 **Sumber materi:** `materi/baru/Reasoning-baru.md`
+**Commit visual final:** `7668070 feat: finalize reasoning visual course`
+**Commit activity UX:** `8007acb fix: clarify reasoning activity flow`
 
 Dokumen ini adalah checkpoint canonical untuk seluruh pekerjaan submodul `04 - Reasoning`. AI/developer berikutnya wajib membaca dokumen ini setelah `AGENTS.md`, `GEMINI.md`, dan `handover/HANDOVER_UPDATE.md` sebelum mengubah Reasoning.
 
@@ -89,6 +91,8 @@ Komponen yang tersedia:
 Semua learning surface memakai putih atau pink-light. Background hitam/dark navy dilarang untuk UI course.
 
 ## Activity Final
+
+Prinsip hierarchy activity: peserta harus langsung melihat tugas dan tempat menjawab. Materi sumber lengkap tetap dimuat setelah workspace di dalam panel referensi `<details>` yang tertutup secara default.
 
 Latihan:
 

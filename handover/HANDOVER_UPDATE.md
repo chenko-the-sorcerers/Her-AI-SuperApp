@@ -6,6 +6,8 @@
 **Commit UX Python terbaru:** `5298a96 fix: link python active labs to focused practice`
 **Commit quiz review:** `551654c fix: show intro quiz review states`
 **Commit Reasoning canonical:** `75125a8 feat: finalize reasoning course routes`
+**Commit Reasoning visual final:** `7668070 feat: finalize reasoning visual course`
+**Commit UX activity terbaru:** `8007acb fix: clarify reasoning activity flow`
 **Commit audit terbaru:** `c93a5fb fix: audit python module polish`
 **Commit merge Reasoning lokal:** `b0c6829 merge: integrate reasoning scaffold updates`
 **Commit fitur terakhir sebelum merge:** `c1870d4 feat: finalize python ai module and merge handover`
@@ -44,7 +46,7 @@ Status terbaru 11 Juli 2026 setelah implementasi materi final baru Reasoning:
 - Kuis Reasoning memuat kuis sumber secara utuh, ditambah 15 soal interaktif full-card clickable, single attempt, menyimpan jawaban, menampilkan selected/correct/wrong/locked state, dan menjelaskan jika attempt sudah dipakai.
 - Diskusi Reasoning memuat prompt diskusi sumber secara utuh, ditambah prompt button, thread, dan reply tersimpan lokal.
 - UX activity terbaru: latihan menampilkan satu dari 6 skenario dengan tiga textarea dan step navigator; kuis menampilkan satu dari 15 soal dengan answered counter. Workspace jawaban tampil sebelum referensi sumber, sedangkan teks sumber utuh tetap tersedia setelahnya dalam panel referensi yang dapat dibuka.
-- Cache buster `index.html` dibump untuk `ai-reasoning.js` ke `20260711-reasoning-visual-canvas-fix` dan `modules.css` ke `20260711-reasoning-visual-canvas-fix2` agar browser tidak memakai renderer/style lama.
+- Cache buster terbaru `index.html` untuk `ai-reasoning.js` dan `modules.css` adalah `20260711-reasoning-activity-flow` agar browser tidak memakai renderer/style lama.
 - Route final tetap:
   - `#/participant-ai-reasoning` -> `materi.html`
   - `#/participant-ai-reasoning-practice` -> `latihan.html`

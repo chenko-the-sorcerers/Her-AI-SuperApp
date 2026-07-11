@@ -80,8 +80,10 @@ Konteks terbaru:
   - AGENTS.md diperbarui agar aturan ini wajib dipakai agent berikutnya.
 - Course Reasoning sudah final canonical di `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
 - Checkpoint teknis lengkap Reasoning final wajib dibaca di `handover/REASONING_FINAL_CHECKPOINT.md`.
+- Commit aktif Reasoning: `7668070 feat: finalize reasoning visual course` dan `8007acb fix: clarify reasoning activity flow`.
 - Route final Reasoning: `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, dan `#/participant-ai-reasoning-discussion`.
 - Reasoning final terbaru memakai materi baru dari `materi/baru/Reasoning-baru.md` tanpa kompresi: teks sumber dirender ke `04-reasoning/chapters/*-full.html` dan dimuat di materi/latihan/kuis/diskusi. Interactive layer berisi 5 chapter, visual reasoning flow dan quick check per chapter, 6 latihan save/edit/reset, 15 soal full-card clickable single attempt, dan board diskusi; controller runtime ada di `js/frontend/fellow-dashboard/ai-reasoning.js`.
+- UX activity Reasoning: latihan menampilkan satu dari 6 skenario dengan tiga textarea dan step navigator; kuis menampilkan satu dari 15 soal dengan answered counter. Source reference harus tetap setelah workspace, tidak boleh dikembalikan ke atas form.
 - Snapshot lengkap baseline lama Reasoning untuk deep research ada di `materi/lama/reasoning.md`. File ini tidak dikompres dan memuat overview, materi, latihan + pembahasan, kuis + kunci + pembahasan, diskusi, dan referensi.
 - Prompt khusus untuk AI penerus setelah materi Reasoning baru selesai dibuat ada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
 - Smoke test browser terakhir:

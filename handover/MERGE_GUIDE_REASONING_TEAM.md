@@ -7,6 +7,8 @@ Dokumen ini dibuat karena pekerjaan lokal terbaru menyentuh banyak area AI Funda
 
 > **STATUS FINAL:** Materi `materi/baru/Reasoning-baru.md` sudah masuk runtime tanpa kompresi. Jangan mengikuti instruksi historis di bawah yang menganggap Reasoning masih scaffold atau menunggu materi baru. Source of truth maintenance sekarang adalah `handover/REASONING_FINAL_CHECKPOINT.md`.
 
+> **CHECKPOINT UX TERBARU `8007acb`:** Pertahankan one-at-a-time navigator pada 6 latihan dan 15 soal kuis. Workspace jawaban harus berada sebelum panel referensi sumber; jangan mengembalikan source dump panjang ke atas form.
+
 ---
 
 ## Ringkasan Kondisi Repo Ini
@@ -40,6 +42,7 @@ Checkpoint lokal terbaru:
   - Visual learning canvas plus mode Source.
   - 6 latihan terstruktur plus latihan/proyek sumber utuh.
   - 15 soal full-card single attempt plus kuis sumber utuh.
+  - Latihan memiliki tiga textarea per skenario; kuis memiliki answered counter dan navigator soal.
   - 6 prompt button, thread/reply, dan diskusi sumber utuh.
   - Folder canonical: `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/04-reasoning/`.
   - Activity route final: `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, `#/participant-ai-reasoning-discussion`.

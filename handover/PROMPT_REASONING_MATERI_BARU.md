@@ -4,6 +4,8 @@ Materi hasil deep research sudah diterapkan. Copy-paste prompt ini hanya untuk m
 
 > **STATUS FINAL:** Baca `handover/REASONING_FINAL_CHECKPOINT.md` sebagai source of truth. Instruksi historis yang menganggap data masih berasal dari `window.HERAI_REASONING_COURSE` sudah tidak berlaku.
 
+> **CHECKPOINT AKTIF:** `8007acb fix: clarify reasoning activity flow`. Jaga latihan 6-step dengan tiga textarea per skenario, kuis 15-step dengan answered counter, dan source reference setelah workspace.
+
 ```text
 Kamu melanjutkan proyek HerAI Fellowship SuperApp di branch design.
 
@@ -57,6 +59,7 @@ Course yang wajib dijaga:
 - Pengantar AI final: 5 chapter, kuis full-card clickable, single attempt, diskusi localStorage.
 - Python untuk AI final: 13 chapter, panel Belajar Aktif, Pyodide, latihan fokus `?focus=play-N`, kuis 15 soal, diskusi localStorage.
 - Reasoning final existing: route, layout, localStorage keys, quiz single attempt, latihan reveal, diskusi.
+- Latihan dan kuis memakai progressive disclosure one-at-a-time; jangan menampilkan semua skenario/soal sekaligus atau menaruh source dump sebelum tempat menjawab.
 - Jangan merusak AI Modern, Math for AI, Machine Learning, CV, NLP, routing shell, sidebar, topbar, breadcrumb, tabs, right panel, dan footer nav.
 
 LocalStorage keys Reasoning yang harus dijaga:
