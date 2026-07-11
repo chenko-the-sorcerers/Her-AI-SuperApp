@@ -188,6 +188,7 @@ const CHAPTERS = [
     "title": "Latihan 1 — Cetak & Variabel",
     "focus": "Python Dasar",
     "prompt": "Kasus:\n> Kamu diminta menulis program Python pertama untuk menyapa peserta workshop.\n\nTugas:\n1. Buat variabel nama_peserta\n2. Buat variabel usia\n3. Cetak: Halo {nama}! Usiamu {usia} tahun.\n\nGunakan print() dan f-string.",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "print(f\"Halo {nama}! Usiamu {usia} tahun.\")"
   },
   {
@@ -195,6 +196,7 @@ const CHAPTERS = [
     "title": "Latihan 2 — Tipe Data",
     "focus": "Python Dasar",
     "prompt": "Kasus:\n> Data peserta: nama, nilai, status lulus.\n\nKlasifikasikan tipe data Python yang tepat untuk:\n1. Nama peserta\n2. Nilai ujian 75.5\n3. Status lulus True/False\n4. Daftar nama semua peserta",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "String, Float, Boolean, List"
   },
   {
@@ -202,6 +204,7 @@ const CHAPTERS = [
     "title": "Latihan 3 — List & Perulangan",
     "focus": "Collection",
     "prompt": "Kasus:\n> Daftar nilai: [80, 75, 90, 65, 85]\n\nTugas:\n1. Hitung rata-rata\n2. Tampilkan yang lulus (>=75)\n3. Tambah nilai baru 95",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "sum(nilai)/len(nilai), list comprehension, append()"
   },
   {
@@ -209,6 +212,7 @@ const CHAPTERS = [
     "title": "Latihan 4 — If/Else",
     "focus": "Control Flow",
     "prompt": "Buat fungsi konversi nilai:\nA: >=90, B: >=80, C: >=70, D: >=60, E: <60",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "if/elif/else dengan return"
   },
   {
@@ -216,6 +220,7 @@ const CHAPTERS = [
     "title": "Latihan 5 — Function",
     "focus": "Function",
     "prompt": "Buat function hitung_biaya(jumlah_peserta, biaya_per_orang, biaya_tambahan=0) yang mengembalikan total biaya.",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "def hitung_biaya(...): return ..."
   },
   {
@@ -223,6 +228,7 @@ const CHAPTERS = [
     "title": "Latihan 6 — Error Handling",
     "focus": "Error & File",
     "prompt": "Baca file nilai.txt. Tangani FileNotFoundError dan ValueError. Tampilkan pesan error jelas.",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "try/except untuk error handling"
   },
   {
@@ -230,6 +236,7 @@ const CHAPTERS = [
     "title": "Latihan 7 — NumPy",
     "focus": "NumPy",
     "prompt": "Data: [65,78,92,55,81,73,88,60,95,70]. \nGunakan NumPy: konversi ke array, hitung mean/median/std, tampilkan nilai di atas rata-rata.",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "np.array(), .mean(), .std(), boolean indexing"
   },
   {
@@ -237,6 +244,7 @@ const CHAPTERS = [
     "title": "Latihan 8 — Pandas",
     "focus": "Pandas",
     "prompt": "Buat DataFrame: nama, nilai, kota. \n1. Filter nilai >=75\n2. Rata-rata per kota\n3. Tambah kolom status_lulus",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "df[df[\"nilai\"]>=75], groupby(), apply()"
   }
 ];
@@ -359,24 +367,28 @@ const DISCUSSION_PROMPTS = [
     "id": "discuss-1",
     "title": "Python untuk AI",
     "prompt": "Menurutmu, mengapa Python menjadi bahasa paling populer untuk proyek AI? Apa kelebihan utamanya?",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "Pikirkan: ekosistem library, kemudahan belajar, komunitas besar"
   },
   {
     "id": "discuss-2",
     "title": "Debugging & Error",
     "prompt": "Ceritakan pengalamanmu saat menghadapi error Python. Bagaimana cara kamu menemukan dan memperbaiki error tersebut?",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "Error message adalah petunjuk utama — jangan panik, baca pesannya"
   },
   {
     "id": "discuss-3",
     "title": "Library Favorit",
     "prompt": "Dari library yang sudah dipelajari (NumPy, Pandas), mana yang menurutmu paling berguna untuk AI? Mengapa?",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "Setiap library punya kelebihan masing-masing untuk tugas spesifik"
   },
   {
     "id": "discuss-4",
     "title": "AI Workflow",
     "prompt": "Bagaimana menurutmu Python akan membantu dalam workflow AI secara keseluruhan?",
+    "fields": [["jawaban", "Tulis jawabanmu di sini..."]],
     "guide": "Dari data collection sampai deployment, Python adalah jembatannya"
   }
 ];
@@ -659,6 +671,18 @@ var SOURCE_VISUALS = {
         return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     }
 
+    function escapeHtml(value) {
+        return String(value || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+
+    function escapeSelector(value) {
+        return String(value || "").replace(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g, "\\$&");
+    }
+
+    function safeJsonParse(value, fallback) {
+        try { return JSON.parse(value); } catch (e) { return fallback; }
+    }
+
     function filterSourceHeadings(html) {
         // Hapus module-level headings dan kontennya hingga <hr /> pertama
         // Module dimulai dengan H1: "Reasoning AI:" dan diikuti H2: Deskripsi/Tujuan/Peta
@@ -727,6 +751,13 @@ var SOURCE_VISUALS = {
         var before = html.slice(0, match.index + match[1].length);
         var after = html.slice(match.index + match[1].length);
         return before + "\n" + injectHtml + "\n" + after;
+    }
+
+    function setStatus(selector, message, tone) {
+        const status = document.querySelector(selector);
+        if (!status) return;
+        status.textContent = message;
+        status.dataset.tone = tone || "neutral";
     }
 
     function renderList(items) {
@@ -1431,10 +1462,10 @@ var SOURCE_VISUALS = {
     }
 
     var PRACTICE_TOPICS = [
-        { start: 0, end: 3, label: "Reasoning Dasar" },
-        { start: 4, end: 7, label: "Planning" },
-        { start: 8, end: 11, label: "Chain-of-Thought" },
-        { start: 12, end: 16, label: "Tool Use" }
+        { start: 0, end: 1, label: "Python Dasar" },
+        { start: 2, end: 3, label: "Control Flow & Function" },
+        { start: 4, end: 5, label: "OOP & Error Handling" },
+        { start: 6, end: 7, label: "NumPy & Pandas" }
     ];
 
     function getPracticeTopic(index) {
@@ -1471,7 +1502,7 @@ var SOURCE_VISUALS = {
 
         loadSourceHtml(SOURCE_BASE + "practice-full.html", "aiPythonPracticeSource");
         practiceList.innerHTML = PRACTICES.map(renderPracticeCard).join("");
-        const saved = getSavedPractice();
+        const saved = getSavedPractice() || { answers: {}, revealed: [] };
         const savedAnswers = saved.answers || {};
         const revealed = Array.isArray(saved.revealed) ? saved.revealed.slice() : [];
         const navigator = document.getElementById("aiPythonPracticeNavigator");

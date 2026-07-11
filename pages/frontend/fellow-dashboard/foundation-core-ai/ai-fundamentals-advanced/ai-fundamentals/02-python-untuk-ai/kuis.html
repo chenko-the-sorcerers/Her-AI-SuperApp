@@ -1,4 +1,4 @@
-<section class="fellow-dashboard fellow-modules-page lesson-detail-page reasoning-scaffold-page ai-reasoning-page ai-reasoning-quiz-page ml-quiz-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page python-scaffold-page ai-python-page ai-python-quiz-page ml-quiz-page" data-fellow-page="modules">
     <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
     <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
     <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -32,8 +32,8 @@
                 <section class="lesson-hero compact">
                     <div class="lesson-hero-copy">
                         <h1>Kuis Python</h1>
-                        <p>Uji pemahaman tentang Python: variabel, control flow, function, OOP, error handling, NumPy, dan Pandas.</p>
-                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 25 menit</span><span><i class="far fa-clipboard"></i> 26 soal</span><b>Single Attempt</b></div>
+                        <p>Uji pemahaman tentang python, verifikasi, planning, Chain-of-Thought, tool use, dan evaluasi jawaban AI.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 15 menit</span><span><i class="far fa-clipboard"></i> 10 soal</span><b>Single Attempt</b></div>
                     </div>
                     <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow mengerjakan kuis Python">
                 </section>
@@ -51,9 +51,9 @@
                                 <h2>Kuis Python</h2>
                                 <p>Pilih satu jawaban paling tepat. Seluruh kartu opsi bisa diklik. Kuis single attempt dan akan terkunci setelah dikirim.</p>
                             </div>
-                            <div class="reasoning-task-navigator" id="aiPythonQuizNavigator" aria-label="Navigasi soal kuis"></div>
+                            <div class="python-task-navigator" id="aiPythonQuizNavigator" aria-label="Navigasi soal kuis"></div>
                             <div class="quiz-list" id="aiPythonQuizList"></div>
-                            <div class="reasoning-task-controls">
+                            <div class="python-task-controls">
                                 <button type="button" data-quiz-prev><i class="fas fa-chevron-left"></i> Sebelumnya</button>
                                 <strong id="aiPythonQuizCounter">Soal 1 dari 15</strong>
                                 <button type="button" data-quiz-next>Berikutnya <i class="fas fa-chevron-right"></i></button>
@@ -61,14 +61,14 @@
                             <div class="quiz-result-card" id="aiPythonQuizResult" hidden></div>
                             <button type="submit" class="quiz-submit-btn" style="border-radius: 100px;"><i class="fas fa-paper-plane"></i> Kirim Kuis</button>
                         </form>
-                        <details class="reasoning-reference-details">
+                        <details class="python-reference-details">
                             <summary>
                                 <i class="fas fa-file-lines" aria-hidden="true"></i>
                                 <span><b>Referensi kuis dari materi sumber</b><small>Teks kuis sumber tetap utuh dan tidak dikurangi.</small></span>
                                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
                             </summary>
-                            <div id="aiPythonQuizSource" class="reasoning-source-container">
-                                <p class="reasoning-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat kuis sumber...</p>
+                            <div id="aiPythonQuizSource" class="python-source-container">
+                                <p class="python-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat kuis sumber...</p>
                             </div>
                         </details>
                     </article>
