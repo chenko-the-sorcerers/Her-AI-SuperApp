@@ -115,589 +115,205 @@
 
 
     const PRACTICES = [
-    {
-        "id": "latihan-1",
-        "title": "Latihan 1 — Fakta atau Asumsi?",
-        "focus": "Latihan 1",
-        "prompt": "Kasus:  > Sebuah kelas memiliki 40 peserta. Biaya modul Rp20.000 per orang. Panitia menyiapkan anggaran Rp1.000.000. AI menghitung seluruh peserta memperoleh satu modul.  Klasifikasikan pernyataan berikut:  1. Peserta berjumlah 40 orang. 2. Biaya modul Rp20.000 per orang. 3. Semua peserta memperoleh satu modul. 4. Total biaya modul Rp800.000. 5. Anggaran cukup.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "| Pernyataan | Kategori | |---|---| | Peserta berjumlah 40 orang | Fakta | | Biaya modul Rp20.000 per orang | Fakta | | Semua peserta memperoleh satu modul | Asumsi | | Total biaya modul Rp800.000 | Hasil langkah | | Anggaran cukup | Kesimpulan |"
-    },
-    {
-        "id": "latihan-2",
-        "title": "Latihan 2 — Urutkan Langkah",
-        "focus": "Latihan 2",
-        "prompt": "Urutkan langkah berikut:  - bandingkan total kebutuhan dengan anggaran; - hitung sisa anggaran; - identifikasi jumlah peserta; - hitung total konsumsi; - identifikasi harga per peserta.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "```text 1. Identifikasi jumlah peserta. 2. Identifikasi harga per peserta. 3. Hitung total konsumsi. 4. Bandingkan total kebutuhan dengan anggaran. 5. Hitung sisa anggaran. ```"
-    },
-    {
-        "id": "latihan-3",
-        "title": "Latihan 3 — Temukan Kesalahan",
-        "focus": "Latihan 3",
-        "prompt": "Jawaban AI:  > “Untuk 50 peserta dengan harga Rp25.000 per orang dan biaya sewa Rp400.000, total kebutuhannya adalah Rp1.250.000. Anggaran Rp1.500.000 berarti tersisa Rp250.000.”",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "AI melupakan biaya sewa.  ```text Konsumsi: 50 × Rp25.000 = Rp1.250.000  Total: Rp1.250.000 + Rp400.000 = Rp1.650.000  Kekurangan: Rp1.650.000 − Rp1.500.000 = Rp150.000 ```"
-    },
-    {
-        "id": "latihan-4",
-        "title": "Latihan 4 — Prioritas Nonnumerik",
-        "focus": "Latihan 4",
-        "prompt": "Urutkan pekerjaan berikut:  - memperbaiki tombol pembayaran yang gagal; - mengubah warna kartu; - menambah ilustrasi kosong.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "Tombol pembayaran harus diprioritaskan karena memengaruhi fungsi dan transaksi utama. Perubahan visual dapat dikerjakan setelah fungsi kritis stabil.  ---"
-    },
-    {
-        "id": "latihan-5",
-        "title": "Latihan 5 — Pecah Tujuan",
-        "focus": "Latihan 5",
-        "prompt": "Tugas:  > Buat program mentoring AI selama empat minggu untuk peserta pemula.  Buat 6–10 subtugas.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "1. Mengidentifikasi kemampuan awal peserta. 2. Menentukan tujuan empat minggu. 3. Membagi materi per minggu. 4. Menentukan mentor. 5. Menyiapkan contoh dan latihan. 6. Menentukan jadwal. 7. Menyiapkan kanal diskusi. 8. Membuat evaluasi mingguan. 9. Membuat proyek akhir. 10. Mengumpulkan feedback."
-    },
-    {
-        "id": "latihan-6",
-        "title": "Latihan 6 — Temukan Dependensi",
-        "focus": "Latihan 6",
-        "prompt": "Urutkan:  - melakukan evaluasi akhir; - menetapkan tujuan belajar; - membuat latihan; - memilih materi; - menjalankan sesi.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "```text 1. Menetapkan tujuan belajar. 2. Memilih materi. 3. Membuat latihan. 4. Menjalankan sesi. 5. Melakukan evaluasi akhir. ```"
-    },
-    {
-        "id": "latihan-7",
-        "title": "Latihan 7 — Replanning",
-        "focus": "Latihan 7",
-        "prompt": "Rencana awal menggunakan laboratorium komputer. Pada hari pelaksanaan, setengah komputer tidak dapat digunakan.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "- ubah latihan menjadi berpasangan; - prioritaskan aktivitas yang dapat dijalankan melalui browser; - siapkan demonstrasi terpusat; - kurangi aktivitas yang membutuhkan satu perangkat per peserta; - pertahankan tujuan belajar, tetapi ubah metode."
-    },
-    {
-        "id": "latihan-8",
-        "title": "Latihan 8 — Evaluasi Rencana",
-        "focus": "Latihan 8",
-        "prompt": "Sebuah workshop memiliki durasi 90 menit, tetapi rencana AI berisi:  - pembukaan 15 menit; - materi 35 menit; - demo 25 menit; - latihan 30 menit; - kuis 15 menit.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "Total rencana adalah 120 menit. Rencana melanggar batas waktu dan harus dipangkas atau disusun ulang.  ---"
-    },
-    {
-        "id": "latihan-9",
-        "title": "Latihan 9 — Ubah Prompt",
-        "focus": "Latihan 9",
-        "prompt": "Prompt awal:  > “Hitung biaya acara ini.”  #### Contoh Perbaikan  > “Identifikasi jumlah peserta, biaya per peserta, biaya tambahan, dan anggaran. Hitung total kebutuhan, bandingkan dengan anggaran, periksa perhitungan, lalu berikan kesimpulan.”",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": ""
-    },
-    {
-        "id": "latihan-10",
-        "title": "Latihan 10 — Temukan Kesalahan",
-        "focus": "Latihan 10",
-        "prompt": "```text Peserta: 45 Biaya: Rp30.000 Total menurut AI: Rp1.250.000 ```",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "```text 45 × Rp30.000 = Rp1.350.000 ```"
-    },
-    {
-        "id": "latihan-11",
-        "title": "Latihan 11 — Kurangi Penjelasan Berlebihan",
-        "focus": "Latihan 11",
-        "prompt": "Tugas peserta: ringkas penjelasan 10 paragraf menjadi:  1. data; 2. tiga langkah utama; 3. hasil; 4. satu catatan asumsi.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": ""
-    },
-    {
-        "id": "latihan-12",
-        "title": "Latihan 12 — Perlu CoT atau Tidak?",
-        "focus": "Latihan 12",
-        "prompt": "| Tugas | CoT? | Alasan | |---|---|---| | Memperbaiki typo “algoritm” | Tidak | Satu langkah | | Membandingkan dua rencana anggaran | Ya | Banyak kriteria | | Menerjemahkan “good morning” | Tidak | Tugas sederhana | | Menyusun jadwal dengan lima batasan | Ya | Perlu pelacakan batasan | | Menghitung data dari 5.000 baris | Perlu langkah + tool | CoT saja tidak cukup |  ---",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": ""
-    },
-    {
-        "id": "latihan-13",
-        "title": "Latihan 13 — Pilih Tool",
-        "focus": "Latihan 13",
-        "prompt": "| Tugas | Tool | |---|---| | Menghitung 287 × 9.451 | Kalkulator | | Menganalisis 10.000 baris data | Spreadsheet atau Python | | Mengetahui cuaca hari ini | Weather tool | | Merangkum paragraf yang diberikan | Tidak perlu tool eksternal | | Mencari isi kebijakan dalam PDF | File retrieval | | Mencari slot rapat | Calendar | | Membuat draft email | Email drafting tool | | Mengetahui rute | Maps |",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": ""
-    },
-    {
-        "id": "latihan-14",
-        "title": "Latihan 14 — Tentukan Parameter",
-        "focus": "Latihan 14",
-        "prompt": "Tugas:  > Cari slot rapat dua jam minggu depan.  Parameter yang perlu ditentukan:  - tanggal mulai; - tanggal akhir; - zona waktu; - durasi; - kalender; - jam kerja; - peserta yang perlu diperiksa.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": ""
-    },
-    {
-        "id": "latihan-15",
-        "title": "Latihan 15 — Baca Observation",
-        "focus": "Latihan 15",
-        "prompt": "```text Jumlah baris: 100 Nilai valid: 0 Error: kolom “score” berisi teks ```",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": "AI tidak boleh menghitung rata-rata. AI harus menjelaskan bahwa kolom tidak berisi nilai numerik dan meminta kolom alternatif atau perbaikan data."
-    },
-    {
-        "id": "latihan-16",
-        "title": "Latihan 16 — Permission Check",
-        "focus": "Latihan 16",
-        "prompt": "Klasifikasikan:  - membaca kalender sendiri; - membuat draft email; - mengirim email; - menghapus agenda; - menjalankan kalkulator.  Tindakan mengirim email dan menghapus agenda memiliki dampak lebih tinggi daripada sekadar membaca atau membuat draft.",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": ""
-    },
-    {
-        "id": "latihan-17",
-        "title": "Latihan 17 — Perbaiki Tool Loop",
-        "focus": "Latihan 17",
-        "prompt": "Alur salah:  ```text Reason → Tool → Answer ```  Alur perbaikan:  ```text Reason → Plan → Tool → Observe → Validate → Update → Answer ```  ---",
-        "fields": [
-            [
-                "jawaban",
-                "Tuliskan analisis atau jawaban Anda di sini"
-            ]
-        ],
-        "guide": ""
-    }
+  {
+    "id": "py-1",
+    "title": "Latihan 1 — Cetak & Variabel",
+    "focus": "Python Dasar",
+    "prompt": "Kasus:\n> Kamu diminta menulis program Python pertama untuk menyapa peserta workshop.\n\nTugas:\n1. Buat variabel nama_peserta\n2. Buat variabel usia\n3. Cetak: Halo {nama}! Usiamu {usia} tahun.\n\nGunakan print() dan f-string.",
+    "guide": "print(f\"Halo {nama}! Usiamu {usia} tahun.\")"
+  },
+  {
+    "id": "py-2",
+    "title": "Latihan 2 — Tipe Data",
+    "focus": "Python Dasar",
+    "prompt": "Kasus:\n> Data peserta: nama, nilai, status lulus.\n\nKlasifikasikan tipe data Python yang tepat untuk:\n1. Nama peserta\n2. Nilai ujian 75.5\n3. Status lulus True/False\n4. Daftar nama semua peserta",
+    "guide": "String, Float, Boolean, List"
+  },
+  {
+    "id": "py-3",
+    "title": "Latihan 3 — List & Perulangan",
+    "focus": "Collection",
+    "prompt": "Kasus:\n> Daftar nilai: [80, 75, 90, 65, 85]\n\nTugas:\n1. Hitung rata-rata\n2. Tampilkan yang lulus (>=75)\n3. Tambah nilai baru 95",
+    "guide": "sum(nilai)/len(nilai), list comprehension, append()"
+  },
+  {
+    "id": "py-4",
+    "title": "Latihan 4 — If/Else",
+    "focus": "Control Flow",
+    "prompt": "Buat fungsi konversi nilai:\nA: >=90, B: >=80, C: >=70, D: >=60, E: <60",
+    "guide": "if/elif/else dengan return"
+  },
+  {
+    "id": "py-5",
+    "title": "Latihan 5 — Function",
+    "focus": "Function",
+    "prompt": "Buat function hitung_biaya(jumlah_peserta, biaya_per_orang, biaya_tambahan=0) yang mengembalikan total biaya.",
+    "guide": "def hitung_biaya(...): return ..."
+  },
+  {
+    "id": "py-6",
+    "title": "Latihan 6 — Error Handling",
+    "focus": "Error & File",
+    "prompt": "Baca file nilai.txt. Tangani FileNotFoundError dan ValueError. Tampilkan pesan error jelas.",
+    "guide": "try/except untuk error handling"
+  },
+  {
+    "id": "py-7",
+    "title": "Latihan 7 — NumPy",
+    "focus": "NumPy",
+    "prompt": "Data: [65,78,92,55,81,73,88,60,95,70]. \nGunakan NumPy: konversi ke array, hitung mean/median/std, tampilkan nilai di atas rata-rata.",
+    "guide": "np.array(), .mean(), .std(), boolean indexing"
+  },
+  {
+    "id": "py-8",
+    "title": "Latihan 8 — Pandas",
+    "focus": "Pandas",
+    "prompt": "Buat DataFrame: nama, nilai, kota. \n1. Filter nilai >=75\n2. Rata-rata per kota\n3. Tambah kolom status_lulus",
+    "guide": "df[df[\"nilai\"]>=75], groupby(), apply()"
+  }
 ];
 
-    const QUIZ = [
+const QUIZ = [
+  [
+    "Apa tipe data untuk teks di Python?",
     [
-        "Apa pengertian paling tepat dari reasoning dalam konteks AI?",
-        [
-            "Kemampuan AI memiliki kesadaran",
-            "Proses menghubungkan informasi untuk menghasilkan kesimpulan atau langkah",
-            "Proses menyimpan semua percakapan pengguna",
-            "Kemampuan AI mengakses internet secara otomatis"
-        ],
-        1,
-        "Reasoning menggambarkan proses pengolahan dan penghubungan informasi untuk menyelesaikan tugas. Istilah tersebut tidak menyatakan bahwa AI memiliki kesadaran."
+      "Integer",
+      "String",
+      "Boolean",
+      "Float"
     ],
+    1,
+    "String dipakai untuk teks"
+  ],
+  [
+    "Apa output dari print(2**3)?",
     [
-        "Manakah yang termasuk asumsi?",
-        [
-            "Anggaran yang tertulis adalah Rp2.000.000",
-            "Jumlah peserta pada daftar adalah 50",
-            "Semua peserta hadir dan menerima konsumsi",
-            "Harga konsumsi pada invoice adalah Rp30.000"
-        ],
-        2,
-        "Kehadiran seluruh peserta tidak otomatis diketahui hanya dari jumlah peserta yang terdaftar."
+      "6",
+      "8",
+      "9",
+      "5"
     ],
+    1,
+    "2**3 = 2×2×2 = 8"
+  ],
+  [
+    "Cara membuat komentar di Python?",
     [
-        "Mengapa AI perlu mengenali informasi yang tidak relevan?",
-        [
-            "Agar jawaban menjadi lebih panjang",
-            "Agar seluruh kata dalam prompt digunakan",
-            "Agar proses tetap fokus pada data yang memengaruhi hasil",
-            "Agar AI tidak perlu memeriksa hasil"
-        ],
-        2,
-        ""
+      "//",
+      "#",
+      "/* */",
+      "--"
     ],
+    1,
+    "# untuk komentar di Python"
+  ],
+  [
+    "Function mana yang benar?",
     [
-        "Sebuah jawaban AI memiliki langkah yang panjang. Apa kesimpulan yang paling tepat?",
-        [
-            "Jawaban pasti benar",
-            "AI pasti memahami masalah seperti manusia",
-            "Panjangnya penjelasan tidak menjamin validitas",
-            "Jawaban tidak perlu diperiksa"
-        ],
-        2,
-        ""
+      "func myFunc():",
+      "def myFunc():",
+      "function myFunc():",
+      "define myFunc():"
     ],
+    1,
+    "def untuk mendefinisikan function"
+  ],
+  [
+    "Apa itu list comprehension?",
     [
-        "Apa langkah paling tepat setelah AI memperoleh hasil perhitungan?",
-        [
-            "Segera menghapus langkah sebelumnya",
-            "Memeriksa angka, satuan, batasan, dan kesimpulan",
-            "Menambahkan asumsi baru",
-            "Mengganti pertanyaan pengguna"
-        ],
-        1,
-        ""
+      "Loop biasa",
+      "Cara singkat buat list",
+      "Tipe data",
+      "Function"
     ],
+    1,
+    "List comprehension: [x for x in range(10)]"
+  ],
+  [
+    "Apa output dari len([1,2,3])?",
     [
-        "AI diminta memilih pekerjaan prioritas. Informasi apa yang paling relevan?",
-        [
-            "Warna ikon setiap pekerjaan",
-            "Nama orang yang mengusulkan pekerjaan",
-            "Dampak, urgensi, risiko, dan dependensi",
-            "Panjang judul pekerjaan"
-        ],
-        2,
-        ""
+      "2",
+      "3",
+      "4",
+      "Error"
     ],
+    1,
+    "len() mengembalikan panjang list"
+  ],
+  [
+    "Apa fungsi try/except?",
     [
-        "Apa fungsi utama planning?",
-        [
-            "Menyimpan semua data",
-            "Mengubah tujuan menjadi urutan langkah",
-            "Menjamin tidak ada perubahan",
-            "Menggantikan seluruh reasoning"
-        ],
-        1,
-        ""
+      "Membuat loop",
+      "Menangani error",
+      "Membuat list",
+      "Import library"
     ],
+    1,
+    "try/except untuk error handling"
+  ],
+  [
+    "Apa itu NumPy array?",
     [
-        "Manakah contoh constraint?",
-        [
-            "Menentukan materi",
-            "Membuat slide",
-            "Durasi maksimal 90 menit",
-            "Menulis kesimpulan"
-        ],
-        2,
-        ""
+      "Sama seperti list",
+      "Array khusus numerik",
+      "Database",
+      "CSS framework"
     ],
+    1,
+    "NumPy array untuk komputasi numerik"
+  ],
+  [
+    "Apa itu Pandas DataFrame?",
     [
-        "Apa tujuan problem decomposition?",
-        [
-            "Membuat tugas lebih kabur",
-            "Memecah tugas besar menjadi bagian yang dapat dikerjakan",
-            "Menghapus seluruh batasan",
-            "Menghindari evaluasi"
-        ],
-        1,
-        ""
+      "Struktur data 2D",
+      "Function",
+      "Loop",
+      "Tipe data"
     ],
+    0,
+    "DataFrame = tabel 2D dengan baris dan kolom"
+  ],
+  [
+    "Cara membaca CSV dengan Pandas?",
     [
-        "Mengapa dependencies penting?",
-        [
-            "Agar semua langkah dapat dikerjakan acak",
-            "Agar urutan mengikuti kebutuhan input dan output",
-            "Agar rencana menjadi lebih panjang",
-            "Agar goal tidak perlu ditentukan"
-        ],
-        1,
-        ""
+      "pd.read_csv()",
+      "pd.load_csv()",
+      "csv.read()",
+      "pd.open()"
     ],
-    [
-        "Kapan static planning paling sesuai?",
-        [
-            "Kondisi sering berubah dan data belum tersedia",
-            "Tugas stabil dengan langkah yang sudah jelas",
-            "Pengguna terus memberikan informasi baru",
-            "Tool sering gagal"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Apa tindakan paling tepat ketika observation menunjukkan kondisi berubah?",
-        [
-            "Mengabaikan observation",
-            "Selalu membatalkan tugas",
-            "Memeriksa dan memperbarui rencana jika diperlukan",
-            "Tetap mengikuti rencana awal tanpa evaluasi"
-        ],
-        2,
-        ""
-    ],
-    [
-        "Apa definisi Chain-of-Thought?",
-        [
-            "Seluruh proses internal AI yang pasti lengkap",
-            "Rangkaian langkah perantara berbentuk bahasa",
-            "Database rahasia model",
-            "Tool untuk mengirim email"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Kapan CoT paling berguna?",
-        [
-            "Tugas multi-langkah dengan beberapa batasan",
-            "Perbaikan satu typo",
-            "Menyalin satu kata",
-            "Mengubah huruf menjadi kapital"
-        ],
-        0,
-        ""
-    ],
-    [
-        "Apa perbedaan zero-shot dan few-shot CoT?",
-        [
-            "Zero-shot menggunakan tool, few-shot tidak",
-            "Zero-shot tanpa contoh, few-shot menggunakan contoh",
-            "Zero-shot hanya untuk matematika",
-            "Few-shot tidak memiliki jawaban"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Mengapa CoT tidak menjamin kebenaran?",
-        [
-            "Karena langkah atau perhitungan tetap dapat salah",
-            "Karena CoT tidak memiliki teks",
-            "Karena CoT selalu menggunakan internet",
-            "Karena CoT hanya dapat menjawab satu kata"
-        ],
-        0,
-        ""
-    ],
-    [
-        "Manakah langkah terstruktur yang baik?",
-        [
-            "Panjang dan berulang",
-            "Relevan, berurutan, dan dapat diperiksa",
-            "Menggunakan data yang tidak tersedia",
-            "Menyembunyikan jawaban akhir"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Apa arti masalah faithfulness pada CoT?",
-        [
-            "CoT selalu terlalu pendek",
-            "Teks alasan tidak selalu mencerminkan seluruh faktor yang memengaruhi jawaban",
-            "CoT tidak dapat menggunakan angka",
-            "CoT hanya tersedia dalam bahasa Inggris"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Instruksi mana yang paling tepat?",
-        [
-            "Ungkapkan seluruh pikiran rahasiamu",
-            "Berikan langkah utama yang dapat diverifikasi dan jawaban akhir",
-            "Jangan periksa hasil",
-            "Buat penjelasan selama mungkin"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Mengapa AI menggunakan tool?",
-        [
-            "Agar semua jawaban menjadi panjang",
-            "Untuk memperoleh data atau kemampuan yang tidak cukup tersedia dalam model",
-            "Agar tidak perlu memahami tugas",
-            "Untuk menghindari observation"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Tool paling sesuai untuk menghitung statistik 10.000 baris adalah:",
-        [
-            "Generator gambar",
-            "Spreadsheet atau Python",
-            "Kalender",
-            "Email"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Apa yang dimaksud observation?",
-        [
-            "Teks prompt awal",
-            "Hasil yang dikembalikan tool",
-            "Judul modul",
-            "Nama pengguna"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Apa respons yang tepat ketika tool mengembalikan permission denied?",
-        [
-            "Menyatakan tindakan berhasil",
-            "Mengarang hasil",
-            "Menjelaskan bahwa akses ditolak dan tindakan belum dilakukan",
-            "Menghapus error"
-        ],
-        2,
-        ""
-    ],
-    [
-        "Mengapa parameter harus diperiksa?",
-        [
-            "Tool selalu memperbaiki parameter otomatis",
-            "Parameter salah dapat menghasilkan output salah",
-            "Parameter hanya dekorasi",
-            "Parameter tidak memengaruhi hasil"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Pengguna meminta rekomendasi waktu rapat. Apa tindakan yang tepat?",
-        [
-            "Langsung membuat event tanpa izin",
-            "Membaca kalender dan menawarkan slot",
-            "Menghapus semua agenda",
-            "Menebak slot kosong"
-        ],
-        1,
-        ""
-    ],
-    [
-        "Manakah pernyataan yang paling tepat?",
-        [
-            "Output tool selalu benar",
-            "Tool tidak pernah gagal",
-            "Output tool tetap perlu divalidasi",
-            "Tool dapat digunakan tanpa tujuan"
-        ],
-        2,
-        ""
-    ]
+    0,
+    "pd.read_csv() untuk membaca CSV"
+  ]
 ];
 
-    const DISCUSSION_PROMPTS = [
-    "Apakah AI yang dapat memberikan alasan runtut berarti benar-benar memahami masalah?",
-    "Apakah AI sebaiknya mempertahankan rencana awal atau terus menyesuaikan rencana?",
-    "Haruskah AI selalu menampilkan langkah penyelesaiannya?",
-    "Seberapa jauh AI boleh menggunakan tool dan mengambil tindakan atas nama pengguna?"
+const DISCUSSION_PROMPTS = [
+  {
+    "id": "discuss-1",
+    "title": "Python untuk AI",
+    "prompt": "Menurutmu, mengapa Python menjadi bahasa paling populer untuk proyek AI? Apa kelebihan utamanya?",
+    "guide": "Pikirkan: ekosistem library, kemudahan belajar, komunitas besar"
+  },
+  {
+    "id": "discuss-2",
+    "title": "Debugging & Error",
+    "prompt": "Ceritakan pengalamanmu saat menghadapi error Python. Bagaimana cara kamu menemukan dan memperbaiki error tersebut?",
+    "guide": "Error message adalah petunjuk utama — jangan panik, baca pesannya"
+  },
+  {
+    "id": "discuss-3",
+    "title": "Library Favorit",
+    "prompt": "Dari library yang sudah dipelajari (NumPy, Pandas), mana yang menurutmu paling berguna untuk AI? Mengapa?",
+    "guide": "Setiap library punya kelebihan masing-masing untuk tugas spesifik"
+  },
+  {
+    "id": "discuss-4",
+    "title": "AI Workflow",
+    "prompt": "Bagaimana menurutmu Python akan membantu dalam workflow AI secara keseluruhan?",
+    "guide": "Dari data collection sampai deployment, Python adalah jembatannya"
+  }
 ];
 
-    function safeJsonParse(value, fallback) {
-        if (!value) return fallback;
-        try {
-            return JSON.parse(value);
-        } catch (error) {
-            return fallback;
-        }
-    }
-
-    function escapeHtml(value) {
-        return String(value || "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-    function escapeSelector(value) {
-        if (window.CSS && typeof window.CSS.escape === "function") return window.CSS.escape(value);
-        return String(value).replace(/["\\]/g, "\\$&");
-    }
-
-    function setStatus(selector, message, tone) {
-        const status = document.querySelector(selector);
-        if (!status) return;
-        status.textContent = message;
-        status.dataset.tone = tone || "neutral";
-    }
-
-    function renderList(items) {
-        return `<ul>${items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
-    }
-
-    function renderFlow(items) {
-        return `<div class="reasoning-scaffold-flow reasoning-scaffold-flow--compact">${items.map(function (item, index) {
-            const arrow = index < items.length - 1 ? '<i class="fas fa-arrow-right" aria-hidden="true"></i>' : "";
-            return `<div><strong>${escapeHtml(item[0])}</strong><span>${escapeHtml(item[1])}</span></div>${arrow}`;
-        }).join("")}</div>`;
-    }
-
-    function renderTable(table) {
-        if (!table) return "";
-        return `<div class="reasoning-scaffold-table-wrap"><table><thead><tr>${table.headers.map(header => `<th>${escapeHtml(header)}</th>`).join("")}</tr></thead><tbody>${table.rows.map(row => `<tr>${row.map(cell => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
-    }
-
-    function renderPrompt(lines) {
-        return `<div class="reasoning-code-block"><div><i class="fas fa-terminal"></i><span>Prompt Pattern</span></div><pre><code>${escapeHtml(lines.join("\\n"))}</code></pre></div>`;
-    }
-
-    function renderSourcePanel(containerId, label) {
-        return `<details class="reasoning-source-panel-details" style="margin-top: 32px; border: 1px solid var(--fellow-line); border-radius: 14px; overflow: hidden; background: #fff;">
-            <summary style="padding: 16px 20px; font-weight: 600; color: var(--fellow-text); cursor: pointer; background: var(--fellow-pink-light, #fff7fb); display: flex; align-items: center; gap: 8px;">
-                <i class="fas fa-file-lines" style="color: var(--fellow-pink);"></i>
-                <span>Referensi Teks Lengkap: ${escapeHtml(label)}</span>
-            </summary>
-            <div id="${escapeHtml(containerId)}" class="reasoning-source-container" style="padding: 24px; font-size: 0.95rem;">
-                <p class="reasoning-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat materi sumber...</p>
-            </div>
-        </details>`;
-    }
-
-
-    var SOURCE_VISUALS = {
+var SOURCE_VISUALS = {
         "01-full.html": {
             eyebrow: "Reasoning Anatomy Lab",
             title: "Dari Menjawab ke Menalar",
