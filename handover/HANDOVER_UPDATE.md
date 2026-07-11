@@ -255,3 +255,64 @@ node scripts/check-participant-routes.mjs     # 113/113 passed
 4. **Jangan push** tanpa izin user
 5. **Aturan desain** ada di `REASONING_RULES_AND_PATTERNS.md`
 6. **Template untuk course lain** ada di `COURSE_TEMPLATE_GUIDE.md`
+
+---
+
+## 🐍 Python Module — Status
+
+### Architecture
+Sama dengan Reasoning: source-as-main-content pipeline.
+
+### File Summary
+
+| File | Path | Lines |
+|---|---|---|
+| Controller | `js/frontend/fellow-dashboard/ai-python.js` | ~1964 |
+| CSS (shared) | `css/frontend/fellow-dashboard/modules.css` | ~7500 |
+| Materi | `pages/.../02-python-untuk-ai/materi.html` | template Reasoning |
+| Latihan | `pages/.../02-python-untuk-ai/latihan.html` | template Reasoning |
+| Kuis | `pages/.../02-python-untuk-ai/kuis.html` | template Reasoning |
+| Diskusi | `pages/.../02-python-untuk-ai/diskusi.html` | template Reasoning |
+| Source | `materi/nazril/Python-untuk-AI-redesign-final.md` | 1882 lines |
+| Chapter files | `pages/.../02-python-untuk-ai/chapters/01-full.html` - `15-full.html` | 15 files |
+| Topic files | `pages/.../02-python-untuk-ai/chapters/01-topic.html` - `08-topic.html` | 8 merged |
+
+### 8 Pedagogical Topics
+
+| Topic | Source Chapters |
+|---|---|
+| 1. Python & AI Mindset | Ch1 (Kenapa Python) + Ch2 (Environment) + Ch3 (Computational Thinking) |
+| 2. Data Dasar | Ch4 (Sintaks Dasar) + Ch5 (Collection) |
+| 3. Control Flow | Ch6 (Control Flow) |
+| 4. Function & Modularitas | Ch7 (Function) + Ch8 (Lambda/Generator) |
+| 5. OOP untuk AI | Ch9 (OOP) |
+| 6. Error & File Handling | Ch10 (Error Handling) + Ch11 (File I/O) |
+| 7. NumPy | Ch12 (Ekosistem) + Ch13 (NumPy) |
+| 8. Pandas & Workflow | Ch14 (Pandas) + Ch15 (Mini Workflow) |
+
+### Known Issues
+
+- **router.js** had wrong function name (`initAiPythonBasic` → `initAiPythonPractice`) ✅ fixed
+- **sourcePaths** chapters 2-8 had broken path (`/pages/.../` with literal `...`) ✅ fixed
+- **renderList/renderFlow** functions missing from ai-python.js ✅ added
+- **CHAPTERS data is minimal** — has title/summary/objectives but missing: hook, concepts, flow, example, quickCheck, challenge, mistakes, bestPractices, learningOutcomes
+- Interactive components (hook, lab, quick check) will NOT show until CHAPTERS is enriched
+
+### Cache Buster
+`index.html`: `ai-python.js?v=20260712-python-v3`
+
+### NOT YET DONE (Needs Enrichment)
+- CHAPTERS interactive data (hook, lab, quick check, challenge per topic)
+- PRACTICES array (currently has 8 Python exercises, may need more)
+- QUIZ array (has 10 questions, may need more)
+- Pyodide playground injection into source content
+
+### CRITICAL BUGS FIXED (Session)
+| Bug | Fix |
+|---|---|
+| `renderList` missing → page crash | Added renderList/renderFlow functions |
+| sourcePaths chapters 2-8 broken | Fixed to full path |
+| router function name mismatch | `initAiPythonBasic` → `initAiPythonPractice` |
+| Reasoning "Materi" → Python page | All HTML text replaced |
+| index.html missing ai-python.js | Added script reference |
+| server serving stale files | Killed old server, clean restart |

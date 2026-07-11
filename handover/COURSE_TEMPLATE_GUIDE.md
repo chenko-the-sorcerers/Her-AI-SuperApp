@@ -394,3 +394,35 @@ Ketika menerapkan pattern ini ke course EXISTING:
 - [ ] Tidak ada `border-radius: 0`
 - [ ] Tidak ada dark background untuk learning surface
 - [ ] Mobile tidak overflow (scrollWidth <= innerWidth pada 390px)
+
+---
+
+## 7. Python Migration Lessons Learned
+
+### Critical Bugs Found & Fixed
+
+| Bug | Root Cause | Fix |
+|---|---|---|
+| `renderList` undefined crash | Copied from Reasoning but function was missing in JS | Add `renderList` and `renderFlow` functions |
+| sourcePaths broken for Ch2-8 | Template had `/pages/.../` with literal `...` | Replace with full path |
+| router function mismatch | `initAiPythonBasic` vs `initAiPythonPractice` | Fixed in router.js |
+| Reasoning text in Python pages | Copied HTML template without replacing text | sed replace all |
+| index.html missing ai-python.js | Forgot to add script reference | Added to index.html |
+
+### Python-Specific Architecture Notes
+
+1. **15 source chapters → 8 pedagogical topics** — Chapters were merged into topic files (`cat file1 file2 > topic.html`)
+2. **Pyodide** — Live Python execution code exists in `ai-python.js` but playground HTML isn't injected into source yet
+3. **CHAPTERS data is minimal** — Only title/summary/objectives/sourcePath. Missing: hook, concepts, flow, example, quickCheck, challenge
+4. **Cache buster v3** for Python JS in index.html
+
+### When Creating a New Module
+
+1. Start by generating chapter HTML from source Markdown using `marked`
+2. Merge related chapters into topic files if needed
+3. Copy the Reasoning controller as a base
+4. Replace ALL Reasoning references (function names, paths, STORAGE keys)
+5. Set up CHAPTERS with AT LEAST: title, shortTitle, duration, icon, summary, objectives, sourcePath
+6. **Verify sourcePath is a FULL PATH** — no template placeholders
+7. Test Topic 1 loads, then test Topic 2
+8. Enrich CHAPTERS with interactive data (hook, concepts, lab, quickCheck, challenge) one topic at a time

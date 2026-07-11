@@ -1,8 +1,8 @@
 # Module Status Map — HerAI Fellowship
 
 **Tanggal:** 12 Juli 2026
-**Branch:** `design`
-**Status:** Reasoning COMPLETE (pipeline siap untuk course lain)
+**Branch:** `design` (ahead ~20 commits, BELUM PUSH)
+**Status:** Reasoning COMPLETE, Python pipeline working
 
 ---
 
@@ -12,8 +12,8 @@
 
 | Module | Route | Materi | Latihan | Kuis | Diskusi | Status |
 |---|---|---|---|---|---|---|
-| **Reasoning** | `...-ai-reasoning` | ✅ Source-as-main | ✅ 17 practice, topic groups | ✅ 26 soal, review mode | ✅ 4 prompt | **⭐ COMPLETE** |
-| Python untuk AI | `...-ai-python` | 🏗 | 🏗 | 🏗 | 🏗 | 📝 Source available |
+| **Reasoning** | `...-ai-reasoning` | ✅ Pipeline final | ✅ 17 practice, topic groups | ✅ 26 soal, review mode | ✅ 4 prompt | **⭐ COMPLETE** |
+| **Python untuk AI** | `...-ai-python` | ✅ Pipeline works | 🏗 8 exercises | 🏗 10 questions | 🏗 4 prompts | **🔄 Pipeline OK, content needs enrichment** |
 | AI Fundamentals | `...-ai-intro` | 🏗 | 🏗 | 🏗 | 🏗 | ⏳ |
 | Konsep AI Modern | `...-ai-modern` | 🏗 | 🏗 | 🏗 | 🏗 | ⏳ |
 

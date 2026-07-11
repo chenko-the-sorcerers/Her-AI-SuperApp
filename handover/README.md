@@ -22,8 +22,11 @@
 
 ## Quick Reference
 
-- **Cache buster terakhir:** `v35`
-- **Controller:** `js/frontend/fellow-dashboard/ai-reasoning.js` (2632 lines)
-- **CSS:** `css/frontend/fellow-dashboard/modules.css` (+300 lines reasonoing)
-- **Source canonical:** `materi/nazril/submateri-reasoning-ai.md` (2755 lines)
-- **Branch:** `design` (ahead 8+ dari origin, BELUM PUSH)
+- **Branch:** `design` (ahead ~20 commits, BELUM PUSH)
+- **Reasoning final cache buster:** `v35`
+- **Python cache buster:** `v3`
+- **Reasoning controller:** `js/.../ai-reasoning.js` (~2646 lines)
+- **Python controller:** `js/.../ai-python.js` (~1964 lines)
+- **CSS:** `css/.../modules.css` (~7500 lines)
+- **Reasoning source:** `materi/nazril/submateri-reasoning-ai.md` (2755 lines)
+- **Python source:** `materi/nazril/Python-untuk-AI-redesign-final.md` (1882 lines)

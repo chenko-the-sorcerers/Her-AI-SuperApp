@@ -228,3 +228,45 @@ node scripts/check-participant-routes.mjs           # route check (113/113)
 4. Buka `http://localhost:3000` — test di browser
 5. Buka console browser — pastikan ga ada error
 6. Tanyakan ke user: "Mau lanjut ke module mana?"
+
+---
+
+## 🐍 Python Module Quick Reference
+
+### Controller
+`js/frontend/fellow-dashboard/ai-python.js` (~1964 lines) — Same pipeline as Reasoning.
+
+### Key Functions
+- `window.initAiPythonMateri()` — Init materi page
+- `window.initAiPythonPractice()` — Init practice page
+- `window.initAiPythonQuiz()` — Init quiz page
+- `window.initAiPythonDiscussion()` — Init discussion page
+- `window.loadPythonChapter(N)` — Load chapter N
+
+### 8 Topics → Source Files
+| Topic | Source File |
+|---|---|
+| 1. Python & AI Mindset | `01-topic.html` (Ch1-3 merged) |
+| 2. Data Dasar | `02-topic.html` (Ch4-5 merged) |
+| 3. Control Flow | `03-topic.html` (Ch6) |
+| 4. Function & Modularitas | `04-topic.html` (Ch7-8) |
+| 5. OOP untuk AI | `05-topic.html` (Ch9) |
+| 6. Error & File Handling | `06-topic.html` (Ch10-11) |
+| 7. NumPy | `07-topic.html` (Ch12-13) |
+| 8. Pandas & Workflow | `08-topic.html` (Ch14-15) |
+
+### TODO for Python
+- Enrich CHAPTERS with hook/concepts/quickCheck/challenge data
+- Add more PRACTICES exercises
+- Expand QUIZ questions
+- Inject Pyodide playgrounds after code blocks
+- CSS Python syntax highlighting refinement
+
+### Python-Specific Issues
+| Issue | Status |
+|---|---|
+| `renderList/renderFlow` missing from controller | ✅ Fixed |
+| sourcePaths chapters 2-8 broken (`/pages/.../`) | ✅ Fixed |
+| router function name mismatch | ✅ Fixed |
+| Reasoning HTML text in Python pages | ✅ Fixed |
+| CHAPTERS missing interactive data | ❌ TODO |
