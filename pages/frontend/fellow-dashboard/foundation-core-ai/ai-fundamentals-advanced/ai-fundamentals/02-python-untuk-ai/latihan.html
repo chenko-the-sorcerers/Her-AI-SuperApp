@@ -1,4 +1,4 @@
-<section class="fellow-dashboard fellow-modules-page lesson-detail-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page reasoning-scaffold-page ai-reasoning-page ai-reasoning-practice-page" data-fellow-page="modules">
     <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
     <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
     <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -13,16 +13,14 @@
             <a href="#/participant-events" data-fellow-nav="events"><i class="far fa-calendar-days"></i><span>Events</span></a>
             <a href="#/participant-community" data-fellow-nav="community"><i class="fas fa-users"></i><span>Komunitas</span></a>
         </nav>
-        <nav class="fellow-menu secondary">
-            <a href="#/participant-certificates" data-fellow-nav="certificates"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
-            <a href="#/participant-leaderboard" data-fellow-nav="leaderboard"><i class="fas fa-ranking-star"></i><span>Leaderboard</span></a>
-            <a href="#/participant-help" data-fellow-nav="faq"><i class="far fa-circle-question"></i><span>FAQ & Bantuan</span></a>
-            <a href="#/participant-settings" data-fellow-nav="settings"><i class="fas fa-gear"></i><span>Pengaturan</span></a>
-        </nav>
     </aside>
     <main class="fellow-main">
         <header class="lesson-topbar">
-            <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi"><a href="#/participant-ai-fundamentals"><i class="fas fa-arrow-left"></i><span>AI Fundamentals</span></a><span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span><span>Latihan Python</span></nav>
+            <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
+                <a href="#/participant-ai-python"><i class="fas fa-arrow-left"></i><span>Python untuk AI</span></a>
+                <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
+                <span>Latihan</span>
+            </nav>
             <div class="fellow-actions">
                 <label class="fellow-search"><i class="fas fa-magnifying-glass"></i><input type="search" placeholder="Cari modul, topik, atau materi..."></label>
                 <button type="button" class="fellow-icon-button" aria-label="Notifikasi"><i class="far fa-bell"></i><span>5</span></button>
@@ -33,11 +31,11 @@
             <div class="lesson-main-content">
                 <section class="lesson-hero compact">
                     <div class="lesson-hero-copy">
-                        <h1>Latihan Pemrograman Python</h1>
-                        <p>Kerjakan latihan reflektif, jalankan kode Python asli, lalu tutup dengan mini project preprocessing data untuk AI.</p>
-                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 60 menit</span><span><i class="fas fa-pen-to-square"></i> Latihan</span><b>Interaktif</b></div>
+                        <h1>Latihan Python</h1>
+                        <p>Latih kemampuan Python dari 8 skenario: variabel, tipe data, control flow, function, error handling, NumPy, dan Pandas.</p>
+                        <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 45 menit</span><span><i class="fas fa-list-check"></i> 8 skenario</span><b>Interaktif</b></div>
                     </div>
-                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow latihan Python">
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow latihan Reasoning">
                 </section>
                 <section class="lesson-material-panel">
                     <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
@@ -46,406 +44,63 @@
                         <a href="#/participant-ai-python-quiz"><i class="far fa-clipboard"></i> Kuis</a>
                         <a href="#/participant-ai-python-discussion"><i class="far fa-message"></i> Diskusi</a>
                     </div>
-                    <article class="lesson-article">
-                        <div class="pyodide-status" id="pyodideStatus">
-                            <div class="pyodide-loading-bar"><b></b></div>
-                            <span>Memuat Python runtime...</span>
-                        </div>
-
-                        <h2>Latihan Pemahaman & Praktik Python</h2>
-                        <p>Di bawah ini kamu bisa menjawab soal reflektif DAN langsung menjalankan kode Python asli. Coba ubah kode di editor, lalu klik <strong>Run</strong> untuk melihat hasilnya.</p>
-
-                                                <form class="practice-response-form" id="pythonPracticeForm" style="display: flex; flex-direction: column; gap: 32px; margin-top: 24px;">
-                            <!-- MODULE 1 -->
-                            <div class="practice-card" data-practice-focus="play-1" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">1</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">Tipe Data & Variabel</h3>
-                                </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Soal Reflektif:</strong> Tulis 4 variabel berbeda dengan tipe data (str, int, float, bool). Jelaskan kegunaan masing-masing tipe data dalam konteks data AI.
-                                    </p>
-                                    <textarea name="datatypes" rows="3" placeholder="Tulis jawaban refleksimu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 12px; padding: 16px; font-family: inherit; font-size: 0.95rem; margin-bottom: 24px; resize: vertical; outline: none;"></textarea>
-                                    
-                                    <h4 style="color: var(--fellow-pink); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Praktik Kode</h4>
-                                    <div style="background: rgba(246,51,146,.05); border: 1px dashed rgba(246,51,146,.2); padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 0.9rem; color: var(--fellow-text);">
-                                        <strong style="color: var(--fellow-pink);">Instruksi:</strong> Definisikan variabel dengan berbagai tipe data dan gunakan fungsi <code>type()</code> untuk memeriksa klasifikasinya.<br>
-                                        <strong style="color: var(--fellow-pink); margin-top: 4px; display: inline-block;">Expected Output:</strong> Akan mencetak tipe masing-masing variabel, misalnya <code>&lt;class 'str'&gt; | HerAI</code>.
-                                    </div>
-                                    <div class="playground-wrapper" id="play-1">
-                                        <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                                            <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>latihan_1.py</div>
-                                            <div class="py-actions" style="display: flex; gap: 8px;">
-                                                <button type="button" class="py-reset" data-play="1" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                                                <button type="button" class="py-run" id="btn-run-1" data-play="1" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                                            </div>
-                                        </div>
-                                        <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 16px; position: relative;">
-<textarea class="py-editor" spellcheck="false" style="width: 100%; min-height: 150px; border: none; border-radius: 14px; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-nama = "HerAI"
-umur = 25
-pi = 3.14
-aktif = True
-
-print(type(nama), "|", nama)
-print(type(umur), "|", umur)
-print(type(pi), "|", pi)
-print(type(aktif), "|", aktif)
-</textarea>
-                                            <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 16px; border-top: none;">
-                                                <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                                                <pre class="py-output" id="out-1" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <article class="lesson-article reasoning-scaffold-rich">
+                        <form class="practice-response-form reasoning-practice-form" id="aiReasoningPracticeForm">
+                            <div class="ml-section-head">
+                                <span>Practice Lab</span>
+                                <h2>Latihan Reasoning Terstruktur</h2>
+                                <p>Kerjakan satu skenario pada satu waktu. Baca kasus, tulis jawaban, lalu lihat pembahasan.</p>
+                                <p id="aiReasoningPracticeStatus">Jawaban akan tersimpan di browser ini.</p>
                             </div>
-
-                            <!-- MODULE 2 -->
-                            <div class="practice-card" data-practice-focus="play-2" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">2</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">List & Dictionary</h3>
-                                </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Soal Reflektif:</strong> Buat contoh list dan dictionary. Kapan kamu pilih list vs dict saat memproses data AI?
-                                    </p>
-                                    <textarea name="datastructures" rows="3" placeholder="Tulis jawaban refleksimu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 12px; padding: 16px; font-family: inherit; font-size: 0.95rem; margin-bottom: 24px; resize: vertical; outline: none;"></textarea>
-                                    
-                                    <h4 style="color: var(--fellow-pink); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Praktik Kode</h4>
-                                    <div style="background: rgba(246,51,146,.05); border: 1px dashed rgba(246,51,146,.2); padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 0.9rem; color: var(--fellow-text);">
-                                        <strong style="color: var(--fellow-pink);">Instruksi:</strong> Buat sebuah List berisi angka dan sebuah Dictionary berisi profil, lalu jalankan manipulasi data sederhana seperti <code>max()</code> dan akses <i>key</i>.<br>
-                                        <strong style="color: var(--fellow-pink); margin-top: 4px; display: inline-block;">Expected Output:</strong> Menampilkan nilai tertinggi (92), rata-rata (78.8), dan detail profil (skill: Python).
-                                    </div>
-                                    <div class="playground-wrapper" id="play-2">
-                                        <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                                            <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>latihan_2.py</div>
-                                            <div class="py-actions" style="display: flex; gap: 8px;">
-                                                <button type="button" class="py-reset" data-play="2" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                                                <button type="button" class="py-run" id="btn-run-2" data-play="2" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                                            </div>
-                                        </div>
-                                        <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 16px; position: relative;">
-<textarea class="py-editor" spellcheck="false" style="width: 100%; min-height: 200px; border: none; border-radius: 14px; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-# List: data berurutan (bisa berubah)
-nilai = [78, 92, 65, 88, 71]
-print("List:", nilai)
-print("Nilai tertinggi:", max(nilai))
-print("Rata-rata:", sum(nilai) / len(nilai))
-
-# Dictionary: pasangan key-value
-profil = {"nama": "Aisyah", "umur": 22, "skill": "Python"}
-print("\nProfil:", profil)
-print("Skill:", profil["skill"])
-</textarea>
-                                            <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 16px; border-top: none;">
-                                                <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                                                <pre class="py-output" id="out-2" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="reasoning-task-navigator" id="aiReasoningPracticeNavigator" aria-label="Navigasi latihan Reasoning"></div>
+                            <div id="aiReasoningPracticeList"></div>
+                            <div class="reasoning-task-controls">
+                                <button type="button" data-practice-prev><i class="fas fa-chevron-left"></i> Sebelumnya</button>
+                                <strong id="aiReasoningPracticeCounter">Skenario 1 dari 6</strong>
+                                <button type="button" data-practice-next>Berikutnya <i class="fas fa-chevron-right"></i></button>
                             </div>
-
-                            <!-- MODULE 3 -->
-                            <div class="practice-card" data-practice-focus="play-3" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">3</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">Control Flow</h3>
+                            <div class="ml-save-panel reasoning-save-panel">
+                                <p class="practice-status">Gunakan simpan untuk mengunci sementara jawabanmu. Kamu tetap bisa edit lagi.</p>
+                                <div>
+                                    <button type="button" data-practice-save><i class="fas fa-floppy-disk"></i> Simpan Jawaban</button>
+                                    <button type="button" data-practice-edit><i class="fas fa-pen"></i> Edit</button>
+                                    <button type="button" data-practice-reset><i class="fas fa-rotate-left"></i> Reset</button>
                                 </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Soal Reflektif:</strong> Gunakan loop untuk mencetak status 'Lulus' atau 'Remedial'. Jelaskan logic-nya.
-                                    </p>
-                                    <textarea name="controlflow" rows="3" placeholder="Tulis jawaban refleksimu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 12px; padding: 16px; font-family: inherit; font-size: 0.95rem; margin-bottom: 24px; resize: vertical; outline: none;"></textarea>
-                                    
-                                    <h4 style="color: var(--fellow-pink); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Praktik Kode</h4>
-                                    <div style="background: rgba(246,51,146,.05); border: 1px dashed rgba(246,51,146,.2); padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 0.9rem; color: var(--fellow-text);">
-                                        <strong style="color: var(--fellow-pink);">Instruksi:</strong> Gunakan perulangan <code>for</code> dan percabangan <code>if-else</code> untuk menentukan kelulusan dari sebuah list nilai ujian.<br>
-                                        <strong style="color: var(--fellow-pink); margin-top: 4px; display: inline-block;">Expected Output:</strong> Angka &gt;= 75 mencetak "Lulus", di bawah itu mencetak "Remedial" berurutan.
-                                    </div>
-                                    <div class="playground-wrapper" id="play-3">
-                                        <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                                            <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>latihan_3.py</div>
-                                            <div class="py-actions" style="display: flex; gap: 8px;">
-                                                <button type="button" class="py-reset" data-play="3" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                                                <button type="button" class="py-run" id="btn-run-3" data-play="3" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                                            </div>
-                                        </div>
-                                        <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 16px; position: relative;">
-<textarea class="py-editor" spellcheck="false" style="width: 100%; min-height: 150px; border: none; border-radius: 14px; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-nilai_ujian = [78, 92, 65, 88, 71]
-
-for n in nilai_ujian:
-    if n >= 75:
-        print(n, "-> Lulus")
-    else:
-        print(n, "-> Remedial")
-</textarea>
-                                            <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 16px; border-top: none;">
-                                                <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                                                <pre class="py-output" id="out-3" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- MODULE 4 -->
-                            <div class="practice-card" data-practice-focus="play-4" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">4</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">Functions</h3>
-                                </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Soal Reflektif:</strong> Tulis function 'kategori_skor' yang mengembalikan kategori berdasarkan skor. Kenapa function penting?
-                                    </p>
-                                    <textarea name="functions" rows="3" placeholder="Tulis jawaban refleksimu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 12px; padding: 16px; font-family: inherit; font-size: 0.95rem; margin-bottom: 24px; resize: vertical; outline: none;"></textarea>
-                                    
-                                    <h4 style="color: var(--fellow-pink); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Praktik Kode</h4>
-                                    <div style="background: rgba(246,51,146,.05); border: 1px dashed rgba(246,51,146,.2); padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 0.9rem; color: var(--fellow-text);">
-                                        <strong style="color: var(--fellow-pink);">Instruksi:</strong> Buat <i>custom function</i> <code>kategori_skor(skor)</code> yang mengembalikan nilai string kategori berdasarkan angka skor.<br>
-                                        <strong style="color: var(--fellow-pink); margin-top: 4px; display: inline-block;">Expected Output:</strong> Menghasilkan "Tinggi", "Sedang", atau "Rendah" sesuai skor yang dimasukkan saat di-print.
-                                    </div>
-                                    <div class="playground-wrapper" id="play-4">
-                                        <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                                            <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>latihan_4.py</div>
-                                            <div class="py-actions" style="display: flex; gap: 8px;">
-                                                <button type="button" class="py-reset" data-play="4" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                                                <button type="button" class="py-run" id="btn-run-4" data-play="4" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                                            </div>
-                                        </div>
-                                        <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 16px; position: relative;">
-<textarea class="py-editor" spellcheck="false" style="width: 100%; min-height: 200px; border: none; border-radius: 14px; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-def kategori_skor(skor):
-    if skor >= 80:
-        return "Tinggi"
-    elif skor >= 50:
-        return "Sedang"
-    else:
-        return "Rendah"
-
-# Coba berbagai input
-print("Skor 92 ->", kategori_skor(92))
-print("Skor 65 ->", kategori_skor(65))
-print("Skor 30 ->", kategori_skor(30))
-</textarea>
-                                            <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 16px; border-top: none;">
-                                                <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                                                <pre class="py-output" id="out-4" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- MODULE 5 -->
-                            <div class="practice-card" data-practice-focus="play-5" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">5</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">Libraries AI</h3>
-                                </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Soal Reflektif:</strong> Jelaskan kegunaan NumPy dan Pandas dalam workflow AI. Tulis contoh kode sederhana.
-                                    </p>
-                                    <textarea name="libraries" rows="3" placeholder="Tulis jawaban refleksimu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 12px; padding: 16px; font-family: inherit; font-size: 0.95rem; margin-bottom: 24px; resize: vertical; outline: none;"></textarea>
-                                    
-                                    <h4 style="color: var(--fellow-pink); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Praktik Kode</h4>
-                                    <div style="background: rgba(246,51,146,.05); border: 1px dashed rgba(246,51,146,.2); padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 0.9rem; color: var(--fellow-text);">
-                                        <strong style="color: var(--fellow-pink);">Instruksi:</strong> Gunakan library eksternal <code>numpy</code> (sebagai <code>np</code>) untuk memproses array angka dan menghitung statistiknya.<br>
-                                        <strong style="color: var(--fellow-pink); margin-top: 4px; display: inline-block;">Expected Output:</strong> Akan memunculkan nilai metrik matematika seperti mean (78.8) dan standar deviasi (10.02).
-                                    </div>
-                                    <div class="playground-wrapper" id="play-5">
-                                        <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                                            <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>latihan_5.py</div>
-                                            <div class="py-actions" style="display: flex; gap: 8px;">
-                                                <button type="button" class="py-reset" data-play="5" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                                                <button type="button" class="py-run" id="btn-run-5" data-play="5" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                                            </div>
-                                        </div>
-                                        <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 16px; position: relative;">
-<textarea class="py-editor" spellcheck="false" style="width: 100%; min-height: 200px; border: none; border-radius: 14px; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-# NumPy: operasi array & matriks
-import numpy as np
-
-data = np.array([78, 92, 65, 88, 71])
-print("Data:", data)
-print("Rata-rata:", data.mean())
-print("Std dev:", data.std())
-print("Reshape:", data.reshape(1, 5))
-print("Tertinggi:", data.max())
-</textarea>
-                                            <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 16px; border-top: none;">
-                                                <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                                                <pre class="py-output" id="out-5" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- MODULE 6 -->
-                            <div class="practice-card" data-practice-focus="play-6" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">6</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">OOP & Error Handling</h3>
-                                </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Soal Reflektif:</strong> Buatlah Class 'Dataset' sederhana yang memiliki error handling jika data kosong.
-                                    </p>
-                                    <textarea name="oop" rows="3" placeholder="Tulis jawaban refleksimu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 12px; padding: 16px; font-family: inherit; font-size: 0.95rem; margin-bottom: 24px; resize: vertical; outline: none;"></textarea>
-                                    
-                                    <h4 style="color: var(--fellow-pink); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Praktik Kode</h4>
-                                    <div style="background: rgba(246,51,146,.05); border: 1px dashed rgba(246,51,146,.2); padding: 12px 16px; border-radius: 12px; margin-bottom: 16px; font-size: 0.9rem; color: var(--fellow-text);">
-                                        <strong style="color: var(--fellow-pink);">Instruksi:</strong> Rancang struktur Class OOP <code>Dataset</code> yang memiliki mekanisme <code>try-except</code> <i>error handling</i>.<br>
-                                        <strong style="color: var(--fellow-pink); margin-top: 4px; display: inline-block;">Expected Output:</strong> Data yang ada dicetak normal, sedangkan list kosong sukses di-<i>catch</i> menjadi peringatan Error.
-                                    </div>
-                                    <div class="playground-wrapper" id="play-6">
-                                        <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                                            <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>latihan_6.py</div>
-                                            <div class="py-actions" style="display: flex; gap: 8px;">
-                                                <button type="button" class="py-reset" data-play="6" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                                                <button type="button" class="py-run" id="btn-run-6" data-play="6" style="background: white; color: #f63392; border: none; border-radius: 8px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                                            </div>
-                                        </div>
-                                        <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 16px; position: relative;">
-<textarea class="py-editor" spellcheck="false" style="width: 100%; min-height: 250px; border: none; border-radius: 14px; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-class Dataset:
-    def __init__(self, data):
-        self.data = data
-        
-    def get_batch(self, size):
-        try:
-            if not self.data:
-                raise ValueError("Dataset kosong!")
-            return self.data[:size]
-        except Exception as e:
-            return f"Error terjadi: {e}"
-
-# Uji coba
-ds = Dataset([10, 20, 30, 40])
-print("Batch 2:", ds.get_batch(2))
-
-ds_kosong = Dataset([])
-print("Batch 2 kosong:", ds_kosong.get_batch(2))
-</textarea>
-                                            <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 16px; border-top: none;">
-                                                <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                                                <pre class="py-output" id="out-6" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <!-- MODULE 7 -->
-                            <div class="practice-card" data-practice-focus="play-7" style="background: white; border: 1px solid var(--fellow-line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                                <div style="background: linear-gradient(90deg, #fff7fb, #ffffff); padding: 16px 24px; border-bottom: 1px solid var(--fellow-line); display: flex; align-items: center; gap: 12px;">
-                                    <span style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #f63392; color: white; font-weight: 800; font-size: 14px;">7</span>
-                                    <h3 style="margin: 0; font-size: 1.1rem; color: #171827;">Mini Project: Preprocessing Dataset Teks</h3>
-                                </div>
-                                <div style="padding: 24px;">
-                                    <p style="margin-top: 0; color: var(--fellow-text); line-height: 1.6; font-size: 0.95rem;">
-                                        <strong>Soal Reflektif:</strong> Jelaskan bagaimana File I/O, generator, OOP, exception handling, dan Pandas saling terhubung dalam pipeline data AI sederhana.
-                                    </p>
-                                    <textarea name="pipeline" rows="4" placeholder="Tulis jawaban refleksimu di sini..." style="width: 100%; border: 1px solid var(--fellow-line); border-radius: 14px; padding: 16px; font-family: inherit; font-size: 0.95rem; margin-bottom: 24px; resize: vertical; outline: none;"></textarea>
-
-                                    <h4 style="color: var(--fellow-pink); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Praktik Kode</h4>
-                                    <div style="background: rgba(246,51,146,.12); border: 1px dashed rgba(246,51,146,.3); padding: 12px 16px; border-radius: 14px; margin-bottom: 16px; font-size: 0.9rem; color: var(--fellow-text);">
-                                        <strong style="color: #171827;">Instruksi:</strong> Jalankan pipeline end-to-end: tulis data teks mentah, baca bertahap dengan generator, bersihkan lewat class, ubah menjadi Pandas DataFrame, lalu hitung kategori sentimen.<br>
-                                        <strong style="color: #171827; margin-top: 4px; display: inline-block;">Expected Output:</strong> Tabel ulasan bersih dan ringkasan jumlah positif/negatif.
-                                    </div>
-                                    <div class="playground-wrapper" id="play-7">
-                                        <div class="playground-header" style="background: linear-gradient(90deg, #f63392, #ff9eb5); color: white; padding: 12px 20px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                                            <div style="font-weight: 600; font-family: monospace; font-size: 0.9rem;"><i class="fab fa-python" style="margin-right: 8px;"></i>mini_project.py</div>
-                                            <div class="py-actions" style="display: flex; gap: 8px;">
-                                                <button type="button" class="py-reset" data-play="7" style="background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 100px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s;"><i class="fas fa-undo"></i> Reset</button>
-                                                <button type="button" class="py-run" id="btn-run-7" data-play="7" style="background: white; color: #f63392; border: none; border-radius: 100px; padding: 6px 16px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: transform 0.1s, box-shadow 0.2s;"><i class="fas fa-play"></i> Run Code</button>
-                                            </div>
-                                        </div>
-                                        <div class="playground-body" style="border: 1px solid rgba(246,51,146,.2); border-top: none; border-radius: 16px; position: relative;">
-<textarea class="py-editor" spellcheck="false" style="width: 100%; min-height: 430px; border: none; border-radius: 14px; padding: 16px; font-family: 'SF Mono', monospace; font-size: 14px; background: #fffcfd; color: #171827; resize: vertical; outline: none;">
-import pandas as pd
-
-with open("ulasan_mentah.txt", "w", encoding="utf-8") as f:
-    f.write("Akurasi model ini SANGAT hebat!;Positif\n")
-    f.write(";\n")
-    f.write("Pelatihan berjalan sangat LAMBAT;Negatif\n")
-    f.write("Suka sekali belajar di HerAI Fellowship;Positif\n")
-    f.write("Dokumentasi program kurang LENGKAP;Negatif\n")
-
-class DokumenUlasan:
-    def __init__(self, teks_asli, kategori):
-        self.teks_asli = teks_asli
-        self.teks_bersih = self.bersihkan_teks(teks_asli)
-        self.kategori = kategori
-
-    def bersihkan_teks(self, teks):
-        return " ".join(teks.lower().strip().split())
-
-def aliran_pembersih(nama_file):
-    try:
-        with open(nama_file, "r", encoding="utf-8") as f:
-            for baris in f:
-                baris_bersih = baris.strip()
-                if not baris_bersih or ";" not in baris_bersih:
-                    continue
-                try:
-                    teks, kategori = baris_bersih.split(";")
-                    if teks.strip():
-                        yield DokumenUlasan(teks, kategori)
-                except ValueError:
-                    continue
-    except FileNotFoundError:
-        print("File dataset tidak ditemukan")
-
-objek_ulasan = list(aliran_pembersih("ulasan_mentah.txt"))
-
-df = pd.DataFrame({
-    "Teks_Bersih": [obj.teks_bersih for obj in objek_ulasan],
-    "Kategori": [obj.kategori for obj in objek_ulasan]
-})
-
-print("DataFrame Hasil Pemrosesan:")
-print(df)
-print("\nRingkasan:")
-print(df["Kategori"].value_counts())
-</textarea>
-                                            <div class="playground-output" style="background: #fffcfd; padding: 16px; border: 1px solid rgba(246,51,146,.2); border-radius: 16px; border-top: none;">
-                                                <div class="output-header" style="color: var(--fellow-pink); font-size: 0.8rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase;">Terminal Output</div>
-                                                <pre class="py-output" id="out-7" style="margin: 0; font-family: monospace; font-size: 14px; background: transparent; border: none; padding: 0;">Menunggu eksekusi...</pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="practice-action-row" style="background: white; border: 1px solid var(--fellow-line); padding: 24px; border-radius: 20px; box-shadow: 0 4px 20px rgba(246,51,146,.05); margin-top: 16px;">
-                                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                    <button type="button" data-practice-save style="background: var(--fellow-pink); color: white; border: none; border-radius: 100px; padding: 12px 24px; font-weight: 700; cursor: pointer; transition: transform 0.1s;"><i class="fas fa-save" style="margin-right: 8px;"></i> Simpan Jawaban</button>
-                                    <button type="button" data-practice-edit style="background: white; color: #171827; border: 1px solid #dcdde1; border-radius: 100px; padding: 12px 24px; font-weight: 600; cursor: pointer;"><i class="fas fa-pen" style="margin-right: 8px;"></i> Edit</button>
-                                    <button type="button" data-practice-delete style="background: white; color: #e74c3c; border: 1px solid #ffcccc; border-radius: 100px; padding: 12px 24px; font-weight: 600; cursor: pointer;"><i class="fas fa-trash" style="margin-right: 8px;"></i> Hapus</button>
-                                </div>
-                                <p class="practice-status" id="pythonPracticeStatus" style="margin: 16px 0 0 0; color: var(--fellow-muted); font-size: 0.95rem;">Jawaban latihan hanya tersimpan untuk akun/perangkatmu.</p>
                             </div>
                         </form>
-
+                        <details class="reasoning-reference-details">
+                            <summary>
+                                <i class="fas fa-file-lines" aria-hidden="true"></i>
+                                <span><b>Referensi lengkap latihan dan proyek akhir</b><small>Materi sumber tetap utuh dan bisa dibuka saat dibutuhkan.</small></span>
+                                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                            </summary>
+                            <div id="aiReasoningPracticeSource" class="reasoning-source-container">
+                                <p class="reasoning-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat latihan sumber...</p>
+                            </div>
+                        </details>
                     </article>
                     <footer class="lesson-nav-footer">
-                        <a href="#/participant-ai-python"><i class="fas fa-chevron-left"></i> Sebelumnya</a>
-                        <a href="#/participant-ai-python-quiz">Selanjutnya <i class="fas fa-arrow-right"></i></a>
+                        <a href="#/participant-ai-python"><i class="fas fa-chevron-left"></i> Kembali ke Materi</a>
+                        <a href="#/participant-ai-python-quiz">Lanjut Kuis <i class="fas fa-arrow-right"></i></a>
                     </footer>
                 </section>
             </div>
             <aside class="lesson-right-panel">
-                <section class="module-side-card lesson-progress-card"><h2>Progres Modul</h2><div class="lesson-progress-mini"><b style="--value:33%"></b><strong>33%</strong></div><p>Latihan membantu mengunci pemahaman sebelum kuis.</p><a href="#/participant-ai-python-quiz">Ke Kuis</a></section>
-                <section class="module-side-card lesson-list-card"><h2>Daftar Materi</h2><ol><li class="completed"><span>1</span><a href="#/participant-ai-python">Pemrograman Python untuk AI</a><i class="fas fa-circle-check"></i></li><li class="active"><span>2</span><a href="#/participant-ai-python-practice">Latihan Python Dasar</a><i class="far fa-circle-play"></i></li><li data-locked-after-quiz><span>3</span><a href="#/participant-ai-python-quiz">Kuis Python</a><i class="far fa-circle"></i></li></ol><p class="lesson-lock-hint">Kuis terbuka setelah kamu menyimpan jawaban latihan.</p></section>
+                <section class="module-side-card lesson-progress-card">
+                    <h2>Progres Modul</h2>
+                    <div class="lesson-progress-mini"><b style="--value:50%"></b><strong>50%</strong></div>
+                    <p>Latihan membantu mengubah konsep reasoning menjadi kebiasaan verifikasi yang bisa dipakai di produk nyata.</p>
+                    <a href="#/participant-ai-python-quiz">Buka Kuis</a>
+                </section>
+                <section class="module-side-card lesson-list-card">
+                    <h2>Flow Belajar</h2>
+                    <ol>
+                        <li class="completed"><span>1</span><a href="#/participant-ai-python">Materi</a><i class="fas fa-circle-check"></i></li>
+                        <li class="active"><span>2</span><a href="#/participant-ai-python-practice">Latihan</a><i class="far fa-circle-play"></i></li>
+                        <li><span>3</span><a href="#/participant-ai-python-quiz">Kuis</a><i class="far fa-circle"></i></li>
+                        <li><span>4</span><a href="#/participant-ai-python-discussion">Diskusi</a><i class="far fa-circle"></i></li>
+                    </ol>
+                </section>
             </aside>
         </div>
     </main>
