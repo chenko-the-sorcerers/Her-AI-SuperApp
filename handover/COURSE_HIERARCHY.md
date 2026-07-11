@@ -145,6 +145,7 @@ Ringkasan state kurikulum saat ini:
   - Python untuk AI aktif
   - Konsep AI Modern aktif untuk materi, latihan, kuis, dan diskusi
   - Reasoning aktif final canonical; Evaluation dan Evolution of AI scaffold dasar
+- Generative AI tetap scaffold, tetapi manifest `COURSE_SCAFFOLDS` sudah diperkaya dengan 5 module draft dan activity `Materi -> Latihan -> Kuis -> Diskusi` per module.
 - Math for AI aktif final dan tidak lagi masuk manifest scaffold.
 - Machine Learning aktif final dengan 8 chapter, latihan, kuis, dan diskusi.
 - Computer Vision dan NLP aktif.
@@ -237,7 +238,7 @@ Course Catalog
     Generative AI
       Generative AI Overview
       Prompting Workflow
-      Diffusion & GAN Basics
+      Generation Pipeline
       Output Evaluation
       Creative Workflow
 
@@ -455,7 +456,7 @@ Machine Learning berisi chapter berikut:
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| Generative AI | GenAI | `#/participant-ai-lab-gen` | Scaffold aktif | File overview ada di `pages/frontend/fellow-dashboard/generative-multimodal-ai/generative-ai.html`; route utama memakai `course-placeholder.html` |
+| Generative AI | GenAI | `#/participant-ai-lab-gen` | Scaffold aktif diperkaya | Route utama memakai `course-placeholder.html`; manifest punya 5 module draft lengkap dengan materi, latihan, kuis, dan diskusi; file overview draft belum jadi route aktif |
 | LLM | Language | `#/participant-ai-lab-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | VLM | Vision | `#/participant-ai-lab-vlm` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Multimodal LLM | Multimodal | `#/participant-ai-lab-multimodal-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |

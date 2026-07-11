@@ -29,6 +29,7 @@ Checkpoint final terbaru 11 Juli 2026:
 - Checkpoint `8007acb`: halaman latihan sekarang menampilkan satu dari 6 skenario dengan tiga textarea berlabel, navigator, completed state, prev/next, save/edit/reset; halaman kuis menampilkan satu dari 15 soal dengan answered counter dan navigator. Workspace selalu muncul sebelum panel referensi sumber utuh.
 - Snapshot lengkap konten lama Reasoning untuk brainstorming ada di `materi/lama/reasoning.md`. Isinya tidak dikompres: overview, seluruh materi, latihan + pembahasan, kuis + kunci + pembahasan, diskusi, dan referensi dari runtime saat ini. File ini bukan route aktif.
 - Prompt handoff untuk AI berikutnya setelah materi Reasoning baru selesai dibuat ada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
+- `Generative AI` tetap route scaffold `#/participant-ai-lab-gen`, tetapi manifest sudah diperkaya: 5 module draft dengan isi `materi`, `latihan`, `kuis`, dan `diskusi` per module. Belum ada file canonical final.
 - Merge Reasoning sudah committed di `b0c6829`; audit/fix terbaru sudah committed di `c93a5fb`.
 - Browser smoke test sudah mencakup materi Python, practice Pyodide, kuis Python, kuis Pengantar AI, diskusi Python, dan Reasoning scaffold/activity query. Tidak ada horizontal overflow pada desktop/mobile route yang diuji.
 - Verifikasi routing awal setelah Reasoning canonical: `node scripts/check-participant-routes.mjs` dengan `Total: 113 | 113 passed | 0 failed`.
@@ -146,7 +147,7 @@ Course utama yang terlihat di katalog peserta, dikelompokkan sesuai category/dom
 | Foundation & Core AI | Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
 | Foundation & Core AI | Deep Learning | Scaffold aktif | Neural Network Basics, Training & Backpropagation, CNN/RNN Overview, Transformer Basics, Regularization |
 | Foundation & Core AI | Reinforcement Learning | Scaffold aktif | Agent & Environment, Reward and Policy, Value Function, Exploration vs Exploitation, Case Study |
-| Generative & Multimodal AI | Generative AI | Scaffold aktif | Generative AI Overview, Prompting Workflow, Diffusion & GAN Basics, Output Evaluation, Creative Workflow |
+| Generative & Multimodal AI | Generative AI | Scaffold aktif diperkaya | Generative AI Overview, Prompting Workflow, Generation Pipeline, Output Evaluation, Creative Workflow |
 | Generative & Multimodal AI | LLM | Scaffold aktif | Transformer Recap, Prompting & Instruction, RAG Basics, Fine-tuning Overview, Deployment Notes |
 | Generative & Multimodal AI | VLM | Scaffold aktif | Image-Text Alignment, Captioning, Visual Question Answering, Evaluation, Use Cases |
 | Generative & Multimodal AI | Multimodal LLM | Scaffold aktif | Multimodal Inputs, Cross-modal Learning, Fusion Strategies, Evaluation, Product Patterns |
@@ -268,7 +269,7 @@ pages/frontend/fellow-dashboard/
 | Foundation & Core AI | Math for AI | `#/participant-ai-lab-math` | Aktif | File aktif di `foundation-core-ai/math-for-ai/` |
 | Foundation & Core AI | Deep Learning | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Foundation & Core AI | Reinforcement Learning | `#/participant-ai-lab-reinforcement-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
-| Generative & Multimodal AI | Generative AI | `#/participant-ai-lab-gen` | Scaffold aktif | File overview ada; route utama memakai `course-placeholder.html` |
+| Generative & Multimodal AI | Generative AI | `#/participant-ai-lab-gen` | Scaffold aktif diperkaya | Route utama memakai `course-placeholder.html`; 5 module draft sudah berisi materi, latihan, kuis, dan diskusi di `COURSE_SCAFFOLDS`; file overview draft belum jadi route aktif |
 | Generative & Multimodal AI | LLM | `#/participant-ai-lab-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Generative & Multimodal AI | VLM | `#/participant-ai-lab-vlm` | Scaffold aktif | Route memakai `course-placeholder.html` |
 | Generative & Multimodal AI | Multimodal LLM | `#/participant-ai-lab-multimodal-llm` | Scaffold aktif | Route memakai `course-placeholder.html` |

@@ -86,6 +86,7 @@ Konteks terbaru:
 - UX activity Reasoning: latihan menampilkan satu dari 6 skenario dengan tiga textarea dan step navigator; kuis menampilkan satu dari 15 soal dengan answered counter. Source reference harus tetap setelah workspace, tidak boleh dikembalikan ke atas form.
 - Snapshot lengkap baseline lama Reasoning untuk deep research ada di `materi/lama/reasoning.md`. File ini tidak dikompres dan memuat overview, materi, latihan + pembahasan, kuis + kunci + pembahasan, diskusi, dan referensi.
 - Prompt khusus untuk AI penerus setelah materi Reasoning baru selesai dibuat ada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
+- Generative AI tetap route scaffold `#/participant-ai-lab-gen`, tetapi manifest sudah diperkaya lewat `COURSE_SCAFFOLDS`: 5 module draft dengan isi `materi`, `latihan`, `kuis`, dan `diskusi`. Belum ada file canonical final untuk GenAI.
 - Smoke test browser terakhir:
   - Python materi: 13 chapter, sidebar, progress, tombol Playground, panel Belajar Aktif.
   - Python practice: Pyodide siap, Run Code berhasil, mini project nomor 7 berhasil, save latihan masuk localStorage.
@@ -121,7 +122,7 @@ Tugas utama berikutnya:
    - latihan.html, kuis.html, diskusi.html hanya jika activity ikut berubah
 7. Jangan ubah route Pengantar AI atau Python untuk AI kecuali user eksplisit minta.
 8. Jangan replace layout besar. Pertahankan sidebar, topbar, breadcrumb, lesson tabs, right panel, dan footer nav.
-9. Kalau task bukan Python untuk AI, revisi Pengantar AI, revisi Reasoning, atau merge Reasoning, lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS.
+9. Kalau task bukan Python untuk AI, revisi Pengantar AI, revisi Reasoning, atau merge Reasoning, lanjutkan Generative AI atau scaffold lain dengan aman lewat COURSE_SCAFFOLDS. Generative AI sudah punya scaffold diperkaya; aktifkan final hanya jika semua activity final sudah siap.
 10. Kalau konten sudah final, baru pindahkan route dari course-placeholder.html ke folder canonical.
 11. Setelah perubahan, wajib update folder handover:
    - HANDOVER_UPDATE.md
@@ -254,7 +255,7 @@ Foundation & Core AI
 └── Reinforcement Learning       -> SCAFFOLD AKTIF
 
 Generative & Multimodal AI
-├── Generative AI                -> SCAFFOLD AKTIF, file overview ada
+├── Generative AI                -> SCAFFOLD AKTIF DIPERKAYA, file overview draft belum jadi route aktif
 ├── LLM                          -> SCAFFOLD AKTIF
 ├── VLM                          -> SCAFFOLD AKTIF
 ├── Multimodal LLM               -> SCAFFOLD AKTIF
@@ -369,7 +370,7 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 4. Modul 3a (Konsep AI Modern) sudah aktif untuk materi, latihan, kuis, dan diskusi.
 5. Math for AI sudah aktif dari draft Nazril dengan overview, lesson, latihan, kuis, dan diskusi.
 6. Reasoning sudah punya route final canonical; Evaluation dan Evolution of AI masih punya route scaffold. Jangan balikkan route aktif ke button non-route atau under-development.
-7. Generative AI punya file overview; route utama masih scaffold/placeholder sampai konten final diaktifkan.
+7. Generative AI punya file overview draft dan scaffold diperkaya; route utama masih scaffold/placeholder sampai konten final diaktifkan.
 8. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
 9. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.
 10. Setiap perubahan hierarki course/module harus ikut update dokumen handover dan dibuat commit lokal.
@@ -389,7 +390,7 @@ NEXT STEP YANG DISARANKAN:
    - activity file jika latihan/kuis/diskusi ikut berubah
 3. Jika user meminta merge pekerjaan Reasoning, mulai dari `handover/MERGE_GUIDE_REASONING_TEAM.md`.
 4. Jika user meminta revisi Python untuk AI, mulai dari `02-python-untuk-ai/`, `js/frontend/fellow-dashboard/ai-python-basic.js`, dan `materi/python-untuk-ai.md`.
-5. Jika task bukan Python untuk AI, Pengantar AI, atau merge Reasoning, mulai dari Generative AI karena route masih scaffold dan file overview draft sudah ada.
+5. Jika task bukan Python untuk AI, Pengantar AI, atau merge Reasoning, lanjutkan course scaffold berikutnya lewat `COURSE_SCAFFOLDS`; Generative AI sudah diperkaya tetapi belum final.
 6. Jika konten belum final, perbaiki data di `COURSE_SCAFFOLDS` saja.
 7. Jika konten sudah final, buat folder canonical dan file activity lengkap baru pindahkan route.
 8. Jangan menyentuh route final AI Modern, Math for AI, Machine Learning, Python, Pengantar AI, CV, dan NLP tanpa task spesifik.
@@ -471,7 +472,7 @@ Prioritas kerja:
 1. Jika ada merge Reasoning dari tim lain, baca `handover/MERGE_GUIDE_REASONING_TEAM.md` dulu
 2. Jika ada revisi lanjutan Python untuk AI, lanjutkan di folder canonical existing, pertahankan struktur 13 chapter, panel Belajar Aktif, quiz full-card, dan interaktif Pyodide
 3. Kalau task beralih ke course/module belum final, update `COURSE_SCAFFOLDS` dulu dan jangan buat file activity final
-4. Sinkronkan file overview Generative AI dengan scaffold atau aktifkan route final hanya jika user mengarah ke Generative AI
+4. Untuk Generative AI, lanjutkan dari scaffold yang sudah diperkaya; sinkronkan file overview draft atau aktifkan route final hanya jika semua activity final sudah siap
 5. Buat atau aktifkan course final langsung di folder category/domain canonical `pages/frontend/fellow-dashboard/{category-slug}/{course-slug}/`
 6. Audit kecil CSS sesuai AGENTS.md jika menyentuh layout: hindari radius 0, warna text terlalu terang, dan code block terminal hitam
 6. Setelah update apa pun, update folder `handover/` dan tulis hasil verifikasi terakhir

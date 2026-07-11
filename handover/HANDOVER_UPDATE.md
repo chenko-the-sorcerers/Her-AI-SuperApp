@@ -86,6 +86,41 @@ Commit lokal penting sebelum snapshot Reasoning lama:
 c93a5fb fix: audit python module polish
 ```
 
+## Checkpoint Lokal Terbaru - Generative AI Scaffold
+
+Commit lokal:
+`1b0f3d0 feat: enrich generative ai scaffold`
+
+Yang dilakukan:
+- Memperkaya scaffold `#/participant-ai-lab-gen` lewat `COURSE_SCAFFOLDS` tanpa mengubah route ke file final.
+- Menambahkan metadata progress Generative AI dan 5 module draft: `Generative AI Overview`, `Prompting Workflow`, `Generation Pipeline`, `Output Evaluation`, dan `Creative Workflow`.
+- Mengisi draft `materi`, `latihan`, `kuis`, dan `diskusi` per module agar flow scaffold `Materi -> Latihan -> Kuis -> Diskusi` tetap konsisten.
+- Tidak membuat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html` untuk Generative AI karena konten belum dinyatakan final.
+
+File penting:
+- `js/frontend/fellow-dashboard/course-placeholder.js`
+- `handover/HANDOVER_UPDATE.md`
+- `handover/MODULE_STATUS_MAP.md`
+- `handover/COURSE_HIERARCHY.md`
+- `handover/PROMPT_AI_BARU.md`
+
+Verifikasi:
+- `node --check js/router.js` -> passed
+- `node --check js/frontend/fellow-dashboard/course-placeholder.js` -> passed
+- `node scripts/check-participant-routes.mjs` -> Total: 110 | 0 failed
+- `git diff --check` -> passed
+
+Catatan risiko:
+- Route `#/participant-ai-lab-gen` tetap scaffold dan masih memakai `pages/frontend/fellow-dashboard/course-placeholder.html`.
+- File overview draft `pages/frontend/fellow-dashboard/generative-multimodal-ai/generative-ai.html` belum dijadikan route aktif.
+- Jika nanti konten Generative AI sudah final, baru buat folder/file activity canonical dan update route sesuai flow dokumentasi.
+
+Next step:
+- Review scaffold Generative AI di browser.
+- Jika user meminta konten final, siapkan `materi`, `latihan`, `kuis`, dan `diskusi` lengkap sebelum memindahkan route dari placeholder.
+
+---
+
 ## Checkpoint Sebelumnya - Audit Setelah Merge
 
 Status terbaru 11 Juli 2026 setelah audit menyeluruh:
