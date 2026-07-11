@@ -10,7 +10,75 @@
 
     const SOURCE_BASE = "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/chapters/";
 
-        const CHAPTERS = [
+        
+    var pyodideInstance = null;
+    var pyodideReady = false;
+    var pyodideLoading = false;
+
+    function startPyodide() {
+        if (pyodideReady) { enableAllPlaygrounds(); return; }
+        var status = document.getElementById('pyodideStatus');
+        if (typeof loadPyodide === 'undefined') {
+            if (status) { status.querySelector('span').textContent = 'Python runtime tidak tersedia.'; }
+            return;
+        }
+        if (pyodideLoading) return;
+        pyodideLoading = true;
+        var runs = document.querySelectorAll('.py-run');
+        runs.forEach(function(b) { b.disabled = true; b.textContent = 'Loading...'; });
+        var bars = 0;
+        var interval = setInterval(function() {
+            bars = (bars + 1) % 4;
+            if (status) {
+                var s = status.querySelector('span');
+                if (s && !pyodideReady) s.textContent = 'Memuat Python runtime' + '.'.repeat(bars);
+            }
+        }, 400);
+        loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/' }).then(function(py) {
+            pyodideInstance = py;
+            pyodideReady = true;
+            clearInterval(interval);
+            if (status) { status.classList.add('ready'); status.querySelector('span').textContent = 'Python runtime siap.'; }
+            enableAllPlaygrounds();
+        }).catch(function(err) {
+            clearInterval(interval);
+            if (status) status.querySelector('span').textContent = 'Gagal: ' + (err.message || 'unknown');
+        });
+    }
+
+    function enableAllPlaygrounds() {
+        document.querySelectorAll('.py-run').forEach(function(b) { b.disabled = false; b.textContent = 'Run'; });
+    }
+
+    function runCode(playId) {
+        if (!pyodideReady || !pyodideInstance) return;
+        var editor = document.querySelector('#play-' + playId + ' .py-editor');
+        var output = document.getElementById('out-' + playId);
+        if (!editor || !output) return;
+        var code = editor.value;
+        output.className = 'py-output visible';
+        output.textContent = 'Running...';
+        var cap = '';
+        pyodideInstance.setStdout({ batched: function(t) { cap += t + String.fromCharCode(10); } });
+        pyodideInstance.setStderr({ batched: function(t) { cap += t + String.fromCharCode(10); } });
+        pyodideInstance.loadPackagesFromImports(code).then(function() {
+            return pyodideInstance.runPythonAsync(code);
+        }).then(function(r) {
+            var rt = r !== undefined ? String(r) : '';
+            var fin = cap ? cap.trimEnd() : '';
+            if (rt && fin) fin += String.fromCharCode(10) + rt;
+            else if (rt) fin = rt;
+            output.textContent = fin || '(ok)';
+            output.classList.remove('error');
+        }).catch(function(err) {
+            var fin = cap ? cap.trimEnd() + String.fromCharCode(10) : '';
+            fin += 'Error: ' + (err.message || err);
+            output.textContent = fin;
+            output.classList.add('error');
+        });
+    }
+
+const CHAPTERS = [
   {
     "title": "Python & AI Mindset",
     "shortTitle": "Python & AI",
