@@ -2168,12 +2168,17 @@
 
     .reasoning-scaffold-page .course-scaffold-hero,
     .reasoning-scaffold-page .lesson-hero {
+        align-items: start;
         grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+        padding: 22px 20px;
     }
 
     .reasoning-scaffold-page .lesson-hero img {
-        max-width: 120px;
-        order: -1;
+        justify-self: end;
+        max-height: 120px;
+        max-width: 150px;
+        order: 2;
     }
 
     .reasoning-scaffold-page .lesson-hero.lesson-hero-compact {
@@ -2181,7 +2186,10 @@
     }
 
     .reasoning-scaffold-page .lesson-hero-copy {
+        gap: 12px;
         min-width: 0;
+        padding-bottom: 0;
+        width: 100%;
     }
 
     .reasoning-scaffold-page .lesson-layout {
@@ -2195,6 +2203,8 @@
 
     .reasoning-scaffold-page .lesson-hero-copy h1 {
         font-size: 2rem;
+        overflow-wrap: normal;
+        word-break: normal;
     }
 
     .reasoning-scaffold-flow {
@@ -2243,6 +2253,31 @@
     }
 
     .reasoning-example-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .reasoning-visual-canvas,
+    .reasoning-visual-canvas > *,
+    .reasoning-concept-lab,
+    .reasoning-concept-stage,
+    .reasoning-hook-options,
+    .reasoning-source-toolbar {
+        box-sizing: border-box;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .reasoning-concept-tabs,
+    .reasoning-source-jumps {
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: thin;
+    }
+
+    .reasoning-concept-stage,
+    .reasoning-hook-options,
+    .reasoning-compare-grid,
+    .reasoning-mp-grid {
         grid-template-columns: 1fr;
     }
 
@@ -2421,6 +2456,7 @@
 .reasoning-code-block pre {
     background: transparent;
     border: none;
+    border-radius: 14px;
     margin: 0;
     overflow-x: auto;
     padding: 14px;
@@ -2429,6 +2465,7 @@
 .reasoning-code-block code {
     background: transparent;
     border: none;
+    border-radius: 14px;
     padding: 0;
 }
 
@@ -7135,4 +7172,76 @@
     .ml-matrix-card {
         grid-template-columns: 1fr;
     }
+}
+
+/* Reasoning final mobile safeguards live at the end of the cascade so later
+   component declarations cannot re-introduce narrow grids or clipped content. */
+@media (max-width: 560px) {
+    .reasoning-scaffold-page .reasoning-hook-options,
+    .reasoning-scaffold-page .reasoning-compare-grid,
+    .reasoning-scaffold-page .reasoning-compare-table,
+    .reasoning-scaffold-page .reasoning-example-steps,
+    .reasoning-scaffold-page .reasoning-mp-grid,
+    .reasoning-scaffold-page .reasoning-concept-stage {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .reasoning-scaffold-page .reasoning-hook-card,
+    .reasoning-scaffold-page .reasoning-hook-option,
+    .reasoning-scaffold-page .reasoning-compare-col,
+    .reasoning-scaffold-page .reasoning-concept-stage > *,
+    .reasoning-scaffold-page .reasoning-challenge-example {
+        box-sizing: border-box;
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .reasoning-scaffold-page .reasoning-hook-card p,
+    .reasoning-scaffold-page .reasoning-hook-option p,
+    .reasoning-scaffold-page .reasoning-challenge-example p {
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    .reasoning-scaffold-page .lesson-tabs {
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: thin;
+    }
+
+    .reasoning-scaffold-page .lesson-tabs a {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+}
+
+.reasoning-scaffold-page [hidden] {
+    display: none;
+}
+
+/* The legacy source renderer reuses `reasoning-hook-card` for the section
+   wrapper. Keep that wrapper vertical; only the option cards are flex items. */
+.reasoning-scaffold-page .reasoning-hook-card[data-section="hook"] {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+}
+
+.reasoning-scaffold-page .reasoning-example-section .reasoning-scaffold-callout {
+    align-items: start;
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+}
+
+.reasoning-scaffold-page .reasoning-example-section .reasoning-scaffold-callout > p {
+    grid-column: 2;
+    min-width: 0;
+}
+
+.reasoning-scaffold-page .reasoning-example-section .reasoning-scaffold-callout > ul {
+    grid-column: 1 / -1;
+    min-width: 0;
+    width: auto;
 }

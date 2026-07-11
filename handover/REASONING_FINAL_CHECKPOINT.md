@@ -1,13 +1,24 @@
 # Reasoning Final - Complete Checkpoint
 
-**Tanggal:** 11 Juli 2026
+**Tanggal:** 12 Juli 2026
 **Branch:** `design`
-**Status:** final canonical, materi baru aktif, belum push
-**Sumber materi:** `materi/baru/Reasoning-baru.md`
+**Status:** final canonical Nazril, final-polish aktif, belum push
+**Sumber materi:** `materi/nazril/submateri-reasoning-ai.md`
 **Commit visual final:** `7668070 feat: finalize reasoning visual course`
 **Commit activity UX:** `8007acb fix: clarify reasoning activity flow`
 
 Dokumen ini adalah checkpoint canonical untuk seluruh pekerjaan submodul `04 - Reasoning`. AI/developer berikutnya wajib membaca dokumen ini setelah `AGENTS.md`, `GEMINI.md`, dan `handover/HANDOVER_UPDATE.md` sebelum mengubah Reasoning.
+
+## Checkpoint Terbaru — Final Polish Nazril
+
+- Runtime canonical memakai enam chapter Nazril: Dari Menjawab ke Menalar, Reasoning yang Dapat Diperiksa, Planning & Problem Decomposition, Structured Reasoning & Chain-of-Thought, Tool Use yang Bertanggung Jawab, dan Integrated Reasoning Mission.
+- Controller memanggil helper renderer canonical `finalRender*` secara eksplisit agar blok helper legacy tidak menimpa presentation layer.
+- Flow visual setiap chapter: Hook → konsep → analogi → visual → contoh → exploration → Quick Check → contoh AI → Prompt Pattern → Mini Challenge → mistakes/best practices → ringkasan → source lengkap.
+- Mobile 390px telah diperiksa untuk Materi, Latihan, Kuis, dan Diskusi; hero copy 320px, document tidak overflow, serta tidak ada teks utama pecah satu kata/huruf per baris.
+- Challenge Chapter 1-6 menyimpan dan memulihkan state melalui `heraiAiReasoningChallengeCh1` sampai `heraiAiReasoningChallengeCh6`.
+- Discussion memakai inline reply composer, bukan `window.prompt`.
+- Cache buster final-polish: `20260712-reasoning-final-v15`.
+- Bagian historis di bawah tetap disimpan sebagai jejak implementasi materi sebelum migrasi Nazril; status canonical terbaru adalah bagian ini.
 
 ## Hasil Akhir
 

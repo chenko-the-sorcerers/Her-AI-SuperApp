@@ -1,9 +1,9 @@
 # HerAI Development Handover & Checkpoint
 
-**Tanggal:** 11 Juli 2026
+**Tanggal:** 12 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning visual overhaul — 6-chapter Nazril canonical dengan Visual/Source toggle, concept lab interaktif, nav chips, dan rich visual canvas; belum push
-**Commit Reasoning visual overhaul:** (mengikuti — commit lokal berikutnya)
+**Status:** Reasoning Nazril canonical final-polish — renderer collision, mobile hero, challenge persistence, clipping, dan inline reply sudah diperbaiki; belum push
+**Commit Reasoning final-polish:** (mengikuti — commit lokal berikutnya)
 **Commit Reasoning canonical sebelumnya:** `da4c57d feat(reasoning): complete canonical implementation using Nazril source`
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
@@ -17,6 +17,23 @@ handover/REASONING_FINAL_CHECKPOINT.md
 ```
 
 ---
+
+---
+
+## Checkpoint Final Polish - Reasoning Nazril Canonical
+
+Status 12 Juli 2026:
+
+- Akar masalah visual utama adalah dua set helper renderer bernama sama di `ai-reasoning.js`. Definisi terakhir menimpa renderer yang sudah didesain sehingga hook kembali menjadi tombol browser default, challenge memakai markup lama, dan sebagian fix sebelumnya tidak pernah aktif. Renderer canonical sekarang dipanggil eksplisit melalui helper `finalRender*`; tidak ada lagi duplicate function name aktif.
+- Hero mobile untuk Materi, Latihan, Kuis, dan Diskusi sekarang satu kolom. Pada viewport 390px, `.lesson-hero-copy` memiliki lebar 320px dan judul/deskripsi tidak pecah satu kata atau karakter per baris.
+- Mini Challenge Chapter 1-6 menyimpan nilai aktual pada `heraiAiReasoningChallengeCh1` sampai `heraiAiReasoningChallengeCh6`, pulih setelah reload, mendukung Edit, Reset, dan Lihat Contoh.
+- Hook chapter memakai card HerAI pink-light beradius 16px; bukan lagi native gray button dengan radius 0.
+- Internal clipping pada Chapter 1, 3, dan 4 sudah ditangani dengan grid mobile satu kolom, scroll internal untuk tab/chip/tabel, dan callout error yang tidak memecah paragraf/list menjadi kolom sempit.
+- Discussion reply memakai inline composer dengan empty validation, Kirim Balasan, Batal, focus management, render langsung, dan persistence di `heraiAiReasoningDiscussion`; `window.prompt` tidak lagi dipakai.
+- Prompt Pattern menyediakan copy button dan newline asli. Inner `pre`/`code` memakai radius 14px.
+- Cache buster Reasoning terbaru di `index.html`: `20260712-reasoning-final-v15` untuk `modules.css` dan `ai-reasoning.js`.
+- Browser console hanya menunjukkan `ERR_CONNECTION_REFUSED` untuk API settings lokal `127.0.0.1:8092`; tidak ditemukan error runtime Reasoning.
+- Perubahan unrelated `materi/python-untuk-ai.md` tidak disentuh dan tidak boleh ikut commit Reasoning.
 
 ---
 

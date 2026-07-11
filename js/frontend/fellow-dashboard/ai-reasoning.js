@@ -1349,19 +1349,19 @@
                 }).join("") + '\n            </div>\n            <div class="reasoning-concept-stage" role="tabpanel" tabindex="0">\n                <div class="reasoning-concept-node"><i class="' + escapeHtml(config.options[0][1]) + '" aria-hidden="true"></i></div>\n                <div>\n                    <span>' + escapeHtml(config.options[0][2]) + '</span>\n                    <h5>' + escapeHtml(config.options[0][0]) + '</h5>\n                    <p>' + escapeHtml(config.options[0][3]) + '</p>\n                    <small><i class="fas fa-location-dot" aria-hidden="true"></i> ' + escapeHtml(config.options[0][4]) + '</small>\n                </div>\n            </div>\n        </section>';
     }
 
-    function renderHookSection(hook) {
+    function finalRenderHookSection(hook) {
         return '<section class="reasoning-hook-section" data-section="hook">\n            <div class="reasoning-hook-head"><i class="fas fa-hand-pointer" aria-hidden="true"></i><div><span>Pembuka</span><h3>' + escapeHtml(hook.question) + '</h3></div></div>\n            <div class="reasoning-hook-options">\n                <button type="button" class="reasoning-hook-card" data-hook-option="a">\n                    <div class="reasoning-hook-card-icon"><i class="' + escapeHtml(hook.answerA.icon) + '" aria-hidden="true"></i></div>\n                    <div><strong>' + escapeHtml(hook.answerA.label) + '</strong><p>' + escapeHtml(hook.answerA.text) + '</p></div>\n                </button>\n                <button type="button" class="reasoning-hook-card" data-hook-option="b">\n                    <div class="reasoning-hook-card-icon"><i class="' + escapeHtml(hook.answerB.icon) + '" aria-hidden="true"></i></div>\n                    <div><strong>' + escapeHtml(hook.answerB.label) + '</strong><p>' + escapeHtml(hook.answerB.text) + '</p></div>\n                </button>\n            </div>\n            <p class="reasoning-hook-message" hidden>' + escapeHtml(hook.message) + '</p>\n        </section>';
     }
 
-    function renderOpeningSection(paragraphs) {
+    function finalRenderOpeningSection(paragraphs) {
         return '<section class="reasoning-opening-section" data-section="pembuka">\n            ' + paragraphs.map(function (p) { return '<p>' + p + '</p>'; }).join("\n") + '\n        </section>';
     }
 
-    function renderComparisonTable(table) {
+    function finalRenderComparisonTable(table) {
         return '<section class="reasoning-scaffold-section reasoning-compare-section" data-section="konsep">\n            <div class="reasoning-compare-grid">\n                <div class="reasoning-compare-col">\n                    <h4>' + escapeHtml(table.left.title) + '</h4>\n                    <ul>' + table.left.rows.map(function (r) { return '<li>' + escapeHtml(r) + '</li>'; }).join("") + '</ul>\n                </div>\n                <div class="reasoning-compare-col reasoning-compare-col-accent">\n                    <h4>' + escapeHtml(table.right.title) + '</h4>\n                    <ul>' + table.right.rows.map(function (r) { return '<li>' + escapeHtml(r) + '</li>'; }).join("") + '</ul>\n                </div>\n            </div>\n        </section>';
     }
 
-    function renderConceptSections(concepts) {
+    function finalRenderConceptSections(concepts) {
         return concepts.map(function (concept) {
             var contentHtml = "";
             if (concept.content) {
@@ -1383,7 +1383,7 @@
         }).join("\n");
     }
 
-    function renderExampleSection(example) {
+    function finalRenderExampleSection(example) {
         var stepsHtml = example.steps.map(function (step) {
             return '<div class="reasoning-example-step"><strong>' + escapeHtml(step.label) + '</strong><p>' + escapeHtml(step.text) + '</p></div>';
         }).join("");
@@ -1391,28 +1391,28 @@
         return '<section class="reasoning-example-section" data-section="contoh">\n                <div class="reasoning-example-head"><i class="fas fa-flask" aria-hidden="true"></i><div><span>Contoh Terurai</span><h3>' + escapeHtml(example.title) + '</h3></div></div>\n                <div class="reasoning-example-case"><strong>Kasus:</strong> ' + escapeHtml(example.case) + '</div>\n                <div class="reasoning-example-steps">' + stepsHtml + '</div>\n                <div class="reasoning-scaffold-summary" style="margin-top:14px"><strong>Kesimpulan:</strong> ' + escapeHtml(example.conclusion) + '</div>\n                ' + errorsHtml + '\n            </section>';
     }
 
-    function renderQuickCheckSection(qc) {
+    function finalRenderQuickCheckSection(qc) {
         return '<section class="reasoning-quick-check" data-section="check" data-check-answer="' + qc.answer + '">\n                <div class="reasoning-quick-head"><i class="fas fa-circle-question" aria-hidden="true"></i><div><span>Quick Check</span><h3>' + escapeHtml(qc.question) + '</h3></div></div>\n                <div class="reasoning-check-options">\n                    ' + qc.options.map(function (option, index) {
                         return '<button type="button" data-check-option="' + index + '"><b>' + String.fromCharCode(65 + index) + '</b><span>' + escapeHtml(option) + '</span></button>';
                     }).join("") + '\n                </div>\n                <div class="reasoning-check-actions">\n                    <button type="button" class="reasoning-check-submit" data-check-submit><i class="fas fa-check" aria-hidden="true"></i> Periksa Jawaban</button>\n                    <button type="button" class="reasoning-check-retry" data-check-retry hidden><i class="fas fa-rotate-left" aria-hidden="true"></i> Coba Lagi</button>\n                </div>\n                <p class="reasoning-check-feedback" hidden></p>\n            </section>';
     }
 
-    function renderChallengeSection(challenge, chapterNumber) {
+    function finalRenderChallengeSection(challenge, chapterNumber) {
         var key = 'heraiAiReasoningChallengeCh' + chapterNumber;
         return '<section class="reasoning-challenge-workspace" data-section="challenge" data-challenge-workspace="' + key + '">\n                <div class="reasoning-challenge-head"><i class="fas fa-pen-ruler" aria-hidden="true"></i><div><span>Mini Challenge</span><h3>Latihan reflektif</h3></div></div>\n                <p class="reasoning-challenge-instruction">' + escapeHtml(challenge.instruction) + '</p>\n                <textarea class="reasoning-challenge-textarea" data-challenge-textarea="' + key + '" rows="5" placeholder="' + escapeHtml(challenge.placeholder) + '"></textarea>\n                <div class="reasoning-challenge-actions">\n                    <button type="button" class="btn-reasoning-save" data-challenge-save><i class="fas fa-floppy-disk" aria-hidden="true"></i> Simpan</button>\n                    <button type="button" class="btn-reasoning-edit" data-challenge-edit hidden><i class="fas fa-pen" aria-hidden="true"></i> Edit</button>\n                    <button type="button" class="btn-reasoning-reset" data-challenge-reset><i class="fas fa-rotate-left" aria-hidden="true"></i> Reset</button>\n                    <button type="button" class="btn-reasoning-example" data-challenge-example hidden><i class="fas fa-lightbulb" aria-hidden="true"></i> Lihat Contoh</button>\n                </div>\n                <div class="reasoning-challenge-example" data-challenge-example-content hidden><strong>Contoh:</strong><p>' + escapeHtml(challenge.example) + '</p></div>\n            </section>';
     }
 
-    function renderMistakesPractices(mistakes, bestPractices) {
+    function finalRenderMistakesPractices(mistakes, bestPractices) {
         return '<section class="reasoning-mistakes-practices" data-section="ringkasan">\n                <div class="reasoning-mp-grid">\n                    <div class="reasoning-mp-col reasoning-mp-mistakes">\n                        <h3><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Common Mistakes</h3>\n                        <ul>' + mistakes.map(function (m) { return '<li>' + escapeHtml(m) + '</li>'; }).join("") + '</ul>\n                    </div>\n                    <div class="reasoning-mp-col reasoning-mp-practices">\n                        <h3><i class="fas fa-circle-check" aria-hidden="true"></i> Best Practices</h3>\n                        <ul>' + bestPractices.map(function (bp) { return '<li>' + escapeHtml(bp) + '</li>'; }).join("") + '</ul>\n                    </div>\n                </div>\n            </section>';
     }
 
-    function renderSummarySection(outcomes, transition, chapterNumber, total) {
+    function finalRenderSummarySection(outcomes, transition, chapterNumber, total) {
         var transHtml = transition ? '<div class="reasoning-transition"><i class="fas fa-arrow-right" aria-hidden="true"></i><p><strong>Selanjutnya:</strong> ' + escapeHtml(transition) + '</p></div>' : '';
         var nextHtml = chapterNumber < total ? '<a href="javascript:void(0)" class="reasoning-next-chapter-btn" onclick="window.loadReasoningChapter(' + (chapterNumber + 1) + ')"><i class="fas fa-arrow-right" aria-hidden="true"></i> Topik Berikutnya</a>' : '<a href="#/participant-ai-reasoning-practice" class="reasoning-next-chapter-btn"><i class="fas fa-play" aria-hidden="true"></i> Lanjut Latihan</a>';
         return '<section class="reasoning-summary-section" data-section="ringkasan">\n                <div class="reasoning-summary-head"><i class="fas fa-bookmark" aria-hidden="true"></i><div><span>Ringkasan</span><h3>Setelah chapter ini, kamu dapat:</h3></div></div>\n                <ul class="reasoning-outcomes-list">' + outcomes.map(function (o) { return '<li><i class="fas fa-circle-check" aria-hidden="true"></i> ' + escapeHtml(o) + '</li>'; }).join("") + '</ul>\n                ' + transHtml + '\n                <div class="reasoning-summary-action">' + nextHtml + '</div>\n            </section>';
     }
 
-    function renderPromptSection(lines) {
+    function finalRenderPromptSection(lines) {
         var cleanLines = lines.map(function (line) { return escapeHtml(line); });
         return '<section class="reasoning-prompt-section">\n                <div class="reasoning-code-block">\n                    <div><i class="fas fa-terminal" aria-hidden="true"></i><span>Prompt Pattern</span><button type="button" class="reasoning-copy-btn" data-copy-content="' + escapeHtml(lines.join("\n")) + '" aria-label="Salin prompt"><i class="fas fa-copy"></i></button></div>\n                    <pre><code>' + cleanLines.join("\n") + '</code></pre>\n                </div>\n            </section>';
     }
@@ -1422,14 +1422,14 @@
 
         // 1. Hook
         if (chapter.hook) {
-            parts.push(renderHookSection(chapter.hook));
+            parts.push(finalRenderHookSection(chapter.hook));
         }
 
         // 2. Opening / Pembuka
         if (chapter.opening && chapter.opening.length) {
-            parts.push(renderOpeningSection(chapter.opening));
+            parts.push(finalRenderOpeningSection(chapter.opening));
             if (chapter.recallVsReasoningTable) {
-                parts.push(renderComparisonTable(chapter.recallVsReasoningTable));
+                parts.push(finalRenderComparisonTable(chapter.recallVsReasoningTable));
             }
         }
 
@@ -1440,7 +1440,7 @@
 
         // 4. Concepts / Penjelasan
         if (chapter.concepts && chapter.concepts.length) {
-            parts.push(renderConceptSections(chapter.concepts));
+            parts.push(finalRenderConceptSections(chapter.concepts));
         }
 
         // 5. Flow Diagram
@@ -1450,7 +1450,7 @@
 
         // 6. Example / Contoh Terurai
         if (chapter.example) {
-            parts.push(renderExampleSection(chapter.example));
+            parts.push(finalRenderExampleSection(chapter.example));
         }
 
         // 7. Interactive Exploration / Lab
@@ -1460,7 +1460,7 @@
 
         // 8. Quick Check
         if (chapter.quickCheck) {
-            parts.push(renderQuickCheckSection(chapter.quickCheck));
+            parts.push(finalRenderQuickCheckSection(chapter.quickCheck));
         }
 
         // 9. LLM Example
@@ -1470,22 +1470,22 @@
 
         // 10. Prompt Pattern
         if (chapter.prompt && chapter.prompt.length) {
-            parts.push(renderPromptSection(chapter.prompt));
+            parts.push(finalRenderPromptSection(chapter.prompt));
         }
 
         // 11. Mini Challenge
         if (chapter.challenge) {
-            parts.push(renderChallengeSection(chapter.challenge, chapterNumber));
+            parts.push(finalRenderChallengeSection(chapter.challenge, chapterNumber));
         }
 
         // 12. Common Mistakes + Best Practices
         if ((chapter.mistakes && chapter.mistakes.length) || (chapter.bestPractices && chapter.bestPractices.length)) {
-            parts.push(renderMistakesPractices(chapter.mistakes || [], chapter.bestPractices || []));
+            parts.push(finalRenderMistakesPractices(chapter.mistakes || [], chapter.bestPractices || []));
         }
 
         // 13. Ringkasan
         if (chapter.learningOutcomes && chapter.learningOutcomes.length) {
-            parts.push(renderSummarySection(chapter.learningOutcomes, chapter.transition, chapterNumber, total));
+            parts.push(finalRenderSummarySection(chapter.learningOutcomes, chapter.transition, chapterNumber, total));
         }
 
         return parts.join("\n");
@@ -1583,17 +1583,21 @@
 
     function setupChallengeInteraction(container) {
         container.querySelectorAll("[data-challenge-textarea]").forEach(function (textarea) {
-            var key = textarea.dataset.challengeTextarea;
+            var section = textarea.closest(".reasoning-challenge-workspace");
+            if (!section) return;
+            var key = textarea.dataset.challengeTextarea || section.dataset.challengeWorkspace || section.dataset.challengeKey;
+            if (!key) return;
             var saved = localStorage.getItem(key);
             if (saved && saved !== "undefined") textarea.value = saved;
 
-            var section = textarea.closest(".reasoning-challenge-workspace");
-            if (!section) return;
             var saveBtn = section.querySelector("[data-challenge-save]");
             var editBtn = section.querySelector("[data-challenge-edit]");
             var resetBtn = section.querySelector("[data-challenge-reset]");
             var exampleBtn = section.querySelector("[data-challenge-example]");
             var exampleContent = section.querySelector("[data-challenge-example-content]");
+
+            if (!saved && editBtn) editBtn.hidden = true;
+            if (!textarea.value.trim() && exampleBtn) exampleBtn.hidden = true;
 
             if (saveBtn) saveBtn.addEventListener("click", function () {
                 localStorage.setItem(key, textarea.value);
@@ -1628,7 +1632,19 @@
                 if (saveBtn) saveBtn.hidden = false;
                 if (editBtn) editBtn.hidden = true;
                 if (exampleBtn) exampleBtn.hidden = true;
+                if (exampleContent) exampleContent.hidden = true;
             });
+
+            textarea.addEventListener("input", function () {
+                if (exampleBtn && !textarea.readOnly) exampleBtn.hidden = !textarea.value.trim();
+            });
+
+            if (exampleBtn && exampleContent) {
+                exampleBtn.addEventListener("click", function () {
+                    exampleContent.hidden = !exampleContent.hidden;
+                    exampleBtn.setAttribute("aria-expanded", String(!exampleContent.hidden));
+                });
+            }
         });
     }
 
@@ -1678,7 +1694,7 @@
         });
     }
 
-    function renderHookSection(hook) {
+    function legacyRenderHookSection(hook) {
         return '<section class="reasoning-hook-card" data-section="hook">\n            <div class="reasoning-hook-head">\n                <i class="fas fa-hand-sparkles" aria-hidden="true"></i>\n                <div><span>Pembuka</span><h3>' + escapeHtml(hook.question) + '</h3></div>\n            </div>\n            <div class="reasoning-hook-options">\n                <button type="button" class="reasoning-hook-option" data-hook-option="a">\n                    <div class="reasoning-hook-option-icon"><i class="' + escapeHtml(hook.answerA.icon) + '" aria-hidden="true"></i></div>\n                    <div>\n                        <strong>' + escapeHtml(hook.answerA.label) + '</strong>\n                        <p>' + escapeHtml(hook.answerA.text) + '</p>\n                    </div>\n                </button>\n                <button type="button" class="reasoning-hook-option" data-hook-option="b">\n                    <div class="reasoning-hook-option-icon"><i class="' + escapeHtml(hook.answerB.icon) + '" aria-hidden="true"></i></div>\n                    <div>\n                        <strong>' + escapeHtml(hook.answerB.label) + '</strong>\n                        <p>' + escapeHtml(hook.answerB.text) + '</p>\n                    </div>\n                </button>\n            </div>\n            <div class="reasoning-hook-feedback" hidden>\n                <i class="fas fa-info-circle" aria-hidden="true"></i>\n                <p>' + escapeHtml(hook.message) + '</p>\n            </div>\n        </section>';
     }
 
@@ -1737,7 +1753,7 @@
 
     function renderChallengeSection(challenge, chapterNumber) {
         var storageKey = "heraiAiReasoningChallengeCh" + chapterNumber;
-        return '<section class="reasoning-mini-challenge reasoning-challenge-workspace" data-section="challenge" data-challenge-key="' + storageKey + '">\n            <div class="reasoning-mini-challenge-head"><i class="fas fa-pen-ruler" aria-hidden="true"></i><div><span>Mini Challenge</span><h3>Latihan reflektif</h3></div></div>\n            <p class="reasoning-challenge-instruction">' + escapeHtml(challenge.instruction) + '</p>\n            <label class="reasoning-challenge-label"><span>Jawabanmu</span><textarea rows="5" placeholder="' + escapeHtml(challenge.placeholder) + '" data-challenge-textarea></textarea></label>\n            <div class="reasoning-challenge-actions">\n                <button type="button" data-challenge-save><i class="fas fa-floppy-disk" aria-hidden="true"></i> Simpan</button>\n                <button type="button" data-challenge-edit><i class="fas fa-pen" aria-hidden="true"></i> Edit</button>\n                <button type="button" data-challenge-reset><i class="fas fa-rotate-left" aria-hidden="true"></i> Reset</button>\n                <button type="button" data-challenge-example><i class="fas fa-lightbulb" aria-hidden="true"></i> Lihat Contoh</button>\n            </div>\n            <div class="reasoning-challenge-example" hidden>\n                <strong><i class="fas fa-lightbulb" aria-hidden="true"></i> Contoh Pembahasan</strong>\n                <p>' + escapeHtml(challenge.example) + '</p>\n            </div>\n        </section>';
+        return '<section class="reasoning-mini-challenge reasoning-challenge-workspace" data-section="challenge" data-challenge-key="' + storageKey + '">\n            <div class="reasoning-mini-challenge-head"><i class="fas fa-pen-ruler" aria-hidden="true"></i><div><span>Mini Challenge</span><h3>Latihan reflektif</h3></div></div>\n            <p class="reasoning-challenge-instruction">' + escapeHtml(challenge.instruction) + '</p>\n            <label class="reasoning-challenge-label"><span>Jawabanmu</span><textarea rows="5" placeholder="' + escapeHtml(challenge.placeholder) + '" data-challenge-textarea="' + storageKey + '"></textarea></label>\n            <div class="reasoning-challenge-actions">\n                <button type="button" data-challenge-save><i class="fas fa-floppy-disk" aria-hidden="true"></i> Simpan</button>\n                <button type="button" data-challenge-edit hidden><i class="fas fa-pen" aria-hidden="true"></i> Edit</button>\n                <button type="button" data-challenge-reset><i class="fas fa-rotate-left" aria-hidden="true"></i> Reset</button>\n                <button type="button" data-challenge-example hidden aria-expanded="false"><i class="fas fa-lightbulb" aria-hidden="true"></i> Lihat Contoh</button>\n            </div>\n            <div class="reasoning-challenge-example" data-challenge-example-content hidden>\n                <strong><i class="fas fa-lightbulb" aria-hidden="true"></i> Contoh Pembahasan</strong>\n                <p>' + escapeHtml(challenge.example) + '</p>\n            </div>\n        </section>';
     }
 
     function renderMistakesPractices(mistakes, bestPractices) {
