@@ -1234,6 +1234,13 @@
             }
         });
 
+        // Tambah data-section="konsep" ke source H2s agar nav chip bisa scroll ke sana
+        container.querySelectorAll("h2").forEach(function (h2) {
+            if (!h2.closest(".reasoning-end-of-chapter, .reasoning-scaffold-module-meta")) {
+                h2.setAttribute("data-section", "konsep");
+            }
+        });
+
         container.querySelectorAll("table").forEach(function (table) {
             if (!table.parentElement.classList.contains("reasoning-scaffold-table-wrap")) {
                 var scroll = document.createElement("div");
@@ -1335,6 +1342,121 @@
         });
     }
 
+    function stripSourceNumbering(html) {
+        // Hapus penomoran lama dari heading (mis: "1.4 " → "", "Submateri 1 — " → "")
+        return html.replace(
+            /(<h[12][^>]*>)(?:(?:\d+\.\d+\s*)|(?:Submateri\s+\d+\s*(?:—|-)\s*)|(?:Integrasi\s*(?:—|-)\s*))/gi,
+            "$1"
+        );
+    }
+
+    function escapeRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function filterSourceHeadings(html) {
+        // Hapus module-level headings dan kontennya hingga <hr /> pertama
+        // Module dimulai dengan H1: "Reasoning AI:" dan diikuti H2: Deskripsi/Tujuan/Peta
+        // Kita hapus sejak H1 module hingga <hr /> sebelum Submateri 1
+        var moduleEndMarker = '<h1>Submateri 1';
+        var moduleEndIdx = html.indexOf(moduleEndMarker);
+        if (moduleEndIdx !== -1) {
+            // Cari <hr /> terakhir SEBELUM Submateri 1
+            var beforeSub = html.slice(0, moduleEndIdx);
+            var lastHr = beforeSub.lastIndexOf('<hr');
+            if (lastHr !== -1) {
+                // Hapus dari H1 module hingga <hr /> (termasuk)
+                var h1ModStart = html.indexOf('<h1>Reasoning AI');
+                if (h1ModStart !== -1 && h1ModStart < lastHr) {
+                    // Cari akhir tag <hr...> (bisa <hr>, <hr/>, <hr />)
+                    var hrEnd = html.indexOf('>', lastHr);
+                    var hrLen = hrEnd !== -1 ? hrEnd - lastHr + 1 : 4;
+                    html = html.slice(0, h1ModStart) + html.slice(lastHr + hrLen);
+                    moduleEndIdx = html.indexOf(moduleEndMarker);
+                }
+            }
+        }
+        // Fallback: masih cari H2 module headings + ringkasan submateri (redundan dengan pedagogical Ringkasan)
+        var removeKeywords = ["deskripsi modul", "tujuan pembelajaran", "peta pembelajaran", "ringkasan submateri"];
+        var lines = html.split("\n");
+        var result = [];
+        var skip = false;
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var isModuleH2 = false;
+            if (/<h2>/i.test(line) || /<h2\s/i.test(line)) {
+                var text = line.replace(/<[^>]+>/g, "").toLowerCase().trim();
+                for (var k = 0; k < removeKeywords.length; k++) {
+                    if (text.indexOf(removeKeywords[k]) !== -1) {
+                        isModuleH2 = true;
+                        break;
+                    }
+                }
+            }
+            if (isModuleH2) {
+                skip = true;
+                continue;
+            }
+            if (skip) {
+                if (/<h[12][^>]*>/i.test(line) || /<hr\s*\/?>/i.test(line)) {
+                    skip = false;
+                    if (/<hr\s*\/?>/i.test(line)) continue;
+                } else {
+                    continue;
+                }
+            }
+            result.push(line);
+        }
+        return result.join("\n");
+    }
+
+    function injectAfterHeading(html, headingText, injectHtml) {
+        // Cari heading H2 yang mengandung teks tertentu, sisipkan injectHtml SETELAH seluruh konten section itu
+        var escaped = escapeRegex(headingText);
+        var pattern = new RegExp(
+            '(<h[12][^>]*>[\\s\\S]*?' + escaped + '[\\s\\S]*?(?:</h[12]>)[\\s\\S]*?)(?=<h[12]|<hr\\s*/?>|$)',
+            "i"
+        );
+        var match = html.match(pattern);
+        if (!match) return html;
+        var before = html.slice(0, match.index + match[1].length);
+        var after = html.slice(match.index + match[1].length);
+        return before + "\n" + injectHtml + "\n" + after;
+    }
+
+    function renderOrientationAndNav(module, chapterNum, total) {
+        return '<section class="reasoning-scaffold-module-meta reasoning-final-meta" data-section="orientation">\n            <div class="reasoning-scaffold-module-meta-head">\n                <i class="' + escapeHtml(module.icon) + '" aria-hidden="true"></i>\n                <div>\n                    <span>Topik ' + chapterNum + ' dari ' + total + '</span>\n                    <h2>' + escapeHtml(module.title) + '</h2>\n                    <p>' + escapeHtml(module.summary) + '</p>\n                </div>\n            </div>\n            <div class="reasoning-meta-row"><strong><i class="far fa-clock" aria-hidden="true"></i> Durasi</strong> <span>' + escapeHtml(module.duration) + '</span></div>\n            <div class="reasoning-meta-row"><strong><i class="fas fa-bullseye" aria-hidden="true"></i> Learning Objectives</strong>' + renderList(module.objectives) + '</div>\n            ' + (module.analogy ? '<div class="reasoning-scaffold-callout reasoning-analogy-callout"><i class="fas fa-lightbulb" aria-hidden="true"></i><p><strong>Analogi:</strong> ' + escapeHtml(module.analogy) + '</p></div>' : "") + '\n        </section>\n\n        <nav class="reasoning-source-jumps reasoning-visual-nav" id="reasoning-visual-nav" aria-label="Tahapan belajar">\n            <span>Tahapan:</span>\n            <button type="button" data-jump="hook">Pembuka</button>\n            <button type="button" data-jump="konsep">Konsep</button>\n            <button type="button" data-jump="contoh">Contoh & Latihan</button>\n            <button type="button" data-jump="check">Uji Pemahaman</button>\n            <button type="button" data-jump="ringkasan">Ringkasan</button>\n        </nav>';
+    }
+
+    function renderEndOfChapter(module, chapterNum, total, visualConfig) {
+        var parts = [];
+        if (module.flow && module.flow.length) {
+            parts.push('<section class="reasoning-visual-board" data-section="contoh" aria-label="Alur reasoning">\n                <div class="reasoning-visual-head"><i class="fas fa-route" aria-hidden="true"></i><div><span>Visual reasoning flow</span><h3>Alur pikir yang bisa dilacak</h3></div></div>\n                ' + renderFlow(module.flow) + '\n            </section>');
+        }
+        if (module.example) {
+            parts.push(finalRenderExampleSection(module.example));
+        }
+        if (module.quickCheck) {
+            parts.push(finalRenderQuickCheckSection(module.quickCheck));
+        }
+        if (module.llmExample) {
+            parts.push('<section class="reasoning-scaffold-example" data-section="contoh">\n                <span>Contoh AI/LLM</span>\n                <h3>Bagaimana konsep ini muncul di produk AI</h3>\n                <p>' + escapeHtml(module.llmExample) + '</p>\n            </section>');
+        }
+        if (module.prompt && module.prompt.length) {
+            parts.push(finalRenderPromptSection(module.prompt));
+        }
+        if (module.challenge) {
+            parts.push(finalRenderChallengeSection(module.challenge, chapterNum));
+        }
+        if ((module.mistakes && module.mistakes.length) || (module.bestPractices && module.bestPractices.length)) {
+            parts.push(finalRenderMistakesPractices(module.mistakes || [], module.bestPractices || []));
+        }
+        if (module.learningOutcomes && module.learningOutcomes.length) {
+            parts.push(finalRenderSummarySection(module.learningOutcomes, module.transition, chapterNum, total));
+        }
+        return '<div class="reasoning-end-of-chapter">' + parts.join("\n") + '</div>';
+    }
+
     function loadSourceHtml(path, containerId, chapter) {
         var container = document.getElementById(containerId);
         if (!container || !path) return;
@@ -1351,19 +1473,6 @@
             .catch(function () {
                 container.innerHTML = '<div class="reasoning-source-error"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><p>Materi sumber belum bisa dimuat. Refresh halaman atau cek path source Reasoning.</p></div>';
             });
-    }
-
-    function renderChapter(chapter, chapterNumber, total) {
-        var sourceFile = getSourceFile(chapter.sourcePath);
-        var visualConfig = SOURCE_VISUALS[sourceFile];
-        return '\n            <section class="reasoning-scaffold-module-meta reasoning-final-meta" data-section="orientation">\n                <div class="reasoning-scaffold-module-meta-head">\n                    <i class="' + escapeHtml(chapter.icon) + '" aria-hidden="true"></i>\n                    <div>\n                        <span>Topik ' + chapterNumber + ' dari ' + total + '</span>\n                        <h2>' + escapeHtml(chapter.title) + '</h2>\n                        <p>' + escapeHtml(chapter.summary) + '</p>\n                    </div>\n                </div>\n                <div class="reasoning-meta-row"><strong><i class="far fa-clock" aria-hidden="true"></i> Durasi</strong> <span>' + escapeHtml(chapter.duration) + '</span></div>\n                <div class="reasoning-meta-row"><strong><i class="fas fa-bullseye" aria-hidden="true"></i> Learning Objectives</strong>' + renderList(chapter.objectives) + '</div>\n                ' + (chapter.analogy ? '<div class="reasoning-scaffold-callout reasoning-analogy-callout"><i class="fas fa-lightbulb" aria-hidden="true"></i><p><strong>Analogi:</strong> ' + escapeHtml(chapter.analogy) + '</p></div>' : "") + '\n            </section>\n\n            <nav class="reasoning-source-jumps reasoning-visual-nav" id="reasoning-visual-nav" aria-label="Tahapan belajar">\n                <span>Tahapan:</span>\n                <button type="button" data-jump="hook">Pembuka</button>\n                <button type="button" data-jump="konsep">Konsep</button>\n                <button type="button" data-jump="visual">Visual</button>\n                <button type="button" data-jump="contoh">Contoh</button>\n                <button type="button" data-jump="eksplorasi">Eksplorasi</button>\n                <button type="button" data-jump="check">Quick Check</button>\n                <button type="button" data-jump="challenge">Challenge</button>\n                <button type="button" data-jump="ringkasan">Ringkasan</button>\n            </nav>\n\n            <div class="reasoning-unified-canvas" id="reasoning-unified-canvas">\n                ' + renderChapterContent(chapter, chapterNumber, total, visualConfig) + '\n                \n                <details class="reasoning-reference-details" id="reasoning-source-details" style="margin-top:32px">\n                    <summary>\n                        <i class="fas fa-file-lines" aria-hidden="true"></i>\n                        <span><b>Sumber Lengkap</b><small>Materi asli dari Nazril — seluruh teks, tabel, contoh, dan pembahasan. Tidak dikurangi.</small></span>\n                        <i class="fas fa-chevron-down" aria-hidden="true"></i>\n                    </summary>\n                    <div class="reasoning-source-material" id="reasoning-scaffold-rich-content">\n                        <div class="reasoning-scaffold-spinner"><i class="fas fa-circle-notch fa-spin" aria-hidden="true"></i> Memuat materi sumber...</div>\n                    </div>\n                </details>\n            </div>\n        ';
-    }
-
-    function renderChapterVisualLab(config, chapter) {
-        if (!config) return "";
-        return '<section class="reasoning-concept-lab" data-reasoning-lab aria-label="' + escapeHtml(config.eyebrow) + '">\n            <div class="reasoning-concept-lab-head">\n                <div>\n                    <span>' + escapeHtml(config.eyebrow) + '</span>\n                    <h4>' + escapeHtml(config.title) + '</h4>\n                    <p>' + escapeHtml(config.description) + '</p>\n                </div>\n                <span class="reasoning-concept-counter">1 / ' + config.options.length + '</span>\n            </div>\n            <div class="reasoning-concept-tabs" role="tablist" aria-label="Mode eksplorasi konsep">\n                ' + config.options.map(function (option, index) {
-                    return '<button type="button" role="tab" aria-selected="' + (index === 0 ? "true" : "false") + '" data-concept-index="' + index + '"><i class="' + escapeHtml(option[1]) + '" aria-hidden="true"></i><span>' + escapeHtml(option[0]) + '</span></button>';
-                }).join("") + '\n            </div>\n            <div class="reasoning-concept-stage" role="tabpanel" tabindex="0">\n                <div class="reasoning-concept-node"><i class="' + escapeHtml(config.options[0][1]) + '" aria-hidden="true"></i></div>\n                <div>\n                    <span>' + escapeHtml(config.options[0][2]) + '</span>\n                    <h5>' + escapeHtml(config.options[0][0]) + '</h5>\n                    <p>' + escapeHtml(config.options[0][3]) + '</p>\n                    <small><i class="fas fa-location-dot" aria-hidden="true"></i> ' + escapeHtml(config.options[0][4]) + '</small>\n                </div>\n            </div>\n        </section>';
     }
 
     function finalRenderHookSection(hook) {
@@ -1425,75 +1534,12 @@
 
     function finalRenderSummarySection(outcomes, transition, chapterNumber, total) {
         var transHtml = transition ? '<div class="reasoning-transition"><i class="fas fa-arrow-right" aria-hidden="true"></i><p><strong>Selanjutnya:</strong> ' + escapeHtml(transition) + '</p></div>' : '';
-        var nextHtml = chapterNumber < total ? '<a href="javascript:void(0)" class="reasoning-next-chapter-btn" onclick="window.loadReasoningChapter(' + (chapterNumber + 1) + ')"><i class="fas fa-arrow-right" aria-hidden="true"></i> Topik Berikutnya</a>' : '<a href="#/participant-ai-reasoning-practice" class="reasoning-next-chapter-btn"><i class="fas fa-play" aria-hidden="true"></i> Lanjut Latihan</a>';
-        return '<section class="reasoning-summary-section" data-section="ringkasan">\n                <div class="reasoning-summary-head"><i class="fas fa-bookmark" aria-hidden="true"></i><div><span>Ringkasan</span><h3>Setelah chapter ini, kamu dapat:</h3></div></div>\n                <ul class="reasoning-outcomes-list">' + outcomes.map(function (o) { return '<li><i class="fas fa-circle-check" aria-hidden="true"></i> ' + escapeHtml(o) + '</li>'; }).join("") + '</ul>\n                ' + transHtml + '\n                <div class="reasoning-summary-action">' + nextHtml + '</div>\n            </section>';
+        return '<section class="reasoning-summary-section" data-section="ringkasan">\n                <div class="reasoning-summary-head"><i class="fas fa-bookmark" aria-hidden="true"></i><div><span>Ringkasan</span><h3>Setelah chapter ini, kamu dapat:</h3></div></div>\n                <ul class="reasoning-outcomes-list">' + outcomes.map(function (o) { return '<li><i class="fas fa-circle-check" aria-hidden="true"></i> ' + escapeHtml(o) + '</li>'; }).join("") + '</ul>\n                ' + transHtml + '\n            </section>';
     }
 
     function finalRenderPromptSection(lines) {
         var cleanLines = lines.map(function (line) { return escapeHtml(line); });
         return '<section class="reasoning-prompt-section">\n                <div class="reasoning-code-block">\n                    <div><i class="fas fa-terminal" aria-hidden="true"></i><span>Prompt Pattern</span><button type="button" class="reasoning-copy-btn" data-copy-content="' + escapeHtml(lines.join("\n")) + '" aria-label="Salin prompt"><i class="fas fa-copy"></i></button></div>\n                    <pre><code>' + cleanLines.join("\n") + '</code></pre>\n                </div>\n            </section>';
-    }
-
-    function renderStageWrap(id, label, icon, content, open) {
-        return '<section class="reasoning-stage-group" data-stage="' + id + '">\n            <button type="button" class="reasoning-stage-toggle" aria-expanded="' + (open ? "true" : "false") + '">\n                <i class="' + icon + '" aria-hidden="true"></i>\n                <span>' + escapeHtml(label) + '</span>\n                <i class="fas fa-chevron-down reasoning-stage-arrow" aria-hidden="true"></i>\n            </button>\n            <div class="reasoning-stage-body"' + (open ? "" : ' hidden') + '>' + content + '</div>\n        </section>';
-    }
-
-    function renderChapterContent(chapter, chapterNumber, total, visualConfig) {
-        // Group sections into progressive stages
-        var stages = [];
-        var buf = {};
-
-        // Stage 1: Pembuka (open by default)
-        buf = [];
-        if (chapter.hook) buf.push(finalRenderHookSection(chapter.hook));
-        if (chapter.opening && chapter.opening.length) {
-            buf.push(finalRenderOpeningSection(chapter.opening));
-            if (chapter.recallVsReasoningTable) buf.push(finalRenderComparisonTable(chapter.recallVsReasoningTable));
-        }
-        stages.push(renderStageWrap("pembuka", "Mulai Belajar", "fas fa-hand-pointer", buf.join("\n"), true));
-
-        // Stage 2: Konsep Dasar (collapsed)
-        buf = [];
-        if (chapter.analogy) {
-            buf.push('<section class="reasoning-scaffold-callout" data-section="konsep"><i class="fas fa-lightbulb" aria-hidden="true"></i><p><strong>Analogi:</strong> ' + escapeHtml(chapter.analogy) + '</p></section>');
-        }
-        if (chapter.concepts && chapter.concepts.length) {
-            buf.push(finalRenderConceptSections(chapter.concepts));
-        }
-        stages.push(renderStageWrap("konsep", "Pahami Konsep Dasar", "fas fa-book-open", buf.join("\n"), false));
-
-        // Stage 3: Visual & Contoh (collapsed)
-        buf = [];
-        if (chapter.flow && chapter.flow.length) {
-            buf.push('<section class="reasoning-visual-board" data-section="visual" aria-label="Alur reasoning">\n                <div class="reasoning-visual-head"><i class="fas fa-route" aria-hidden="true"></i><div><span>Visual reasoning flow</span><h3>Alur pikir yang bisa dilacak</h3></div></div>\n                ' + renderFlow(chapter.flow) + '\n            </section>');
-        }
-        if (chapter.example) buf.push(finalRenderExampleSection(chapter.example));
-        if (visualConfig && visualConfig.options) {
-            buf.push('<div data-section="eksplorasi">' + renderSourceVisualLab(visualConfig) + '</div>');
-        }
-        stages.push(renderStageWrap("visual", "Visual & Contoh", "fas fa-chart-simple", buf.join("\n"), false));
-
-        // Stage 4: Uji Pemahaman (collapsed)
-        buf = [];
-        if (chapter.quickCheck) buf.push(finalRenderQuickCheckSection(chapter.quickCheck));
-        if (chapter.llmExample) {
-            buf.push('<section class="reasoning-scaffold-example" data-section="contoh">\n                <span>Contoh AI/LLM</span>\n                <h3>Bagaimana konsep ini muncul di produk AI</h3>\n                <p>' + escapeHtml(chapter.llmExample) + '</p>\n            </section>');
-        }
-        if (chapter.prompt && chapter.prompt.length) buf.push(finalRenderPromptSection(chapter.prompt));
-        if (chapter.challenge) buf.push(finalRenderChallengeSection(chapter.challenge, chapterNumber));
-        stages.push(renderStageWrap("check", "Latihan & Refleksi", "fas fa-pen-to-square", buf.join("\n"), false));
-
-        // Stage 5: Kesimpulan (open by default)
-        buf = [];
-        if ((chapter.mistakes && chapter.mistakes.length) || (chapter.bestPractices && chapter.bestPractices.length)) {
-            buf.push(finalRenderMistakesPractices(chapter.mistakes || [], chapter.bestPractices || []));
-        }
-        if (chapter.learningOutcomes && chapter.learningOutcomes.length) {
-            buf.push(finalRenderSummarySection(chapter.learningOutcomes, chapter.transition, chapterNumber, total));
-        }
-        stages.push(renderStageWrap("ringkasan", "Kesimpulan", "fas fa-flag-checkered", buf.join("\n"), true));
-
-        return stages.join("\n");
     }
 
     function setupViewToggle(container) {
@@ -1662,17 +1708,6 @@
         });
     }
 
-    function setupStageGroups(container) {
-        container.querySelectorAll(".reasoning-stage-toggle").forEach(function (toggle) {
-            toggle.addEventListener("click", function () {
-                var body = toggle.nextElementSibling;
-                var isOpen = toggle.getAttribute("aria-expanded") === "true";
-                toggle.setAttribute("aria-expanded", String(!isOpen));
-                if (body) body.hidden = isOpen;
-            });
-        });
-    }
-
     function setupCopyButtons(container) {
         container.querySelectorAll("[data-copy-content]").forEach(function (btn) {
             btn.addEventListener("click", function () {
@@ -1685,6 +1720,10 @@
                 }
             });
         });
+    }
+
+    function phaseLayout(container) {
+        // Sekarang kosong — nav chips udah diperbaiki, fase badges dihapus
     }
 
     function generateNavChips(sourceContainer, jumpsContainer) {
@@ -1828,22 +1867,102 @@
         if (!container || !module) return;
 
         localStorage.setItem(STORAGE.chapter, String(chapter));
-        container.innerHTML = renderChapter(module, chapter, total);
 
         var sourceFile = getSourceFile(module.sourcePath);
         var visualConfig = SOURCE_VISUALS[sourceFile];
 
-        if (visualConfig) {
-            initSourceVisualLab(container, visualConfig);
-        }
-        setupHookInteraction(container);
-        setupQuickChecks(container);
-        setupChallengeInteraction(container);
-        setupVisualNav(container);
-        setupCopyButtons(container);
-        setupStageGroups(container);
+        // Tampilkan loading
+        container.innerHTML = '<div style="text-align:center;padding:60px;color:var(--fellow-muted)"><i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--fellow-pink);margin-bottom:16px"></i><p>Memuat materi...</p></div>';
 
-        loadSourceHtml(module.sourcePath, "reasoning-scaffold-rich-content", module);
+        // Fetch source HTML, filter, inject interactive, render
+        fetch(module.sourcePath, { cache: "no-store" })
+            .then(function (r) {
+                if (!r.ok) throw new Error("Gagal memuat " + module.sourcePath);
+                return r.text();
+            })
+            .then(function (html) {
+                // 1. Filter module-level headings + strip source numbering
+                html = filterSourceHeadings(html);
+                html = stripSourceNumbering(html);
+
+                // 2. Inject orientation + nav SEBELUM heading pertama
+                //    Cari H1 atau H2 pertama, sisip orientation+nav sebelum tag <
+                var firstHIdx = -1;
+                var h1Match = html.match(/<h1[^>]*>/);
+                var h2Match = html.match(/<h2[^>]*>/);
+                if (h1Match && h2Match) {
+                    firstHIdx = Math.min(h1Match.index, h2Match.index);
+                } else if (h1Match) {
+                    firstHIdx = h1Match.index;
+                } else if (h2Match) {
+                    firstHIdx = h2Match.index;
+                }
+                if (firstHIdx !== -1) {
+                    html = html.slice(0, firstHIdx) + renderOrientationAndNav(module, chapter, total) + '\n' + html.slice(firstHIdx);
+                }
+
+                // 3. Fungsi bantu: cari semua section H2 (heading + konten hingga H2/HR berikutnya)
+                function findH2Sections(str) {
+                    var sections = [];
+                    var re = /<h2[^>]*>[\s\S]*?<\/h2>[\s\S]*?(?=<h[12]|<hr\s*\/?>|$)/gi;
+                    var m;
+                    while ((m = re.exec(str)) !== null) {
+                        sections.push({ index: m.index, length: m[0].length, text: m[0] });
+                    }
+                    return sections;
+                }
+
+                // 4. Inject hook setelah section H2 pertama
+                if (module.hook) {
+                    var h2Secs = findH2Sections(html);
+                    if (h2Secs.length >= 1) {
+                        var end1 = h2Secs[0].index + h2Secs[0].length;
+                        html = html.slice(0, end1) + '\n' + finalRenderHookSection(module.hook) + '\n' + html.slice(end1);
+                    }
+                }
+
+                // 5. Inject lab setelah section H2 kedua
+                if (visualConfig && visualConfig.options) {
+                    h2Secs = findH2Sections(html);
+                    if (h2Secs.length >= 2) {
+                        var end2 = h2Secs[1].index + h2Secs[1].length;
+                        html = html.slice(0, end2) + '\n<div data-section="konsep">' + renderSourceVisualLab(visualConfig) + '</div>\n' + html.slice(end2);
+                    }
+                }
+
+                // 6. Append end-of-chapter components
+                html += renderEndOfChapter(module, chapter, total, visualConfig);
+
+                // 3. Set sebagai konten utama
+                container.innerHTML = html;
+                container.classList.add("is-source-view");
+
+                // 4. Enhance source visuals
+                enhanceSourceMaterialForCanvas(container, module);
+
+                // 5. Init interactive lab
+                if (visualConfig) {
+                    initSourceVisualLab(container, visualConfig);
+                }
+
+                // 6. Setup interactions
+                setupHookInteraction(container);
+                setupQuickChecks(container);
+                setupChallengeInteraction(container);
+                setupVisualNav(container);
+                setupCopyButtons(container);
+
+                // 7. Phase layout — wrap source content, add fase badges
+                try {
+                    // Debug: check HTML before phaseLayout
+                    console.log("DEBUG pre-phaseLayout: children=" + container.children.length + " textLen=" + container.textContent.length + " hasH1=" + (!!container.querySelector('h1')) + " h2count=" + container.querySelectorAll('h2').length);
+                    phaseLayout(container);
+                    console.log("DEBUG post-phaseLayout: children=" + container.children.length + " h2count=" + container.querySelectorAll('h2').length);
+                } catch (e) { console.error("phaseLayout:", e); }
+            })
+            .catch(function () {
+                container.innerHTML = '<div class="reasoning-source-error" style="text-align:center;padding:60px"><i class="fas fa-triangle-exclamation" style="font-size:2rem;color:#f63392;margin-bottom:16px"></i><p>Materi belum bisa dimuat. Refresh halaman atau coba lagi.</p></div>';
+            });
 
         if (btnPrev) btnPrev.style.display = chapter > 1 ? "inline-block" : "none";
         if (btnNext) btnNext.style.display = chapter < total ? "inline-block" : "none";
@@ -1915,13 +2034,107 @@
         return answers;
     }
 
+    function renderFormattedText(text) {
+        // Pre-process: split on sequential numbered items (2., 3., 4. etc) and blockquote markers
+        text = text.replace(/(\d+)\.\s+(?=[A-Z][a-z])/g, "\n$1. ");
+        text = text.replace(/>\s/g, "\n> ");
+        text = text.replace(/•\s/g, "\n• ");
+        var lines = text.split("\n");
+        var html = "";
+        var inList = false;
+        var listType = null; // "ul" or "ol"
+        var inBlockquote = false;
+
+        function closeList() {
+            if (inList) { html += "</" + listType + ">\n"; inList = false; listType = null; }
+        }
+        function closeBlockquote() {
+            if (inBlockquote) { html += "</blockquote>\n"; inBlockquote = false; }
+        }
+
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var trimmed = line.trim();
+
+            // Empty line — close open tags
+            if (!trimmed) {
+                closeList();
+                closeBlockquote();
+                continue;
+            }
+
+            // Blockquote
+            if (trimmed.indexOf("> ") === 0 || trimmed.indexOf(">") === 0) {
+                closeList();
+                var quoteText = trimmed.replace(/^>\s?/, "");
+                if (!inBlockquote) {
+                    html += "<blockquote>";
+                    inBlockquote = true;
+                }
+                html += "<p>" + escapeHtml(quoteText) + "</p>";
+                continue;
+            }
+
+            // Numbered list
+            var olMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
+            if (olMatch) {
+                closeBlockquote();
+                if (!inList || listType !== "ol") {
+                    closeList();
+                    html += "<ol>";
+                    inList = true;
+                    listType = "ol";
+                }
+                html += "<li>" + escapeHtml(olMatch[2]) + "</li>";
+                continue;
+            }
+
+            // Bullet list
+            if (trimmed.indexOf("- ") === 0 || trimmed.indexOf("• ") === 0) {
+                closeBlockquote();
+                if (!inList || listType !== "ul") {
+                    closeList();
+                    html += "<ul>";
+                    inList = true;
+                    listType = "ul";
+                }
+                html += "<li>" + escapeHtml(trimmed.substring(2)) + "</li>";
+                continue;
+            }
+
+            // Regular paragraph
+            closeList();
+            closeBlockquote();
+            html += "<p>" + escapeHtml(trimmed) + "</p>";
+        }
+        closeList();
+        closeBlockquote();
+        return html;
+    }
+
+    var PRACTICE_TOPICS = [
+        { start: 0, end: 3, label: "Reasoning Dasar" },
+        { start: 4, end: 7, label: "Planning" },
+        { start: 8, end: 11, label: "Chain-of-Thought" },
+        { start: 12, end: 16, label: "Tool Use" }
+    ];
+
+    function getPracticeTopic(index) {
+        for (var pt = 0; pt < PRACTICE_TOPICS.length; pt++) {
+            if (index >= PRACTICE_TOPICS[pt].start && index <= PRACTICE_TOPICS[pt].end) {
+                return PRACTICE_TOPICS[pt].label;
+            }
+        }
+        return "";
+    }
+
     function renderPracticeCard(item, index) {
         return `<article class="reasoning-practice-card" data-practice-id="${escapeHtml(item.id)}" tabindex="-1">
             <div class="reasoning-practice-card-head">
                 <span>${index + 1}</span>
-                <div><small>${escapeHtml(item.focus)}</small><h3>${escapeHtml(item.title)}</h3></div>
+                <h3>${escapeHtml(item.title)}</h3>
             </div>
-            <p>${escapeHtml(item.prompt)}</p>
+            <div class="reasoning-practice-prompt">${renderFormattedText(item.prompt)}</div>
             <div class="reasoning-practice-fields">
                 ${item.fields.map(function (field) {
                     const name = item.id + "__" + field[0];
@@ -1964,7 +2177,10 @@
                     button.setAttribute("aria-current", index === currentPractice ? "step" : "false");
                 });
             }
-            if (counter) counter.textContent = "Skenario " + (currentPractice + 1) + " dari " + PRACTICES.length;
+            if (counter) {
+                var topic = getPracticeTopic(currentPractice);
+                counter.textContent = "Skenario " + (currentPractice + 1) + " dari " + PRACTICES.length + (topic ? " | " + topic : "");
+            }
             if (previousButton) previousButton.disabled = currentPractice === 0;
             if (nextButton) nextButton.disabled = currentPractice === PRACTICES.length - 1;
         }
@@ -1982,9 +2198,19 @@
         }
 
         if (navigator) {
-            navigator.innerHTML = PRACTICES.map(function (item, index) {
-                return `<button type="button" data-practice-step="${index}" title="${escapeHtml(item.title)}"><span>${index + 1}</span><small>${escapeHtml(item.focus)}</small></button>`;
-            }).join("");
+            var navHtml = "";
+            var lastTopic = "";
+            PRACTICES.forEach(function (item, index) {
+                var topic = getPracticeTopic(index);
+                if (topic && topic !== lastTopic) {
+                    if (lastTopic) navHtml += "</div>";
+                    navHtml += '<div class="reasoning-nav-group"><span class="reasoning-nav-group-label">' + escapeHtml(topic) + '</span>';
+                    lastTopic = topic;
+                }
+                navHtml += '<button type="button" data-practice-step="' + index + '" title="' + escapeHtml(item.title) + '">' + (index + 1) + '</button>';
+            });
+            if (lastTopic) navHtml += "</div>";
+            navigator.innerHTML = navHtml;
             navigator.querySelectorAll("[data-practice-step]").forEach(function (button) {
                 button.addEventListener("click", function () {
                     savePracticePayload({ answers: collectPracticeAnswers(form), revealed: revealed });
@@ -2107,6 +2333,20 @@
             input.disabled = true;
             if (answers[input.name] === input.value) input.checked = true;
         });
+
+        // Show ALL questions for review
+        form.querySelectorAll("[data-quiz-index]").forEach(function (article) {
+            article.hidden = false;
+        });
+        // Hide navigator, counter, prev/next buttons
+        var qnav = document.getElementById("aiReasoningQuizNavigator");
+        var qprev = form.querySelector("[data-quiz-prev]");
+        var qnext = form.querySelector("[data-quiz-next]");
+        var qcounter = document.getElementById("aiReasoningQuizCounter");
+        if (qnav) qnav.style.display = "none";
+        if (qprev) qprev.style.display = "none";
+        if (qnext) qnext.style.display = "none";
+        if (qcounter) qcounter.style.display = "none";
 
         QUIZ.forEach(function (question, index) {
             const article = form.querySelector('[data-quiz-index="' + index + '"]');
