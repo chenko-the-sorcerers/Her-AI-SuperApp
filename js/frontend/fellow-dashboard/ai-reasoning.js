@@ -959,81 +959,65 @@
     }
 
 
-    const SOURCE_VISUALS = {
+    var SOURCE_VISUALS = {
         "01-full.html": {
-            eyebrow: "Cognitive Mode",
-            title: "Mengenal Reasoning dan Analogi",
+            eyebrow: "Reasoning Anatomy Lab",
+            title: "Dari Menjawab ke Menalar",
+            description: "Cara AI menghubungkan fakta dan asumsi untuk menghasilkan kesimpulan yang dapat diaudit.",
             options: [
-                ["Reasoning", "fas fa-brain", "Hubungan Logis", "Reasoning adalah proses menggunakan informasi untuk membentuk kesimpulan.", "Tugas audit atau perhitungan yang kompleks."],
-                ["Fakta vs Asumsi", "fas fa-layer-group", "Pemisahan Data", "Fakta eksplisit di soal vs asumsi tak terlihat.", "Wajib dilakukan untuk menghindari simpulan buta."]
+                ["Jawab Langsung", "fas fa-bolt", "Insting Cepat", "Jawaban singkat tanpa langkah — cocok untuk definisi sederhana.", "Menjawab satu fakta atau definisi."],
+                ["Reasoning", "fas fa-brain", "Hubungan Logis", "Menghubungkan beberapa informasi untuk memperoleh hasil baru.", "Tugas perhitungan, audit, atau perbandingan."],
+                ["Fakta & Asumsi", "fas fa-layer-group", "Pemisahan Data", "Fakta adalah informasi tersedia. Asumsi adalah anggapan agar proses bisa dilanjutkan.", "Wajib dibedakan untuk menghindari simpulan yang menyesatkan."]
             ]
         },
         "02-full.html": {
-            eyebrow: "System Switch",
-            title: "Pattern Matching vs Reasoning",
+            eyebrow: "Verification Lab",
+            title: "Reasoning yang Dapat Diperiksa",
+            description: "Penjelasan yang meyakinkan bukan jaminan validitas. Setiap langkah harus bisa diaudit.",
             options: [
-                ["System 1", "fas fa-bolt", "Insting Mesin", "Pencocokan pola super cepat tanpa logika terstruktur.", "Pembuatan draf atau peringkasan artikel."],
-                ["System 2", "fas fa-list-check", "Analisis Sistematis", "Berhenti sejenak, memecah langkah, mengecek validitas.", "Diagnostic, coding, matematika."]
+                ["Cek Data", "fas fa-database", "Verifikasi Input", "Apakah semua data relevan sudah dipakai? Apakah ada yang mengada-ada?", "Langkah pertama sebelum menilai hasil."],
+                ["Cek Urutan", "fas fa-list-ol", "Verifikasi Proses", "Apakah urutan langkah masuk akal? Apakah dependensi terpenuhi?", "Mencegah hasil yang benar tapi jalannya salah."],
+                ["Cek Hasil", "fas fa-check-double", "Verifikasi Output", "Apakah angka, satuan, dan batasan konsisten? Apakah kesimpulan mengikuti data?", "Langkah terakhir sebelum jawaban diterima."]
             ]
         },
         "03-full.html": {
-            eyebrow: "Logic Taxonomy",
-            title: "Empat Jenis Reasoning",
+            eyebrow: "Planning Studio",
+            title: "Planning & Problem Decomposition",
+            description: "Memecah tujuan besar menjadi langkah eksekusi dengan dependensi yang benar.",
             options: [
-                ["Deduktif", "fas fa-arrow-down", "Aturan ke Kasus", "Kalau premis benar, pasti hasilnya benar.", "Hukum, Aturan Kepastian."],
-                ["Induktif", "fas fa-arrow-up", "Observasi ke Pola", "Membuat generalisasi (probabilistik).", "Machine learning prediksi."],
-                ["Abduktif", "fas fa-magnifying-glass", "Bukti ke Hipotesis", "Penjelasan terbaik dari gejala terbatas.", "Debugging kode error."],
-                ["Kausal", "fas fa-code-branch", "Sebab-Akibat", "Menguji intervensi dan counterfactual.", "A/B testing produk."]
+                ["Goal & Constraints", "fas fa-bullseye", "Tujuan & Batasan", "Goal adalah hasil akhir. Constraints adalah batasan yang harus dipatuhi.", "Tanpa goal dan batasan jelas, rencana akan kabur."],
+                ["Decomposition", "fas fa-layer-group", "Pecah Tugas", "Memecah tugas besar menjadi subtugas yang dapat dikerjakan satu per satu.", "Work Breakdown Structure."],
+                ["Static vs Dynamic", "fas fa-arrows-spin", "Rencana Fleksibel", "Static: jalankan sesuai rencana awal. Dynamic: perbarui berdasarkan hasil observasi.", "Replanning adalah tanda kecerdasan, bukan kegagalan."]
             ]
         },
         "04-full.html": {
-            eyebrow: "Problem Formulation",
-            title: "Problem Solving yang Terukur",
+            eyebrow: "Structured Reasoning Lab",
+            title: "Chain-of-Thought & Langkah Perantara",
+            description: "Langkah perantara membuat jawaban lebih mudah diaudit, meski tidak menjamin kebenaran.",
             options: [
-                ["Define Goal", "fas fa-bullseye", "Arah Akhir", "Tentukan hasil nyata yang dicapai.", "Tanpa goal AI akan lari tak berarah."],
-                ["Constraints", "fas fa-lock", "Batasan Operasi", "Biaya, limit waktu, regulasi legal.", "Mencegah solusi fiktif yang tak realistis."],
-                ["Compare Matrix", "fas fa-table-columns", "Trade-Off", "Mengevaluasi risiko & benefit dari alternatif.", "Mencegah single-solution trap."]
+                ["Direct vs Structured", "fas fa-code-compare", "Bandingkan Pendekatan", "Jawaban langsung ('Anggaran cukup') vs jawaban bertahap ('total = … sisa = …').", "Tugas kompleks butuh langkah perantara yang bisa diperiksa."],
+                ["Prompt Transformer", "fas fa-wand-sparkles", "Ubah Prompt", "Prompt sederhana diubah menjadi instruksi bertahap: 'Identifikasi data → Susun langkah → Periksa → Jawab'.", "Zero-shot dan few-shot pattern."],
+                ["Faithfulness Callout", "fas fa-triangle-exclamation", "Waspadai Ilusi", "Langkah yang rapi bisa saja rationalization dari jawaban yang sudah dipilih sebelumnya.", "CoT membantu struktur, bukan bukti mutlak kebenaran."]
             ]
         },
         "05-full.html": {
-            eyebrow: "Project Architecture",
-            title: "Decomposition & Planning",
+            eyebrow: "Tool Decision Lab",
+            title: "Tool Use yang Bertanggung Jawab",
+            description: "Kapan AI perlu tool, tool apa yang tepat, dan bagaimana memvalidasi output-nya.",
             options: [
-                ["Decomposition", "fas fa-layer-group", "Pecah Tugas", "Membongkar masalah makro jadi sub-tugas.", "WBS (Work Breakdown Structure)."],
-                ["Dependency", "fas fa-link", "Ketergantungan", "A harus selesai sebelum B.", "Mencegah eksekusi acak."],
-                ["Fallback", "fas fa-life-ring", "Jaring Pengaman", "Plan cadangan bila jalan utama gagal.", "Mencegah kegagalan sistematis."]
+                ["Perlu Tool?", "fas fa-circle-question", "Decision Tree", "Apakah informasi ada dalam model? Apakah perlu akses real-time? Apakah perlu komputasi?", "Tidak semua tugas butuh tool eksternal."],
+                ["Pilih & Parameter", "fas fa-sliders", "Tool Matching", "Tool yang tepat + parameter yang benar = output yang berguna. Salah satu saja bisa gagal.", "Kalkulator vs spreadsheet vs API cuaca — beda tugas, beda tool."],
+                ["Observation & Risk", "fas fa-eye", "Validasi & Izin", "Baca hasil tool. Validasi. Periksa error. Hormati batas otorisasi.", "Permission denied bukan berarti harus mengarang data."]
             ]
         },
         "06-full.html": {
-            eyebrow: "Control Loop",
-            title: "Siklus ReAct",
+            eyebrow: "Integrated Mission",
+            title: "Misi Reasoning Terpadu",
+            description: "Reasoning, planning, dan tool use bersatu dalam loop iteratif: Reason → Plan → Act → Observe → Update → Answer.",
             options: [
-                ["Plan & Act", "fas fa-wrench", "Aksi Terukur", "Susun langkah lalu eksekusi satu fungsi.", "Panggil API untuk memecah gap informasi."],
-                ["Observe & Update", "fas fa-eye", "Adaptasi", "Bila alat gagal, gugurkan asumsi lama.", "Inti dari kepintaran agen otonom."]
-            ]
-        },
-        "07-full.html": {
-            eyebrow: "Tool Management",
-            title: "Pemanfaatan Eksternal",
-            options: [
-                ["Tool Params", "fas fa-terminal", "Format Input", "Parameter harus patuh pada schema (tipe data).", "Mencegah API reject."],
-                ["Permissions", "fas fa-key", "Akses Data", "Hak untuk membaca atau mengubah state dunia nyata.", "Cegah AI mengambil aksi destruktif sepihak."]
-            ]
-        },
-        "08-full.html": {
-            eyebrow: "Native Reasoners",
-            title: "Model Penalaran Modern",
-            options: [
-                ["CoT & ToT", "fas fa-sitemap", "Struktur Langkah", "Rantai tunggal vs percabangan eksploratif.", "Untuk puzzle dan desain."],
-                ["False Premise", "fas fa-triangle-exclamation", "Risiko Utama", "Langkah cantik tapi pondasi data ngawur.", "Pentingnya RAG & pengecekan fakta sebelum nalar."]
-            ]
-        },
-        "09-full.html": {
-            eyebrow: "End-to-End",
-            title: "Eksekusi Case Study",
-            options: [
-                ["Verify All", "fas fa-check-double", "Sanity Check", "Cek ulang semua durasi, dana, variabel usai eksekusi.", "Mencegah hasil prematur."],
-                ["HITL", "fas fa-user-check", "Persetujuan", "Titik akhir kontrol human in the loop.", "Garansi keselamatan operasional."]
+                ["Reason → Plan", "fas fa-compass", "Pahami & Rencanakan", "Pahami tugas, identifikasi data, susun rencana dan tentukan tool yang diperlukan.", "Foundation dari seluruh loop."],
+                ["Act → Observe", "fas fa-play", "Eksekusi & Amati", "Jalankan tool, baca hasil, bandingkan dengan ekspektasi.", "Di sinilah banyak kegagalan terdeteksi."],
+                ["Update → Answer → Verify", "fas fa-flag-checkered", "Perbarui & Verifikasi", "Perbarui rencana jika perlu, beri jawaban, lalu verifikasi akhir sebelum disampaikan.", "Gate terakhir sebelum jawaban sampai ke pengguna."]
             ]
         }
     };
@@ -1110,6 +1094,30 @@
         paragraph.appendChild(copy);
     }
 
+    function enhanceSourceMaterialForCanvas(container, chapter) {
+        if (!container) return;
+        container.querySelectorAll("table").forEach(function (table) {
+            if (!table.parentElement.classList.contains("reasoning-scaffold-table-wrap")) {
+                var scroll = document.createElement("div");
+                scroll.className = "reasoning-scaffold-table-wrap";
+                table.parentNode.insertBefore(scroll, table);
+                scroll.appendChild(table);
+            }
+        });
+        container.querySelectorAll("pre").forEach(function (block) {
+            if (!block.parentElement.classList.contains("reasoning-code-block")) {
+                var wrapper = document.createElement("div");
+                wrapper.className = "reasoning-code-block";
+                wrapper.innerHTML = '<div><i class="fas fa-code"></i><span>Snippet</span></div>';
+                block.parentNode.insertBefore(wrapper, block);
+                wrapper.appendChild(block);
+            }
+        });
+        container.querySelectorAll("blockquote").forEach(function (bq) {
+            bq.classList.add("reasoning-scaffold-callout");
+        });
+    }
+
     function enhanceSourceMaterial(container, path) {
         if (arguments.length > 2 && arguments[2]) {
             const chapter = arguments[2];
@@ -1170,7 +1178,7 @@
                     heading.remove();
                 }
             });
-            
+
             if (typeof initQuickChecks === "function") {
                 initQuickChecks(container);
             }
@@ -1178,7 +1186,7 @@
 
                 const material = container.querySelector(".reasoning-source-material");
         if (!material) return;
-        
+
         material.querySelectorAll("table").forEach(function (table) {
             if (!table.parentElement.classList.contains("reasoning-scaffold-table-wrap")) {
                 const scroll = document.createElement("div");
@@ -1190,7 +1198,7 @@
     }
 
     function loadSourceHtml(path, containerId, chapter) {
-        const container = document.getElementById(containerId);
+        var container = document.getElementById(containerId);
         if (!container || !path) return;
         fetch(path, { cache: "no-store" })
             .then(function (response) {
@@ -1199,7 +1207,12 @@
             })
             .then(function (html) {
                 container.innerHTML = html;
-                enhanceSourceMaterial(container, path, chapter);
+                container.classList.add("is-source-view");
+                enhanceSourceMaterialForCanvas(container, chapter);
+                var jumpsNav = document.getElementById("reasoning-source-jumps");
+                if (jumpsNav) {
+                    generateNavChips(container, jumpsNav);
+                }
             })
             .catch(function () {
                 container.innerHTML = '<div class="reasoning-source-error"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><p>Materi sumber belum bisa dimuat. Refresh halaman atau cek path source Reasoning.</p></div>';
@@ -1207,24 +1220,94 @@
     }
 
     function renderChapter(chapter, chapterNumber, total) {
-        return `
-            <section class="reasoning-scaffold-module-meta reasoning-final-meta">
-                <div class="reasoning-scaffold-module-meta-head">
-                    <i class="${escapeHtml(chapter.icon)}" aria-hidden="true"></i>
-                    <div>
-                        <span>Topik ${chapterNumber} dari ${total}</span>
-                        <h2>${escapeHtml(chapter.title)}</h2>
-                        <p>${escapeHtml(chapter.summary)}</p>
-                    </div>
-                </div>
-                <div><strong>Durasi</strong> <span>${escapeHtml(chapter.duration)}</span></div>
-                <div><strong>Learning Objective</strong>${renderList(chapter.objectives)}</div>
-            </section>
-            
-            <section class="reasoning-scaffold-rich" id="reasoning-scaffold-rich-content">
-                <div class="reasoning-scaffold-spinner"><i class="fas fa-circle-notch fa-spin" aria-hidden="true"></i> Memuat materi...</div>
-            </section>
-        `;
+        var sourceFile = getSourceFile(chapter.sourcePath);
+        var visualConfig = SOURCE_VISUALS[sourceFile];
+        var navChipHtml = "";
+        var conceptTags = [];
+        if (chapter.concepts) {
+            chapter.concepts.forEach(function (pair) {
+                conceptTags.push('<span class="reasoning-concept-tag"><i class="fas fa-tag" aria-hidden="true"></i>' + escapeHtml(pair[0]) + '</span>');
+            });
+        }
+        return '\n            <section class="reasoning-scaffold-module-meta reasoning-final-meta">\n                <div class="reasoning-scaffold-module-meta-head">\n                    <i class="' + escapeHtml(chapter.icon) + '" aria-hidden="true"></i>\n                    <div>\n                        <span>Topik ' + chapterNumber + ' dari ' + total + '</span>\n                        <h2>' + escapeHtml(chapter.title) + '</h2>\n                        <p>' + escapeHtml(chapter.summary) + '</p>\n                        ' + (conceptTags.length ? '<div class="reasoning-concept-tags">' + conceptTags.join("") + '</div>' : "") + '\n                    </div>\n                </div>\n                <div class="reasoning-meta-row"><strong><i class="far fa-clock" aria-hidden="true"></i> Durasi</strong> <span>' + escapeHtml(chapter.duration) + '</span></div>\n                <div class="reasoning-meta-row"><strong><i class="fas fa-bullseye" aria-hidden="true"></i> Learning Objective</strong>' + renderList(chapter.objectives) + '</div>\n                ' + (chapter.analogy ? '<div class="reasoning-scaffold-callout"><i class="fas fa-lightbulb" aria-hidden="true"></i><p><strong>Analogi:</strong> ' + escapeHtml(chapter.analogy) + '</p></div>' : "") + '\n            </section>\n\n            <div class="reasoning-source-toolbar" id="reasoning-source-toolbar">\n                <div class="reasoning-view-toggle" role="group" aria-label="Mode tampilan materi">\n                    <button type="button" class="is-active" data-reasoning-view="visual" aria-pressed="true"><i class="fas fa-eye" aria-hidden="true"></i> Visual Learning</button>\n                    <button type="button" data-reasoning-view="source" aria-pressed="false"><i class="fas fa-file-lines" aria-hidden="true"></i> Sumber Lengkap</button>\n                </div>\n                <nav class="reasoning-source-jumps" id="reasoning-source-jumps" aria-label="Lompat ke bagian">\n                    <span>Lompat ke:</span>\n                </nav>\n            </div>\n\n            ' + (visualConfig ? renderChapterVisualLab(visualConfig, chapter) : "") + '\n\n            <section class="reasoning-scaffold-rich reasoning-visual-canvas" id="reasoning-visual-canvas">\n                ' + renderVisualCanvas(chapter) + '\n            </section>\n\n            <div class="reasoning-source-panel" id="reasoning-source-panel" hidden>\n                <div class="reasoning-source-panel-head">\n                    <i class="fas fa-file-lines" aria-hidden="true"></i>\n                    <div>\n                        <span>Sumber Lengkap</span>\n                        <h3>' + escapeHtml(chapter.title) + '</h3>\n                        <p>Materi asli dari Nazril — seluruh teks, tabel, contoh, latihan, kuis, dan pembahasan. Tidak dikurangi atau diringkas.</p>\n                    </div>\n                </div>\n                <div class="reasoning-source-material" id="reasoning-scaffold-rich-content">\n                    <div class="reasoning-scaffold-spinner"><i class="fas fa-circle-notch fa-spin" aria-hidden="true"></i> Memuat materi sumber...</div>\n                </div>\n            </div>\n        ';
+    }
+
+    function renderChapterVisualLab(config, chapter) {
+        if (!config) return "";
+        return '<section class="reasoning-concept-lab" data-reasoning-lab aria-label="' + escapeHtml(config.eyebrow) + '">\n            <div class="reasoning-concept-lab-head">\n                <div>\n                    <span>' + escapeHtml(config.eyebrow) + '</span>\n                    <h4>' + escapeHtml(config.title) + '</h4>\n                    <p>' + escapeHtml(config.description) + '</p>\n                </div>\n                <span class="reasoning-concept-counter">1 / ' + config.options.length + '</span>\n            </div>\n            <div class="reasoning-concept-tabs" role="tablist" aria-label="Mode eksplorasi konsep">\n                ' + config.options.map(function (option, index) {
+                    return '<button type="button" role="tab" aria-selected="' + (index === 0 ? "true" : "false") + '" data-concept-index="' + index + '"><i class="' + escapeHtml(option[1]) + '" aria-hidden="true"></i><span>' + escapeHtml(option[0]) + '</span></button>';
+                }).join("") + '\n            </div>\n            <div class="reasoning-concept-stage" role="tabpanel" tabindex="0">\n                <div class="reasoning-concept-node"><i class="' + escapeHtml(config.options[0][1]) + '" aria-hidden="true"></i></div>\n                <div>\n                    <span>' + escapeHtml(config.options[0][2]) + '</span>\n                    <h5>' + escapeHtml(config.options[0][0]) + '</h5>\n                    <p>' + escapeHtml(config.options[0][3]) + '</p>\n                    <small><i class="fas fa-location-dot" aria-hidden="true"></i> ' + escapeHtml(config.options[0][4]) + '</small>\n                </div>\n            </div>\n        </section>';
+    }
+
+    function renderVisualCanvas(chapter) {
+        var parts = [];
+        if (chapter.flow && chapter.flow.length) {
+            parts.push('<section class="reasoning-visual-board" aria-label="Alur reasoning">\n                <div class="reasoning-visual-head"><i class="fas fa-route" aria-hidden="true"></i><div><span>Visual reasoning flow</span><h3>Alur pikir yang bisa dilacak</h3></div></div>\n                ' + renderFlow(chapter.flow) + '\n            </section>');
+        }
+        if (chapter.quickCheck) {
+            parts.push('<section class="reasoning-quick-check" data-check-answer="' + chapter.quickCheck.answer + '">\n                <div class="reasoning-quick-head"><i class="fas fa-circle-question" aria-hidden="true"></i><div><span>Quick Check</span><h3>' + escapeHtml(chapter.quickCheck.question) + '</h3></div></div>\n                <div class="reasoning-check-options">\n                    ' + chapter.quickCheck.options.map(function (option, index) {
+                        return '<button type="button" data-check-option="' + index + '"><b>' + String.fromCharCode(65 + index) + '</b><span>' + escapeHtml(option) + '</span></button>';
+                    }).join("") + '\n                </div>\n                <p class="reasoning-check-feedback" hidden>' + escapeHtml(chapter.quickCheck.explanation) + '</p>\n            </section>');
+        }
+        if (chapter.llmExample) {
+            parts.push('<section class="reasoning-scaffold-example">\n                <span>Contoh AI/LLM</span>\n                <h3>Bagaimana konsep ini muncul di produk AI</h3>\n                <p>' + escapeHtml(chapter.llmExample) + '</p>\n            </section>');
+        }
+        if (chapter.prompt && chapter.prompt.length) {
+            parts.push(renderPrompt(chapter.prompt));
+        }
+        if (chapter.challenge) {
+            parts.push('<section class="reasoning-mini-challenge">\n                <div><i class="fas fa-pen-ruler" aria-hidden="true"></i><span>Mini Challenge</span></div>\n                <h3>Latihan reflektif singkat</h3>\n                <p>' + escapeHtml(chapter.challenge) + '</p>\n            </section>');
+        }
+        if (chapter.mistakes && chapter.mistakes.length) {
+            parts.push('<section class="reasoning-scaffold-checklist">\n                <h3><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Common mistakes</h3>\n                ' + renderList(chapter.mistakes) + '\n            </section>');
+        }
+        if (chapter.bestPractices && chapter.bestPractices.length) {
+            parts.push('<section class="reasoning-scaffold-checklist">\n                <h3><i class="fas fa-circle-check" aria-hidden="true"></i> Best Practices</h3>\n                ' + renderList(chapter.bestPractices) + '\n            </section>');
+        }
+        parts.push('<section class="reasoning-scaffold-summary">\n            <h3><i class="fas fa-bookmark" aria-hidden="true"></i> Ringkasan</h3>\n            <p>' + escapeHtml(chapter.summary) + '</p>\n        </section>');
+        return parts.join("\n");
+    }
+
+    function setupViewToggle(container) {
+        var toggle = container.querySelector(".reasoning-view-toggle");
+        var visualCanvas = container.querySelector(".reasoning-visual-canvas");
+        var sourcePanel = container.querySelector(".reasoning-source-panel");
+        if (!toggle || !visualCanvas || !sourcePanel) return;
+        toggle.querySelectorAll("[data-reasoning-view]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var view = button.dataset.reasoningView;
+                var isVisual = view === "visual";
+                toggle.querySelectorAll("[data-reasoning-view]").forEach(function (btn) {
+                    btn.classList.toggle("is-active", btn === button);
+                    btn.setAttribute("aria-pressed", String(btn === button));
+                });
+                visualCanvas.hidden = !isVisual;
+                sourcePanel.hidden = isVisual;
+            });
+        });
+    }
+
+    function generateNavChips(sourceContainer, jumpsContainer) {
+        if (!sourceContainer || !jumpsContainer) return;
+        var headings = sourceContainer.querySelectorAll("h2, h3");
+        if (!headings.length) return;
+        var seen = {};
+        headings.forEach(function (heading, index) {
+            var text = heading.textContent.replace(/^\d+\.?\s*/, "").trim();
+            if (!text || seen[text]) return;
+            seen[text] = true;
+            var id = "reasoning-nav-" + index;
+            heading.id = id;
+            var chip = document.createElement("button");
+            chip.type = "button";
+            chip.textContent = text;
+            chip.title = text;
+            chip.addEventListener("click", function () {
+                var target = document.getElementById(id);
+                if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+            jumpsContainer.appendChild(chip);
+        });
     }
 
     function initQuickChecks(scope) {
@@ -1260,18 +1343,27 @@
     }
 
     window.loadReasoningChapter = function (chapterNumber) {
-        const total = CHAPTERS.length;
-        const chapter = Math.min(Math.max(Number(chapterNumber) || 1, 1), total);
-        const module = CHAPTERS[chapter - 1];
-        const container = document.getElementById("reasoning-chapter-container");
-        const btnPrev = document.getElementById("btn-prev-chapter");
-        const btnNext = document.getElementById("btn-next-chapter");
-        const btnFinish = document.getElementById("btn-finish-materi");
+        var total = CHAPTERS.length;
+        var chapter = Math.min(Math.max(Number(chapterNumber) || 1, 1), total);
+        var module = CHAPTERS[chapter - 1];
+        var container = document.getElementById("reasoning-chapter-container");
+        var btnPrev = document.getElementById("btn-prev-chapter");
+        var btnNext = document.getElementById("btn-next-chapter");
+        var btnFinish = document.getElementById("btn-finish-materi");
         if (!container || !module) return;
 
         localStorage.setItem(STORAGE.chapter, String(chapter));
         container.innerHTML = renderChapter(module, chapter, total);
+
+        var sourceFile = getSourceFile(module.sourcePath);
+        var visualConfig = SOURCE_VISUALS[sourceFile];
+
+        if (visualConfig) {
+            initSourceVisualLab(container, visualConfig);
+        }
         initQuickChecks(container);
+        setupViewToggle(container);
+
         loadSourceHtml(module.sourcePath, "reasoning-scaffold-rich-content", module);
 
         if (btnPrev) btnPrev.style.display = chapter > 1 ? "inline-block" : "none";
@@ -1279,8 +1371,8 @@
         if (btnFinish) btnFinish.style.display = chapter === total ? "inline-block" : "none";
 
         document.querySelectorAll("#reasoning-sidebar-list li").forEach(function (li) {
-            const itemChapter = Number(li.dataset.chapter || "0");
-            const icon = li.querySelector("i");
+            var itemChapter = Number(li.dataset.chapter || "0");
+            var icon = li.querySelector("i");
             li.classList.toggle("active", itemChapter === chapter);
             li.classList.toggle("completed", itemChapter < chapter);
             if (!icon) return;

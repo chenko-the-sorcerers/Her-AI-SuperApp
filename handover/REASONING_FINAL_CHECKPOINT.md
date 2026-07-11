@@ -196,6 +196,19 @@ Console browser dapat menampilkan error koneksi service settings lokal `127.0.0.
 8. handover/PROMPT_AI_BARU.md
 ```
 
+## 2026-07-11 23:59:59 - Reasoning Visual Overhaul (Nazril Canonical)
+
+- Visual/Source toggle diimplementasikan: tombol `Visual Learning | Sumber Lengkap` di setiap chapter dengan default Visual Learning.
+- Navigation chips otomatis dari heading h2/h3 sumber untuk lompat bagian.
+- Concept lab interaktif per chapter: Reasoning Anatomy Lab (Ch1), Verification Lab (Ch2), Planning Studio (Ch3), Structured Reasoning Lab (Ch4), Tool Decision Lab (Ch5), Integrated Mission (Ch6) — masing-masing 3 mode tab interaktif.
+- Visual canvas: reasoning flow, quick check interaktif, mini challenge, common mistakes, analogy callout, ringkasan, prompt pattern.
+- Semua learning surface light theme HerAI.
+- CSS baru: `.reasoning-concept-tags`, `.reasoning-meta-row`, `.reasoning-visual-canvas`, `.reasoning-code-block`, `.reasoning-quick-head`, `.reasoning-visual-head`.
+- Cache buster dibump: `v=20260711-reasoning-visual-v9`.
+- Source chapter HTML tidak diubah; hanya presentation layer (JS + CSS) yang berubah.
+- Data layer tidak berubah: 6 CHAPTERS, 17 PRACTICES, 26 QUIZ, 4 DISCUSSIONS.
+- File berubah: `ai-reasoning.js`, `modules.css`, `materi.html`, `index.html`, `handover/*`.
+
 ## 2026-07-11 23:10:10 - Reasoning Module Canonical Refactor
 - Source canonical Reasoning kini beralih sepenuhnya ke materi Nazril (`materi/nazril/submateri-reasoning-ai.md`).
 - Chapter materi disederhanakan dari 9 chapter menjadi 6 chapter yang lebih koheren untuk pemula.

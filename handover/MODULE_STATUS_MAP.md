@@ -17,6 +17,12 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ---
 
+## Checkpoint Visual Overhaul - Reasoning Nazril Canonical (11 Juli 2026)
+
+- `04 - Reasoning` sekarang memiliki Visual/Source toggle, navigation chips, concept lab interaktif (6 lab per chapter), visual canvas (flow, quick check, mini challenge, mistakes, analogy, summary).
+- Semua surface light theme, data layer tidak berubah, source chapter HTML tidak diubah.
+- Verifikasi: JS syntax OK, route checker 113/113, git diff --check OK.
+
 ## Checkpoint Terbaru
 
 Checkpoint final terbaru 11 Juli 2026:

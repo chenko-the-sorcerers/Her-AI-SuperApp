@@ -2,16 +2,9 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning final baru dari `materi/baru/Reasoning-baru.md` sudah masuk runtime canonical, snapshot materi lama Reasoning tetap ada untuk arsip, belum push
-**Commit UX Python terbaru:** `5298a96 fix: link python active labs to focused practice`
-**Commit quiz review:** `551654c fix: show intro quiz review states`
-**Commit Reasoning canonical:** `75125a8 feat: finalize reasoning course routes`
-**Commit Reasoning visual final:** `7668070 feat: finalize reasoning visual course`
-**Commit UX activity terbaru:** `8007acb fix: clarify reasoning activity flow`
-**Commit audit terbaru:** `c93a5fb fix: audit python module polish`
-**Commit merge Reasoning lokal:** `b0c6829 merge: integrate reasoning scaffold updates`
-**Commit fitur terakhir sebelum merge:** `c1870d4 feat: finalize python ai module and merge handover`
-**Commit sebelumnya terkait ML:** `4d7d69a feat: activate machine learning module flow`
+**Status:** Reasoning visual overhaul — 6-chapter Nazril canonical dengan Visual/Source toggle, concept lab interaktif, nav chips, dan rich visual canvas; belum push
+**Commit Reasoning visual overhaul:** (mengikuti — commit lokal berikutnya)
+**Commit Reasoning canonical sebelumnya:** `da4c57d feat(reasoning): complete canonical implementation using Nazril source`
 
 Dokumen ini menjadi checkpoint terbaru untuk developer atau AI agent berikutnya. Catatan lama 5 Juli 2026 yang menyebut Machine Learning masih under-development sudah tidak berlaku untuk course ML.
 
@@ -24,6 +17,26 @@ handover/REASONING_FINAL_CHECKPOINT.md
 ```
 
 ---
+
+---
+
+## Checkpoint Visual Overhaul - Reasoning Nazril Canonical
+
+Status terbaru 11 Juli 2026 setelah rombak visual Reasoning:
+
+- Source canonical Reasoning tetap Nazril (`materi/nazril/submateri-reasoning-ai.md`), 2.755 baris, tidak dikurangi.
+- Chapter runtime tetap 6: Dari Menjawab ke Menalar, Reasoning yang Dapat Diperiksa, Planning & Problem Decomposition, Structured Reasoning & Chain-of-Thought, Tool Use yang Bertanggung Jawab, Integrated Reasoning Mission.
+- **Visual/Source toggle** diimplementasikan per chapter dengan tombol `Visual Learning | Sumber Lengkap`. Default: Visual Learning. Mode hanya mengubah presentasi; source text tetap utuh di DOM.
+- **Navigation chips** dihasilkan otomatis dari heading h2/h3 sumber, memungkinkan lompat langsung ke bagian materi.
+- **Concept lab interaktif** per chapter: Reasoning Anatomy Lab (Ch1), Verification Lab (Ch2), Planning Studio (Ch3), Structured Reasoning Lab (Ch4), Tool Decision Lab (Ch5), Integrated Mission (Ch6). Setiap lab memiliki 3 mode eksplorasi konsep dengan tab interaktif.
+- **Visual canvas** per chapter: reasoning flow, quick check interaktif (benar/salah + feedback), mini challenge, common mistakes, analogy callout, ringkasan, dan prompt pattern.
+- Semua learning surface memakai light theme HerAI (putih, `#fff7fb`, `#fff0f7`).
+- CSS baru disediakan untuk: `.reasoning-concept-tags`, `.reasoning-meta-row`, `.reasoning-visual-canvas`, `.reasoning-code-block`, `.reasoning-quick-head`, `.reasoning-visual-head`.
+- Cache buster `index.html` dibump: `v=20260711-reasoning-visual-v9` untuk JS dan CSS.
+- Data layer tidak berubah: 6 CHAPTERS, 17 PRACTICES, 26 QUIZ, 4 DISCUSSIONS dari Nazril source.
+- Source chapter HTML files (`01-full.html` hingga `06-full.html`) tidak diubah.
+- File yang berubah: `ai-reasoning.js` (overhaul renderChapter, SOURCE_VISUALS, view toggle, nav chips), `modules.css` (+153 baris komponen visual), `materi.html` (progress "0 dari 6"), `index.html` (cache buster).
+- Verifikasi: semua JS syntax check lulus, route checker 113/113 passed, git diff --check lulus, nol conflict marker.
 
 ## Checkpoint Final Terbaru - Reasoning Materi Baru
 
