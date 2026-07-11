@@ -17,7 +17,7 @@
     <main class="fellow-main">
         <header class="lesson-topbar">
             <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
-                <a href="#/participant-ai-python-practice"><i class="fas fa-arrow-left"></i><span>Latihan Reasoning</span></a>
+                <a href="#/participant-ai-python-practice"><i class="fas fa-arrow-left"></i><span>Latihan Python</span></a>
                 <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
                 <span>Kuis</span>
             </nav>
@@ -31,11 +31,11 @@
             <div class="lesson-main-content">
                 <section class="lesson-hero compact">
                     <div class="lesson-hero-copy">
-                        <h1>Kuis Reasoning</h1>
-                        <p>Uji pemahaman tentang reasoning, verifikasi, planning, Chain-of-Thought, tool use, dan evaluasi jawaban AI.</p>
+                        <h1>Kuis Python</h1>
+                        <p>Uji pemahaman tentang Python: variabel, control flow, function, OOP, error handling, NumPy, dan Pandas.</p>
                         <div class="lesson-meta-row"><span><i class="far fa-clock"></i> 25 menit</span><span><i class="far fa-clipboard"></i> 26 soal</span><b>Single Attempt</b></div>
                     </div>
-                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow mengerjakan kuis Reasoning">
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow mengerjakan kuis Python">
                 </section>
                 <section class="lesson-material-panel">
                     <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
@@ -45,20 +45,20 @@
                         <a href="#/participant-ai-python-discussion"><i class="far fa-message"></i> Diskusi</a>
                     </div>
                     <article class="lesson-article">
-                        <form id="aiReasoningQuizForm" class="lesson-quiz-section">
+                        <form id="aiPythonQuizForm" class="lesson-quiz-section">
                             <div class="ml-section-head">
                                 <span>Knowledge Check</span>
-                                <h2>Kuis Reasoning</h2>
+                                <h2>Kuis Python</h2>
                                 <p>Pilih satu jawaban paling tepat. Seluruh kartu opsi bisa diklik. Kuis single attempt dan akan terkunci setelah dikirim.</p>
                             </div>
-                            <div class="reasoning-task-navigator" id="aiReasoningQuizNavigator" aria-label="Navigasi soal kuis"></div>
-                            <div class="quiz-list" id="aiReasoningQuizList"></div>
+                            <div class="reasoning-task-navigator" id="aiPythonQuizNavigator" aria-label="Navigasi soal kuis"></div>
+                            <div class="quiz-list" id="aiPythonQuizList"></div>
                             <div class="reasoning-task-controls">
                                 <button type="button" data-quiz-prev><i class="fas fa-chevron-left"></i> Sebelumnya</button>
-                                <strong id="aiReasoningQuizCounter">Soal 1 dari 15</strong>
+                                <strong id="aiPythonQuizCounter">Soal 1 dari 15</strong>
                                 <button type="button" data-quiz-next>Berikutnya <i class="fas fa-chevron-right"></i></button>
                             </div>
-                            <div class="quiz-result-card" id="aiReasoningQuizResult" hidden></div>
+                            <div class="quiz-result-card" id="aiPythonQuizResult" hidden></div>
                             <button type="submit" class="quiz-submit-btn" style="border-radius: 100px;"><i class="fas fa-paper-plane"></i> Kirim Kuis</button>
                         </form>
                         <details class="reasoning-reference-details">
@@ -67,14 +67,14 @@
                                 <span><b>Referensi kuis dari materi sumber</b><small>Teks kuis sumber tetap utuh dan tidak dikurangi.</small></span>
                                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
                             </summary>
-                            <div id="aiReasoningQuizSource" class="reasoning-source-container">
+                            <div id="aiPythonQuizSource" class="reasoning-source-container">
                                 <p class="reasoning-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat kuis sumber...</p>
                             </div>
                         </details>
                     </article>
                     <footer class="lesson-nav-footer">
                         <a href="#/participant-ai-python-practice"><i class="fas fa-chevron-left"></i> Kembali ke Latihan</a>
-                        <a href="#/participant-ai-python-discussion" id="aiReasoningQuizNext" class="is-disabled">Lanjut Diskusi <i class="fas fa-arrow-right"></i></a>
+                        <a href="#/participant-ai-python-discussion" id="aiPythonQuizNext" class="is-disabled">Lanjut Diskusi <i class="fas fa-arrow-right"></i></a>
                     </footer>
                 </section>
             </div>

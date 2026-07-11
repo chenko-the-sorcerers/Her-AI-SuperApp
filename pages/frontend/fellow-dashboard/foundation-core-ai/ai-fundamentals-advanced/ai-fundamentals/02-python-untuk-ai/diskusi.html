@@ -17,7 +17,7 @@
     <main class="fellow-main">
         <header class="lesson-topbar">
             <nav class="lesson-breadcrumb" aria-label="Breadcrumb materi">
-                <a href="#/participant-ai-python-quiz"><i class="fas fa-arrow-left"></i><span>Kuis Reasoning</span></a>
+                <a href="#/participant-ai-python-quiz"><i class="fas fa-arrow-left"></i><span>Kuis Python</span></a>
                 <span class="lesson-breadcrumb-separator"><i class="fas fa-arrow-right"></i></span>
                 <span>Diskusi</span>
             </nav>
@@ -31,11 +31,11 @@
             <div class="lesson-main-content">
                 <section class="lesson-hero compact">
                     <div class="lesson-hero-copy">
-                        <h1>Diskusi Reasoning</h1>
-                        <p>Diskusikan batas kepercayaan, transparansi reasoning, tool approval, AI tutor, dan verifikasi pada domain berisiko.</p>
+                        <h1>Diskusi Python</h1>
+                        <p>Diskusikan peran Python dalam AI, pengalaman coding, library favorit, dan workflow AI.</p>
                         <div class="lesson-meta-row"><span><i class="far fa-message"></i> Prompt sumber</span><span><i class="far fa-clock"></i> Tersimpan lokal</span><b>Kolaboratif</b></div>
                     </div>
-                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow berdiskusi tentang Reasoning">
+                    <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow berdiskusi tentang Python">
                 </section>
                 <section class="lesson-material-panel">
                     <div class="lesson-tabs" role="tablist" aria-label="Jenis materi">
@@ -48,17 +48,17 @@
                         
                         <div class="ml-section-head">
                             <span>Discussion Board</span>
-                            <h2>Forum Reasoning AI</h2>
-                            <p>Pilih prompt atau tulis pertanyaan sendiri. Thread tersimpan di browser dengan key <code>heraiAiReasoningDiscussion</code>.</p>
+                            <h2>Forum Python AI</h2>
+                            <p>Pilih prompt atau tulis pertanyaan sendiri. Thread tersimpan di browser dengan key <code>heraiAiPythonDiscussion</code>.</p>
                         </div>
-                        <div class="ml-discussion-prompts" aria-label="Prompt diskusi Reasoning">
+                        <div class="ml-discussion-prompts" aria-label="Prompt diskusi Python">
                             <button type="button" data-discussion-prompt="Apakah jawaban AI yang terlihat runtut cukup untuk dipercaya, atau harus selalu ada bukti eksternal?"><i class="fas fa-shield-heart"></i><span>Kepercayaan</span></button>
                             <button type="button" data-discussion-prompt="Kapan chain-of-thought perlu diringkas untuk pengguna, dan kapan cukup ditampilkan sebagai checklist verifikasi?"><i class="fas fa-list-check"></i><span>Transparansi</span></button>
                             <button type="button" data-discussion-prompt="Tool apa yang aman diberikan ke assistant peserta HerAI, dan tool apa yang wajib butuh approval manusia?"><i class="fas fa-screwdriver-wrench"></i><span>Tool use</span></button>
                             <button type="button" data-discussion-prompt="Bagaimana cara mendesain AI tutor yang membantu siswa berpikir tanpa langsung memberikan semua jawaban?"><i class="fas fa-graduation-cap"></i><span>AI tutor</span></button>
                             <button type="button" data-discussion-prompt="Di domain hukum, medis, atau finansial, batas minimum verifikasi reasoning AI seharusnya seperti apa?"><i class="fas fa-scale-balanced"></i><span>High-stakes</span></button>
                         </div>
-                        <form class="practice-response-form discussion-compose ml-discussion-form" id="aiReasoningDiscussionForm">
+                        <form class="practice-response-form discussion-compose ml-discussion-form" id="aiPythonDiscussionForm">
                             <label>
                                 <span>Prompt diskusi</span>
                                 <select name="discussionPrompt">
@@ -74,21 +74,21 @@
                                 <textarea rows="6" placeholder="Contoh: Untuk tugas berisiko, jawaban AI perlu menampilkan asumsi, data, dan cara verifikasi. Tetapi untuk tugas sederhana, ringkasan singkat lebih tepat..."></textarea>
                             </label>
                             <div class="ml-save-panel">
-                                <p id="aiReasoningDiscussionStatus" class="practice-status">Posting akan tersimpan di browser ini.</p>
+                                <p id="aiPythonDiscussionStatus" class="practice-status">Posting akan tersimpan di browser ini.</p>
                                 <button type="submit"><i class="fas fa-paper-plane"></i> Posting Diskusi</button>
                             </div>
                         </form>
-                        <div class="discussion-thread" id="aiReasoningDiscussionList"></div>
+                        <div class="discussion-thread" id="aiPythonDiscussionList"></div>
                         <section class="reasoning-source-panel">
                             <div class="reasoning-source-panel-head">
                                 <i class="fas fa-file-lines" aria-hidden="true"></i>
                                 <div>
                                     <span>Sumber utuh</span>
                                     <h2>Prompt Diskusi dari Materi Sumber</h2>
-                                    <p>Bagian ini memuat teks diskusi dari <code>materi/baru/Reasoning-baru.md</code> tanpa dikurangi.</p>
+                                    <p>Bagian ini memuat teks diskusi dari <code>materi/baru/Python-baru.md</code> tanpa dikurangi.</p>
                                 </div>
                             </div>
-                            <div id="aiReasoningDiscussionSource" class="reasoning-source-container">
+                            <div id="aiPythonDiscussionSource" class="reasoning-source-container">
                                 <p class="reasoning-source-loading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Memuat prompt diskusi sumber...</p>
                             </div>
                         </section>
@@ -103,7 +103,7 @@
                 <section class="module-side-card lesson-progress-card">
                     <h2>Progres Modul</h2>
                     <div class="lesson-progress-mini"><b style="--value:100%"></b><strong>100%</strong></div>
-                    <p>Diskusi menguji batas penggunaan reasoning AI dalam produk nyata dan domain berisiko.</p>
+                    <p>Diskusi memperdalam pemahaman Python untuk AI dan pengalaman belajar.</p>
                     <a href="#/participant-ai-python">Buka Materi</a>
                 </section>
                 <section class="module-side-card lesson-list-card">
