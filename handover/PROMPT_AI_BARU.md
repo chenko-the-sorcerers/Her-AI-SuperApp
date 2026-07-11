@@ -58,8 +58,8 @@ Konteks terbaru:
   - `git diff --check`
   - `node scripts/check-participant-routes.mjs` -> Total 110, 0 failed
 - Route checker setelah Reasoning canonical: Total 113, 0 failed.
-- Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, Reasoning, Evaluation, CV, NLP.
-- Route scaffold AI Fundamentals aktif: #/participant-ai-evolution. Reasoning dan Evaluation sudah aktif final canonical.
+- Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, Reasoning, Evaluation, Evolution of AI, CV, NLP.
+- Route scaffold AI Fundamentals aktif: tidak ada scaffold AI Fundamentals utama yang tersisa untuk Reasoning/Evaluation/Evolution; ketiganya sudah aktif final canonical.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
@@ -249,7 +249,7 @@ Foundation & Core AI
 │   ├── Konsep AI Modern         -> AKTIF
 │   ├── Reasoning                -> AKTIF FINAL
 │   ├── Evaluation               -> AKTIF FINAL CANONICAL
-│   └── Evolution of AI          -> SCAFFOLD AKTIF
+│   └── Evolution of AI          -> AKTIF FINAL CANONICAL
 ├── Math for AI                  -> AKTIF
 ├── Machine Learning             -> AKTIF FULL (8 chapter, 10 latihan, 24 soal kuis, 8 prompt diskusi)
 ├── Deep Learning                -> SCAFFOLD AKTIF
@@ -302,7 +302,7 @@ Catatan penting:
 - Route AI Fundamentals yang perlu dijaga:
   - `#/participant-ai-reasoning`
   - `#/participant-ai-evaluation` (aktif final canonical, bukan entry aktif `COURSE_SCAFFOLDS`)
-  - `#/participant-ai-evolution`
+  - `#/participant-ai-evolution` (aktif final canonical, bukan entry aktif `COURSE_SCAFFOLDS`)
 - Jangan buat folder `course-catalog/`, `ai-fundamental/`, atau `ai-lab/` lagi sebagai path aktif. Itu folder lama/superseded. Category/domain canonical langsung di bawah `pages/frontend/fellow-dashboard/`.
 
 ---
@@ -370,7 +370,7 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
 4. Modul 3a (Konsep AI Modern) sudah aktif untuk materi, latihan, kuis, dan diskusi.
 5. Math for AI sudah aktif dari draft Nazril dengan overview, lesson, latihan, kuis, dan diskusi.
-6. Reasoning dan Evaluation sudah punya route final canonical; Evolution of AI masih scaffold. Jangan balikkan route aktif ke button non-route, `COURSE_SCAFFOLDS`, atau under-development.
+6. Reasoning, Evaluation, dan Evolution of AI sudah punya route final canonical. Jangan balikkan route aktif ke button non-route, `COURSE_SCAFFOLDS`, atau under-development.
 7. Generative AI punya file overview draft dan scaffold diperkaya; route utama masih scaffold/placeholder sampai konten final diaktifkan.
 8. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
 9. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.

@@ -25,6 +25,45 @@ handover/REASONING_FINAL_CHECKPOINT.md
 
 ---
 
+## Checkpoint Lokal Terbaru - Evolution of AI Canonical Final
+
+Commit lokal:
+`PENDING feat: activate canonical evolution of ai module`
+
+Yang dilakukan:
+- Mengaktifkan `#/participant-ai-evolution` sebagai module final canonical di `Foundation & Core AI -> AI Fundamentals & Advanced -> AI Advanced -> 06 - Evolution of AI`.
+- Memindahkan route Evolution dari `course-placeholder.html` ke folder canonical `06-evolution-of-ai/` tanpa mengubah route publik.
+- Menambahkan flow runtime Evolution: `Materi -> Latihan -> Kuis -> Diskusi` memakai query `module` dan `activity` pada route publik yang sama.
+- Mengisi 7 chapter materi dari `deep-research-report (1).md`: reading AI evolution, symbolic AI, learning from data, reinforcement learning, VAE/GAN, diffusion models, dan transformer/LLM/hybrid AI.
+- Menambahkan 16 latihan studi kasus, 21 soal kuis, 7 prompt diskusi, progress materi, penyimpanan localStorage, dan snapshot konten `materi/evolution-of-ai.md`.
+- Menonaktifkan Evolution dari manifest `COURSE_SCAFFOLDS`; scaffold course lain tetap dipertahankan.
+
+File penting:
+- `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-advanced/06-evolution-of-ai/`
+- `js/frontend/fellow-dashboard/ai-evolution.js`
+- `js/router.js`
+- `index.html`
+- `css/frontend/fellow-dashboard/modules.css`
+- `js/frontend/fellow-dashboard/course-placeholder.js`
+- `materi/evolution-of-ai.md`
+
+Verifikasi:
+- `node --check js/router.js` -> passed
+- `node --check js/frontend/fellow-dashboard/course-placeholder.js` -> passed
+- `node --check js/frontend/fellow-dashboard/ai-evolution.js` -> passed
+- `node scripts/check-participant-routes.mjs` -> Total: 113 | 0 failed
+- `git diff --check` -> passed
+
+Catatan risiko:
+- Browser smoke test manual perlu dijalankan di local browser untuk memastikan interaksi textarea, quiz lock, dan query activity terasa nyaman.
+- Evolution mengikuti shell dinamis seperti Evaluation agar route publik tetap stabil; route terpisah tambahan tidak dibuat.
+
+Next step:
+- Review `#/participant-ai-evolution`, terutama `?module=diffusion-models&activity=latihan`, `?activity=kuis`, dan `?activity=diskusi`.
+- Lanjutkan scaffold lain hanya lewat `COURSE_SCAFFOLDS` sampai konten dinyatakan final.
+
+---
+
 ## Checkpoint Lokal Terbaru - Evaluation AI Canonical Final
 
 Commit lokal:
@@ -36,7 +75,7 @@ Yang dilakukan:
 - Menambahkan flow runtime Evaluation: `Materi -> Latihan -> Kuis -> Diskusi` dengan controller khusus `js/frontend/fellow-dashboard/ai-evaluation.js`.
 - Mengisi 6 chapter materi dari `deep-research-report.md` dalam bahasa pembelajaran, bukan salinan mentah laporan.
 - Menambahkan 15 latihan studi kasus, 24 soal kuis, 6 prompt refleksi, progress materi, penyimpanan localStorage, dan snapshot konten `materi/evaluation-ai.md`.
-- Menonaktifkan Evaluation dari manifest `COURSE_SCAFFOLDS`; Reasoning dan Evolution tetap scaffold.
+- Menonaktifkan Evaluation dari manifest `COURSE_SCAFFOLDS`; Reasoning tetap final canonical dari remote dan Evolution kini aktif canonical pada checkpoint terbaru.
 
 File penting:
 - `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-advanced/05-evaluation/`
@@ -111,7 +150,7 @@ Status terbaru 11 Juli 2026 setelah rombak Reasoning:
 - Controller baru: `js/frontend/fellow-dashboard/ai-reasoning.js`.
 - `course-placeholder.js` masih mengekspos `window.HERAI_REASONING_COURSE` sebagai sumber data konten Reasoning agar materi scaffold lengkap tidak diduplikasi manual.
 - Jika materi Reasoning baru sudah diterima dari deep research, simpan dulu sebagai snapshot baru di `materi/baru/`, baca `materi/lama/reasoning.md` sebagai baseline lama, lalu implementasikan ke canonical `04-reasoning/` dan `ai-reasoning.js` tanpa merusak route final.
-- Evaluation dan Evolution of AI tetap scaffold melalui `course-placeholder.html`.
+- Catatan lama saat itu: Evaluation dan Evolution of AI masih scaffold. Status ini sudah superseded; Evaluation dan Evolution kini aktif final canonical pada checkpoint terbaru.
 - Kuis Pengantar AI diselaraskan dengan Python/AI Modern/Reasoning: setelah submit atau saat locked dari localStorage, kartu hijau menandai jawaban benar dan kartu merah menandai pilihan peserta yang salah. Jawaban peserta disimpan di `heraiAiIntroQuizAnswers` tanpa mengubah key lama `heraiAiIntroQuizDone` dan `heraiAiIntroQuizScore`.
 - Verifikasi awal routing setelah perubahan: `node scripts/check-participant-routes.mjs` -> `Total: 113 | 113 passed | 0 failed`.
 
@@ -718,7 +757,7 @@ Smoke test browser terakhir:
 - `#/participant-ai-lab-gen` render overview Generative AI scaffold.
 - `#/participant-ai-lab-gen?activity=latihan` render tab Latihan.
 - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis` render detail module Prompting Workflow + tab Kuis.
-- `#/participant-ai-reasoning` dan `#/participant-ai-evolution` render scaffold; `#/participant-ai-evaluation` render module final canonical, bukan 404.
+- Catatan lama saat itu: `#/participant-ai-evolution` masih render scaffold. Status ini sudah superseded; route Evolution kini render module final canonical.
 - Regression route final `#/participant-ai-modern`, `#/participant-ai-lab-math`, `#/participant-ai-lab-ml`, dan `#/participant-ai-python` tetap render.
 
 ---

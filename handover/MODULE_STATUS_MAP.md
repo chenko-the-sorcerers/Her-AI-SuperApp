@@ -19,6 +19,20 @@ handover/HANDOVER_COURSE_FILESYSTEM_REFACTOR.md
 
 ## Checkpoint Terbaru
 
+Checkpoint Evolution of AI canonical 11 Juli 2026:
+
+- `06 - Evolution of AI` aktif final canonical di route stabil `#/participant-ai-evolution`.
+- Route Evolution tidak lagi memakai `course-placeholder.html`; mapping aktif sekarang ke `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-advanced/06-evolution-of-ai/materi.html`.
+- Controller aktif: `js/frontend/fellow-dashboard/ai-evolution.js`.
+- Activity runtime: `Materi -> Latihan -> Kuis -> Diskusi` memakai query `module` dan `activity` pada route publik yang sama.
+- Konten materi berisi 7 chapter final dari `deep-research-report (1).md`: reading AI evolution, symbolic AI, learning from data, reinforcement learning, VAE/GAN, diffusion models, dan transformer/LLM/hybrid AI.
+- Latihan berisi 16 studi kasus tersimpan di `heraiAiEvolutionPractice`.
+- Kuis berisi 21 soal, passing score 75%, jawaban tersimpan di `heraiAiEvolutionQuizAnswers`, status selesai di `heraiAiEvolutionQuizDone`, dan skor di `heraiAiEvolutionQuizScore`.
+- Progress materi memakai `heraiAiEvolutionCompletedModules` dan chapter aktif memakai `heraiAiEvolutionCurrentModule`.
+- Diskusi/refleksi memakai `heraiAiEvolutionDiscussion`.
+- Snapshot konten non-runtime ada di `materi/evolution-of-ai.md`.
+- Evolution dicabut dari `COURSE_SCAFFOLDS`; scaffold course lain tidak diubah.
+
 Checkpoint Evaluation AI canonical 11 Juli 2026:
 
 - `05 - Evaluation` aktif final canonical di route stabil `#/participant-ai-evaluation`.
@@ -31,7 +45,7 @@ Checkpoint Evaluation AI canonical 11 Juli 2026:
 - Progress materi memakai `heraiAiEvaluationCompletedModules` dan chapter aktif memakai `heraiAiEvaluationCurrentModule`.
 - Diskusi/refleksi memakai `heraiAiEvaluationDiscussion`.
 - Snapshot konten non-runtime ada di `materi/evaluation-ai.md`.
-- Reasoning dan Evolution of AI tetap route scaffold; tidak ikut dipindahkan.
+- Reasoning, Evaluation, dan Evolution of AI sudah route final canonical; scaffold course lain tidak ikut dipindahkan.
 
 Checkpoint final terbaru 11 Juli 2026:
 
@@ -157,7 +171,7 @@ Course utama yang terlihat di katalog peserta, dikelompokkan sesuai category/dom
 
 | Category / Domain | Course | Status | Isi utama |
 |---|---|---|---|
-| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif + scaffold | Pengantar AI, Python untuk AI, Konsep AI Modern, Reasoning, dan Evaluation aktif; Evolution of AI scaffold |
+| Foundation & Core AI | AI Fundamentals & Advanced | Sebagian aktif + scaffold | Pengantar AI, Python untuk AI, Konsep AI Modern, Reasoning, Evaluation, dan Evolution of AI aktif; scaffold tersisa untuk course/module lain yang belum final |
 | Foundation & Core AI | Math for AI | Aktif | Overview, 7 lesson, latihan, kuis, diskusi |
 | Foundation & Core AI | Machine Learning | Aktif | 8 chapter ML, 10 latihan, 24 soal kuis, 8 prompt diskusi |
 | Foundation & Core AI | Deep Learning | Scaffold aktif | Neural Network Basics, Training & Backpropagation, CNN/RNN Overview, Transformer Basics, Regularization |
@@ -272,7 +286,7 @@ pages/frontend/fellow-dashboard/
 | 03a - Konsep AI Modern | Aktif | Aktif | Aktif | Aktif | `ai-modern.js` | Materi, latihan, kuis, dan diskusi sudah memakai file final |
 | 04 - Reasoning | Aktif final baru, 5 chapter + visual flow/quick check + panel sumber utuh `Reasoning-baru.md` | Aktif final, 6 skenario step-by-step, masing-masing 3 textarea, navigator + save/edit/reset; referensi utuh setelah workspace | Aktif final, 15 soal one-at-a-time, navigator + answered counter, full-card single attempt; referensi utuh setelah workspace | Aktif final, sumber diskusi utuh + prompt/thread lokal | `ai-reasoning.js` + `04-reasoning/chapters/*-full.html` | Folder canonical `04-reasoning/`; checkpoint terbaru `8007acb`; konten sumber tidak dikompres dan bukan scaffold placeholder |
 | 05 - Evaluation | Aktif final canonical, 6 chapter | 15 latihan studi kasus | 24 soal, passing score 75% | 6 prompt refleksi | `ai-evaluation.js` | Route `#/participant-ai-evaluation`; folder `ai-advanced/05-evaluation/`; source `deep-research-report.md`; snapshot `materi/evaluation-ai.md` |
-| 06 - Evolution of AI | Scaffold | Scaffold | Scaffold | Scaffold | `course-placeholder.js` | Route `#/participant-ai-evolution`, belum punya file final |
+| 06 - Evolution of AI | Aktif final canonical, 7 chapter | 16 latihan studi kasus | 21 soal, passing score 75% | 7 prompt refleksi | `ai-evolution.js` | Route `#/participant-ai-evolution`; folder `ai-advanced/06-evolution-of-ai/`; source `deep-research-report (1).md`; snapshot `materi/evolution-of-ai.md` |
 
 ---
 
@@ -430,7 +444,7 @@ Catatan activity scaffold:
 | `/participant-ai-reasoning-quiz` | Reasoning kuis final canonical |
 | `/participant-ai-reasoning-discussion` | Reasoning diskusi final canonical |
 | `/participant-ai-evaluation` | Evaluation AI final canonical |
-| `/participant-ai-evolution` | Evolution of AI module scaffold |
+| `/participant-ai-evolution` | Evolution of AI final canonical |
 | `/participant-ai-lab-gen` | Generative AI |
 | `/participant-ai-lab-deep-learning` | Deep Learning |
 | `/participant-ai-lab-reinforcement-learning` | Reinforcement Learning |

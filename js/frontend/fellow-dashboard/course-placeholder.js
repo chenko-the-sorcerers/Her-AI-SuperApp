@@ -468,19 +468,6 @@
             overviewHtml: REASONING_OVERVIEW,
             modules: REASONING_MODULES
         },
-        "/participant-ai-evolution": {
-            title: "Evolution of AI",
-            category: "AI Fundamentals",
-            icon: "fas fa-timeline",
-            status: "Module scaffold",
-            summary: "Module tentang perkembangan AI dari symbolic AI, machine learning klasik, deep learning, hingga generative AI.",
-            modules: modules([
-                ["Symbolic AI Era", "Perkembangan rule-based system, expert system, dan batasan pendekatan simbolik."],
-                ["Machine Learning Era", "Peralihan ke pembelajaran berbasis data, fitur, model statistik, dan evaluasi."],
-                ["Deep Learning Era", "Peran neural network, representation learning, akselerasi compute, dan data besar."],
-                ["Generative AI Era", "Kemunculan foundation model, multimodal AI, agentic workflow, dan arah masa depan."]
-            ])
-        },
         "/participant-ai-lab-deep-learning": {
             title: "Deep Learning",
             category: "Foundation & Core AI",
