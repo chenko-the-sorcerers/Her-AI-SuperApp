@@ -53,7 +53,7 @@
     function runCode(playId) {
         if (!pyodideReady || !pyodideInstance) return;
         var editor = document.querySelector('#play-' + playId + ' .py-editor');
-        var output = document.getElementById('out-' + playId);
+        console.log("DEBUG_SP: sourcePath=", module?.sourcePath);
         if (!editor || !output) return;
         var code = editor.value;
         output.className = 'py-output visible';
@@ -727,6 +727,19 @@ var SOURCE_VISUALS = {
         var before = html.slice(0, match.index + match[1].length);
         var after = html.slice(match.index + match[1].length);
         return before + "\n" + injectHtml + "\n" + after;
+    }
+
+    function renderList(items) {
+        if (!items) return "";
+        return '<ul>' + items.map(function (item) { return '<li>' + escapeHtml(item) + '</li>'; }).join("") + '</ul>';
+    }
+
+    function renderFlow(items) {
+        if (!items) return "";
+        return '<div class="reasoning-scaffold-flow reasoning-scaffold-flow--compact">' + items.map(function (item, index) {
+            var arrow = index < items.length - 1 ? '<i class="fas fa-arrow-right" aria-hidden="true"></i>' : "";
+            return '<div><span>' + escapeHtml(item[0]) + '</span>' + arrow + '<p>' + escapeHtml(item[1]) + '</p></div>';
+        }).join("") + '</div>';
     }
 
     function renderOrientationAndNav(module, chapterNum, total) {
