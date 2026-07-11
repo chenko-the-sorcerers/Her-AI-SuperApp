@@ -614,8 +614,8 @@ const router = {
                     if (path === "/participant-ai-python" && typeof window.initAiPythonMateri === "function") {
                         window.initAiPythonMateri();
                     }
-                    if (path === "/participant-ai-python-practice" && typeof window.initAiPythonBasic === "function") {
-                        window.initAiPythonBasic();
+                    if (path === "/participant-ai-python-practice" && typeof window.initAiPythonPractice === "function") {
+                        window.initAiPythonPractice();
                     }
                     if (path === "/participant-ai-python-quiz" && typeof window.initAiPythonQuiz === "function") {
                         window.initAiPythonQuiz();
