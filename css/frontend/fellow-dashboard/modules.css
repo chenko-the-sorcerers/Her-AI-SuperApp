@@ -6083,3 +6083,558 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Evaluation AI canonical module */
+.ai-evaluation-shell {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 28px 0 48px;
+    color: #171827;
+}
+
+.ai-evaluation-hero,
+.ai-evaluation-outcomes,
+.ai-evaluation-module-card,
+.ai-evaluation-detail-head,
+.ai-evaluation-activity,
+.ai-evaluation-nav,
+.ai-evaluation-progress-card,
+.ai-evaluation-section,
+.ai-evaluation-callout,
+.ai-evaluation-grid article,
+.ai-evaluation-check,
+.ai-evaluation-glossary,
+.ai-evaluation-references,
+.ai-evaluation-practice article,
+.ai-evaluation-quiz fieldset,
+.ai-evaluation-discussion {
+    border: 1px solid rgba(246, 51, 146, 0.18);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 16px 42px rgba(31, 28, 45, 0.06);
+}
+
+.ai-evaluation-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 22px;
+    align-items: stretch;
+    padding: 30px;
+    background: linear-gradient(135deg, #fff 0%, #fff7fb 100%);
+}
+
+.ai-evaluation-hero span,
+.ai-evaluation-detail-head span,
+.ai-evaluation-module-card > span,
+.ai-evaluation-practice article > span,
+.ai-evaluation-section > h3 i {
+    color: #f63392;
+}
+
+.ai-evaluation-hero h1,
+.ai-evaluation-detail-head h1,
+.ai-evaluation-chapter-head h2 {
+    margin: 8px 0 12px;
+    color: #171827;
+    line-height: 1.1;
+}
+
+.ai-evaluation-hero p,
+.ai-evaluation-detail-head p,
+.ai-evaluation-module-card p,
+.ai-evaluation-section p,
+.ai-evaluation-callout,
+.ai-evaluation-check p,
+.ai-evaluation-glossary,
+.ai-evaluation-references,
+.ai-evaluation-practice p,
+.ai-evaluation-discussion p {
+    color: #6f7282;
+    line-height: 1.7;
+}
+
+.ai-evaluation-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0 24px;
+}
+
+.ai-evaluation-meta b,
+.ai-evaluation-module-card small,
+.ai-evaluation-tabs a,
+.ai-evaluation-primary,
+.ai-evaluation-module-card a,
+.ai-evaluation-pager a,
+.ai-evaluation-actions button,
+.ai-evaluation-complete {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+}
+
+.ai-evaluation-meta b {
+    padding: 9px 12px;
+    background: rgba(246, 51, 146, 0.08);
+    color: #171827;
+    font-size: 0.9rem;
+}
+
+.ai-evaluation-primary,
+.ai-evaluation-module-card a,
+.ai-evaluation-pager a,
+.ai-evaluation-actions button,
+.ai-evaluation-complete {
+    border: 1px solid #f63392;
+    background: #f63392;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ai-evaluation-primary,
+.ai-evaluation-actions button,
+.ai-evaluation-complete {
+    padding: 12px 18px;
+}
+
+.ai-evaluation-progress-card {
+    padding: 22px;
+    background: #fff;
+}
+
+.ai-evaluation-progress-card strong {
+    display: block;
+    margin: 10px 0;
+    font-size: 2rem;
+    color: #171827;
+}
+
+.ai-evaluation-outcomes {
+    margin-top: 18px;
+    padding: 22px 24px;
+}
+
+.ai-evaluation-outcomes ul,
+.ai-evaluation-section ul,
+.ai-evaluation-section ol,
+.ai-evaluation-glossary dl,
+.ai-evaluation-references ol {
+    margin: 12px 0 0;
+    padding-left: 22px;
+}
+
+.ai-evaluation-outcomes li,
+.ai-evaluation-section li,
+.ai-evaluation-references li {
+    margin: 8px 0;
+    color: #394056;
+    line-height: 1.65;
+}
+
+.ai-evaluation-module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.ai-evaluation-module-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+    padding: 22px;
+}
+
+.ai-evaluation-module-card > span {
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.ai-evaluation-module-card h3 {
+    margin: 10px 0;
+    color: #171827;
+}
+
+.ai-evaluation-module-card div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: auto 0 16px;
+}
+
+.ai-evaluation-module-card small {
+    padding: 7px 10px;
+    background: #fff3f9;
+    color: #6f7282;
+}
+
+.ai-evaluation-module-card a {
+    justify-content: center;
+    padding: 10px 14px;
+}
+
+.ai-evaluation-module-card.is-done {
+    border-color: rgba(36, 178, 123, 0.35);
+}
+
+.ai-evaluation-detail {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.ai-evaluation-nav {
+    position: sticky;
+    top: 92px;
+    padding: 18px;
+}
+
+.ai-evaluation-nav > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    color: #f63392;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.ai-evaluation-nav ol {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ai-evaluation-nav li a {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 14px;
+    color: #394056;
+    text-decoration: none;
+}
+
+.ai-evaluation-nav li span {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff3f9;
+    color: #f63392;
+    font-weight: 800;
+}
+
+.ai-evaluation-nav li.active a {
+    background: #fff3f9;
+    color: #171827;
+}
+
+.ai-evaluation-detail-head {
+    padding: 24px;
+}
+
+.ai-evaluation-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0;
+}
+
+.ai-evaluation-tabs a {
+    padding: 10px 14px;
+    border: 1px solid rgba(246, 51, 146, 0.22);
+    background: #fff;
+    color: #6f7282;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.ai-evaluation-tabs a.active {
+    background: #f63392;
+    color: #fff;
+}
+
+.ai-evaluation-activity {
+    padding: 26px;
+    overflow: hidden;
+}
+
+.ai-evaluation-chapter {
+    display: grid;
+    gap: 18px;
+}
+
+.ai-evaluation-chapter-head {
+    padding-bottom: 4px;
+}
+
+.ai-evaluation-chapter-head span {
+    color: #f63392;
+    font-weight: 800;
+}
+
+.ai-evaluation-section,
+.ai-evaluation-callout,
+.ai-evaluation-check,
+.ai-evaluation-glossary,
+.ai-evaluation-references {
+    padding: 20px;
+}
+
+.ai-evaluation-section h3,
+.ai-evaluation-check h3,
+.ai-evaluation-glossary h3,
+.ai-evaluation-references h3 {
+    margin: 0 0 10px;
+    color: #171827;
+}
+
+.ai-evaluation-callout {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+    background: #fff7fb;
+}
+
+.ai-evaluation-callout > i {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #f63392;
+    color: #fff;
+}
+
+.ai-evaluation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.ai-evaluation-grid article {
+    padding: 18px;
+}
+
+.ai-evaluation-grid h4 {
+    margin: 0 0 8px;
+    color: #171827;
+}
+
+.ai-evaluation-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.ai-evaluation-flow span {
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: #fff3f9;
+    color: #171827;
+    font-weight: 700;
+}
+
+.ai-evaluation-flow i {
+    color: #f63392;
+}
+
+.ai-evaluation-glossary dl {
+    display: grid;
+    gap: 10px;
+    padding-left: 0;
+}
+
+.ai-evaluation-glossary dt {
+    color: #171827;
+    font-weight: 800;
+}
+
+.ai-evaluation-glossary dd {
+    margin: 4px 0 0;
+    color: #6f7282;
+}
+
+.ai-evaluation-practice,
+.ai-evaluation-quiz,
+.ai-evaluation-discussion {
+    display: grid;
+    gap: 16px;
+}
+
+.ai-evaluation-practice article {
+    padding: 20px;
+}
+
+.ai-evaluation-practice label,
+.ai-evaluation-discussion label {
+    display: block;
+    margin: 12px 0 8px;
+    color: #171827;
+    font-weight: 700;
+}
+
+.ai-evaluation-practice textarea,
+.ai-evaluation-discussion textarea {
+    width: 100%;
+    min-height: 130px;
+    padding: 14px;
+    border: 1px solid rgba(111, 114, 130, 0.24);
+    border-radius: 16px;
+    color: #171827;
+    resize: vertical;
+}
+
+.ai-evaluation-practice textarea:focus,
+.ai-evaluation-discussion textarea:focus,
+.ai-evaluation-quiz input:focus-visible + span,
+.ai-evaluation-tabs a:focus-visible,
+.ai-evaluation-nav a:focus-visible,
+.ai-evaluation-actions button:focus-visible,
+.ai-evaluation-complete:focus-visible {
+    outline: 3px solid rgba(246, 51, 146, 0.24);
+    outline-offset: 2px;
+}
+
+.ai-evaluation-feedback {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 14px;
+    background: #fff7fb;
+    color: #394056;
+}
+
+.ai-evaluation-quiz fieldset {
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+}
+
+.ai-evaluation-quiz legend {
+    color: #171827;
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+.ai-evaluation-quiz label {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 10px;
+    align-items: start;
+    padding: 12px;
+    border: 1px solid rgba(111, 114, 130, 0.18);
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.ai-evaluation-quiz label.selected {
+    border-color: #f63392;
+    background: #fff3f9;
+}
+
+.ai-evaluation-explanation {
+    margin: 8px 0 0;
+    padding: 12px;
+    border-radius: 14px;
+    background: #f7f8fb;
+    color: #394056;
+}
+
+.ai-evaluation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.ai-evaluation-actions span {
+    color: #6f7282;
+    font-weight: 700;
+}
+
+.ai-evaluation-complete {
+    margin-top: 18px;
+}
+
+.ai-evaluation-pager {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.ai-evaluation-pager a {
+    justify-content: center;
+    padding: 12px 14px;
+}
+
+.ai-evaluation-pager a:first-child {
+    border-color: rgba(246, 51, 146, 0.22);
+    background: #fff;
+    color: #f63392;
+}
+
+.ai-evaluation-loading,
+.ai-evaluation-error {
+    display: grid;
+    place-items: center;
+    min-height: 220px;
+    color: #6f7282;
+}
+
+@media (max-width: 980px) {
+    .ai-evaluation-hero,
+    .ai-evaluation-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-evaluation-nav {
+        position: static;
+    }
+
+    .ai-evaluation-module-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .ai-evaluation-shell {
+        width: min(100% - 24px, 1120px);
+        padding-top: 18px;
+    }
+
+    .ai-evaluation-hero,
+    .ai-evaluation-activity,
+    .ai-evaluation-detail-head {
+        padding: 18px;
+    }
+
+    .ai-evaluation-module-grid,
+    .ai-evaluation-grid,
+    .ai-evaluation-pager {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-evaluation-tabs a,
+    .ai-evaluation-primary,
+    .ai-evaluation-actions button,
+    .ai-evaluation-complete {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .ai-evaluation-callout {
+        grid-template-columns: 1fr;
+    }
+}

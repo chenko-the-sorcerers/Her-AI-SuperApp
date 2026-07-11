@@ -1,5 +1,5 @@
 # Prompt Onboarding untuk AI Agent / Developer Baru
-**Tanggal:** 11 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning, Reasoning Canonical Final, Snapshot Reasoning Lama, Audit Final)
+**Tanggal:** 11 Juli 2026 (Python Final, Quiz UI Polish, Merge Reasoning, Reasoning Canonical Final, Evaluation Canonical, Snapshot Reasoning Lama, Audit Final)
 **Proyek:** HerAI Fellowship SuperApp
 **Branch aktif:** `design`
 
@@ -58,8 +58,8 @@ Konteks terbaru:
   - `git diff --check`
   - `node scripts/check-participant-routes.mjs` -> Total 110, 0 failed
 - Route checker setelah Reasoning canonical: Total 113, 0 failed.
-- Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, Reasoning, CV, NLP.
-- Route scaffold AI Fundamentals aktif: #/participant-ai-evaluation, #/participant-ai-evolution.
+- Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, Reasoning, Evaluation, CV, NLP.
+- Route scaffold AI Fundamentals aktif: #/participant-ai-evolution. Reasoning dan Evaluation sudah aktif final canonical.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
@@ -86,6 +86,7 @@ Konteks terbaru:
 - UX activity Reasoning: latihan menampilkan satu dari 6 skenario dengan tiga textarea dan step navigator; kuis menampilkan satu dari 15 soal dengan answered counter. Source reference harus tetap setelah workspace, tidak boleh dikembalikan ke atas form.
 - Snapshot lengkap baseline lama Reasoning untuk deep research ada di `materi/lama/reasoning.md`. File ini tidak dikompres dan memuat overview, materi, latihan + pembahasan, kuis + kunci + pembahasan, diskusi, dan referensi.
 - Prompt khusus untuk AI penerus setelah materi Reasoning baru selesai dibuat ada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
+- Evaluation AI sudah aktif final canonical di route `#/participant-ai-evaluation`: 6 chapter materi, 15 latihan studi kasus, 24 soal kuis, 6 prompt refleksi, controller `js/frontend/fellow-dashboard/ai-evaluation.js`, dan snapshot `materi/evaluation-ai.md`.
 - Generative AI tetap route scaffold `#/participant-ai-lab-gen`, tetapi manifest sudah diperkaya lewat `COURSE_SCAFFOLDS`: 5 module draft dengan isi `materi`, `latihan`, `kuis`, dan `diskusi`. Belum ada file canonical final untuk GenAI.
 - Smoke test browser terakhir:
   - Python materi: 13 chapter, sidebar, progress, tombol Playground, panel Belajar Aktif.
@@ -247,7 +248,7 @@ Foundation & Core AI
 │   ├── Python untuk AI          -> AKTIF
 │   ├── Konsep AI Modern         -> AKTIF
 │   ├── Reasoning                -> AKTIF FINAL
-│   ├── Evaluation               -> SCAFFOLD AKTIF
+│   ├── Evaluation               -> AKTIF FINAL CANONICAL
 │   └── Evolution of AI          -> SCAFFOLD AKTIF
 ├── Math for AI                  -> AKTIF
 ├── Machine Learning             -> AKTIF FULL (8 chapter, 10 latihan, 24 soal kuis, 8 prompt diskusi)
@@ -298,9 +299,9 @@ Catatan penting:
 - Detail module placeholder memakai query `module` dan `activity`, contoh `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis`.
 - Untuk course/module belum final, jangan buat file canonical `materi.html`, `latihan.html`, `kuis.html`, atau `diskusi.html`. Isi manifest `COURSE_SCAFFOLDS` di `js/frontend/fellow-dashboard/course-placeholder.js` dulu.
 - File final baru dibuat kalau konten benar-benar siap dan route akan dipindahkan dari `course-placeholder.html`.
-- Route scaffold AI Fundamentals yang sudah aktif:
+- Route AI Fundamentals yang perlu dijaga:
   - `#/participant-ai-reasoning`
-  - `#/participant-ai-evaluation`
+  - `#/participant-ai-evaluation` (aktif final canonical, bukan entry aktif `COURSE_SCAFFOLDS`)
   - `#/participant-ai-evolution`
 - Jangan buat folder `course-catalog/`, `ai-fundamental/`, atau `ai-lab/` lagi sebagai path aktif. Itu folder lama/superseded. Category/domain canonical langsung di bawah `pages/frontend/fellow-dashboard/`.
 
@@ -369,7 +370,7 @@ CATATAN RISIKO / ANOMALI YANG PERLU DIJAGA:
 3. Folder lama `ai-fundamental/` dan `ai-lab/` juga bukan path aktif peserta. Konten aktifnya sudah dipindah ke category/domain canonical.
 4. Modul 3a (Konsep AI Modern) sudah aktif untuk materi, latihan, kuis, dan diskusi.
 5. Math for AI sudah aktif dari draft Nazril dengan overview, lesson, latihan, kuis, dan diskusi.
-6. Reasoning sudah punya route final canonical; Evaluation dan Evolution of AI masih punya route scaffold. Jangan balikkan route aktif ke button non-route atau under-development.
+6. Reasoning dan Evaluation sudah punya route final canonical; Evolution of AI masih scaffold. Jangan balikkan route aktif ke button non-route, `COURSE_SCAFFOLDS`, atau under-development.
 7. Generative AI punya file overview draft dan scaffold diperkaya; route utama masih scaffold/placeholder sampai konten final diaktifkan.
 8. Jangan mengarahkan ulang route ML ke under-development; ML sudah aktif full 8 chapter.
 9. Jika mengubah CSS/layout, patuhi AGENTS.md: radius > 0, kontras terbaca, pink sebagai aksen, dan FontAwesome untuk icon.

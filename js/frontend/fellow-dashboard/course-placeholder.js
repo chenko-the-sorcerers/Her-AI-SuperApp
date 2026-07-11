@@ -468,19 +468,6 @@
             overviewHtml: REASONING_OVERVIEW,
             modules: REASONING_MODULES
         },
-        "/participant-ai-evaluation": {
-            title: "Evaluation",
-            category: "AI Fundamentals",
-            icon: "fas fa-clipboard-check",
-            status: "Module scaffold",
-            summary: "Module untuk mengevaluasi output AI dari sisi akurasi, reliability, fairness, benchmark, dan kualitas produk.",
-            modules: modules([
-                ["Evaluation Overview", "Tujuan evaluasi AI, metrik dasar, dan perbedaan evaluasi model dengan evaluasi produk."],
-                ["Benchmark and Test Set", "Cara menyusun dataset uji, rubric, baseline, dan benchmark yang relevan."],
-                ["Reliability and Bias", "Pemeriksaan konsistensi output, bias, hallucination, dan risiko operasional."],
-                ["Evaluation Report", "Format laporan evaluasi yang bisa dipakai tim konten, produk, dan stakeholder."]
-            ])
-        },
         "/participant-ai-evolution": {
             title: "Evolution of AI",
             category: "AI Fundamentals",

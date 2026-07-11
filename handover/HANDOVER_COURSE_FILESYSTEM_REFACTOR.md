@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning final baru dari `materi/baru/Reasoning-baru.md` sudah masuk runtime canonical, snapshot materi lama Reasoning tetap ada, belum push
+**Status:** Reasoning final baru dari `materi/baru/Reasoning-baru.md` dan Evaluation AI canonical sudah masuk runtime, snapshot materi lama Reasoning tetap ada, belum push
 **Checkpoint UX Python terbaru:** `5298a96 fix: link python active labs to focused practice`
 **Checkpoint Reasoning canonical:** `75125a8 feat: finalize reasoning course routes`
 **Checkpoint Reasoning visual:** `7668070 feat: finalize reasoning visual course`
@@ -19,6 +19,38 @@ Checkpoint teknis lengkap folder/runtime Reasoning final ada di `handover/REASON
 ---
 
 ## Update Terbaru Setelah Refactor Filesystem
+
+Update lokal terbaru setelah aktivasi Evaluation AI:
+
+- `#/participant-ai-evaluation` dipindahkan dari `pages/frontend/fellow-dashboard/course-placeholder.html` ke folder canonical:
+
+```text
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-advanced/05-evaluation/
+```
+
+- File canonical Evaluation:
+
+```text
+materi.html
+latihan.html
+kuis.html
+diskusi.html
+chapters/chapter-1.html
+chapters/chapter-2.html
+chapters/chapter-3.html
+chapters/chapter-4.html
+chapters/chapter-5.html
+chapters/chapter-6.html
+```
+
+- Controller runtime: `js/frontend/fellow-dashboard/ai-evaluation.js`.
+- `index.html` mendaftarkan controller Evaluation dan cache buster baru untuk `modules.css` serta `router.js`.
+- `COURSE_SCAFFOLDS` tidak lagi memiliki entry aktif `/participant-ai-evaluation`.
+- Route publik tetap stabil: `#/participant-ai-evaluation`.
+- Reasoning dan Evolution tetap route scaffold melalui `course-placeholder.html`.
+- Snapshot konten non-runtime: `materi/evaluation-ai.md`.
+
+---
 
 Update lokal terbaru setelah checkpoint `c93a5fb`:
 
@@ -367,8 +399,8 @@ Update setelah checkpoint routing/UI terbaru:
 
 - `#/participant-ai-modern` sekarang aktif ke materi Konsep AI Modern di folder canonical.
 - Card `Konsep AI Modern` di `foundation-core-ai/ai-fundamentals-advanced/overview.html` sudah mengarah ke `#/participant-ai-modern`, bukan `#/participant-under-development`.
-- `#/participant-ai-reasoning`, `#/participant-ai-evaluation`, dan `#/participant-ai-evolution` sekarang aktif ke reusable scaffold.
-- Card `Reasoning`, `Evaluation`, dan `Evolution of AI` di overview AI Fundamentals sudah berupa link route scaffold.
+- `#/participant-ai-reasoning` dan `#/participant-ai-evolution` aktif ke reusable scaffold; `#/participant-ai-evaluation` aktif ke folder canonical Evaluation.
+- Card `Reasoning`, `Evaluation`, dan `Evolution of AI` di overview AI Fundamentals sudah berupa link route; Evaluation tidak lagi diarahkan ke scaffold.
 - `course-placeholder.html` sudah memakai tab standar `Materi -> Latihan -> Kuis -> Diskusi`.
 - `COURSE_SCAFFOLDS` sekarang menyimpan metadata lengkap per module: `slug`, `title`, `summary`, `materi`, `latihan`, `kuis`, `diskusi`.
 - Tab activity scaffold non-final memakai query hash pada route yang sama, misalnya:

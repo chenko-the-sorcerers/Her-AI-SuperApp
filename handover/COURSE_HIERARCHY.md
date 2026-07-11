@@ -2,7 +2,7 @@
 
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
-**Status dokumen:** source of truth hierarki katalog course peserta setelah Reasoning final baru dari `materi/baru/Reasoning-baru.md`, Reasoning canonical final, snapshot materi lama Reasoning untuk deep research, refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
+**Status dokumen:** source of truth hierarki katalog course peserta setelah Reasoning final baru dari `materi/baru/Reasoning-baru.md`, Reasoning canonical final, aktivasi canonical Evaluation AI, snapshot materi lama Reasoning untuk deep research, refactor folder final, standardisasi placeholder scaffold, rombak final Pengantar AI, rombak final Python untuk AI, polish UI kuis/code block, merge Reasoning scaffold, dan audit final.
 
 Dokumen ini menjelaskan taxonomy kurikulum HerAI agar tim tidak mencampur istilah category, course, module/chapter, activity, dan specialization track.
 
@@ -66,6 +66,7 @@ Checkpoint final terbaru:
 - Activity final Reasoning tersedia di route `#/participant-ai-reasoning`, `#/participant-ai-reasoning-practice`, `#/participant-ai-reasoning-quiz`, dan `#/participant-ai-reasoning-discussion`.
 - Snapshot konten lama Reasoning untuk deep research berada di `materi/lama/reasoning.md`. Folder `materi/` tetap area handoff/brainstorming, bukan bagian hierarchy produk atau route peserta.
 - Prompt lanjutan setelah materi Reasoning baru selesai dibuat berada di `handover/PROMPT_REASONING_MATERI_BARU.md`.
+- `05 - Evaluation` aktif final canonical di `ai-advanced/05-evaluation/` dengan flow `Materi -> Latihan -> Kuis -> Diskusi`; route publik tetap `#/participant-ai-evaluation`.
 - Dokumen merge khusus Reasoning tetap dipertahankan sebagai referensi: `handover/MERGE_GUIDE_REASONING_TEAM.md`.
 - Tidak ada perubahan folder canonical untuk Python atau Pengantar AI.
 - Finalisasi Reasoning tidak mengubah taxonomy produk; perubahan hanya memindahkan implementasi Reasoning ke folder canonical dan menambah route activity final.
@@ -144,7 +145,7 @@ Ringkasan state kurikulum saat ini:
   - Pengantar AI aktif
   - Python untuk AI aktif
   - Konsep AI Modern aktif untuk materi, latihan, kuis, dan diskusi
-  - Reasoning aktif final canonical; Evaluation dan Evolution of AI scaffold dasar
+  - Reasoning aktif final canonical; Evaluation aktif final canonical; Evolution of AI scaffold dasar
 - Generative AI tetap scaffold, tetapi manifest `COURSE_SCAFFOLDS` sudah diperkaya dengan 5 module draft dan activity `Materi -> Latihan -> Kuis -> Diskusi` per module.
 - Math for AI aktif final dan tidak lagi masuk manifest scaffold.
 - Machine Learning aktif final dengan 8 chapter, latihan, kuis, dan diskusi.
@@ -422,7 +423,7 @@ Source UI utama: `pages/frontend/fellow-dashboard/modules.html`.
 
 | Course | Label | Route UI | Status | Path aktif / catatan |
 |---|---|---|---|---|
-| AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif + scaffold | `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html`; Reasoning aktif final canonical, Evaluation/Evolution route memakai scaffold dasar |
+| AI Fundamentals & Advanced | Core | `#/participant-ai-fundamentals` | Sebagian aktif + scaffold | `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/overview.html`; Reasoning dan Evaluation aktif canonical, Evolution route memakai scaffold dasar |
 | Math for AI | Foundation | `#/participant-ai-lab-math` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/math-for-ai/` |
 | Machine Learning | Core | `#/participant-ai-lab-ml` | Aktif | `pages/frontend/fellow-dashboard/foundation-core-ai/machine-learning/` |
 | Deep Learning | Core | `#/participant-ai-lab-deep-learning` | Scaffold aktif | Route memakai `course-placeholder.html` |
@@ -436,7 +437,7 @@ AI Fundamentals & Advanced berisi module berikut:
 | Python untuk AI | Aktif | `#/participant-ai-python` |
 | Konsep AI Modern | Aktif | `#/participant-ai-modern` |
 | Reasoning | Aktif final canonical | `#/participant-ai-reasoning` |
-| Evaluation | Scaffold aktif | `#/participant-ai-evaluation` |
+| Evaluation | Aktif final canonical | `#/participant-ai-evaluation` |
 | Evolution of AI | Scaffold aktif | `#/participant-ai-evolution` |
 
 Machine Learning berisi chapter berikut:

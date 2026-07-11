@@ -25,6 +25,45 @@ handover/REASONING_FINAL_CHECKPOINT.md
 
 ---
 
+## Checkpoint Lokal Terbaru - Evaluation AI Canonical Final
+
+Commit lokal:
+`PENDING feat: activate canonical ai evaluation module`
+
+Yang dilakukan:
+- Mengaktifkan `#/participant-ai-evaluation` sebagai module final canonical di `Foundation & Core AI -> AI Fundamentals & Advanced -> AI Advanced -> 05 - Evaluation`.
+- Memindahkan route Evaluation dari `course-placeholder.html` ke folder canonical `05-evaluation/` tanpa mengubah route publik.
+- Menambahkan flow runtime Evaluation: `Materi -> Latihan -> Kuis -> Diskusi` dengan controller khusus `js/frontend/fellow-dashboard/ai-evaluation.js`.
+- Mengisi 6 chapter materi dari `deep-research-report.md` dalam bahasa pembelajaran, bukan salinan mentah laporan.
+- Menambahkan 15 latihan studi kasus, 24 soal kuis, 6 prompt refleksi, progress materi, penyimpanan localStorage, dan snapshot konten `materi/evaluation-ai.md`.
+- Menonaktifkan Evaluation dari manifest `COURSE_SCAFFOLDS`; Reasoning dan Evolution tetap scaffold.
+
+File penting:
+- `pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-advanced/05-evaluation/`
+- `js/frontend/fellow-dashboard/ai-evaluation.js`
+- `js/router.js`
+- `index.html`
+- `css/frontend/fellow-dashboard/modules.css`
+- `js/frontend/fellow-dashboard/course-placeholder.js`
+- `materi/evaluation-ai.md`
+
+Verifikasi:
+- `node --check js/router.js` -> passed
+- `node --check js/frontend/fellow-dashboard/course-placeholder.js` -> passed
+- `node --check js/frontend/fellow-dashboard/ai-evaluation.js` -> passed
+- `node scripts/check-participant-routes.mjs` -> Total: 110 | 0 failed
+- `git diff --check` -> passed
+
+Catatan risiko:
+- Browser smoke test manual belum berhasil dijalankan karena server statis lokal tidak stay alive pada sesi ini; route checker dan syntax check sudah lulus.
+- Sisa helper rich Evaluation lama di `course-placeholder.js` tidak lagi aktif karena route Evaluation sudah keluar dari `COURSE_SCAFFOLDS`.
+
+Next step:
+- Review UI `#/participant-ai-evaluation`, activity query `?activity=latihan`, `?activity=kuis`, dan `?activity=diskusi`.
+- Jika stabil, lanjutkan module berikutnya sesuai prioritas user tanpa mengubah fitur final existing.
+
+---
+
 ## Checkpoint Final Terbaru - Reasoning Materi Baru
 
 Status terbaru 11 Juli 2026 setelah implementasi materi final baru Reasoning:
@@ -679,7 +718,7 @@ Smoke test browser terakhir:
 - `#/participant-ai-lab-gen` render overview Generative AI scaffold.
 - `#/participant-ai-lab-gen?activity=latihan` render tab Latihan.
 - `#/participant-ai-lab-gen?module=prompting-workflow&activity=kuis` render detail module Prompting Workflow + tab Kuis.
-- `#/participant-ai-reasoning`, `#/participant-ai-evaluation`, dan `#/participant-ai-evolution` render scaffold, bukan 404.
+- `#/participant-ai-reasoning` dan `#/participant-ai-evolution` render scaffold; `#/participant-ai-evaluation` render module final canonical, bukan 404.
 - Regression route final `#/participant-ai-modern`, `#/participant-ai-lab-math`, `#/participant-ai-lab-ml`, dan `#/participant-ai-python` tetap render.
 
 ---
@@ -808,7 +847,7 @@ Konteks terbaru:
 - Audit final memperbaiki mini project Python latihan nomor 7 dan polish CSS sesuai AGENTS.
 - Route checker terakhir setelah audit final: Total 110, 0 failed.
 - Course final yang harus dijaga: AI Modern, Math for AI, Machine Learning, Python untuk AI, Pengantar AI, CV, NLP.
-- Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning, #/participant-ai-evaluation, #/participant-ai-evolution.
+- Route scaffold AI Fundamentals aktif: #/participant-ai-reasoning dan #/participant-ai-evolution. Evaluation aktif final canonical di #/participant-ai-evaluation.
 - Course/module belum final harus diisi lewat COURSE_SCAFFOLDS di js/frontend/fellow-dashboard/course-placeholder.js.
 - Jangan buat file materi.html, latihan.html, kuis.html, diskusi.html untuk course/module yang belum final.
 - Jangan buat ulang folder course-catalog, ai-fundamental, atau ai-lab sebagai path aktif.
