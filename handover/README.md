@@ -1,8 +1,8 @@
 # HerAI Handover Index
 
-**Updated:** 12 Juli 2026
-**Pre-delivery snapshot:** `design` ahead 30 commit dari `origin/design` sebelum commit handover ini.
-**Delivery:** user mengizinkan hasil checkpoint ini dipush hanya ke branch `design`. AI berikutnya tetap wajib mengecek status aktual; izin tersebut tidak otomatis berlaku untuk push baru.
+**Updated:** 12 Juli 2026 (Final, 19:00 WIB)
+**Current HEAD:** `579ace8` — sudah push ke `origin/design`
+**Branch:** `design` — sinkron dengan remote
 
 ## Urutan Baca Wajib untuk AI Baru
 
@@ -36,16 +36,18 @@
 |---|---|---|---|
 | Reasoning | 6 topik, 17 latihan, 26 kuis, 4 diskusi; canonical complete | `ai-reasoning.js` (2646 baris) | `20260712-reasoning-final-v35` |
 | Konsep AI Modern | 4 topik, 13 latihan, 20 kuis, 4 diskusi; complete v4 | `ai-modern.js` (1181 baris) | `20260712-ai-modern-final-v4` |
-| Python untuk AI | 8 topik, 8 latihan, 10 kuis, 4 diskusi; pipeline OK, enrichment belum parity | `ai-python.js` (1995 baris) | `20260712-python-v8` |
-| Shared course CSS | semua module course | `modules.css` (10064 baris) | `20260712-ai-modern-final-v4` |
+| Python untuk AI | 8 topik + beginner enrichment, 12 latihan, 20 kuis, 4 diskusi; COMPLETE parity | `ai-python.js` (1994 baris) | `20260712-python-v9` |
+| Shared course CSS | semua module course | `modules.css` (12051 baris) | `20260712-python-v9` |
+| Evaluation | Materi + styling polish; 1 route | `ai-evaluation.js` (363 baris) | — |
+| Evolution of AI | Materi + styling polish; 1 route | `ai-evolution.js` (370 baris) | — |
 
 ## Roadmap Berikutnya
 
-1. Jadikan Konsep AI Modern v4 sebagai regression baseline; jangan rebuild tanpa bug terverifikasi.
-2. Migrasikan/finalkan Evaluation memakai Universal Course Standard.
-3. Migrasikan/finalkan Evolution of AI dengan standar yang sama.
-4. Kembali enrich Python sampai parity dengan flow pemula terbaru.
-5. Migrasikan AI Fundamentals/Pengantar AI.
+1. ✅ Jadikan Konsep AI Modern v4 sebagai regression baseline.
+2. ✅ Selesaikan Python enrichment sampai parity dengan Modern.
+3. 🔄 Finalkan Evaluation ke empat route dan Universal Course Standard.
+4. 🔄 Finalkan Evolution of AI ke empat route dan standard yang sama.
+5. ⏳ Migrasikan AI Fundamentals/Pengantar AI.
 
 ## Dokumen Historis
 
@@ -58,6 +60,10 @@ File berikut tetap disimpan sebagai riwayat keputusan atau prompt tugas lama. St
 - `PROMPT_REASONING_MATERI_BARU.md`
 - `PROMPT_REASONING_NAZRIL_AUDIT_FIX.md`
 - `PROMPT_REASONING_NAZRIL_CANONICAL.md`
+
+Dokumen baru dari tim:
+- `POLISH_EVALUATION_EVOLUTION_20260712.md` — styling polish log
+- `PRODUCTION_ROUTE_FREEZE_20260712.md` — route freeze log
 
 ## Aturan Singkat yang Tidak Boleh Dilanggar
 

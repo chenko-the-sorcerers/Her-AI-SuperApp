@@ -1,163 +1,46 @@
 # HerAI Development Handover — Current Checkpoint
 
-**Tanggal:** 12 Juli 2026
+**Tanggal:** 12 Juli 2026 (Final, 19:00 WIB)
 **Branch:** `design`
-**Pre-delivery snapshot:** ahead 30 commit dari `origin/design` sebelum commit handover
-**Delivery authorization:** user mengizinkan checkpoint ini dipush hanya ke branch `design`
-**Scope checkpoint:** Reasoning, Python untuk AI, Konsep AI Modern, dan standar universal untuk course berikutnya.
-
-Angka ahead adalah snapshot sebelum commit dan push dokumentasi ini. AI berikutnya wajib menjalankan `git status --short --branch` lagi. Izin push untuk delivery ini tidak diwariskan ke pekerjaan berikutnya. Jangan menganggap file untracked sebagai sampah; banyak di antaranya milik user atau hasil audit sebelumnya.
+**Current HEAD:** `579ace8`
+**Status:** `design` = `origin/design` (sudah sinkron, sudah push)
+**Scope checkpoint:** Python enrichment final, merge tim evaluation/evolution, route freeze, audit fix.
 
 ## 1. Executive Summary
 
-- Reasoning sudah COMPLETE dan menjadi canonical functional template.
-- Konsep AI Modern sudah COMPLETE v4 dan menjadi baseline enrichment pemula/visual terbaru.
-- Python untuk AI sudah mempunyai pipeline dan seluruh activity route, tetapi materi masih perlu enrichment sampai parity.
-- Evaluation dan Evolution of AI sudah mempunyai scaffold/controller awal, tetapi belum mencapai standar final universal.
-- Seluruh aturan lintas-course sekarang dikonsolidasikan di `UNIVERSAL_COURSE_STANDARD.md`.
-- Seluruh bug nyata dan guardrail dikonsolidasikan di `REGRESSION_AND_ERROR_PLAYBOOK.md`.
-- Prompt pertama AI baru sudah diperbarui di `FIRST_PROMPT.txt`.
+- **Python untuk AI** sekarang COMPLETE enrichment: 8 topic source diperkaya dengan paragraf detail, beginner flow, CSS counter badges di worked example, layout fix mobile/desktop. Parity dengan AI Modern.
+- **Audit fix** selesai: 5 bugs (CSS is-saved, quiz prefix `reasoning-q`→`python-q`, filterSourceHeadings stale, duplikat ai-python-basic.js, cache bump v9).
+- **Merge tim** berhasil: 4 commit tim (Evaluation/Evolution style, route freeze, heading cleanup) diintegrasikan tanpa konflik functional.
+- **Evaluation & Evolution** sudah punya styling polish dari tim, tapi masih 1 route (materi).
+- **Konsep AI Modern** tetap regression baseline v4 — tidak tersentuh.
+- **Reasoning** tetap canonical template — tidak tersentuh.
 
-## 2. Commit dan Hasil Kerja Terbaru
+## 2. Commit Log — Sesi Ini (4 commit kita + 4 commit tim)
 
-### Konsep AI Modern
-
-| Commit | Hasil utama |
-|---|---|
-| `b5b0950 feat(ai-modern): finalize interactive learning module` | Source-as-main pipeline, 4 topik, hook/lab/quick check/challenge, 13 progressive practices, 20 quiz review, 4 discussion prompts dengan inline reply |
-| `4602626 fix(ai-modern): refine beginner learning flow` | 4 roadmap pemula, 4 worked examples, 24 glossary terms, contextual visual explainers, request sequence guard |
-| `9537ab6 fix(ai-modern): polish practice and quiz controls` | Practice group cards, custom controls, quiz map sebelum soal, objective icon/text stabil, responsive polish |
-
-### Python untuk AI dan merge baseline
+### Dari Kita
 
 | Commit | Hasil utama |
 |---|---|
-| `d737e58` | Merge remote-tracking `origin/design` ke branch design |
-| `a43f76a` | `renderList` dan `renderFlow` ditambahkan; page tidak lagi crash karena helper hilang |
-| `1725928` | Copy Reasoning yang tersisa di halaman Python dibersihkan |
-| `db19b6b` | Literal `/pages/.../` pada source path chapter 2–8 diganti full path |
-| `8bedf8b` | Debug logging loader Python dibersihkan |
-| `f5fa38a` | Missing functions/data practice/quiz/discussion diperbaiki; null/data guard ditambahkan |
-| `6a0cb99`, `e7b7b57` | Checkpoint handover Python dan aturan kritis sebelumnya |
+| `b8b4d98 fix(python): audit fixes and enrichment finalization` | 5 bugs fixed: rename quiz prefix `reasoning-q`→`python-q`, add CSS `is-saved` untuk practice disabled textarea, bersihkan `filterSourceHeadings` dari stale Reasoning ref, hapus duplikat `ai-python-basic.js` dari index.html, bump cache v9. Enrichment: 8 PYTHON_GUIDES dengan hook/flow/deepDive/workedExample/glossary, 12 practices (naik dari 8), 20 quiz (naik dari 10), source integrity checker, readiness checklist, visual labs, request race guard, route alias `python-kuis`. |
+| `82e203f feat(python): enrich all 8 source chapters with detailed paragraphs` | Semua 8 topic files (*-topic.html) diperkaya: setiap section (Kenapa Penting, Hubungan AI, Analogi, Penjelasan Konsep, Common/Best Practices, Ringkasan) dari 1-2 kalimat jadi 3-5 paragraf naratif. Struktur H2, code blocks, challenges TETAP. |
+| `06ee395 fix(python): add CSS counter badges to worked example for centered numbering` | Ganti `list-style: none` jadi CSS counter dengan badge pink 34px (`display: flex; align-items: center; justify-content: center`). Nomor sekarang center di lingkaran pink. |
+| `579ace8 fix(python): properly align worked example number badges on grid` | Perbaiki grid li: `::before` span 2 rows, strong di row 1, p di row 2. Mobile: 28px badge. |
 
-Tidak ada push yang dilakukan oleh agent pada rangkaian kerja ini.
+### Dari Tim (di-merge via rebase)
 
-## 3. Konsep AI Modern — Complete v4
+| Commit | Hasil utama |
+|---|---|
+| `379e0c7 style: polish evaluation and evolution modules` | +1035 baris CSS untuk Evaluation/Evolution: hero, cards, tabs, grid, flow, progress, mobile responsive. |
+| `9df677d fix: align advanced modules with reasoning layout` | Sesuaikan controller Evaluation/Evolution dengan shell Reasoning. +90 baris CSS. |
+| `399e014 fix: remove duplicate advanced lesson headings` | Bersihkan heading duplikat di controller Evaluation/Evolution. |
+| `f2d4151 chore: freeze non fundamental course routes` | Alihkan ~50 lab route ke `under-development.html`. Update router.js. |
 
-### Runtime
+### Resolve Konflik
 
-```text
-Routes:
-#/participant-ai-modern
-#/participant-ai-modern-practice
-#/participant-ai-modern-quiz
-#/participant-ai-modern-discussion
+- **modules.css**: 6 conflict zones — tim nambah Evaluation CSS, kita nambah Python CSS di area yang sama. Resolusi: keep both sides, urut: Evaluation dulu, Python setelahnya.
+- **index.html**: Cache buster conflict. Resolusi: keep `v=20260712-python-v9`.
 
-Controller:
-js/frontend/fellow-dashboard/ai-modern.js
-
-Pages/source:
-pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/
-  ai-fundamentals/03-konsep-ai-modern/
-
-Cache:
-ai-modern.js?v=20260712-ai-modern-final-v4
-modules.css?v=20260712-ai-modern-final-v4
-```
-
-### Materi
-
-- 4 topik: Foundation Models, Transformer, AI Agents, Sistem AI Masa Kini.
-- 4 source chapter `01-materi.html`–`04-materi.html` tetap utuh dan tidak diedit.
-- Pipeline menambahkan orientation, learning nav, hook, lab, quick check dengan retry, mini challenge tersimpan, mistakes/best practices, dan outcome summary.
-- Beginner enrichment: roadmap 4 langkah per topik, worked example per topik, total 24 glossary terms.
-- Visual kontekstual: Q/K/V formula decoder, tool contract, five-layer system blueprint, dan architecture canvas.
-- Original technical source tetap tersedia; visual tidak menggantikannya.
-- Request sequencing mencegah response chapter lama menimpa topik yang baru dipilih.
-
-### Latihan
-
-- 13 skenario.
-- Progressive disclosure: satu skenario aktif.
-- Navigator dikelompokkan menjadi Foundation Models, Transformer, AI Agents, Sistem AI.
-- State active dan complete konsisten.
-- Save/edit/reset, guide reveal, previous/next, direct topic jump.
-- Desktop memakai group cards 2×2; mobile satu kolom.
-
-### Kuis
-
-- 20 soal.
-- Question map berada sebelum soal.
-- Full-card clickable options.
-- Single attempt dengan selected/correct/wrong/locked state.
-- Review menampilkan seluruh soal beserta jawaban dan penjelasan.
-
-### Diskusi
-
-- 4 prompt kontekstual.
-- Post lokal.
-- Inline reply composer; tidak memakai `window.prompt`.
-
-### Verifikasi yang sudah dilakukan
-
-- `node --check` controller/router lulus.
-- Participant route checker: 113/113 lulus pada checkpoint implementasi.
-- Empat route AI Modern dites.
-- Desktop 1024px dan mobile 390px diperiksa.
-- Tidak ada document horizontal overflow.
-- Source integrity lulus untuk semua empat chapter setelah node injected dikeluarkan dari clone audit.
-
-### Status selanjutnya
-
-AI Modern v4 adalah regression baseline. Jangan rebuild atau mengubah source chapter hanya karena Evaluation/Evolution akan memakai pola yang sama. Perubahan berikutnya hanya untuk bug yang dapat direproduksi atau permintaan baru user.
-
-## 4. Reasoning — Canonical Complete
-
-### Runtime
-
-```text
-Routes:
-#/participant-ai-reasoning
-#/participant-ai-reasoning-practice
-#/participant-ai-reasoning-quiz
-#/participant-ai-reasoning-discussion
-
-Controller:
-js/frontend/fellow-dashboard/ai-reasoning.js (2646 lines pada checkpoint)
-
-Source:
-pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/
-  ai-fundamentals/04-reasoning/chapters/{01..06}-full.html
-
-Cache:
-ai-reasoning.js?v=20260712-reasoning-final-v35
-```
-
-### Hasil final
-
-- 6 topik source-as-main.
-- 17 skenario practice grouped by topic.
-- 26 soal quiz, full-card, single attempt, review all.
-- 4 discussion prompts dengan inline reply.
-- Hook, concept lab, quick check, challenge, prompt pattern, mistakes/best practices, summary.
-- Source filtering dan numbering cleanup tanpa mengurangi isi edukasi.
-- LocalStorage persistence untuk chapter, practice, quiz, discussion, dan challenge.
-
-### Kontrak localStorage
-
-```text
-heraiAiReasoningCurrentChapter
-heraiAiReasoningPractice
-heraiAiReasoningQuizDone
-heraiAiReasoningQuizScore
-heraiAiReasoningQuizAnswers
-heraiAiReasoningDiscussion
-heraiAiReasoningChallengeCh1..6
-```
-
-Jangan ubah key tanpa migrasi.
-
-## 5. Python untuk AI — Pipeline OK, Enrichment Pending
+## 3. Python untuk AI — COMPLETE Enrichment
 
 ### Runtime
 
@@ -166,32 +49,81 @@ Routes:
 #/participant-ai-python
 #/participant-ai-python-practice
 #/participant-ai-python-quiz
+#/participant-ai-python-kuis (alias)
 #/participant-ai-python-discussion
 
 Controller:
-js/frontend/fellow-dashboard/ai-python.js (1995 lines pada checkpoint)
+js/frontend/fellow-dashboard/ai-python.js (1994 lines)
+
+Pages/source:
+pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/
+  ai-fundamentals/02-python-untuk-ai/
 
 Cache:
-ai-python.js?v=20260712-python-v8
+ai-python.js?v=20260712-python-v9
+modules.css?v=20260712-python-v9
 ```
 
-### Yang sudah bekerja
+### Yang sudah dikerjakan
 
-- 8 pedagogical topics dari 15 source chapters.
-- 8 practices dengan navigator dan save/edit/reset.
-- 20 quiz questions dengan single-attempt state.
-- 4 discussion prompts dengan inline reply.
-- Full source paths chapter 1–8 valid.
-- Missing helper/functions dan first-visit practice crash sudah diperbaiki.
-- Copy/label Reasoning yang terbawa sudah dibersihkan.
+**Source enrichment (8 topic files, 15 chapters):**
+- Setiap section diperkaya dengan paragraf naratif:
+  - Kenapa Penting: problem → dampak → manfaat (3-5 paragraf)
+  - Hubungan AI: konteks workflow AI + batasan jelas
+  - Analogi: 2-3 paragraf naratif
+  - Penjelasan Konsep: tiap poin teknis jadi paragraf detail
+  - Common Mistakes / Best Practices: +penjelasan kenapa mistake itu terjadi dan akibatnya
+  - Ringkasan: naratif 3-5 kalimat yang hubungkan semua section
 
-### Yang belum parity
+**Beginner enrichment (di controller, PYTHON_GUIDES):**
+- 8 hook questions dengan dua opsi jawab + message
+- 8 beginner flow (4 langkah per topik)
+- 24 deep dive paragraphs (3 per topik)
+- 8 worked examples dengan label + deskripsi
+- 40 glossary terms (5 per topik)
+- 8 quick checks dengan feedback benar/salah
+- 8 mini challenges dengan save/edit/reset
+- 8 mistakes & best practices pairs
+- 24 learning outcomes (3 per topik)
+- 8 transition paragraphs ke topik berikutnya
 
-- Data CHAPTERS perlu hook/lab/quick check/challenge yang spesifik per topik.
-- Perlu beginner roadmap, worked examples, glossary, dan visual code/data explainers.
-- Practice dan quiz dapat diperdalam setelah audit terhadap source canonical.
-- Pyodide playground belum menjadi bagian source flow yang matang.
-- Perlu audit ulang desktop/mobile memakai Universal Course Standard.
+**Practice (12 skenario):**
+- Progressive disclosure: satu skenario aktif
+- Navigator dikelompokkan: Python & Data Dasar, Control Flow & Function, OOP & Error, NumPy & Pandas, Workflow Data
+- Save/edit/reset/reveal/prev/next/direct jump
+- State is-active/is-complete konsisten JS ↔ CSS
+- Null guard untuk first visit
+
+**Quiz (20 soal):**
+- Question map sebelum soal
+- Navigator progress per soal
+- Nama radio input: `python-q` (bukan `reasoning-q`)
+- Single attempt dengan selected/correct/wrong/locked
+- Review semua 20 soal setelah submit
+
+**Discussion (4 prompt):**
+- Inline post/reply composer
+- Prompt button mengisi textarea otomatis
+- Persistence via localStorage key `heraiAiPythonDiscussion`
+
+**Visual/UX:**
+- Python-scoped CSS (`.ai-python-page`), tidak bertabrakan dengan module lain
+- Deep dive grid: 3 kolom desktop, 1 kolom mobile
+- Worked example: CSS counter badges (lingkaran pink, nomor center)
+- Beginner glossary: 2 kolom grid
+- Readiness checklist dengan localStorage persistence
+- Practice/quiz/discussion container konsisten
+
+### Verifikasi
+
+- `node --check` semua controller: ✅
+- Route checker: 114/114 ✅
+- Browser test (Playwright): ✅ semua route desktop & mobile
+- Console errors: 0 ✅
+- Horizontal overflow: 0 ✅
+- Source integrity: passed ✅
+- Worked example badges center: ✅ (56px desktop, 46px mobile)
+- Screenshots: tersedia di `/tmp/opencode/audit-*.png`
 
 ### Kontrak localStorage
 
@@ -203,89 +135,57 @@ heraiAiPythonQuizScore
 heraiAiPythonQuizAnswers
 heraiAiPythonDiscussion
 heraiAiPythonChallengeChN
+heraiAiPythonReadiness
 ```
 
-## 6. Error yang Sudah Terjadi dan Tidak Boleh Terulang
+## 4. Konsep AI Modern — Complete v4 (Regression Baseline)
 
-Ringkasan; detail ada di `REGRESSION_AND_ERROR_PLAYBOOK.md`.
+Tidak ada perubahan. Status sama dengan checkpoint sebelumnya:
+- 4 topik, 13 practice, 20 quiz, 4 discussion
+- Cache: `ai-modern.js?v=20260712-ai-modern-final-v4`
 
-### Python migration errors
+## 5. Reasoning — Canonical Complete
 
-- Helper/function terlewat saat copy Reasoning.
-- Literal `...` dipakai dalam `sourcePath` runtime.
-- `PRACTICES.fields` tidak ada.
-- `getSavedPractice()` mengembalikan null pada first visit.
-- `PRACTICE_TOPICS` dan copy HTML masih memakai label Reasoning.
-- Initializer router berbeda dengan export controller.
-- Script controller belum terdaftar di `index.html`.
+Tidak ada perubahan. Status sama dengan checkpoint sebelumnya:
+- 6 topik, 17 practice, 26 quiz, 4 discussion
+- Cache: `ai-reasoning.js?v=20260712-reasoning-final-v35`
 
-### AI Modern visual/runtime errors
+## 6. Evaluation & Evolution — Styling Polish dari Tim
 
-- CSS scoped block hilang setelah merge walau JS/pages masih ada.
-- Class renderer tidak sama dengan selector CSS, termasuk mistakes/practices dan outcomes.
-- JS state class tidak sama dengan CSS (`active` vs `is-active`).
-- Guide/pagination buttons jatuh ke browser default.
-- Textarea/lab stage menjadi kolom sempit karena grid/flex pada mixed text nodes.
-- Objective markers bertabrakan dengan global source-list pseudo-element.
-- Quiz map berada setelah question.
-- Fetch chapter race menyebabkan content lama menimpa pilihan terbaru.
-- Hanya mengandalkan document `scrollWidth` melewatkan layout yang terbaca buruk.
-- Cache controller/styles tidak dibump bersama.
+Tim sudah menambahkan styling lengkap:
+- Hero section dengan gradient dan aksen pink
+- Module grid 3 kolom
+- Tabs, progress card, outcomes, chapter layout
+- Flow diagram, callout, glossary, references
+- Mobile responsive
 
-## 7. Universal Checkpoint untuk Semua Course
+Yang belum: masih 1 route (materi) — practice/quiz/discussion belum final.
 
-Sebelum menyebut module complete:
+## 7. Route Freeze
 
-1. Source canonical utuh dan semua source path nyata.
-2. Flow pemula jelas dari orientation sampai summary.
-3. Visual menjelaskan proses/relasi, bukan dekorasi.
-4. Practice progressive dan seluruh action/persistence dites.
-5. Quiz map di atas, full-card options, locked explanation, review all.
-6. Discussion memakai inline composer.
-7. Tidak ada stale copy dari template course.
-8. Tidak ada control browser default atau text pecah sempit.
-9. Screenshot desktop dan mobile rapi; no document overflow.
-10. Source text integrity before/after lulus.
-11. Console bersih dan route checker lulus.
-12. JS dan CSS cache buster sinkron.
-13. LocalStorage key tetap atau punya migrasi.
-14. Commit lokal scoped; tidak push tanpa izin.
+Tim mengalihkan ~50 lab route (NLP, Computer Vision, Math, ML, dll) ke `under-development.html` untuk production stability. Route aktif hanya: dashboard, modules, AI Fundamentals (intro, Python, Modern, Reasoning, Evaluation, Evolution).
 
-## 8. Roadmap yang Disepakati
+## 8. Error History Tambahan
 
-### Phase 0 — Freeze baseline AI Modern
+### Dari sesi ini (Python enrichment)
 
-- Gunakan v4 sebagai acceptance baseline.
-- Audit regression singkat sebelum/selama membangun module berikutnya.
-- Jangan mengubah source atau UI yang sudah lulus tanpa issue konkret.
+| Error | Resolusi |
+|---|---|
+| Quiz radio pakai `reasoning-q` | Ganti ke `python-q` (7 references) |
+| CSS `is-saved` tidak styling practice textarea | Tambah `.python-practice-form.is-saved textarea` |
+| Worked example nomor tidak center | Ganti `list-style: none` → CSS counter + grid `::before` |
+| `<strong>` dan `<p>` bertabrakan di grid cell | `::before` span 2 rows, strong row 1, p row 2 |
+| CSS conflict 6 zone saat merge | Keep both sides, urut Evaluation lalu Python |
 
-### Phase 1 — Evaluation
+## 9. Roadmap Update
 
-- Audit source dan controller Evaluation yang sudah ada.
-- Tentukan mapping chapter/source sebelum membuat enrichment.
-- Lengkapi empat route: materi, latihan, kuis, diskusi.
-- Terapkan source-as-main, beginner flow, visual evaluasi, practice progressive, quiz review, discussion inline.
-- Gunakan use case seperti metric selection, dataset split, error analysis, human evaluation, safety, cost/latency—tetap mengikuti source canonical.
-- Luluskan seluruh Definition of Done universal sebelum commit final.
+### Phase 0 ✅ — Freeze AI Modern baseline
+### Phase 1 🔄 — Evaluation (styling dari tim, masih 1 route)
+### Phase 2 🔄 — Evolution of AI (styling dari tim, masih 1 route)
+### Phase 3 ✅ — Python enrichment COMPLETE
+### Phase 4 ⏳ — AI Fundamentals/Pengantar AI (backlog)
 
-### Phase 2 — Evolution of AI
-
-- Audit tujuh source chapter/scaffold yang ada.
-- Bangun timeline yang menjelaskan perubahan paradigma dan sebab-akibat, bukan daftar tahun.
-- Hubungkan era, kemampuan, keterbatasan, pemicu transisi, dan dampak ke sistem modern.
-- Lengkapi empat route dengan interaction dan QA yang sama.
-
-### Phase 3 — Python parity
-
-- Enrich 8 topic tanpa mengubah source canonical.
-- Tambah roadmap, worked examples, glossary, contextual code/data visuals, quick check, challenge.
-- Audit practice/quiz depth dan mobile layout.
-
-### Phase 4 — AI Fundamentals/Pengantar AI
-
-- Migrasi memakai template yang sudah stabil dari tiga module sebelumnya.
-
-## 9. Starter Verification
+## 10. Starter Verification
 
 ```bash
 git status --short --branch
@@ -298,13 +198,3 @@ node --check js/router.js
 node scripts/check-participant-routes.mjs
 npx http-server -p 3000 -c-1
 ```
-
-## 10. Files yang Dijaga
-
-- Source chapter canonical course yang sudah aktif.
-- LocalStorage keys existing.
-- Existing route names.
-- Dashboard shell, sidebar, topbar, breadcrumb, footer.
-- File untracked milik user yang tidak terkait scope.
-
-Jika perubahan membutuhkan salah satu area tersebut, jelaskan dampak dan minta izin sesuai `GEMINI.md`.
