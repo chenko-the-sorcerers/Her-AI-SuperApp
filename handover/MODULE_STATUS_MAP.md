@@ -9,7 +9,7 @@
 |---|---|---|---|---|---|---|
 | Reasoning | `participant-ai-reasoning*` | 6 topik final | 17 progressive | 26 + review all | 4 + inline reply | COMPLETE, canonical functional template |
 | Konsep AI Modern | `participant-ai-modern*` | 4 topik + beginner enrichment | 13 progressive | 20 + review all | 4 + inline reply | COMPLETE v4, visual/beginner baseline |
-| Python untuk AI | `participant-ai-python*` | 8 topik load | 8 progressive | 10 single attempt | 4 + inline reply | Pipeline OK; enrichment pending |
+| Python untuk AI | `participant-ai-python*` | 8 topik + beginner enrichment | 12 progressive | 20 single attempt | 4 + inline reply | Pipeline OK + enrichment partial; parity ongoing |
 | AI Fundamentals/Pengantar AI | `participant-ai-intro*` | Belum migrasi universal | Belum final | Belum final | Belum final | Backlog |
 | Evaluation | `participant-ai-evaluation` saat ini | Scaffold/source awal | Belum universal | Belum universal | Belum universal | NEXT 1 |
 | Evolution of AI | `participant-ai-evolution` saat ini | Scaffold/source awal | Belum universal | Belum universal | Belum universal | NEXT 2 |

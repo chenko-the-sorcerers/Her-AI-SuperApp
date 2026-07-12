@@ -179,7 +179,7 @@ ai-python.js?v=20260712-python-v8
 
 - 8 pedagogical topics dari 15 source chapters.
 - 8 practices dengan navigator dan save/edit/reset.
-- 10 quiz questions dengan single-attempt state.
+- 20 quiz questions dengan single-attempt state.
 - 4 discussion prompts dengan inline reply.
 - Full source paths chapter 1–8 valid.
 - Missing helper/functions dan first-visit practice crash sudah diperbaiki.

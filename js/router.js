@@ -44,6 +44,7 @@ const router = {
         "/participant-ai-python": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/materi.html",
         "/participant-ai-python-practice": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/latihan.html",
         "/participant-ai-python-quiz": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/kuis.html",
+        "/participant-ai-python-kuis": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/kuis.html",
         "/participant-ai-python-discussion": "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/02-python-untuk-ai/diskusi.html",
         
         "/participant-under-development": "/pages/frontend/fellow-dashboard/under-development.html",
@@ -363,6 +364,7 @@ const router = {
             "/participant-ai-python",
             "/participant-ai-python-practice",
             "/participant-ai-python-quiz",
+            "/participant-ai-python-kuis",
             "/participant-ai-python-discussion",
             "/participant-ai-modern",
             "/participant-ai-modern-practice",
@@ -624,7 +626,7 @@ const router = {
                     if (path === "/participant-ai-python-practice" && typeof window.initAiPythonPractice === "function") {
                         window.initAiPythonPractice();
                     }
-                    if (path === "/participant-ai-python-quiz" && typeof window.initAiPythonQuiz === "function") {
+                    if ((path === "/participant-ai-python-quiz" || path === "/participant-ai-python-kuis") && typeof window.initAiPythonQuiz === "function") {
                         window.initAiPythonQuiz();
                     }
                     if (path === "/participant-ai-python-discussion" && typeof window.initAiPythonDiscussion === "function") {
