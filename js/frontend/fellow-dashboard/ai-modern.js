@@ -3,6 +3,7 @@
 
     var STORAGE_KEY_CHAPTER = "heraiAiModernCurrentChapter";
     var BASE_PATH = "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/chapters/";
+    var activeChapterRequest = 0;
 
     var CHAPTERS = [
         {
@@ -146,6 +147,89 @@
         "04-materi.html": { eyebrow: "Architecture Lab", title: "Cari bottleneck lintas layer", description: "Sistem production gagal dari layer terlemah, bukan hanya dari model.", options: [["Knowledge", "fas fa-book-open", "Retrieval & data", "Pastikan sumber relevan, terbaru, berizin, dan dapat dikutip.", "RAG pedoman dengan metadata access control."], ["Action", "fas fa-screwdriver-wrench", "Tools & policy", "Validasi parameter, permission, idempotency, dan approval.", "Tool pengiriman hanya menerima draft yang sudah disetujui."], ["Assurance", "fas fa-shield", "Eval & observability", "Ukur kualitas, safety, latency, cost, serta jejak insiden.", "Dashboard trace dan regression suite sebelum deploy."]] }
     };
 
+    var BEGINNER_GUIDES = {
+        "01-materi.html": {
+            eyebrow: "Jalur Pemula",
+            title: "Dari kebutuhan pengguna ke pilihan foundation model",
+            intro: "Jangan mulai dari nama model. Mulai dari masalah, petakan lapisan sistem, baru pilih strategi adaptasi dan deployment.",
+            question: "Keputusan apa yang sebenarnya sedang kita buat saat memilih model?",
+            steps: [
+                { icon: "fas fa-user", title: "Mulai dari kebutuhan", focus: "Siapa, tugas apa, dan risikonya?", explanation: "Tentukan pengguna, input, output, batas waktu, data sensitif, dan konsekuensi bila jawaban salah. Ini mencegah tim memilih model hanya karena demo terlihat pintar.", example: "Assistant peserta harus menjawab pedoman dengan sumber, tetapi tidak boleh mengubah status peserta.", checkpoint: "Bisakah use case ditulis sebagai input → keputusan → output → risiko?" },
+                { icon: "fas fa-layer-group", title: "Pisahkan tiga lapisan", focus: "Model, adaptasi, dan aplikasi", explanation: "Foundation model memberi kemampuan umum. Adaptation layer menambahkan prompt, retrieval, fine-tuning, atau tools. Application layer mengatur workflow, UI, auth, logging, evaluasi, dan bantuan manusia.", example: "Model API adalah foundation layer; RAG pedoman adalah adaptation layer; dashboard peserta adalah application layer.", checkpoint: "Apakah setiap komponen bisa ditempatkan pada satu lapisan dengan tanggung jawab jelas?" },
+                { icon: "fas fa-sliders", title: "Pilih cara adaptasi", focus: "Prompt, RAG, fine-tuning, atau tools", explanation: "Prompt cocok untuk instruksi; RAG untuk pengetahuan yang berubah; fine-tuning untuk pola perilaku yang konsisten; tools untuk mengambil data atau melakukan aksi. Satu aplikasi dapat memakai beberapa strategi sekaligus.", example: "Pedoman terbaru memakai RAG, sedangkan pengecekan jadwal memakai tool read-only.", checkpoint: "Apakah strategi adaptasi dipilih karena kebutuhan, bukan karena tren?" },
+                { icon: "fas fa-scale-balanced", title: "Bandingkan dan uji", focus: "Kualitas harus terukur", explanation: "Bandingkan bahasa, factuality, latency, privacy, biaya, context window, tool use, lisensi, dan kemudahan operasi. Uji dengan contoh pengguna nyata sebelum memutuskan.", example: "Tiga model diuji pada 30 pertanyaan Bahasa Indonesia dan dihitung cost per successful answer.", checkpoint: "Apakah keputusan model dapat dijelaskan melalui data dan trade-off?" }
+            ],
+            workedCase: {
+                title: "Worked Example — Assistant FAQ Fellowship",
+                scenario: "Tim kecil ingin meluncurkan assistant yang menjawab pertanyaan jadwal dan pedoman dalam empat minggu.",
+                steps: [["1. Batas tugas", "Jawab pertanyaan berbasis sumber; jangan mengubah data atau mengirim pesan."], ["2. Susun lapisan", "Model bahasa + RAG pedoman + tool jadwal read-only + UI + log."], ["3. Pilih deployment", "Managed API untuk pilot agar setup cepat; semua secret tetap di backend."], ["4. Pasang evaluasi", "Uji Bahasa Indonesia, citation, refusal, latency, dan biaya per jawaban berhasil."]],
+                result: "Keputusan awal: managed model melalui backend dengan RAG dan permission read-only; open-weight dievaluasi setelah pola trafik dan kebutuhan privasi lebih jelas.",
+                reason: "Pilihan ini mengutamakan waktu delivery tanpa mengorbankan batas akses, audit, dan kemampuan berpindah strategi setelah data penggunaan tersedia."
+            },
+            glossary: [["Foundation model", "Model dasar berkemampuan umum yang dapat diadaptasi ke banyak tugas."], ["Pretraining", "Tahap belajar pola umum dari data luas sebelum adaptasi tugas tertentu."], ["Instruction tuning", "Pelatihan tambahan agar model lebih baik mengikuti instruksi."], ["RAG", "Mengambil sumber eksternal lalu memasukkannya ke konteks saat model menjawab."], ["Open-weight", "Bobot model tersedia, tetapi data dan proses pengembangannya belum tentu terbuka."], ["Model card", "Dokumen tentang intended use, batasan, evaluasi, lisensi, dan risiko model."]]
+        },
+        "02-materi.html": {
+            eyebrow: "Jalur Pemula",
+            title: "Ikuti data: dari teks sampai token output",
+            intro: "Transformer lebih mudah dipahami sebagai aliran data. Fokus pada fungsi setiap tahap sebelum masuk ke matematika detail.",
+            question: "Apa yang terjadi pada satu kalimat sejak diketik sampai model menghasilkan jawaban?",
+            steps: [
+                { icon: "fas fa-scissors", title: "Teks dipecah menjadi token", focus: "Token bukan selalu kata", explanation: "Tokenizer mengubah teks menjadi unit dan ID numerik. Bahasa, tanda baca, dan potongan kata memengaruhi jumlah token, biaya, serta panjang konteks yang tersedia.", example: "Kata 'mengunggah' dapat dipecah menjadi beberapa subword tergantung tokenizer.", checkpoint: "Bisakah kamu menjelaskan mengapa dua model dapat menghitung token secara berbeda?" },
+                { icon: "fas fa-vector-square", title: "Token diberi representasi", focus: "Embedding + informasi posisi", explanation: "Embedding mengubah token ID menjadi vektor. Positional information menambahkan petunjuk urutan sehingga model dapat membedakan 'mentor membantu peserta' dari 'peserta membantu mentor'.", example: "Representasi token berubah lagi setelah melewati layer karena konteks kalimat ikut dipertimbangkan.", checkpoint: "Apa yang hilang jika model hanya punya embedding tetapi tidak punya sinyal posisi?" },
+                { icon: "fas fa-arrows-to-eye", title: "Attention menimbang konteks", focus: "Query, Key, dan Value", explanation: "Query mewakili informasi yang dicari sebuah token, Key menandai informasi yang tersedia, dan Value membawa isinya. Skor attention menentukan kontribusi token lain pada representasi baru.", example: "Kata ganti 'mereka' memberi bobot lebih besar pada kandidat rujukan yang sesuai konteks.", checkpoint: "Attention memilih informasi relevan—bukan menjamin fakta selalu benar." },
+                { icon: "fas fa-forward-step", title: "Decoder menghasilkan output", focus: "Satu token setiap langkah", explanation: "Model menghitung distribusi token berikutnya, memilih token berdasarkan generation settings, menambahkannya ke konteks, lalu mengulang sampai stop condition. KV cache mengurangi perhitungan ulang saat inference.", example: "Temperature rendah biasanya lebih stabil untuk ringkasan kebijakan; output kreatif dapat memakai variasi lebih luas.", checkpoint: "Bisakah kamu menghubungkan temperature, top-p, dan stop condition dengan kebutuhan tugas?" }
+            ],
+            workedCase: {
+                title: "Worked Example — Menentukan rujukan kata ganti",
+                scenario: "Kalimat: 'Mentor mengirim revisi kepada peserta setelah mereka meminta contoh tambahan.' Sistem perlu memahami rujukan 'mereka'.",
+                steps: [["1. Tokenize", "Kalimat diubah menjadi token dan setiap token mendapat ID."], ["2. Represent", "Embedding dan posisi membedakan aktor, aksi, dan urutan."], ["3. Attend", "Token 'mereka' menimbang 'mentor' dan 'peserta' bersama konteks 'meminta'."], ["4. Generate", "Representasi kontekstual membantu decoder memilih jawaban yang paling konsisten."]],
+                result: "Interpretasi yang paling masuk akal adalah peserta meminta contoh tambahan, tetapi sistem tetap perlu menilai ambiguitas kalimat.",
+                reason: "Attention membantu menghubungkan token berjauhan, namun tidak menggantikan evaluasi, data, atau penanganan input ambigu."
+            },
+            glossary: [["Token", "Unit teks yang diproses model; dapat berupa kata, subword, atau tanda baca."], ["Embedding", "Vektor numerik yang merepresentasikan token atau teks."], ["Positional information", "Sinyal yang memberi tahu model tentang urutan token."], ["Self-attention", "Mekanisme token menimbang hubungan dengan token lain dalam konteks."], ["Context window", "Jumlah token maksimum yang dapat diproses pada satu request."], ["KV cache", "Penyimpanan Key dan Value sebelumnya untuk mempercepat generation bertahap."]]
+        },
+        "03-materi.html": {
+            eyebrow: "Jalur Pemula",
+            title: "Bangun agent dari batas tugas, bukan dari autonomy",
+            intro: "Agent yang baik bukan agent yang bebas melakukan apa saja. Agent yang baik punya goal, tools terbatas, state jelas, stopping condition, dan jalur eskalasi.",
+            question: "Kapan model cukup menjawab, kapan workflow diperlukan, dan kapan agent masuk akal?",
+            steps: [
+                { icon: "fas fa-code-branch", title: "Pilih bentuk sistem", focus: "Model call, workflow, atau agent", explanation: "Gunakan model call untuk satu transformasi, workflow untuk langkah tetap, dan agent bila jalurnya dinamis serta perlu memilih tool. Jangan menambah agent jika aturan deterministik sudah cukup.", example: "Validasi field wajib adalah workflow; menyusun penjelasan kekurangan dapat dibantu model.", checkpoint: "Apakah fleksibilitas agent benar-benar dibutuhkan oleh tugas?" },
+                { icon: "fas fa-screwdriver-wrench", title: "Tulis kontrak tool", focus: "Input, output, error, dan izin", explanation: "Tool schema harus menjelaskan nama, deskripsi, parameter wajib, validasi, error case, authorization, dan side effect. Model hanya mengusulkan tool call; backend tetap memvalidasi dan mengeksekusi.", example: "Tool get_schedule menerima tanggal tervalidasi dan hanya punya izin baca.", checkpoint: "Apa yang terjadi jika parameter kosong, tanggal salah, atau user tidak berizin?" },
+                { icon: "fas fa-rotate", title: "Rancang agent loop", focus: "Observe → decide → act → verify", explanation: "Agent membaca goal dan state, memilih tindakan, menerima tool result, memverifikasi hasil, lalu berhenti atau menyusun langkah berikut. Tetapkan batas iterasi, biaya, timeout, dan kondisi selesai.", example: "Setelah dua kegagalan tool, agent berhenti dan mengeskalasi ke staf.", checkpoint: "Apakah loop tahu kapan harus selesai dan kapan harus menyerah?" },
+                { icon: "fas fa-user-shield", title: "Batasi dampak", focus: "Guardrail dan human approval", explanation: "Least privilege, input/output validation, audit log, idempotency, dan approval melindungi user dari aksi salah. Draft boleh otomatis; pengiriman massal atau penghapusan data harus dikunci.", example: "Agent membuat preview pesan, tetapi staf menekan tombol approve sebelum tool send dijalankan.", checkpoint: "Side effect mana yang tidak boleh diputuskan model sendirian?" }
+            ],
+            workedCase: {
+                title: "Worked Example — Pengingat tugas belum selesai",
+                scenario: "Agent membantu peserta menemukan tugas yang belum selesai dan menyiapkan pengingat personal.",
+                steps: [["1. Goal", "Temukan tugas belum selesai untuk satu peserta berizin."], ["2. Tools", "read_tasks untuk data read-only dan draft_reminder untuk menyusun pesan."], ["3. Verify", "Pastikan hasil tool sesuai peserta, deadline belum lewat, dan tidak ada data peserta lain."], ["4. Approval", "Mentor mereview draft sebelum tool pengiriman boleh dijalankan."]],
+                result: "Agent berhenti setelah daftar tervalidasi dan draft tersedia; pengiriman berada di workflow approval terpisah.",
+                reason: "Pemisahan ini memakai fleksibilitas model untuk reasoning dan drafting, tetapi mempertahankan kontrol deterministik pada side effect."
+            },
+            glossary: [["Agent", "Sistem yang memilih tindakan atau tool dalam loop untuk mencapai goal."], ["Tool schema", "Kontrak terstruktur tentang fungsi, parameter, dan hasil tool."], ["State", "Informasi kerja yang dipertahankan selama penyelesaian tugas."], ["Stopping condition", "Aturan kapan loop dinyatakan selesai atau harus berhenti."], ["Handoff", "Pemindahan tugas ke agent lain atau manusia."], ["Idempotency", "Sifat aksi yang aman diulang tanpa menggandakan dampak."]]
+        },
+        "04-materi.html": {
+            eyebrow: "Jalur Pemula",
+            title: "Susun sistem AI dari pengalaman sampai assurance",
+            intro: "Produk AI production adalah rantai keputusan. Setiap layer perlu kontrak, kontrol, metrik, dan pemilik yang jelas.",
+            question: "Bagaimana model, data, tools, infrastructure, dan manusia bekerja sebagai satu sistem?",
+            steps: [
+                { icon: "fas fa-bullseye", title: "Tetapkan outcome dan risiko", focus: "Ukuran sukses sebelum arsitektur", explanation: "Definisikan tugas, user journey, toleransi kesalahan, latency budget, privacy, dan aksi yang diizinkan. Metrik teknis harus terhubung dengan keberhasilan tugas pengguna.", example: "Target bukan sekadar jawaban fasih, tetapi jawaban bersumber dalam lima detik tanpa membocorkan data.", checkpoint: "Apakah tim tahu apa arti 'berhasil' dan 'gagal' untuk user?" },
+                { icon: "fas fa-database", title: "Rancang knowledge layer", focus: "Context, RAG, database, dan memory", explanation: "Gunakan RAG untuk dokumen tidak terstruktur, query/API untuk data deterministik, dan memory untuk preferensi yang memang boleh disimpan. Metadata serta access control harus diterapkan sebelum data masuk konteks.", example: "Pedoman dicari dengan RAG; status pembayaran dibaca melalui API terautentikasi.", checkpoint: "Apakah setiap sumber data punya owner, izin, freshness, dan fallback?" },
+                { icon: "fas fa-gears", title: "Orkestrasi model dan tools", focus: "Routing, validation, dan permission", explanation: "Context builder menyusun instruksi dan bukti; model gateway memilih model; tool layer mengeksekusi fungsi tervalidasi; output validator memeriksa format dan kebijakan sebelum respons dikirim.", example: "Pertanyaan sederhana memakai model cepat, sementara kasus berisiko diarahkan ke model lebih kuat dan review manusia.", checkpoint: "Bisakah satu kegagalan layer dilacak tanpa menebak?" },
+                { icon: "fas fa-shield-halved", title: "Bangun assurance loop", focus: "Eval, observability, dan operasi", explanation: "Offline eval mencegah regression sebelum deploy. Production monitoring menangkap latency, cost, tool error, safety event, dan feedback. Incident review mengubah kegagalan menjadi test case baru.", example: "Jawaban salah yang dilaporkan user masuk regression set dan diuji pada setiap perubahan prompt atau model.", checkpoint: "Apakah sistem belajar dari insiden dan bisa rollback dengan aman?" }
+            ],
+            workedCase: {
+                title: "Worked Example — HerAI Fellowship Assistant",
+                scenario: "Assistant menjawab pedoman, mengecek jadwal, dan membuat draft pesan tanpa boleh mengubah data atau mengirim pesan sendiri.",
+                steps: [["1. Experience", "UI menjelaskan sumber, status loading, dan kapan jawaban perlu bantuan staf."], ["2. Knowledge", "RAG pedoman berizin + tool jadwal read-only; data sensitif tidak masuk prompt tanpa kebutuhan."], ["3. Intelligence", "Model gateway, context builder, structured output, dan validation."], ["4. Assurance", "Approval pengiriman, trace, eval set, cost budget, fallback, serta incident review."]],
+                result: "Sistem memberi jawaban bersumber dan draft yang dapat direview; semua side effect tetap berada di jalur approval manusia.",
+                reason: "Arsitektur memisahkan kemampuan generatif dari otoritas melakukan aksi sehingga lebih aman, terukur, dan mudah diaudit."
+            },
+            glossary: [["Context engineering", "Proses memilih dan menyusun instruksi, sumber, history, serta tool result untuk model."], ["Model gateway", "Layer pemanggilan dan routing model berdasarkan tugas, risiko, biaya, atau fallback."], ["Grounding", "Mengikat jawaban pada bukti atau sumber yang dapat diperiksa."], ["Observability", "Trace, log, metrik, dan event yang membantu memahami perilaku sistem."], ["Regression", "Penurunan kualitas setelah perubahan model, prompt, data, atau kode."], ["Human oversight", "Approval, monitoring, intervensi, dan eskalasi oleh manusia."]]
+        }
+    };
+
     function safeJsonParse(value, fallback) {
         if (!value) return fallback;
         try { return JSON.parse(value); } catch (error) { return fallback; }
@@ -215,7 +299,7 @@
     function renderSourceVisualLab(config) {
         if (!config || !config.options || !config.options.length) return "";
         var first = config.options[0];
-        return '<section class="reasoning-concept-lab" data-modern-injected data-section="konsep"><div class="reasoning-concept-head"><i class="fas fa-flask" aria-hidden="true"></i><div><span>' + escapeHtml(config.eyebrow) + '</span><h3>' + escapeHtml(config.title) + '</h3><p>' + escapeHtml(config.description) + '</p></div></div><div class="reasoning-concept-tabs" role="tablist">' + config.options.map(function (option, index) { return '<button type="button" role="tab" data-concept-index="' + index + '" aria-selected="' + (index === 0 ? "true" : "false") + '"><i class="' + escapeHtml(option[1]) + '"></i><span>' + escapeHtml(option[0]) + '</span></button>'; }).join("") + '</div><div class="reasoning-concept-stage"><div><span data-concept-counter>1/' + config.options.length + '</span><h4 data-concept-title>' + escapeHtml(first[2]) + '</h4><p data-concept-content>' + escapeHtml(first[3]) + '</p></div><aside><strong>Contoh</strong><p data-concept-example>' + escapeHtml(first[4]) + '</p></aside></div></section>';
+        return '<section class="reasoning-concept-lab" data-modern-injected data-section="konsep"><div class="reasoning-concept-lab-head reasoning-concept-head"><i class="fas fa-flask" aria-hidden="true"></i><div><span>' + escapeHtml(config.eyebrow) + '</span><h3>' + escapeHtml(config.title) + '</h3><p>' + escapeHtml(config.description) + '</p></div></div><div class="reasoning-concept-tabs" role="tablist">' + config.options.map(function (option, index) { return '<button type="button" role="tab" data-concept-index="' + index + '" aria-selected="' + (index === 0 ? "true" : "false") + '"><i class="' + escapeHtml(option[1]) + '"></i><span>' + escapeHtml(option[0]) + '</span></button>'; }).join("") + '</div><div class="reasoning-concept-stage"><div class="ai-modern-concept-copy"><span data-concept-counter>1/' + config.options.length + '</span><h4 data-concept-title>' + escapeHtml(first[2]) + '</h4><p data-concept-content>' + escapeHtml(first[3]) + '</p></div><aside class="ai-modern-concept-example"><strong><i class="fas fa-lightbulb"></i> Contoh</strong><p data-concept-example>' + escapeHtml(first[4]) + '</p></aside></div></section>';
     }
 
     function initSourceVisualLab(container, config) {
@@ -235,6 +319,78 @@
         });
     }
 
+    function renderBeginnerRoadmap(guide) {
+        if (!guide || !guide.steps) return "";
+        return '<section class="ai-modern-beginner-roadmap" data-modern-injected data-section="konsep">' +
+            '<div class="ai-modern-roadmap-head"><i class="fas fa-compass"></i><div><span>' + escapeHtml(guide.eyebrow) + '</span><h3>' + escapeHtml(guide.title) + '</h3><p>' + escapeHtml(guide.intro) + '</p></div></div>' +
+            '<div class="ai-modern-roadmap-question"><i class="fas fa-circle-question"></i><p><strong>Pertanyaan panduan</strong>' + escapeHtml(guide.question) + '</p></div>' +
+            '<div class="ai-modern-roadmap-strip" aria-hidden="true">' + guide.steps.map(function (step, index) { return '<div><span>' + (index + 1) + '</span><i class="' + escapeHtml(step.icon) + '"></i><strong>' + escapeHtml(step.title) + '</strong></div>'; }).join("") + '</div>' +
+            '<div class="ai-modern-roadmap-progress"><span data-roadmap-progress>Langkah 1 dari ' + guide.steps.length + '</span><b><i data-roadmap-bar></i></b></div>' +
+            '<div class="ai-modern-roadmap-steps">' + guide.steps.map(function (step, index) {
+                return '<details data-roadmap-step="' + index + '"' + (index === 0 ? " open" : "") + '><summary><span>' + String(index + 1).padStart(2, "0") + '</span><i class="' + escapeHtml(step.icon) + '"></i><div><strong>' + escapeHtml(step.title) + '</strong><small>' + escapeHtml(step.focus) + '</small></div><i class="fas fa-chevron-down"></i></summary><div class="ai-modern-roadmap-body"><p>' + escapeHtml(step.explanation) + '</p><div><strong><i class="fas fa-lightbulb"></i> Contoh</strong><p>' + escapeHtml(step.example) + '</p></div><aside><strong><i class="fas fa-list-check"></i> Cek pemahaman</strong><p>' + escapeHtml(step.checkpoint) + '</p></aside></div></details>';
+            }).join("") + '</div></section>';
+    }
+
+    function setupBeginnerRoadmap(container) {
+        var roadmap = container.querySelector(".ai-modern-beginner-roadmap");
+        if (!roadmap) return;
+        var steps = Array.from(roadmap.querySelectorAll("[data-roadmap-step]"));
+        var progress = roadmap.querySelector("[data-roadmap-progress]");
+        var bar = roadmap.querySelector("[data-roadmap-bar]");
+        steps.forEach(function (detail) {
+            detail.addEventListener("toggle", function () {
+                if (!detail.open) return;
+                steps.forEach(function (other) { if (other !== detail) other.open = false; });
+                var index = Number(detail.dataset.roadmapStep);
+                if (progress) progress.textContent = "Langkah " + (index + 1) + " dari " + steps.length;
+                if (bar) bar.style.width = Math.round(((index + 1) / steps.length) * 100) + "%";
+            });
+        });
+        if (bar) bar.style.width = Math.round(100 / steps.length) + "%";
+    }
+
+    function renderWorkedExample(example) {
+        if (!example) return "";
+        return '<section class="ai-modern-worked-example" data-modern-injected data-section="contoh"><div class="ai-modern-worked-head"><i class="fas fa-magnifying-glass-chart"></i><div><span>Contoh Terurai</span><h3>' + escapeHtml(example.title) + '</h3><p>' + escapeHtml(example.scenario) + '</p></div></div><div class="ai-modern-worked-steps">' + example.steps.map(function (step, index) { return '<article><span>' + (index + 1) + '</span><div><strong>' + escapeHtml(step[0]) + '</strong><p>' + escapeHtml(step[1]) + '</p></div></article>'; }).join("") + '</div><div class="ai-modern-worked-result"><div><i class="fas fa-flag-checkered"></i><strong>Keputusan</strong><p>' + escapeHtml(example.result) + '</p></div><div><i class="fas fa-scale-balanced"></i><strong>Mengapa masuk akal?</strong><p>' + escapeHtml(example.reason) + '</p></div></div></section>';
+    }
+
+    function renderBeginnerGlossary(items) {
+        if (!items || !items.length) return "";
+        return '<section class="ai-modern-beginner-glossary" data-modern-injected data-section="ringkasan"><div class="ai-modern-glossary-head"><i class="fas fa-book"></i><div><span>Kamus Pemula</span><h3>Istilah penting yang perlu kamu pegang</h3><p>Buka setiap istilah untuk mengulang definisinya sebelum lanjut.</p></div></div><div class="ai-modern-glossary-grid">' + items.map(function (item, index) { return '<details' + (index === 0 ? " open" : "") + '><summary><span>' + String(index + 1).padStart(2, "0") + '</span><strong>' + escapeHtml(item[0]) + '</strong><i class="fas fa-chevron-down"></i></summary><p>' + escapeHtml(item[1]) + '</p></details>'; }).join("") + '</div></section>';
+    }
+
+    function renderCodeVisual(codeText) {
+        if (codeText.indexOf("Modern AI System =") !== -1) {
+            return '<section class="ai-modern-system-blueprint" data-modern-injected data-section="konsep"><div class="ai-modern-blueprint-head"><i class="fas fa-sitemap"></i><div><span>Visual System Blueprint</span><h3>Sistem AI modern adalah lima lapisan yang saling menjaga</h3><p>Model hanya satu komponen. Ikuti alur dari pengalaman pengguna sampai operasi dan pengawasan.</p></div></div><div class="ai-modern-blueprint-flow"><article><b>01</b><i class="fas fa-window-maximize"></i><div><strong>Experience</strong><p>User interface dan instructions menerjemahkan kebutuhan pengguna menjadi tugas yang jelas.</p></div></article><article><b>02</b><i class="fas fa-brain"></i><div><strong>Intelligence</strong><p>Model memproses context untuk memahami permintaan dan menyusun respons.</p></div></article><article><b>03</b><i class="fas fa-database"></i><div><strong>Knowledge & State</strong><p>Retrieval dan state memberi bukti, data terbaru, serta kondisi kerja yang relevan.</p></div></article><article><b>04</b><i class="fas fa-screwdriver-wrench"></i><div><strong>Action</strong><p>Tools menjalankan fungsi eksternal melalui permission dan validasi backend.</p></div></article><article><b>05</b><i class="fas fa-shield-halved"></i><div><strong>Assurance & Operations</strong><p>Guardrails, evaluation, infrastructure, dan human oversight menjaga kualitas sepanjang siklus hidup.</p></div></article></div><div class="ai-modern-blueprint-rule"><i class="fas fa-link"></i><p><strong>Prinsip penting:</strong> kualitas sistem ditentukan oleh hubungan antarlayer. Model yang bagus tetap gagal jika sumber salah, tool terlalu berkuasa, atau tidak ada evaluasi.</p></div></section>';
+        }
+        if (codeText.indexOf("Attention(Q, K, V)") !== -1) {
+            return '<section class="ai-modern-formula-explainer" data-modern-injected data-section="konsep"><div class="ai-modern-formula-head"><i class="fas fa-square-root-variable"></i><div><span>Formula Decoder</span><h3>Baca rumus attention sebagai tiga pertanyaan</h3><p>Kamu tidak perlu menghafal simbol untuk memahami fungsinya.</p></div></div><div class="ai-modern-qkv-grid"><article><b>Q</b><strong>Query</strong><p>Informasi apa yang sedang dicari token ini?</p></article><article><b>K</b><strong>Key</strong><p>Informasi apa yang ditawarkan token lain?</p></article><article><b>V</b><strong>Value</strong><p>Isi apa yang dibawa jika token itu relevan?</p></article></div><div class="ai-modern-formula-flow"><span>Bandingkan Q dengan K</span><i class="fas fa-arrow-right"></i><span>Skalakan skor</span><i class="fas fa-arrow-right"></i><span>Softmax menjadi bobot</span><i class="fas fa-arrow-right"></i><span>Gabungkan V</span></div><p class="ai-modern-formula-note"><i class="fas fa-circle-info"></i> Hasilnya adalah representasi token yang sudah membawa konteks dari token lain.</p></section>';
+        }
+        if (codeText.indexOf("get_fellowship_schedule") !== -1) {
+            return '<section class="ai-modern-tool-contract" data-modern-injected data-section="konsep"><div class="ai-modern-tool-head"><i class="fas fa-plug-circle-check"></i><div><span>Tool Contract Visual</span><h3>Tool yang aman harus jelas sebelum dipanggil</h3><p>Schema membantu model mengusulkan call, tetapi backend tetap memvalidasi izin dan parameter.</p></div></div><div class="ai-modern-tool-grid"><article><span>Nama</span><strong>get_fellowship_schedule</strong><p>Satu fungsi, satu tanggung jawab yang mudah diaudit.</p></article><article><span>Input wajib</span><strong>date · YYYY-MM-DD</strong><p>Format harus divalidasi sebelum query dijalankan.</p></article><article><span>Permission</span><strong>Read-only</strong><p>Tool tidak boleh mengubah jadwal atau data peserta.</p></article><article><span>Error contract</span><strong>Not found · invalid date · unauthorized</strong><p>Error eksplisit membantu agent berhenti atau eskalasi dengan benar.</p></article></div><div class="ai-modern-tool-path"><span>Model mengusulkan</span><i class="fas fa-arrow-right"></i><span>Backend memvalidasi</span><i class="fas fa-arrow-right"></i><span>Tool dieksekusi</span><i class="fas fa-arrow-right"></i><span>Hasil diverifikasi</span></div></section>';
+        }
+        if (codeText.indexOf("Use case:") !== -1 && codeText.indexOf("Human approval:") !== -1) {
+            return '<section class="ai-modern-architecture-canvas" data-modern-injected data-section="contoh"><div class="ai-modern-canvas-head"><i class="fas fa-table-cells-large"></i><div><span>Architecture Canvas</span><h3>Isi keputusan sistem dalam empat area</h3><p>Canvas ini membantu memastikan rancangan tidak berhenti pada pilihan model.</p></div></div><div class="ai-modern-canvas-grid"><article><i class="fas fa-bullseye"></i><strong>Outcome</strong><p>Use case, user, output, dan batas tugas.</p><small>Tanya: apa arti berhasil?</small></article><article><i class="fas fa-layer-group"></i><strong>Capability</strong><p>Model approach, hosted/open/local, retrieval, dan tools.</p><small>Tanya: komponen mana yang benar-benar dibutuhkan?</small></article><article><i class="fas fa-user-shield"></i><strong>Control</strong><p>Human approval, privacy, permission, dan failure fallback.</p><small>Tanya: siapa boleh melakukan apa?</small></article><article><i class="fas fa-chart-line"></i><strong>Assurance</strong><p>Evaluation, observability, cost controls, dan incident response.</p><small>Tanya: bagaimana kita tahu sistem tetap sehat?</small></article></div></section>';
+        }
+        return "";
+    }
+
+    function enhanceModernCodeBlocks(container) {
+        container.querySelectorAll(".reasoning-code-block").forEach(function (wrapper) {
+            if (wrapper.dataset.modernVisualized === "true") return;
+            var code = wrapper.querySelector("code");
+            var visualMarkup = code ? renderCodeVisual(code.textContent || "") : "";
+            if (!visualMarkup) return;
+            wrapper.dataset.modernVisualized = "true";
+            wrapper.insertAdjacentHTML("beforebegin", visualMarkup);
+            var details = document.createElement("details");
+            details.className = "ai-modern-source-code";
+            details.innerHTML = '<summary data-modern-injected><i class="fas fa-code"></i><span>Lihat versi teks / syntax</span><i class="fas fa-chevron-down"></i></summary>';
+            wrapper.parentNode.insertBefore(details, wrapper);
+            details.appendChild(wrapper);
+        });
+    }
+
     function finalRenderExampleSection(example) {
         if (!example) return "";
         return '<section class="reasoning-example-section" data-modern-injected data-section="contoh"><div class="reasoning-example-head"><i class="fas fa-magnifying-glass-chart"></i><div><span>Contoh Terurai</span><h3>' + escapeHtml(example.title) + '</h3></div></div><p>' + escapeHtml(example.text) + '</p></section>';
@@ -246,15 +402,15 @@
 
     function finalRenderChallengeSection(challenge, chapterNumber) {
         var storageKey = "heraiAiModernChallengeCh" + chapterNumber;
-        return '<section class="reasoning-mini-challenge reasoning-challenge-workspace" data-modern-injected data-section="contoh" data-challenge-key="' + storageKey + '"><div class="reasoning-mini-challenge-head"><i class="fas fa-pen-ruler"></i><div><span>Mini Challenge</span><h3>Ubah konsep menjadi keputusan</h3></div></div><p class="reasoning-challenge-instruction">' + escapeHtml(challenge.instruction) + '</p><label class="reasoning-challenge-label"><span>Jawabanmu</span><textarea rows="5" placeholder="' + escapeHtml(challenge.placeholder) + '" data-challenge-textarea></textarea></label><div class="reasoning-challenge-actions"><button type="button" data-challenge-save><i class="fas fa-floppy-disk"></i> Simpan</button><button type="button" data-challenge-edit hidden><i class="fas fa-pen"></i> Edit</button><button type="button" data-challenge-reset><i class="fas fa-rotate-left"></i> Reset</button><button type="button" data-challenge-example aria-expanded="false"><i class="fas fa-lightbulb"></i> Lihat Contoh</button></div><p class="reasoning-check-feedback" data-challenge-status aria-live="polite" hidden></p><div class="reasoning-challenge-example" data-challenge-example-content hidden><strong><i class="fas fa-lightbulb"></i> Contoh Pembahasan</strong><p>' + escapeHtml(challenge.example) + '</p></div></section>';
+        return '<section class="reasoning-mini-challenge reasoning-challenge-workspace" data-modern-injected data-section="contoh" data-challenge-key="' + storageKey + '"><div class="reasoning-challenge-head reasoning-mini-challenge-head"><i class="fas fa-pen-ruler"></i><div><span>Mini Challenge</span><h3>Ubah konsep menjadi keputusan</h3></div></div><p class="reasoning-challenge-instruction">' + escapeHtml(challenge.instruction) + '</p><label class="reasoning-challenge-label"><span>Jawabanmu</span><textarea class="reasoning-challenge-textarea" rows="5" placeholder="' + escapeHtml(challenge.placeholder) + '" data-challenge-textarea></textarea></label><div class="reasoning-challenge-actions"><button type="button" class="btn-reasoning-save" data-challenge-save><i class="fas fa-floppy-disk"></i> Simpan</button><button type="button" class="btn-reasoning-edit" data-challenge-edit hidden><i class="fas fa-pen"></i> Edit</button><button type="button" data-challenge-reset><i class="fas fa-rotate-left"></i> Reset</button><button type="button" data-challenge-example aria-expanded="false"><i class="fas fa-lightbulb"></i> Lihat Contoh</button></div><p class="reasoning-check-feedback" data-challenge-status aria-live="polite" hidden></p><div class="reasoning-challenge-example" data-challenge-example-content hidden><strong><i class="fas fa-lightbulb"></i> Contoh Pembahasan</strong><p>' + escapeHtml(challenge.example) + '</p></div></section>';
     }
 
     function finalRenderMistakesPractices(mistakes, practices) {
-        return '<section class="reasoning-mistakes-practices" data-modern-injected data-section="ringkasan"><div class="reasoning-mp-grid"><div class="reasoning-mp-card reasoning-mp-mistakes"><h3><i class="fas fa-triangle-exclamation"></i> Common Mistakes</h3>' + renderList(mistakes) + '</div><div class="reasoning-mp-card reasoning-mp-practices"><h3><i class="fas fa-circle-check"></i> Best Practices</h3>' + renderList(practices) + '</div></div></section>';
+        return '<section class="reasoning-mistakes-practices" data-modern-injected data-section="ringkasan"><div class="reasoning-mp-grid"><div class="reasoning-mp-col reasoning-mp-card reasoning-mp-mistakes"><h3><i class="fas fa-triangle-exclamation"></i> Common Mistakes</h3>' + renderList(mistakes) + '</div><div class="reasoning-mp-col reasoning-mp-card reasoning-mp-practices"><h3><i class="fas fa-circle-check"></i> Best Practices</h3>' + renderList(practices) + '</div></div></section>';
     }
 
     function finalRenderSummarySection(outcomes, transition, chapterNumber, total) {
-        return '<section class="reasoning-summary-section" data-modern-injected data-section="ringkasan"><div class="reasoning-summary-head"><i class="fas fa-bookmark"></i><div><span>Ringkasan Topik ' + chapterNumber + '/' + total + '</span><h3>Setelah topik ini, kamu dapat:</h3></div></div><ul class="reasoning-outcome-list">' + outcomes.map(function (outcome) { return '<li><i class="fas fa-check"></i>' + escapeHtml(outcome) + '</li>'; }).join("") + '</ul><div class="reasoning-transition"><i class="fas fa-arrow-right"></i><p>' + escapeHtml(transition) + '</p></div></section>';
+        return '<section class="reasoning-summary-section" data-modern-injected data-section="ringkasan"><div class="reasoning-summary-head"><i class="fas fa-bookmark"></i><div><span>Ringkasan Topik ' + chapterNumber + '/' + total + '</span><h3>Setelah topik ini, kamu dapat:</h3></div></div><ul class="reasoning-outcomes-list">' + outcomes.map(function (outcome) { return '<li><i class="fas fa-check"></i><span>' + escapeHtml(outcome) + '</span></li>'; }).join("") + '</ul><div class="reasoning-transition"><i class="fas fa-arrow-right"></i><p>' + escapeHtml(transition) + '</p></div></section>';
     }
 
     function finalRenderPromptSection(lines) {
@@ -262,7 +418,8 @@
     }
 
     function renderEndOfChapter(chapter, chapterNumber, total) {
-        return '<div class="reasoning-end-of-chapter" data-modern-injected><section class="reasoning-visual-board" data-section="contoh"><div class="reasoning-visual-head"><i class="fas fa-route"></i><div><span>Decision Flow</span><h3>Alur yang dapat dilacak</h3></div></div>' + renderFlow(chapter.flow) + '</section>' + finalRenderQuickCheckSection(chapter.quickCheck) + finalRenderChallengeSection(chapter.challenge, chapterNumber) + finalRenderMistakesPractices(chapter.mistakes, chapter.bestPractices) + finalRenderSummarySection(chapter.learningOutcomes, chapter.transition, chapterNumber, total) + '</div>';
+        var guide = BEGINNER_GUIDES[getSourceFile(chapter.sourcePath)];
+        return '<div class="reasoning-end-of-chapter" data-modern-injected><section class="reasoning-visual-board" data-section="contoh"><div class="reasoning-visual-head"><i class="fas fa-route"></i><div><span>Decision Flow</span><h3>Alur yang dapat dilacak</h3></div></div>' + renderFlow(chapter.flow) + '</section>' + finalRenderQuickCheckSection(chapter.quickCheck) + finalRenderChallengeSection(chapter.challenge, chapterNumber) + finalRenderMistakesPractices(chapter.mistakes, chapter.bestPractices) + renderBeginnerGlossary(guide ? guide.glossary : []) + finalRenderSummarySection(chapter.learningOutcomes, chapter.transition, chapterNumber, total) + '</div>';
     }
 
     function enhanceSourceMaterialForCanvas(container) {
@@ -411,7 +568,9 @@
         var clone = container.cloneNode(true);
         clone.querySelectorAll("[data-modern-injected]").forEach(function (node) { node.remove(); });
         var actual = String(clone.textContent || "").replace(/\s+/g, " ").trim();
-        if (actual !== expectedText) console.error("AI Modern source integrity mismatch", { expectedLength: expectedText.length, actualLength: actual.length });
+        var passed = actual === expectedText;
+        container.dataset.sourceIntegrity = passed ? "passed" : "failed";
+        if (!passed) console.error("AI Modern source integrity mismatch", { expectedLength: expectedText.length, actualLength: actual.length });
     }
 
     function updateProgress(chapterNumber, total) {
@@ -432,23 +591,27 @@
         });
     }
 
-    function loadSourceHtml(path, containerId, chapter, chapterNumber) {
+    function loadSourceHtml(path, containerId, chapter, chapterNumber, requestId) {
         var container = document.getElementById(containerId);
         if (!container || !path) return Promise.resolve();
         return fetch(path, { cache: "no-store" }).then(function (response) {
             if (!response.ok) throw new Error("Gagal memuat " + path);
             return response.text();
         }).then(function (rawHtml) {
+            if (requestId !== activeChapterRequest) return;
             var source = stripSourceNumbering(filterSourceHeadings(rawHtml));
             var expectedText = sourceText(source);
             var visual = SOURCE_VISUALS[getSourceFile(path)];
+            var beginnerGuide = BEGINNER_GUIDES[getSourceFile(path)];
             container.innerHTML = source + renderEndOfChapter(chapter, chapterNumber, CHAPTERS.length);
             var sourceHero = container.querySelector(".ai-modern-chapter-hero");
-            if (sourceHero) sourceHero.insertAdjacentHTML("afterend", renderOrientationAndNav(chapter, chapterNumber, CHAPTERS.length) + finalRenderHookSection(chapter.hook));
+            if (sourceHero) sourceHero.insertAdjacentHTML("afterend", renderOrientationAndNav(chapter, chapterNumber, CHAPTERS.length) + finalRenderHookSection(chapter.hook) + renderBeginnerRoadmap(beginnerGuide));
             var sourceSections = container.querySelectorAll(".ai-modern-section");
-            if (sourceSections[1] && visual) sourceSections[1].insertAdjacentHTML("afterend", renderSourceVisualLab(visual));
+            if (sourceSections[1] && visual) sourceSections[1].insertAdjacentHTML("afterend", renderSourceVisualLab(visual) + renderWorkedExample(beginnerGuide ? beginnerGuide.workedCase : null));
             enhanceSourceMaterialForCanvas(container);
+            enhanceModernCodeBlocks(container);
             initSourceVisualLab(container, visual);
+            setupBeginnerRoadmap(container);
             setupHookInteraction(container);
             setupQuickChecks(container);
             setupChallengeInteraction(container);
@@ -465,10 +628,12 @@
         var prev = document.getElementById("btn-prev-chapter");
         var next = document.getElementById("btn-next-chapter");
         var finish = document.getElementById("btn-finish-materi");
+        var requestId = ++activeChapterRequest;
         if (!container || !chapter) return;
         localStorage.setItem(STORAGE_KEY_CHAPTER, String(number));
         container.innerHTML = '<div class="ai-modern-loading"><i class="fas fa-spinner fa-spin"></i><p>Memuat Topik ' + number + '...</p></div>';
-        loadSourceHtml(chapter.sourcePath, "modern-chapter-container", chapter, number).catch(function (error) {
+        loadSourceHtml(chapter.sourcePath, "modern-chapter-container", chapter, number, requestId).catch(function (error) {
+            if (requestId !== activeChapterRequest) return;
             container.innerHTML = '<div class="ai-modern-error"><i class="fas fa-triangle-exclamation"></i><div><strong>Materi belum bisa dimuat</strong><p>Refresh halaman atau coba lagi beberapa saat.</p></div></div>';
             console.error(error);
         });
