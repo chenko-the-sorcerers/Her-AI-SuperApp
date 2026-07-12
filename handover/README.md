@@ -30,4 +30,5 @@
 - **CSS:** `modules.css` (7600 lines)
 - **Reasoning source:** `materi/nazril/submateri-reasoning-ai.md` (2755 lines)
 - **Python source:** `materi/nazril/Python-untuk-AI-redesign-final.md` (1882 lines)
-- **Next modules:** Konsep AI Modern, Evaluation, Evolution of AI
+- **Konsep AI Modern:** `v1` — 4 topik source-as-main, 13 latihan, 20 kuis, 4 prompt diskusi
+- **Next modules:** Evaluation, Evolution of AI

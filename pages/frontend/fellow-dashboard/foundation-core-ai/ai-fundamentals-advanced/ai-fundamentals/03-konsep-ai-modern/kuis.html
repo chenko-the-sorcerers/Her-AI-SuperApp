@@ -1,4 +1,4 @@
-<section class="fellow-dashboard fellow-modules-page lesson-detail-page ai-modern-page ai-modern-quiz-page ml-quiz-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page reasoning-scaffold-page ai-modern-page ai-modern-quiz-page ml-quiz-page" data-fellow-page="modules">
     <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
     <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
     <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -59,13 +59,13 @@
                             <div class="ml-section-head">
                                 <span>Knowledge Check</span>
                                 <h2>Kuis AI Modern</h2>
-                                <p>Pilih satu jawaban paling tepat. Hasil disimpan dengan key <code>heraiAiModernQuizDone</code>, <code>heraiAiModernQuizScore</code>, dan <code>heraiAiModernQuizAnswers</code>.</p>
+                                <p>Pilih satu jawaban paling tepat. Setelah dikirim, attempt dikunci dan seluruh pembahasan terbuka untuk review.</p>
                             </div>
 
                             <div id="aiModernQuizApp" class="ai-modern-quiz-app"></div>
 
-                            <div class="quiz-result-card" id="aiModernQuizResult" hidden></div>
-                            <button type="submit" class="quiz-submit-btn" style="border-radius: 100px;"><i class="fas fa-paper-plane"></i> Kirim Kuis</button>
+                            <div class="quiz-result-card" id="aiModernQuizResult" aria-live="polite" hidden></div>
+                            <button type="submit" class="quiz-submit-btn"><i class="fas fa-lock"></i> Kirim & Kunci Jawaban</button>
                         </form>
                     </article>
 

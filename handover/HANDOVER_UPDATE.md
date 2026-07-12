@@ -2,9 +2,23 @@
 
 **Tanggal:** 12 Juli 2026
 **Branch:** `design`
-**Status:** Reasoning module COMPLETE — source-as-main-content pipeline, 6 topics, 17 practices, 26 quiz, phase layout, topic-grouped navigator, quiz review mode
+**Status:** Reasoning dan Konsep AI Modern COMPLETE — source-as-main-content pipeline, progressive practice, quiz review mode, inline discussion
 **Cache buster final:** `20260712-reasoning-final-v35`
-**Belum push:** ahead 8+ commits dari `origin/design`
+**Belum push:** ahead 27+ commits dari `origin/design`
+
+---
+
+## Konsep AI Modern — Final Parity Checkpoint
+
+**Cache buster:** `20260712-ai-modern-final-v1`
+
+- 4 topik source-as-main: Foundation Models, Transformer, AI Agents, Sistem AI Masa Kini.
+- Source chapter `01-materi.html` sampai `04-materi.html` tetap utuh dan tidak diubah.
+- Pipeline menambahkan learning nav, hook A/B, concept lab, quick check + retry, mini challenge tersimpan, decision flow, mistakes/best practices, dan outcome summary.
+- Latihan memakai progressive disclosure: 13 skenario, topic-grouped navigator, satu skenario per langkah, save/edit/reset.
+- Kuis: 20 soal full-card clickable, single attempt, locked state jelas, dan review seluruh soal.
+- Diskusi: 4 prompt, post lokal, dan inline reply composer tanpa `window.prompt`.
+- Smoke test desktop 1440px dan mobile 390px: tidak ada document overflow; semua 4 route aktif.
 
 ---
 

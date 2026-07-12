@@ -628,8 +628,8 @@ const router = {
                     if (path === "/participant-ai-modern" && typeof window.initAiModernMateri === "function") {
                         window.initAiModernMateri();
                     }
-                    if (path === "/participant-ai-modern-practice" && typeof window.initAiModernBasic === "function") {
-                        window.initAiModernBasic();
+                    if (path === "/participant-ai-modern-practice" && typeof window.initAiModernPractice === "function") {
+                        window.initAiModernPractice();
                     }
                     if (path === "/participant-ai-modern-quiz" && typeof window.initAiModernQuiz === "function") {
                         window.initAiModernQuiz();

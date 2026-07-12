@@ -1,116 +1,499 @@
-window.initAiModernMateri = function () {
-    var container = document.getElementById("modern-chapter-container");
-    if (!container) return;
+(function () {
+    "use strict";
 
     var STORAGE_KEY_CHAPTER = "heraiAiModernCurrentChapter";
-    var currentChapter = parseInt(localStorage.getItem(STORAGE_KEY_CHAPTER) || "1", 10);
-    var totalChapters = 4;
+    var BASE_PATH = "/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/chapters/";
 
-    var btnPrev = document.getElementById("btn-prev-chapter");
-    var btnNext = document.getElementById("btn-next-chapter");
-    var btnFinish = document.getElementById("btn-finish-materi");
+    var CHAPTERS = [
+        {
+            title: "Foundation Models: Fondasi AI Serbaguna",
+            shortTitle: "Foundation Models",
+            duration: "25 menit",
+            icon: "fas fa-layer-group",
+            summary: "Bedakan model dasar, adaptation layer, dan aplikasi AI agar keputusan model tidak berhenti pada nama vendor.",
+            objectives: ["Membedakan model dasar dan aplikasi AI", "Membaca trade-off deployment", "Memilih model dengan kriteria terukur"],
+            analogy: "Foundation model adalah bahan baku; prompt, RAG, tools, evaluasi, dan UI mengubahnya menjadi produk yang berguna.",
+            hook: {
+                question: "Tim punya model paling populer. Apakah itu sudah cukup untuk membangun assistant fellowship?",
+                answerA: { label: "Sudah cukup", text: "Model kuat akan menyelesaikan seluruh kebutuhan produk.", icon: "fas fa-wand-magic-sparkles" },
+                answerB: { label: "Belum cukup", text: "Kita masih perlu context, data, tools, evaluasi, UI, dan pengawasan.", icon: "fas fa-diagram-project" },
+                message: "Model adalah komponen inti, tetapi nilai dan risiko nyata muncul dari sistem end-to-end yang dibangun di sekelilingnya."
+            },
+            flow: [["Kebutuhan", "Definisikan tugas dan risiko"], ["Kandidat", "Bandingkan model dan deployment"], ["Uji", "Evaluasi bahasa, biaya, latency"], ["Pilih", "Dokumentasikan trade-off"]],
+            quickCheck: {
+                question: "Universitas memakai model API, retrieval dokumen akademik, dan dashboard mahasiswa. Mana yang disebut AI application?",
+                options: ["Model API saja", "Retrieval saja", "Gabungan model, retrieval, workflow, UI, evaluasi, dan oversight"],
+                answer: 2,
+                explanationCorrect: "Tepat. Aplikasi AI adalah keseluruhan sistem yang mengubah kemampuan model menjadi layanan.",
+                explanationWrong: "Belum tepat. Cari jawaban yang mencakup model beserta data, workflow, interface, evaluasi, dan pengawasan."
+            },
+            challenge: {
+                instruction: "Tulis tiga kriteria terpenting untuk memilih model assistant fellowship dan jelaskan mengapa masing-masing dapat diuji.",
+                placeholder: "Contoh: Bahasa Indonesia — diuji dengan 30 pertanyaan peserta yang mewakili variasi bahasa...",
+                example: "Bahasa Indonesia diuji dengan eval set lokal; privasi diuji dari alur data dan kontrak provider; biaya diuji sebagai cost per successful task."
+            },
+            mistakes: ["Memilih model karena popularitas", "Menganggap open-weight selalu aman", "Mengabaikan lisensi dan language coverage"],
+            bestPractices: ["Mulai dari use case dan risiko", "Bandingkan dengan decision matrix", "Uji pada data yang mewakili pengguna nyata"],
+            learningOutcomes: ["Menjelaskan batas model dan aplikasi", "Membaca model card", "Membuat keputusan deployment yang dapat dipertanggungjawabkan"],
+            transition: "Setelah tahu apa yang dipilih, kita bongkar mesin yang membuat model modern mampu memahami konteks.",
+            sourcePath: BASE_PATH + "01-materi.html"
+        },
+        {
+            title: "Transformer: Mesin di Balik Model Modern",
+            shortTitle: "Transformer",
+            duration: "30 menit",
+            icon: "fas fa-network-wired",
+            summary: "Ikuti perjalanan teks dari token menjadi embedding, attention context, lalu output yang dihasilkan token demi token.",
+            objectives: ["Menjelaskan token dan embedding", "Memahami Q, K, V secara intuitif", "Membaca batas context window dan generation controls"],
+            analogy: "Attention seperti membaca thread diskusi: tidak semua komentar diberi bobot sama; fokus berpindah ke bagian yang paling relevan.",
+            hook: {
+                question: "Context window besar berarti model punya ingatan permanen. Setuju?",
+                answerA: { label: "Setuju", text: "Semua yang pernah dibaca otomatis tersimpan sebagai memori.", icon: "fas fa-box-archive" },
+                answerB: { label: "Tidak setuju", text: "Context hanya ruang kerja satu request; memory perlu dirancang terpisah.", icon: "fas fa-clock-rotate-left" },
+                message: "Context window adalah ruang kerja sementara, bukan database atau long-term memory."
+            },
+            flow: [["Teks", "Tokenizer memecah input"], ["Vektor", "Embedding memberi representasi"], ["Konteks", "Attention menimbang relasi"], ["Output", "Decoder memilih token berikutnya"]],
+            quickCheck: {
+                question: "Mengapa positional information diperlukan dalam Transformer?",
+                options: ["Attention tidak otomatis mengetahui urutan token", "Agar API key tetap aman", "Agar semua token menjadi satu kata"],
+                answer: 0,
+                explanationCorrect: "Benar. Sinyal posisi membantu model membedakan urutan token dalam konteks.",
+                explanationWrong: "Coba lagi. Pertimbangkan informasi apa yang tidak tersedia bila token hanya diproses sebagai sekumpulan representasi."
+            },
+            challenge: {
+                instruction: "Pilih konfigurasi generation untuk ringkasan kebijakan dan caption kreatif. Jelaskan pilihan temperature dan top-p untuk keduanya.",
+                placeholder: "Ringkasan kebijakan: ...\nCaption kreatif: ...",
+                example: "Ringkasan memakai temperature rendah agar stabil; caption dapat memakai temperature lebih tinggi agar variasinya lebih luas, tetap dengan batas output."
+            },
+            mistakes: ["Menganggap token selalu sama dengan kata", "Menyamakan context dengan memory", "Memakai temperature tinggi untuk tugas faktual"],
+            bestPractices: ["Ukur token dan biaya", "Prioritaskan konteks yang relevan", "Gunakan stop condition dan structured output"],
+            learningOutcomes: ["Menjelaskan alur token ke output", "Membedakan context dan memory", "Memilih kontrol generation sesuai tugas"],
+            transition: "Transformer dapat menjawab; berikutnya kita lihat bagaimana model diberi tools dan loop untuk bertindak.",
+            sourcePath: BASE_PATH + "02-materi.html"
+        },
+        {
+            title: "AI Agents: Dari Menjawab ke Bertindak",
+            shortTitle: "AI Agents",
+            duration: "30 menit",
+            icon: "fas fa-robot",
+            summary: "Rancang agent loop, tool permission, state, stopping condition, dan human approval tanpa memberi autonomy berlebihan.",
+            objectives: ["Membedakan workflow dan agent", "Merancang tool schema dan stopping condition", "Menentukan approval gate untuk aksi berdampak"],
+            analogy: "Agent seperti asisten operasional yang memilih alat, membaca hasil, dan tahu kapan harus berhenti atau meminta bantuan manusia.",
+            hook: {
+                question: "Agent boleh langsung mengirim pengumuman massal setelah menyusun draft yang bagus?",
+                answerA: { label: "Boleh otomatis", text: "Kecepatan adalah tujuan utama agent.", icon: "fas fa-bolt" },
+                answerB: { label: "Wajib approval", text: "Side effect besar perlu permission, preview, dan persetujuan manusia.", icon: "fas fa-user-shield" },
+                message: "Drafting dapat agentic; aksi eksternal yang berdampak harus melewati policy dan approval gate."
+            },
+            flow: [["Goal", "Tetapkan tujuan"], ["Observe", "Baca state dan context"], ["Act", "Pilih respons atau tool"], ["Verify", "Validasi hasil"], ["Stop", "Selesai atau eskalasi"]],
+            quickCheck: {
+                question: "Bagian mana yang paling aman dibuat deterministic dalam workflow layanan peserta?",
+                options: ["Brainstorm isi draft", "Validasi field wajib dan approval pengiriman", "Menyusun alternatif penjelasan"],
+                answer: 1,
+                explanationCorrect: "Tepat. Aturan wajib dan side effect perlu jalur deterministik yang dapat diaudit.",
+                explanationWrong: "Belum tepat. Cari langkah yang harus konsisten, dapat diaudit, dan tidak boleh bergantung pada improvisasi model."
+            },
+            challenge: {
+                instruction: "Rancang agent sederhana dengan satu goal, dua tools, stopping condition, retry limit, dan satu approval manusia.",
+                placeholder: "Goal: ...\nTools: ...\nStop: ...\nApproval: ...",
+                example: "Goal mencari tugas belum selesai; tools read_tasks dan draft_reminder; berhenti setelah daftar tervalidasi; pengiriman reminder wajib approval mentor."
+            },
+            mistakes: ["Membuat semua proses menjadi agent", "Tool berbahaya tanpa approval", "Tidak menetapkan retry limit dan trace"],
+            bestPractices: ["Gunakan workflow untuk aturan tetap", "Terapkan least privilege", "Log tool call, result, latency, dan recovery"],
+            learningOutcomes: ["Memilih workflow atau agent", "Menulis tool contract", "Menempatkan human-in-the-loop secara tepat"],
+            transition: "Agent hanyalah salah satu layer. Topik terakhir menyatukan model, retrieval, tools, security, dan evaluasi.",
+            sourcePath: BASE_PATH + "03-materi.html"
+        },
+        {
+            title: "Sistem AI Masa Kini: End-to-End",
+            shortTitle: "Sistem AI Masa Kini",
+            duration: "35 menit",
+            icon: "fas fa-sitemap",
+            summary: "Susun model, context, retrieval, tools, guardrails, observability, infrastructure, dan human oversight menjadi sistem production-ready.",
+            objectives: ["Membaca arsitektur end-to-end", "Membedakan RAG dan database query", "Mengaudit security, reliability, cost, dan governance"],
+            analogy: "Model adalah konsultan pintar; sistem AI adalah kantor lengkap dengan arsip, aturan akses, alat kerja, supervisor, dan audit.",
+            hook: {
+                question: "Model paling kuat tetap layak dipakai jika secret ada di frontend dan tool delete tidak punya approval?",
+                answerA: { label: "Masih layak", text: "Kemampuan model menutup kelemahan arsitektur.", icon: "fas fa-star" },
+                answerB: { label: "Tidak layak", text: "Security dan governance adalah syarat sistem, bukan fitur tambahan.", icon: "fas fa-shield-halved" },
+                message: "Kualitas model tidak dapat menebus kebocoran secret, akses data yang salah, atau side effect tanpa kontrol."
+            },
+            flow: [["Input", "Auth dan policy"], ["Context", "Retrieval dan state"], ["Reason", "Model dan orchestration"], ["Act", "Tools dengan permission"], ["Assure", "Validation, logs, eval, approval"]],
+            quickCheck: {
+                question: "Kapan database query biasa lebih tepat daripada vector retrieval?",
+                options: ["Saat mencari status pembayaran yang terstruktur", "Saat merangkum dokumen bebas", "Saat mencari paragraf semantik"],
+                answer: 0,
+                explanationCorrect: "Benar. Data terstruktur dan deterministik lebih aman diakses melalui query atau API yang tervalidasi.",
+                explanationWrong: "Coba lagi. RAG paling berguna untuk informasi tidak terstruktur; data transaksional perlu jalur deterministik."
+            },
+            challenge: {
+                instruction: "Isi architecture canvas ringkas untuk HerAI Assistant: model, retrieval, tools, permission, evaluation, observability, dan fallback.",
+                placeholder: "Model strategy: ...\nRetrieval: ...\nTools: ...\nApproval: ...\nEvaluation: ...\nFallback: ...",
+                example: "Model dirutekan berdasarkan risiko; retrieval hanya dokumen berizin; tools read-only; pengiriman butuh approval; fallback mengaku tidak tahu dan eskalasi."
+            },
+            mistakes: ["API key di frontend", "Retrieval tanpa access control", "Satu model untuk semua tugas", "Tidak punya evaluation set"],
+            bestPractices: ["Gunakan backend dan least privilege", "Pisahkan data terstruktur dan dokumen", "Pantau cost per successful task", "Siapkan fallback dan incident review"],
+            learningOutcomes: ["Menggambar arsitektur end-to-end", "Menemukan bottleneck lintas layer", "Menetapkan kontrol sebelum production"],
+            transition: "Kamu siap mengubah konsep menjadi rancangan melalui 13 skenario latihan dan capstone.",
+            sourcePath: BASE_PATH + "04-materi.html"
+        }
+    ];
 
-    if (!Number.isFinite(currentChapter) || currentChapter < 1 || currentChapter > totalChapters) {
-        currentChapter = 1;
-        localStorage.setItem(STORAGE_KEY_CHAPTER, "1");
+    var SOURCE_VISUALS = {
+        "01-materi.html": { eyebrow: "Model Selection Lab", title: "Bedah tiga lapisan produk AI", description: "Klik tiap lapisan untuk melihat tanggung jawab dan risiko utamanya.", options: [["Model", "fas fa-cube", "Foundation layer", "Kemampuan dasar, context limit, modalitas, bahasa, dan lisensi.", "Contoh: model bahasa via managed API atau open-weight inference."], ["Adaptasi", "fas fa-sliders", "Context & capability layer", "Prompt, RAG, fine-tuning, tools, routing, dan guardrails.", "Contoh: retrieval pedoman fellowship dengan citation."], ["Aplikasi", "fas fa-window-maximize", "Product layer", "Workflow, UI, auth, evaluation, observability, dan human support.", "Contoh: dashboard assistant peserta end-to-end."]] },
+        "02-materi.html": { eyebrow: "Transformer Lab", title: "Ikuti perjalanan sebuah token", description: "Pindah tahap untuk memahami fungsi tiap komponen tanpa terjebak rumus.", options: [["Token", "fas fa-scissors", "Unit input", "Tokenizer mengubah teks menjadi unit yang dikenali model.", "Potongan kata Indonesia bisa menjadi beberapa token."], ["Attention", "fas fa-arrows-to-eye", "Relasi konteks", "Q, K, dan V membantu setiap token menimbang informasi relevan.", "Pronoun dapat memberi bobot ke subjek yang muncul lebih awal."], ["Generation", "fas fa-forward-step", "Output bertahap", "Decoder memilih token berikutnya sampai stop condition tercapai.", "Temperature rendah memberi output lebih stabil."]] },
+        "03-materi.html": { eyebrow: "Agent Boundary Lab", title: "Tentukan siapa yang boleh bertindak", description: "Bedakan keputusan fleksibel, aturan tetap, dan aksi yang wajib approval.", options: [["Agentic", "fas fa-robot", "Keputusan fleksibel", "Model boleh memilih strategi pada tugas terbuka berisiko rendah.", "Menyusun tiga alternatif draft pesan."], ["Deterministik", "fas fa-code-branch", "Aturan tetap", "Developer menentukan langkah yang harus konsisten dan tervalidasi.", "Memastikan semua field wajib sudah terisi."], ["Approval", "fas fa-user-check", "Side effect", "Manusia menyetujui tindakan yang berdampak pada orang atau data.", "Mengirim pesan massal atau mengubah status peserta."]] },
+        "04-materi.html": { eyebrow: "Architecture Lab", title: "Cari bottleneck lintas layer", description: "Sistem production gagal dari layer terlemah, bukan hanya dari model.", options: [["Knowledge", "fas fa-book-open", "Retrieval & data", "Pastikan sumber relevan, terbaru, berizin, dan dapat dikutip.", "RAG pedoman dengan metadata access control."], ["Action", "fas fa-screwdriver-wrench", "Tools & policy", "Validasi parameter, permission, idempotency, dan approval.", "Tool pengiriman hanya menerima draft yang sudah disetujui."], ["Assurance", "fas fa-shield", "Eval & observability", "Ukur kualitas, safety, latency, cost, serta jejak insiden.", "Dashboard trace dan regression suite sebelum deploy."]] }
+    };
+
+    function safeJsonParse(value, fallback) {
+        if (!value) return fallback;
+        try { return JSON.parse(value); } catch (error) { return fallback; }
     }
 
-    function bindModernChapterInteractions() {
+    function escapeHtml(value) {
+        return String(value || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    function escapeSelector(value) {
+        if (window.CSS && typeof window.CSS.escape === "function") return window.CSS.escape(String(value));
+        return String(value).replace(/([ #;?%&,.+*~\\':\"!^$[\]()=>|/@])/g, "\\$1");
+    }
+
+    function setStatus(selector, message, tone) {
+        var status = document.querySelector(selector);
+        if (!status) return;
+        status.textContent = message;
+        status.dataset.tone = tone || "neutral";
+    }
+
+    function renderList(items) {
+        return "<ul>" + (items || []).map(function (item) { return "<li>" + escapeHtml(item) + "</li>"; }).join("") + "</ul>";
+    }
+
+    function renderFlow(items) {
+        return '<div class="reasoning-scaffold-flow">' + (items || []).map(function (item, index) {
+            var arrow = index < items.length - 1 ? '<i class="fas fa-arrow-right" aria-hidden="true"></i>' : "";
+            return '<div><strong>' + escapeHtml(item[0]) + '</strong><span>' + escapeHtml(item[1]) + '</span></div>' + arrow;
+        }).join("") + "</div>";
+    }
+
+    function getSourceFile(path) {
+        return String(path || "").split("/").pop();
+    }
+
+    function findH2Sections(html) {
+        var sections = [];
+        var pattern = /<h2[^>]*>[\s\S]*?<\/h2>[\s\S]*?(?=<h[12]|<hr\s*\/?>|$)/gi;
+        var match;
+        while ((match = pattern.exec(html)) !== null) sections.push({ index: match.index, length: match[0].length, text: match[0] });
+        return sections;
+    }
+
+    function filterSourceHeadings(html) {
+        return String(html || "").replace(/<script[\s\S]*?<\/script>/gi, "");
+    }
+
+    function stripSourceNumbering(html) {
+        return String(html || "").replace(/(<h[12][^>]*>)\s*(?:Topik|Submateri)\s+\d+\s*(?:[·—-]\s*)?/gi, "$1");
+    }
+
+    function injectAfterHeading(html, headingText, injectHtml) {
+        var safe = String(headingText || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        var pattern = new RegExp("(<h[1-4][^>]*>[\\s\\S]*?" + safe + "[\\s\\S]*?<\\/h[1-4]>)", "i");
+        return String(html || "").replace(pattern, "$1" + injectHtml);
+    }
+
+    function renderOrientationAndNav(chapter, chapterNumber, total) {
+        return '<nav class="reasoning-source-jumps reasoning-visual-nav ai-modern-learning-nav" data-modern-injected aria-label="Tahapan Topik ' + chapterNumber + ' dari ' + total + '"><span><i class="' + escapeHtml(chapter.icon) + '"></i> Jelajahi:</span><button type="button" data-jump="hook">Pembuka</button><button type="button" data-jump="konsep">Konsep</button><button type="button" data-jump="contoh">Contoh</button><button type="button" data-jump="check">Uji Pemahaman</button><button type="button" data-jump="ringkasan">Ringkasan</button></nav>';
+    }
+
+    function finalRenderHookSection(hook) {
+        return '<section class="reasoning-hook-section" data-modern-injected data-section="hook"><div class="reasoning-hook-head"><i class="fas fa-hand-pointer" aria-hidden="true"></i><div><span>Pembuka</span><h3>' + escapeHtml(hook.question) + '</h3></div></div><div class="reasoning-hook-options"><button type="button" class="reasoning-hook-card" data-hook-option="a"><div class="reasoning-hook-card-icon"><i class="' + escapeHtml(hook.answerA.icon) + '" aria-hidden="true"></i></div><div><strong>' + escapeHtml(hook.answerA.label) + '</strong><p>' + escapeHtml(hook.answerA.text) + '</p></div></button><button type="button" class="reasoning-hook-card" data-hook-option="b"><div class="reasoning-hook-card-icon"><i class="' + escapeHtml(hook.answerB.icon) + '" aria-hidden="true"></i></div><div><strong>' + escapeHtml(hook.answerB.label) + '</strong><p>' + escapeHtml(hook.answerB.text) + '</p></div></button></div><p class="reasoning-hook-message" hidden>' + escapeHtml(hook.message) + '</p></section>';
+    }
+
+    function renderSourceVisualLab(config) {
+        if (!config || !config.options || !config.options.length) return "";
+        var first = config.options[0];
+        return '<section class="reasoning-concept-lab" data-modern-injected data-section="konsep"><div class="reasoning-concept-head"><i class="fas fa-flask" aria-hidden="true"></i><div><span>' + escapeHtml(config.eyebrow) + '</span><h3>' + escapeHtml(config.title) + '</h3><p>' + escapeHtml(config.description) + '</p></div></div><div class="reasoning-concept-tabs" role="tablist">' + config.options.map(function (option, index) { return '<button type="button" role="tab" data-concept-index="' + index + '" aria-selected="' + (index === 0 ? "true" : "false") + '"><i class="' + escapeHtml(option[1]) + '"></i><span>' + escapeHtml(option[0]) + '</span></button>'; }).join("") + '</div><div class="reasoning-concept-stage"><div><span data-concept-counter>1/' + config.options.length + '</span><h4 data-concept-title>' + escapeHtml(first[2]) + '</h4><p data-concept-content>' + escapeHtml(first[3]) + '</p></div><aside><strong>Contoh</strong><p data-concept-example>' + escapeHtml(first[4]) + '</p></aside></div></section>';
+    }
+
+    function initSourceVisualLab(container, config) {
+        var lab = container.querySelector(".reasoning-concept-lab");
+        if (!lab || !config || !config.options) return;
+        lab.querySelectorAll("[data-concept-index]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var index = Number(button.dataset.conceptIndex);
+                var option = config.options[index];
+                if (!option) return;
+                lab.querySelectorAll("[data-concept-index]").forEach(function (tab) { tab.setAttribute("aria-selected", String(tab === button)); });
+                lab.querySelector("[data-concept-counter]").textContent = (index + 1) + "/" + config.options.length;
+                lab.querySelector("[data-concept-title]").textContent = option[2];
+                lab.querySelector("[data-concept-content]").textContent = option[3];
+                lab.querySelector("[data-concept-example]").textContent = option[4];
+            });
+        });
+    }
+
+    function finalRenderExampleSection(example) {
+        if (!example) return "";
+        return '<section class="reasoning-example-section" data-modern-injected data-section="contoh"><div class="reasoning-example-head"><i class="fas fa-magnifying-glass-chart"></i><div><span>Contoh Terurai</span><h3>' + escapeHtml(example.title) + '</h3></div></div><p>' + escapeHtml(example.text) + '</p></section>';
+    }
+
+    function finalRenderQuickCheckSection(check) {
+        return '<section class="reasoning-quick-check reasoning-qc-enhanced" data-modern-injected data-section="check" data-check-answer="' + check.answer + '" data-check-correct="' + escapeHtml(check.explanationCorrect) + '" data-check-wrong="' + escapeHtml(check.explanationWrong) + '"><div class="reasoning-quick-head"><i class="fas fa-circle-question" aria-hidden="true"></i><div><span>Quick Check</span><h3>' + escapeHtml(check.question) + '</h3></div></div><div class="reasoning-check-options">' + check.options.map(function (option, index) { return '<button type="button" data-check-option="' + index + '"><b>' + String.fromCharCode(65 + index) + '</b><span>' + escapeHtml(option) + '</span></button>'; }).join("") + '</div><div class="reasoning-check-actions"><button type="button" class="reasoning-scaffold-check-button" data-check-submit><i class="fas fa-check"></i> Periksa Jawaban</button><button type="button" class="reasoning-scaffold-reveal-button reasoning-check-retry" data-check-retry hidden><i class="fas fa-rotate-left"></i> Coba Lagi</button></div><p class="reasoning-check-feedback" aria-live="polite" hidden></p></section>';
+    }
+
+    function finalRenderChallengeSection(challenge, chapterNumber) {
+        var storageKey = "heraiAiModernChallengeCh" + chapterNumber;
+        return '<section class="reasoning-mini-challenge reasoning-challenge-workspace" data-modern-injected data-section="contoh" data-challenge-key="' + storageKey + '"><div class="reasoning-mini-challenge-head"><i class="fas fa-pen-ruler"></i><div><span>Mini Challenge</span><h3>Ubah konsep menjadi keputusan</h3></div></div><p class="reasoning-challenge-instruction">' + escapeHtml(challenge.instruction) + '</p><label class="reasoning-challenge-label"><span>Jawabanmu</span><textarea rows="5" placeholder="' + escapeHtml(challenge.placeholder) + '" data-challenge-textarea></textarea></label><div class="reasoning-challenge-actions"><button type="button" data-challenge-save><i class="fas fa-floppy-disk"></i> Simpan</button><button type="button" data-challenge-edit hidden><i class="fas fa-pen"></i> Edit</button><button type="button" data-challenge-reset><i class="fas fa-rotate-left"></i> Reset</button><button type="button" data-challenge-example aria-expanded="false"><i class="fas fa-lightbulb"></i> Lihat Contoh</button></div><p class="reasoning-check-feedback" data-challenge-status aria-live="polite" hidden></p><div class="reasoning-challenge-example" data-challenge-example-content hidden><strong><i class="fas fa-lightbulb"></i> Contoh Pembahasan</strong><p>' + escapeHtml(challenge.example) + '</p></div></section>';
+    }
+
+    function finalRenderMistakesPractices(mistakes, practices) {
+        return '<section class="reasoning-mistakes-practices" data-modern-injected data-section="ringkasan"><div class="reasoning-mp-grid"><div class="reasoning-mp-card reasoning-mp-mistakes"><h3><i class="fas fa-triangle-exclamation"></i> Common Mistakes</h3>' + renderList(mistakes) + '</div><div class="reasoning-mp-card reasoning-mp-practices"><h3><i class="fas fa-circle-check"></i> Best Practices</h3>' + renderList(practices) + '</div></div></section>';
+    }
+
+    function finalRenderSummarySection(outcomes, transition, chapterNumber, total) {
+        return '<section class="reasoning-summary-section" data-modern-injected data-section="ringkasan"><div class="reasoning-summary-head"><i class="fas fa-bookmark"></i><div><span>Ringkasan Topik ' + chapterNumber + '/' + total + '</span><h3>Setelah topik ini, kamu dapat:</h3></div></div><ul class="reasoning-outcome-list">' + outcomes.map(function (outcome) { return '<li><i class="fas fa-check"></i>' + escapeHtml(outcome) + '</li>'; }).join("") + '</ul><div class="reasoning-transition"><i class="fas fa-arrow-right"></i><p>' + escapeHtml(transition) + '</p></div></section>';
+    }
+
+    function finalRenderPromptSection(lines) {
+        return '<section class="reasoning-code-block reasoning-prompt-block" data-modern-injected data-section="contoh"><div><i class="fas fa-code"></i><span>Decision Pattern</span></div><pre><code>' + escapeHtml((lines || []).join("\n")) + '</code></pre></section>';
+    }
+
+    function renderEndOfChapter(chapter, chapterNumber, total) {
+        return '<div class="reasoning-end-of-chapter" data-modern-injected><section class="reasoning-visual-board" data-section="contoh"><div class="reasoning-visual-head"><i class="fas fa-route"></i><div><span>Decision Flow</span><h3>Alur yang dapat dilacak</h3></div></div>' + renderFlow(chapter.flow) + '</section>' + finalRenderQuickCheckSection(chapter.quickCheck) + finalRenderChallengeSection(chapter.challenge, chapterNumber) + finalRenderMistakesPractices(chapter.mistakes, chapter.bestPractices) + finalRenderSummarySection(chapter.learningOutcomes, chapter.transition, chapterNumber, total) + '</div>';
+    }
+
+    function enhanceSourceMaterialForCanvas(container) {
+        container.classList.add("is-source-view");
+        container.querySelectorAll(".ai-modern-section").forEach(function (section, index) {
+            if (!section.dataset.section) section.dataset.section = index < 2 ? "konsep" : index < 5 ? "contoh" : "ringkasan";
+        });
+        container.querySelectorAll("table").forEach(function (table) {
+            if (table.parentElement && !table.parentElement.classList.contains("ai-modern-table-wrap") && !table.parentElement.classList.contains("reasoning-scaffold-table-wrap")) {
+                var wrapper = document.createElement("div");
+                wrapper.className = "reasoning-scaffold-table-wrap";
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            }
+        });
+        container.querySelectorAll("pre").forEach(function (block) {
+            if (block.closest(".reasoning-code-block")) return;
+            var wrapper = document.createElement("div");
+            wrapper.className = "reasoning-code-block ai-modern-code-block";
+            wrapper.innerHTML = '<div data-modern-injected><i class="fas fa-code"></i><span>Concept Snippet</span><button type="button" data-copy-code><i class="far fa-copy"></i> Salin</button></div>';
+            block.parentNode.insertBefore(wrapper, block);
+            wrapper.appendChild(block);
+        });
+    }
+
+    function setupHookInteraction(container) {
+        container.querySelectorAll(".reasoning-hook-section").forEach(function (section) {
+            section.querySelectorAll("[data-hook-option]").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    section.querySelectorAll("[data-hook-option]").forEach(function (option) { option.classList.toggle("is-selected", option === button); });
+                    var message = section.querySelector(".reasoning-hook-message");
+                    if (message) message.hidden = false;
+                });
+            });
+        });
         container.querySelectorAll("[data-modern-reveal]").forEach(function (button) {
             button.addEventListener("click", function () {
                 var panel = button.closest(".ai-modern-active");
                 var feedback = panel ? panel.querySelector(".ai-modern-feedback") : null;
                 if (!feedback) return;
                 feedback.hidden = !feedback.hidden;
-                button.textContent = feedback.hidden ? "Tampilkan feedback" : "Sembunyikan feedback";
+                button.innerHTML = feedback.hidden ? '<i class="fas fa-eye"></i> Tampilkan feedback' : '<i class="fas fa-eye-slash"></i> Sembunyikan feedback';
             });
         });
     }
 
-    function updateProgress(chapterNumber) {
-        var listItems = document.querySelectorAll("#modern-sidebar-list li");
-        listItems.forEach(function (li) {
-            var chapter = parseInt(li.getAttribute("data-chapter") || "0", 10);
-            var icon = li.querySelector("i");
-            if (chapter === chapterNumber) {
-                li.classList.add("active");
-                if (icon) icon.className = "far fa-circle-play";
-            } else if (chapter < chapterNumber) {
-                li.classList.add("active");
-                if (icon) icon.className = "fas fa-circle-check";
-            } else {
-                li.classList.remove("active");
-                if (icon) icon.className = "far fa-circle";
-            }
+    function setupQuickChecks(container) {
+        container.querySelectorAll(".reasoning-quick-check").forEach(function (card) {
+            var selected = null;
+            var answer = Number(card.dataset.checkAnswer);
+            var feedback = card.querySelector(".reasoning-check-feedback");
+            var submit = card.querySelector("[data-check-submit]");
+            var retry = card.querySelector("[data-check-retry]");
+            card.querySelectorAll("[data-check-option]").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    selected = Number(button.dataset.checkOption);
+                    card.querySelectorAll("[data-check-option]").forEach(function (option) { option.classList.toggle("is-selected", option === button); });
+                });
+            });
+            if (submit) submit.addEventListener("click", function () {
+                if (selected === null) {
+                    feedback.hidden = false;
+                    feedback.dataset.tone = "warning";
+                    feedback.textContent = "Pilih satu jawaban sebelum memeriksa.";
+                    return;
+                }
+                card.querySelectorAll("[data-check-option]").forEach(function (option) {
+                    var index = Number(option.dataset.checkOption);
+                    option.classList.toggle("is-correct", index === answer);
+                    option.classList.toggle("is-wrong", index === selected && selected !== answer);
+                    option.disabled = true;
+                });
+                feedback.hidden = false;
+                feedback.dataset.tone = selected === answer ? "success" : "warning";
+                feedback.textContent = selected === answer ? card.dataset.checkCorrect : card.dataset.checkWrong;
+                submit.hidden = true;
+                retry.hidden = false;
+            });
+            if (retry) retry.addEventListener("click", function () {
+                selected = null;
+                card.querySelectorAll("[data-check-option]").forEach(function (option) { option.classList.remove("is-selected", "is-correct", "is-wrong"); option.disabled = false; });
+                feedback.hidden = true;
+                submit.hidden = false;
+                retry.hidden = true;
+            });
         });
+    }
 
-        var progressValue = Math.round(((chapterNumber - 1) / totalChapters) * 100);
+    function setupChallengeInteraction(container) {
+        container.querySelectorAll("[data-challenge-key]").forEach(function (workspace) {
+            var key = workspace.dataset.challengeKey;
+            var textarea = workspace.querySelector("[data-challenge-textarea]");
+            var status = workspace.querySelector("[data-challenge-status]");
+            var save = workspace.querySelector("[data-challenge-save]");
+            var edit = workspace.querySelector("[data-challenge-edit]");
+            var reset = workspace.querySelector("[data-challenge-reset]");
+            var example = workspace.querySelector("[data-challenge-example]");
+            var exampleContent = workspace.querySelector("[data-challenge-example-content]");
+            var stored = localStorage.getItem(key) || "";
+            textarea.value = stored;
+            if (stored) { textarea.disabled = true; save.hidden = true; edit.hidden = false; }
+            save.addEventListener("click", function () {
+                var value = textarea.value.trim();
+                status.hidden = false;
+                if (!value) { status.dataset.tone = "warning"; status.textContent = "Tulis jawaban sebelum menyimpan."; return; }
+                localStorage.setItem(key, value);
+                textarea.disabled = true;
+                save.hidden = true;
+                edit.hidden = false;
+                status.dataset.tone = "success";
+                status.textContent = "Jawaban tersimpan di browser ini.";
+            });
+            edit.addEventListener("click", function () { textarea.disabled = false; textarea.focus(); save.hidden = false; edit.hidden = true; });
+            reset.addEventListener("click", function () { localStorage.removeItem(key); textarea.value = ""; textarea.disabled = false; save.hidden = false; edit.hidden = true; status.hidden = true; });
+            example.addEventListener("click", function () { var show = exampleContent.hidden; exampleContent.hidden = !show; example.setAttribute("aria-expanded", String(show)); });
+        });
+    }
+
+    function setupVisualNav(container) {
+        container.querySelectorAll("[data-jump]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var target = container.querySelector('[data-section="' + escapeSelector(button.dataset.jump) + '"]');
+                if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+    }
+
+    function setupCopyButtons(container) {
+        container.querySelectorAll("[data-copy-code]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var code = button.closest(".reasoning-code-block").querySelector("code");
+                if (!code) return;
+                var done = function () { button.innerHTML = '<i class="fas fa-check"></i> Tersalin'; setTimeout(function () { button.innerHTML = '<i class="far fa-copy"></i> Salin'; }, 1400); };
+                if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code.textContent).then(done);
+            });
+        });
+    }
+
+    function sourceText(html) {
+        var template = document.createElement("template");
+        template.innerHTML = html;
+        return String(template.content.textContent || "").replace(/\s+/g, " ").trim();
+    }
+
+    function assertSourceIntegrity(container, expectedText) {
+        var clone = container.cloneNode(true);
+        clone.querySelectorAll("[data-modern-injected]").forEach(function (node) { node.remove(); });
+        var actual = String(clone.textContent || "").replace(/\s+/g, " ").trim();
+        if (actual !== expectedText) console.error("AI Modern source integrity mismatch", { expectedLength: expectedText.length, actualLength: actual.length });
+    }
+
+    function updateProgress(chapterNumber, total) {
+        var completed = Math.max(0, chapterNumber - 1);
+        var percent = Math.round((completed / total) * 100);
         var progressB = document.querySelector(".lesson-progress-mini b");
         var progressStrong = document.querySelector(".lesson-progress-mini strong");
         var progressText = document.querySelector(".lesson-progress-card p");
-        if (progressB) progressB.style.setProperty("--value", progressValue + "%");
-        if (progressStrong) progressStrong.textContent = progressValue + "%";
-        if (progressText) progressText.textContent = (chapterNumber - 1) + " dari " + totalChapters + " materi selesai";
-    }
-
-    function loadChapter(chapterNumber) {
-        container.innerHTML = '<div class="ai-modern-loading"><i class="fas fa-spinner fa-spin"></i><p>Memuat Topik ' + chapterNumber + "...</p></div>";
-
-        var formattedNumber = chapterNumber < 10 ? "0" + chapterNumber : chapterNumber;
-        var path = formattedNumber + "-materi.html";
-
-        fetch("/pages/frontend/fellow-dashboard/foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/03-konsep-ai-modern/chapters/" + path)
-            .then(function (res) {
-                if (!res.ok) throw new Error("Not found");
-                return res.text();
-            })
-            .then(function (html) {
-                container.innerHTML = html;
-                window.scrollTo({ top: 0, behavior: "smooth" });
-
-                if (btnPrev) btnPrev.style.display = chapterNumber > 1 ? "inline-block" : "none";
-                if (btnNext) btnNext.style.display = chapterNumber < totalChapters ? "inline-block" : "none";
-                if (btnFinish) btnFinish.style.display = chapterNumber === totalChapters ? "inline-block" : "none";
-
-                updateProgress(chapterNumber);
-                bindModernChapterInteractions();
-            })
-            .catch(function (err) {
-                container.innerHTML = '<div class="ai-modern-error"><i class="fas fa-triangle-exclamation"></i><p>Gagal memuat materi. Silakan coba lagi.</p></div>';
-                console.error(err);
-            });
-    }
-
-    if (btnPrev) {
-        btnPrev.addEventListener("click", function () {
-            if (currentChapter > 1) {
-                currentChapter--;
-                localStorage.setItem(STORAGE_KEY_CHAPTER, String(currentChapter));
-                loadChapter(currentChapter);
-            }
+        if (progressB) progressB.style.setProperty("--value", percent + "%");
+        if (progressStrong) progressStrong.textContent = percent + "%";
+        if (progressText) progressText.textContent = completed + " dari " + total + " topik selesai";
+        document.querySelectorAll("#modern-sidebar-list li").forEach(function (item) {
+            var itemNumber = Number(item.dataset.chapter || 0);
+            var icon = item.querySelector("i");
+            item.classList.toggle("active", itemNumber === chapterNumber);
+            item.classList.toggle("completed", itemNumber < chapterNumber);
+            if (icon) icon.className = itemNumber === chapterNumber ? "far fa-circle-play" : itemNumber < chapterNumber ? "fas fa-circle-check" : "far fa-circle";
         });
     }
 
-    if (btnNext) {
-        btnNext.addEventListener("click", function () {
-            if (currentChapter < totalChapters) {
-                currentChapter++;
-                localStorage.setItem(STORAGE_KEY_CHAPTER, String(currentChapter));
-                loadChapter(currentChapter);
-            }
+    function loadSourceHtml(path, containerId, chapter, chapterNumber) {
+        var container = document.getElementById(containerId);
+        if (!container || !path) return Promise.resolve();
+        return fetch(path, { cache: "no-store" }).then(function (response) {
+            if (!response.ok) throw new Error("Gagal memuat " + path);
+            return response.text();
+        }).then(function (rawHtml) {
+            var source = stripSourceNumbering(filterSourceHeadings(rawHtml));
+            var expectedText = sourceText(source);
+            var visual = SOURCE_VISUALS[getSourceFile(path)];
+            container.innerHTML = source + renderEndOfChapter(chapter, chapterNumber, CHAPTERS.length);
+            var sourceHero = container.querySelector(".ai-modern-chapter-hero");
+            if (sourceHero) sourceHero.insertAdjacentHTML("afterend", renderOrientationAndNav(chapter, chapterNumber, CHAPTERS.length) + finalRenderHookSection(chapter.hook));
+            var sourceSections = container.querySelectorAll(".ai-modern-section");
+            if (sourceSections[1] && visual) sourceSections[1].insertAdjacentHTML("afterend", renderSourceVisualLab(visual));
+            enhanceSourceMaterialForCanvas(container);
+            initSourceVisualLab(container, visual);
+            setupHookInteraction(container);
+            setupQuickChecks(container);
+            setupChallengeInteraction(container);
+            setupVisualNav(container);
+            setupCopyButtons(container);
+            assertSourceIntegrity(container, expectedText);
         });
     }
 
-    window.loadModernChapter = function (chapterNum) {
-        if (chapterNum >= 1 && chapterNum <= totalChapters) {
-            currentChapter = chapterNum;
-            localStorage.setItem(STORAGE_KEY_CHAPTER, String(currentChapter));
-            loadChapter(currentChapter);
-        }
+    window.loadModernChapter = function (chapterNumber) {
+        var number = Math.min(Math.max(Number(chapterNumber) || 1, 1), CHAPTERS.length);
+        var chapter = CHAPTERS[number - 1];
+        var container = document.getElementById("modern-chapter-container");
+        var prev = document.getElementById("btn-prev-chapter");
+        var next = document.getElementById("btn-next-chapter");
+        var finish = document.getElementById("btn-finish-materi");
+        if (!container || !chapter) return;
+        localStorage.setItem(STORAGE_KEY_CHAPTER, String(number));
+        container.innerHTML = '<div class="ai-modern-loading"><i class="fas fa-spinner fa-spin"></i><p>Memuat Topik ' + number + '...</p></div>';
+        loadSourceHtml(chapter.sourcePath, "modern-chapter-container", chapter, number).catch(function (error) {
+            container.innerHTML = '<div class="ai-modern-error"><i class="fas fa-triangle-exclamation"></i><div><strong>Materi belum bisa dimuat</strong><p>Refresh halaman atau coba lagi beberapa saat.</p></div></div>';
+            console.error(error);
+        });
+        if (prev) prev.hidden = number <= 1;
+        if (next) next.hidden = number >= CHAPTERS.length;
+        if (finish) finish.hidden = number !== CHAPTERS.length;
+        updateProgress(number, CHAPTERS.length);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    loadChapter(currentChapter);
-};
+    window.initAiModernMateri = function () {
+        var container = document.getElementById("modern-chapter-container");
+        if (!container || container.dataset.aiModernInitialized === "true") return;
+        container.dataset.aiModernInitialized = "true";
+        var list = document.getElementById("modern-sidebar-list");
+        var prev = document.getElementById("btn-prev-chapter");
+        var next = document.getElementById("btn-next-chapter");
+        if (list) list.innerHTML = CHAPTERS.map(function (chapter, index) { var number = index + 1; return '<li data-chapter="' + number + '"><span>' + number + '</span><button type="button" data-load-modern="' + number + '">' + escapeHtml(chapter.shortTitle) + '</button><i class="far fa-circle"></i></li>'; }).join("");
+        if (list) list.querySelectorAll("[data-load-modern]").forEach(function (button) { button.addEventListener("click", function () { window.loadModernChapter(Number(button.dataset.loadModern)); }); });
+        if (prev) prev.addEventListener("click", function () { window.loadModernChapter(Number(localStorage.getItem(STORAGE_KEY_CHAPTER)) - 1); });
+        if (next) next.addEventListener("click", function () { window.loadModernChapter(Number(localStorage.getItem(STORAGE_KEY_CHAPTER)) + 1); });
+        var initial = Number(localStorage.getItem(STORAGE_KEY_CHAPTER)) || 1;
+        window.loadModernChapter(initial);
+    };
+})();
 
 (function () {
     var STORAGE = {
@@ -224,88 +607,144 @@ window.initAiModernMateri = function () {
         status.dataset.tone = tone || "neutral";
     }
 
-    function readPractice() {
-        var saved = safeJsonParse(localStorage.getItem(STORAGE.practice), null);
-        if (!saved || typeof saved !== "object") return {};
-        if (saved.answers && typeof saved.answers === "object") return saved.answers;
+    var PRACTICES = PRACTICE_ITEMS.map(function (item) {
+        return {
+            id: item[0],
+            topic: item[1],
+            title: item[2],
+            caseText: item[3],
+            prompt: item[4],
+            fields: [["jawaban", "Tulis analisis, keputusan, trade-off, dan alasanmu..."]],
+            rubric: item[5],
+            guide: "Jawaban kuat menyebut konteks kasus, trade-off, risiko, keputusan yang dapat diuji, dan batas aman implementasi."
+        };
+    });
+
+    var PRACTICE_TOPICS = [
+        { start: 0, end: 2, label: "Foundation Models" },
+        { start: 3, end: 5, label: "Transformer" },
+        { start: 6, end: 8, label: "AI Agents" },
+        { start: 9, end: 12, label: "Sistem AI" }
+    ];
+
+    function getSavedPractice() {
+        var saved = safeJsonParse(localStorage.getItem(STORAGE.practice), null) || { answers: {}, revealed: [], current: 0 };
+        if (!saved.answers || typeof saved.answers !== "object") {
+            saved = { answers: saved, revealed: [], current: 0 };
+        }
+        if (!Array.isArray(saved.revealed)) saved.revealed = [];
+        saved.current = Math.min(Math.max(Number(saved.current) || 0, 0), PRACTICES.length - 1);
         return saved;
+    }
+
+    function renderFormattedText(text) {
+        return String(text || "").split(/\n+/).filter(Boolean).map(function (line) {
+            if (/^>\s*/.test(line)) return "<blockquote>" + escapeHtml(line.replace(/^>\s*/, "")) + "</blockquote>";
+            return "<p>" + escapeHtml(line) + "</p>";
+        }).join("");
     }
 
     function renderChecklist(items) {
         return items.map(function (item) {
-            return "<li><i class=\"fas fa-circle-check\"></i><span>" + escapeHtml(item) + "</span></li>";
+            return '<li><i class="fas fa-circle-check"></i><span>' + escapeHtml(item) + '</span></li>';
         }).join("");
     }
 
-    window.initAiModernBasic = function () {
+    function renderPracticeCard(item, index, saved, readonly) {
+        var fieldName = item.id + "-" + item.fields[0][0];
+        var value = saved.answers[fieldName] || saved.answers[item.id] || "";
+        var revealed = saved.revealed.indexOf(item.id) !== -1;
+        return '<article class="reasoning-practice-card ai-modern-practice-item" data-practice-item="' + escapeHtml(item.id) + '">' +
+            '<div class="reasoning-practice-number">' + (index + 1) + '</div>' +
+            '<div class="reasoning-practice-copy"><span>' + escapeHtml(item.topic) + '</span><h3>' + escapeHtml(item.title) + '</h3><div class="reasoning-formatted-text"><blockquote>' + escapeHtml(item.caseText) + '</blockquote>' + renderFormattedText(item.prompt) + '</div>' +
+            '<div class="ai-modern-rubric"><strong><i class="fas fa-list-check"></i> Checklist jawaban</strong><ul>' + renderChecklist(item.rubric) + '</ul></div>' +
+            '<label class="reasoning-practice-field"><span>Jawabanmu</span><textarea name="' + escapeHtml(fieldName) + '" rows="7" placeholder="' + escapeHtml(item.fields[0][1]) + '"' + (readonly ? " disabled" : "") + '>' + escapeHtml(value) + '</textarea></label>' +
+            '<div class="reasoning-practice-actions"><button type="button" data-practice-guide aria-expanded="' + String(revealed) + '"><i class="fas fa-lightbulb"></i> ' + (revealed ? "Sembunyikan panduan" : "Buka panduan") + '</button></div>' +
+            '<div class="reasoning-practice-guide"' + (revealed ? "" : " hidden") + '><strong>Panduan evaluasi diri</strong><p>' + escapeHtml(item.guide) + '</p></div></div></article>';
+    }
+
+    window.initAiModernPractice = function () {
         var root = document.getElementById("aiModernPracticeApp");
         var form = document.getElementById("aiModernPracticeForm");
         if (!root || !form) return;
         if (form.dataset.aiModernInitialized === "true") return;
         form.dataset.aiModernInitialized = "true";
 
-        var answers = readPractice();
-
-        root.innerHTML = PRACTICE_ITEMS.map(function (item, index) {
-            var slug = item[0];
-            var value = answers[slug] || "";
-            return "<article class=\"practice-card ml-practice-card ai-modern-practice-item\" data-practice-item=\"" + slug + "\">" +
-                "<div class=\"ml-card-top\"><span>" + (index + 1) + "</span><div><small>" + escapeHtml(item[1]) + "</small><h3>" + escapeHtml(item[2]) + "</h3><p>" + escapeHtml(item[3]) + "</p></div></div>" +
-                "<div class=\"ai-modern-practice-body\">" +
-                    "<p><strong>Instruksi:</strong> " + escapeHtml(item[4]) + "</p>" +
-                    "<ul class=\"ai-modern-checklist\">" + renderChecklist(item[5]) + "</ul>" +
-                    "<label><span>Jawabanmu</span><textarea name=\"" + slug + "\" rows=\"6\" placeholder=\"Tulis analisis, keputusan, dan alasanmu...\">" + escapeHtml(value) + "</textarea></label>" +
-                    "<details><summary><i class=\"fas fa-lightbulb\"></i> Hint dan rubrik</summary><p>Jawaban kuat menyebut konteks kasus, trade-off, risiko, dan keputusan yang dapat diuji. Gunakan checklist sebagai rubrik minimum.</p></details>" +
-                    "<div class=\"ml-feedback\" data-feedback-for=\"" + slug + "\"" + (value ? "" : " hidden") + "><i class=\"fas fa-circle-check\"></i><span>Jawaban tersimpan atau siap disimpan. Pastikan contohmu spesifik dan tidak membutuhkan API key.</span></div>" +
-                "</div>" +
-            "</article>";
-        }).join("");
-
-        function collectAnswers() {
-            var next = {};
-            form.querySelectorAll("textarea").forEach(function (field) {
-                next[field.name] = field.value.trim();
-            });
-            return next;
-        }
-
-        function updateFeedback() {
-            form.querySelectorAll("[data-feedback-for]").forEach(function (box) {
-                var field = form.querySelector("[name=\"" + box.dataset.feedbackFor + "\"]");
-                box.hidden = !(field && field.value.trim());
-            });
-            var completed = Object.values(collectAnswers()).filter(Boolean).length;
-            var counter = document.getElementById("aiModernPracticeCounter");
-            if (counter) counter.textContent = completed + "/" + PRACTICE_ITEMS.length + " latihan terisi";
-        }
-
-        function setReadonly(readonly) {
-            form.querySelectorAll("textarea").forEach(function (field) {
-                field.disabled = readonly;
-            });
-            form.classList.toggle("is-saved", readonly);
-        }
-
-        form.querySelectorAll("textarea").forEach(function (field) {
-            field.addEventListener("input", updateFeedback);
-        });
-
+        var saved = getSavedPractice();
+        var readonly = Boolean(localStorage.getItem(STORAGE.practice));
         var saveButton = form.querySelector("[data-practice-save]");
         var editButton = form.querySelector("[data-practice-edit]");
         var deleteButton = form.querySelector("[data-practice-delete]");
 
+        function topicFor(index) {
+            return PRACTICE_TOPICS.find(function (topic) { return index >= topic.start && index <= topic.end; }) || PRACTICE_TOPICS[0];
+        }
+
+        function completedCount() {
+            return PRACTICES.filter(function (item) {
+                return Boolean(saved.answers[item.id + "-jawaban"] || saved.answers[item.id]);
+            }).length;
+        }
+
+        function captureCurrent() {
+            var field = root.querySelector("textarea[name]");
+            if (field) saved.answers[field.name] = field.value.trim();
+        }
+
+        function render() {
+            var current = saved.current;
+            var topic = topicFor(current);
+            root.innerHTML = '<nav class="reasoning-task-navigator" aria-label="Navigasi latihan">' + PRACTICE_TOPICS.map(function (group) {
+                return '<div class="reasoning-nav-group"><strong>' + escapeHtml(group.label) + '</strong><div>' + PRACTICES.slice(group.start, group.end + 1).map(function (item, offset) {
+                    var index = group.start + offset;
+                    var complete = Boolean(saved.answers[item.id + "-jawaban"] || saved.answers[item.id]);
+                    return '<button type="button" class="' + (index === current ? "active " : "") + (complete ? "complete" : "") + '" data-practice-jump="' + index + '" aria-label="Buka latihan ' + (index + 1) + '">' + (index + 1) + '</button>';
+                }).join("") + '</div></div>';
+            }).join("") + '</nav><div class="reasoning-practice-counter"><span>Skenario ' + (current + 1) + ' dari ' + PRACTICES.length + '</span><strong>' + escapeHtml(topic.label) + ' · ' + completedCount() + ' terisi</strong></div>' +
+            renderPracticeCard(PRACTICES[current], current, saved, readonly) +
+            '<div class="reasoning-practice-pagination"><button type="button" data-practice-prev' + (current === 0 ? " disabled" : "") + '><i class="fas fa-arrow-left"></i> Sebelumnya</button><button type="button" data-practice-next' + (current === PRACTICES.length - 1 ? " disabled" : "") + '>Berikutnya <i class="fas fa-arrow-right"></i></button></div>';
+
+            root.querySelector("textarea").addEventListener("input", function () {
+                captureCurrent();
+                var counter = document.getElementById("aiModernPracticeCounter");
+                if (counter) counter.textContent = completedCount() + "/" + PRACTICES.length + " latihan terisi";
+            });
+            root.querySelector("[data-practice-guide]").addEventListener("click", function (event) {
+                var id = PRACTICES[current].id;
+                var position = saved.revealed.indexOf(id);
+                if (position === -1) saved.revealed.push(id); else saved.revealed.splice(position, 1);
+                render();
+            });
+            root.querySelectorAll("[data-practice-jump]").forEach(function (button) {
+                button.addEventListener("click", function () { captureCurrent(); saved.current = Number(button.dataset.practiceJump); render(); });
+            });
+            root.querySelector("[data-practice-prev]").addEventListener("click", function () { captureCurrent(); saved.current = Math.max(0, saved.current - 1); render(); });
+            root.querySelector("[data-practice-next]").addEventListener("click", function () { captureCurrent(); saved.current = Math.min(PRACTICES.length - 1, saved.current + 1); render(); });
+            form.classList.toggle("is-saved", readonly);
+            if (saveButton) saveButton.hidden = readonly;
+            if (editButton) editButton.hidden = !readonly;
+            var overviewCounter = document.getElementById("aiModernPracticeCounter");
+            if (overviewCounter) overviewCounter.textContent = completedCount() + "/" + PRACTICES.length + " latihan terisi";
+        }
+
         if (saveButton) {
             saveButton.addEventListener("click", function () {
-                saveJson(STORAGE.practice, { version: 2, updatedAt: new Date().toISOString(), answers: collectAnswers() });
-                setReadonly(true);
-                updateFeedback();
+                captureCurrent();
+                if (!completedCount()) {
+                    setStatus("#aiModernPracticeStatus", "Isi minimal satu skenario sebelum menyimpan.", "warning");
+                    return;
+                }
+                saveJson(STORAGE.practice, { version: 3, updatedAt: new Date().toISOString(), answers: saved.answers, revealed: saved.revealed, current: saved.current });
+                readonly = true;
+                render();
                 setStatus("#aiModernPracticeStatus", "Latihan AI Modern tersimpan. Kamu bisa lanjut kuis atau edit lagi.", "success");
             });
         }
 
         if (editButton) {
             editButton.addEventListener("click", function () {
-                setReadonly(false);
+                readonly = false;
+                render();
                 setStatus("#aiModernPracticeStatus", "Mode edit aktif. Simpan ulang setelah mengubah jawaban.", "neutral");
             });
         }
@@ -313,16 +752,18 @@ window.initAiModernMateri = function () {
         if (deleteButton) {
             deleteButton.addEventListener("click", function () {
                 localStorage.removeItem(STORAGE.practice);
-                form.querySelectorAll("textarea").forEach(function (field) { field.value = ""; });
-                setReadonly(false);
-                updateFeedback();
+                saved = { answers: {}, revealed: [], current: 0 };
+                readonly = false;
+                render();
                 setStatus("#aiModernPracticeStatus", "Jawaban latihan dihapus dari browser ini.", "neutral");
             });
         }
 
-        updateFeedback();
-        setStatus("#aiModernPracticeStatus", Object.keys(answers).length ? "Jawaban lama berhasil dipulihkan dari browsermu." : "Jawaban akan tersimpan di browsermu.", Object.keys(answers).length ? "success" : "neutral");
+        render();
+        setStatus("#aiModernPracticeStatus", completedCount() ? "Jawaban lama berhasil dipulihkan dari browsermu." : "Jawaban akan tersimpan di browsermu.", completedCount() ? "success" : "neutral");
     };
+
+    window.initAiModernBasic = window.initAiModernPractice;
 
     function getQuizState() {
         var savedAnswers = safeJsonParse(localStorage.getItem(STORAGE.quizAnswers), []);
@@ -354,20 +795,31 @@ window.initAiModernMateri = function () {
         }
 
         function renderQuestion() {
+            if (state.done) {
+                root.innerHTML = '<div class="ai-modern-quiz-lock"><i class="fas fa-lock"></i><div><strong>Attempt sudah digunakan</strong><p>Semua soal, jawabanmu, jawaban benar, dan pembahasan ditampilkan untuk review.</p></div></div><div class="ai-modern-quiz-review">' + QUIZ.map(function (reviewItem, questionIndex) {
+                    var reviewChosen = state.answers[questionIndex];
+                    return '<article class="ai-modern-quiz-card" data-quiz-index="' + questionIndex + '"><span class="ai-modern-review-number">Soal ' + (questionIndex + 1) + '</span><h3>' + escapeHtml(reviewItem[0]) + '</h3><div class="ai-modern-quiz-options">' + reviewItem[1].map(function (option, optionIndex) {
+                        var reviewClasses = [];
+                        if (reviewChosen === optionIndex) reviewClasses.push("is-selected");
+                        if (optionIndex === reviewItem[2]) reviewClasses.push("is-correct");
+                        if (reviewChosen === optionIndex && optionIndex !== reviewItem[2]) reviewClasses.push("is-wrong");
+                        return '<button type="button" class="' + reviewClasses.join(" ") + '" disabled><span>' + String.fromCharCode(65 + optionIndex) + '</span><p>' + escapeHtml(option) + '</p></button>';
+                    }).join("") + '</div><p class="quiz-explanation"><i class="fas fa-lightbulb"></i>' + escapeHtml(reviewItem[3]) + '</p></article>';
+                }).join("") + '</div>';
+                var submitLocked = form.querySelector(".quiz-submit-btn");
+                if (submitLocked) submitLocked.hidden = true;
+                return;
+            }
             var item = QUIZ[state.current];
             var chosen = state.answers[state.current];
-            var locked = state.done;
             root.innerHTML = "<div class=\"ai-modern-quiz-top\"><span>Soal " + (state.current + 1) + " dari " + QUIZ.length + "</span><strong id=\"aiModernQuizCounter\">" + answeredCount() + "/" + QUIZ.length + " terjawab</strong></div>" +
                 "<article class=\"ai-modern-quiz-card\">" +
                     "<h3>" + escapeHtml(item[0]) + "</h3>" +
                     "<div class=\"ai-modern-quiz-options\">" + item[1].map(function (option, index) {
                         var classes = [];
                         if (chosen === index) classes.push("is-selected");
-                        if (locked && index === item[2]) classes.push("is-correct");
-                        if (locked && chosen === index && index !== item[2]) classes.push("is-wrong");
-                        return "<button type=\"button\" class=\"" + classes.join(" ") + "\" data-quiz-option=\"" + index + "\"" + (locked ? " disabled" : "") + "><span>" + String.fromCharCode(65 + index) + "</span><p>" + escapeHtml(option) + "</p></button>";
+                        return "<button type=\"button\" class=\"" + classes.join(" ") + "\" data-quiz-option=\"" + index + "\"><span>" + String.fromCharCode(65 + index) + "</span><p>" + escapeHtml(option) + "</p></button>";
                     }).join("") + "</div>" +
-                    (locked ? "<p class=\"quiz-explanation\"><i class=\"fas fa-lightbulb\"></i> " + escapeHtml(item[3]) + "</p>" : "") +
                 "</article>" +
                 "<div class=\"ai-modern-quiz-nav\"><button type=\"button\" data-quiz-prev" + (state.current === 0 ? " disabled" : "") + "><i class=\"fas fa-arrow-left\"></i> Sebelumnya</button><button type=\"button\" data-quiz-next" + (state.current === QUIZ.length - 1 ? " disabled" : "") + ">Berikutnya <i class=\"fas fa-arrow-right\"></i></button></div>" +
                 "<div class=\"ai-modern-quiz-map\">" + QUIZ.map(function (_, index) {
@@ -400,6 +852,11 @@ window.initAiModernMateri = function () {
         function renderResult(message) {
             var result = document.getElementById("aiModernQuizResult");
             if (!result) return;
+            if (message && !state.done) {
+                result.hidden = false;
+                result.innerHTML = "<strong>Kuis belum bisa dikirim</strong><span>" + escapeHtml(message) + "</span>";
+                return;
+            }
             var percent = Math.round((state.score / QUIZ.length) * 100);
             result.hidden = false;
             result.innerHTML = "<strong>Skor kamu: " + state.score + "/" + QUIZ.length + " (" + percent + "%)</strong><span>" + escapeHtml(message || (percent >= 75 ? "Lulus. Review pembahasan untuk mengunci pemahaman." : "Belum mencapai 75%. Gunakan pembahasan untuk review.")) + "</span>";
@@ -414,7 +871,6 @@ window.initAiModernMateri = function () {
                 renderResult("Masih ada " + (QUIZ.length - answeredCount()) + " soal yang belum dijawab.");
                 return;
             }
-            if (!window.confirm("Kirim kuis sekarang? Kuis ini single attempt dan jawaban akan dikunci.")) return;
             state.score = state.answers.reduce(function (score, answer, index) {
                 return score + (answer === QUIZ[index][2] ? 1 : 0);
             }, 0);
@@ -464,7 +920,8 @@ window.initAiModernMateri = function () {
             return "<article class=\"discussion-bubble\" data-discussion-id=\"" + escapeHtml(post.id) + "\">" +
                 "<div><span>A</span><strong>Aisyah Putri</strong><small>" + new Date(post.createdAt).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" }) + "</small></div>" +
                 "<p><b>" + escapeHtml(post.prompt) + "</b></p><p>" + escapeHtml(post.text) + "</p>" +
-                "<button type=\"button\" data-reply=\"" + escapeHtml(post.id) + "\"><i class=\"far fa-message\"></i> Balas</button>" +
+                "<button type=\"button\" data-reply=\"" + escapeHtml(post.id) + "\" aria-expanded=\"false\"><i class=\"far fa-message\"></i> Balas</button>" +
+                "<div class=\"ai-modern-reply-composer\" data-reply-composer=\"" + escapeHtml(post.id) + "\" hidden><label><span>Tulis balasan</span><textarea rows=\"3\" placeholder=\"Tambahkan argumen, pertanyaan, atau contoh yang relevan...\"></textarea></label><p class=\"practice-status\" aria-live=\"polite\"></p><div><button type=\"button\" data-reply-save=\"" + escapeHtml(post.id) + "\"><i class=\"fas fa-paper-plane\"></i> Kirim Balasan</button><button type=\"button\" data-reply-cancel=\"" + escapeHtml(post.id) + "\">Batal</button></div></div>" +
                 "<div class=\"discussion-replies\">" + replies.map(function (reply) {
                     return "<article><strong>Aisyah Putri</strong><small>" + new Date(reply.createdAt).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" }) + "</small><p>" + escapeHtml(reply.text) + "</p></article>";
                 }).join("") + "</div></article>";
@@ -472,15 +929,41 @@ window.initAiModernMateri = function () {
 
         list.querySelectorAll("[data-reply]").forEach(function (button) {
             button.addEventListener("click", function () {
-                var text = window.prompt("Tulis balasan singkat untuk thread ini:");
-                if (!text || !text.trim()) return;
+                var composer = list.querySelector('[data-reply-composer="' + button.dataset.reply + '"]');
+                if (!composer) return;
+                var willShow = composer.hidden;
+                composer.hidden = !willShow;
+                button.setAttribute("aria-expanded", String(willShow));
+                if (willShow) composer.querySelector("textarea").focus();
+            });
+        });
+
+        list.querySelectorAll("[data-reply-save]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var composer = button.closest(".ai-modern-reply-composer");
+                var field = composer ? composer.querySelector("textarea") : null;
+                var status = composer ? composer.querySelector(".practice-status") : null;
+                var text = field ? field.value.trim() : "";
+                if (!text) {
+                    if (status) { status.textContent = "Tulis balasan terlebih dahulu."; status.dataset.tone = "warning"; }
+                    return;
+                }
                 var nextPosts = getDiscussionPosts();
-                var target = nextPosts.find(function (post) { return post.id === button.dataset.reply; });
+                var target = nextPosts.find(function (post) { return post.id === button.dataset.replySave; });
                 if (!target) return;
                 target.replies = Array.isArray(target.replies) ? target.replies : [];
                 target.replies.push({ text: text.trim(), createdAt: new Date().toISOString() });
                 saveDiscussionPosts(nextPosts);
                 renderDiscussion(nextPosts);
+            });
+        });
+
+        list.querySelectorAll("[data-reply-cancel]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var composer = button.closest(".ai-modern-reply-composer");
+                if (composer) composer.hidden = true;
+                var trigger = list.querySelector('[data-reply="' + button.dataset.replyCancel + '"]');
+                if (trigger) trigger.setAttribute("aria-expanded", "false");
             });
         });
     }

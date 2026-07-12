@@ -7595,3 +7595,937 @@
 #pyodideStatus i { color: #f63392; }
 #pyodideStatus span { color: #51596d; font-size: .82rem; }
 #pyodideStatus.ready i { color: #2e7d32; }
+
+/* Konsep AI Modern — source-as-main learning studio */
+.ai-modern-page {
+    --modern-ink: #171827;
+    --modern-copy: #51596d;
+    --modern-muted: #6f7282;
+    --modern-pink: #f63392;
+    --modern-pink-soft: #fff0f7;
+    --modern-surface: #fffcfd;
+    --modern-line: rgba(244, 143, 188, .26);
+}
+
+.ai-modern-page [hidden] {
+    display: none !important;
+}
+
+.ai-modern-page .lesson-article,
+.ai-modern-page #modern-chapter-container,
+.ai-modern-page .ai-modern-chapter,
+.ai-modern-page .reasoning-end-of-chapter {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.ai-modern-page #modern-chapter-container,
+.ai-modern-chapter,
+.ai-modern-page .reasoning-end-of-chapter {
+    display: grid;
+    gap: 22px;
+}
+
+.ai-modern-chapter-hero,
+.ai-modern-section,
+.ai-modern-active,
+.ai-modern-quiz-card,
+.ai-modern-discussion-prompt,
+.ai-modern-reply-composer,
+.ai-modern-rubric {
+    background: #fff;
+    border: 1px solid var(--modern-line);
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(170, 52, 104, .055);
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.ai-modern-chapter-hero {
+    background:
+        radial-gradient(circle at 92% 12%, rgba(246, 51, 146, .13), transparent 28%),
+        linear-gradient(145deg, #fff7fb 0%, #fff 68%);
+    border-color: rgba(246, 51, 146, .24);
+    overflow: hidden;
+    padding: 30px;
+    position: relative;
+}
+
+.ai-modern-chapter-hero::after {
+    border: 18px solid rgba(246, 51, 146, .055);
+    border-radius: 50%;
+    content: "";
+    height: 112px;
+    position: absolute;
+    right: -44px;
+    top: -50px;
+    width: 112px;
+}
+
+.ai-modern-chapter-hero > span,
+.ai-modern-section > h3,
+.ai-modern-active > div > span,
+.ai-modern-practice-item .reasoning-practice-copy > span,
+.ai-modern-review-number {
+    color: var(--modern-pink);
+    font-size: .76rem;
+    font-weight: 900;
+    letter-spacing: .055em;
+    text-transform: uppercase;
+}
+
+.ai-modern-chapter-hero h2 {
+    color: var(--modern-ink);
+    font-size: clamp(1.65rem, 3vw, 2.35rem);
+    letter-spacing: -.035em;
+    line-height: 1.12;
+    margin: 10px 0 12px;
+    max-width: 760px;
+}
+
+.ai-modern-chapter-hero > p,
+.ai-modern-section p,
+.ai-modern-active p,
+.ai-modern-practice-item p,
+.ai-modern-discussion-prompt p,
+.ai-modern-discussion-prompt small,
+.ai-modern-reply-composer p {
+    color: var(--modern-copy);
+    line-height: 1.75;
+    margin: 0;
+    overflow-wrap: break-word;
+}
+
+.ai-modern-objectives {
+    background: rgba(255, 255, 255, .8);
+    border: 1px solid rgba(244, 143, 188, .22);
+    border-radius: 16px;
+    margin-top: 22px;
+    padding: 18px;
+}
+
+.ai-modern-objectives > strong {
+    align-items: center;
+    color: var(--modern-ink);
+    display: flex;
+    gap: 8px;
+}
+
+.ai-modern-objectives > strong::before {
+    color: var(--modern-pink);
+    content: "\f140";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.ai-modern-objectives ul,
+.ai-modern-checklist,
+.ai-modern-rubric ul {
+    display: grid;
+    gap: 9px;
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+}
+
+.ai-modern-objectives li,
+.ai-modern-checklist li,
+.ai-modern-rubric li {
+    align-items: flex-start;
+    background: rgba(246, 51, 146, .045);
+    border: 1px solid rgba(244, 143, 188, .16);
+    border-radius: 12px;
+    color: var(--modern-copy);
+    display: flex;
+    gap: 10px;
+    line-height: 1.55;
+    padding: 10px 12px;
+}
+
+.ai-modern-objectives li::before {
+    color: var(--modern-pink);
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-size: .78rem;
+    font-weight: 900;
+    margin-top: 4px;
+}
+
+.ai-modern-section {
+    display: grid;
+    gap: 16px;
+    padding: 24px;
+    scroll-margin-top: 24px;
+}
+
+.ai-modern-section h3 {
+    border-left: 4px solid var(--modern-pink);
+    color: var(--modern-ink);
+    font-size: 1.28rem;
+    letter-spacing: -.015em;
+    margin: 0;
+    padding-left: 13px;
+}
+
+.ai-modern-section h4,
+.ai-modern-card-grid h4 {
+    color: var(--modern-ink);
+    margin: 0 0 6px;
+}
+
+.ai-modern-question,
+.ai-modern-callout,
+.ai-modern-warning,
+.ai-modern-summary {
+    align-items: flex-start;
+    background: var(--modern-pink-soft);
+    border: 1px solid rgba(246, 51, 146, .2);
+    border-radius: 16px;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 40px minmax(0, 1fr);
+    padding: 16px;
+}
+
+.ai-modern-question > i,
+.ai-modern-callout > i,
+.ai-modern-warning > i {
+    align-items: center;
+    background: rgba(246, 51, 146, .12);
+    border-radius: 50%;
+    color: var(--modern-pink);
+    display: inline-flex;
+    height: 38px;
+    justify-content: center;
+    width: 38px;
+}
+
+.ai-modern-summary {
+    color: var(--modern-copy);
+    display: block;
+    line-height: 1.7;
+}
+
+.ai-modern-flow,
+.ai-modern-pipeline,
+.ai-modern-architecture {
+    align-items: stretch;
+    display: flex;
+    gap: 10px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 4px 2px 10px;
+    scrollbar-width: thin;
+}
+
+.ai-modern-flow > span,
+.ai-modern-pipeline > span,
+.ai-modern-architecture > span {
+    align-items: center;
+    background: linear-gradient(145deg, #fff7fb, #fff);
+    border: 1px solid rgba(246, 51, 146, .22);
+    border-radius: 14px;
+    color: var(--modern-ink);
+    display: flex;
+    flex: 1 0 145px;
+    font-weight: 800;
+    justify-content: center;
+    line-height: 1.35;
+    min-height: 64px;
+    padding: 12px;
+    text-align: center;
+}
+
+.ai-modern-flow > i {
+    align-self: center;
+    color: var(--modern-pink);
+    flex: 0 0 auto;
+}
+
+.ai-modern-pipeline > span,
+.ai-modern-architecture > span {
+    flex-basis: 125px;
+    position: relative;
+}
+
+.ai-modern-pipeline > span:not(:last-child)::after,
+.ai-modern-architecture > span:not(:last-child)::after {
+    color: var(--modern-pink);
+    content: "\f061";
+    font-family: "Font Awesome 6 Free";
+    font-size: .72rem;
+    font-weight: 900;
+    position: absolute;
+    right: -9px;
+    top: calc(50% - 6px);
+    z-index: 2;
+}
+
+.ai-modern-flow-vertical {
+    align-items: stretch;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+}
+
+.ai-modern-card-grid,
+.ai-modern-comparison {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ai-modern-card-grid article,
+.ai-modern-comparison article {
+    background: var(--modern-surface);
+    border: 1px solid rgba(244, 143, 188, .22);
+    border-radius: 15px;
+    min-width: 0;
+    padding: 16px;
+}
+
+.ai-modern-comparison article {
+    display: grid;
+    gap: 7px;
+}
+
+.ai-modern-comparison strong {
+    color: var(--modern-ink);
+}
+
+.ai-modern-comparison span {
+    color: var(--modern-copy);
+    line-height: 1.6;
+}
+
+.ai-modern-table-wrap,
+.ai-modern-page .reasoning-scaffold-table-wrap {
+    border: 1px solid var(--modern-line);
+    border-radius: 16px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.ai-modern-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 680px;
+    width: 100%;
+}
+
+.ai-modern-table th,
+.ai-modern-table td {
+    border-bottom: 1px solid rgba(244, 143, 188, .16);
+    color: var(--modern-copy);
+    line-height: 1.55;
+    padding: 13px 14px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.ai-modern-table th {
+    background: var(--modern-pink-soft);
+    color: var(--modern-ink);
+    font-size: .8rem;
+    font-weight: 900;
+}
+
+.ai-modern-quote {
+    background: #fff7fb;
+    border: 1px solid rgba(246, 51, 146, .2);
+    border-left: 4px solid var(--modern-pink);
+    border-radius: 14px;
+    color: var(--modern-ink);
+    font-size: 1rem;
+    font-weight: 750;
+    line-height: 1.7;
+    margin: 0;
+    padding: 18px;
+}
+
+.ai-modern-quote cite {
+    color: var(--modern-muted);
+    display: block;
+    font-size: .8rem;
+    font-style: normal;
+    margin-top: 8px;
+}
+
+.ai-modern-code,
+.ai-modern-page .reasoning-code-block pre {
+    background: #fff7fb;
+    border-radius: 14px;
+    color: var(--modern-ink);
+    margin: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 18px;
+}
+
+.ai-modern-page .reasoning-code-block {
+    background: #fffcfd;
+    border: 1px solid rgba(246, 51, 146, .22);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.ai-modern-page .reasoning-code-block > div {
+    align-items: center;
+    background: var(--modern-pink-soft);
+    border-bottom: 1px solid rgba(244, 143, 188, .2);
+    color: var(--modern-ink);
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px;
+}
+
+.ai-modern-page .reasoning-code-block > div > i {
+    color: var(--modern-pink);
+}
+
+.ai-modern-page [data-copy-code] {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .25);
+    border-radius: 100px;
+    color: var(--modern-ink);
+    cursor: pointer;
+    font-weight: 800;
+    margin-left: auto;
+    padding: 7px 12px;
+}
+
+.ai-modern-active {
+    background: linear-gradient(145deg, #fff0f7, #fff);
+    border-color: rgba(246, 51, 146, .26);
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    padding: 22px;
+    scroll-margin-top: 24px;
+}
+
+.ai-modern-active .ai-modern-feedback {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .22);
+    border-radius: 14px;
+    grid-column: 1 / -1;
+    padding: 14px;
+}
+
+.ai-modern-active button,
+.ai-modern-cta,
+.ai-modern-pagination .btn,
+.ai-modern-discussion-prompt button,
+.ai-modern-reply-composer button,
+.ai-modern-page .lesson-list-card li > button {
+    align-items: center;
+    border-radius: 100px;
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: 850;
+    gap: 8px;
+    justify-content: center;
+}
+
+.ai-modern-active button,
+.ai-modern-cta,
+.ai-modern-pagination .btn,
+.ai-modern-discussion-prompt button,
+.ai-modern-reply-composer [data-reply-save] {
+    background: var(--modern-pink);
+    border: 1px solid var(--modern-pink);
+    color: #fff;
+    padding: 10px 17px;
+}
+
+.ai-modern-glossary {
+    display: grid;
+    gap: 8px 12px;
+    grid-template-columns: max-content minmax(0, 1fr);
+    margin: 0;
+}
+
+.ai-modern-glossary dt {
+    color: var(--modern-pink);
+    font-weight: 900;
+}
+
+.ai-modern-glossary dd,
+.ai-modern-references {
+    color: var(--modern-copy);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.ai-modern-cta {
+    justify-self: start;
+    text-decoration: none;
+}
+
+.ai-modern-learning-nav {
+    position: sticky;
+    top: 10px;
+    z-index: 5;
+}
+
+.ai-modern-learning-nav > span i {
+    color: var(--modern-pink);
+    margin-right: 6px;
+}
+
+.ai-modern-pagination {
+    align-items: center;
+    border-top: 1px solid var(--modern-line);
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-top: 34px;
+    padding-top: 22px;
+}
+
+.ai-modern-pagination .btn {
+    border: 1px solid var(--modern-pink);
+    padding: 11px 20px;
+    text-decoration: none;
+}
+
+.ai-modern-pagination .btn-outline {
+    background: #fff;
+    color: var(--modern-pink);
+}
+
+.ai-modern-pagination .btn-primary {
+    background: var(--modern-pink);
+    box-shadow: 0 8px 20px rgba(246, 51, 146, .22);
+    color: #fff;
+    margin-left: auto;
+}
+
+.ai-modern-loading,
+.ai-modern-error,
+.ai-modern-quiz-lock {
+    align-items: center;
+    background: #fff7fb;
+    border: 1px solid var(--modern-line);
+    border-radius: 18px;
+    color: var(--modern-copy);
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    min-height: 150px;
+    padding: 24px;
+    text-align: left;
+}
+
+.ai-modern-loading i,
+.ai-modern-error i,
+.ai-modern-quiz-lock > i {
+    align-items: center;
+    background: rgba(246, 51, 146, .12);
+    border-radius: 50%;
+    color: var(--modern-pink);
+    display: inline-flex;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+}
+
+.ai-modern-page .lesson-list-card li > button {
+    background: transparent;
+    border: 0;
+    color: var(--modern-copy);
+    font: inherit;
+    justify-content: flex-start;
+    min-width: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.ai-modern-page .lesson-list-card li.active > button {
+    color: var(--modern-ink);
+    font-weight: 900;
+}
+
+.ai-modern-practice-progress {
+    align-items: center;
+    background: #fff0f7;
+    border: 1px solid rgba(246, 51, 146, .22);
+    border-radius: 100px;
+    color: var(--modern-ink);
+    display: inline-flex;
+    font-size: .82rem;
+    font-weight: 900;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+}
+
+.ai-modern-practice-item {
+    grid-template-columns: 54px minmax(0, 1fr);
+}
+
+.ai-modern-practice-item .reasoning-practice-number {
+    align-items: center;
+    background: var(--modern-pink);
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    font-weight: 900;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+}
+
+.ai-modern-rubric {
+    background: #fff7fb;
+    box-shadow: none;
+    margin: 16px 0;
+    padding: 16px;
+}
+
+.ai-modern-rubric > strong {
+    color: var(--modern-ink);
+}
+
+.ai-modern-rubric > strong i,
+.ai-modern-rubric li i {
+    color: var(--modern-pink);
+}
+
+.ai-modern-quiz-top {
+    align-items: center;
+    background: #fff7fb;
+    border: 1px solid var(--modern-line);
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+}
+
+.ai-modern-quiz-top span,
+.ai-modern-quiz-top strong {
+    color: var(--modern-copy);
+    font-size: .85rem;
+}
+
+.ai-modern-quiz-card {
+    display: grid;
+    gap: 18px;
+    padding: 22px;
+}
+
+.ai-modern-quiz-card h3 {
+    color: var(--modern-ink);
+    line-height: 1.45;
+    margin: 0;
+}
+
+.ai-modern-quiz-options {
+    display: grid;
+    gap: 10px;
+}
+
+.ai-modern-quiz-options button {
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--modern-line);
+    border-radius: 15px;
+    color: var(--modern-copy);
+    cursor: pointer;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 36px minmax(0, 1fr);
+    padding: 12px 14px;
+    text-align: left;
+    width: 100%;
+}
+
+.ai-modern-quiz-options button > span {
+    align-items: center;
+    background: #fff0f7;
+    border-radius: 50%;
+    color: var(--modern-pink);
+    display: inline-flex;
+    font-weight: 900;
+    height: 32px;
+    justify-content: center;
+    width: 32px;
+}
+
+.ai-modern-quiz-options button p {
+    color: inherit;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.ai-modern-quiz-options button.is-selected {
+    background: #fff0f7;
+    border-color: var(--modern-pink);
+    color: var(--modern-ink);
+}
+
+.ai-modern-quiz-options button.is-correct {
+    background: #f0fff7;
+    border-color: #1f9d68;
+    color: #166746;
+}
+
+.ai-modern-quiz-options button.is-correct > span {
+    background: #dff8ec;
+    color: #16724d;
+}
+
+.ai-modern-quiz-options button.is-wrong {
+    background: #fff4f5;
+    border-color: #d74759;
+    color: #9b2635;
+}
+
+.ai-modern-quiz-options button.is-wrong > span {
+    background: #ffe2e6;
+    color: #a72c3c;
+}
+
+.ai-modern-quiz-nav,
+.ai-modern-quiz-map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.ai-modern-quiz-nav button,
+.ai-modern-quiz-map button {
+    background: #fff;
+    border: 1px solid var(--modern-line);
+    border-radius: 100px;
+    color: var(--modern-copy);
+    cursor: pointer;
+    font-weight: 850;
+    padding: 9px 14px;
+}
+
+.ai-modern-quiz-map {
+    justify-content: center;
+}
+
+.ai-modern-quiz-map button {
+    align-items: center;
+    border-radius: 50%;
+    display: inline-flex;
+    height: 38px;
+    justify-content: center;
+    padding: 0;
+    width: 38px;
+}
+
+.ai-modern-quiz-map button.active,
+.ai-modern-quiz-map button.answered {
+    background: #fff0f7;
+    border-color: var(--modern-pink);
+    color: var(--modern-pink);
+}
+
+.ai-modern-quiz-map button.active {
+    background: var(--modern-pink);
+    color: #fff;
+}
+
+.ai-modern-quiz-review {
+    display: grid;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.quiz-explanation {
+    background: #fff7fb;
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 14px;
+    color: var(--modern-copy);
+    line-height: 1.65;
+    margin: 0;
+    padding: 13px;
+}
+
+.quiz-explanation i {
+    color: var(--modern-pink);
+    margin-right: 7px;
+}
+
+.ai-modern-discussion-prompts {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 20px;
+}
+
+.ai-modern-discussion-prompt {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+}
+
+.ai-modern-discussion-prompt > span {
+    align-items: center;
+    background: var(--modern-pink);
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    font-weight: 900;
+    height: 34px;
+    justify-content: center;
+    width: 34px;
+}
+
+.ai-modern-discussion-prompt h3 {
+    color: var(--modern-ink);
+    margin: 0;
+}
+
+.ai-modern-discussion-prompt > div {
+    background: #fff7fb;
+    border: 1px solid rgba(246, 51, 146, .16);
+    border-radius: 12px;
+    color: var(--modern-copy);
+    line-height: 1.55;
+    padding: 10px;
+}
+
+.ai-modern-discussion-prompt button {
+    justify-self: start;
+}
+
+.ai-modern-reply-composer {
+    background: #fff7fb;
+    box-shadow: none;
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 14px;
+}
+
+.ai-modern-reply-composer label,
+.ai-modern-reply-composer label > span {
+    display: grid;
+    gap: 7px;
+}
+
+.ai-modern-reply-composer label > span {
+    color: var(--modern-ink);
+    font-size: .82rem;
+    font-weight: 900;
+}
+
+.ai-modern-reply-composer textarea {
+    background: #fff;
+    border: 1px solid var(--modern-line);
+    border-radius: 14px;
+    color: var(--modern-ink);
+    font: inherit;
+    line-height: 1.6;
+    padding: 12px;
+    resize: vertical;
+    width: 100%;
+}
+
+.ai-modern-reply-composer > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ai-modern-reply-composer [data-reply-cancel] {
+    background: #fff;
+    border: 1px solid var(--modern-line);
+    color: var(--modern-copy);
+    padding: 10px 17px;
+}
+
+.ai-modern-page .practice-status[data-tone="success"],
+.ai-modern-page .reasoning-check-feedback[data-tone="success"] {
+    color: #176b4b;
+}
+
+.ai-modern-page .practice-status[data-tone="warning"],
+.ai-modern-page .reasoning-check-feedback[data-tone="warning"] {
+    color: #9b2635;
+}
+
+@media (max-width: 1080px) {
+    .ai-modern-page .lesson-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-modern-page .lesson-right-panel {
+        position: static;
+    }
+}
+
+@media (max-width: 760px) {
+    .ai-modern-chapter-hero,
+    .ai-modern-section,
+    .ai-modern-active,
+    .ai-modern-quiz-card {
+        padding: 18px;
+    }
+
+    .ai-modern-card-grid,
+    .ai-modern-comparison,
+    .ai-modern-discussion-prompts,
+    .ai-modern-flow-vertical,
+    .ai-modern-active {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-modern-active button {
+        justify-self: start;
+    }
+
+    .ai-modern-learning-nav {
+        position: static;
+    }
+
+    .ai-modern-pagination {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .ai-modern-pagination .btn,
+    .ai-modern-pagination .btn-primary {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .ai-modern-practice-item {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-modern-quiz-nav button {
+        flex: 1 1 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ai-modern-question,
+    .ai-modern-callout,
+    .ai-modern-warning {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-modern-glossary {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-modern-quiz-options button {
+        align-items: start;
+        grid-template-columns: 32px minmax(0, 1fr);
+        padding: 11px;
+    }
+
+    .ai-modern-quiz-options button > span {
+        height: 30px;
+        width: 30px;
+    }
+}

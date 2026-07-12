@@ -1,4 +1,4 @@
-<section class="fellow-dashboard fellow-modules-page lesson-detail-page ai-modern-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page reasoning-scaffold-page ai-modern-page" data-fellow-page="modules">
     <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false">
         <i class="fas fa-bars"></i>
     </button>
@@ -87,18 +87,15 @@
                             </div>
                         </div>
 
-                        <!-- Pagination Controls -->
-                        <div id="chapter-pagination" style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--fellow-line);">
-                            <button id="btn-prev-chapter" class="btn btn-outline" style="display: none; border-color: var(--fellow-pink); color: var(--fellow-pink); border-radius: 100px; padding: 10px 24px; font-weight: 600; cursor: pointer;">
-                                <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Topik Sebelumnya
+                        <div id="chapter-pagination" class="ai-modern-pagination">
+                            <button id="btn-prev-chapter" class="btn btn-outline" hidden>
+                                <i class="fas fa-arrow-left"></i> Topik Sebelumnya
                             </button>
-                            <div style="flex-grow: 1;"></div>
-                            <button id="btn-next-chapter" class="btn btn-primary" style="display: none; background: var(--fellow-pink); color: white; border: none; border-radius: 100px; padding: 10px 24px; font-weight: 600; box-shadow: 0 4px 12px rgba(246,51,146,.3); cursor: pointer;">
-                                Topik Selanjutnya <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                            <button id="btn-next-chapter" class="btn btn-primary" hidden>
+                                Topik Selanjutnya <i class="fas fa-arrow-right"></i>
                             </button>
-                            <!-- Tombol ini muncul di modul terakhir untuk lanjut ke Latihan -->
-                            <a href="#/participant-ai-modern-practice" id="btn-finish-materi" class="btn btn-primary" style="display: none; background: var(--fellow-pink); color: white; border: none; border-radius: 100px; padding: 10px 24px; font-weight: 600; box-shadow: 0 4px 12px rgba(246,51,146,.3); text-decoration: none;">
-                                Lanjut ke Latihan AI Modern <i class="fas fa-play" style="margin-left: 8px;"></i>
+                            <a href="#/participant-ai-modern-practice" id="btn-finish-materi" class="btn btn-primary" hidden>
+                                Lanjut ke Latihan AI Modern <i class="fas fa-play"></i>
                             </a>
                         </div>
                     </article>
@@ -118,10 +115,10 @@
                 <section class="module-side-card lesson-list-card">
                     <h2>Daftar Materi</h2>
                     <ol id="modern-sidebar-list">
-                        <li class="active" data-chapter="1"><span>1</span><a href="javascript:void(0)" onclick="window.loadModernChapter(1)">Foundation Models</a><i class="far fa-circle-play"></i></li>
-                        <li data-chapter="2"><span>2</span><a href="javascript:void(0)" onclick="window.loadModernChapter(2)">Transformer</a><i class="far fa-circle"></i></li>
-                        <li data-chapter="3"><span>3</span><a href="javascript:void(0)" onclick="window.loadModernChapter(3)">AI Agents</a><i class="far fa-circle"></i></li>
-                        <li data-chapter="4"><span>4</span><a href="javascript:void(0)" onclick="window.loadModernChapter(4)">Sistem AI Masa Kini</a><i class="far fa-circle"></i></li>
+                        <li class="active" data-chapter="1"><span>1</span><button type="button" data-load-modern="1">Foundation Models</button><i class="far fa-circle-play"></i></li>
+                        <li data-chapter="2"><span>2</span><button type="button" data-load-modern="2">Transformer</button><i class="far fa-circle"></i></li>
+                        <li data-chapter="3"><span>3</span><button type="button" data-load-modern="3">AI Agents</button><i class="far fa-circle"></i></li>
+                        <li data-chapter="4"><span>4</span><button type="button" data-load-modern="4">Sistem AI Masa Kini</button><i class="far fa-circle"></i></li>
                     </ol>
                 </section>
 

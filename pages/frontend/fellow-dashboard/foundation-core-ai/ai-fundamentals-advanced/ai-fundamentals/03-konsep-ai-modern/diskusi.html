@@ -1,4 +1,4 @@
-<section class="fellow-dashboard fellow-modules-page lesson-detail-page ai-modern-page ai-modern-discussion-page" data-fellow-page="modules">
+<section class="fellow-dashboard fellow-modules-page lesson-detail-page reasoning-scaffold-page ai-modern-page ai-modern-discussion-page" data-fellow-page="modules">
     <button class="fellow-menu-toggle" type="button" aria-label="Buka navigasi peserta" aria-expanded="false"><i class="fas fa-bars"></i></button>
     <div class="fellow-sidebar-scrim" aria-hidden="true"></div>
     <aside class="fellow-sidebar" aria-label="Navigasi peserta">
@@ -58,7 +58,7 @@
                         <div class="ml-section-head">
                             <span>Discussion Board</span>
                             <h2>Forum Pertanyaan AI Modern</h2>
-                            <p>Pilih prompt atau tulis posisi sendiri. Thread tersimpan di browser dengan key <code>heraiAiModernDiscussion</code>.</p>
+                            <p>Pilih prompt atau tulis posisi sendiri. Posting dan balasan tersimpan secara lokal di browser ini.</p>
                         </div>
 
                         <div id="aiModernDiscussionPrompts" class="ai-modern-discussion-prompts" aria-label="Prompt diskusi Konsep AI Modern"></div>
@@ -78,7 +78,7 @@
                                 <textarea rows="6" placeholder="Tulis posisi, alasan, risiko, dan contoh kasus. Input HTML akan disanitasi saat ditampilkan."></textarea>
                             </label>
                             <div class="ml-save-panel">
-                                <p id="aiModernDiscussionStatus" class="practice-status">Posting akan tersimpan di browser ini.</p>
+                                <p id="aiModernDiscussionStatus" class="practice-status" aria-live="polite">Posting akan tersimpan di browser ini.</p>
                                 <button type="submit"><i class="fas fa-paper-plane"></i> Posting Diskusi</button>
                             </div>
                         </form>
