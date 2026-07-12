@@ -10062,3 +10062,1038 @@
         width: 34px;
     }
 }
+
+/* Evaluation AI and Evolution of AI scoped polish */
+.ai-evaluation-page,
+.ai-evolution-page {
+    --advanced-pink: #f63392;
+    --advanced-pink-strong: #d91d78;
+    --advanced-ink: #171827;
+    --advanced-copy: #51596d;
+    --advanced-muted: #6f7282;
+    --advanced-line: rgba(244, 143, 188, .28);
+    --advanced-soft: #fff7fb;
+    --advanced-soft-strong: #fff0f7;
+    --advanced-surface: #fffcfd;
+}
+
+.ai-evaluation-shell,
+.ai-evolution-shell {
+    background: linear-gradient(180deg, #fffcfd 0%, #fff7fb 48%, #fff 100%);
+    min-width: 0;
+}
+
+.ai-evaluation-app,
+.ai-evolution-app {
+    box-sizing: border-box;
+    display: grid;
+    gap: 22px;
+    margin: 0 auto;
+    max-width: 1180px;
+    padding: 24px clamp(16px, 3vw, 34px) 42px;
+    width: 100%;
+}
+
+.ai-evaluation-page [hidden],
+.ai-evolution-page [hidden] {
+    display: none !important;
+}
+
+.ai-evaluation-hero,
+.ai-evolution-hero {
+    align-items: stretch;
+    background: linear-gradient(135deg, #fff 0%, #fff7fb 58%, #fffcfd 100%);
+    border: 1px solid var(--advanced-line);
+    border-radius: 20px;
+    box-shadow: 0 18px 44px rgba(246, 51, 146, .09);
+    display: grid;
+    gap: 22px;
+    grid-template-columns: minmax(0, 1.8fr) minmax(260px, .7fr);
+    overflow: hidden;
+    padding: clamp(22px, 4vw, 36px);
+    position: relative;
+}
+
+.ai-evaluation-hero::before,
+.ai-evolution-hero::before {
+    background: var(--advanced-pink);
+    border-radius: 100px;
+    content: "";
+    height: 5px;
+    left: clamp(22px, 4vw, 36px);
+    position: absolute;
+    top: 0;
+    width: 92px;
+}
+
+.ai-evaluation-hero > div:first-child,
+.ai-evolution-hero > div:first-child {
+    display: grid;
+    gap: 14px;
+    min-width: 0;
+}
+
+.ai-evaluation-hero span,
+.ai-evolution-hero span,
+.ai-evaluation-detail-head > span,
+.ai-evolution-detail-head > span {
+    color: var(--advanced-pink);
+    font-size: .78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.ai-evaluation-hero h1,
+.ai-evolution-hero h1 {
+    color: var(--advanced-ink);
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    line-height: 1.02;
+    margin: 0;
+}
+
+.ai-evaluation-hero p,
+.ai-evolution-hero p,
+.ai-evaluation-progress-card p,
+.ai-evolution-progress-card p,
+.ai-evaluation-detail-head p,
+.ai-evolution-detail-head p,
+.ai-evaluation-module-card p,
+.ai-evolution-module-card p,
+.ai-evaluation-section p,
+.ai-evolution-section p,
+.ai-evaluation-grid p,
+.ai-evolution-grid p,
+.ai-evaluation-callout,
+.ai-evolution-callout,
+.ai-evaluation-check p,
+.ai-evolution-check p,
+.ai-evaluation-glossary dd,
+.ai-evolution-glossary dd,
+.ai-evaluation-references li,
+.ai-evolution-references li,
+.ai-evaluation-practice p,
+.ai-evolution-practice p,
+.ai-evaluation-discussion p,
+.ai-evolution-discussion p,
+.ai-evaluation-explanation,
+.ai-evolution-explanation {
+    color: var(--advanced-copy);
+    line-height: 1.7;
+}
+
+.ai-evaluation-meta,
+.ai-evolution-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.ai-evaluation-meta b,
+.ai-evolution-meta b {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 100px;
+    color: var(--advanced-ink);
+    display: inline-flex;
+    font-size: .84rem;
+    gap: 8px;
+    min-height: 36px;
+    padding: 8px 12px;
+}
+
+.ai-evaluation-meta i,
+.ai-evolution-meta i {
+    color: var(--advanced-pink);
+}
+
+.ai-evaluation-primary,
+.ai-evolution-primary,
+.ai-evaluation-module-card a,
+.ai-evolution-module-card a,
+.ai-evaluation-tabs a,
+.ai-evolution-tabs a,
+.ai-evaluation-pager a,
+.ai-evolution-pager a,
+.ai-evaluation-actions button,
+.ai-evolution-actions button,
+.ai-evaluation-complete,
+.ai-evolution-complete {
+    align-items: center;
+    border-radius: 100px;
+    display: inline-flex;
+    font-weight: 850;
+    gap: 8px;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.ai-evaluation-primary,
+.ai-evolution-primary,
+.ai-evaluation-actions button,
+.ai-evolution-actions button,
+.ai-evaluation-complete,
+.ai-evolution-complete {
+    background: var(--advanced-pink);
+    border: 1px solid var(--advanced-pink);
+    box-shadow: 0 12px 26px rgba(246, 51, 146, .18);
+    color: #fff;
+    min-height: 44px;
+    padding: 12px 18px;
+    width: fit-content;
+}
+
+.ai-evaluation-primary:hover,
+.ai-evolution-primary:hover,
+.ai-evaluation-actions button:hover,
+.ai-evolution-actions button:hover,
+.ai-evaluation-complete:hover,
+.ai-evolution-complete:hover {
+    background: var(--advanced-pink-strong);
+    border-color: var(--advanced-pink-strong);
+    transform: translateY(-1px);
+}
+
+.ai-evaluation-progress-card,
+.ai-evolution-progress-card {
+    align-self: stretch;
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .2);
+    border-radius: 18px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6);
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+    padding: 18px;
+}
+
+.ai-evaluation-progress-card span,
+.ai-evolution-progress-card span {
+    color: var(--advanced-muted);
+    text-transform: none;
+}
+
+.ai-evaluation-progress-card strong,
+.ai-evolution-progress-card strong {
+    color: var(--advanced-ink);
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.ai-evaluation-outcomes,
+.ai-evolution-outcomes,
+.ai-evaluation-detail-head,
+.ai-evolution-detail-head,
+.ai-evaluation-activity,
+.ai-evolution-activity {
+    background: #fff;
+    border: 1px solid var(--advanced-line);
+    border-radius: 18px;
+    box-shadow: 0 14px 34px rgba(23, 24, 39, .04);
+}
+
+.ai-evaluation-outcomes,
+.ai-evolution-outcomes,
+.ai-evaluation-detail-head,
+.ai-evolution-detail-head {
+    display: grid;
+    gap: 12px;
+    padding: clamp(18px, 3vw, 24px);
+}
+
+.ai-evaluation-outcomes h2,
+.ai-evolution-outcomes h2,
+.ai-evaluation-detail-head h1,
+.ai-evolution-detail-head h1 {
+    color: var(--advanced-ink);
+    margin: 0;
+}
+
+.ai-evaluation-outcomes ul,
+.ai-evolution-outcomes ul,
+.ai-evaluation-section ul,
+.ai-evolution-section ul,
+.ai-evaluation-section ol,
+.ai-evolution-section ol,
+.ai-evaluation-references ol,
+.ai-evolution-references ol {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.ai-evaluation-outcomes li,
+.ai-evolution-outcomes li,
+.ai-evaluation-section li,
+.ai-evolution-section li,
+.ai-evaluation-references li,
+.ai-evolution-references li {
+    color: var(--advanced-copy);
+    line-height: 1.65;
+}
+
+.ai-evaluation-module-grid,
+.ai-evolution-module-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ai-evaluation-module-card,
+.ai-evolution-module-card {
+    background: #fff;
+    border: 1px solid var(--advanced-line);
+    border-radius: 18px;
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+    padding: 18px;
+}
+
+.ai-evaluation-module-card.is-done,
+.ai-evolution-module-card.is-done {
+    background: linear-gradient(145deg, #fff, #fff7fb);
+    border-color: rgba(246, 51, 146, .42);
+}
+
+.ai-evaluation-module-card > span,
+.ai-evolution-module-card > span {
+    align-items: center;
+    background: rgba(246, 51, 146, .12);
+    border-radius: 50%;
+    color: var(--advanced-pink);
+    display: inline-flex;
+    font-weight: 900;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+}
+
+.ai-evaluation-module-card h3,
+.ai-evolution-module-card h3 {
+    color: var(--advanced-ink);
+    font-size: 1.04rem;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.ai-evaluation-module-card div,
+.ai-evolution-module-card div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ai-evaluation-module-card small,
+.ai-evolution-module-card small {
+    background: var(--advanced-soft);
+    border: 1px solid rgba(246, 51, 146, .16);
+    border-radius: 100px;
+    color: var(--advanced-muted);
+    font-weight: 800;
+    padding: 6px 9px;
+}
+
+.ai-evaluation-module-card a,
+.ai-evolution-module-card a {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .28);
+    color: var(--advanced-pink-strong);
+    min-height: 38px;
+    padding: 9px 13px;
+    width: fit-content;
+}
+
+.ai-evaluation-detail,
+.ai-evolution-detail {
+    align-items: start;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+}
+
+.ai-evaluation-nav,
+.ai-evolution-nav {
+    background: #fff;
+    border: 1px solid var(--advanced-line);
+    border-radius: 18px;
+    display: grid;
+    gap: 14px;
+    max-height: calc(100vh - 128px);
+    overflow: auto;
+    padding: 14px;
+    position: sticky;
+    top: 96px;
+}
+
+.ai-evaluation-nav > a,
+.ai-evolution-nav > a {
+    align-items: center;
+    background: var(--advanced-soft);
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 100px;
+    color: var(--advanced-pink-strong);
+    display: inline-flex;
+    font-size: .88rem;
+    font-weight: 850;
+    gap: 8px;
+    min-height: 40px;
+    padding: 9px 12px;
+    text-decoration: none;
+}
+
+.ai-evaluation-nav ol,
+.ai-evolution-nav ol {
+    display: grid;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ai-evaluation-nav li a,
+.ai-evolution-nav li a {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    color: var(--advanced-copy);
+    display: grid;
+    font-weight: 800;
+    gap: 10px;
+    grid-template-columns: 30px minmax(0, 1fr);
+    line-height: 1.35;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.ai-evaluation-nav li span,
+.ai-evolution-nav li span {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 50%;
+    color: var(--advanced-pink);
+    display: inline-flex;
+    font-size: .78rem;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.ai-evaluation-nav li.active a,
+.ai-evolution-nav li.active a {
+    background: var(--advanced-soft);
+    border-color: rgba(246, 51, 146, .32);
+    color: var(--advanced-ink);
+}
+
+.ai-evaluation-content,
+.ai-evolution-content {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+}
+
+.ai-evaluation-tabs,
+.ai-evolution-tabs {
+    background: #fff;
+    border: 1px solid var(--advanced-line);
+    border-radius: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+.ai-evaluation-tabs a,
+.ai-evolution-tabs a {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .16);
+    color: var(--advanced-muted);
+    flex: 1 1 130px;
+    min-height: 42px;
+    padding: 10px 12px;
+}
+
+.ai-evaluation-tabs a.active,
+.ai-evolution-tabs a.active {
+    background: var(--advanced-pink);
+    border-color: var(--advanced-pink);
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(246, 51, 146, .18);
+}
+
+.ai-evaluation-activity,
+.ai-evolution-activity {
+    min-width: 0;
+    overflow: hidden;
+    padding: clamp(18px, 3vw, 26px);
+}
+
+.ai-evaluation-chapter,
+.ai-evolution-chapter {
+    display: grid;
+    gap: 18px;
+    min-width: 0;
+}
+
+.ai-evaluation-chapter-head,
+.ai-evolution-chapter-head {
+    background: linear-gradient(135deg, #fff7fb, #fff);
+    border: 1px solid rgba(246, 51, 146, .2);
+    border-radius: 18px;
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+}
+
+.ai-evaluation-chapter-head span,
+.ai-evolution-chapter-head span {
+    color: var(--advanced-pink);
+    font-size: .8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.ai-evaluation-chapter h2,
+.ai-evolution-chapter h2,
+.ai-evaluation-section h3,
+.ai-evolution-section h3,
+.ai-evaluation-check h3,
+.ai-evolution-check h3,
+.ai-evaluation-glossary h3,
+.ai-evolution-glossary h3,
+.ai-evaluation-references h3,
+.ai-evolution-references h3,
+.ai-evaluation-practice h2,
+.ai-evolution-practice h2,
+.ai-evaluation-quiz h2,
+.ai-evolution-quiz h2,
+.ai-evaluation-discussion h2,
+.ai-evolution-discussion h2 {
+    color: var(--advanced-ink);
+    margin: 0;
+}
+
+.ai-evaluation-chapter h2,
+.ai-evolution-chapter h2 {
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    line-height: 1.15;
+}
+
+.ai-evaluation-section,
+.ai-evolution-section,
+.ai-evaluation-callout,
+.ai-evolution-callout,
+.ai-evaluation-check,
+.ai-evolution-check,
+.ai-evaluation-glossary,
+.ai-evolution-glossary,
+.ai-evaluation-references,
+.ai-evolution-references,
+.ai-evaluation-practice article,
+.ai-evolution-practice article,
+.ai-evaluation-quiz fieldset,
+.ai-evolution-quiz fieldset,
+.ai-evaluation-discussion {
+    background: var(--advanced-surface);
+    border: 1px solid rgba(244, 143, 188, .24);
+    border-radius: 17px;
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+    padding: 18px;
+}
+
+.ai-evaluation-section h3,
+.ai-evolution-section h3,
+.ai-evaluation-check h3,
+.ai-evolution-check h3,
+.ai-evaluation-glossary h3,
+.ai-evolution-glossary h3,
+.ai-evaluation-references h3,
+.ai-evolution-references h3 {
+    align-items: center;
+    display: flex;
+    gap: 9px;
+    line-height: 1.35;
+}
+
+.ai-evaluation-section h3 i,
+.ai-evolution-section h3 i,
+.ai-evaluation-check h3::before,
+.ai-evolution-check h3::before {
+    color: var(--advanced-pink);
+}
+
+.ai-evaluation-callout,
+.ai-evolution-callout {
+    align-items: start;
+    background: linear-gradient(135deg, #fff0f7, #fff);
+    grid-template-columns: 42px minmax(0, 1fr);
+}
+
+.ai-evaluation-callout > i,
+.ai-evolution-callout > i {
+    align-items: center;
+    background: rgba(246, 51, 146, .13);
+    border-radius: 50%;
+    color: var(--advanced-pink);
+    display: inline-flex;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+}
+
+.ai-evaluation-grid,
+.ai-evolution-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ai-evaluation-grid article,
+.ai-evolution-grid article {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 17px;
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+    padding: 17px;
+}
+
+.ai-evaluation-grid h4,
+.ai-evolution-grid h4 {
+    color: var(--advanced-ink);
+    margin: 0;
+}
+
+.ai-evaluation-flow {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px;
+}
+
+.ai-evaluation-flow span {
+    background: var(--advanced-soft);
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 100px;
+    color: var(--advanced-ink);
+    font-weight: 900;
+    padding: 8px 12px;
+}
+
+.ai-evaluation-flow i {
+    color: var(--advanced-pink);
+}
+
+.ai-evolution-table-wrap,
+.ai-evaluation-table-wrap {
+    border: 1px solid rgba(244, 143, 188, .28);
+    border-radius: 16px;
+    overflow: auto;
+}
+
+.ai-evolution-table-wrap table,
+.ai-evaluation-table-wrap table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 620px;
+    width: 100%;
+}
+
+.ai-evolution-table-wrap th,
+.ai-evolution-table-wrap td,
+.ai-evaluation-table-wrap th,
+.ai-evaluation-table-wrap td {
+    border-bottom: 1px solid rgba(244, 143, 188, .22);
+    color: var(--advanced-copy);
+    line-height: 1.55;
+    padding: 13px 14px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.ai-evolution-table-wrap th,
+.ai-evaluation-table-wrap th {
+    background: var(--advanced-soft);
+    color: var(--advanced-ink);
+    font-weight: 900;
+}
+
+.ai-evolution-timeline {
+    counter-reset: evolution-step;
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ai-evolution-timeline li {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 16px;
+    counter-increment: evolution-step;
+    display: grid;
+    gap: 6px;
+    grid-template-columns: 38px minmax(0, 1fr);
+    padding: 14px;
+}
+
+.ai-evolution-timeline li::before {
+    align-items: center;
+    background: rgba(246, 51, 146, .12);
+    border-radius: 50%;
+    color: var(--advanced-pink);
+    content: counter(evolution-step);
+    display: inline-flex;
+    font-weight: 900;
+    height: 32px;
+    justify-content: center;
+    width: 32px;
+}
+
+.ai-evolution-timeline li strong,
+.ai-evolution-timeline li span {
+    grid-column: 2;
+}
+
+.ai-evolution-timeline li strong {
+    color: var(--advanced-ink);
+}
+
+.ai-evolution-timeline li span {
+    color: var(--advanced-copy);
+    line-height: 1.6;
+}
+
+.ai-evaluation-glossary dl,
+.ai-evolution-glossary dl {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+}
+
+.ai-evaluation-glossary dt,
+.ai-evolution-glossary dt {
+    color: var(--advanced-ink);
+    font-weight: 900;
+}
+
+.ai-evaluation-glossary dd,
+.ai-evolution-glossary dd {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .14);
+    border-radius: 14px;
+    margin: 0;
+    padding: 10px 12px;
+}
+
+.ai-evaluation-loading,
+.ai-evolution-loading,
+.ai-evaluation-error,
+.ai-evolution-error {
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--advanced-line);
+    border-radius: 18px;
+    color: var(--advanced-copy);
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+    min-height: 180px;
+    padding: 28px;
+    text-align: center;
+}
+
+.ai-evaluation-loading i,
+.ai-evolution-loading i,
+.ai-evaluation-error i,
+.ai-evolution-error i {
+    color: var(--advanced-pink);
+    font-size: 1.4rem;
+}
+
+.ai-evaluation-complete,
+.ai-evolution-complete {
+    margin-top: 4px;
+}
+
+.ai-evaluation-practice,
+.ai-evolution-practice,
+.ai-evaluation-quiz,
+.ai-evolution-quiz,
+.ai-evaluation-discussion {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+}
+
+.ai-evaluation-practice article > span,
+.ai-evolution-practice article > span {
+    color: var(--advanced-pink);
+    font-size: .82rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.ai-evaluation-practice label,
+.ai-evolution-practice label,
+.ai-evaluation-discussion label,
+.ai-evolution-discussion label {
+    color: var(--advanced-ink);
+    font-weight: 900;
+}
+
+.ai-evaluation-practice textarea,
+.ai-evolution-practice textarea,
+.ai-evaluation-discussion textarea,
+.ai-evolution-discussion textarea {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .26);
+    border-radius: 16px;
+    box-sizing: border-box;
+    color: var(--advanced-ink);
+    font: inherit;
+    line-height: 1.65;
+    min-height: 150px;
+    padding: 14px;
+    resize: vertical;
+    width: 100%;
+}
+
+.ai-evaluation-practice textarea:focus,
+.ai-evolution-practice textarea:focus,
+.ai-evaluation-discussion textarea:focus,
+.ai-evolution-discussion textarea:focus {
+    border-color: var(--advanced-pink);
+    outline: 3px solid rgba(246, 51, 146, .13);
+}
+
+.ai-evaluation-feedback,
+.ai-evolution-feedback,
+.ai-evaluation-explanation,
+.ai-evolution-explanation {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 15px;
+    margin: 0;
+    padding: 12px 14px;
+}
+
+.ai-evaluation-feedback strong,
+.ai-evolution-feedback strong,
+.ai-evaluation-explanation strong,
+.ai-evolution-explanation strong {
+    color: var(--advanced-ink);
+}
+
+.ai-evaluation-quiz fieldset,
+.ai-evolution-quiz fieldset {
+    border-color: rgba(246, 51, 146, .2);
+    margin: 0;
+}
+
+.ai-evaluation-quiz legend,
+.ai-evolution-quiz legend {
+    color: var(--advanced-ink);
+    font-weight: 900;
+    line-height: 1.45;
+    margin-bottom: 10px;
+    padding: 0 6px;
+}
+
+.ai-evaluation-quiz label,
+.ai-evolution-quiz label {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .18);
+    border-radius: 15px;
+    color: var(--advanced-copy);
+    cursor: pointer;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 20px minmax(0, 1fr);
+    line-height: 1.55;
+    margin-top: 9px;
+    padding: 12px 13px;
+}
+
+.ai-evaluation-quiz label:hover,
+.ai-evolution-quiz label:hover,
+.ai-evaluation-quiz label.selected,
+.ai-evolution-quiz label.selected {
+    background: var(--advanced-soft);
+    border-color: rgba(246, 51, 146, .42);
+    color: var(--advanced-ink);
+}
+
+.ai-evaluation-quiz input,
+.ai-evolution-quiz input {
+    accent-color: var(--advanced-pink);
+    height: 18px;
+    margin-top: 3px;
+    width: 18px;
+}
+
+.ai-evaluation-quiz input:focus-visible,
+.ai-evolution-quiz input:focus-visible {
+    outline: 3px solid rgba(246, 51, 146, .16);
+    outline-offset: 2px;
+}
+
+.ai-evaluation-quiz.is-locked,
+.ai-evolution-quiz.is-locked {
+    background: linear-gradient(145deg, #fff7fb, #fff);
+    border: 1px solid rgba(246, 51, 146, .2);
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.ai-evaluation-actions,
+.ai-evolution-actions {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(244, 143, 188, .24);
+    border-radius: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+.ai-evaluation-actions span,
+.ai-evolution-actions span {
+    color: var(--advanced-muted);
+    font-size: .9rem;
+    font-weight: 800;
+}
+
+.ai-evaluation-actions button:disabled,
+.ai-evolution-actions button:disabled {
+    background: #f6f2f4;
+    border-color: #e4dce0;
+    box-shadow: none;
+    color: var(--advanced-muted);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.ai-evaluation-pager,
+.ai-evolution-pager {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.ai-evaluation-pager a,
+.ai-evolution-pager a {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .24);
+    color: var(--advanced-pink-strong);
+    min-height: 42px;
+    padding: 10px 14px;
+}
+
+.ai-evaluation-pager a:hover,
+.ai-evolution-pager a:hover,
+.ai-evaluation-module-card a:hover,
+.ai-evolution-module-card a:hover,
+.ai-evaluation-nav > a:hover,
+.ai-evolution-nav > a:hover {
+    background: var(--advanced-soft);
+    border-color: rgba(246, 51, 146, .42);
+}
+
+@media (max-width: 980px) {
+    .ai-evaluation-hero,
+    .ai-evolution-hero,
+    .ai-evaluation-detail,
+    .ai-evolution-detail {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-evaluation-module-grid,
+    .ai-evolution-module-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ai-evaluation-nav,
+    .ai-evolution-nav {
+        max-height: none;
+        position: static;
+    }
+
+    .ai-evaluation-nav ol,
+    .ai-evolution-nav ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .ai-evaluation-app,
+    .ai-evolution-app {
+        padding: 16px 12px 30px;
+    }
+
+    .ai-evaluation-module-grid,
+    .ai-evolution-module-grid,
+    .ai-evaluation-grid,
+    .ai-evolution-grid,
+    .ai-evaluation-nav ol,
+    .ai-evolution-nav ol {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-evaluation-hero,
+    .ai-evolution-hero,
+    .ai-evaluation-outcomes,
+    .ai-evolution-outcomes,
+    .ai-evaluation-detail-head,
+    .ai-evolution-detail-head,
+    .ai-evaluation-activity {
+        padding: 16px;
+    }
+
+    .ai-evolution-activity {
+        padding: 16px;
+    }
+
+    .ai-evaluation-meta b,
+    .ai-evolution-meta b,
+    .ai-evaluation-tabs a,
+    .ai-evolution-tabs a,
+    .ai-evaluation-actions button,
+    .ai-evolution-actions button,
+    .ai-evaluation-pager a,
+    .ai-evolution-pager a {
+        width: 100%;
+    }
+
+    .ai-evaluation-pager,
+    .ai-evolution-pager,
+    .ai-evaluation-actions,
+    .ai-evolution-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .ai-evaluation-callout,
+    .ai-evolution-callout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-evolution-timeline li {
+        grid-template-columns: 32px minmax(0, 1fr);
+    }
+}
