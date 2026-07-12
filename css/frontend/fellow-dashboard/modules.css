@@ -10502,37 +10502,45 @@
 }
 
 .ai-python-page .python-worked-example li {
-    align-items: center;
+    align-items: start;
     background: var(--python-surface-soft);
     border: 1px solid rgba(244, 143, 188, .22);
     border-radius: 14px;
     counter-increment: worked-step;
     display: grid;
-    gap: 12px;
+    gap: 8px 12px;
     grid-template-columns: 34px minmax(0, 1fr);
-    padding: 11px 14px 11px 10px;
+    grid-template-rows: auto auto;
+    padding: 12px 14px 12px 10px;
 }
 
 .ai-python-page .python-worked-example li::before {
     align-items: center;
+    align-self: start;
     background: var(--python-pink);
     border-radius: 50%;
     color: #ffffff;
     content: counter(worked-step);
-    display: inline-flex;
+    display: flex;
     font-size: .78rem;
     font-weight: 800;
+    grid-row: 1 / -1;
     height: 34px;
     justify-content: center;
+    margin-top: 2px;
     width: 34px;
 }
 
 .ai-python-page .python-worked-example li strong {
     color: var(--python-pink-deep);
+    grid-column: 2;
+    grid-row: 1;
 }
 
 .ai-python-page .python-worked-example li p {
     color: var(--python-copy);
+    grid-column: 2;
+    grid-row: 2;
     line-height: 1.6;
     margin: 0;
 }
@@ -11852,13 +11860,14 @@
 
 @media (max-width: 760px) {
     .ai-python-page .python-worked-example li {
-        align-items: start;
-        gap: 8px;
-        grid-template-columns: minmax(0, 1fr);
-        padding: 13px 14px;
+        gap: 6px;
+        grid-template-columns: 28px minmax(0, 1fr);
+        padding: 10px 12px;
     }
     .ai-python-page .python-worked-example li::before {
-        margin-bottom: 2px;
+        height: 28px;
+        margin-top: 0;
+        width: 28px;
     }
 
     .ai-python-page .python-task-controls {
