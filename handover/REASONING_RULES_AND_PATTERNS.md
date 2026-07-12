@@ -1,5 +1,7 @@
 # Reasoning Module — Rules & Patterns
 
+> **Current-use note (12 Juli 2026):** dokumen ini menjelaskan implementasi canonical Reasoning. Untuk aturan lintas-course terbaru, baca `UNIVERSAL_COURSE_STANDARD.md`; untuk bug nyata Python/AI Modern, baca `REGRESSION_AND_ERROR_PLAYBOOK.md`. Jika ada konflik, dua dokumen current tersebut dan runtime HEAD menang.
+
 Dokumen ini berisi SEMUA aturan desain, CSS, JS pipeline, dan pattern yang diterapkan di module Reasoning.
 Dokumen ini WAJIB dibaca sebelum mengubah module Reasoning ATAU menerapkan pattern ke module lain.
 
@@ -57,17 +59,17 @@ detailsContent.appendChild(node);  // moves the node
     // 1. Filter + strip numbers (string manipulation)
     html = filterSourceHeadings(html);
     html = stripSourceNumbering(html);
-    
+
     // 2-6. Inject components (string manipulation)
     // 2. orientation + nav BEFORE first heading
     // 3. findH2Sections() helper
     // 4. hook after first H2 section
     // 5. lab after second H2 section
     // 6. end-of-chapter at end
-    
+
     // 7. Set HTML
     container.innerHTML = html;
-    
+
     // 8-14. Setup interactions (DOM manipulation)
     enhanceSourceMaterialForCanvas(container, module);
     initSourceVisualLab(container, visualConfig);
@@ -133,7 +135,7 @@ detailsContent.appendChild(node);  // moves the node
 .is-source-view blockquote {
     background: rgba(246,51,146,.05);
     border-left: 4px solid rgba(246,51,146,.3);
-    border-radius: 0 14px 14px 0;
+    border-radius: 14px;
 }
 ```
 
@@ -401,3 +403,17 @@ style(reasoning): CSS/visual changes only
 
 - JANGAN commit file dari module lain dalam commit Reasoning
 - JANGAN push tanpa izin
+
+---
+
+## 12. Cross-Course Lessons Added After AI Modern v4
+
+- Gunakan request sequence guard atau `AbortController` ketika chapter di-fetch; response lama tidak boleh menimpa pilihan terbaru.
+- Audit pasangan class renderer dan selector CSS. Elemen dapat ada di DOM tetapi tampil default jika nama class berbeda.
+- Audit pasangan state JS/CSS: gunakan kontrak seperti `is-active`, `is-complete`, `is-selected`, `is-locked` secara konsisten.
+- Quiz question map diletakkan sebelum soal aktif.
+- Objective/checklist text dibungkus dalam element khusus agar pseudo-element global source list tidak bertabrakan.
+- Jangan memakai grid/flex langsung pada mixed text-node paragraph.
+- `scrollWidth <= innerWidth` belum cukup; screenshot dan computed width komponen tetap wajib.
+- Untuk source integrity, tandai node enrichment dan keluarkan hanya node tersebut dari clone audit.
+- Konsep AI Modern v4 menjadi referensi beginner roadmap, worked examples, glossary, dan contextual visual explainer; Reasoning tetap referensi function parity.

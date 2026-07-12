@@ -1,272 +1,80 @@
-# 🚀 HerAI Fellowship — Agent Onboarding Prompt
+# HerAI Fellowship — Agent Onboarding Brief
 
-> Copas pesan ini sebagai initial prompt ke AI agent baru.
-> Agent akan mendapat FULL context: project state, arsitektur, rules, dan instruksi.
+**Current as of:** 12 Juli 2026
+**Canonical copy-paste prompt:** `handover/FIRST_PROMPT.txt`
 
----
+## Mission
 
-## 1. Project Overview
+Lanjutkan HerAI Fellowship Vanilla JS SPA tanpa kehilangan source canonical, merusak route/localStorage, atau menurunkan kualitas UI yang sudah dicapai Reasoning dan Konsep AI Modern.
 
-**Project:** HerAI Fellowship SuperApp — Platform belajar AI untuk 100 perempuan Indonesia.
-**Stack:** Vanilla JS SPA (hash-router), CSS (no framework), HTML pages.
-**Branch:** `design` — **BELUM PUSH** (ahead 8+ commits dari `origin/design`).
-**Server:** `http-server` di `localhost:3000`, jalankan dengan `npx http-server -p 3000 -c-1`.
-**Routes:** 113 route terdaftar, verifikasi dengan `node scripts/check-participant-routes.mjs`.
+## Read First
 
-### Directory Structure
+1. `AGENTS.md`
+2. `GEMINI.md`
+3. `handover/README.md`
+4. `handover/HANDOVER_UPDATE.md`
+5. `handover/UNIVERSAL_COURSE_STANDARD.md`
+6. `handover/REGRESSION_AND_ERROR_PLAYBOOK.md`
+7. `handover/COURSE_TEMPLATE_GUIDE.md`
+8. `handover/REASONING_RULES_AND_PATTERNS.md`
+9. `handover/MODULE_STATUS_MAP.md`
 
-```
-/
-├── index.html                    ← entry point, script/css loader, cache buster
-├── handover/                     ← dokumentasi (baca semua sebelum kerja)
-├── materi/
-│   ├── nazril/                   ← source material canonical
-│   └── baru/                     ← material drafts
-├── pages/frontend/fellow-dashboard/
-│   └── foundation-core-ai/ai-fundamentals-advanced/ai-fundamentals/
-│       ├── 01-pengantar-ai/      ← module lain (belum dikerjakan)
-│       ├── 02-python-untuk-ai/   ← module lain (belum dikerjakan)
-│       ├── 03-konsep-ai-modern/  ← module lain (belum dikerjakan)
-│       └── 04-reasoning/         ← ⭐ CANONICAL COMPLETE — jadi template
-│           ├── materi.html
-│           ├── latihan.html
-│           ├── kuis.html
-│           ├── diskusi.html
-│           └── chapters/         ← source chapter HTML (jangan diubah)
-├── js/
-│   ├── router.js                 ← SPA router (jangan diubah)
-│   └── frontend/fellow-dashboard/
-│       └── ai-reasoning.js       ← controller Reasoning (~2632 lines)
-├── css/frontend/fellow-dashboard/
-│   └── modules.css               ← semua component styles
-└── assets/                       ← gambar, branding
-```
+Dokumen merge/checkpoint/prompt Reasoning lain adalah historical reference. Jangan mengambil status/cache darinya tanpa verifikasi repo.
 
----
+## Runtime Snapshot
 
-## 2. Reasoning Module — Status FINAL
+| Module | Status | Key facts |
+|---|---|---|
+| Reasoning | COMPLETE canonical | 6 topics, 17 practice, 26 quiz, 4 discussion, cache v35 |
+| Konsep AI Modern | COMPLETE v4 | 4 topics, 13 practice, 20 quiz, 4 discussion, beginner enrichment |
+| Python untuk AI | Pipeline OK | 8 topics, 8 practice, 10 quiz, 4 discussion; enrichment pending |
+| Evaluation | NEXT 1 | scaffold awal; belum four-route universal final |
+| Evolution of AI | NEXT 2 | scaffold awal; belum four-route universal final |
 
-### Yang SUDAH selesai:
+## Three Reference Roles
 
-| Area | Detail |
-|---|---|
-| **6 Topics** | 1. Dari Menjawab ke Menalar, 2. Reasoning Dapat Diperiksa, 3. Planning, 4. Chain-of-Thought, 5. Tool Use, 6. Integrated Mission |
-| **Layout** | Source-as-main-content — source Nazril jadi konten UTAMA (bukan disembunyiin di details) |
-| **Interactive** | Hook (A/B), Lab (3 tabs), Quick Check (retry), Mini Challenge (save/edit/reset), Prompt Pattern (copy) |
-| **Nav chips** | Pembuka → Hook \| Konsep → Source H2s \| Contoh & Latihan → Example \| Uji Pemahaman → Quick Check \| Ringkasan → Summary |
-| **Source styling** | H2 pink left border, list items pink cards, blockquote pink left border, pre code block |
-| **Practice** | 17 skenario, topic-groups navigator (4 grup), "Skenario 1 dari 17 \| Topic Name", formatted prompt (blockquote/list/paragraph) |
-| **Quiz** | 26 soal, single attempt, review mode (show all after submit) |
-| **Fase badges** | Dihapus (noise) |
-| **Collapsible source** | Dihapus (lo minta semuanya kebuka) |
+- `ai-reasoning.js`: functional parity, source pipeline, activity behavior.
+- `ai-modern.js`: current beginner flow, contextual visual enrichment, request-race guard, activity polish.
+- `ai-python.js`: working pipeline plus migration failure lessons.
 
-### Files:
+## Non-Negotiable Rules
 
-| File | Path |
-|---|---|
-| Controller | `js/frontend/fellow-dashboard/ai-reasoning.js` |
-| CSS | `css/frontend/fellow-dashboard/modules.css` |
-| Materi | `pages/.../04-reasoning/materi.html` |
-| Latihan | `pages/.../04-reasoning/latihan.html` |
-| Kuis | `pages/.../04-reasoning/kuis.html` |
-| Diskusi | `pages/.../04-reasoning/diskusi.html` |
-| Source ch1-6 | `pages/.../04-reasoning/chapters/01-full.html` — `06-full.html` |
-| Source canonical | `materi/nazril/submateri-reasoning-ai.md` (2755 baris) |
+- Source chapter canonical tidak diubah untuk memperbaiki UI.
+- Tidak ada literal `/pages/.../` pada runtime path.
+- Tidak ada `border-radius: 0` visible, dark learning surface, low-contrast body text, atau emoji UI.
+- Practice entries punya `fields`; first-visit storage punya fallback.
+- Quiz option full-card, clear locked state, review all.
+- Discussion reply inline, bukan `window.prompt`.
+- Router initializer, controller export, index script, route list, dan cache harus sinkron.
+- Shared CSS/controller cache dibump bersama.
+- Desktop dan 390px mobile diperiksa dengan screenshot.
+- Source integrity before/after transformation dibuktikan.
+- Jangan menghapus/commit untracked user files di luar scope.
+- Jangan push tanpa izin.
 
-### Cache Buster: `index.html`
+## Next Execution Order
 
-Line 47: `modules.css?v=20260712-reasoning-final-v35`
-Line 80: `ai-reasoning.js?v=20260712-reasoning-final-v35`
+1. Treat AI Modern v4 as frozen regression baseline.
+2. Audit and complete Evaluation.
+3. Audit and complete Evolution of AI.
+4. Enrich Python to parity.
+5. Migrate AI Fundamentals.
 
-WAJIB bump BERSAMAAN kalo JS/CSS berubah.
-
----
-
-## 3. Pipeline Architecture (Ini WAJIB DIIKUTI)
-
-```
-fetch chapter HTML
-  → filterSourceHeadings()     — buang module-level content
-  → stripSourceNumbering()     — hapus "1.1 ", "2.1 " prefixes
-  → inject orientation+nav     — SEBELUM heading pertama
-  → inject hook                — SETELAH H2 section pertama
-  → inject lab                 — SETELAH H2 section kedua
-  → append end-of-chapter      — flow, example, quiz, challenge, etc
-  → container.innerHTML = html
-  → enhanceSourceMaterialForCanvas() — data-section, table/pre wrap
-  → initSourceVisualLab()      — lab tab interaction
-  → setupHookInteraction()     — hook click
-  → setupQuickChecks()         — quiz interaction
-  → setupChallengeInteraction()— textarea save/edit/reset
-  → setupVisualNav()           — nav chip scroll
-  → setupCopyButtons()         — copy button
-```
-
-### CRITICAL RULES:
-
-1. **GUNAKAN `appendChild()` bukan `cloneNode()`** — cloneNode menghilangkan event listeners.
-2. **Nav chip `data-jump` harus cocok dengan `data-section` di DOM** — tambah `data-section="konsep"` ke source H2s di `enhanceSourceMaterialForCanvas()`.
-3. **Jangan pernah pake `border-radius: 0`** untuk visible elements.
-4. **Jangan pernah pake dark backgrounds** (`#171827`, `#262837`) untuk learning surfaces.
-5. **Jangan ubah localStorage keys** tanpa migrasi.
-6. **Jangan ubah route, dashboard shell, sidebar, topbar, breadcrumb.**
-7. **Bump cache buster v{next}** setiap ubah JS/CSS.
-
----
-
-## 4. Design Rules (from AGENTS.md)
-
-### Warna
-
-```css
---fellow-pink: #f63392;
---fellow-line: rgba(244,143,188,.26);
---fellow-text: #171827;
---fellow-muted: #6f7282;
---fellow-line-active: rgba(246,51,146,.3);
-```
-
-- Pink `#f63392` hanya untuk aksen (icon, border active, badge)
-- Text body: `#51596d` (bukan `#8e91a0` — terlalu terang)
-- Pink circle icon: `rgba(246,51,146,.12)` background
-- Background aksen: minimal `rgba(246,51,146,.12)`
-- Semua icon pink konsisten — jangan hijau/biru/ungu
-
-### Border Radius (WAJIB)
-
-| Elemen | Radius |
-|---|---|
-| Cards, containers | `14px` – `20px` |
-| Buttons, pills | `100px` |
-| Inputs, search bars | `14px` – `20px` |
-| Code blocks | `12px` – `16px` |
-| Avatars, icons | `50%` |
-
-### Mobile First
-
-- Desktop: 1440px viewport
-- Mobile minimum: 390px viewport
-- WAJIB cek: `document.documentElement.scrollWidth <= window.innerWidth`
-- Tabel panjang: scroll wrapper, jangan memperlebar dokumen
-
----
-
-## 5. Source Material yang SUDAH TERSEDIA
-
-### Prioritaskan untuk dikerjakan berikutnya:
-
-1. **Python untuk AI** — source canonical:
-   - `materi/nazril/Python-untuk-AI-redesign-final.md`
-   - Belum dipecah jadi chapter HTML
-   - Controller JS belum dibuat
-   - Route: `#/participant-ai-python`
-
-2. **AI Fundamentals (Pengantar AI)** — sudah ada:
-   - `01-pengantar-ai/` folder dengan materi.html, latihan.html, kuis.html, diskusi.html
-   - Tapi masih pake system lama (course-placeholder)
-   - Butuh migrasi ke pipeline Reasoning
-
-### Cara Apply Pattern ke Course Baru:
-
-```
-1. Source .md → pecah jadi chapter HTML
-2. Buat controller JS (copy ai-reasoning.js, sesuaikan CHAPTERS/PRACTICES/QUIZ)
-3. Buat HTML pages (copy template + adjust)
-4. Tambah route di router.js
-5. Tambah script di index.html
-6. Test: node --check + route checker + browser
-```
-
----
-
-## 6. LocalStorage Contract
-
-```text
-heraiAiReasoningCurrentChapter
-heraiAiReasoningPractice
-heraiAiReasoningQuizDone
-heraiAiReasoningQuizScore
-heraiAiReasoningQuizAnswers
-heraiAiReasoningDiscussion
-heraiAiReasoningChallengeCh1 .. Ch6
-```
-
-Untuk module baru, ganti `Reasoning` → `{ModuleName}`.
-
----
-
-## 7. Commit Rule
-
-```
-feat(reasoning): ...
-fix(reasoning): ...
-refactor(reasoning): ...
-style(reasoning): ...
-```
-
-- JANGAN commit file module lain dalam 1 commit Reasoning
-- JANGAN push tanpa izin
-
----
-
-## ✅ Starter Commands
+## Baseline Commands
 
 ```bash
-npx http-server -p 3000 -c-1                    # start dev server
-node --check js/frontend/fellow-dashboard/ai-reasoning.js  # syntax check
-node --check js/router.js                                      # router check
-node scripts/check-participant-routes.mjs           # route check (113/113)
+git status --short --branch
+git log -15 --oneline --decorate
+node --check js/frontend/fellow-dashboard/ai-reasoning.js
+node --check js/frontend/fellow-dashboard/ai-python.js
+node --check js/frontend/fellow-dashboard/ai-modern.js
+node --check js/frontend/fellow-dashboard/ai-evaluation.js
+node --check js/frontend/fellow-dashboard/ai-evolution.js
+node --check js/router.js
+node scripts/check-participant-routes.mjs
+npx http-server -p 3000 -c-1
 ```
 
----
+## Working Method
 
-## 📋 Todo Saat Mulai
-
-1. Baca semua file di `handover/`
-2. `git status` — lihat perubahan terakhir
-3. `git log --oneline -10` — lihat commit history
-4. Buka `http://localhost:3000` — test di browser
-5. Buka console browser — pastikan ga ada error
-6. Tanyakan ke user: "Mau lanjut ke module mana?"
-
----
-
-## 🐍 Python Module Quick Reference
-
-### Controller
-`js/frontend/fellow-dashboard/ai-python.js` (~1964 lines) — Same pipeline as Reasoning.
-
-### Key Functions
-- `window.initAiPythonMateri()` — Init materi page
-- `window.initAiPythonPractice()` — Init practice page
-- `window.initAiPythonQuiz()` — Init quiz page
-- `window.initAiPythonDiscussion()` — Init discussion page
-- `window.loadPythonChapter(N)` — Load chapter N
-
-### 8 Topics → Source Files
-| Topic | Source File |
-|---|---|
-| 1. Python & AI Mindset | `01-topic.html` (Ch1-3 merged) |
-| 2. Data Dasar | `02-topic.html` (Ch4-5 merged) |
-| 3. Control Flow | `03-topic.html` (Ch6) |
-| 4. Function & Modularitas | `04-topic.html` (Ch7-8) |
-| 5. OOP untuk AI | `05-topic.html` (Ch9) |
-| 6. Error & File Handling | `06-topic.html` (Ch10-11) |
-| 7. NumPy | `07-topic.html` (Ch12-13) |
-| 8. Pandas & Workflow | `08-topic.html` (Ch14-15) |
-
-### TODO for Python
-- Enrich CHAPTERS with hook/concepts/quickCheck/challenge data
-- Add more PRACTICES exercises
-- Expand QUIZ questions
-- Inject Pyodide playgrounds after code blocks
-- CSS Python syntax highlighting refinement
-
-### Python-Specific Issues
-| Issue | Status |
-|---|---|
-| `renderList/renderFlow` missing from controller | ✅ Fixed |
-| sourcePaths chapters 2-8 broken (`/pages/.../`) | ✅ Fixed |
-| router function name mismatch | ✅ Fixed |
-| Reasoning HTML text in Python pages | ✅ Fixed |
-| CHAPTERS missing interactive data | ❌ TODO |
+Gunakan todo berurutan: audit → content map → data contract → pipeline → beginner enrichment → activities → responsive/UI → integrity/route QA → cache → commit → handover. Jangan melompat ke CSS polish sebelum source/data/runtime contract jelas.

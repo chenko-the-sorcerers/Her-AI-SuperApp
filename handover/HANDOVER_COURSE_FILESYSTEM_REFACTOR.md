@@ -1,5 +1,7 @@
 # Checkpoint Refactor Filesystem Course Catalog
 
+> **HISTORICAL CHECKPOINT:** dokumen ini merekam refactor filesystem dan status pada saat itu. Path history tetap berguna, tetapi status/cache/module readiness dapat kedaluwarsa. Gunakan `README.md`, `HANDOVER_UPDATE.md`, dan `MODULE_STATUS_MAP.md` sebagai current source of truth.
+
 **Tanggal:** 11 Juli 2026
 **Branch:** `design`
 **Status:** Reasoning final baru dari `materi/baru/Reasoning-baru.md` dan Evaluation AI canonical sudah masuk runtime, snapshot materi lama Reasoning tetap ada, belum push

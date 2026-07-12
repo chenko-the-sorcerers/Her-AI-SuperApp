@@ -1,5 +1,7 @@
 # Follow-up Execution Prompt — Reasoning Nazril Audit Fix
 
+> **ARCHIVED COMPLETED TASK:** blocker dalam prompt ini sudah menjadi regression history. Jangan menjalankan ulang task secara buta. Gunakan `REGRESSION_AND_ERROR_PLAYBOOK.md` dan verifikasi runtime sekarang.
+
 > **Status 12 Juli 2026:** blocker dalam prompt ini sudah dieksekusi pada final-polish. Gunakan dokumen ini sebagai checklist regression, bukan daftar pekerjaan yang masih terbuka. Source of truth status terbaru ada di `handover/HANDOVER_UPDATE.md` dan `handover/REASONING_FINAL_CHECKPOINT.md`.
 
 Dokumen ini adalah checkpoint lanjutan setelah implementasi awal Reasoning Nazril. AI baru wajib membaca dokumen ini bersama:

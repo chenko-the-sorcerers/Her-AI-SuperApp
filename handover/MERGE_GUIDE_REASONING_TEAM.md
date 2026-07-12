@@ -1,5 +1,7 @@
 # Merge Guide - Reasoning Team
 
+> **ARCHIVED MERGE GUIDE:** Reasoning canonical sudah complete dan merge baseline sudah lewat. Dokumen ini hanya riwayat resolusi konflik; gunakan `HANDOVER_UPDATE.md` dan `REGRESSION_AND_ERROR_PLAYBOOK.md` untuk kondisi sekarang.
+
 **Tanggal:** 11 Juli 2026
 **Tujuan:** panduan merge/maintenance Reasoning setelah materi final baru, visual learning canvas, activity final, dan audit integritas selesai.
 

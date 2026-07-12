@@ -1,5 +1,7 @@
 # Reasoning Final - Complete Checkpoint
 
+> **HISTORICAL CHECKPOINT:** bagian awal dokumen ini memuat cache intermediate seperti v15. Baseline Reasoning current adalah v35. Gunakan `HANDOVER_UPDATE.md` untuk status/cache terbaru; gunakan file ini hanya untuk riwayat blocker dan keputusan Reasoning.
+
 **Tanggal:** 12 Juli 2026
 **Branch:** `design`
 **Status:** CANONICAL FINAL — unified single-page, 6 chapter Nazril, semua blocker audit fixed; belum push

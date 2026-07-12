@@ -1,5 +1,7 @@
 # Prompt AI Baru - Maintenance dan Revisi Reasoning Final
 
+> **HISTORICAL TASK PROMPT:** gunakan hanya untuk maintenance Reasoning yang memang diminta user. Untuk onboarding session baru, copy `handover/FIRST_PROMPT.txt`.
+
 Materi hasil deep research sudah diterapkan. Copy-paste prompt ini hanya untuk maintenance/revisi lanjutan; jangan membangun ulang module atau mengembalikannya ke scaffold.
 
 > **STATUS FINAL:** Baca `handover/REASONING_FINAL_CHECKPOINT.md` sebagai source of truth. Instruksi historis yang menganggap data masih berasal dari `window.HERAI_REASONING_COURSE` sudah tidak berlaku.

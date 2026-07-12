@@ -1,5 +1,7 @@
 # Prompt Eksekusi Final — Reasoning Nazril Canonical
 
+> **ARCHIVED COMPLETED TASK:** Reasoning canonical sekarang complete v35. Dokumen ini disimpan untuk keputusan desain dan content-integrity history, bukan sebagai prompt onboarding. Gunakan `FIRST_PROMPT.txt`.
+
 Salin seluruh isi prompt ini ke AI agent baru. Jangan menghapus bagian guardrail, audit, verifikasi, atau laporan akhir.
 
 ---

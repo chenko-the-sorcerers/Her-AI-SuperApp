@@ -1,5 +1,7 @@
 # Merge Guide Team - AI Modern, Evaluation, dan Evolution
 
+> **ARCHIVED AFTER MERGE — 12 Juli 2026:** merge ke branch `design` sudah terjadi. Jangan menjalankan langkah merge/cherry-pick di dokumen ini tanpa audit baru. AI Modern sekarang complete v4; current roadmap adalah Evaluation lalu Evolution. Lihat `HANDOVER_UPDATE.md`.
+
 Tanggal: 12 Juli 2026
 Branch kerja: `design`
 

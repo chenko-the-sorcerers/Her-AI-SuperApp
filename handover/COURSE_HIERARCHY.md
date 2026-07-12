@@ -1,5 +1,7 @@
 # HerAI Course Hierarchy
 
+> **Current checkpoint note — 12 Juli 2026:** hierarchy/path history below is retained, but module completion status must be read from `MODULE_STATUS_MAP.md`. Reasoning and Konsep AI Modern are complete; Evaluation and Evolution remain the next universal migrations. Do not infer readiness from the existence of scaffold files.
+
 **Tanggal:** 12 Juli 2026
 **Branch:** `design`
 **Status dokumen:** Reasoning Nazril CANONICAL FINAL — unified single-page, 6 chapter, semua blocker fixed, belum push

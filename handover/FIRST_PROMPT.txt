@@ -1,91 +1,218 @@
 ================================================================================
 HERAI FELLOWSHIP — FIRST PROMPT UNTUK AI AGENT BARU
 Copas seluruh teks ini sebagai pesan pertama ke AI agent.
+Current checkpoint: 12 Juli 2026
 ================================================================================
 
-Lo adalah AI agent baru buat project HerAI Fellowship SuperApp.
+Lo adalah AI agent baru untuk project HerAI Fellowship SuperApp.
 
-## Project Context
-- Stack: Vanilla JS SPA (hash-router), CSS, HTML
-- Branch: `design` (ahead ~26 commits, BELUM PUSH)
-- Server: `npx http-server -p 3000 -c-1` di working directory
-- Semua course pake pipeline source-as-main-content (Reasoning sebagai CANONICAL template)
+## PROJECT CONTEXT
 
-## WAJIB BACA — Urutan Prioritas
+- Working directory: `/home/faiz/her5/Her-AI-SuperApp`
+- Stack: Vanilla JS SPA, hash-router, HTML, shared CSS.
+- Branch kerja: `design`.
+- Server lokal: `npx http-server -p 3000 -c-1`.
+- Repo baru selesai menerima merge tim; jangan percaya asumsi dari commit lama sebelum cek HEAD.
+- Pada pre-delivery checkpoint branch ahead 30 commit sebelum commit/push dokumentasi. Delivery tersebut diizinkan ke `design`; jalankan status ulang untuk memastikan kondisi origin terbaru.
+- Jangan push tanpa izin eksplisit user. Jika diberi izin, push hanya branch yang disebut user dan jangan force-push.
+
+## WAJIB BACA SAMPAI SELESAI, BERURUTAN
+
 1. `AGENTS.md`
 2. `GEMINI.md`
 3. `handover/README.md`
 4. `handover/HANDOVER_UPDATE.md`
-5. `handover/REASONING_RULES_AND_PATTERNS.md`
-6. `handover/COURSE_TEMPLATE_GUIDE.md`
-7. `handover/MODULE_STATUS_MAP.md`
+5. `handover/UNIVERSAL_COURSE_STANDARD.md`
+6. `handover/REGRESSION_AND_ERROR_PLAYBOOK.md`
+7. `handover/COURSE_TEMPLATE_GUIDE.md`
+8. `handover/REASONING_RULES_AND_PATTERNS.md`
+9. `handover/MODULE_STATUS_MAP.md`
 
-## Module Status Singkat
-- ⭐ **Reasoning**: COMPLETE — pipeline, 6 topics, 17 practices, 26 quiz, review mode. Template canonical untuk semua course.
-- 🔄 **Python untuk AI**: Pipeline OK, 8 topics load, 8 practices, 10 quiz. CHAPTERS perlu enrichment (hook/lab/quickCheck data belum ada).
-- ⏳ **AI Fundamentals (Pengantar AI)**: Belum migrasi
-- ⏳ **Konsep AI Modern**: Next target
-- ⏳ **Evaluation**: Next target
-- ⏳ **Evolution of AI**: Next target
+Dokumen merge guide, checkpoint lama, dan prompt Reasoning lain adalah HISTORICAL REFERENCE. Status/cache lama di dalamnya tidak boleh mengalahkan dokumen current source of truth atau runtime HEAD.
 
-## Next Tasks (Prioritas User)
-User mau ngerjain:
-1. Konsep AI Modern (evaluation)
-2. Evolution of AI
+## STATUS AKTUAL MODULE
 
-## 🚨 CRITICAL RULES — Jangan Sampai Salah Lagi!
+- Reasoning: COMPLETE canonical. 6 topik, 17 practice, 26 quiz, 4 discussion. Controller `ai-reasoning.js`; cache `20260712-reasoning-final-v35`.
+- Konsep AI Modern: COMPLETE v4. 4 topik, 13 progressive practice, 20 quiz + review all, 4 discussion + inline reply. Controller `ai-modern.js`; cache JS/CSS `20260712-ai-modern-final-v4`.
+- Python untuk AI: pipeline OK. 8 topik, 8 practice, 10 quiz, 4 discussion. Controller `ai-python.js`; cache `20260712-python-v8`. Masih perlu beginner enrichment sampai parity.
+- Evaluation: target berikutnya. Ada scaffold/controller/source awal, tetapi belum four-route universal final.
+- Evolution of AI: target setelah Evaluation. Ada scaffold/controller/source awal, tetapi belum four-route universal final.
+- AI Fundamentals/Pengantar AI: backlog setelah tiga target di atas.
 
-Saat membuat course BARU dari Reasoning template, PASTIKAN:
+## PERAN TIGA MODULE REFERENSI
 
-1. **Copy ALL functions** dari `ai-reasoning.js` — tidak boleh ada yang kelewat!
-   Checklist: renderList, renderFlow, escapeHtml, escapeSelector, safeJsonParse, setStatus,
-   findH2Sections, semua finalRender*, semua setup*, filterSourceHeadings, stripSourceNumbering,
-   injectAfterHeading, renderFormattedText, renderPracticeCard, loadSourceHtml
+- Reasoning = canonical functional template: source-as-main pipeline, render/setup helpers, practice, quiz, discussion, localStorage.
+- Konsep AI Modern v4 = canonical beginner/visual UX baseline terbaru: roadmap, worked examples, glossary, contextual explainers, fetch-race guard, activity polish.
+- Python = pipeline aktif dan katalog kesalahan migrasi yang tidak boleh diulang.
 
-2. **sourcePath HARUS FULL PATH** — jangan ada `/pages/.../` dengan literal `...`
-   ✅ "/pages/frontend/fellow-dashboard/.../02-python-untuk-ai/chapters/01-topic.html"
-   ❌ "/pages/.../02-python-untuk-ai/chapters/01-topic.html"
+Jangan menyalin satu controller secara buta. Audit capability/function parity, schema data, label course, path, route, storage, CSS class, dan state class.
 
-3. **PRACTICES entries HARUS punya `fields` array**:
-   `"fields": [["jawaban", "Tulis jawabanmu di sini..."]]`
+## USER ROADMAP
 
-4. **getSavedPractice() HARUS ada null guard**:
+Urutan kerja yang disepakati:
+
+1. Pertahankan Konsep AI Modern v4 sebagai regression baseline. Jangan rebuild tanpa bug konkret.
+2. Audit dan finalkan Evaluation.
+3. Audit dan finalkan Evolution of AI.
+4. Enrich Python sampai parity.
+5. Migrasikan AI Fundamentals/Pengantar AI.
+
+Jika user sudah memberi task spesifik saat menempel prompt ini, langsung kerjakan task tersebut setelah audit. Jika belum, laporkan baseline singkat lalu tawarkan mulai dari Evaluation.
+
+## METODE KERJA WAJIB: TODO BERURUTAN
+
+Buat dan update todo supaya tidak melompat-lompat:
+
+1. Audit repo/status/merge/current runtime.
+2. Audit seluruh source dan buat lossless content map.
+3. Catat route, initializer, localStorage, cache, dan files immutable.
+4. Define chapter/practice/quiz/discussion data contracts.
+5. Pastikan function/capability parity.
+6. Implement source-as-main pipeline + request race guard.
+7. Implement beginner flow dan visual kontekstual.
+8. Implement practice, quiz, discussion secara progressive.
+9. Polish scoped CSS desktop/mobile.
+10. Test source integrity, storage, routes, console, interaction, screenshot.
+11. Bump JS + CSS cache bersama.
+12. Review diff, commit scoped, update handover.
+13. Jangan push kecuali user memberi izin eksplisit.
+
+## SOURCE-AS-MAIN CONTRACT
+
+- Source chapter canonical adalah isi utama dan tidak boleh diubah untuk styling.
+- Jangan menghapus, meringkas, mengacak urutan, atau mengganti source dengan visual.
+- Controller boleh memfilter heading module-level yang benar-benar duplikat, strip numbering heading, wrap visual elements, dan inject enrichment.
+- Visual/enrichment harus muncul dekat konsep terkait, bukan ditumpuk semuanya di akhir.
+- Tandai node injected agar audit integritas dapat membedakannya.
+- Bandingkan normalized `textContent` sebelum/sesudah transformasi.
+- Pindahkan interactive DOM memakai `appendChild(node)`, bukan `cloneNode(true)`.
+- Gunakan request token atau `AbortController` supaya fetch chapter lama tidak menimpa chapter terbaru.
+
+## FLOW MATERI UNTUK PEMULA
+
+Setiap topik final harus terasa terarah:
+
+orientation → hook → beginner roadmap → source concept → visual/concept lab → worked example → deep dive source/code → quick check → mini challenge → mistakes vs best practices → glossary → learning outcomes → transition.
+
+Visual wajib menjelaskan proses/relasi/trade-off. Hindari card generik atau code dump yang hanya terlihat dekoratif. Source teknis asli tetap tersedia.
+
+## CRITICAL TECHNICAL RULES
+
+1. Semua `sourcePath` adalah absolute FULL PATH yang nyata. Jangan pernah pakai literal `/pages/.../`.
+
+2. `CHAPTERS` minimal punya:
+   `title`, `shortTitle`, `duration`, `icon`, `summary`, `objectives`, `sourcePath`.
+
+3. Setiap `PRACTICES` entry wajib punya:
+   `fields: [["jawaban", "Tulis jawabanmu di sini..."]]`.
+
+4. First-visit practice wajib aman:
    `const saved = getSavedPractice() || { answers: {}, revealed: [] };`
 
-5. **PRACTICE_TOPICS HARUS disesuaiin** — jangan pake label Reasoning
+5. `PRACTICE_TOPICS`, labels, copy HTML, storage namespace, dan icon harus milik course baru—bukan sisa Reasoning/Python/Modern.
 
-6. **HTML pages HARUS dibersihin dari teks Reasoning** — semua "Reasoning" → nama course baru
+6. Audit capability/function parity dari Reasoning, minimal:
+   `renderList`, `renderFlow`, `escapeHtml`, `escapeSelector`, `safeJsonParse`, `setStatus`, `findH2Sections`, semua `finalRender*`, `renderSourceVisualLab`, `initSourceVisualLab`, `enhanceSourceMaterialForCanvas`, semua `setup*`, `filterSourceHeadings`, `stripSourceNumbering`, `injectAfterHeading`, `renderFormattedText`, `renderPracticeCard`, `loadSourceHtml`, `getSourceFile`.
 
-7. **Router function names HARUS cocok** — cek `typeof window.initXxxYyy`
+7. Nama `window.init...` controller harus persis sama dengan yang diperiksa router.
 
-8. **index.html HARUS ada script reference** untuk controller baru
+8. `index.html` wajib memuat controller baru.
 
-9. **Cache buster WAJIB di-bump** setiap ubah JS/CSS
+9. File activity belum berarti route activity final. Route, initializer, data, interaction, dan QA semuanya harus aktif.
 
-10. **CHAPTERS minimal HARUS punya**: title, shortTitle, duration, icon, summary, objectives, sourcePath
+10. Jangan mengubah localStorage keys existing tanpa migrasi backward-compatible.
 
-## Cache Buster Reference
-- Reasoning: `v=20260712-reasoning-final-v35`
-- Python: `v=20260712-python-v8`
+## ACTIVITY UX CONTRACT
 
-## Starter Commands
+Practice:
+- action/workspace sebelum reference panjang;
+- satu skenario aktif;
+- navigator grouped by topic;
+- progress, save/edit/reset/reveal/prev/next/direct jump;
+- state class JS dan CSS harus cocok.
+
+Quiz:
+- map/progress sebelum soal;
+- seluruh option card clickable;
+- selected/correct/wrong/locked jelas;
+- single attempt yang sudah dipakai dijelaskan;
+- review menampilkan semua soal, jawaban, dan explanation.
+
+Discussion:
+- inline post/reply composer;
+- jangan memakai `window.prompt`;
+- persistence dan reload harus dites.
+
+## HERAI UI RULES
+
+- Light learning surface: putih, `#fff7fb`, `#fff0f7`, atau `#fffcfd`.
+- Text utama `#171827`; secondary minimal `#6f7282`.
+- Pink `#f63392` sebagai accent utama.
+- Tidak ada visible `border-radius: 0`.
+- Card/container 14–20px; button/pill 100px; input 14–20px; code 12–16px; icon circle 50%.
+- Tidak ada emoji di UI; gunakan FontAwesome.
+- Tidak ada default browser button/input untuk aksi utama.
+- Jangan grid/flex langsung paragraph mixed text node + inline element. Bungkus text.
+- Audit global source selectors agar tidak menimpa objective/checklist/component-specific markers.
+- Tidak boleh ada text pecah satu kata/huruf per baris.
+
+## ERROR HISTORY YANG WAJIB DICEGAH
+
+- CSS block hilang sesudah merge walau JS masih ada.
+- Renderer class tidak sama dengan selector CSS.
+- JS memakai `active/complete`, CSS mengharap `is-active/is-complete`.
+- Helper function terlewat saat copy controller.
+- Literal `...` pada source path menyebabkan 404.
+- Missing `fields` dan null storage membuat practice crash.
+- Router initializer mismatch atau script index hilang.
+- Guide/pagination jatuh ke browser default.
+- Textarea/lab/objective rusak karena grid/pseudo-element global.
+- Quiz map berada setelah question.
+- Chapter fetch race.
+- Cache JS/CSS tidak dibump bersama.
+- `scrollWidth` lulus tetapi isi card tetap tidak terbaca; screenshot tetap wajib.
+
+## DO NOT
+
+- Jangan push tanpa izin user.
+- Jangan force-push.
+- Jangan menghapus/commit file untracked user di luar scope.
+- Jangan mengubah source canonical untuk styling.
+- Jangan mengganti localStorage key tanpa migrasi.
+- Jangan mengubah existing route, dashboard shell, sidebar, topbar, breadcrumb, footer tanpa scope user.
+- Jangan memakai dark learning surfaces.
+- Jangan menyebut complete sebelum semua empat route dan QA lulus.
+
+## STARTER COMMANDS
+
 ```bash
 git status --short --branch
+git log -15 --oneline --decorate
 node --check js/frontend/fellow-dashboard/ai-reasoning.js
 node --check js/frontend/fellow-dashboard/ai-python.js
+node --check js/frontend/fellow-dashboard/ai-modern.js
+node --check js/frontend/fellow-dashboard/ai-evaluation.js
+node --check js/frontend/fellow-dashboard/ai-evolution.js
 node --check js/router.js
 node scripts/check-participant-routes.mjs
 npx http-server -p 3000 -c-1
 ```
 
-## JANGAN
-- ❌ Push tanpa izin
-- ❌ Ubah localStorage keys tanpa migrasi
-- ❌ Ubah source chapter HTML (01-full.html s/d 15-full.html)
-- ❌ Ubah route di router.js (kecuali tambah route baru)
-- ❌ Ubah dashboard shell, sidebar, topbar, breadcrumb
-- ❌ Pake border-radius: 0
-- ❌ Pake dark backgrounds untuk learning surface
+## DEFINITION OF DONE
 
-## Mulai
-Setelah baca semua file handover, tanya ke user: "Mau lanjut ke module mana? Konsep AI Modern, Evaluation, atau Evolution of AI?"
+- Source integrity lulus.
+- Semua source path/route/initializer/script valid.
+- Beginner flow lengkap dan visual kontekstual.
+- Practice progressive + persistent.
+- Quiz full-card + locked explanation + review all.
+- Discussion inline + persistent.
+- No stale template copy.
+- No console error/default controls/layout sempit/overflow.
+- Screenshot desktop dan mobile rapi.
+- Cache controller dan CSS sinkron.
+- localStorage backward-compatible.
+- Route checker lulus.
+- Diff scoped, commit lokal, handover updated.
+- Push hanya jika user mengizinkan dan hanya ke branch yang disebut.
+
+Mulai dengan membaca semua dokumen wajib, jalankan baseline audit, lalu tampilkan todo yang akan dieksekusi. Jangan langsung mengedit sebelum source/runtime map jelas.

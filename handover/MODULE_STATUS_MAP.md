@@ -1,47 +1,48 @@
 # Module Status Map — HerAI Fellowship
 
-**Tanggal:** 12 Juli 2026
-**Branch:** `design` (ahead ~26 commits, BELUM PUSH)
-**Status:** Reasoning ⭐ COMPLETE, Konsep AI Modern ⭐ COMPLETE, Python 🔄 Pipeline OK
+**Updated:** 12 Juli 2026
+**Pre-delivery branch checkpoint:** `design`, ahead 30 sebelum commit handover; delivery ini diizinkan push hanya ke `design`.
 
----
+## Foundation & Core AI
 
-## Course Modules
-
-### Foundation & Core AI
-
-| Module | Route | Materi | Latihan | Kuis | Diskusi | Status |
+| Module | Route family | Materi | Latihan | Kuis | Diskusi | Status |
 |---|---|---|---|---|---|---|
-| **Reasoning** | `...-ai-reasoning` | ✅ Pipeline final | ✅ 17 practice | ✅ 26 soal | ✅ 4 prompt | **⭐ COMPLETE** |
-| **Python untuk AI** | `...-ai-python` | ✅ 8 topics load | ✅ 8 practice | ✅ 10 quiz | ✅ 4 prompts | **🔄 Pipeline OK** |
-| AI Fundamentals | `...-ai-intro` | 🏗 | 🏗 | 🏗 | 🏗 | ⏳ |
-| **Konsep AI Modern** | `...-ai-modern` | ✅ 4 topik interaktif | ✅ 13 skenario | ✅ 20 soal + review | ✅ 4 prompt + inline reply | **⭐ COMPLETE** |
-| **Evaluation** | `...-ai-evaluation` | 🏗 (placeholder) | 🏗 | 🏗 | 🏗 | **🎯 NEXT** |
-| **Evolution of AI** | `...-ai-evolution` | 🏗 (placeholder) | 🏗 | 🏗 | 🏗 | **🎯 NEXT** |
+| Reasoning | `participant-ai-reasoning*` | 6 topik final | 17 progressive | 26 + review all | 4 + inline reply | COMPLETE, canonical functional template |
+| Konsep AI Modern | `participant-ai-modern*` | 4 topik + beginner enrichment | 13 progressive | 20 + review all | 4 + inline reply | COMPLETE v4, visual/beginner baseline |
+| Python untuk AI | `participant-ai-python*` | 8 topik load | 8 progressive | 10 single attempt | 4 + inline reply | Pipeline OK; enrichment pending |
+| AI Fundamentals/Pengantar AI | `participant-ai-intro*` | Belum migrasi universal | Belum final | Belum final | Belum final | Backlog |
+| Evaluation | `participant-ai-evaluation` saat ini | Scaffold/source awal | Belum universal | Belum universal | Belum universal | NEXT 1 |
+| Evolution of AI | `participant-ai-evolution` saat ini | Scaffold/source awal | Belum universal | Belum universal | Belum universal | NEXT 2 |
 
-### AI Labs
+Catatan: Evaluation dan Evolution memiliki file halaman activity di filesystem, tetapi router aktif saat checkpoint baru mendaftarkan route materi. Jangan menyebut activity final sebelum route, initializer, data, interaction, dan QA selesai.
+
+## AI Labs
 
 | Lab | Route | Status |
 |---|---|---|
-| Machine Learning | `...-ai-lab-ml` | 🏗 |
-| Math for AI | `...-ai-lab-math` | 🏗 |
-| Computer Vision | `...-ai-lab-cv` | 🏗 |
-| NLP | `...-ai-lab-nlp` | 🏗 |
+| Machine Learning | `participant-ai-lab-ml` | Scaffold/backlog |
+| Math for AI | `participant-ai-lab-math` | Scaffold/backlog |
+| Computer Vision | `participant-ai-lab-cv` | Scaffold/backlog |
+| NLP | `participant-ai-lab-nlp` | Scaffold/backlog |
 
----
+## Priority
 
-## Priority for Next Module
+1. Pertahankan Konsep AI Modern v4 sebagai regression baseline.
+2. Finalkan Evaluation ke empat route dan Universal Course Standard.
+3. Finalkan Evolution of AI ke empat route dan standard yang sama.
+4. Enrich Python sampai parity.
+5. Migrasikan AI Fundamentals/Pengantar AI.
 
-User mau lanjut ke:
-1. **Evaluation** — module evaluation
-2. **Evolution of AI** — evolution module
-3. **AI Fundamentals** — pengantar AI (migrasi)
+## Definition of Status
 
----
+- **COMPLETE:** source integrity, materi, latihan, kuis, diskusi, persistence, desktop/mobile, console, routes, dan cache sudah lulus.
+- **Pipeline OK:** runtime/activity dasar bekerja, tetapi depth/enrichment/QA belum parity.
+- **Scaffold:** file atau route awal ada, tetapi belum memenuhi kontrak course final.
+- **Backlog:** belum menjadi target implementasi aktif.
 
-## How to Apply Reasoning Pipeline
+## Dokumen Eksekusi
 
-1. Baca `handover/COURSE_TEMPLATE_GUIDE.md` — complete step-by-step
-2. Baca `handover/FIRST_PROMPT.txt` — critical rules + checklist
-3. Pakai function checklist di COURSE_TEMPLATE_GUIDE.md Section 8
-4. Test ALL 4 routes (materi + latihan + kuis + diskusi) — jangan cuma materi
+- Standard: `handover/UNIVERSAL_COURSE_STANDARD.md`
+- Errors/guardrails: `handover/REGRESSION_AND_ERROR_PLAYBOOK.md`
+- Build checklist: `handover/COURSE_TEMPLATE_GUIDE.md`
+- Prompt AI baru: `handover/FIRST_PROMPT.txt`
