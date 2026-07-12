@@ -10,13 +10,14 @@
 
 ## Konsep AI Modern — Final Parity Checkpoint
 
-**Cache buster:** `20260712-ai-modern-final-v3`
+**Cache buster:** `20260712-ai-modern-final-v4`
 
 - 4 topik source-as-main: Foundation Models, Transformer, AI Agents, Sistem AI Masa Kini.
 - Source chapter `01-materi.html` sampai `04-materi.html` tetap utuh dan tidak diubah.
 - Pipeline menambahkan learning nav, hook A/B, concept lab, quick check + retry, mini challenge tersimpan, decision flow, mistakes/best practices, dan outcome summary.
 - Beginner enrichment: 4 roadmap steps per topik, 4 worked examples, dan 24 glossary entries dengan progressive disclosure.
 - Code explainer kontekstual: Q/K/V formula decoder, tool contract, five-layer system blueprint, dan architecture canvas; source text tetap tersedia di panel detail.
+- Activity polish v4: practice navigator memakai topic group cards, custom guide/pagination controls, quiz map berada sebelum soal, dan objective list memakai icon-text columns yang stabil.
 - Latihan memakai progressive disclosure: 13 skenario, topic-grouped navigator, satu skenario per langkah, save/edit/reset.
 - Kuis: 20 soal full-card clickable, single attempt, locked state jelas, dan review seluruh soal.
 - Diskusi: 4 prompt, post lokal, dan inline reply composer tanpa `window.prompt`.

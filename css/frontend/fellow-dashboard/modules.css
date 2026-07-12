@@ -9750,3 +9750,315 @@
         grid-column: 1 / -1;
     }
 }
+
+/* AI Modern activity controls — explicit final cascade contract */
+.ai-modern-practice-page #aiModernPracticeApp {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+}
+
+.ai-modern-practice-page .ai-modern-practice-progress {
+    justify-self: start;
+    margin: 0 0 14px;
+    width: fit-content;
+}
+
+.ai-modern-practice-page .reasoning-task-navigator {
+    background: linear-gradient(145deg, #fff7fb, #fff);
+    border: 1px solid rgba(246, 51, 146, .22);
+    border-radius: 18px;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 14px;
+}
+
+.ai-modern-practice-page .reasoning-nav-group {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(244, 143, 188, .2);
+    border-radius: 14px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: minmax(126px, .85fr) minmax(0, 1fr);
+    margin: 0;
+    min-width: 0;
+    padding: 12px;
+}
+
+.ai-modern-practice-page .reasoning-nav-group::after {
+    display: none;
+}
+
+.ai-modern-practice-page .reasoning-nav-group-label {
+    color: var(--modern-ink);
+    font-size: .78rem;
+    letter-spacing: 0;
+    line-height: 1.35;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    text-transform: none;
+    white-space: normal;
+}
+
+.ai-modern-practice-page .reasoning-nav-group > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    justify-content: flex-end;
+    min-width: 0;
+}
+
+.ai-modern-practice-page .reasoning-task-navigator button {
+    height: 36px;
+    min-height: 36px;
+    min-width: 36px;
+    padding: 0;
+    width: 36px;
+}
+
+.ai-modern-practice-page .reasoning-task-navigator button.is-active {
+    background: var(--modern-pink);
+    border-color: var(--modern-pink);
+    box-shadow: 0 7px 16px rgba(246, 51, 146, .2);
+    color: #fff;
+}
+
+.ai-modern-practice-page .reasoning-task-navigator button.is-complete:not(.is-active) {
+    background: #fff0f7;
+    border-color: rgba(246, 51, 146, .34);
+    color: var(--modern-pink);
+}
+
+.ai-modern-practice-page .reasoning-practice-counter {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(244, 143, 188, .2);
+    border-radius: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    justify-content: space-between;
+    padding: 11px 14px;
+}
+
+.ai-modern-practice-page .reasoning-practice-counter span {
+    color: var(--modern-pink);
+    font-size: .8rem;
+    font-weight: 900;
+}
+
+.ai-modern-practice-page .reasoning-practice-counter strong {
+    color: var(--modern-copy);
+    font-size: .82rem;
+    line-height: 1.4;
+}
+
+.ai-modern-practice-page .reasoning-practice-field {
+    background: #fff7fb;
+    border: 1px solid rgba(246, 51, 146, .19);
+    border-radius: 15px;
+    box-sizing: border-box;
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 14px;
+    width: 100%;
+}
+
+.ai-modern-practice-page .reasoning-practice-field > span {
+    color: var(--modern-ink);
+    font-size: .82rem;
+    font-weight: 900;
+}
+
+.ai-modern-practice-page .reasoning-practice-field textarea {
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .28);
+    border-radius: 14px;
+    box-sizing: border-box;
+    color: var(--modern-ink);
+    font: inherit;
+    line-height: 1.65;
+    min-height: 150px;
+    padding: 13px;
+    resize: vertical;
+    width: 100%;
+}
+
+.ai-modern-practice-page .reasoning-practice-field textarea:focus {
+    border-color: var(--modern-pink);
+    outline: 3px solid rgba(246, 51, 146, .13);
+}
+
+.ai-modern-practice-page .reasoning-practice-actions {
+    display: flex;
+    margin-top: 12px;
+}
+
+.ai-modern-practice-page .reasoning-practice-actions button,
+.ai-modern-practice-page .reasoning-practice-pagination button {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(246, 51, 146, .3);
+    border-radius: 100px;
+    color: #c21868;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-size: .84rem;
+    font-weight: 850;
+    gap: 8px;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+}
+
+.ai-modern-practice-page .reasoning-practice-actions button:hover,
+.ai-modern-practice-page .reasoning-practice-pagination button:hover:not(:disabled) {
+    background: #fff0f7;
+    border-color: rgba(246, 51, 146, .48);
+}
+
+.ai-modern-practice-page .reasoning-practice-guide {
+    background: linear-gradient(145deg, #fff7fb, #fff);
+    border: 1px solid rgba(246, 51, 146, .2);
+    border-radius: 14px;
+    display: grid;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 14px;
+}
+
+.ai-modern-practice-page .reasoning-practice-guide strong {
+    color: var(--modern-ink);
+}
+
+.ai-modern-practice-page .reasoning-practice-guide p {
+    color: var(--modern-copy);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.ai-modern-practice-page .reasoning-practice-pagination {
+    align-items: center;
+    background: #fffcfd;
+    border: 1px solid rgba(244, 143, 188, .22);
+    border-radius: 16px;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+.ai-modern-practice-page .reasoning-practice-pagination button:last-child {
+    background: var(--modern-pink);
+    border-color: var(--modern-pink);
+    color: #fff;
+}
+
+.ai-modern-practice-page .reasoning-practice-pagination button:disabled {
+    background: #f6f2f4;
+    border-color: #e4dce0;
+    color: #6f7282;
+    cursor: not-allowed;
+    opacity: .72;
+}
+
+.ai-modern-quiz-page .ai-modern-quiz-overview {
+    background: linear-gradient(145deg, #fff7fb, #fff);
+    border: 1px solid rgba(246, 51, 146, .22);
+    border-radius: 18px;
+    display: grid;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 14px;
+}
+
+.ai-modern-quiz-page .ai-modern-quiz-overview .ai-modern-quiz-top {
+    background: transparent;
+    border: 0;
+    border-radius: 14px;
+    margin: 0;
+    padding: 0 2px;
+}
+
+.ai-modern-quiz-page .ai-modern-quiz-overview .ai-modern-quiz-map {
+    justify-content: flex-start;
+    margin: 0;
+}
+
+.ai-modern-quiz-page .ai-modern-quiz-nav button:disabled {
+    background: #f6f2f4;
+    border-color: #e4dce0;
+    color: #6f7282;
+    cursor: not-allowed;
+    opacity: .68;
+}
+
+.ai-modern-page .ai-modern-objectives li {
+    align-items: start;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 22px minmax(0, 1fr);
+    padding: 11px 13px;
+}
+
+.ai-modern-page .ai-modern-objectives li::before {
+    align-items: center;
+    background: rgba(246, 51, 146, .12);
+    border-radius: 50%;
+    display: inline-flex;
+    height: 22px;
+    justify-content: center;
+    margin: 0;
+    width: 22px;
+}
+
+.ai-modern-page .ai-modern-objective-copy {
+    color: var(--modern-copy);
+    display: block;
+    line-height: 1.55;
+    min-width: 0;
+}
+
+@media (max-width: 760px) {
+    .ai-modern-practice-page .reasoning-task-navigator {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-modern-practice-page .reasoning-nav-group {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ai-modern-practice-page .reasoning-nav-group > div {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+    .ai-modern-practice-page .reasoning-practice-counter,
+    .ai-modern-practice-page .reasoning-practice-pagination {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .ai-modern-practice-page .reasoning-practice-pagination button {
+        width: 100%;
+    }
+
+    .ai-modern-quiz-page .ai-modern-quiz-overview {
+        padding: 12px;
+    }
+
+    .ai-modern-quiz-page .ai-modern-quiz-map {
+        gap: 7px;
+    }
+
+    .ai-modern-quiz-page .ai-modern-quiz-map button {
+        height: 34px;
+        width: 34px;
+    }
+}

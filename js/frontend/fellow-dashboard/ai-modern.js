@@ -424,6 +424,13 @@
 
     function enhanceSourceMaterialForCanvas(container) {
         container.classList.add("is-source-view");
+        container.querySelectorAll(".ai-modern-objectives li").forEach(function (item) {
+            if (item.querySelector(":scope > .ai-modern-objective-copy")) return;
+            var copy = document.createElement("span");
+            copy.className = "ai-modern-objective-copy";
+            while (item.firstChild) copy.appendChild(item.firstChild);
+            item.appendChild(copy);
+        });
         container.querySelectorAll(".ai-modern-section").forEach(function (section, index) {
             if (!section.dataset.section) section.dataset.section = index < 2 ? "konsep" : index < 5 ? "contoh" : "ringkasan";
         });
@@ -860,10 +867,10 @@
             var current = saved.current;
             var topic = topicFor(current);
             root.innerHTML = '<nav class="reasoning-task-navigator" aria-label="Navigasi latihan">' + PRACTICE_TOPICS.map(function (group) {
-                return '<div class="reasoning-nav-group"><strong>' + escapeHtml(group.label) + '</strong><div>' + PRACTICES.slice(group.start, group.end + 1).map(function (item, offset) {
+                return '<div class="reasoning-nav-group"><strong class="reasoning-nav-group-label">' + escapeHtml(group.label) + '</strong><div>' + PRACTICES.slice(group.start, group.end + 1).map(function (item, offset) {
                     var index = group.start + offset;
                     var complete = Boolean(saved.answers[item.id + "-jawaban"] || saved.answers[item.id]);
-                    return '<button type="button" class="' + (index === current ? "active " : "") + (complete ? "complete" : "") + '" data-practice-jump="' + index + '" aria-label="Buka latihan ' + (index + 1) + '">' + (index + 1) + '</button>';
+                    return '<button type="button" class="' + (index === current ? "is-active " : "") + (complete ? "is-complete" : "") + '" data-practice-jump="' + index + '" aria-label="Buka latihan ' + (index + 1) + '">' + (index + 1) + '</button>';
                 }).join("") + '</div></div>';
             }).join("") + '</nav><div class="reasoning-practice-counter"><span>Skenario ' + (current + 1) + ' dari ' + PRACTICES.length + '</span><strong>' + escapeHtml(topic.label) + ' · ' + completedCount() + ' terisi</strong></div>' +
             renderPracticeCard(PRACTICES[current], current, saved, readonly) +
@@ -977,7 +984,11 @@
             }
             var item = QUIZ[state.current];
             var chosen = state.answers[state.current];
-            root.innerHTML = "<div class=\"ai-modern-quiz-top\"><span>Soal " + (state.current + 1) + " dari " + QUIZ.length + "</span><strong id=\"aiModernQuizCounter\">" + answeredCount() + "/" + QUIZ.length + " terjawab</strong></div>" +
+            root.innerHTML = "<section class=\"ai-modern-quiz-overview\" aria-label=\"Navigasi kuis\"><div class=\"ai-modern-quiz-top\"><span>Soal " + (state.current + 1) + " dari " + QUIZ.length + "</span><strong id=\"aiModernQuizCounter\">" + answeredCount() + "/" + QUIZ.length + " terjawab</strong></div>" +
+                "<div class=\"ai-modern-quiz-map\">" + QUIZ.map(function (_, index) {
+                    var cls = index === state.current ? "active" : state.answers[index] !== null && state.answers[index] !== undefined ? "answered" : "";
+                    return "<button type=\"button\" class=\"" + cls + "\" data-quiz-jump=\"" + index + "\" aria-label=\"Buka soal " + (index + 1) + "\">" + (index + 1) + "</button>";
+                }).join("") + "</div></section>" +
                 "<article class=\"ai-modern-quiz-card\">" +
                     "<h3>" + escapeHtml(item[0]) + "</h3>" +
                     "<div class=\"ai-modern-quiz-options\">" + item[1].map(function (option, index) {
@@ -986,11 +997,7 @@
                         return "<button type=\"button\" class=\"" + classes.join(" ") + "\" data-quiz-option=\"" + index + "\"><span>" + String.fromCharCode(65 + index) + "</span><p>" + escapeHtml(option) + "</p></button>";
                     }).join("") + "</div>" +
                 "</article>" +
-                "<div class=\"ai-modern-quiz-nav\"><button type=\"button\" data-quiz-prev" + (state.current === 0 ? " disabled" : "") + "><i class=\"fas fa-arrow-left\"></i> Sebelumnya</button><button type=\"button\" data-quiz-next" + (state.current === QUIZ.length - 1 ? " disabled" : "") + ">Berikutnya <i class=\"fas fa-arrow-right\"></i></button></div>" +
-                "<div class=\"ai-modern-quiz-map\">" + QUIZ.map(function (_, index) {
-                    var cls = index === state.current ? "active" : state.answers[index] !== null && state.answers[index] !== undefined ? "answered" : "";
-                    return "<button type=\"button\" class=\"" + cls + "\" data-quiz-jump=\"" + index + "\">" + (index + 1) + "</button>";
-                }).join("") + "</div>";
+                "<div class=\"ai-modern-quiz-nav\"><button type=\"button\" data-quiz-prev" + (state.current === 0 ? " disabled" : "") + "><i class=\"fas fa-arrow-left\"></i> Sebelumnya</button><button type=\"button\" data-quiz-next" + (state.current === QUIZ.length - 1 ? " disabled" : "") + ">Berikutnya <i class=\"fas fa-arrow-right\"></i></button></div>";
 
             root.querySelectorAll("[data-quiz-option]").forEach(function (button) {
                 button.addEventListener("click", function () {
