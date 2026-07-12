@@ -98,7 +98,7 @@
         var moduleSlug = params.get("module") || "";
         var activity = ACTIVITIES.indexOf(params.get("activity")) >= 0 ? params.get("activity") : "materi";
         var module = MODULES.find(function (item) { return item.slug === moduleSlug; });
-        return { module: module || null, activity: activity };
+        return { module: module || MODULES[0], activity: activity };
     }
 
     function href(moduleSlug, activity) {
@@ -122,84 +122,79 @@
         return MODULES.findIndex(function (item) { return item.slug === module.slug; }) + 1;
     }
 
-    function renderOverview(root) {
-        var data = progressData();
-        var completeCount = data.completed.length;
-        root.innerHTML = `
-            <section class="ai-evaluation-hero">
-                <div>
-                    <span>AI Fundamentals & Advanced</span>
-                    <h1>Evaluation AI</h1>
-                    <p>Belajar membuktikan apakah output, model, dan sistem AI benar-benar layak digunakan melalui output evaluation, benchmark, reliability, bias, fairness, dan evaluation plan.</p>
-                    <div class="ai-evaluation-meta">
-                        <b><i class="fas fa-book-open"></i> 6 chapter</b>
-                        <b><i class="fas fa-pen-to-square"></i> 15 latihan</b>
-                        <b><i class="far fa-clipboard"></i> 24 soal</b>
-                        <b><i class="far fa-clock"></i> 3-4 jam</b>
-                    </div>
-                    <a class="ai-evaluation-primary" href="${href(MODULES[0].slug, "materi")}">Mulai Materi</a>
-                </div>
-                <div class="ai-evaluation-progress-card">
-                    <span>Progress keseluruhan</span>
-                    <strong>${completeCount}/${MODULES.length}</strong>
-                    <div class="lesson-progress-mini"><b style="--value:${Math.round((completeCount / MODULES.length) * 100)}%"></b><strong>${Math.round((completeCount / MODULES.length) * 100)}%</strong></div>
-                    <p>Ikuti urutan belajar dari output sampai evaluation plan.</p>
-                </div>
-            </section>
-            <section class="ai-evaluation-outcomes">
-                <h2>Learning outcomes</h2>
-                <ul>
-                    <li>Menyusun rubric evaluasi output AI.</li>
-                    <li>Memilih benchmark dan test set sesuai konteks.</li>
-                    <li>Menguji reliability, hallucination, dan robustness.</li>
-                    <li>Membaca bias dan fairness secara sosio-teknis.</li>
-                    <li>Menyusun AI Evaluation Plan untuk release dan monitoring.</li>
-                </ul>
-            </section>
-            <section class="ai-evaluation-module-grid" aria-label="Daftar submateri Evaluation AI">
-                ${MODULES.map(function (module, index) {
-                    var done = data.completed.indexOf(module.slug) >= 0;
-                    return `<article class="ai-evaluation-module-card ${done ? "is-done" : ""}">
-                        <span>${String(index + 1).padStart(2, "0")}</span>
-                        <h3>${escapeHtml(module.title)}</h3>
-                        <p>${escapeHtml(module.summary)}</p>
-                        <div><small>${escapeHtml(module.duration)}</small><small>${EXERCISES.filter(function (ex) { return ex.module === module.slug; }).length} latihan</small><small>4 soal</small></div>
-                        <a href="${href(module.slug, "materi")}">${done ? "Review module" : "Buka module"}</a>
-                    </article>`;
-                }).join("")}
-            </section>`;
+    function activityLabel(value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
     }
 
     function renderDetail(root, module, activity) {
         var index = moduleNumber(module) - 1;
         var prev = MODULES[index - 1];
         var next = MODULES[index + 1];
+        var data = progressData();
+        var completeCount = data.completed.length;
+        var percent = Math.round((completeCount / MODULES.length) * 100);
+        var activityTitle = activity === "materi" ? "Evaluation AI" : activityLabel(activity) + " Evaluation AI";
+        var activityCopy = activity === "materi"
+            ? "Belajar membuktikan apakah output, model, dan sistem AI benar-benar layak digunakan melalui evaluasi yang terukur."
+            : "Kerjakan activity Evaluation AI dengan pola yang sama: pahami konteks, jawab bertahap, lalu gunakan feedback untuk memperbaiki keputusan evaluasi.";
         root.innerHTML = `
-            <div class="ai-evaluation-detail">
-                <aside class="ai-evaluation-nav" aria-label="Navigasi module Evaluation">
-                    <a href="#/participant-ai-evaluation"><i class="fas fa-arrow-left"></i> Kembali ke overview</a>
-                    <ol>${MODULES.map(function (item, itemIndex) {
-                        return `<li class="${item.slug === module.slug ? "active" : ""}"><a href="${href(item.slug, "materi")}"><span>${itemIndex + 1}</span>${escapeHtml(item.title)}</a></li>`;
-                    }).join("")}</ol>
-                </aside>
-                <main class="ai-evaluation-content">
-                    <header class="ai-evaluation-detail-head">
-                        <span>Chapter ${moduleNumber(module)} dari ${MODULES.length}</span>
-                        <h1>${escapeHtml(module.title)}</h1>
-                        <p>${escapeHtml(module.summary)}</p>
-                    </header>
-                    <nav class="ai-evaluation-tabs" aria-label="Activity Evaluation AI">
+            <div class="lesson-layout">
+                <div class="lesson-main-content">
+                    <section class="lesson-hero ${activity === "materi" ? "" : "compact"}">
+                        <div class="lesson-hero-copy">
+                            <h1>${escapeHtml(activityTitle)}</h1>
+                            <p>${escapeHtml(activityCopy)}</p>
+                            <div class="lesson-meta-row">
+                                <span><i class="far fa-clock"></i> 195-240 menit</span>
+                                <span><i class="fas fa-book-open"></i> Modul 5 dari 6</span>
+                                <b>Final</b>
+                            </div>
+                        </div>
+                        <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow belajar Evaluation AI">
+                    </section>
+
+                    <section class="lesson-material-panel">
+                        <div class="lesson-tabs" role="tablist" aria-label="Activity Evaluation AI">
                         ${ACTIVITIES.map(function (item) {
                             var icon = item === "materi" ? "fa-book-open" : item === "latihan" ? "fa-pen-to-square" : item === "kuis" ? "fa-clipboard" : "fa-message";
                             return `<a class="${item === activity ? "active" : ""}" href="${href(module.slug, item)}"><i class="fas ${icon}"></i>${item.charAt(0).toUpperCase() + item.slice(1)}</a>`;
                         }).join("")}
-                    </nav>
-                    <section id="aiEvaluationActivity" class="ai-evaluation-activity"></section>
-                    <footer class="ai-evaluation-pager">
+                        </div>
+                        <article class="lesson-article reasoning-scaffold-rich ai-evaluation-activity-wrap">
+                            <section class="ai-evaluation-detail-head">
+                                <span>Topik ${moduleNumber(module)} dari ${MODULES.length}</span>
+                                <h2>${escapeHtml(module.title)}</h2>
+                                <p>${escapeHtml(module.summary)}</p>
+                            </section>
+                            <section id="aiEvaluationActivity" class="ai-evaluation-activity"></section>
+                        </article>
+                        <footer class="lesson-nav-footer ai-evaluation-pager">
                         ${prev ? `<a href="${href(prev.slug, "materi")}"><i class="fas fa-arrow-left"></i> ${escapeHtml(prev.title)}</a>` : "<span></span>"}
                         ${next ? `<a href="${href(next.slug, "materi")}">${escapeHtml(next.title)} <i class="fas fa-arrow-right"></i></a>` : `<a href="${href(module.slug, "latihan")}">Lanjut latihan <i class="fas fa-arrow-right"></i></a>`}
-                    </footer>
-                </main>
+                        </footer>
+                    </section>
+                </div>
+
+                <aside class="lesson-right-panel">
+                    <section class="module-side-card lesson-progress-card">
+                        <h2>Progres Sub-Modul</h2>
+                        <div class="lesson-progress-mini"><b style="--value:${percent}%"></b><strong>${percent}%</strong></div>
+                        <p>${completeCount} dari ${MODULES.length} materi selesai</p>
+                        <a href="${href(module.slug, activity)}">${activity === "materi" ? "Mulai Belajar" : "Lanjut Activity"}</a>
+                    </section>
+                    <section class="module-side-card lesson-list-card">
+                        <h2>Daftar Materi</h2>
+                        <ol>${MODULES.map(function (item, itemIndex) {
+                            var done = data.completed.indexOf(item.slug) >= 0;
+                            var icon = item.slug === module.slug ? "far fa-circle-play" : done ? "fas fa-circle-check" : "far fa-circle";
+                            return `<li class="${item.slug === module.slug ? "active" : done ? "completed" : ""}"><span>${itemIndex + 1}</span><a href="${href(item.slug, "materi")}">${escapeHtml(item.title)}</a><i class="${icon}"></i></li>`;
+                        }).join("")}</ol>
+                    </section>
+                    <section class="module-side-card lesson-note-card lesson-compact-note">
+                        <div class="module-side-head"><h2>Catatan</h2><button type="button">+ Tambah</button></div>
+                        <p>Catat metrik, risiko, benchmark, dan failure case yang kamu temukan.</p>
+                    </section>
+                </aside>
             </div>`;
         renderActivity(module, activity);
     }
@@ -354,7 +349,6 @@
         var root = document.getElementById("aiEvaluationApp");
         if (!root) return;
         var state = getState();
-        if (!state.module) return renderOverview(root);
         localStorage.setItem(STORAGE.currentModule, state.module.slug);
         renderDetail(root, state.module, state.activity);
     }

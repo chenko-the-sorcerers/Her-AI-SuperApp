@@ -11097,3 +11097,93 @@
         grid-template-columns: 32px minmax(0, 1fr);
     }
 }
+
+/* Align advanced AI modules to the canonical Reasoning lesson shell. */
+.ai-evaluation-page .ai-evaluation-app,
+.ai-evolution-page .ai-evolution-app {
+    display: block;
+    margin: 0;
+    max-width: none;
+    padding: 0;
+}
+
+.ai-evaluation-page .lesson-hero,
+.ai-evolution-page .lesson-hero {
+    margin-bottom: 0;
+}
+
+.ai-evaluation-page .lesson-hero h1,
+.ai-evolution-page .lesson-hero h1 {
+    font-size: clamp(2.35rem, 4.4vw, 4rem);
+}
+
+.ai-evaluation-page .lesson-material-panel,
+.ai-evolution-page .lesson-material-panel {
+    overflow: hidden;
+}
+
+.ai-evaluation-page .ai-evaluation-detail-head,
+.ai-evolution-page .ai-evolution-detail-head {
+    background: #fff;
+    border: 0;
+    border-bottom: 1px solid rgba(244, 143, 188, .24);
+    border-radius: 16px;
+    box-shadow: none;
+    margin: -24px -24px 24px;
+    padding: 0 0 18px;
+}
+
+.ai-evaluation-page .ai-evaluation-detail-head h2,
+.ai-evolution-page .ai-evolution-detail-head h2 {
+    color: #171827;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.ai-evaluation-page .ai-evaluation-activity,
+.ai-evolution-page .ai-evolution-activity {
+    background: transparent;
+    border: 0;
+    border-radius: 16px;
+    box-shadow: none;
+    overflow: visible;
+    padding: 0;
+}
+
+.ai-evaluation-page .ai-evaluation-chapter-head,
+.ai-evolution-page .ai-evolution-chapter-head {
+    background: linear-gradient(135deg, #fff7fb, #fff);
+    margin-bottom: 2px;
+}
+
+.ai-evaluation-page .ai-evaluation-pager,
+.ai-evolution-page .ai-evolution-pager {
+    background: transparent;
+    border: 0;
+    border-radius: 16px;
+    margin-top: 0;
+    padding: 0;
+}
+
+.ai-evaluation-page .ai-evaluation-pager span,
+.ai-evolution-page .ai-evolution-pager span {
+    min-height: 1px;
+}
+
+.ai-evaluation-page .lesson-progress-mini,
+.ai-evolution-page .lesson-progress-mini {
+    overflow: hidden;
+}
+
+.ai-evaluation-page .lesson-list-card a,
+.ai-evolution-page .lesson-list-card a {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+    .ai-evaluation-page .ai-evaluation-detail-head,
+    .ai-evolution-page .ai-evolution-detail-head {
+        margin: -18px -18px 18px;
+    }
+}

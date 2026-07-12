@@ -99,7 +99,7 @@
         var activityParam = params.get("activity");
         var activity = ACTIVITIES.indexOf(activityParam) >= 0 ? activityParam : "materi";
         var module = MODULES.find(function (item) { return item.slug === moduleSlug; });
-        return { module: module || null, activity: activity };
+        return { module: module || MODULES[0], activity: activity };
     }
 
     function href(moduleSlug, activity) {
@@ -127,86 +127,75 @@
         return value.charAt(0).toUpperCase() + value.slice(1);
     }
 
-    function renderOverview(root) {
-        var data = progressData();
-        var completeCount = data.completed.length;
-        var percent = Math.round((completeCount / MODULES.length) * 100);
-        root.innerHTML = `
-            <section class="ai-evolution-hero">
-                <div>
-                    <span>AI Fundamentals & Advanced</span>
-                    <h1>Evolution of AI</h1>
-                    <p>Evolusi AI bukan cerita satu pendekatan menggantikan pendekatan lain. Modul ini membaca bagaimana aturan eksplisit, data, reward, model generatif, Transformer, LLM, dan hybrid AI saling melengkapi.</p>
-                    <div class="ai-evolution-meta">
-                        <b><i class="fas fa-book-open"></i> 7 chapter</b>
-                        <b><i class="fas fa-pen-to-square"></i> 16 latihan</b>
-                        <b><i class="far fa-clipboard"></i> 21 soal</b>
-                        <b><i class="far fa-clock"></i> 4-5 jam</b>
-                    </div>
-                    <a class="ai-evolution-primary" href="${href(MODULES[0].slug, "materi")}">Mulai Materi</a>
-                </div>
-                <div class="ai-evolution-progress-card">
-                    <span>Progress keseluruhan</span>
-                    <strong>${completeCount}/${MODULES.length}</strong>
-                    <div class="lesson-progress-mini"><b style="--value:${percent}%"></b><strong>${percent}%</strong></div>
-                    <p>Ikuti urutan dari symbolic AI sampai sistem hybrid modern.</p>
-                </div>
-            </section>
-            <section class="ai-evolution-outcomes">
-                <h2>Learning outcomes</h2>
-                <ul>
-                    <li>Menjelaskan perubahan dari aturan eksplisit menuju pembelajaran berbasis data.</li>
-                    <li>Membandingkan Symbolic AI, Machine Learning, Reinforcement Learning, dan Generative AI.</li>
-                    <li>Menjelaskan kontribusi VAE, GAN, diffusion, Transformer, dan LLM.</li>
-                    <li>Memilih paradigma berdasarkan karakter masalah dan kebutuhan produk.</li>
-                    <li>Merancang sistem AI hybrid secara konseptual.</li>
-                </ul>
-            </section>
-            <section class="ai-evolution-module-grid" aria-label="Daftar submateri Evolution of AI">
-                ${MODULES.map(function (module, index) {
-                    var done = data.completed.indexOf(module.slug) >= 0;
-                    var exerciseCount = EXERCISES.filter(function (ex) { return ex.module === module.slug; }).length;
-                    return `<article class="ai-evolution-module-card ${done ? "is-done" : ""}">
-                        <span>${String(index + 1).padStart(2, "0")}</span>
-                        <h3>${escapeHtml(module.title)}</h3>
-                        <p>${escapeHtml(module.summary)}</p>
-                        <div><small>${escapeHtml(module.duration)}</small><small>${exerciseCount} latihan</small><small>3 soal</small></div>
-                        <a href="${href(module.slug, "materi")}">${done ? "Review module" : "Buka module"}</a>
-                    </article>`;
-                }).join("")}
-            </section>`;
-    }
-
     function renderDetail(root, module, activity) {
         var index = moduleNumber(module) - 1;
         var prev = MODULES[index - 1];
         var next = MODULES[index + 1];
+        var data = progressData();
+        var completeCount = data.completed.length;
+        var percent = Math.round((completeCount / MODULES.length) * 100);
+        var activityTitle = activity === "materi" ? "Evolution of AI" : activityLabel(activity) + " Evolution of AI";
+        var activityCopy = activity === "materi"
+            ? "Baca evolusi AI sebagai perubahan paradigma: dari aturan eksplisit, data, reward, model generatif, sampai sistem hybrid modern."
+            : "Kerjakan activity Evolution of AI dengan membaca konteks sejarah, membandingkan paradigma, dan menghubungkannya ke produk AI nyata.";
         root.innerHTML = `
-            <div class="ai-evolution-detail">
-                <aside class="ai-evolution-nav" aria-label="Navigasi module Evolution">
-                    <a href="#/participant-ai-evolution"><i class="fas fa-arrow-left"></i> Kembali ke overview</a>
-                    <ol>${MODULES.map(function (item, itemIndex) {
-                        return `<li class="${item.slug === module.slug ? "active" : ""}"><a href="${href(item.slug, "materi")}"><span>${itemIndex + 1}</span>${escapeHtml(item.title)}</a></li>`;
-                    }).join("")}</ol>
-                </aside>
-                <main class="ai-evolution-content">
-                    <header class="ai-evolution-detail-head">
-                        <span>Chapter ${moduleNumber(module)} dari ${MODULES.length}</span>
-                        <h1>${escapeHtml(module.title)}</h1>
-                        <p>${escapeHtml(module.summary)}</p>
-                    </header>
-                    <nav class="ai-evolution-tabs" aria-label="Activity Evolution of AI">
+            <div class="lesson-layout">
+                <div class="lesson-main-content">
+                    <section class="lesson-hero ${activity === "materi" ? "" : "compact"}">
+                        <div class="lesson-hero-copy">
+                            <h1>${escapeHtml(activityTitle)}</h1>
+                            <p>${escapeHtml(activityCopy)}</p>
+                            <div class="lesson-meta-row">
+                                <span><i class="far fa-clock"></i> 240-300 menit</span>
+                                <span><i class="fas fa-book-open"></i> Modul 6 dari 6</span>
+                                <b>Final</b>
+                            </div>
+                        </div>
+                        <img src="/assets/messaging/herai-chat-persona.png" alt="HerAI fellow belajar Evolution of AI">
+                    </section>
+
+                    <section class="lesson-material-panel">
+                        <div class="lesson-tabs" role="tablist" aria-label="Activity Evolution of AI">
                         ${ACTIVITIES.map(function (item) {
                             var icon = item === "materi" ? "fa-book-open" : item === "latihan" ? "fa-pen-to-square" : item === "kuis" ? "fa-clipboard" : "fa-message";
                             return `<a class="${item === activity ? "active" : ""}" href="${href(module.slug, item)}"><i class="fas ${icon}"></i>${activityLabel(item)}</a>`;
                         }).join("")}
-                    </nav>
-                    <section id="aiEvolutionActivity" class="ai-evolution-activity"></section>
-                    <footer class="ai-evolution-pager">
+                        </div>
+                        <article class="lesson-article reasoning-scaffold-rich ai-evolution-activity-wrap">
+                            <section class="ai-evolution-detail-head">
+                                <span>Topik ${moduleNumber(module)} dari ${MODULES.length}</span>
+                                <h2>${escapeHtml(module.title)}</h2>
+                                <p>${escapeHtml(module.summary)}</p>
+                            </section>
+                            <section id="aiEvolutionActivity" class="ai-evolution-activity"></section>
+                        </article>
+                        <footer class="lesson-nav-footer ai-evolution-pager">
                         ${prev ? `<a href="${href(prev.slug, "materi")}"><i class="fas fa-arrow-left"></i> ${escapeHtml(prev.title)}</a>` : "<span></span>"}
                         ${next ? `<a href="${href(next.slug, "materi")}">${escapeHtml(next.title)} <i class="fas fa-arrow-right"></i></a>` : `<a href="${href(module.slug, "latihan")}">Lanjut latihan <i class="fas fa-arrow-right"></i></a>`}
-                    </footer>
-                </main>
+                        </footer>
+                    </section>
+                </div>
+
+                <aside class="lesson-right-panel">
+                    <section class="module-side-card lesson-progress-card">
+                        <h2>Progres Sub-Modul</h2>
+                        <div class="lesson-progress-mini"><b style="--value:${percent}%"></b><strong>${percent}%</strong></div>
+                        <p>${completeCount} dari ${MODULES.length} materi selesai</p>
+                        <a href="${href(module.slug, activity)}">${activity === "materi" ? "Mulai Belajar" : "Lanjut Activity"}</a>
+                    </section>
+                    <section class="module-side-card lesson-list-card">
+                        <h2>Daftar Materi</h2>
+                        <ol>${MODULES.map(function (item, itemIndex) {
+                            var done = data.completed.indexOf(item.slug) >= 0;
+                            var icon = item.slug === module.slug ? "far fa-circle-play" : done ? "fas fa-circle-check" : "far fa-circle";
+                            return `<li class="${item.slug === module.slug ? "active" : done ? "completed" : ""}"><span>${itemIndex + 1}</span><a href="${href(item.slug, "materi")}">${escapeHtml(item.title)}</a><i class="${icon}"></i></li>`;
+                        }).join("")}</ol>
+                    </section>
+                    <section class="module-side-card lesson-note-card lesson-compact-note">
+                        <div class="module-side-head"><h2>Catatan</h2><button type="button">+ Tambah</button></div>
+                        <p>Catat perubahan paradigma, trade-off, dan contoh sistem hybrid yang kamu temukan.</p>
+                    </section>
+                </aside>
             </div>`;
         renderActivity(module, activity);
     }
@@ -367,7 +356,6 @@
         var root = document.getElementById("aiEvolutionApp");
         if (!root) return;
         var state = getState();
-        if (!state.module) return renderOverview(root);
         localStorage.setItem(STORAGE.currentModule, state.module.slug);
         renderDetail(root, state.module, state.activity);
     }
