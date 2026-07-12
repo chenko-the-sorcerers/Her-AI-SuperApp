@@ -1,8 +1,8 @@
 # Module Status Map — HerAI Fellowship
 
 **Tanggal:** 12 Juli 2026
-**Branch:** `design` (ahead ~20 commits, BELUM PUSH)
-**Status:** Reasoning COMPLETE, Python pipeline working
+**Branch:** `design` (ahead ~26 commits, BELUM PUSH)
+**Status:** Reasoning ⭐ COMPLETE, Python 🔄 Pipeline OK
 
 ---
 
@@ -12,10 +12,12 @@
 
 | Module | Route | Materi | Latihan | Kuis | Diskusi | Status |
 |---|---|---|---|---|---|---|
-| **Reasoning** | `...-ai-reasoning` | ✅ Pipeline final | ✅ 17 practice, topic groups | ✅ 26 soal, review mode | ✅ 4 prompt | **⭐ COMPLETE** |
-| **Python untuk AI** | `...-ai-python` | ✅ Pipeline works | 🏗 8 exercises | 🏗 10 questions | 🏗 4 prompts | **🔄 Pipeline OK, content needs enrichment** |
+| **Reasoning** | `...-ai-reasoning` | ✅ Pipeline final | ✅ 17 practice | ✅ 26 soal | ✅ 4 prompt | **⭐ COMPLETE** |
+| **Python untuk AI** | `...-ai-python` | ✅ 8 topics load | ✅ 8 practice | ✅ 10 quiz | ✅ 4 prompts | **🔄 Pipeline OK** |
 | AI Fundamentals | `...-ai-intro` | 🏗 | 🏗 | 🏗 | 🏗 | ⏳ |
-| Konsep AI Modern | `...-ai-modern` | 🏗 | 🏗 | 🏗 | 🏗 | ⏳ |
+| **Konsep AI Modern** | `...-ai-modern` | 🏗 | 🏗 | 🏗 | 🏗 | **🎯 NEXT** |
+| **Evaluation** | `...-ai-evaluation` | 🏗 (placeholder) | 🏗 | 🏗 | 🏗 | **🎯 NEXT** |
+| **Evolution of AI** | `...-ai-evolution` | 🏗 (placeholder) | 🏗 | 🏗 | 🏗 | **🎯 NEXT** |
 
 ### AI Labs
 
@@ -30,12 +32,16 @@
 
 ## Priority for Next Module
 
-1. **Python untuk AI** — source available (`materi/nazril/`)
-2. **AI Fundamentals** — same pipeline structure
-3. **Konsep AI Modern** — similar to Reasoning
+User mau lanjut ke:
+1. **Konsep AI Modern** — evaluation module
+2. **Evolution of AI** — evolution module
+3. **AI Fundamentals** — pengantar AI (migrasi)
 
 ---
 
 ## How to Apply Reasoning Pipeline
 
-Lihat `handover/COURSE_TEMPLATE_GUIDE.md` untuk panduan lengkap.
+1. Baca `handover/COURSE_TEMPLATE_GUIDE.md` — complete step-by-step
+2. Baca `handover/FIRST_PROMPT.txt` — critical rules + checklist
+3. Pakai function checklist di COURSE_TEMPLATE_GUIDE.md Section 8
+4. Test ALL 4 routes (materi + latihan + kuis + diskusi) — jangan cuma materi

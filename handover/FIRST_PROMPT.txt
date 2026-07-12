@@ -1,0 +1,91 @@
+================================================================================
+HERAI FELLOWSHIP — FIRST PROMPT UNTUK AI AGENT BARU
+Copas seluruh teks ini sebagai pesan pertama ke AI agent.
+================================================================================
+
+Lo adalah AI agent baru buat project HerAI Fellowship SuperApp.
+
+## Project Context
+- Stack: Vanilla JS SPA (hash-router), CSS, HTML
+- Branch: `design` (ahead ~26 commits, BELUM PUSH)
+- Server: `npx http-server -p 3000 -c-1` di working directory
+- Semua course pake pipeline source-as-main-content (Reasoning sebagai CANONICAL template)
+
+## WAJIB BACA — Urutan Prioritas
+1. `AGENTS.md`
+2. `GEMINI.md`
+3. `handover/README.md`
+4. `handover/HANDOVER_UPDATE.md`
+5. `handover/REASONING_RULES_AND_PATTERNS.md`
+6. `handover/COURSE_TEMPLATE_GUIDE.md`
+7. `handover/MODULE_STATUS_MAP.md`
+
+## Module Status Singkat
+- ⭐ **Reasoning**: COMPLETE — pipeline, 6 topics, 17 practices, 26 quiz, review mode. Template canonical untuk semua course.
+- 🔄 **Python untuk AI**: Pipeline OK, 8 topics load, 8 practices, 10 quiz. CHAPTERS perlu enrichment (hook/lab/quickCheck data belum ada).
+- ⏳ **AI Fundamentals (Pengantar AI)**: Belum migrasi
+- ⏳ **Konsep AI Modern**: Next target
+- ⏳ **Evaluation**: Next target
+- ⏳ **Evolution of AI**: Next target
+
+## Next Tasks (Prioritas User)
+User mau ngerjain:
+1. Konsep AI Modern (evaluation)
+2. Evolution of AI
+
+## 🚨 CRITICAL RULES — Jangan Sampai Salah Lagi!
+
+Saat membuat course BARU dari Reasoning template, PASTIKAN:
+
+1. **Copy ALL functions** dari `ai-reasoning.js` — tidak boleh ada yang kelewat!
+   Checklist: renderList, renderFlow, escapeHtml, escapeSelector, safeJsonParse, setStatus,
+   findH2Sections, semua finalRender*, semua setup*, filterSourceHeadings, stripSourceNumbering,
+   injectAfterHeading, renderFormattedText, renderPracticeCard, loadSourceHtml
+
+2. **sourcePath HARUS FULL PATH** — jangan ada `/pages/.../` dengan literal `...`
+   ✅ "/pages/frontend/fellow-dashboard/.../02-python-untuk-ai/chapters/01-topic.html"
+   ❌ "/pages/.../02-python-untuk-ai/chapters/01-topic.html"
+
+3. **PRACTICES entries HARUS punya `fields` array**:
+   `"fields": [["jawaban", "Tulis jawabanmu di sini..."]]`
+
+4. **getSavedPractice() HARUS ada null guard**:
+   `const saved = getSavedPractice() || { answers: {}, revealed: [] };`
+
+5. **PRACTICE_TOPICS HARUS disesuaiin** — jangan pake label Reasoning
+
+6. **HTML pages HARUS dibersihin dari teks Reasoning** — semua "Reasoning" → nama course baru
+
+7. **Router function names HARUS cocok** — cek `typeof window.initXxxYyy`
+
+8. **index.html HARUS ada script reference** untuk controller baru
+
+9. **Cache buster WAJIB di-bump** setiap ubah JS/CSS
+
+10. **CHAPTERS minimal HARUS punya**: title, shortTitle, duration, icon, summary, objectives, sourcePath
+
+## Cache Buster Reference
+- Reasoning: `v=20260712-reasoning-final-v35`
+- Python: `v=20260712-python-v8`
+
+## Starter Commands
+```bash
+git status --short --branch
+node --check js/frontend/fellow-dashboard/ai-reasoning.js
+node --check js/frontend/fellow-dashboard/ai-python.js
+node --check js/router.js
+node scripts/check-participant-routes.mjs
+npx http-server -p 3000 -c-1
+```
+
+## JANGAN
+- ❌ Push tanpa izin
+- ❌ Ubah localStorage keys tanpa migrasi
+- ❌ Ubah source chapter HTML (01-full.html s/d 15-full.html)
+- ❌ Ubah route di router.js (kecuali tambah route baru)
+- ❌ Ubah dashboard shell, sidebar, topbar, breadcrumb
+- ❌ Pake border-radius: 0
+- ❌ Pake dark backgrounds untuk learning surface
+
+## Mulai
+Setelah baca semua file handover, tanya ke user: "Mau lanjut ke module mana? Konsep AI Modern, Evaluation, atau Evolution of AI?"

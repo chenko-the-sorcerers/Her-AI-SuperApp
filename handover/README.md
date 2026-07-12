@@ -11,22 +11,23 @@
 5. **`handover/COURSE_TEMPLATE_GUIDE.md`** — How to apply to other courses
 6. **`handover/MODULE_STATUS_MAP.md`** — Module completion status
 
-## Dokumen Pendukung
+## Dokumen Utama
 
 | File | Purpose |
 |---|---|
-| `COURSE_HIERARCHY.md` | Struktur folder course |
-| `HANDOVER_COURSE_FILESYSTEM_REFACTOR.md` | Refactor history |
-| `PROMPT_AI_BARU.md` | Prompt untuk AI agent |
-| `REASONING_FINAL_CHECKPOINT.md` | Old checkpoint (outdated) |
+| `HANDOVER_UPDATE.md` | Final state Reasoning + Python, critical bugs, function checklist |
+| `REASONING_RULES_AND_PATTERNS.md` | All CSS/JS/pipeline rules (shared for all courses) |
+| `COURSE_TEMPLATE_GUIDE.md` | How to apply to other courses + missing functions checklist |
+| `MODULE_STATUS_MAP.md` | Module completion + next targets |
+| `AGENT_ONBOARDING_PROMPT.md` | Quick reference for AI agents |
+| `FIRST_PROMPT.txt` | **Ini yang lo copas** ke AI agent baru — prompt lengkap |
 
 ## Quick Reference
 
-- **Branch:** `design` (ahead ~20 commits, BELUM PUSH)
-- **Reasoning final cache buster:** `v35`
-- **Python cache buster:** `v3`
-- **Reasoning controller:** `js/.../ai-reasoning.js` (~2646 lines)
-- **Python controller:** `js/.../ai-python.js` (~1964 lines)
-- **CSS:** `css/.../modules.css` (~7500 lines)
+- **Branch:** `design` (ahead ~26 commits, BELUM PUSH)
+- **Reasoning:** `v35` — `ai-reasoning.js` (2646 lines)
+- **Python:** `v8` — `ai-python.js` (1988 lines)
+- **CSS:** `modules.css` (7600 lines)
 - **Reasoning source:** `materi/nazril/submateri-reasoning-ai.md` (2755 lines)
 - **Python source:** `materi/nazril/Python-untuk-AI-redesign-final.md` (1882 lines)
+- **Next modules:** Konsep AI Modern, Evaluation, Evolution of AI

@@ -267,12 +267,12 @@ Sama dengan Reasoning: source-as-main-content pipeline.
 
 | File | Path | Lines |
 |---|---|---|
-| Controller | `js/frontend/fellow-dashboard/ai-python.js` | ~1964 |
-| CSS (shared) | `css/frontend/fellow-dashboard/modules.css` | ~7500 |
-| Materi | `pages/.../02-python-untuk-ai/materi.html` | template Reasoning |
-| Latihan | `pages/.../02-python-untuk-ai/latihan.html` | template Reasoning |
-| Kuis | `pages/.../02-python-untuk-ai/kuis.html` | template Reasoning |
-| Diskusi | `pages/.../02-python-untuk-ai/diskusi.html` | template Reasoning |
+| Controller | `js/frontend/fellow-dashboard/ai-python.js` | ~1988 |
+| CSS (shared) | `css/frontend/fellow-dashboard/modules.css` | ~7600 |
+| Materi | `pages/.../02-python-untuk-ai/materi.html` | Reasonning template ✅ |
+| Latihan | `pages/.../02-python-untuk-ai/latihan.html` | Reasonning template ✅ |
+| Kuis | `pages/.../02-python-untuk-ai/kuis.html` | Reasonning template ✅ |
+| Diskusi | `pages/.../02-python-untuk-ai/diskusi.html` | Reasonning template ✅ |
 | Source | `materi/nazril/Python-untuk-AI-redesign-final.md` | 1882 lines |
 | Chapter files | `pages/.../02-python-untuk-ai/chapters/01-full.html` - `15-full.html` | 15 files |
 | Topic files | `pages/.../02-python-untuk-ai/chapters/01-topic.html` - `08-topic.html` | 8 merged |
@@ -290,29 +290,53 @@ Sama dengan Reasoning: source-as-main-content pipeline.
 | 7. NumPy | Ch12 (Ekosistem) + Ch13 (NumPy) |
 | 8. Pandas & Workflow | Ch14 (Pandas) + Ch15 (Mini Workflow) |
 
-### Known Issues
+### Current Status
 
-- **router.js** had wrong function name (`initAiPythonBasic` → `initAiPythonPractice`) ✅ fixed
-- **sourcePaths** chapters 2-8 had broken path (`/pages/.../` with literal `...`) ✅ fixed
-- **renderList/renderFlow** functions missing from ai-python.js ✅ added
-- **CHAPTERS data is minimal** — has title/summary/objectives but missing: hook, concepts, flow, example, quickCheck, challenge, mistakes, bestPractices, learningOutcomes
-- Interactive components (hook, lab, quick check) will NOT show until CHAPTERS is enriched
+| Page | Status |
+|---|---|
+| Materi | ✅ 8 topics load, CHAPTERS has basic data |
+| Latihan | ✅ 8 practices, navigator, save/edit/reset |
+| Kuis | ✅ 10 questions, single attempt |
+| Diskusi | ✅ 4 prompts, inline reply |
 
 ### Cache Buster
-`index.html`: `ai-python.js?v=20260712-python-v3`
+`index.html`: `ai-python.js?v=20260712-python-v8`
 
 ### NOT YET DONE (Needs Enrichment)
 - CHAPTERS interactive data (hook, lab, quick check, challenge per topic)
-- PRACTICES array (currently has 8 Python exercises, may need more)
-- QUIZ array (has 10 questions, may need more)
+- PRACTICES array (currently 8 Python exercises — may need expansion)
+- QUIZ array (10 questions — may need more)
 - Pyodide playground injection into source content
 
-### CRITICAL BUGS FIXED (Session)
-| Bug | Fix |
-|---|---|
-| `renderList` missing → page crash | Added renderList/renderFlow functions |
-| sourcePaths chapters 2-8 broken | Fixed to full path |
-| router function name mismatch | `initAiPythonBasic` → `initAiPythonPractice` |
-| Reasoning "Materi" → Python page | All HTML text replaced |
-| index.html missing ai-python.js | Added script reference |
-| server serving stale files | Killed old server, clean restart |
+### 🚨 CRITICAL BUGS FIXED (Python — ALL apply to future courses!)
+
+| Bug | Symptom | Fix | Applies to |
+|---|---|---|---|
+| `renderList` / `renderFlow` missing | Page crash on load | These 2 functions must be copied from Reasoning | ALL new courses |
+| sourcePaths with literal `...` | Ch2-8 show 404 | Always verify sourcePath is FULL path | ALL new courses |
+| `escapeHtml` missing | Silent crash, broken HTML | Copy from Reasoning | ALL new courses |
+| `escapeSelector` missing | Query selector errors | Copy from Reasoning | ALL new courses |
+| `safeJsonParse` missing | TypeErrors in localStorage read | Copy from Reasoning | ALL new courses |
+| `setStatus` missing | Practice page crashes | Copy from Reasoning | ALL new courses |
+| `item.fields` undefined in PRACTICES | `renderPracticeCard` crash | Every practice entry MUST have `"fields": [...]` | ALL new courses |
+| `getSavedPractice()` null return | Crash on first visit (no localStorage) | Add `|| { answers: {}, revealed: [] }` | ALL new courses |
+| router function name mismatch | Page doesn't initialize | Verify router `typeof window.initXxxYyy` matches controller | ALL new courses |
+| Reasoning text in new course pages | Confusing UI | Replace ALL "Reasoning" refs in HTML | ALL new courses |
+| Missing script in index.html | Controller never loads | Add `<script src="ai-xxx.js">` to index.html | ALL new courses |
+
+### 📋 Function Checklist for New Courses
+
+When copying ai-reasoning.js to ai-{new-course}.js, verify ALL these functions exist:
+```
+✅ renderList, renderFlow
+✅ escapeHtml, escapeSelector, safeJsonParse, setStatus
+✅ findH2Sections
+✅ finalRenderHookSection, finalRenderExampleSection, finalRenderQuickCheckSection
+✅ finalRenderChallengeSection, finalRenderMistakesPractices, finalRenderSummarySection
+✅ renderSourceVisualLab, initSourceVisualLab, enhanceSourceMaterialForCanvas
+✅ setupHookInteraction, setupQuickChecks, setupChallengeInteraction
+✅ setupVisualNav, setupCopyButtons
+✅ stripSourceNumbering, filterSourceHeadings, injectAfterHeading
+✅ renderFormattedText, renderPracticeCard
+✅ loadSourceHtml, getSourceFile
+```

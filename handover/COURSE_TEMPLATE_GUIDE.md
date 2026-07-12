@@ -425,4 +425,72 @@ Ketika menerapkan pattern ini ke course EXISTING:
 5. Set up CHAPTERS with AT LEAST: title, shortTitle, duration, icon, summary, objectives, sourcePath
 6. **Verify sourcePath is a FULL PATH** — no template placeholders
 7. Test Topic 1 loads, then test Topic 2
-8. Enrich CHAPTERS with interactive data (hook, concepts, lab, quickCheck, challenge) one topic at a time
+8. **Test ALL 4 routes** (materi, latihan, kuis, diskusi) — jangan cuma materi
+9. Enrich CHAPTERS with interactive data (hook, concepts, lab, quickCheck, challenge) one topic at a time
+
+---
+
+## 8. 🚨 Missing Functions Checklist (CRITICAL)
+
+Setiap kali copy `ai-reasoning.js` ke controller baru, PASTIKAN semua fungsi berikut ada.
+Ini adalah daftar fungsi yang PERNAH hilang dan menyebabkan crash:
+
+| Function | Used By | Crash If Missing |
+|---|---|---|
+| `renderList` | renderOrientationAndNav | Page crash on load |
+| `renderFlow` | renderEndOfChapter | Page crash on load |
+| `escapeHtml` | ALL render functions | Silent HTML corruption |
+| `escapeSelector` | query selectors | Query errors |
+| `safeJsonParse` | localStorage read | TypeError on first visit |
+| `setStatus` | initAiXxxPractice | Practice page crash |
+| `findH2Sections` | loadXxxChapter (pipeline) | Page crash on load |
+| `renderFormattedText` | renderPracticeCard | Practice card crash |
+| `renderPracticeCard` | initAiXxxPractice | Practice page crash |
+| `loadSourceHtml` | init functions | Source load failure |
+| Semua `finalRender*` | renderEndOfChapter | End-of-chapter crash |
+| Semua `setup*` | loadXxxChapter | Interactive broken |
+| `filterSourceHeadings` | pipeline | Content corruption |
+| `stripSourceNumbering` | pipeline | Wrong heading numbers |
+| `injectAfterHeading` | pipeline | Components missing |
+
+**Cara cek**: 
+```bash
+for func in renderList renderFlow escapeHtml escapeSelector safeJsonParse setStatus findH2Sections renderFormattedText renderPracticeCard loadSourceHtml finalRenderHookSection finalRenderExampleSection finalRenderQuickCheckSection finalRenderChallengeSection finalRenderMistakesPractices finalRenderSummarySection finalRenderPromptSection renderSourceVisualLab initSourceVisualLab enhanceSourceMaterialForCanvas setupHookInteraction setupQuickChecks setupChallengeInteraction setupVisualNav setupCopyButtons filterSourceHeadings stripSourceNumbering injectAfterHeading getSourceFile; do
+  c=$(grep -c "function $func" js/frontend/fellow-dashboard/ai-NEW.js)
+  [ "$c" -eq 0 ] && echo "❌ MISSING: $func" || echo "✅ $func"
+done
+```
+
+## 9. Data Structure Gotchas
+
+| Issue | Fix |
+|---|---|
+| PRACTICES missing `fields` | Every entry needs `"fields": [["jawaban", "Tulis..."]]` |
+| QUIZ array wrong format | Must be `[question, [options], correctIndex, explanation]` |
+| `getSavedPractice()` null | Use `|| { answers: {}, revealed: [] }` guard |
+| PRACTICE_TOPICS stale labels | Update with new course topic names |
+| CHAPTERS missing fields | Initial can be minimal: title, shortTitle, duration, icon, summary, objectives, sourcePath |
+| sourcePath with `...` | Full absolute path: `/pages/frontend/.../chapters/01-topic.html` |
+
+## 10. Test Script
+
+Setelah build controller baru, test:
+```javascript
+// 1. Syntax
+node --check js/frontend/fellow-dashboard/ai-NEW.js
+
+// 2. Function existence
+grep -c "function SETUP_FUNCTION" js/frontend/fellow-dashboard/ai-NEW.js
+
+// 3. Browser test (Playwright)
+await page.goto('http://localhost:3000/#/participant-ai-NEW');
+// Check: dashboard loads, no error in console, content renders
+
+// 4. Test navigation
+await page.click('.lesson-tabs a[href*="practice"]');
+// Check: practice page loads with cards
+
+// 5. Test quiz
+await page.click('.lesson-tabs a[href*="quiz"]');
+// Check: quiz page loads with questions
+```
