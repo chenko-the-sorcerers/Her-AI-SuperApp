@@ -10493,6 +10493,7 @@
 }
 
 .ai-python-page .python-worked-example ol {
+    counter-reset: worked-step;
     display: grid;
     gap: 10px;
     list-style: none;
@@ -10501,14 +10502,29 @@
 }
 
 .ai-python-page .python-worked-example li {
-    align-items: start;
+    align-items: center;
     background: var(--python-surface-soft);
     border: 1px solid rgba(244, 143, 188, .22);
     border-radius: 14px;
+    counter-increment: worked-step;
     display: grid;
-    gap: 4px;
-    grid-template-columns: minmax(110px, .34fr) minmax(0, 1fr);
-    padding: 13px 14px;
+    gap: 12px;
+    grid-template-columns: 34px minmax(0, 1fr);
+    padding: 11px 14px 11px 10px;
+}
+
+.ai-python-page .python-worked-example li::before {
+    align-items: center;
+    background: var(--python-pink);
+    border-radius: 50%;
+    color: #ffffff;
+    content: counter(worked-step);
+    display: inline-flex;
+    font-size: .78rem;
+    font-weight: 800;
+    height: 34px;
+    justify-content: center;
+    width: 34px;
 }
 
 .ai-python-page .python-worked-example li strong {
@@ -11836,7 +11852,13 @@
 
 @media (max-width: 760px) {
     .ai-python-page .python-worked-example li {
+        align-items: start;
+        gap: 8px;
         grid-template-columns: minmax(0, 1fr);
+        padding: 13px 14px;
+    }
+    .ai-python-page .python-worked-example li::before {
+        margin-bottom: 2px;
     }
 
     .ai-python-page .python-task-controls {
