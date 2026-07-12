@@ -162,11 +162,6 @@
                         }).join("")}
                         </div>
                         <article class="lesson-article reasoning-scaffold-rich ai-evolution-activity-wrap">
-                            <section class="ai-evolution-detail-head">
-                                <span>Topik ${moduleNumber(module)} dari ${MODULES.length}</span>
-                                <h2>${escapeHtml(module.title)}</h2>
-                                <p>${escapeHtml(module.summary)}</p>
-                            </section>
                             <section id="aiEvolutionActivity" class="ai-evolution-activity"></section>
                         </article>
                         <footer class="lesson-nav-footer ai-evolution-pager">
